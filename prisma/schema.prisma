@@ -1,0 +1,270 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String           @id @default(cuid())
+  email         String           @unique
+  passwordHash  String
+  name          String
+  role          UserRole
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  approvals     Approval[]
+  auditLogs     AuditLog[]
+  briefs        Brief[]          @relation("CreatedBy")
+  notifications Notification[]
+  assignedTasks ProductionTask[] @relation("AssignedTo")
+  clubs         UserClub[]
+}
+
+model Region {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  clubs     Club[]
+}
+
+model Brand {
+  id            String            @id @default(cuid())
+  name          String
+  code          String            @unique
+  guidelinesUrl String?
+  logoUrl       String?
+  primaryColor  String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  briefs        Brief[]
+  clubs         Club[]
+  templates     RequestTemplate[]
+}
+
+model Club {
+  id        String     @id @default(cuid())
+  name      String
+  code      String     @unique
+  city      String
+  address   String?
+  regionId  String
+  brandId   String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  briefs    Brief[]
+  brand     Brand      @relation(fields: [brandId], references: [id])
+  region    Region     @relation(fields: [regionId], references: [id])
+  users     UserClub[]
+}
+
+model UserClub {
+  userId    String
+  clubId    String
+  isManager Boolean  @default(false)
+  createdAt DateTime @default(now())
+  club      Club     @relation(fields: [clubId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, clubId])
+}
+
+model RequestTemplate {
+  id             String   @id @default(cuid())
+  name           String
+  code           String   @unique
+  description    String?
+  brandId        String?
+  requiredFields Json
+  defaultSLADays Int      @default(5)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  briefs         Brief[]
+  brand          Brand?   @relation(fields: [brandId], references: [id])
+}
+
+model Brief {
+  id              String          @id @default(cuid())
+  code            String          @unique
+  createdById     String
+  clubId          String
+  brandId         String
+  templateId      String
+  status          BriefStatus     @default(DRAFT)
+  priority        Priority        @default(MEDIUM)
+  title           String
+  objective       Objective
+  kpiDescription  String
+  kpiTarget       Float?
+  deadline        DateTime
+  startDate       DateTime?
+  endDate         DateTime?
+  context         String
+  offerDetails    String?
+  legalCopy       String?
+  customFields    Json?
+  assetLinks      String[]
+  wasExecuted     Boolean?
+  perceivedResult Int?
+  actualKpiValue  Float?
+  submittedAt     DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  approvals       Approval[]
+  auditLogs       AuditLog[]
+  brand           Brand           @relation(fields: [brandId], references: [id])
+  club            Club            @relation(fields: [clubId], references: [id])
+  createdBy       User            @relation("CreatedBy", fields: [createdById], references: [id])
+  template        RequestTemplate @relation(fields: [templateId], references: [id])
+  comments        Comment[]
+  productionTask  ProductionTask?
+
+  @@index([status])
+  @@index([createdById])
+  @@index([clubId])
+  @@index([deadline])
+}
+
+model Approval {
+  id          String           @id @default(cuid())
+  briefId     String
+  validatorId String
+  decision    ApprovalDecision
+  notes       String?
+  createdAt   DateTime         @default(now())
+  brief       Brief            @relation(fields: [briefId], references: [id], onDelete: Cascade)
+  validator   User             @relation(fields: [validatorId], references: [id])
+
+  @@index([briefId])
+}
+
+model ProductionTask {
+  id           String        @id @default(cuid())
+  briefId      String        @unique
+  assigneeId   String?
+  status       TaskStatus    @default(QUEUED)
+  slaDays      Int
+  dueDate      DateTime
+  notes        String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  comments     Comment[]
+  deliverables Deliverable[]
+  assignee     User?         @relation("AssignedTo", fields: [assigneeId], references: [id])
+  brief        Brief         @relation(fields: [briefId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([dueDate])
+}
+
+model Deliverable {
+  id           String         @id @default(cuid())
+  taskId       String
+  name         String
+  type         String
+  fileUrl      String
+  version      Int            @default(1)
+  isApproved   Boolean        @default(false)
+  approvedById String?
+  changeNotes  String?
+  createdAt    DateTime       @default(now())
+  task         ProductionTask @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+}
+
+model Comment {
+  id        String          @id @default(cuid())
+  content   String
+  authorId  String
+  briefId   String?
+  taskId    String?
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  brief     Brief?          @relation(fields: [briefId], references: [id], onDelete: Cascade)
+  task      ProductionTask? @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([briefId])
+  @@index([taskId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  type      String
+  title     String
+  message   String
+  linkUrl   String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  briefId   String?
+  action    String
+  details   Json?
+  ipAddress String?
+  createdAt DateTime @default(now())
+  brief     Brief?   @relation(fields: [briefId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@index([briefId])
+  @@index([createdAt])
+}
+
+enum UserRole {
+  CLUB_MANAGER
+  VALIDATOR
+  PRODUCTION
+  ADMIN
+}
+
+enum BriefStatus {
+  DRAFT
+  SUBMITTED
+  CHANGES_REQUESTED
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum TaskStatus {
+  QUEUED
+  IN_PROGRESS
+  IN_REVIEW
+  NEEDS_CHANGES
+  APPROVED
+  DELIVERED
+  CLOSED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum Objective {
+  ACQUISITION
+  RETENTION
+  ATTENDANCE
+  UPSELL
+  AWARENESS
+  OTHER
+}
+
+enum ApprovalDecision {
+  APPROVED
+  CHANGES_REQUESTED
+  REJECTED
+}
