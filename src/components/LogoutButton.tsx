@@ -10,7 +10,7 @@ export function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="text-sm text-red-600 hover:text-red-800"
+      className="text-sm text-[#daff47] hover:text-white transition-colors"
     >
       Wyloguj
     </button>

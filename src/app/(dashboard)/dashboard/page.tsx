@@ -107,9 +107,9 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
           <Link href="/dashboard">
             <Image
@@ -117,11 +117,11 @@ export default async function DashboardPage() {
               alt="regional.fit"
               width={120}
               height={40}
-              className="h-10 w-auto"
+              className="h-10 w-auto brightness-0 invert"
             />
           </Link>
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-600">
+            <span className="text-sm text-white/80">
               {user.name} ({roleLabels[user.role]})
             </span>
             <LogoutButton />
@@ -177,10 +177,10 @@ export default async function DashboardPage() {
         )}
 
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+          <h2 className="text-xl font-semibold text-[#2b3b82] mb-2">
             Witaj, {user.name}!
           </h2>
-          <p className="text-gray-600">
+          <p className="text-[#2b3b82]/70">
             Twoja rola: {roleLabels[user.role]}
           </p>
         </div>
@@ -188,35 +188,35 @@ export default async function DashboardPage() {
         {/* Stats cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           {user.role === 'CLUB_MANAGER' && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-sm font-medium text-gray-500">Twoje briefy</h3>
-              <p className="text-3xl font-bold text-gray-900 mt-2">{stats.briefs}</p>
+            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-[#daff47]">
+              <h3 className="text-sm font-medium text-[#2b3b82]/60">Twoje briefy</h3>
+              <p className="text-3xl font-bold text-[#2b3b82] mt-2">{stats.briefs}</p>
             </div>
           )}
 
           {user.role === 'VALIDATOR' && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-sm font-medium text-gray-500">Do zatwierdzenia</h3>
-              <p className="text-3xl font-bold text-orange-600 mt-2">{stats.pendingApprovals}</p>
+            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-[#daff47]">
+              <h3 className="text-sm font-medium text-[#2b3b82]/60">Do zatwierdzenia</h3>
+              <p className="text-3xl font-bold text-[#2b3b82] mt-2">{stats.pendingApprovals}</p>
             </div>
           )}
 
           {user.role === 'PRODUCTION' && (
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-sm font-medium text-gray-500">Zadania w toku</h3>
-              <p className="text-3xl font-bold text-blue-600 mt-2">{stats.tasksInProgress}</p>
+            <div className="bg-white rounded-lg shadow p-6 border-l-4 border-[#daff47]">
+              <h3 className="text-sm font-medium text-[#2b3b82]/60">Zadania w toku</h3>
+              <p className="text-3xl font-bold text-[#2b3b82] mt-2">{stats.tasksInProgress}</p>
             </div>
           )}
         </div>
 
         {/* Quick actions */}
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Szybkie akcje</h3>
+          <h3 className="text-lg font-semibold text-[#2b3b82] mb-4">Szybkie akcje</h3>
           <div className="flex flex-wrap gap-4">
             {user.role === 'CLUB_MANAGER' && (
               <Link
                 href="/briefs/new"
-                className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                className="inline-flex items-center px-4 py-2 bg-[#daff47] text-[#2b3b82] font-semibold rounded-lg hover:bg-[#c5eb3d] transition-colors"
               >
                 + Nowy brief
               </Link>
@@ -225,18 +225,18 @@ export default async function DashboardPage() {
             {user.role === 'VALIDATOR' && (
               <Link
                 href="/approvals"
-                className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700"
+                className="inline-flex items-center px-4 py-2 bg-[#daff47] text-[#2b3b82] font-semibold rounded-lg hover:bg-[#c5eb3d] transition-colors"
               >
-                Przejdź do zatwierdzeń
+                Przejdz do zatwierdzen
               </Link>
             )}
 
             {user.role === 'PRODUCTION' && (
               <Link
                 href="/production"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="inline-flex items-center px-4 py-2 bg-[#daff47] text-[#2b3b82] font-semibold rounded-lg hover:bg-[#c5eb3d] transition-colors"
               >
-                Przejdź do kolejki
+                Przejdz do kolejki
               </Link>
             )}
 
@@ -244,33 +244,33 @@ export default async function DashboardPage() {
               <>
                 <Link
                   href="/admin/clubs"
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                  className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
                 >
-                  Zarządzaj klubami
+                  Zarzadzaj klubami
                 </Link>
                 <Link
                   href="/admin/regions"
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                  className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
                 >
-                  Zarządzaj regionami
+                  Zarzadzaj regionami
                 </Link>
                 <Link
                   href="/admin/users"
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                  className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
                 >
-                  Zarządzaj użytkownikami
+                  Zarzadzaj uzytkownikami
                 </Link>
                 <Link
                   href="/admin/templates"
-                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                  className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
                 >
-                  Zarządzaj szablonami
+                  Zarzadzaj szablonami
                 </Link>
                 <Link
                   href="/admin/focus"
-                  className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+                  className="inline-flex items-center px-4 py-2 bg-[#daff47] text-[#2b3b82] font-semibold rounded-lg hover:bg-[#c5eb3d] transition-colors"
                 >
-                  Cele sprzedażowe
+                  Cele sprzedazowe
                 </Link>
               </>
             )}
@@ -278,9 +278,9 @@ export default async function DashboardPage() {
             {user.role === 'VALIDATOR' && (
               <Link
                 href="/admin/focus"
-                className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+                className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
               >
-                Zarządzaj celami
+                Zarzadzaj celami
               </Link>
             )}
           </div>
@@ -289,17 +289,17 @@ export default async function DashboardPage() {
         {/* User's clubs */}
         {user.clubs.length > 0 && (
           <div className="bg-white rounded-lg shadow p-6 mt-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <h3 className="text-lg font-semibold text-[#2b3b82] mb-4">
               {user.role === 'CLUB_MANAGER' ? 'Twoje kluby' : 'Przypisane kluby'}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {user.clubs.map((uc) => (
                 <div
                   key={uc.clubId}
-                  className="border rounded-lg p-4 hover:bg-gray-50"
+                  className="border border-[#2b3b82]/10 rounded-lg p-4 hover:bg-[#2b3b82]/5 transition-colors"
                 >
-                  <h4 className="font-medium text-gray-900">{uc.club.name}</h4>
-                  <p className="text-sm text-gray-500">{uc.club.city}</p>
+                  <h4 className="font-medium text-[#2b3b82]">{uc.club.name}</h4>
+                  <p className="text-sm text-[#2b3b82]/60">{uc.club.city}</p>
                   <div className="mt-2 flex gap-2">
                     <span
                       className="inline-block px-2 py-1 text-xs rounded"
@@ -307,7 +307,7 @@ export default async function DashboardPage() {
                     >
                       {uc.club.brand.name}
                     </span>
-                    <span className="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded">
+                    <span className="inline-block px-2 py-1 text-xs bg-[#2b3b82]/10 text-[#2b3b82]/70 rounded">
                       {uc.club.region.name}
                     </span>
                   </div>

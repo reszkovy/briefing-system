@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Plus_Jakarta_Sans } from 'next/font/google'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 
-const inter = Inter({ subsets: ['latin', 'latin-ext'] })
+const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin', 'latin-ext'] })
 
 export const metadata: Metadata = {
   title: 'regional.fit - System briefowania',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl">
-      <body className={inter.className}>
+      <body className={plusJakartaSans.className}>
         <Providers>
           {children}
         </Providers>

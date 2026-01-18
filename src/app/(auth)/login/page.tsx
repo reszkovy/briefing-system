@@ -74,7 +74,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#1a2654] p-4">
       <div className="max-w-lg w-full space-y-8 p-8 bg-white rounded-xl shadow-lg">
         <div className="flex flex-col items-center">
           <Image
@@ -84,11 +84,11 @@ export default function LoginPage() {
             height={150}
             priority
           />
-          <p className="mt-4 text-center text-gray-600">
+          <p className="mt-4 text-center text-[#2b3b82]">
             System briefowania dla sieci fitness
           </p>
-          <p className="mt-4 text-center text-sm text-amber-600 bg-amber-50 px-4 py-2 rounded-lg">
-            Tryb demonstracyjny - wybierz rolę aby zobaczyć system
+          <p className="mt-4 text-center text-sm text-[#2b3b82] bg-[#daff47]/20 px-4 py-2 rounded-lg border border-[#daff47]/40">
+            Tryb demonstracyjny - wybierz role aby zobaczyc system
           </p>
         </div>
 
@@ -99,8 +99,8 @@ export default function LoginPage() {
         )}
 
         <div className="space-y-4">
-          <p className="text-sm font-medium text-gray-700 text-center">
-            Wybierz rolę do zalogowania:
+          <p className="text-sm font-medium text-[#2b3b82] text-center">
+            Wybierz role do zalogowania:
           </p>
 
           {demoUsers.map((user) => (
@@ -110,21 +110,21 @@ export default function LoginPage() {
               disabled={loading !== null}
               className={`w-full flex items-center gap-4 p-4 border-2 rounded-xl transition-all ${
                 loading === user.email
-                  ? 'border-gray-300 bg-gray-50'
-                  : 'border-gray-200 hover:border-gray-400 hover:shadow-md'
+                  ? 'border-[#2b3b82]/30 bg-[#2b3b82]/5'
+                  : 'border-[#2b3b82]/20 hover:border-[#daff47] hover:shadow-md hover:bg-[#daff47]/5'
               } disabled:opacity-60`}
             >
-              <div className={`w-12 h-12 ${user.color} rounded-full flex items-center justify-center text-white font-bold text-lg`}>
+              <div className={`w-12 h-12 bg-[#2b3b82] rounded-full flex items-center justify-center text-white font-bold text-lg`}>
                 {user.name.charAt(0)}
               </div>
               <div className="flex-1 text-left">
-                <p className="font-semibold text-gray-900">{user.name}</p>
-                <p className="text-sm text-gray-500">{user.description}</p>
+                <p className="font-semibold text-[#2b3b82]">{user.name}</p>
+                <p className="text-sm text-[#2b3b82]/60">{user.description}</p>
               </div>
               {loading === user.email ? (
-                <div className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+                <div className="w-6 h-6 border-2 border-[#2b3b82] border-t-transparent rounded-full animate-spin" />
               ) : (
-                <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[#2b3b82]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               )}
@@ -132,8 +132,8 @@ export default function LoginPage() {
           ))}
         </div>
 
-        <p className="text-xs text-gray-400 text-center pt-4 border-t">
-          To jest wersja demonstracyjna systemu. Wszystkie dane są przykładowe.
+        <p className="text-xs text-[#2b3b82]/40 text-center pt-4 border-t border-[#2b3b82]/10">
+          To jest wersja demonstracyjna systemu. Wszystkie dane sa przykladowe.
         </p>
       </div>
     </div>
