@@ -18,8 +18,7 @@ export const loginSchema = z.object({
     .email('Nieprawidłowy adres email'),
   password: z
     .string()
-    .min(1, 'Hasło jest wymagane')
-    .min(6, 'Hasło musi mieć min. 6 znaków'),
+    .min(1, 'Hasło jest wymagane'),
 })
 
 // Create user validation (admin)
