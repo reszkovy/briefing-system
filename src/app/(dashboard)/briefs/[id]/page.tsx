@@ -94,13 +94,13 @@ export default async function BriefDetailPage({
   const templateSchema = brief.template.requiredFields as unknown as TemplateSchema
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link href="/briefs" className="text-gray-500 hover:text-gray-700">
+              <Link href="/briefs" className="text-white/70 hover:text-white">
                 ← Moje briefy
               </Link>
               <div>
@@ -266,7 +266,7 @@ export default async function BriefDetailPage({
                         href={link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-green-600 hover:underline flex items-center gap-2"
+                        className="text-[#2b3b82] hover:underline flex items-center gap-2"
                       >
                         <span>📎</span>
                         {link}
@@ -371,7 +371,7 @@ export default async function BriefDetailPage({
                             href={d.fileUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-sm text-green-600 hover:underline"
+                            className="text-sm text-[#2b3b82] hover:underline"
                           >
                             {d.name} (v{d.version})
                           </a>
@@ -397,7 +397,7 @@ export default async function BriefDetailPage({
             )}
 
             {brief.status === 'DRAFT' && brief.createdById === session.user.id && (
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="bg-[#f5f7fa] border border-gray-200 rounded-lg p-4">
                 <h3 className="font-medium text-gray-800 mb-2">Szkic</h3>
                 <p className="text-sm text-gray-600 mb-3">
                   Ten brief nie zostal jeszcze wyslany do zatwierdzenia.

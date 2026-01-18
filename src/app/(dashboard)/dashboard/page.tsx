@@ -113,11 +113,11 @@ export default async function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
           <Link href="/dashboard">
             <Image
-              src="/logo.svg"
+              src="/logo-white.svg"
               alt="regional.fit"
               width={120}
               height={40}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto"
             />
           </Link>
           <div className="flex items-center gap-4">

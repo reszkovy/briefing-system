@@ -79,15 +79,15 @@ export default async function ProductionPage() {
   const deliveredTasks = tasks.filter(t => t.status === 'DELIVERED')
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">
+            <Link href="/dashboard" className="text-white/70 hover:text-white">
               ← Dashboard
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-white">
               Kolejka Produkcji
             </h1>
           </div>
@@ -104,7 +104,7 @@ export default async function ProductionPage() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white rounded-lg shadow p-4">
             <h3 className="text-sm font-medium text-gray-500">W kolejce</h3>
-            <p className="text-2xl font-bold text-gray-900">{queuedTasks.length}</p>
+            <p className="text-2xl font-bold text-white">{queuedTasks.length}</p>
           </div>
           <div className="bg-white rounded-lg shadow p-4">
             <h3 className="text-sm font-medium text-gray-500">W realizacji</h3>
@@ -136,7 +136,7 @@ export default async function ProductionPage() {
                 <Link
                   key={task.id}
                   href={`/production/${task.id}`}
-                  className="block px-6 py-4 hover:bg-gray-50 transition-colors"
+                  className="block px-6 py-4 hover:bg-[#f5f7fa] transition-colors"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

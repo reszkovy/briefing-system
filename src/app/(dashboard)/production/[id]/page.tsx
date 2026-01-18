@@ -79,12 +79,12 @@ export default async function ProductionTaskPage({ params }: Props) {
   const customFields = task.brief.customFields as Record<string, unknown> | null
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/production" className="text-gray-500 hover:text-gray-700">
+            <Link href="/production" className="text-white/70 hover:text-white">
               ← Kolejka
             </Link>
             <h1 className="text-xl font-bold text-gray-900">

@@ -65,15 +65,15 @@ export default async function ApprovalsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">
+            <Link href="/dashboard" className="text-white/70 hover:text-white">
               ← Dashboard
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">Zatwierdzenia</h1>
+            <h1 className="text-2xl font-bold text-white">Zatwierdzenia</h1>
           </div>
           <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
             {pendingBriefs.length} oczekujących
@@ -142,7 +142,7 @@ export default async function ApprovalsPage() {
                         <p className={`text-xs ${sla.color}`}>{sla.text}</p>
                         <Link
                           href={`/approvals/${brief.id}`}
-                          className="mt-3 inline-block px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm"
+                          className="mt-3 inline-block px-4 py-2 bg-[#daff47] text-[#2b3b82] font-semibold rounded-lg hover:bg-[#c5eb3d] text-sm"
                         >
                           Rozpatrz
                         </Link>
@@ -163,7 +163,7 @@ export default async function ApprovalsPage() {
             </h2>
             <div className="bg-white rounded-lg shadow overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-[#f5f7fa]">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                       Brief
@@ -181,11 +181,11 @@ export default async function ApprovalsPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {recentApprovals.map((approval) => (
-                    <tr key={approval.id} className="hover:bg-gray-50">
+                    <tr key={approval.id} className="hover:bg-[#f5f7fa]">
                       <td className="px-6 py-4">
                         <Link
                           href={`/briefs/${approval.briefId}`}
-                          className="text-green-600 hover:underline"
+                          className="text-[#2b3b82] hover:underline"
                         >
                           {approval.brief.title}
                         </Link>

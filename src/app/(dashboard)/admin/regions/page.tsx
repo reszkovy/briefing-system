@@ -32,34 +32,34 @@ export default async function AdminRegionsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
-      <header className="bg-white shadow">
+      <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">
+            <Link href="/dashboard" className="text-white/70 hover:text-white">
               ← Dashboard
             </Link>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-white">
               Zarządzanie regionami
             </h1>
           </div>
           <div className="flex items-center gap-4">
             <Link
               href="/admin/clubs"
-              className="text-sm text-gray-600 hover:text-gray-900"
+              className="text-sm text-white/70 hover:text-white"
             >
               Kluby
             </Link>
             <Link
               href="/admin/users"
-              className="text-sm text-gray-600 hover:text-gray-900"
+              className="text-sm text-white/70 hover:text-white"
             >
               Użytkownicy
             </Link>
             <Link
               href="/admin/templates"
-              className="text-sm text-gray-600 hover:text-gray-900"
+              className="text-sm text-white/70 hover:text-white"
             >
               Szablony
             </Link>
