@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { ClubList } from './ClubList'
+import { LogoutButton } from '@/components/LogoutButton'
 
 export default async function AdminClubsPage() {
   const session = await auth()
@@ -99,11 +100,7 @@ export default async function AdminClubsPage() {
             >
               Szablony
             </Link>
-            <form action="/api/auth/signout" method="POST">
-              <button type="submit" className="text-sm text-red-600 hover:text-red-800">
-                Wyloguj
-              </button>
-            </form>
+            <LogoutButton />
           </div>
         </div>
       </header>

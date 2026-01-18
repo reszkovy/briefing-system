@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
+import { LogoutButton } from '@/components/LogoutButton'
 
 export default async function ProductionPage() {
   const session = await auth()
@@ -92,11 +93,7 @@ export default async function ProductionPage() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">{user.name}</span>
-            <form action="/api/auth/signout" method="POST">
-              <button type="submit" className="text-sm text-red-600 hover:text-red-800">
-                Wyloguj
-              </button>
-            </form>
+            <LogoutButton />
           </div>
         </div>
       </header>

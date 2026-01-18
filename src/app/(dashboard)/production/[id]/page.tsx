@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { TaskStatusForm } from './TaskStatusForm'
 import { TrelloSummary } from './TrelloSummary'
+import { LogoutButton } from '@/components/LogoutButton'
 
 interface Props {
   params: { id: string }
@@ -90,11 +91,7 @@ export default async function ProductionTaskPage({ params }: Props) {
               Zadanie: {task.brief.code}
             </h1>
           </div>
-          <form action="/api/auth/signout" method="POST">
-            <button type="submit" className="text-sm text-red-600 hover:text-red-800">
-              Wyloguj
-            </button>
-          </form>
+          <LogoutButton />
         </div>
       </header>
 
