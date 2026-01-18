@@ -6,7 +6,11 @@ import { useRouter } from 'next/navigation'
 interface Brand {
   id: string
   name: string
+  code: string
   primaryColor: string | null
+  guidelinesUrl: string | null
+  logoUrl: string | null
+  createdAt: Date | string
 }
 
 interface Template {
