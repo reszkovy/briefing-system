@@ -1,0 +1,95 @@
+import { redirect } from 'next/navigation'
+import { auth } from '@/lib/auth'
+import { prisma } from '@/lib/prisma'
+import Link from 'next/link'
+import { FocusList } from './FocusList'
+
+export default async function AdminFocusPage() {
+  const session = await auth()
+
+  if (!session) {
+    redirect('/login')
+  }
+
+  const currentUser = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  })
+
+  if (!currentUser || !['ADMIN', 'VALIDATOR'].includes(currentUser.role)) {
+    redirect('/dashboard')
+  }
+
+  const focuses = await prisma.salesFocus.findMany({
+    include: {
+      brand: true,
+      region: true,
+      createdBy: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+    orderBy: [{ startDate: 'desc' }],
+  })
+
+  const regions = await prisma.region.findMany({
+    orderBy: { name: 'asc' },
+  })
+
+  const brands = await prisma.brand.findMany({
+    orderBy: { name: 'asc' },
+  })
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <Link href="/dashboard" className="text-gray-500 hover:text-gray-700">
+              ← Dashboard
+            </Link>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Cele sprzedażowe (Focus)
+            </h1>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/admin/clubs"
+              className="text-sm text-gray-600 hover:text-gray-900"
+            >
+              Kluby
+            </Link>
+            <Link
+              href="/admin/regions"
+              className="text-sm text-gray-600 hover:text-gray-900"
+            >
+              Regiony
+            </Link>
+            <Link
+              href="/admin/users"
+              className="text-sm text-gray-600 hover:text-gray-900"
+            >
+              Użytkownicy
+            </Link>
+            <form action="/api/auth/signout" method="POST">
+              <button type="submit" className="text-sm text-red-600 hover:text-red-800">
+                Wyloguj
+              </button>
+            </form>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <FocusList
+          initialFocuses={JSON.parse(JSON.stringify(focuses))}
+          regions={JSON.parse(JSON.stringify(regions))}
+          brands={JSON.parse(JSON.stringify(brands))}
+        />
+      </main>
+    </div>
+  )
+}

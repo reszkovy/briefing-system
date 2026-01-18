@@ -57,6 +57,46 @@ export default async function DashboardPage() {
     })
   }
 
+  // Get active sales focuses for manager's brands and regions
+  const now = new Date()
+  const userBrandIds = user.clubs.map((uc) => uc.club.brandId)
+  const userRegionIds = user.clubs.map((uc) => uc.club.regionId)
+
+  const activeFocuses = await prisma.salesFocus.findMany({
+    where: {
+      isActive: true,
+      startDate: { lte: now },
+      endDate: { gte: now },
+      OR: [
+        // Global focuses (no brand/region restriction)
+        { brandId: null, regionId: null },
+        // Brand-specific focuses
+        { brandId: { in: userBrandIds }, regionId: null },
+        // Region-specific focuses
+        { regionId: { in: userRegionIds }, brandId: null },
+        // Brand AND region specific focuses
+        { brandId: { in: userBrandIds }, regionId: { in: userRegionIds } },
+      ],
+    },
+    include: {
+      brand: true,
+      region: true,
+    },
+    orderBy: [{ period: 'asc' }, { startDate: 'desc' }],
+  })
+
+  const periodLabels: Record<string, string> = {
+    MONTHLY: 'Miesięczny',
+    QUARTERLY: 'Kwartalny',
+    YEARLY: 'Roczny',
+  }
+
+  const periodIcons: Record<string, string> = {
+    MONTHLY: '📅',
+    QUARTERLY: '📊',
+    YEARLY: '🎯',
+  }
+
   const roleLabels: Record<string, string> = {
     CLUB_MANAGER: 'Manager Klubu',
     VALIDATOR: 'Walidator Regionalny',
@@ -90,6 +130,51 @@ export default async function DashboardPage() {
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Active Sales Focuses - shown prominently at the top */}
+        {activeFocuses.length > 0 && (user.role === 'CLUB_MANAGER' || user.role === 'VALIDATOR') && (
+          <div className="mb-8 space-y-3">
+            {activeFocuses.map((focus) => (
+              <div
+                key={focus.id}
+                className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-4 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">{periodIcons[focus.period]}</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-xs font-medium px-2 py-0.5 bg-amber-200 text-amber-800 rounded">
+                        Focus {periodLabels[focus.period]}
+                      </span>
+                      {focus.brand && (
+                        <span
+                          className="text-xs px-2 py-0.5 rounded"
+                          style={{
+                            backgroundColor: (focus.brand.primaryColor || '#888') + '20',
+                            color: focus.brand.primaryColor || '#888',
+                          }}
+                        >
+                          {focus.brand.name}
+                        </span>
+                      )}
+                      {focus.region && (
+                        <span className="text-xs px-2 py-0.5 bg-gray-100 text-gray-600 rounded">
+                          {focus.region.name}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mt-1">
+                      {focus.title}
+                    </h3>
+                    {focus.description && (
+                      <p className="text-sm text-gray-600 mt-1">{focus.description}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
             Witaj, {user.name}!
@@ -157,6 +242,18 @@ export default async function DashboardPage() {
             {user.role === 'ADMIN' && (
               <>
                 <Link
+                  href="/admin/clubs"
+                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                >
+                  Zarządzaj klubami
+                </Link>
+                <Link
+                  href="/admin/regions"
+                  className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                >
+                  Zarządzaj regionami
+                </Link>
+                <Link
                   href="/admin/users"
                   className="inline-flex items-center px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
                 >
@@ -168,7 +265,22 @@ export default async function DashboardPage() {
                 >
                   Zarządzaj szablonami
                 </Link>
+                <Link
+                  href="/admin/focus"
+                  className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+                >
+                  Cele sprzedażowe
+                </Link>
               </>
+            )}
+
+            {user.role === 'VALIDATOR' && (
+              <Link
+                href="/admin/focus"
+                className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+              >
+                Zarządzaj celami
+              </Link>
             )}
           </div>
         </div>

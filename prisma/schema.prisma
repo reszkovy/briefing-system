@@ -21,14 +21,16 @@ model User {
   notifications Notification[]
   assignedTasks ProductionTask[] @relation("AssignedTo")
   clubs         UserClub[]
+  salesFocuses  SalesFocus[]     @relation("FocusCreatedBy")
 }
 
 model Region {
-  id        String   @id @default(cuid())
-  name      String
-  code      String   @unique
-  createdAt DateTime @default(now())
-  clubs     Club[]
+  id           String       @id @default(cuid())
+  name         String
+  code         String       @unique
+  createdAt    DateTime     @default(now())
+  clubs        Club[]
+  salesFocuses SalesFocus[]
 }
 
 model Brand {
@@ -43,6 +45,7 @@ model Brand {
   briefs        Brief[]
   clubs         Club[]
   templates     RequestTemplate[]
+  salesFocuses  SalesFocus[]
 }
 
 model Club {
@@ -267,4 +270,33 @@ enum ApprovalDecision {
   APPROVED
   CHANGES_REQUESTED
   REJECTED
+}
+
+enum FocusPeriod {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+model SalesFocus {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  period      FocusPeriod
+  startDate   DateTime
+  endDate     DateTime
+  brandId     String?
+  regionId    String?
+  createdById String
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  brand       Brand?      @relation(fields: [brandId], references: [id])
+  region      Region?     @relation(fields: [regionId], references: [id])
+  createdBy   User        @relation("FocusCreatedBy", fields: [createdById], references: [id])
+
+  @@index([brandId])
+  @@index([regionId])
+  @@index([startDate, endDate])
 }

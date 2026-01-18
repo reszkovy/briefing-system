@@ -41,10 +41,23 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null
         }
 
-        // Verify password
-        const passwordMatch = await compare(password, user.passwordHash)
-        if (!passwordMatch) {
-          return null
+        // Demo mode: allow "demo" as password for demo accounts
+        const isDemoMode = password === 'demo'
+        const demoEmails = [
+          'anna.kowalska@benefit.pl',
+          'michal.adamski@benefit.pl',
+          'studio@benefit.pl',
+          'admin@benefit.pl',
+        ]
+
+        if (isDemoMode && demoEmails.includes(email.toLowerCase())) {
+          // Allow demo login
+        } else {
+          // Verify password normally
+          const passwordMatch = await compare(password, user.passwordHash)
+          if (!passwordMatch) {
+            return null
+          }
         }
 
         // Return user object (without password)
