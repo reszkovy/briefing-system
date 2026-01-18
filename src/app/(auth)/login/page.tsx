@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 interface DemoUser {
   email: string
@@ -75,11 +76,15 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
       <div className="max-w-lg w-full space-y-8 p-8 bg-white rounded-xl shadow-lg">
-        <div>
-          <h1 className="text-3xl font-bold text-center text-gray-900">
-            regional.fit
-          </h1>
-          <p className="mt-2 text-center text-gray-600">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/logo.svg"
+            alt="regional.fit"
+            width={200}
+            height={150}
+            priority
+          />
+          <p className="mt-4 text-center text-gray-600">
             System briefowania dla sieci fitness
           </p>
           <p className="mt-4 text-center text-sm text-amber-600 bg-amber-50 px-4 py-2 rounded-lg">
