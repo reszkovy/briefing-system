@@ -26,34 +26,35 @@ export function formatRelativeTime(date: Date | string): string {
   return formatDistanceToNow(d, { addSuffix: true, locale: pl })
 }
 
-// Status badge colors
+// Status badge colors - Regional.fit style with strong contrast
 export function getStatusColor(status: string): string {
   const colors: Record<string, string> = {
-    // Brief statuses
-    DRAFT: 'bg-gray-100 text-gray-700',
-    SUBMITTED: 'bg-blue-100 text-blue-700',
-    CHANGES_REQUESTED: 'bg-yellow-100 text-yellow-700',
-    APPROVED: 'bg-green-100 text-green-700',
-    REJECTED: 'bg-red-100 text-red-700',
-    CANCELLED: 'bg-gray-100 text-gray-500',
-    // Task statuses
-    QUEUED: 'bg-gray-100 text-gray-700',
-    IN_PROGRESS: 'bg-blue-100 text-blue-700',
-    IN_REVIEW: 'bg-purple-100 text-purple-700',
-    NEEDS_CHANGES: 'bg-yellow-100 text-yellow-700',
-    DELIVERED: 'bg-green-100 text-green-700',
-    CLOSED: 'bg-gray-100 text-gray-500',
+    // Brief statuses - bold and distinctive
+    DRAFT: 'bg-slate-200 text-slate-700 border border-slate-300',
+    SUBMITTED: 'bg-[#2b3b82] text-white',
+    CHANGES_REQUESTED: 'bg-amber-500 text-white',
+    APPROVED: 'bg-emerald-500 text-white',
+    REJECTED: 'bg-red-500 text-white',
+    CANCELLED: 'bg-slate-400 text-white',
+    // Task statuses - bold and distinctive
+    QUEUED: 'bg-slate-500 text-white',
+    IN_PROGRESS: 'bg-[#2b3b82] text-white',
+    IN_REVIEW: 'bg-amber-500 text-white',
+    NEEDS_CHANGES: 'bg-orange-500 text-white',
+    DELIVERED: 'bg-emerald-500 text-white',
+    CLOSED: 'bg-slate-400 text-white',
+    ON_HOLD: 'bg-red-500 text-white',
   }
   return colors[status] || 'bg-gray-100 text-gray-700'
 }
 
-// Priority badge colors
+// Priority badge colors - Regional.fit style with strong contrast
 export function getPriorityColor(priority: string): string {
   const colors: Record<string, string> = {
-    LOW: 'bg-gray-100 text-gray-600',
-    MEDIUM: 'bg-blue-100 text-blue-600',
-    HIGH: 'bg-orange-100 text-orange-600',
-    CRITICAL: 'bg-red-100 text-red-600',
+    LOW: 'bg-slate-200 text-slate-600 border border-slate-300',
+    MEDIUM: 'bg-[#2b3b82]/20 text-[#2b3b82] border border-[#2b3b82]/30',
+    HIGH: 'bg-orange-500 text-white',
+    CRITICAL: 'bg-red-600 text-white animate-pulse',
   }
   return colors[priority] || 'bg-gray-100 text-gray-600'
 }

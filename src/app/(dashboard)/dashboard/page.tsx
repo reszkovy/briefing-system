@@ -272,16 +272,30 @@ export default async function DashboardPage() {
                 >
                   Cele sprzedazowe
                 </Link>
+                <Link
+                  href="/statistics"
+                  className="inline-flex items-center px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+                >
+                  📊 Statystyki
+                </Link>
               </>
             )}
 
             {user.role === 'VALIDATOR' && (
-              <Link
-                href="/admin/focus"
-                className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
-              >
-                Zarzadzaj celami
-              </Link>
+              <>
+                <Link
+                  href="/admin/focus"
+                  className="inline-flex items-center px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1a2654] transition-colors"
+                >
+                  Zarzadzaj celami
+                </Link>
+                <Link
+                  href="/statistics"
+                  className="inline-flex items-center px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-colors"
+                >
+                  📊 Statystyki
+                </Link>
+              </>
             )}
           </div>
         </div>

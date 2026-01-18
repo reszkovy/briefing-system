@@ -49,10 +49,10 @@ async function main() {
     }),
     prisma.brand.create({
       data: {
-        name: 'S4 Fitness',
-        code: 'S4',
+        name: 'My Fitness Place',
+        code: 'MFP',
         primaryColor: '#FF6B00',
-        guidelinesUrl: 'https://drive.google.com/drive/folders/s4-brand-guidelines',
+        guidelinesUrl: 'https://drive.google.com/drive/folders/mfp-brand-guidelines',
       },
     }),
     prisma.brand.create({
@@ -69,6 +69,14 @@ async function main() {
         code: 'FITFAB',
         primaryColor: '#7C3AED',
         guidelinesUrl: 'https://drive.google.com/drive/folders/fitfab-brand-guidelines',
+      },
+    }),
+    prisma.brand.create({
+      data: {
+        name: 'Fitness Academy',
+        code: 'FA',
+        primaryColor: '#E11D48',
+        guidelinesUrl: 'https://drive.google.com/drive/folders/fa-brand-guidelines',
       },
     }),
   ])
@@ -128,11 +136,11 @@ async function main() {
         brandId: brands[0].id,
       },
     }),
-    // S4 clubs
+    // My Fitness Place clubs
     prisma.club.create({
       data: {
-        name: 'S4 Marszałkowska',
-        code: 'S4-WAW-MAR',
+        name: 'My Fitness Place Marszałkowska',
+        code: 'MFP-WAW-MAR',
         city: 'Warszawa',
         address: 'ul. Marszałkowska 104/122',
         regionId: regions[0].id,
@@ -141,8 +149,8 @@ async function main() {
     }),
     prisma.club.create({
       data: {
-        name: 'S4 Wrocław Centrum',
-        code: 'S4-WRO-CEN',
+        name: 'My Fitness Place Wrocław Centrum',
+        code: 'MFP-WRO-CEN',
         city: 'Wrocław',
         address: 'ul. Świdnicka 40',
         regionId: regions[2].id,
@@ -151,8 +159,8 @@ async function main() {
     }),
     prisma.club.create({
       data: {
-        name: 'S4 Katowice Silesia',
-        code: 'S4-KAT-SIL',
+        name: 'My Fitness Place Katowice Silesia',
+        code: 'MFP-KAT-SIL',
         city: 'Katowice',
         address: 'ul. Chorzowska 107, Silesia City Center',
         regionId: regions[5].id,
@@ -189,6 +197,27 @@ async function main() {
         address: 'ul. Półwiejska 42, Stary Browar',
         regionId: regions[4].id,
         brandId: brands[3].id,
+      },
+    }),
+    // Fitness Academy clubs
+    prisma.club.create({
+      data: {
+        name: 'Fitness Academy Praga',
+        code: 'FA-WAW-PRA',
+        city: 'Warszawa',
+        address: 'ul. Targowa 72, Praga Północ',
+        regionId: regions[0].id,
+        brandId: brands[4].id,
+      },
+    }),
+    prisma.club.create({
+      data: {
+        name: 'Fitness Academy Łódź Manufaktura',
+        code: 'FA-LOD-MAN',
+        city: 'Łódź',
+        address: 'ul. Drewnowska 58, Manufaktura',
+        regionId: regions[5].id, // Śląsk - blisko
+        brandId: brands[4].id,
       },
     }),
   ])
@@ -824,7 +853,7 @@ async function main() {
         briefId: briefs[2].id,
         validatorId: users[5].id,
         decision: 'APPROVED',
-        notes: 'Świetna akcja! Priorytet CRITICAL uzasadniony - to duża inwestycja. Proszę o realizację ASAP. Pamiętajcie o zgodności z brand guidelines S4.',
+        notes: 'Świetna akcja! Priorytet CRITICAL uzasadniony - to duża inwestycja. Proszę o realizację ASAP. Pamiętajcie o zgodności z brand guidelines My Fitness Place.',
       },
     }),
     // Approval for brief 4 (changes requested)
@@ -995,7 +1024,7 @@ async function main() {
   console.log('   Club Managers:')
   console.log('   - anna.kowalska@benefit.pl (Zdrofit Arkadia)')
   console.log('   - piotr.nowak@benefit.pl (Zdrofit Mokotów, Złote Tarasy)')
-  console.log('   - katarzyna.wiszniewska@benefit.pl (S4 Marszałkowska)')
+  console.log('   - katarzyna.wiszniewska@benefit.pl (My Fitness Place Marszałkowska)')
   console.log('')
   console.log('   Validators:')
   console.log('   - michal.adamski@benefit.pl (Warsaw region)')
