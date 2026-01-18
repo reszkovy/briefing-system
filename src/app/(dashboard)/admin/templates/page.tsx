@@ -61,8 +61,8 @@ export default async function AdminTemplatesPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <TemplateList
-          initialTemplates={templates}
-          brands={brands}
+          initialTemplates={JSON.parse(JSON.stringify(templates))}
+          brands={JSON.parse(JSON.stringify(brands))}
         />
       </main>
     </div>
