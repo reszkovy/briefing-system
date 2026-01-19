@@ -14,7 +14,7 @@ export function BriefCard({ brief }: BriefCardProps) {
 
   return (
     <Link href={`/briefs/${brief.id}`}>
-      <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 border border-gray-100">
+      <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 border border-gray-100 h-[180px] flex flex-col">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1 min-w-0">
             <p className="text-xs text-gray-500 mb-1">{brief.code}</p>
@@ -23,9 +23,9 @@ export function BriefCard({ brief }: BriefCardProps) {
           <StatusBadge status={brief.status} className="ml-2 flex-shrink-0" />
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-2 mb-3 flex-1">
           <span
-            className="inline-flex items-center rounded px-2 py-0.5 text-xs"
+            className="inline-flex items-center rounded px-2 py-0.5 text-xs h-fit"
             style={{
               backgroundColor: (brief.brand.primaryColor || '#888') + '20',
               color: brief.brand.primaryColor || '#888',
@@ -33,15 +33,15 @@ export function BriefCard({ brief }: BriefCardProps) {
           >
             {brief.brand.name}
           </span>
-          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600">
+          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600 h-fit">
             {brief.club.name}
           </span>
-          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600">
+          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600 h-fit">
             {brief.template.name}
           </span>
         </div>
 
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm mt-auto">
           <div className="flex items-center gap-2">
             <PriorityBadge priority={brief.priority} />
           </div>

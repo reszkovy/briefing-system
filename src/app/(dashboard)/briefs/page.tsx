@@ -356,6 +356,17 @@ export default async function BriefsPage({
             )}
           </>
         )}
+
+        {/* Bottom CTA */}
+        {session.user.role === 'CLUB_MANAGER' && (
+          <div className="mt-8 flex justify-center">
+            <Link href="/briefs/new">
+              <Button className="bg-[#daff47] text-[#2b3b82] hover:bg-[#c5eb3d] px-8 py-3 text-lg">
+                + Nowy brief
+              </Button>
+            </Link>
+          </div>
+        )}
       </main>
     </div>
   )
