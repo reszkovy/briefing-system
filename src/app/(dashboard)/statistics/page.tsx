@@ -79,7 +79,7 @@ export default async function StatisticsPage() {
       _count: {
         select: { briefs: true },
       },
-      userClubs: {
+      clubs: {
         include: {
           club: {
             include: { brand: true },
@@ -423,7 +423,7 @@ export default async function StatisticsPage() {
                       <p className="text-sm text-gray-500">{manager.email}</p>
                     </div>
                     <div className="flex flex-wrap gap-1 max-w-[150px]">
-                      {manager.userClubs.slice(0, 2).map((uc) => (
+                      {manager.clubs.slice(0, 2).map((uc) => (
                         <span
                           key={uc.clubId}
                           className="px-2 py-0.5 rounded text-xs truncate"
@@ -435,8 +435,8 @@ export default async function StatisticsPage() {
                           {uc.club.name}
                         </span>
                       ))}
-                      {manager.userClubs.length > 2 && (
-                        <span className="text-xs text-gray-400">+{manager.userClubs.length - 2}</span>
+                      {manager.clubs.length > 2 && (
+                        <span className="text-xs text-gray-400">+{manager.clubs.length - 2}</span>
                       )}
                     </div>
                     <div className="text-right">
