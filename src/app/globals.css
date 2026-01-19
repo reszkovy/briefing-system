@@ -90,7 +90,7 @@ body {
 /* Regional.fit specific utility classes */
 @layer utilities {
   .rf-card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden;
+    @apply bg-white dark:bg-card rounded-xl shadow-sm border border-gray-100 dark:border-border overflow-hidden;
   }
 
   .rf-header {
@@ -110,31 +110,31 @@ body {
   }
 
   .rf-chip-selected {
-    @apply bg-rf-navy text-white border-rf-navy;
+    @apply bg-rf-navy text-white border-rf-navy dark:bg-rf-lime dark:text-rf-navy dark:border-rf-lime;
   }
 
   .rf-chip-unselected {
-    @apply bg-white text-gray-700 border-gray-300 hover:border-rf-navy;
+    @apply bg-white dark:bg-card text-gray-700 dark:text-gray-300 border-gray-300 dark:border-border hover:border-rf-navy dark:hover:border-rf-lime;
   }
 
   /* Text styles */
   .rf-heading-xl {
-    @apply text-2xl font-bold text-rf-navy tracking-tight;
+    @apply text-2xl font-bold text-rf-navy dark:text-rf-lime tracking-tight;
   }
 
   .rf-heading-lg {
-    @apply text-xl font-semibold text-gray-900;
+    @apply text-xl font-semibold text-gray-900 dark:text-gray-100;
   }
 
   .rf-heading-md {
-    @apply text-lg font-medium text-gray-900;
+    @apply text-lg font-medium text-gray-900 dark:text-gray-100;
   }
 
   .rf-text-muted {
-    @apply text-sm text-gray-500;
+    @apply text-sm text-gray-500 dark:text-gray-400;
   }
 
   .rf-label {
-    @apply text-sm font-medium text-gray-700;
+    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
   }
 }

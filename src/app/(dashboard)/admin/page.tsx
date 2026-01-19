@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import { LogoutButton } from '@/components/LogoutButton'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export default async function AdminPage() {
   const session = await auth()
@@ -40,7 +41,7 @@ export default async function AdminPage() {
   })
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
+    <div className="min-h-screen bg-[#f5f7fa] dark:bg-background">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
@@ -59,6 +60,7 @@ export default async function AdminPage() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-white/80">{user.name}</span>
+            <ThemeToggle />
             <LogoutButton />
           </div>
         </div>
@@ -68,25 +70,25 @@ export default async function AdminPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-4 border-l-4 border-[#2b3b82]">
-            <p className="text-2xl font-bold text-[#2b3b82]">{clubsCount}</p>
-            <p className="text-sm text-gray-500">Kluby</p>
+          <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{clubsCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Kluby</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 border-l-4 border-[#2b3b82]">
-            <p className="text-2xl font-bold text-[#2b3b82]">{regionsCount}</p>
-            <p className="text-sm text-gray-500">Regiony</p>
+          <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{regionsCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Regiony</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 border-l-4 border-[#2b3b82]">
-            <p className="text-2xl font-bold text-[#2b3b82]">{usersCount}</p>
-            <p className="text-sm text-gray-500">Uzytkownicy</p>
+          <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{usersCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Uzytkownicy</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 border-l-4 border-[#2b3b82]">
-            <p className="text-2xl font-bold text-[#2b3b82]">{templatesCount}</p>
-            <p className="text-sm text-gray-500">Szablony</p>
+          <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{templatesCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Szablony</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-4 border-l-4 border-[#daff47]">
-            <p className="text-2xl font-bold text-[#2b3b82]">{briefsCount}</p>
-            <p className="text-sm text-gray-500">Briefy</p>
+          <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#daff47]">
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{briefsCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Briefy</p>
           </div>
         </div>
 
@@ -94,73 +96,73 @@ export default async function AdminPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           <Link
             href="/admin/clubs"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] dark:border-rf-lime group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">🏢</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Kluby</h3>
-                <p className="text-sm text-gray-500">Zarzadzaj klubami i przypisaniami</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Kluby</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Zarzadzaj klubami i przypisaniami</p>
               </div>
             </div>
           </Link>
           <Link
             href="/admin/regions"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] dark:border-rf-lime group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">🗺️</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Regiony</h3>
-                <p className="text-sm text-gray-500">Zarzadzaj regionami</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Regiony</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Zarzadzaj regionami</p>
               </div>
             </div>
           </Link>
           <Link
             href="/admin/users"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] dark:border-rf-lime group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">👥</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Uzytkownicy</h3>
-                <p className="text-sm text-gray-500">Zarzadzaj uzytkownikami i rolami</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Uzytkownicy</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Zarzadzaj uzytkownikami i rolami</p>
               </div>
             </div>
           </Link>
           <Link
             href="/admin/templates"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#2b3b82] dark:border-rf-lime group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">📋</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Szablony</h3>
-                <p className="text-sm text-gray-500">Zarzadzaj szablonami briefow</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Szablony</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Zarzadzaj szablonami briefow</p>
               </div>
             </div>
           </Link>
           <Link
             href="/admin/focus"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#daff47] group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-[#daff47] group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">🎯</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Cele sprzedazowe</h3>
-                <p className="text-sm text-gray-500">Definiuj focusy i priorytety</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Cele sprzedazowe</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Definiuj focusy i priorytety</p>
               </div>
             </div>
           </Link>
           <Link
             href="/statistics"
-            className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-emerald-500 group"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-emerald-500 group"
           >
             <div className="flex items-center gap-4">
               <span className="text-3xl">📊</span>
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-[#2b3b82]">Statystyki</h3>
-                <p className="text-sm text-gray-500">Przegladaj raporty i metryki</p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Statystyki</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Przegladaj raporty i metryki</p>
               </div>
             </div>
           </Link>
@@ -168,21 +170,21 @@ export default async function AdminPage() {
 
         {/* Recent briefs */}
         {recentBriefs.length > 0 && (
-          <div className="bg-white rounded-lg shadow">
-            <div className="px-6 py-4 border-b">
-              <h2 className="text-lg font-semibold text-gray-900">Ostatnie briefy</h2>
+          <div className="bg-white dark:bg-card rounded-lg shadow">
+            <div className="px-6 py-4 border-b dark:border-border">
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Ostatnie briefy</h2>
             </div>
-            <div className="divide-y">
+            <div className="divide-y dark:divide-border">
               {recentBriefs.map((brief) => (
                 <Link
                   key={brief.id}
                   href={`/briefs/${brief.id}`}
-                  className="block px-6 py-4 hover:bg-gray-50 transition-colors"
+                  className="block px-6 py-4 hover:bg-gray-50 dark:hover:bg-muted transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-gray-900">{brief.title}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-medium text-gray-900 dark:text-gray-100">{brief.title}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
                         {brief.club.name} • {brief.createdBy.name}
                       </p>
                     </div>

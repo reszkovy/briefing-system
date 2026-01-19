@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { LogoutButton } from '@/components/LogoutButton'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { PriorityBadge } from '@/components/briefs/status-badge'
 import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
 
@@ -90,7 +91,7 @@ export default async function ApprovalsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
+    <div className="min-h-screen bg-[#f5f7fa] dark:bg-background">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
@@ -121,6 +122,7 @@ export default async function ApprovalsPage() {
             </Link>
             <span className="text-white/30">|</span>
             <span className="text-sm text-white/80">{user.name}</span>
+            <ThemeToggle />
             <LogoutButton />
           </div>
         </div>
@@ -131,7 +133,7 @@ export default async function ApprovalsPage() {
         {/* Active Sales Focuses */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold text-gray-900">Aktywne cele sprzedażowe</h2>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Aktywne cele sprzedażowe</h2>
             <Link
               href="/admin/focus"
               className="inline-flex items-center gap-2 px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1e2a5e] transition-colors text-sm font-medium"
@@ -170,7 +172,7 @@ export default async function ApprovalsPage() {
               ))}
             </div>
           ) : (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center text-gray-500">
+            <div className="bg-gray-50 dark:bg-card border border-gray-200 dark:border-border rounded-lg p-4 text-center text-gray-500 dark:text-gray-400">
               Brak aktywnych celów sprzedażowych
             </div>
           )}
@@ -179,10 +181,10 @@ export default async function ApprovalsPage() {
         {/* Pending approvals */}
         <section className="mb-10">
           {pendingBriefs.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-12 text-center">
+            <div className="bg-white dark:bg-card rounded-lg shadow p-12 text-center">
               <div className="text-5xl mb-4">✅</div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">Wszystko zatwierdzone!</h2>
-              <p className="text-gray-500">Nie ma briefow oczekujacych na Twoja decyzje.</p>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Wszystko zatwierdzone!</h2>
+              <p className="text-gray-500 dark:text-gray-400">Nie ma briefow oczekujacych na Twoja decyzje.</p>
             </div>
           ) : (
             <div className="space-y-3">
@@ -192,13 +194,13 @@ export default async function ApprovalsPage() {
                   <Link
                     key={brief.id}
                     href={`/approvals/${brief.id}`}
-                    className="block bg-white rounded-lg shadow hover:shadow-md transition-all border-l-4 border-[#2b3b82]"
+                    className="block bg-white dark:bg-card rounded-lg shadow hover:shadow-md transition-all border-l-4 border-[#2b3b82] dark:border-rf-lime"
                   >
                     <div className="p-4">
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1 flex-wrap">
-                            <span className="text-xs text-gray-500 font-mono">{brief.code}</span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400 font-mono">{brief.code}</span>
                             <PriorityBadge priority={brief.priority} />
                             <span
                               className="text-xs px-2 py-0.5 rounded"
@@ -209,14 +211,14 @@ export default async function ApprovalsPage() {
                             >
                               {brief.club.brand.name}
                             </span>
-                            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300">
                               {brief.club.name}
                             </span>
-                            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300">
                               {brief.template.name}
                             </span>
                           </div>
-                          <h3 className="text-lg font-medium text-gray-900 truncate">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 truncate">
                             {brief.title}
                           </h3>
                           <p className="text-sm text-gray-500 mt-1 line-clamp-1">
@@ -254,7 +256,7 @@ export default async function ApprovalsPage() {
             </h2>
             <div className="bg-white rounded-lg shadow overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-[#f5f7fa]">
+                <thead className="bg-[#f5f7fa] dark:bg-background">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                       Brief
@@ -272,7 +274,7 @@ export default async function ApprovalsPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {recentApprovals.map((approval) => (
-                    <tr key={approval.id} className="hover:bg-[#f5f7fa]">
+                    <tr key={approval.id} className="hover:bg-[#f5f7fa] dark:bg-background">
                       <td className="px-6 py-4">
                         <Link
                           href={`/briefs/${approval.briefId}`}

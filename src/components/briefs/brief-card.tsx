@@ -14,11 +14,11 @@ export function BriefCard({ brief }: BriefCardProps) {
 
   return (
     <Link href={`/briefs/${brief.id}`}>
-      <div className="bg-white rounded-lg shadow hover:shadow-md transition-shadow p-4 border border-gray-100 h-[180px] flex flex-col">
+      <div className="bg-white dark:bg-card rounded-lg shadow hover:shadow-md transition-shadow p-4 border border-gray-100 dark:border-border h-[180px] flex flex-col">
         <div className="flex items-start justify-between mb-3">
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-500 mb-1">{brief.code}</p>
-            <h3 className="font-medium text-gray-900 truncate">{brief.title}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{brief.code}</p>
+            <h3 className="font-medium text-gray-900 dark:text-gray-100 truncate">{brief.title}</h3>
           </div>
           <StatusBadge status={brief.status} className="ml-2 flex-shrink-0" />
         </div>
@@ -33,10 +33,10 @@ export function BriefCard({ brief }: BriefCardProps) {
           >
             {brief.brand.name}
           </span>
-          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600 h-fit">
+          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300 h-fit">
             {brief.club.name}
           </span>
-          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 text-gray-600 h-fit">
+          <span className="inline-flex items-center rounded px-2 py-0.5 text-xs bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300 h-fit">
             {brief.template.name}
           </span>
         </div>
@@ -49,7 +49,7 @@ export function BriefCard({ brief }: BriefCardProps) {
             <p className={`text-xs ${sla.color}`}>
               Deadline: {formatDate(brief.deadline)}
             </p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 dark:text-gray-500">
               {formatRelativeTime(brief.createdAt)}
             </p>
           </div>

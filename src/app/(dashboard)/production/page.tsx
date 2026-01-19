@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Image from 'next/image'
 import { LogoutButton } from '@/components/LogoutButton'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { KanbanBoard } from './kanban-board'
 
 export default async function ProductionPage() {
@@ -121,7 +122,7 @@ export default async function ProductionPage() {
   }))
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
+    <div className="min-h-screen bg-[#f5f7fa] dark:bg-background">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
         <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
@@ -140,6 +141,7 @@ export default async function ProductionPage() {
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-white/80">{user.name}</span>
+            <ThemeToggle />
             <LogoutButton />
           </div>
         </div>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { LogoutButton } from '@/components/LogoutButton'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import { BriefCard } from '@/components/briefs/brief-card'
 import { Button } from '@/components/ui/button'
 import { BriefStatusLabels } from '@/lib/validations/brief'
@@ -133,7 +134,7 @@ export default async function BriefsPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f7fa]">
+    <div className="min-h-screen bg-[#f5f7fa] dark:bg-background">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
@@ -160,6 +161,7 @@ export default async function BriefsPage({
             )}
             <span className="text-white/30">|</span>
             <span className="text-sm text-white/80">{user.name}</span>
+            <ThemeToggle />
             <LogoutButton />
           </div>
         </div>
@@ -306,10 +308,10 @@ export default async function BriefsPage({
 
         {/* Brief list */}
         {briefs.length === 0 ? (
-          <div className="bg-white rounded-lg shadow p-12 text-center">
+          <div className="bg-white dark:bg-card rounded-lg shadow p-12 text-center">
             <div className="text-5xl mb-4">📝</div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Brak briefow</h2>
-            <p className="text-gray-500 mb-4">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Brak briefow</h2>
+            <p className="text-gray-500 dark:text-gray-400 mb-4">
               {statusFilter === 'all'
                 ? 'Nie masz jeszcze zadnych briefow.'
                 : `Brak briefow o statusie "${BriefStatusLabels[statusFilter]}".`}
@@ -336,7 +338,7 @@ export default async function BriefsPage({
                 {page > 1 && (
                   <Link
                     href={`/briefs?${statusFilter !== 'all' ? `status=${statusFilter}&` : ''}page=${page - 1}`}
-                    className="px-4 py-2 bg-white border rounded-lg hover:bg-[#f5f7fa]"
+                    className="px-4 py-2 bg-white border rounded-lg hover:bg-[#f5f7fa] dark:bg-background"
                   >
                     Poprzednia
                   </Link>
@@ -347,7 +349,7 @@ export default async function BriefsPage({
                 {page < totalPages && (
                   <Link
                     href={`/briefs?${statusFilter !== 'all' ? `status=${statusFilter}&` : ''}page=${page + 1}`}
-                    className="px-4 py-2 bg-white border rounded-lg hover:bg-[#f5f7fa]"
+                    className="px-4 py-2 bg-white border rounded-lg hover:bg-[#f5f7fa] dark:bg-background"
                   >
                     Nastepna
                   </Link>
