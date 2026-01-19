@@ -166,9 +166,9 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
   }
 
   const validateForm = (): boolean => {
-    // Minimum required fields for MVP
+    // Only 5 required fields: klub, typ, tytuł, opis, deadline
     if (!formData.clubId || !formData.templateId) return false
-    if (!formData.title || !formData.objective || !formData.context) return false
+    if (!formData.title || !formData.context || !formData.deadline) return false
     return true
   }
 
@@ -219,7 +219,7 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
       const selectedValues = (value as string[]) || []
       return (
         <div key={fieldName} className="space-y-2">
-          <Label>{field.title}{field.required !== false && ' *'}</Label>
+          <Label>{field.title}</Label>
           {field.description && (
             <p className="text-xs text-gray-500">{field.description}</p>
           )}
@@ -255,7 +255,7 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     if (field.type === 'string' && field.enum) {
       return (
         <div key={fieldName} className="space-y-2">
-          <Label htmlFor={fieldName}>{field.title}{field.required !== false && ' *'}</Label>
+          <Label htmlFor={fieldName}>{field.title}</Label>
           {field.description && (
             <p className="text-xs text-gray-500">{field.description}</p>
           )}
@@ -328,7 +328,7 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     const isLongText = field.maxLength && field.maxLength > 200
     return (
       <div key={fieldName} className="space-y-2">
-        <Label htmlFor={fieldName}>{field.title}{field.required !== false && ' *'}</Label>
+        <Label htmlFor={fieldName}>{field.title}</Label>
         {field.description && (
           <p className="text-xs text-gray-500">{field.description}</p>
         )}
@@ -424,7 +424,7 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
           {/* Row 2: Objective & Deadline */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="objective">Cel *</Label>
+              <Label htmlFor="objective">Cel</Label>
               <Select
                 id="objective"
                 name="objective"
@@ -469,7 +469,7 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
           {/* Template-specific fields - only if template selected */}
           {selectedTemplate && Object.keys(selectedTemplate.requiredFields.properties || {}).length > 0 && (
             <div className="border-t border-gray-200 pt-6 space-y-4">
-              <h3 className="font-medium text-[#2b3b82]">Dodatkowe pola ({selectedTemplate.name})</h3>
+              <h3 className="font-medium text-gray-600 text-sm">Opcjonalne szczegoly</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Object.entries(selectedTemplate.requiredFields.properties || {}).map(
                   ([fieldName, field]) => (

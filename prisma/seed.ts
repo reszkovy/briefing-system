@@ -234,7 +234,6 @@ async function main() {
         defaultSLADays: 3,
         requiredFields: {
           type: 'object',
-          required: ['formats', 'mainMessage'],
           properties: {
             formats: {
               type: 'array',
@@ -261,7 +260,6 @@ async function main() {
                   'Plakat A4 do samodzielnego wydruku',
                 ],
               },
-              minItems: 1,
             },
             otherFormats: {
               type: 'string',
@@ -295,7 +293,6 @@ async function main() {
         defaultSLADays: 5,
         requiredFields: {
           type: 'object',
-          required: ['printFormats', 'quantity', 'mainMessage'],
           properties: {
             printFormats: {
               type: 'array',
@@ -305,7 +302,6 @@ async function main() {
                 enum: ['A4', 'A3', 'A2', 'A1', 'A0', 'DL_ulotka', 'A5_ulotka', 'A6_ulotka', 'roll_up', 'banner_outdoor'],
                 enumNames: ['A4 (plakat)', 'A3 (plakat)', 'A2 (plakat)', 'A1 (plakat)', 'A0 (plakat)', 'DL (ulotka)', 'A5 (ulotka)', 'A6 (ulotka)', 'Roll-up (85x200)', 'Banner outdoor'],
               },
-              minItems: 1,
             },
             quantity: {
               type: 'string',
@@ -348,7 +344,6 @@ async function main() {
         defaultSLADays: 7,
         requiredFields: {
           type: 'object',
-          required: ['eventName', 'eventDate', 'eventType', 'materials'],
           properties: {
             eventName: {
               type: 'string',
@@ -398,7 +393,6 @@ async function main() {
                   'Cover Facebook (wydarzenie)',
                 ],
               },
-              minItems: 1,
             },
             otherFormats: {
               type: 'string',
@@ -439,7 +433,6 @@ async function main() {
         defaultSLADays: 1,
         requiredFields: {
           type: 'object',
-          required: ['infoType', 'mainMessage', 'formats'],
           properties: {
             infoType: {
               type: 'string',
@@ -485,7 +478,6 @@ async function main() {
                   'Plakat A4 do samodzielnego wydruku',
                 ],
               },
-              minItems: 1,
             },
             otherFormats: {
               type: 'string',
@@ -507,7 +499,6 @@ async function main() {
         defaultSLADays: 10,
         requiredFields: {
           type: 'object',
-          required: ['campaignName', 'campaignType', 'formats', 'mainMessage'],
           properties: {
             campaignName: {
               type: 'string',
@@ -545,7 +536,6 @@ async function main() {
                   'Plakat A4 do samodzielnego wydruku',
                 ],
               },
-              minItems: 1,
             },
             otherFormats: {
               type: 'string',
