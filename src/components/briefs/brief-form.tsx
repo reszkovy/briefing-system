@@ -76,7 +76,20 @@ interface FormData {
   legalCopy: string
   customFields: Record<string, unknown>
   assetLinks: string[]
+  formats: string[]
+  otherFormats: string
 }
+
+// Standard Benefit Systems graphic formats
+const GRAPHIC_FORMATS = [
+  { id: 'fb_post_1080x1320', label: 'Post FB statyk (1080x1320)' },
+  { id: 'ig_post_1080x1440', label: 'Post IG statyk (1080x1440)' },
+  { id: 'stories_1080x1920', label: 'Stories statyk bez logo (1080x1920)' },
+  { id: 'www_square_360x360', label: 'Aktualnosc www kwadrat bez logo (360x360)' },
+  { id: 'www_rect_832x416', label: 'Aktualnosc www prostokat bez logo (832x416)' },
+  { id: 'google_400x300', label: 'Wizytowka Google (400x300)' },
+  { id: 'plakat_a4', label: 'Plakat A4 do samodzielnego wydruku' },
+]
 
 const initialFormData: FormData = {
   clubId: '',
@@ -94,6 +107,8 @@ const initialFormData: FormData = {
   legalCopy: '',
   customFields: {},
   assetLinks: [],
+  formats: [],
+  otherFormats: '',
 }
 
 export function BriefForm({ clubs, templates, initialData, briefId, mode = 'create' }: BriefFormProps) {
@@ -153,6 +168,15 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     setFormData((prev) => ({
       ...prev,
       assetLinks: prev.assetLinks.filter((_, i) => i !== index),
+    }))
+  }
+
+  const handleFormatToggle = (formatId: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      formats: prev.formats.includes(formatId)
+        ? prev.formats.filter((f) => f !== formatId)
+        : [...prev.formats, formatId],
     }))
   }
 
@@ -253,24 +277,33 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     }
 
     if (field.type === 'string' && field.enum) {
+      // Use chips instead of dropdown for enum fields
       return (
-        <div key={fieldName} className="space-y-2">
-          <Label htmlFor={fieldName}>{field.title}</Label>
+        <div key={fieldName} className="space-y-2 md:col-span-2">
+          <Label>{field.title}</Label>
           {field.description && (
             <p className="text-xs text-gray-500">{field.description}</p>
           )}
-          <Select
-            id={fieldName}
-            value={(value as string) || ''}
-            onChange={(e) => handleCustomFieldChange(fieldName, e.target.value)}
-          >
-            <option value="">Wybierz...</option>
-            {field.enum.map((option, idx) => (
-              <option key={option} value={option}>
-                {field.enumNames?.[idx] || option}
-              </option>
-            ))}
-          </Select>
+          <div className="flex flex-wrap gap-2">
+            {field.enum.map((option, idx) => {
+              const isSelected = value === option
+              const label = field.enumNames?.[idx] || option
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => handleCustomFieldChange(fieldName, isSelected ? '' : option)}
+                  className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                    isSelected
+                      ? 'bg-[#2b3b82] text-white border-[#2b3b82]'
+                      : 'bg-white text-gray-700 border-gray-300 hover:border-[#2b3b82]'
+                  }`}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
         </div>
       )
     }
@@ -421,35 +454,40 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
             />
           </div>
 
-          {/* Row 2: Objective & Deadline */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="objective">Cel</Label>
-              <Select
-                id="objective"
-                name="objective"
-                value={formData.objective}
-                onChange={handleInputChange}
-              >
-                <option value="">Wybierz cel...</option>
-                {Object.entries(ObjectiveLabels).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </Select>
-            </div>
+          {/* Deadline */}
+          <div className="space-y-2">
+            <Label htmlFor="deadline">Deadline *</Label>
+            <Input
+              type="date"
+              id="deadline"
+              name="deadline"
+              value={formData.deadline}
+              onChange={handleInputChange}
+              min={new Date().toISOString().split('T')[0]}
+            />
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="deadline">Deadline *</Label>
-              <Input
-                type="date"
-                id="deadline"
-                name="deadline"
-                value={formData.deadline}
-                onChange={handleInputChange}
-                min={new Date().toISOString().split('T')[0]}
-              />
+          {/* Objective - chips instead of dropdown */}
+          <div className="space-y-2">
+            <Label>Cel komunikacji</Label>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(ObjectiveLabels).map(([value, label]) => {
+                const isSelected = formData.objective === value
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => setFormData((prev) => ({ ...prev, objective: isSelected ? '' : value }))}
+                    className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                      isSelected
+                        ? 'bg-[#2b3b82] text-white border-[#2b3b82]'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-[#2b3b82]'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
             </div>
           </div>
 
@@ -466,13 +504,56 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
             />
           </div>
 
-          {/* Template-specific fields - only if template selected */}
-          {selectedTemplate && Object.keys(selectedTemplate.requiredFields.properties || {}).length > 0 && (
-            <div className="border-t border-gray-200 pt-6 space-y-4">
-              <h3 className="font-medium text-gray-600 text-sm">Opcjonalne szczegoly</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.entries(selectedTemplate.requiredFields.properties || {}).map(
-                  ([fieldName, field]) => (
+          {/* Graphic Formats - always shown */}
+          <div className="border-t border-gray-200 pt-6 space-y-4">
+            <div>
+              <Label>Formaty graficzne</Label>
+              <p className="text-xs text-gray-500 mt-1">Wybierz potrzebne formaty</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {GRAPHIC_FORMATS.map((format) => {
+                const isSelected = formData.formats.includes(format.id)
+                return (
+                  <button
+                    key={format.id}
+                    type="button"
+                    onClick={() => handleFormatToggle(format.id)}
+                    className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                      isSelected
+                        ? 'bg-[#2b3b82] text-white border-[#2b3b82]'
+                        : 'bg-white text-gray-700 border-gray-300 hover:border-[#2b3b82]'
+                    }`}
+                  >
+                    {format.label}
+                  </button>
+                )
+              })}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="otherFormats">Inne formaty</Label>
+              <Input
+                id="otherFormats"
+                name="otherFormats"
+                value={formData.otherFormats}
+                onChange={handleInputChange}
+                placeholder="Wpisz jesli potrzebujesz innego formatu niz powyzsze..."
+              />
+            </div>
+          </div>
+
+          {/* Template-specific fields - only if template selected and has non-format fields */}
+          {selectedTemplate && (() => {
+            const properties = selectedTemplate.requiredFields.properties || {}
+            // Filter out format-related fields since we handle them globally
+            const nonFormatFields = Object.entries(properties).filter(
+              ([fieldName]) => !['formats', 'materials', 'otherFormats', 'printFormats'].includes(fieldName)
+            )
+            if (nonFormatFields.length === 0) return null
+            return (
+              <div className="border-t border-gray-200 pt-6 space-y-4">
+                <h3 className="font-medium text-gray-600 text-sm">Dodatkowe informacje</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {nonFormatFields.map(([fieldName, field]) => (
                     <div key={fieldName} className={
                       (field as TemplateFieldLocal).type === 'array' ||
                       ((field as TemplateFieldLocal).maxLength && (field as TemplateFieldLocal).maxLength! > 200)
@@ -481,11 +562,11 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
                     }>
                       {renderCustomField(fieldName, field as TemplateFieldLocal)}
                     </div>
-                  )
-                )}
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )
+          })()}
 
           {/* Asset links - collapsed by default */}
           <details className="border-t border-gray-200 pt-4">
