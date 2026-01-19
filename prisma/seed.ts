@@ -1,13 +1,13 @@
-// Seed script for Club Manager Briefing System
+// Seed script for Club Manager Briefing System - Demo Data
 // Run with: npm run db:seed
 
-import { PrismaClient, UserRole, Objective, Priority } from '@prisma/client'
+import { PrismaClient, UserRole, Objective, Priority, TaskStatus, BriefStatus, FocusPeriod, Outcome, ConfidenceLevel } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🌱 Starting seed...')
+  console.log('🌱 Starting demo seed...')
 
   // Clean up existing data
   console.log('🧹 Cleaning up existing data...')
@@ -18,6 +18,7 @@ async function main() {
   await prisma.productionTask.deleteMany()
   await prisma.approval.deleteMany()
   await prisma.brief.deleteMany()
+  await prisma.salesFocus.deleteMany()
   await prisma.userClub.deleteMany()
   await prisma.club.deleteMany()
   await prisma.requestTemplate.deleteMany()
@@ -29,10 +30,10 @@ async function main() {
   console.log('📍 Creating regions...')
   const regions = await Promise.all([
     prisma.region.create({ data: { name: 'Warszawa i okolice', code: 'WAW' } }),
-    prisma.region.create({ data: { name: 'Kraków i okolice', code: 'KRK' } }),
-    prisma.region.create({ data: { name: 'Wrocław i okolice', code: 'WRO' } }),
+    prisma.region.create({ data: { name: 'Kraków i Małopolska', code: 'KRK' } }),
+    prisma.region.create({ data: { name: 'Wrocław i Dolny Śląsk', code: 'WRO' } }),
     prisma.region.create({ data: { name: 'Trójmiasto', code: 'TRI' } }),
-    prisma.region.create({ data: { name: 'Poznań i okolice', code: 'POZ' } }),
+    prisma.region.create({ data: { name: 'Poznań i Wielkopolska', code: 'POZ' } }),
     prisma.region.create({ data: { name: 'Śląsk', code: 'SLA' } }),
   ])
 
@@ -84,7 +85,7 @@ async function main() {
   // ============== CLUBS ==============
   console.log('🏢 Creating clubs...')
   const clubs = await Promise.all([
-    // Zdrofit clubs - Warsaw
+    // Zdrofit - Warszawa (FLAGSHIP)
     prisma.club.create({
       data: {
         name: 'Zdrofit Arkadia',
@@ -93,6 +94,7 @@ async function main() {
         address: 'Al. Jana Pawła II 82, Centrum Handlowe Arkadia',
         regionId: regions[0].id,
         brandId: brands[0].id,
+        tier: 'FLAGSHIP',
       },
     }),
     prisma.club.create({
@@ -103,6 +105,7 @@ async function main() {
         address: 'ul. Wołoska 12, Galeria Mokotów',
         regionId: regions[0].id,
         brandId: brands[0].id,
+        tier: 'VIP',
       },
     }),
     prisma.club.create({
@@ -113,9 +116,10 @@ async function main() {
         address: 'ul. Złota 59, Złote Tarasy',
         regionId: regions[0].id,
         brandId: brands[0].id,
+        tier: 'VIP',
       },
     }),
-    // Zdrofit clubs - Krakow
+    // Zdrofit - Kraków
     prisma.club.create({
       data: {
         name: 'Zdrofit Bonarka',
@@ -124,6 +128,7 @@ async function main() {
         address: 'ul. Kamieńskiego 11, Bonarka City Center',
         regionId: regions[1].id,
         brandId: brands[0].id,
+        tier: 'STANDARD',
       },
     }),
     prisma.club.create({
@@ -134,9 +139,10 @@ async function main() {
         address: 'ul. Pawia 5, Galeria Krakowska',
         regionId: regions[1].id,
         brandId: brands[0].id,
+        tier: 'VIP',
       },
     }),
-    // My Fitness Place clubs
+    // My Fitness Place
     prisma.club.create({
       data: {
         name: 'My Fitness Place Marszałkowska',
@@ -145,29 +151,21 @@ async function main() {
         address: 'ul. Marszałkowska 104/122',
         regionId: regions[0].id,
         brandId: brands[1].id,
+        tier: 'FLAGSHIP',
       },
     }),
     prisma.club.create({
       data: {
-        name: 'My Fitness Place Wrocław Centrum',
+        name: 'My Fitness Place Wrocław',
         code: 'MFP-WRO-CEN',
         city: 'Wrocław',
         address: 'ul. Świdnicka 40',
         regionId: regions[2].id,
         brandId: brands[1].id,
+        tier: 'STANDARD',
       },
     }),
-    prisma.club.create({
-      data: {
-        name: 'My Fitness Place Katowice Silesia',
-        code: 'MFP-KAT-SIL',
-        city: 'Katowice',
-        address: 'ul. Chorzowska 107, Silesia City Center',
-        regionId: regions[5].id,
-        brandId: brands[1].id,
-      },
-    }),
-    // Fabryka Formy clubs
+    // Fabryka Formy - Trójmiasto
     prisma.club.create({
       data: {
         name: 'Fabryka Formy Gdańsk',
@@ -176,6 +174,7 @@ async function main() {
         address: 'ul. Grunwaldzka 141',
         regionId: regions[3].id,
         brandId: brands[2].id,
+        tier: 'FLAGSHIP',
       },
     }),
     prisma.club.create({
@@ -186,38 +185,31 @@ async function main() {
         address: 'ul. Bohaterów Monte Cassino 49',
         regionId: regions[3].id,
         brandId: brands[2].id,
+        tier: 'VIP',
       },
     }),
-    // Fit Fabric
+    // Fit Fabric - Poznań
     prisma.club.create({
       data: {
-        name: 'Fit Fabric Poznań Stary Browar',
+        name: 'Fit Fabric Stary Browar',
         code: 'FITFAB-POZ-SB',
         city: 'Poznań',
         address: 'ul. Półwiejska 42, Stary Browar',
         regionId: regions[4].id,
         brandId: brands[3].id,
+        tier: 'FLAGSHIP',
       },
     }),
-    // Fitness Academy clubs
+    // Fitness Academy - Śląsk
     prisma.club.create({
       data: {
-        name: 'Fitness Academy Praga',
-        code: 'FA-WAW-PRA',
-        city: 'Warszawa',
-        address: 'ul. Targowa 72, Praga Północ',
-        regionId: regions[0].id,
+        name: 'Fitness Academy Katowice',
+        code: 'FA-KAT-SIL',
+        city: 'Katowice',
+        address: 'ul. Chorzowska 107, Silesia City Center',
+        regionId: regions[5].id,
         brandId: brands[4].id,
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'Fitness Academy Łódź Manufaktura',
-        code: 'FA-LOD-MAN',
-        city: 'Łódź',
-        address: 'ul. Drewnowska 58, Manufaktura',
-        regionId: regions[5].id, // Śląsk - blisko
-        brandId: brands[4].id,
+        tier: 'VIP',
       },
     }),
   ])
@@ -225,100 +217,64 @@ async function main() {
   // ============== REQUEST TEMPLATES ==============
   console.log('📝 Creating request templates...')
   const templates = await Promise.all([
-    // Social Media Post - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Post social media (Facebook/Instagram)',
         code: 'SOCIAL_POST',
-        description: 'Grafiki na social media klubu w standardowych formatach Benefit Systems.',
+        description: 'Grafiki na social media klubu w standardowych formatach.',
         defaultSLADays: 3,
-        requiredFields: {
-          type: 'object',
-          properties: {},
-        },
+        baseCost: 150,
+        requiredFields: { type: 'object', properties: {} },
       },
     }),
-
-    // Print Poster/Flyer - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Plakat / Ulotka drukowana',
         code: 'PRINT_POSTER',
-        description: 'Materiały drukowane do ekspozycji w klubie, okolicy lub dystrybucji bezpośredniej.',
+        description: 'Materiały drukowane do ekspozycji w klubie.',
         defaultSLADays: 5,
-        requiredFields: {
-          type: 'object',
-          properties: {},
-        },
+        baseCost: 300,
+        requiredFields: { type: 'object', properties: {} },
       },
     }),
-
-    // Event Kit - simplified
     prisma.requestTemplate.create({
       data: {
-        name: 'Kit promocyjny wydarzenia lokalnego',
+        name: 'Kit promocyjny wydarzenia',
         code: 'EVENT_KIT',
-        description: 'Kompletny zestaw materiałów promocyjnych na wydarzenie w klubie (dzień otwarty, maraton, warsztaty itp.).',
+        description: 'Kompletny zestaw materiałów na wydarzenie w klubie.',
         defaultSLADays: 7,
-        requiredFields: {
-          type: 'object',
-          properties: {
-            eventName: {
-              type: 'string',
-              title: 'Nazwa wydarzenia',
-              maxLength: 100,
-            },
-            eventDate: {
-              type: 'string',
-              title: 'Data wydarzenia',
-              format: 'date',
-            },
-          },
-        },
+        baseCost: 800,
+        requiredFields: { type: 'object', properties: {} },
       },
     }),
-
-    // Quick Graphic - simplified
     prisma.requestTemplate.create({
       data: {
         name: 'Szybka grafika informacyjna',
         code: 'QUICK_INFO',
-        description: 'Prosta grafika do szybkiej komunikacji (zmiana godzin, awaria, info o trenerze itp.). Ekspresowa realizacja.',
+        description: 'Prosta grafika do szybkiej komunikacji. Ekspresowa realizacja.',
         defaultSLADays: 1,
-        requiredFields: {
-          type: 'object',
-          properties: {},
-        },
+        baseCost: 75,
+        requiredFields: { type: 'object', properties: {} },
       },
     }),
-
-    // Seasonal Campaign - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Kampania sezonowa / promocyjna',
         code: 'SEASONAL_CAMPAIGN',
-        description: 'Rozbudowana kampania promocyjna (Nowy Rok, Lato, Black Friday itp.) - wymaga więcej czasu na realizację.',
+        description: 'Rozbudowana kampania promocyjna - wymaga więcej czasu.',
         defaultSLADays: 10,
-        requiredFields: {
-          type: 'object',
-          properties: {
-            campaignName: {
-              type: 'string',
-              title: 'Nazwa kampanii',
-              maxLength: 100,
-            },
-          },
-        },
+        baseCost: 1500,
+        requiredFields: { type: 'object', properties: {} },
       },
     }),
   ])
 
   // ============== USERS ==============
   console.log('👥 Creating users...')
-  const passwordHash = await hash('password123', 12)
+  const passwordHash = await hash('demo123', 12)
 
   const users = await Promise.all([
-    // Club Managers
+    // Club Managers (0-4)
     prisma.user.create({
       data: {
         email: 'anna.kowalska@benefit.pl',
@@ -359,7 +315,7 @@ async function main() {
         role: UserRole.CLUB_MANAGER,
       },
     }),
-    // Validators (Regional Managers)
+    // Validators (5-7)
     prisma.user.create({
       data: {
         email: 'michal.adamski@benefit.pl',
@@ -384,7 +340,7 @@ async function main() {
         role: UserRole.VALIDATOR,
       },
     }),
-    // Production Team
+    // Production Team (8-10)
     prisma.user.create({
       data: {
         email: 'studio@benefit.pl',
@@ -395,7 +351,7 @@ async function main() {
     }),
     prisma.user.create({
       data: {
-        email: 'grafik1@benefit.pl',
+        email: 'marta.grafik@benefit.pl',
         passwordHash,
         name: 'Marta Nowicka',
         role: UserRole.PRODUCTION,
@@ -409,12 +365,12 @@ async function main() {
         role: UserRole.PRODUCTION,
       },
     }),
-    // Admin
+    // Admin (11)
     prisma.user.create({
       data: {
         email: 'admin@benefit.pl',
         passwordHash,
-        name: 'Administrator Systemu',
+        name: 'Administrator',
         role: UserRole.ADMIN,
       },
     }),
@@ -423,25 +379,25 @@ async function main() {
   // ============== USER-CLUB ASSIGNMENTS ==============
   console.log('🔗 Assigning users to clubs...')
   await Promise.all([
-    // Manager assignments (isManager = true)
+    // Manager assignments
     prisma.userClub.create({ data: { userId: users[0].id, clubId: clubs[0].id, isManager: true } }), // Anna -> Zdrofit Arkadia
     prisma.userClub.create({ data: { userId: users[1].id, clubId: clubs[1].id, isManager: true } }), // Piotr -> Zdrofit Mokotów
-    prisma.userClub.create({ data: { userId: users[1].id, clubId: clubs[2].id, isManager: true } }), // Piotr -> also Złote Tarasy
-    prisma.userClub.create({ data: { userId: users[2].id, clubId: clubs[5].id, isManager: true } }), // Katarzyna -> S4 Marszałkowska
+    prisma.userClub.create({ data: { userId: users[1].id, clubId: clubs[2].id, isManager: true } }), // Piotr -> Złote Tarasy
+    prisma.userClub.create({ data: { userId: users[2].id, clubId: clubs[5].id, isManager: true } }), // Katarzyna -> MFP Marszałkowska
     prisma.userClub.create({ data: { userId: users[3].id, clubId: clubs[3].id, isManager: true } }), // Tomasz -> Zdrofit Bonarka
-    prisma.userClub.create({ data: { userId: users[3].id, clubId: clubs[4].id, isManager: true } }), // Tomasz -> also Galeria Krakowska
-    prisma.userClub.create({ data: { userId: users[4].id, clubId: clubs[8].id, isManager: true } }), // Magdalena -> FF Gdańsk
+    prisma.userClub.create({ data: { userId: users[3].id, clubId: clubs[4].id, isManager: true } }), // Tomasz -> Galeria Krakowska
+    prisma.userClub.create({ data: { userId: users[4].id, clubId: clubs[7].id, isManager: true } }), // Magdalena -> FF Gdańsk
+    prisma.userClub.create({ data: { userId: users[4].id, clubId: clubs[8].id, isManager: true } }), // Magdalena -> FF Sopot
 
-    // Validator assignments (isManager = false) - they oversee but don't manage
-    // Michał Adamski -> Warsaw region (all Warsaw clubs)
+    // Validator assignments - Michał (Warsaw)
     prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[0].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[1].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[2].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[5].id, isManager: false } }),
-    // Ewa Mazur -> Krakow region
+    // Validator assignments - Ewa (Krakow)
     prisma.userClub.create({ data: { userId: users[6].id, clubId: clubs[3].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[6].id, clubId: clubs[4].id, isManager: false } }),
-    // Jan Kowalczyk -> Other regions (Wrocław, Trójmiasto, Śląsk, Poznań)
+    // Validator assignments - Jan (pozostałe)
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[6].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[7].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[8].id, isManager: false } }),
@@ -449,49 +405,114 @@ async function main() {
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[10].id, isManager: false } }),
   ])
 
-  // ============== SAMPLE BRIEFS ==============
-  console.log('📋 Creating sample briefs...')
-  const briefCounter = { value: 1 }
+  // ============== SALES FOCUSES ==============
+  console.log('🎯 Creating sales focuses...')
+  const now = new Date()
+  const inDays = (days: number) => new Date(now.getTime() + days * 24 * 60 * 60 * 1000)
+  const daysAgo = (days: number) => new Date(now.getTime() - days * 24 * 60 * 60 * 1000)
+
+  await Promise.all([
+    // Strategic (global) focus
+    prisma.salesFocus.create({
+      data: {
+        title: 'Akwizycja Q1 2025 - Noworoczne postanowienia',
+        description: 'Główny cel na Q1: maksymalizacja nowych zapisów wykorzystując sezon noworoczny. Focus na karnety roczne i półroczne z atrakcyjnymi warunkami.',
+        period: FocusPeriod.QUARTERLY,
+        startDate: daysAgo(10),
+        endDate: inDays(80),
+        createdById: users[11].id,
+        isActive: true,
+      },
+    }),
+    // Regional focus - Warsaw
+    prisma.salesFocus.create({
+      data: {
+        title: 'Promocja Premium w Warszawie',
+        description: 'Kampania skierowana do segmentu premium w Warszawie. Podkreślamy jakość sprzętu i trenerów personalnych.',
+        period: FocusPeriod.MONTHLY,
+        startDate: daysAgo(5),
+        endDate: inDays(25),
+        regionId: regions[0].id,
+        createdById: users[5].id,
+        isActive: true,
+      },
+    }),
+    // Regional focus - Krakow
+    prisma.salesFocus.create({
+      data: {
+        title: 'Studenci - Kraków',
+        description: 'Promocja dla studentów krakowskich uczelni. Karnet studencki -30% + darmowy personal training na start.',
+        period: FocusPeriod.MONTHLY,
+        startDate: daysAgo(3),
+        endDate: inDays(27),
+        regionId: regions[1].id,
+        createdById: users[6].id,
+        isActive: true,
+      },
+    }),
+    // Brand focus - Zdrofit
+    prisma.salesFocus.create({
+      data: {
+        title: 'Zdrofit Family - rodziny z dziećmi',
+        description: 'Promocja karnetów rodzinnych. Dzieci do 14 lat ćwiczą za 50% ceny przy karnecie rodzica.',
+        period: FocusPeriod.MONTHLY,
+        startDate: daysAgo(7),
+        endDate: inDays(23),
+        brandId: brands[0].id,
+        createdById: users[5].id,
+        isActive: true,
+      },
+    }),
+    // Brand focus - My Fitness Place
+    prisma.salesFocus.create({
+      data: {
+        title: 'MFP Corporate Wellness',
+        description: 'Pozyskiwanie klientów korporacyjnych. Pakiety firmowe z rabatami grupowymi.',
+        period: FocusPeriod.QUARTERLY,
+        startDate: daysAgo(15),
+        endDate: inDays(75),
+        brandId: brands[1].id,
+        createdById: users[5].id,
+        isActive: true,
+      },
+    }),
+  ])
+
+  // ============== BRIEFS - RÓŻNE STATUSY ==============
+  console.log('📋 Creating briefs with various statuses...')
+  let briefCounter = 1
   const generateBriefCode = () => {
-    const code = `BRIEF-2024-${String(briefCounter.value).padStart(4, '0')}`
-    briefCounter.value++
+    const code = `BRIEF-2025-${String(briefCounter).padStart(4, '0')}`
+    briefCounter++
     return code
   }
 
-  const now = new Date()
-  const inDays = (days: number) => new Date(now.getTime() + days * 24 * 60 * 60 * 1000)
-
-  const briefs = await Promise.all([
-    // Brief 1: Draft - social post
+  // ---------- SUBMITTED - do zatwierdzenia przez walidatora ----------
+  const submittedBriefs = await Promise.all([
     prisma.brief.create({
       data: {
         code: generateBriefCode(),
         createdById: users[0].id,
         clubId: clubs[0].id,
         brandId: brands[0].id,
-        templateId: templates[0].id,
-        status: 'DRAFT',
-        priority: Priority.MEDIUM,
-        title: 'Promocja karnetu rocznego - styczeń',
+        templateId: templates[4].id,
+        status: BriefStatus.SUBMITTED,
+        priority: Priority.HIGH,
+        title: 'Kampania Noworoczna - Nowy Ty 2025',
         objective: Objective.ACQUISITION,
-        kpiDescription: '50 nowych karnetów rocznych',
-        kpiTarget: 50,
-        deadline: inDays(10),
-        startDate: inDays(2),
-        endDate: inDays(30),
-        context: 'Sezon noworoczny to najlepszy moment na sprzedaż karnetów rocznych. W zeszłym roku mieliśmy 35 nowych karnetów w styczniu. Chcemy pobić ten wynik.',
-        offerDetails: 'Karnet roczny -20%, cena 1599 PLN zamiast 1999 PLN. Możliwość płatności jednorazowej lub w 12 ratach 0%. Dodatkowo torba sportowa gratis.',
-        customFields: {
-          channels: ['facebook', 'instagram_feed'],
-          formats: ['single_image', 'carousel'],
-          mainMessage: 'Nowy Rok, Nowy Ty! Karnet roczny -20%',
-          callToAction: 'Zapisz się',
-        },
-        assetLinks: ['https://drive.google.com/drive/folders/zdrofit-arkadia-photos-2024'],
+        kpiDescription: '80 nowych karnetów rocznych',
+        kpiTarget: 80,
+        deadline: inDays(7),
+        startDate: inDays(10),
+        endDate: inDays(45),
+        context: 'Największa kampania roku! Sezon noworoczny to nasza główna szansa na pozyskanie nowych członków. Arkadia to flagship, więc musimy dać przykład innym klubom.',
+        offerDetails: 'Karnet roczny -25% (1499 PLN zamiast 1999 PLN). Karnet półroczny -20%. Darmowy personal training na start (3 sesje). Torba sportowa premium gratis.',
+        legalCopy: 'Promocja ważna do 31.01.2025 lub do wyczerpania puli 100 karnetów.',
+        customFields: { campaignName: 'Nowy Ty 2025', channels: ['facebook', 'instagram', 'google_ads', 'plakaty'] },
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(1),
       },
     }),
-
-    // Brief 2: Submitted - waiting for approval
     prisma.brief.create({
       data: {
         code: generateBriefCode(),
@@ -499,71 +520,45 @@ async function main() {
         clubId: clubs[1].id,
         brandId: brands[0].id,
         templateId: templates[1].id,
-        status: 'SUBMITTED',
-        priority: Priority.HIGH,
-        title: 'Plakaty na Walentynki - trening w parach',
+        status: BriefStatus.SUBMITTED,
+        priority: Priority.MEDIUM,
+        title: 'Plakaty - Walentynkowy Trening w Parach',
         objective: Objective.ATTENDANCE,
-        kpiDescription: '30 par na treningu walentynkowym',
-        kpiTarget: 30,
-        deadline: inDays(8),
-        startDate: inDays(12),
-        endDate: inDays(16),
-        context: 'Coroczna akcja walentynkowa. W zeszłym roku mieliśmy 20 par, w tym roku chcemy więcej. Mamy nowego instruktora od tańca który poprowadzi część zajęć.',
-        offerDetails: 'Trening w parach gratis dla członków klubu + partner (nawet bez karnetu). 14.02 w godzinach 18:00-20:00. W programie: fitness w parach, krótki kurs tańca, smoothie bar.',
-        legalCopy: 'Liczba miejsc ograniczona. Wymagana wcześniejsza rejestracja na recepcji lub telefonicznie.',
-        customFields: {
-          printFormats: ['A3', 'A2'],
-          quantity: '11-50',
-          mainMessage: 'Trenuj z ukochaną osobą! Walentynkowy trening w parach',
-          includeQR: true,
-          qrDestination: 'https://zdrofit.pl/walentynki-mokotow',
-          distributionLocations: 'Recepcja klubu, tablice informacyjne na każdym piętrze, szatnie',
-        },
-        assetLinks: [],
-        submittedAt: now,
+        kpiDescription: '40 par na wydarzeniu',
+        kpiTarget: 40,
+        deadline: inDays(5),
+        startDate: inDays(20),
+        endDate: inDays(21),
+        context: 'Coroczna tradycja - trening walentynkowy. W zeszłym roku mieliśmy 25 par, w tym roku chcemy więcej.',
+        offerDetails: 'Trening w parach GRATIS dla członków + partner bez karnetu. 14.02, godz. 18:00-20:00.',
+        customFields: { printFormats: ['A3', 'A2'], quantity: '11-50' },
+        confidenceLevel: ConfidenceLevel.MEDIUM,
+        submittedAt: daysAgo(2),
       },
     }),
-
-    // Brief 3: Approved - in production
     prisma.brief.create({
       data: {
         code: generateBriefCode(),
         createdById: users[2].id,
         clubId: clubs[5].id,
         brandId: brands[1].id,
-        templateId: templates[2].id,
-        status: 'APPROVED',
-        priority: Priority.CRITICAL,
-        title: 'Otwarcie nowej strefy functional - event kit',
+        templateId: templates[0].id,
+        status: BriefStatus.SUBMITTED,
+        priority: Priority.HIGH,
+        title: 'Post FB/IG - Nowy trener personalny',
         objective: Objective.AWARENESS,
-        kpiDescription: '100 uczestników na dniu otwartym',
-        kpiTarget: 100,
-        deadline: inDays(5),
-        startDate: inDays(12),
-        endDate: inDays(12),
-        context: 'Otwarcie nowej strefy functional training - inwestycja 500k PLN. To największa strefa functional w Warszawie. Mamy umowę z Mateuszem Kowalczykiem (mistrz CrossFit) na prowadzenie pokazów.',
-        offerDetails: 'Dzień otwarty. Darmowe treningi pokazowe co godzinę od 10:00 do 18:00. Dla uczestników -30% na pierwszy miesiąc karnetu.',
-        legalCopy: 'Liczba miejsc na każdy pokaz ograniczona do 20 osób. Wymagana rejestracja online.',
-        customFields: {
-          eventName: 'Dzień Otwarty Strefy Functional',
-          eventDate: inDays(12).toISOString().split('T')[0],
-          eventTime: '10:00-18:00',
-          eventType: 'dzien_otwarty',
-          materials: ['post_facebook', 'post_instagram', 'stories_set', 'plakat_A2', 'roll_up', 'grafika_TV'],
-          specialGuests: 'Mateusz Kowalczyk - mistrz Polski CrossFit 2023',
-          maxParticipants: 100,
-          registrationRequired: true,
-          registrationUrl: 'https://s4fitness.pl/functional-opening',
-        },
-        assetLinks: [
-          'https://drive.google.com/drive/folders/s4-functional-zone-photos',
-          'https://drive.google.com/drive/folders/mateusz-kowalczyk-promo',
-        ],
-        submittedAt: inDays(-2),
+        kpiDescription: 'Minimum 50 zapisów na konsultacje',
+        kpiTarget: 50,
+        deadline: inDays(3),
+        startDate: inDays(5),
+        endDate: inDays(35),
+        context: 'Zatrudniliśmy Marka Kowalskiego - byłego reprezentanta Polski w kulturystyce. To świetna okazja promocyjna!',
+        offerDetails: 'Darmowa konsultacja z Markiem dla nowych i obecnych członków. Pakiet 10 treningów personalnych -15%.',
+        customFields: { channels: ['facebook', 'instagram_feed', 'instagram_stories'] },
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: now,
       },
     }),
-
-    // Brief 4: Changes requested
     prisma.brief.create({
       data: {
         code: generateBriefCode(),
@@ -571,57 +566,210 @@ async function main() {
         clubId: clubs[3].id,
         brandId: brands[0].id,
         templateId: templates[3].id,
-        status: 'CHANGES_REQUESTED',
-        priority: Priority.HIGH,
-        title: 'Info o zmianie godzin w weekend',
+        status: BriefStatus.SUBMITTED,
+        priority: Priority.CRITICAL,
+        title: 'PILNE: Awaria klimatyzacji - info',
         objective: Objective.OTHER,
-        kpiDescription: 'Poinformowanie wszystkich członków',
-        deadline: inDays(2),
-        startDate: inDays(4),
-        endDate: inDays(6),
-        context: 'Remont instalacji elektrycznej w centrum handlowym wymusza zmianę godzin pracy klubu w najbliższy weekend.',
-        offerDetails: 'Sobota: 8:00-20:00 (zamiast 6:00-22:00), Niedziela: 9:00-18:00 (zamiast 8:00-21:00)',
-        customFields: {
-          infoType: 'zmiana_godzin',
-          mainMessage: 'Zmiana godzin otwarcia w weekend 20-21.01',
-          validFrom: inDays(4).toISOString().split('T')[0],
-          validTo: inDays(6).toISOString().split('T')[0],
-          displayLocations: ['tv_recepcja', 'facebook', 'instagram_stories'],
-        },
-        assetLinks: [],
-        submittedAt: inDays(-1),
+        kpiDescription: 'Poinformować wszystkich członków',
+        deadline: inDays(1),
+        startDate: now,
+        endDate: inDays(3),
+        context: 'Awaria klimatyzacji w strefie cardio. Naprawa potrwa 2-3 dni. Musimy pilnie poinformować członków.',
+        offerDetails: 'Strefa cardio tymczasowo nieczynna. Przepraszamy za utrudnienia. Alternatywnie zapraszamy na zajęcia grupowe.',
+        isCrisisCommunication: true,
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: now,
       },
     }),
+  ])
 
-    // Brief 5: Delivered - pending outcome tagging
+  // ---------- APPROVED - w produkcji ----------
+  const approvedBriefs = await Promise.all([
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[0].id,
+        clubId: clubs[0].id,
+        brandId: brands[0].id,
+        templateId: templates[2].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.CRITICAL,
+        title: 'Dzień Otwarty - Nowa Strefa Functional',
+        objective: Objective.ACQUISITION,
+        kpiDescription: '150 uczestników, 30 nowych karnetów',
+        kpiTarget: 150,
+        deadline: inDays(4),
+        startDate: inDays(14),
+        endDate: inDays(14),
+        context: 'Otwarcie nowej strefy functional training po remoncie za 800k PLN. Największa inwestycja w tym roku!',
+        offerDetails: 'Darmowe treningi pokazowe co godzinę 10:00-18:00. Dla uczestników -30% na pierwszy miesiąc.',
+        customFields: { eventName: 'Otwarcie Strefy Functional', eventDate: inDays(14).toISOString().split('T')[0] },
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(5),
+      },
+    }),
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[4].id,
+        clubId: clubs[7].id,
+        brandId: brands[2].id,
+        templateId: templates[0].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.MEDIUM,
+        title: 'Post - Zimowe treningi na plaży',
+        objective: Objective.ATTENDANCE,
+        kpiDescription: '25 uczestników na każdym treningu',
+        kpiTarget: 25,
+        deadline: inDays(6),
+        startDate: inDays(10),
+        endDate: inDays(60),
+        context: 'Organizujemy zimowe treningi outdoor na plaży w Gdańsku. Wyjątkowa atrakcja dla hartownych!',
+        offerDetails: 'Soboty 10:00, plaża przy molo. Darmowe dla członków, dla gości 30 PLN.',
+        confidenceLevel: ConfidenceLevel.MEDIUM,
+        submittedAt: daysAgo(3),
+      },
+    }),
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[1].id,
+        clubId: clubs[2].id,
+        brandId: brands[0].id,
+        templateId: templates[1].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.LOW,
+        title: 'Ulotka - Grafik zajęć Q1',
+        objective: Objective.AWARENESS,
+        kpiDescription: 'Rozdać 500 ulotek',
+        deadline: inDays(8),
+        startDate: inDays(12),
+        endDate: inDays(90),
+        context: 'Nowy grafik zajęć grupowych na Q1. Dodaliśmy 5 nowych klas.',
+        offerDetails: 'Nowe zajęcia: Pilates Advance, HIIT Extreme, Yoga Flow, Dance Cardio, TRX Intro',
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(4),
+      },
+    }),
+  ])
+
+  // ---------- CHANGES_REQUESTED - do poprawy ----------
+  const changesRequestedBriefs = await Promise.all([
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[3].id,
+        clubId: clubs[4].id,
+        brandId: brands[0].id,
+        templateId: templates[0].id,
+        status: BriefStatus.CHANGES_REQUESTED,
+        priority: Priority.MEDIUM,
+        title: 'Post - Promocja na saunę',
+        objective: Objective.UPSELL,
+        kpiDescription: '20 nowych pakietów SPA',
+        kpiTarget: 20,
+        deadline: inDays(5),
+        startDate: inDays(8),
+        endDate: inDays(38),
+        context: 'Chcemy promować nasz pakiet SPA z dostępem do sauny.',
+        offerDetails: 'Pakiet SPA -20% przy zakupie z karnetem.',
+        confidenceLevel: ConfidenceLevel.MEDIUM,
+        submittedAt: daysAgo(3),
+      },
+    }),
+  ])
+
+  // ---------- DELIVERED - zrealizowane, do oceny ----------
+  const deliveredBriefs = await Promise.all([
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[2].id,
+        clubId: clubs[5].id,
+        brandId: brands[1].id,
+        templateId: templates[4].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.HIGH,
+        title: 'Kampania Black Week 2024',
+        objective: Objective.ACQUISITION,
+        kpiDescription: '60 nowych karnetów',
+        kpiTarget: 60,
+        deadline: daysAgo(10),
+        startDate: daysAgo(20),
+        endDate: daysAgo(5),
+        context: 'Black Week kampania - największa promocja roku.',
+        offerDetails: 'Wszystkie karnety -40%. Tylko 5 dni!',
+        outcome: Outcome.POSITIVE,
+        outcomeNote: 'Przekroczyliśmy cel - 78 nowych karnetów!',
+        actualKpiValue: 78,
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(25),
+      },
+    }),
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[0].id,
+        clubId: clubs[0].id,
+        brandId: brands[0].id,
+        templateId: templates[0].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.MEDIUM,
+        title: 'Post - Świąteczne życzenia',
+        objective: Objective.RETENTION,
+        deadline: daysAgo(15),
+        startDate: daysAgo(18),
+        endDate: daysAgo(14),
+        context: 'Świąteczne życzenia dla społeczności.',
+        offerDetails: 'Grafika ze świątecznymi życzeniami.',
+        outcome: Outcome.NEUTRAL,
+        outcomeNote: 'Standardowy engagement.',
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(22),
+      },
+    }),
     prisma.brief.create({
       data: {
         code: generateBriefCode(),
         createdById: users[4].id,
         clubId: clubs[8].id,
         brandId: brands[2].id,
-        templateId: templates[4].id,
-        status: 'APPROVED',
-        priority: Priority.MEDIUM,
-        title: 'Kampania Black Friday - karnety prezentowe',
+        templateId: templates[2].id,
+        status: BriefStatus.APPROVED,
+        priority: Priority.HIGH,
+        title: 'Event - Maraton Fitness Sopot',
+        objective: Objective.AWARENESS,
+        kpiDescription: '80 uczestników',
+        kpiTarget: 80,
+        deadline: daysAgo(8),
+        startDate: daysAgo(12),
+        endDate: daysAgo(12),
+        context: 'Całodniowy maraton fitness w Sopocie.',
+        offerDetails: '12 godzin zajęć non-stop! Wstęp 50 PLN, członkowie gratis.',
+        outcome: Outcome.POSITIVE,
+        outcomeNote: 'Super event! 95 uczestników, świetne opinie.',
+        actualKpiValue: 95,
+        confidenceLevel: ConfidenceLevel.HIGH,
+        submittedAt: daysAgo(18),
+      },
+    }),
+  ])
+
+  // ---------- DRAFT - szkice ----------
+  await Promise.all([
+    prisma.brief.create({
+      data: {
+        code: generateBriefCode(),
+        createdById: users[1].id,
+        clubId: clubs[1].id,
+        brandId: brands[0].id,
+        templateId: templates[0].id,
+        status: BriefStatus.DRAFT,
+        priority: Priority.LOW,
+        title: 'Post - Wiosenna promocja (szkic)',
         objective: Objective.ACQUISITION,
-        kpiDescription: '25 karnetów prezentowych',
-        kpiTarget: 25,
-        deadline: inDays(-5),
-        startDate: inDays(-10),
-        endDate: inDays(-3),
-        context: 'Black Friday to świetna okazja na sprzedaż karnetów prezentowych. W zeszłym roku sprzedaliśmy 15, w tym roku celujemy wyżej.',
-        offerDetails: 'Karnet prezentowy 3-miesięczny w cenie 2-miesięcznego. Eleganckie pudełko prezentowe gratis.',
-        customFields: {
-          campaignName: 'Black Friday 2024',
-          campaignType: 'black_friday',
-          channels: ['facebook', 'instagram', 'mailing'],
-          mainMessage: 'Podaruj zdrowie bliskiej osobie! Karnet prezentowy -33%',
-          targetAudience: 'Osoby szukające prezentów świątecznych, 25-55 lat',
-          budget: '1000_2500',
-        },
-        assetLinks: [],
-        submittedAt: inDays(-12),
+        deadline: inDays(30),
+        context: 'Planowana kampania wiosenna...',
       },
     }),
   ])
@@ -629,31 +777,63 @@ async function main() {
   // ============== APPROVALS ==============
   console.log('✅ Creating approvals...')
   await Promise.all([
-    // Approval for brief 3 (approved)
+    // Approved briefs
     prisma.approval.create({
       data: {
-        briefId: briefs[2].id,
+        briefId: approvedBriefs[0].id,
         validatorId: users[5].id,
         decision: 'APPROVED',
-        notes: 'Świetna akcja! Priorytet CRITICAL uzasadniony - to duża inwestycja. Proszę o realizację ASAP. Pamiętajcie o zgodności z brand guidelines My Fitness Place.',
+        notes: 'Świetny brief! Priorytet CRITICAL uzasadniony - to nasza największa inwestycja. Realizacja ASAP.',
       },
     }),
-    // Approval for brief 4 (changes requested)
     prisma.approval.create({
       data: {
-        briefId: briefs[3].id,
-        validatorId: users[6].id,
-        decision: 'CHANGES_REQUESTED',
-        notes: 'Proszę dodać informację o tym, że grafik zajęć w te dni pozostaje bez zmian (tylko godziny otwarcia się zmieniają). Członkowie mogą się niepokoić o swoje zajęcia.',
-      },
-    }),
-    // Approval for brief 5 (delivered)
-    prisma.approval.create({
-      data: {
-        briefId: briefs[4].id,
+        briefId: approvedBriefs[1].id,
         validatorId: users[7].id,
         decision: 'APPROVED',
-        notes: 'OK, akceptuję. Budżet mediowy do dyspozycji.',
+        notes: 'Ciekawa inicjatywa. Akceptuję.',
+      },
+    }),
+    prisma.approval.create({
+      data: {
+        briefId: approvedBriefs[2].id,
+        validatorId: users[5].id,
+        decision: 'APPROVED',
+        notes: 'OK, prosty brief.',
+      },
+    }),
+    // Changes requested
+    prisma.approval.create({
+      data: {
+        briefId: changesRequestedBriefs[0].id,
+        validatorId: users[6].id,
+        decision: 'CHANGES_REQUESTED',
+        notes: 'Proszę doprecyzować: 1) Czy promocja dotyczy nowych klientów czy też obecnych? 2) Dodaj info o dostępności sauny (godziny). 3) Sprawdź czy mamy zdjęcia strefy SPA do wykorzystania.',
+      },
+    }),
+    // Delivered briefs
+    prisma.approval.create({
+      data: {
+        briefId: deliveredBriefs[0].id,
+        validatorId: users[5].id,
+        decision: 'APPROVED',
+        notes: 'Black Week - kluczowa kampania. Zatwierdzam.',
+      },
+    }),
+    prisma.approval.create({
+      data: {
+        briefId: deliveredBriefs[1].id,
+        validatorId: users[5].id,
+        decision: 'APPROVED',
+        notes: 'OK',
+      },
+    }),
+    prisma.approval.create({
+      data: {
+        briefId: deliveredBriefs[2].id,
+        validatorId: users[7].id,
+        decision: 'APPROVED',
+        notes: 'Maraton to super pomysł! Powodzenia.',
       },
     }),
   ])
@@ -661,26 +841,67 @@ async function main() {
   // ============== PRODUCTION TASKS ==============
   console.log('🔧 Creating production tasks...')
   const productionTasks = await Promise.all([
-    // Task for brief 3 (in progress)
+    // QUEUED
     prisma.productionTask.create({
       data: {
-        briefId: briefs[2].id,
-        assigneeId: users[8].id,
-        status: 'IN_PROGRESS',
+        briefId: approvedBriefs[2].id,
+        status: TaskStatus.QUEUED,
         slaDays: 5,
-        dueDate: inDays(5),
-        notes: 'Kluczowy projekt - otwarcie nowej strefy. Priorytet nad innymi zadaniami.',
+        dueDate: inDays(8),
+        notes: 'Prosta ulotka, niski priorytet.',
       },
     }),
-    // Task for brief 5 (delivered)
+    // IN_PROGRESS
     prisma.productionTask.create({
       data: {
-        briefId: briefs[4].id,
+        briefId: approvedBriefs[0].id,
+        assigneeId: users[8].id,
+        status: TaskStatus.IN_PROGRESS,
+        slaDays: 5,
+        dueDate: inDays(4),
+        notes: 'PRIORYTET! Dzień otwarty - wszystkie materiały potrzebne na raz.',
+      },
+    }),
+    prisma.productionTask.create({
+      data: {
+        briefId: approvedBriefs[1].id,
         assigneeId: users[9].id,
-        status: 'DELIVERED',
+        status: TaskStatus.IN_PROGRESS,
+        slaDays: 3,
+        dueDate: inDays(6),
+        notes: 'Zimowe treningi outdoor.',
+      },
+    }),
+    // IN_REVIEW
+    prisma.productionTask.create({
+      data: {
+        briefId: deliveredBriefs[1].id,
+        assigneeId: users[9].id,
+        status: TaskStatus.IN_REVIEW,
+        slaDays: 2,
+        dueDate: daysAgo(15),
+        notes: 'Świąteczna grafika - do akceptacji.',
+      },
+    }),
+    // DELIVERED
+    prisma.productionTask.create({
+      data: {
+        briefId: deliveredBriefs[0].id,
+        assigneeId: users[8].id,
+        status: TaskStatus.DELIVERED,
         slaDays: 7,
-        dueDate: inDays(-5),
-        notes: 'Wszystkie materiały dostarczone zgodnie z briefem.',
+        dueDate: daysAgo(10),
+        notes: 'Black Week - wszystkie materiały dostarczone.',
+      },
+    }),
+    prisma.productionTask.create({
+      data: {
+        briefId: deliveredBriefs[2].id,
+        assigneeId: users[10].id,
+        status: TaskStatus.DELIVERED,
+        slaDays: 5,
+        dueDate: daysAgo(8),
+        notes: 'Maraton Sopot - zrealizowane.',
       },
     }),
   ])
@@ -688,135 +909,110 @@ async function main() {
   // ============== DELIVERABLES ==============
   console.log('📦 Creating deliverables...')
   await Promise.all([
-    // Deliverables for brief 5 (delivered)
+    // Black Week deliverables
     prisma.deliverable.create({
       data: {
-        taskId: productionTasks[1].id,
-        name: 'Post Facebook - Black Friday',
+        taskId: productionTasks[4].id,
+        name: 'Post Facebook - Black Week główny',
         type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/bf-fb-post-v2',
+        fileUrl: 'https://drive.google.com/file/d/black-week-fb-main',
         version: 2,
         isApproved: true,
-        changeNotes: 'v2 - poprawiona wielkość tekstu zgodnie z uwagami',
+        changeNotes: 'v2 - poprawiony CTA',
       },
     }),
     prisma.deliverable.create({
       data: {
-        taskId: productionTasks[1].id,
-        name: 'Post Instagram - Black Friday',
+        taskId: productionTasks[4].id,
+        name: 'Post Instagram - Black Week',
         type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/bf-ig-post-v1',
+        fileUrl: 'https://drive.google.com/file/d/black-week-ig',
         version: 1,
         isApproved: true,
       },
     }),
     prisma.deliverable.create({
       data: {
-        taskId: productionTasks[1].id,
-        name: 'Grafika do mailingu',
-        type: 'mailing',
-        fileUrl: 'https://drive.google.com/file/d/bf-mailing-v1',
+        taskId: productionTasks[4].id,
+        name: 'Stories set - Black Week',
+        type: 'stories',
+        fileUrl: 'https://drive.google.com/file/d/black-week-stories',
         version: 1,
         isApproved: true,
       },
     }),
-  ])
-
-  // ============== NOTIFICATIONS ==============
-  console.log('🔔 Creating sample notifications...')
-  await Promise.all([
-    // Notification for validator about submitted brief
-    prisma.notification.create({
+    // Maraton deliverables
+    prisma.deliverable.create({
       data: {
-        userId: users[5].id,
-        type: 'BRIEF_SUBMITTED',
-        title: 'Nowy brief do zatwierdzenia',
-        message: 'Brief "Plakaty na Walentynki - trening w parach" czeka na Twoją decyzję.',
-        linkUrl: `/briefs/${briefs[1].id}`,
-        isRead: false,
+        taskId: productionTasks[5].id,
+        name: 'Plakat A2 - Maraton Fitness',
+        type: 'print',
+        fileUrl: 'https://drive.google.com/file/d/maraton-plakat-a2',
+        version: 1,
+        isApproved: true,
       },
     }),
-    // Notification for club manager about changes requested
-    prisma.notification.create({
+    prisma.deliverable.create({
       data: {
-        userId: users[3].id,
-        type: 'CHANGES_REQUESTED',
-        title: 'Wymagane poprawki',
-        message: 'Twój brief "Info o zmianie godzin w weekend" wymaga poprawek.',
-        linkUrl: `/briefs/${briefs[3].id}`,
-        isRead: false,
+        taskId: productionTasks[5].id,
+        name: 'Post FB - Maraton',
+        type: 'social_post',
+        fileUrl: 'https://drive.google.com/file/d/maraton-fb',
+        version: 1,
+        isApproved: true,
       },
     }),
-    // Notification for production about new task
-    prisma.notification.create({
+    // In review deliverable
+    prisma.deliverable.create({
       data: {
-        userId: users[8].id,
-        type: 'NEW_TASK',
-        title: 'Nowe zlecenie w kolejce',
-        message: 'Brief "Otwarcie nowej strefy functional - event kit" jest gotowy do realizacji.',
-        linkUrl: `/production/${productionTasks[0].id}`,
-        isRead: true,
-      },
-    }),
-  ])
-
-  // ============== AUDIT LOGS ==============
-  console.log('📝 Creating audit logs...')
-  await Promise.all([
-    prisma.auditLog.create({
-      data: {
-        userId: users[2].id,
-        briefId: briefs[2].id,
-        action: 'BRIEF_CREATED',
-        details: { title: briefs[2].title },
-      },
-    }),
-    prisma.auditLog.create({
-      data: {
-        userId: users[2].id,
-        briefId: briefs[2].id,
-        action: 'BRIEF_SUBMITTED',
-      },
-    }),
-    prisma.auditLog.create({
-      data: {
-        userId: users[5].id,
-        briefId: briefs[2].id,
-        action: 'APPROVAL_APPROVED',
-        details: { priority: 'CRITICAL' },
+        taskId: productionTasks[3].id,
+        name: 'Post świąteczny',
+        type: 'social_post',
+        fileUrl: 'https://drive.google.com/file/d/xmas-post',
+        version: 1,
+        isApproved: false,
+        changeNotes: 'Do sprawdzenia przez managera.',
       },
     }),
   ])
 
   // ============== SUMMARY ==============
   console.log('')
-  console.log('✅ Seed completed successfully!')
+  console.log('✅ Demo seed completed successfully!')
   console.log('')
   console.log('📊 Created:')
   console.log(`   - ${regions.length} regions`)
   console.log(`   - ${brands.length} brands`)
   console.log(`   - ${clubs.length} clubs`)
-  console.log(`   - ${templates.length} request templates`)
+  console.log(`   - ${templates.length} templates`)
   console.log(`   - ${users.length} users`)
-  console.log(`   - ${briefs.length} sample briefs`)
+  console.log(`   - 5 sales focuses (targets)`)
+  console.log(`   - ${submittedBriefs.length} briefs SUBMITTED (do zatwierdzenia)`)
+  console.log(`   - ${approvedBriefs.length} briefs APPROVED (w produkcji)`)
+  console.log(`   - ${changesRequestedBriefs.length} briefs CHANGES_REQUESTED`)
+  console.log(`   - ${deliveredBriefs.length} briefs DELIVERED (zrealizowane)`)
   console.log(`   - ${productionTasks.length} production tasks`)
   console.log('')
-  console.log('🔐 Test accounts (password: password123):')
+  console.log('🔐 Test accounts (password: demo123):')
   console.log('')
-  console.log('   Club Managers:')
-  console.log('   - anna.kowalska@benefit.pl (Zdrofit Arkadia)')
+  console.log('   📝 Club Managers:')
+  console.log('   - anna.kowalska@benefit.pl (Zdrofit Arkadia - FLAGSHIP)')
   console.log('   - piotr.nowak@benefit.pl (Zdrofit Mokotów, Złote Tarasy)')
-  console.log('   - katarzyna.wiszniewska@benefit.pl (My Fitness Place Marszałkowska)')
+  console.log('   - katarzyna.wiszniewska@benefit.pl (MFP Marszałkowska)')
+  console.log('   - tomasz.zielinski@benefit.pl (Zdrofit Kraków)')
+  console.log('   - magdalena.dabrowska@benefit.pl (FF Gdańsk, Sopot)')
   console.log('')
-  console.log('   Validators:')
-  console.log('   - michal.adamski@benefit.pl (Warsaw region)')
-  console.log('   - ewa.mazur@benefit.pl (Krakow region)')
+  console.log('   ✅ Validators:')
+  console.log('   - michal.adamski@benefit.pl (Warszawa - 4 briefy do zatwierdzenia)')
+  console.log('   - ewa.mazur@benefit.pl (Kraków)')
+  console.log('   - jan.kowalczyk@benefit.pl (pozostałe regiony)')
   console.log('')
-  console.log('   Production:')
-  console.log('   - studio@benefit.pl')
-  console.log('   - partner@reszek.pl')
+  console.log('   🎨 Production:')
+  console.log('   - studio@benefit.pl (Studio Kreacji BS)')
+  console.log('   - marta.grafik@benefit.pl (Marta Nowicka)')
+  console.log('   - partner@reszek.pl (Reszek Studio)')
   console.log('')
-  console.log('   Admin:')
+  console.log('   👑 Admin:')
   console.log('   - admin@benefit.pl')
   console.log('')
 }
