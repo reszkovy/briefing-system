@@ -114,12 +114,6 @@ export default async function ApprovalsPage() {
           </div>
           <div className="flex items-center gap-4">
             <Link
-              href="/admin/focus"
-              className="text-white/70 hover:text-white text-sm"
-            >
-              🎯 Cele
-            </Link>
-            <Link
               href="/statistics"
               className="text-white/70 hover:text-white text-sm"
             >
@@ -135,9 +129,19 @@ export default async function ApprovalsPage() {
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Active Sales Focuses */}
-        {activeFocuses.length > 0 && (
-          <div className="mb-6 space-y-2">
-            {activeFocuses.map((focus) => (
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-semibold text-gray-900">Aktywne cele sprzedażowe</h2>
+            <Link
+              href="/admin/focus"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1e2a5e] transition-colors text-sm font-medium"
+            >
+              🎯 Zarządzaj celami
+            </Link>
+          </div>
+          {activeFocuses.length > 0 ? (
+            <div className="space-y-2">
+              {activeFocuses.map((focus) => (
               <div
                 key={focus.id}
                 className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-3 shadow-sm"
@@ -163,9 +167,14 @@ export default async function ApprovalsPage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          ) : (
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center text-gray-500">
+              Brak aktywnych celów sprzedażowych
+            </div>
+          )}
+        </div>
 
         {/* Pending approvals */}
         <section className="mb-10">
