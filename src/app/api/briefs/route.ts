@@ -113,7 +113,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate brief code
+    // Get all templates that were selected
+    const templates = await prisma.requestTemplate.findMany({
+      where: { id: { in: validated.data.templateIds } },
+    })
+
+    // Generate brief codes for all briefs
     const year = new Date().getFullYear()
     const lastBrief = await prisma.brief.findFirst({
       where: {
@@ -127,73 +132,94 @@ export async function POST(request: NextRequest) {
       const lastNumber = parseInt(lastBrief.code.split('-')[2])
       nextNumber = lastNumber + 1
     }
-    const code = `BRIEF-${year}-${String(nextNumber).padStart(4, '0')}`
 
-    // Create the brief
-    const brief = await prisma.brief.create({
-      data: {
-        code,
-        createdById: session.user.id,
-        clubId: validated.data.clubId,
-        brandId: validated.data.brandId,
-        templateId: validated.data.templateId,
-        title: validated.data.title,
-        objective: validated.data.objective,
-        kpiDescription: validated.data.kpiDescription,
-        kpiTarget: validated.data.kpiTarget || null,
-        deadline: new Date(validated.data.deadline),
-        startDate: validated.data.startDate ? new Date(validated.data.startDate) : null,
-        endDate: validated.data.endDate ? new Date(validated.data.endDate) : null,
-        context: validated.data.context,
-        offerDetails: validated.data.offerDetails || null,
-        legalCopy: validated.data.legalCopy || null,
-        customFields: validated.data.customFields || {},
-        assetLinks: validated.data.assetLinks || [],
-        status: action === 'submit' ? 'SUBMITTED' : 'DRAFT',
-        submittedAt: action === 'submit' ? new Date() : null,
-      },
-      include: {
-        club: true,
-        brand: true,
-        template: true,
-      },
-    })
-
-    // Create audit log
-    await prisma.auditLog.create({
-      data: {
-        userId: session.user.id,
-        briefId: brief.id,
-        action: action === 'submit' ? 'BRIEF_SUBMITTED' : 'BRIEF_CREATED',
-        details: { title: brief.title, code: brief.code },
-      },
-    })
-
-    // If submitted, create notification for validators
-    if (action === 'submit') {
-      // Find validators for this club
-      const validators = await prisma.userClub.findMany({
-        where: {
-          clubId: brief.clubId,
-          isManager: false,
-          user: { role: 'VALIDATOR' },
-        },
-        include: { user: true },
-      })
-
-      // Create notifications
-      await prisma.notification.createMany({
-        data: validators.map((v) => ({
-          userId: v.userId,
-          type: 'BRIEF_SUBMITTED',
-          title: 'Nowy brief do zatwierdzenia',
-          message: `Brief "${brief.title}" czeka na Twoja decyzje.`,
-          linkUrl: `/briefs/${brief.id}`,
-        })),
-      })
+    // Store formats and customFormats in customFields
+    const customFieldsWithFormats = {
+      ...(validated.data.customFields || {}),
+      formats: validated.data.formats || [],
+      customFormats: validated.data.customFormats || [],
     }
 
-    return NextResponse.json({ success: true, data: brief }, { status: 201 })
+    // Create briefs for each selected template
+    const createdBriefs = []
+    for (let i = 0; i < templates.length; i++) {
+      const template = templates[i]
+      const code = `BRIEF-${year}-${String(nextNumber + i).padStart(4, '0')}`
+
+      // Add template code suffix to title if multiple templates
+      const briefTitle = templates.length > 1
+        ? `${validated.data.title} [${template.code}]`
+        : validated.data.title
+
+      const brief = await prisma.brief.create({
+        data: {
+          code,
+          createdById: session.user.id,
+          clubId: validated.data.clubId,
+          brandId: validated.data.brandId,
+          templateId: template.id,
+          title: briefTitle,
+          objective: validated.data.objective || null,
+          kpiDescription: validated.data.kpiDescription || null,
+          kpiTarget: validated.data.kpiTarget || null,
+          deadline: new Date(validated.data.deadline),
+          startDate: validated.data.startDate ? new Date(validated.data.startDate) : null,
+          endDate: validated.data.endDate ? new Date(validated.data.endDate) : null,
+          context: validated.data.context,
+          offerDetails: validated.data.offerDetails || null,
+          legalCopy: validated.data.legalCopy || null,
+          customFields: customFieldsWithFormats,
+          assetLinks: validated.data.assetLinks || [],
+          status: action === 'submit' ? 'SUBMITTED' : 'DRAFT',
+          submittedAt: action === 'submit' ? new Date() : null,
+        },
+        include: {
+          club: true,
+          brand: true,
+          template: true,
+        },
+      })
+
+      createdBriefs.push(brief)
+
+      // Create audit log
+      await prisma.auditLog.create({
+        data: {
+          userId: session.user.id,
+          briefId: brief.id,
+          action: action === 'submit' ? 'BRIEF_SUBMITTED' : 'BRIEF_CREATED',
+          details: { title: brief.title, code: brief.code },
+        },
+      })
+
+      // If submitted, create notification for validators
+      if (action === 'submit') {
+        const validators = await prisma.userClub.findMany({
+          where: {
+            clubId: brief.clubId,
+            isManager: false,
+            user: { role: 'VALIDATOR' },
+          },
+          include: { user: true },
+        })
+
+        await prisma.notification.createMany({
+          data: validators.map((v) => ({
+            userId: v.userId,
+            type: 'BRIEF_SUBMITTED',
+            title: 'Nowy brief do zatwierdzenia',
+            message: `Brief "${brief.title}" czeka na Twoja decyzje.`,
+            linkUrl: `/briefs/${brief.id}`,
+          })),
+        })
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      data: createdBriefs.length === 1 ? createdBriefs[0] : createdBriefs,
+      count: createdBriefs.length,
+    }, { status: 201 })
   } catch (error) {
     console.error('Error creating brief:', error)
     return NextResponse.json(

@@ -141,15 +141,24 @@ export default async function ProductionTaskPage({ params }: Props) {
                 </div>
               </div>
 
-              <div className="border-t pt-4">
-                <h3 className="text-sm font-medium text-gray-900 mb-2">Cel kampanii</h3>
-                <p className="text-gray-700">{task.brief.objective}</p>
-                {task.brief.kpiDescription && (
-                  <p className="text-sm text-gray-600 mt-1">
-                    KPI: {task.brief.kpiDescription} (cel: {task.brief.kpiTarget})
-                  </p>
-                )}
-              </div>
+              {/* Formats section */}
+              {customFields && (customFields.formats || customFields.customFormats) && (
+                <div className="border-t pt-4">
+                  <h3 className="text-sm font-medium text-gray-900 mb-2">Zamawiane formaty</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {Array.isArray(customFields.formats) && customFields.formats.map((format: string) => (
+                      <span key={format} className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800 border border-blue-200">
+                        {format}
+                      </span>
+                    ))}
+                    {Array.isArray(customFields.customFormats) && customFields.customFormats.map((format: string) => (
+                      <span key={format} className="px-2 py-1 rounded-full text-xs bg-amber-100 text-amber-800 border border-amber-200">
+                        {format}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Context & Details */}

@@ -100,8 +100,8 @@ model Brief {
   status          BriefStatus     @default(DRAFT)
   priority        Priority        @default(MEDIUM)
   title           String
-  objective       Objective
-  kpiDescription  String
+  objective       Objective?
+  kpiDescription  String?
   kpiTarget       Float?
   deadline        DateTime
   startDate       DateTime?

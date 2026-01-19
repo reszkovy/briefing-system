@@ -225,7 +225,7 @@ async function main() {
   // ============== REQUEST TEMPLATES ==============
   console.log('📝 Creating request templates...')
   const templates = await Promise.all([
-    // Social Media Post
+    // Social Media Post - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Post social media (Facebook/Instagram)',
@@ -234,57 +234,12 @@ async function main() {
         defaultSLADays: 3,
         requiredFields: {
           type: 'object',
-          properties: {
-            formats: {
-              type: 'array',
-              title: 'Formaty graficzne',
-              description: 'Wybierz potrzebne formaty',
-              items: {
-                type: 'string',
-                enum: [
-                  'fb_post_1080x1320',
-                  'ig_post_1080x1440',
-                  'stories_1080x1920',
-                  'www_square_360x360',
-                  'www_rect_832x416',
-                  'google_400x300',
-                  'plakat_a4',
-                ],
-                enumNames: [
-                  'Post FB statyk (1080x1320)',
-                  'Post IG statyk (1080x1440)',
-                  'Stories statyk bez logo (1080x1920)',
-                  'Aktualność www kwadrat bez logo (360x360)',
-                  'Aktualność www prostokąt bez logo (832x416)',
-                  'Wizytówka Google (400x300)',
-                  'Plakat A4 do samodzielnego wydruku',
-                ],
-              },
-            },
-            otherFormats: {
-              type: 'string',
-              title: 'Inne formaty',
-              description: 'Jeśli potrzebujesz innego formatu, opisz tutaj',
-              required: false,
-            },
-            mainMessage: {
-              type: 'string',
-              title: 'Główny przekaz',
-              description: 'Co chcesz zakomunikować? Max 500 znaków.',
-              maxLength: 500,
-            },
-            callToAction: {
-              type: 'string',
-              title: 'Call to Action',
-              description: 'Co ma zrobić odbiorca?',
-              enum: ['Zapisz się', 'Sprawdź ofertę', 'Zadzwoń', 'Przyjdź do klubu', 'Kup teraz', 'Dowiedz się więcej', 'Inne'],
-            },
-          },
+          properties: {},
         },
       },
     }),
 
-    // Print Poster/Flyer
+    // Print Poster/Flyer - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Plakat / Ulotka drukowana',
@@ -293,49 +248,12 @@ async function main() {
         defaultSLADays: 5,
         requiredFields: {
           type: 'object',
-          properties: {
-            printFormats: {
-              type: 'array',
-              title: 'Formaty druku',
-              items: {
-                type: 'string',
-                enum: ['A4', 'A3', 'A2', 'A1', 'A0', 'DL_ulotka', 'A5_ulotka', 'A6_ulotka', 'roll_up', 'banner_outdoor'],
-                enumNames: ['A4 (plakat)', 'A3 (plakat)', 'A2 (plakat)', 'A1 (plakat)', 'A0 (plakat)', 'DL (ulotka)', 'A5 (ulotka)', 'A6 (ulotka)', 'Roll-up (85x200)', 'Banner outdoor'],
-              },
-            },
-            quantity: {
-              type: 'string',
-              title: 'Szacowana ilość',
-              description: 'Ile sztuk planujesz wydrukować?',
-              enum: ['1-10', '11-50', '51-100', '101-500', '500+'],
-            },
-            mainMessage: {
-              type: 'string',
-              title: 'Główny przekaz',
-              description: 'Co ma być najważniejsze na plakacie? Max 200 znaków.',
-              maxLength: 200,
-            },
-            includeQR: {
-              type: 'boolean',
-              title: 'Dodać kod QR?',
-              default: false,
-            },
-            qrDestination: {
-              type: 'string',
-              title: 'Dokąd kieruje QR?',
-              description: 'URL strony docelowej lub opis (np. "strona zapisu")',
-            },
-            distributionLocations: {
-              type: 'string',
-              title: 'Gdzie będą eksponowane/dystrybuowane?',
-              description: 'Np. "recepcja klubu", "okoliczne biurowce", "skrzynki pocztowe"',
-            },
-          },
+          properties: {},
         },
       },
     }),
 
-    // Event Kit
+    // Event Kit - simplified
     prisma.requestTemplate.create({
       data: {
         name: 'Kit promocyjny wydarzenia lokalnego',
@@ -355,76 +273,12 @@ async function main() {
               title: 'Data wydarzenia',
               format: 'date',
             },
-            eventTime: {
-              type: 'string',
-              title: 'Godziny wydarzenia',
-              description: 'Np. "10:00-18:00" lub "cały dzień"',
-            },
-            eventType: {
-              type: 'string',
-              title: 'Typ wydarzenia',
-              enum: ['dzien_otwarty', 'maraton_fitness', 'warsztaty', 'urodziny_klubu', 'promocja_sezonowa', 'wspolpraca_partnerska', 'inne'],
-              enumNames: ['Dzień otwarty', 'Maraton fitness', 'Warsztaty tematyczne', 'Urodziny klubu', 'Promocja sezonowa', 'Współpraca z partnerem', 'Inne'],
-            },
-            materials: {
-              type: 'array',
-              title: 'Potrzebne formaty',
-              description: 'Wybierz wszystkie formaty których potrzebujesz',
-              items: {
-                type: 'string',
-                enum: [
-                  'fb_post_1080x1320',
-                  'ig_post_1080x1440',
-                  'stories_1080x1920',
-                  'www_square_360x360',
-                  'www_rect_832x416',
-                  'google_400x300',
-                  'plakat_a4',
-                  'cover_facebook',
-                ],
-                enumNames: [
-                  'Post FB statyk (1080x1320)',
-                  'Post IG statyk (1080x1440)',
-                  'Stories statyk bez logo (1080x1920)',
-                  'Aktualność www kwadrat bez logo (360x360)',
-                  'Aktualność www prostokąt bez logo (832x416)',
-                  'Wizytówka Google (400x300)',
-                  'Plakat A4 do samodzielnego wydruku',
-                  'Cover Facebook (wydarzenie)',
-                ],
-              },
-            },
-            otherFormats: {
-              type: 'string',
-              title: 'Inne formaty',
-              description: 'Jeśli potrzebujesz innego formatu, opisz tutaj',
-              required: false,
-            },
-            specialGuests: {
-              type: 'string',
-              title: 'Specjalni goście / trenerzy',
-              description: 'Osoby które warto wyeksponować w materiałach',
-            },
-            maxParticipants: {
-              type: 'number',
-              title: 'Max liczba uczestników',
-              description: 'Jeśli obowiązuje limit',
-            },
-            registrationRequired: {
-              type: 'boolean',
-              title: 'Wymagana wcześniejsza rejestracja?',
-              default: false,
-            },
-            registrationUrl: {
-              type: 'string',
-              title: 'Link do rejestracji',
-            },
           },
         },
       },
     }),
 
-    // Quick Graphic
+    // Quick Graphic - simplified
     prisma.requestTemplate.create({
       data: {
         name: 'Szybka grafika informacyjna',
@@ -433,64 +287,12 @@ async function main() {
         defaultSLADays: 1,
         requiredFields: {
           type: 'object',
-          properties: {
-            infoType: {
-              type: 'string',
-              title: 'Typ informacji',
-              enum: ['zmiana_godzin', 'awaria', 'nowy_trener', 'zastepstwo', 'zamkniecie', 'nowosci', 'inne'],
-              enumNames: ['Zmiana godzin otwarcia', 'Awaria / przerwa techniczna', 'Nowy trener', 'Zastępstwo na zajęciach', 'Czasowe zamknięcie', 'Nowości w klubie', 'Inne'],
-            },
-            mainMessage: {
-              type: 'string',
-              title: 'Treść komunikatu',
-              description: 'Co dokładnie chcesz przekazać? Max 300 znaków.',
-              maxLength: 300,
-            },
-            validFrom: {
-              type: 'string',
-              title: 'Obowiązuje od',
-              format: 'date',
-            },
-            validTo: {
-              type: 'string',
-              title: 'Obowiązuje do',
-              format: 'date',
-            },
-            formats: {
-              type: 'array',
-              title: 'Formaty graficzne',
-              items: {
-                type: 'string',
-                enum: [
-                  'fb_post_1080x1320',
-                  'ig_post_1080x1440',
-                  'stories_1080x1920',
-                  'www_square_360x360',
-                  'www_rect_832x416',
-                  'plakat_a4',
-                ],
-                enumNames: [
-                  'Post FB statyk (1080x1320)',
-                  'Post IG statyk (1080x1440)',
-                  'Stories statyk bez logo (1080x1920)',
-                  'Aktualność www kwadrat bez logo (360x360)',
-                  'Aktualność www prostokąt bez logo (832x416)',
-                  'Plakat A4 do samodzielnego wydruku',
-                ],
-              },
-            },
-            otherFormats: {
-              type: 'string',
-              title: 'Inne formaty',
-              description: 'Jeśli potrzebujesz innego formatu, opisz tutaj',
-              required: false,
-            },
-          },
+          properties: {},
         },
       },
     }),
 
-    // Seasonal Campaign
+    // Seasonal Campaign - simplified (formats handled globally in form)
     prisma.requestTemplate.create({
       data: {
         name: 'Kampania sezonowa / promocyjna',
@@ -504,49 +306,6 @@ async function main() {
               type: 'string',
               title: 'Nazwa kampanii',
               maxLength: 100,
-            },
-            campaignType: {
-              type: 'string',
-              title: 'Typ kampanii',
-              enum: ['nowy_rok', 'walentynki', 'dzien_kobiet', 'wielkanoc', 'wakacje', 'back_to_school', 'black_friday', 'boze_narodzenie', 'inna'],
-              enumNames: ['Noworoczna', 'Walentynkowa', 'Dzień Kobiet', 'Wielkanocna', 'Wakacyjna', 'Back to School', 'Black Friday', 'Świąteczna', 'Inna okazja'],
-            },
-            formats: {
-              type: 'array',
-              title: 'Formaty graficzne',
-              description: 'Wybierz potrzebne formaty',
-              items: {
-                type: 'string',
-                enum: [
-                  'fb_post_1080x1320',
-                  'ig_post_1080x1440',
-                  'stories_1080x1920',
-                  'www_square_360x360',
-                  'www_rect_832x416',
-                  'google_400x300',
-                  'plakat_a4',
-                ],
-                enumNames: [
-                  'Post FB statyk (1080x1320)',
-                  'Post IG statyk (1080x1440)',
-                  'Stories statyk bez logo (1080x1920)',
-                  'Aktualność www kwadrat bez logo (360x360)',
-                  'Aktualność www prostokąt bez logo (832x416)',
-                  'Wizytówka Google (400x300)',
-                  'Plakat A4 do samodzielnego wydruku',
-                ],
-              },
-            },
-            otherFormats: {
-              type: 'string',
-              title: 'Inne formaty',
-              description: 'Jeśli potrzebujesz innego formatu, opisz tutaj',
-              required: false,
-            },
-            mainMessage: {
-              type: 'string',
-              title: 'Główny przekaz kampanii',
-              maxLength: 500,
             },
           },
         },

@@ -68,5 +68,73 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: 'ss01' on, 'ss02' on;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-rf-lime ring-offset-2 ring-offset-background;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-rf-lime/30 text-rf-navy;
+  }
+}
+
+/* Regional.fit specific utility classes */
+@layer utilities {
+  .rf-card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden;
+  }
+
+  .rf-header {
+    @apply bg-rf-navy text-white;
+  }
+
+  .rf-btn-primary {
+    @apply bg-rf-lime text-rf-navy font-semibold hover:bg-rf-lime-400 transition-colors;
+  }
+
+  .rf-btn-secondary {
+    @apply bg-rf-navy text-white font-medium hover:bg-rf-navy-500 transition-colors;
+  }
+
+  .rf-chip {
+    @apply px-3 py-1.5 rounded-full text-sm border transition-colors;
+  }
+
+  .rf-chip-selected {
+    @apply bg-rf-navy text-white border-rf-navy;
+  }
+
+  .rf-chip-unselected {
+    @apply bg-white text-gray-700 border-gray-300 hover:border-rf-navy;
+  }
+
+  /* Text styles */
+  .rf-heading-xl {
+    @apply text-2xl font-bold text-rf-navy tracking-tight;
+  }
+
+  .rf-heading-lg {
+    @apply text-xl font-semibold text-gray-900;
+  }
+
+  .rf-heading-md {
+    @apply text-lg font-medium text-gray-900;
+  }
+
+  .rf-text-muted {
+    @apply text-sm text-gray-500;
+  }
+
+  .rf-label {
+    @apply text-sm font-medium text-gray-700;
   }
 }

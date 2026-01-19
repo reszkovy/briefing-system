@@ -128,10 +128,6 @@ export default async function ApprovalDetailPage({
                   <dd className="font-medium">{brief.template.name}</dd>
                 </div>
                 <div>
-                  <dt className="text-sm text-gray-500">Cel komunikacji</dt>
-                  <dd className="font-medium">{ObjectiveLabels[brief.objective]}</dd>
-                </div>
-                <div>
                   <dt className="text-sm text-gray-500">Autor</dt>
                   <dd className="font-medium">{brief.createdBy.name}</dd>
                   <dd className="text-sm text-gray-500">{brief.createdBy.email}</dd>
@@ -140,47 +136,36 @@ export default async function ApprovalDetailPage({
                   <dt className="text-sm text-gray-500">Wysłano</dt>
                   <dd className="font-medium">{formatDateTime(brief.submittedAt || brief.createdAt)}</dd>
                 </div>
+                <div>
+                  <dt className="text-sm text-gray-500">Deadline</dt>
+                  <dd className={`font-medium ${sla.color}`}>
+                    {formatDate(brief.deadline)}
+                  </dd>
+                  <dd className={`text-xs ${sla.color}`}>{sla.text}</dd>
+                </div>
               </dl>
             </div>
 
-            {/* KPI and dates */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Cel i terminy
-              </h2>
-              <div className="space-y-4">
-                <div>
-                  <dt className="text-sm text-gray-500">Opis KPI</dt>
-                  <dd className="mt-1 font-medium">{brief.kpiDescription}</dd>
-                  {brief.kpiTarget && (
-                    <dd className="text-sm text-gray-600">
-                      Cel liczbowy: <strong>{brief.kpiTarget}</strong>
-                    </dd>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
-                  <div>
-                    <dt className="text-sm text-gray-500">Deadline</dt>
-                    <dd className={`font-medium ${sla.color}`}>
-                      {formatDate(brief.deadline)}
-                    </dd>
-                    <dd className={`text-xs ${sla.color}`}>{sla.text}</dd>
-                  </div>
-                  {brief.startDate && (
-                    <div>
-                      <dt className="text-sm text-gray-500">Start kampanii</dt>
-                      <dd className="font-medium">{formatDate(brief.startDate)}</dd>
-                    </div>
-                  )}
-                  {brief.endDate && (
-                    <div>
-                      <dt className="text-sm text-gray-500">Koniec kampanii</dt>
-                      <dd className="font-medium">{formatDate(brief.endDate)}</dd>
-                    </div>
-                  )}
+            {/* Formats section */}
+            {(customFields?.formats || customFields?.customFormats) && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                  Zamawiane formaty
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {Array.isArray(customFields.formats) && customFields.formats.map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-blue-100 text-blue-800 border border-blue-200">
+                      {format}
+                    </span>
+                  ))}
+                  {Array.isArray(customFields.customFormats) && customFields.customFormats.map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-amber-100 text-amber-800 border border-amber-200">
+                      {format}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Context */}
             <div className="bg-white rounded-lg shadow p-6">

@@ -24,7 +24,9 @@
       "Bash(npx prisma db push:*)",
       "Bash(npx vercel --prod)",
       "Bash(npx vercel:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(cd:*)"
     ]
   }
 }

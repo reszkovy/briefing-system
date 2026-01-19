@@ -4,7 +4,6 @@ import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { StatusBadge, PriorityBadge } from '@/components/briefs/status-badge'
 import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
-import { ObjectiveLabels } from '@/lib/validations/brief'
 
 export default async function ApprovalsPage() {
   const session = await auth()
@@ -128,8 +127,8 @@ export default async function ApprovalsPage() {
                             {brief.template.name}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 mb-2">
-                          <strong>Cel:</strong> {ObjectiveLabels[brief.objective]} - {brief.kpiDescription}
+                        <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                          {brief.context}
                         </p>
                         <p className="text-sm text-gray-500">
                           Autor: {brief.createdBy.name} • Wysłano: {formatRelativeTime(brief.submittedAt || brief.createdAt)}

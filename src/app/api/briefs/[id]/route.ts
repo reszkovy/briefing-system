@@ -158,8 +158,15 @@ export async function PUT(
     if (validated.data.context !== undefined) updateData.context = validated.data.context
     if (validated.data.offerDetails !== undefined) updateData.offerDetails = validated.data.offerDetails
     if (validated.data.legalCopy !== undefined) updateData.legalCopy = validated.data.legalCopy
-    if (validated.data.customFields !== undefined) updateData.customFields = validated.data.customFields
     if (validated.data.assetLinks !== undefined) updateData.assetLinks = validated.data.assetLinks
+
+    // Store formats and customFormats in customFields
+    const customFieldsWithFormats = {
+      ...(validated.data.customFields || {}),
+      formats: validated.data.formats || [],
+      customFormats: validated.data.customFormats || [],
+    }
+    updateData.customFields = customFieldsWithFormats
 
     // Update status if submitting
     if (action === 'submit') {

@@ -153,44 +153,26 @@ export default async function BriefDetailPage({
               </dl>
             </div>
 
-            {/* KPI and dates */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Cel i terminy
-              </h2>
-              <div className="space-y-4">
-                <div>
-                  <dt className="text-sm text-gray-500">Opis KPI</dt>
-                  <dd className="mt-1">{brief.kpiDescription}</dd>
-                  {brief.kpiTarget && (
-                    <dd className="mt-1 text-sm text-gray-600">
-                      Cel liczbowy: <strong>{brief.kpiTarget}</strong>
-                    </dd>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
-                  <div>
-                    <dt className="text-sm text-gray-500">Deadline</dt>
-                    <dd className={`font-medium ${sla.color}`}>
-                      {formatDate(brief.deadline)}
-                      <span className="block text-xs">{sla.text}</span>
-                    </dd>
-                  </div>
-                  {brief.startDate && (
-                    <div>
-                      <dt className="text-sm text-gray-500">Start kampanii</dt>
-                      <dd className="font-medium">{formatDate(brief.startDate)}</dd>
-                    </div>
-                  )}
-                  {brief.endDate && (
-                    <div>
-                      <dt className="text-sm text-gray-500">Koniec kampanii</dt>
-                      <dd className="font-medium">{formatDate(brief.endDate)}</dd>
-                    </div>
-                  )}
+            {/* Formats section */}
+            {(customFields?.formats || customFields?.customFormats) && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                  Zamawiane formaty
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {Array.isArray(customFields.formats) && (customFields.formats as string[]).map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-blue-100 text-blue-800 border border-blue-200">
+                      {format}
+                    </span>
+                  ))}
+                  {Array.isArray(customFields.customFormats) && (customFields.customFormats as string[]).map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-amber-100 text-amber-800 border border-amber-200">
+                      {format}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Context */}
             <div className="bg-white rounded-lg shadow p-6">
@@ -214,14 +196,35 @@ export default async function BriefDetailPage({
               )}
             </div>
 
-            {/* Custom fields */}
-            {customFields && Object.keys(customFields).length > 0 && (
+            {/* Formats section */}
+            {customFields && (Array.isArray(customFields.formats) && customFields.formats.length > 0 || Array.isArray(customFields.customFormats) && customFields.customFormats.length > 0) && (
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                  Zamawiane formaty
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {Array.isArray(customFields.formats) && customFields.formats.map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-blue-100 text-blue-800 border border-blue-200">
+                      {format}
+                    </span>
+                  ))}
+                  {Array.isArray(customFields.customFormats) && customFields.customFormats.map((format: string) => (
+                    <span key={format} className="px-3 py-1.5 rounded-full text-sm bg-amber-100 text-amber-800 border border-amber-200">
+                      {format}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Custom fields - excluding formats */}
+            {customFields && Object.keys(customFields).filter(k => !['formats', 'customFormats'].includes(k)).length > 0 && (
               <div className="bg-white rounded-lg shadow p-6">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">
                   Pola specyficzne dla zlecenia
                 </h2>
                 <dl className="space-y-4">
-                  {Object.entries(customFields).map(([key, value]) => {
+                  {Object.entries(customFields).filter(([key]) => !['formats', 'customFormats'].includes(key)).map(([key, value]) => {
                     const fieldSchema = templateSchema.properties?.[key] as TemplateField | undefined
                     let displayValue: string
                     if (Array.isArray(value)) {
