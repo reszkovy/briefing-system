@@ -18,7 +18,7 @@ export default async function ProductionPage() {
   })
 
   if (!user || user.role !== 'PRODUCTION') {
-    redirect('/dashboard')
+    redirect('/')
   }
 
   // Get all production tasks
@@ -124,21 +124,19 @@ export default async function ProductionPage() {
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
-        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <Link href="/dashboard" className="flex items-center gap-3">
+        <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <Link href="/">
               <Image
-                src="/logo.svg"
-                alt="Regional.fit"
+                src="/logo-white.svg"
+                alt="regional.fit"
                 width={120}
-                height={32}
-                className="h-8 w-auto brightness-0 invert"
+                height={40}
+                className="h-10 w-auto"
               />
             </Link>
-            <div className="h-6 w-px bg-white/30" />
-            <h1 className="text-xl font-bold text-white">
-              Kolejka Produkcji
-            </h1>
+            <span className="text-white/50">|</span>
+            <h1 className="text-xl font-semibold text-white">Studio Graficzne</h1>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-sm text-white/80">{user.name}</span>

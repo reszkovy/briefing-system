@@ -1,10 +1,13 @@
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
+import { LogoutButton } from '@/components/LogoutButton'
 import { BriefCard } from '@/components/briefs/brief-card'
 import { Button } from '@/components/ui/button'
 import { BriefStatusLabels } from '@/lib/validations/brief'
+import { formatDate } from '@/lib/utils'
 
 export default async function BriefsPage({
   searchParams,
@@ -14,6 +17,23 @@ export default async function BriefsPage({
   const session = await auth()
 
   if (!session) {
+    redirect('/login')
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    include: {
+      clubs: {
+        include: {
+          club: {
+            include: { brand: true, region: true },
+          },
+        },
+      },
+    },
+  })
+
+  if (!user) {
     redirect('/login')
   }
 
@@ -43,7 +63,7 @@ export default async function BriefsPage({
     prisma.brief.findMany({
       where,
       include: {
-        club: true,
+        club: { include: { brand: true } },
         brand: true,
         template: true,
         productionTask: {
@@ -80,27 +100,177 @@ export default async function BriefsPage({
 
   const totalCount = Object.values(counts).reduce((a, b) => a + b, 0)
 
+  // Get active sales focuses for manager's clubs
+  const now = new Date()
+  const userBrandIds = user.clubs.map((uc) => uc.club.brandId)
+  const userRegionIds = user.clubs.map((uc) => uc.club.regionId)
+
+  const activeFocuses = await prisma.salesFocus.findMany({
+    where: {
+      isActive: true,
+      startDate: { lte: now },
+      endDate: { gte: now },
+      OR: [
+        { brandId: null, regionId: null },
+        { brandId: { in: userBrandIds }, regionId: null },
+        { regionId: { in: userRegionIds }, brandId: null },
+        { brandId: { in: userBrandIds }, regionId: { in: userRegionIds } },
+      ],
+    },
+    include: { brand: true, region: true },
+    orderBy: [{ period: 'asc' }, { startDate: 'desc' }],
+  })
+
+  // Categorize focuses by tier
+  const strategicFocuses = activeFocuses.filter(f => !f.brandId && !f.regionId)
+  const regionalFocuses = activeFocuses.filter(f => f.regionId && !f.brandId)
+  const brandFocuses = activeFocuses.filter(f => f.brandId)
+
+  const tierConfig = {
+    strategic: { label: 'Cel Strategiczny', bg: 'from-purple-50 to-indigo-50', border: 'border-purple-200', badge: 'bg-purple-200 text-purple-800', icon: '🎯' },
+    regional: { label: 'Cel Regionalny', bg: 'from-blue-50 to-cyan-50', border: 'border-blue-200', badge: 'bg-blue-200 text-blue-800', icon: '🗺️' },
+    brand: { label: 'Cel Marki', bg: 'from-amber-50 to-orange-50', border: 'border-amber-200', badge: 'bg-amber-200 text-amber-800', icon: '⭐' },
+  }
+
   return (
     <div className="min-h-screen bg-[#f5f7fa]">
       {/* Header */}
       <header className="bg-[#2b3b82] shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <Link href="/dashboard" className="text-white/70 hover:text-white">
-              ← Dashboard
+            <Link href="/">
+              <Image
+                src="/logo-white.svg"
+                alt="regional.fit"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+              />
             </Link>
-            <h1 className="text-2xl font-bold text-white">Moje briefy</h1>
+            <span className="text-white/50">|</span>
+            <h1 className="text-xl font-semibold text-white">Moje briefy</h1>
           </div>
-          {session.user.role === 'CLUB_MANAGER' && (
-            <Link href="/briefs/new">
-              <Button>+ Nowy brief</Button>
-            </Link>
-          )}
+          <div className="flex items-center gap-4">
+            {session.user.role === 'CLUB_MANAGER' && (
+              <Link href="/briefs/new">
+                <Button className="bg-[#daff47] text-[#2b3b82] hover:bg-[#c5eb3d]">
+                  + Nowy brief
+                </Button>
+              </Link>
+            )}
+            <span className="text-white/30">|</span>
+            <span className="text-sm text-white/80">{user.name}</span>
+            <LogoutButton />
+          </div>
         </div>
       </header>
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Active Sales Focuses - Tiered display */}
+        {activeFocuses.length > 0 && (
+          <div className="mb-6 space-y-3">
+            {/* Strategic (Global) Focuses */}
+            {strategicFocuses.map((focus) => (
+              <div
+                key={focus.id}
+                className={`bg-gradient-to-r ${tierConfig.strategic.bg} border ${tierConfig.strategic.border} rounded-lg p-4 shadow-sm`}
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">{tierConfig.strategic.icon}</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded ${tierConfig.strategic.badge}`}>
+                        {tierConfig.strategic.label}
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {formatDate(focus.startDate)} - {formatDate(focus.endDate)}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">{focus.title}</h3>
+                    {focus.description && (
+                      <p className="text-sm text-gray-600 mt-1">{focus.description}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Regional Focuses */}
+            {regionalFocuses.map((focus) => (
+              <div
+                key={focus.id}
+                className={`bg-gradient-to-r ${tierConfig.regional.bg} border ${tierConfig.regional.border} rounded-lg p-4 shadow-sm`}
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">{tierConfig.regional.icon}</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded ${tierConfig.regional.badge}`}>
+                        {tierConfig.regional.label}
+                      </span>
+                      {focus.region && (
+                        <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                          {focus.region.name}
+                        </span>
+                      )}
+                      <span className="text-xs text-gray-500">
+                        {formatDate(focus.startDate)} - {formatDate(focus.endDate)}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">{focus.title}</h3>
+                    {focus.description && (
+                      <p className="text-sm text-gray-600 mt-1">{focus.description}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Brand Focuses */}
+            {brandFocuses.map((focus) => (
+              <div
+                key={focus.id}
+                className={`bg-gradient-to-r ${tierConfig.brand.bg} border ${tierConfig.brand.border} rounded-lg p-4 shadow-sm`}
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">{tierConfig.brand.icon}</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className={`text-xs font-medium px-2 py-0.5 rounded ${tierConfig.brand.badge}`}>
+                        {tierConfig.brand.label}
+                      </span>
+                      {focus.brand && (
+                        <span
+                          className="text-xs px-2 py-0.5 rounded"
+                          style={{
+                            backgroundColor: (focus.brand.primaryColor || '#888') + '20',
+                            color: focus.brand.primaryColor || '#888',
+                          }}
+                        >
+                          {focus.brand.name}
+                        </span>
+                      )}
+                      {focus.region && (
+                        <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                          {focus.region.name}
+                        </span>
+                      )}
+                      <span className="text-xs text-gray-500">
+                        {formatDate(focus.startDate)} - {formatDate(focus.endDate)}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">{focus.title}</h3>
+                    {focus.description && (
+                      <p className="text-sm text-gray-600 mt-1">{focus.description}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Status filters */}
         <div className="mb-6">
           <div className="flex flex-wrap gap-2">
@@ -137,6 +307,8 @@ export default async function BriefsPage({
         {/* Brief list */}
         {briefs.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-12 text-center">
+            <div className="text-5xl mb-4">📝</div>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Brak briefow</h2>
             <p className="text-gray-500 mb-4">
               {statusFilter === 'all'
                 ? 'Nie masz jeszcze zadnych briefow.'
@@ -144,7 +316,9 @@ export default async function BriefsPage({
             </p>
             {session.user.role === 'CLUB_MANAGER' && (
               <Link href="/briefs/new">
-                <Button>Utworz pierwszy brief</Button>
+                <Button className="bg-[#daff47] text-[#2b3b82] hover:bg-[#c5eb3d]">
+                  + Utworz pierwszy brief
+                </Button>
               </Link>
             )}
           </div>
