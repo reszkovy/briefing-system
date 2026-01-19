@@ -107,19 +107,39 @@ export async function PUT(
 
     const { id } = await params
     const body = await request.json()
-    const { action, ...data } = body
+    const { action, validatorEdit, ...data } = body
 
     // Find existing brief
     const existingBrief = await prisma.brief.findUnique({
       where: { id },
+      include: {
+        club: true,
+      },
     })
 
     if (!existingBrief) {
       return NextResponse.json({ error: 'Brief not found' }, { status: 404 })
     }
 
-    // Check ownership
-    if (existingBrief.createdById !== session.user.id) {
+    // Check permissions - validator can edit briefs in SUBMITTED status for their clubs
+    const isAuthor = existingBrief.createdById === session.user.id
+    let isValidatorForClub = false
+
+    if (session.user.role === 'VALIDATOR') {
+      const validatorAccess = await prisma.userClub.findFirst({
+        where: {
+          userId: session.user.id,
+          clubId: existingBrief.clubId,
+        },
+      })
+      isValidatorForClub = !!validatorAccess
+    }
+
+    // Determine if this is a validator edit
+    const isValidatorEditing = validatorEdit && isValidatorForClub && existingBrief.status === 'SUBMITTED'
+
+    // Check ownership for non-validator edits
+    if (!isValidatorEditing && !isAuthor) {
       return NextResponse.json(
         { error: 'Tylko autor moze edytowac brief' },
         { status: 403 }
@@ -127,11 +147,21 @@ export async function PUT(
     }
 
     // Check if brief can be edited
-    if (!['DRAFT', 'CHANGES_REQUESTED'].includes(existingBrief.status)) {
-      return NextResponse.json(
-        { error: 'Brief nie moze byc edytowany w obecnym statusie' },
-        { status: 400 }
-      )
+    // Validators can edit SUBMITTED briefs, authors can edit DRAFT or CHANGES_REQUESTED
+    if (isValidatorEditing) {
+      if (existingBrief.status !== 'SUBMITTED') {
+        return NextResponse.json(
+          { error: 'Walidator moze edytowac tylko briefy ze statusem SUBMITTED' },
+          { status: 400 }
+        )
+      }
+    } else {
+      if (!['DRAFT', 'CHANGES_REQUESTED'].includes(existingBrief.status)) {
+        return NextResponse.json(
+          { error: 'Brief nie moze byc edytowany w obecnym statusie' },
+          { status: 400 }
+        )
+      }
     }
 
     // Validate based on action
@@ -190,10 +220,30 @@ export async function PUT(
       data: {
         userId: session.user.id,
         briefId: brief.id,
-        action: action === 'submit' ? 'BRIEF_RESUBMITTED' : 'BRIEF_UPDATED',
-        details: { title: brief.title },
+        action: isValidatorEditing
+          ? 'BRIEF_EDITED_BY_VALIDATOR'
+          : action === 'submit'
+            ? 'BRIEF_RESUBMITTED'
+            : 'BRIEF_UPDATED',
+        details: {
+          title: brief.title,
+          editedBy: isValidatorEditing ? 'validator' : 'author',
+        },
       },
     })
+
+    // If validator edited the brief, notify the author
+    if (isValidatorEditing) {
+      await prisma.notification.create({
+        data: {
+          userId: existingBrief.createdById,
+          type: 'BRIEF_EDITED_BY_VALIDATOR',
+          title: 'Brief zmodyfikowany przez walidatora',
+          message: `Walidator wprowadzil zmiany w briefie "${brief.title}".`,
+          linkUrl: `/briefs/${brief.id}`,
+        },
+      })
+    }
 
     // If resubmitted, create notification for validators
     if (action === 'submit') {

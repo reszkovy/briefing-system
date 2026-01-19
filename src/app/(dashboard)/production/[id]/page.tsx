@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import { TaskStatusForm } from './TaskStatusForm'
 import { TrelloSummary } from './TrelloSummary'
+import { OutcomeTaggingForm } from './OutcomeTaggingForm'
 import { LogoutButton } from '@/components/LogoutButton'
 
 interface Props {
@@ -324,6 +325,14 @@ export default async function ProductionTaskPage({ params }: Props) {
                 </a>
               </div>
             )}
+
+            {/* Learning Loop - Outcome Tagging */}
+            <OutcomeTaggingForm
+              briefId={task.brief.id}
+              currentOutcome={task.brief.outcome}
+              currentOutcomeNote={task.brief.outcomeNote}
+              taskStatus={task.status}
+            />
           </div>
         </div>
       </main>

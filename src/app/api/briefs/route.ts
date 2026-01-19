@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import { createBriefSchema, submitBriefSchema } from '@/lib/validations/brief'
+import { checkBriefPolicy, type BriefInput } from '@/lib/policy-engine'
 
 // GET /api/briefs - Get briefs for current user
 export async function GET(request: NextRequest) {
@@ -118,6 +119,11 @@ export async function POST(request: NextRequest) {
       where: { id: { in: validated.data.templateIds } },
     })
 
+    // Get club info for policy check
+    const club = await prisma.club.findUnique({
+      where: { id: validated.data.clubId },
+    })
+
     // Generate brief codes for all briefs
     const year = new Date().getFullYear()
     const lastBrief = await prisma.brief.findFirst({
@@ -151,6 +157,43 @@ export async function POST(request: NextRequest) {
         ? `${validated.data.title} [${template.code}]`
         : validated.data.title
 
+      // Run policy check
+      const policyInput: BriefInput = {
+        objective: validated.data.objective,
+        deadline: new Date(validated.data.deadline),
+        estimatedCost: validated.data.estimatedCost || 0,
+        isCrisisCommunication: validated.data.isCrisisCommunication || false,
+        formats: validated.data.formats || [],
+        customFormats: validated.data.customFormats || [],
+        templateCode: template.code,
+        templateIsInternal: template.isInternal,
+        templateIsBlacklisted: template.isBlacklisted,
+        templateBlacklistReason: template.blacklistReason,
+        clubTier: club?.tier || 'STANDARD',
+        context: validated.data.context,
+        title: briefTitle,
+      }
+
+      const policyResult = checkBriefPolicy(policyInput)
+
+      // If auto-reject, return error
+      if (action === 'submit' && policyResult.autoRejectReasons.length > 0) {
+        return NextResponse.json({
+          error: 'Brief odrzucony przez policy engine',
+          reasons: policyResult.autoRejectReasons,
+          policyResult,
+        }, { status: 400 })
+      }
+
+      // If cannot submit, return error
+      if (action === 'submit' && !policyResult.canSubmit) {
+        return NextResponse.json({
+          error: 'Brief nie moze byc wyslany',
+          reasons: policyResult.rules.filter(r => !r.passed).map(r => r.message),
+          policyResult,
+        }, { status: 400 })
+      }
+
       const brief = await prisma.brief.create({
         data: {
           code,
@@ -172,6 +215,13 @@ export async function POST(request: NextRequest) {
           assetLinks: validated.data.assetLinks || [],
           status: action === 'submit' ? 'SUBMITTED' : 'DRAFT',
           submittedAt: action === 'submit' ? new Date() : null,
+          // Policy engine fields
+          estimatedCost: validated.data.estimatedCost || null,
+          isCrisisCommunication: validated.data.isCrisisCommunication || false,
+          policyCheckResult: policyResult,
+          requiresOwnerApproval: policyResult.requiresOwnerApproval,
+          ownerApprovalReason: policyResult.ownerApprovalReasons.join('; ') || null,
+          priority: policyResult.suggestedPriority,
         },
         include: {
           club: true,

@@ -56,12 +56,20 @@ model Club {
   address   String?
   regionId  String
   brandId   String
+  tier      ClubTier   @default(STANDARD)
+  isActive  Boolean    @default(true)
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   briefs    Brief[]
   brand     Brand      @relation(fields: [brandId], references: [id])
   region    Region     @relation(fields: [regionId], references: [id])
   users     UserClub[]
+}
+
+enum ClubTier {
+  STANDARD       // Standardowy klub
+  VIP            // Top 10% revenue
+  FLAGSHIP       // Flagowa lokalizacja
 }
 
 model UserClub {
@@ -84,6 +92,11 @@ model RequestTemplate {
   requiredFields Json
   defaultSLADays Int      @default(5)
   isActive       Boolean  @default(true)
+  // Policy fields
+  baseCost       Decimal? @db.Decimal(10, 2)  // Koszt bazowy szablonu
+  isInternal     Boolean  @default(false)     // Czy wewnetrzny szablon (auto-approve)
+  isBlacklisted  Boolean  @default(false)     // Czy na blackliscie
+  blacklistReason String?                     // Powod blacklisty
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   briefs         Brief[]
@@ -115,6 +128,17 @@ model Brief {
   perceivedResult Int?
   actualKpiValue  Float?
   submittedAt     DateTime?
+  // Policy engine fields
+  estimatedCost       Decimal?      @db.Decimal(10, 2)
+  isCrisisCommunication Boolean     @default(false)
+  policyCheckResult   Json?         // Wyniki walidacji policy
+  requiresOwnerApproval Boolean     @default(false)
+  ownerApprovalReason String?
+  escalationType      EscalationType? // EXCEPTION vs ESCALATION
+  confidenceLevel     ConfidenceLevel? // Poziom pewnosci co do wplywu
+  // Learning Loop - outcome tagging
+  outcome             Outcome?        // Wynik po realizacji
+  outcomeNote         String?         // Opcjonalna notatka (1 zdanie)
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   approvals       Approval[]
@@ -270,6 +294,26 @@ enum ApprovalDecision {
   APPROVED
   CHANGES_REQUESTED
   REJECTED
+}
+
+// Learning Loop - wynik realizacji
+enum Outcome {
+  POSITIVE     // Pozytywny rezultat
+  NEUTRAL      // Neutralny
+  NEGATIVE     // Negatywny
+}
+
+// Rozroznienie Exception vs Escalation
+enum EscalationType {
+  EXCEPTION    // Swiadoma decyzja - lamie zasade, ale strategicznie uzasadnione
+  ESCALATION   // Niepewnosc - brak danych, konflikt sygnalow, niejasny ROI
+}
+
+// Confidence Level - poziom pewnosci co do wplywu
+enum ConfidenceLevel {
+  LOW          // Eksperyment, niepewne
+  MEDIUM       // Umiarkowana pewnosc
+  HIGH         // Pewny ruch, wysokie zaufanie
 }
 
 enum FocusPeriod {

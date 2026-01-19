@@ -31,15 +31,21 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
     setError(null)
 
     try {
+      // Map APPROVED_WITH_CHANGES to APPROVED for the API
+      const apiDecision = decision === 'APPROVED_WITH_CHANGES' ? 'APPROVED' : decision
+      const isApproving = decision === 'APPROVED' || decision === 'APPROVED_WITH_CHANGES'
+
       const response = await fetch('/api/approvals', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           briefId,
-          decision,
-          notes: notes || null,
-          priority: decision === 'APPROVED' ? priority : undefined,
-          slaDays: decision === 'APPROVED' ? parseInt(slaDays) : undefined,
+          decision: apiDecision,
+          notes: decision === 'APPROVED_WITH_CHANGES'
+            ? (notes ? `[Zatwierdzono ze zmianami walidatora] ${notes}` : '[Zatwierdzono ze zmianami walidatora]')
+            : (notes || null),
+          priority: isApproving ? priority : undefined,
+          slaDays: isApproving ? parseInt(slaDays) : undefined,
         }),
       })
 
@@ -79,9 +85,24 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
                 : 'border-gray-200 hover:border-green-300'
             }`}
           >
-            <span className="font-medium text-green-700">✓ Zatwierdź</span>
+            <span className="font-medium text-green-700">✓ Zatwierdz</span>
             <p className="text-xs text-gray-500 mt-1">
               Brief zostanie przekazany do realizacji
+            </p>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setDecision('APPROVED_WITH_CHANGES')}
+            className={`p-3 rounded-lg border-2 text-left transition-colors ${
+              decision === 'APPROVED_WITH_CHANGES'
+                ? 'border-blue-500 bg-blue-50'
+                : 'border-gray-200 hover:border-blue-300'
+            }`}
+          >
+            <span className="font-medium text-blue-700">✓ Zatwierdz ze zmianami</span>
+            <p className="text-xs text-gray-500 mt-1">
+              Zapisano zmiany - brief idzie do realizacji
             </p>
           </button>
 
@@ -94,9 +115,9 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
                 : 'border-gray-200 hover:border-yellow-300'
             }`}
           >
-            <span className="font-medium text-yellow-700">↻ Poproś o poprawki</span>
+            <span className="font-medium text-yellow-700">↻ Popros o poprawki</span>
             <p className="text-xs text-gray-500 mt-1">
-              Manager będzie musiał wprowadzić zmiany
+              Manager bedzie musial wprowadzic zmiany
             </p>
           </button>
 
@@ -109,9 +130,9 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
                 : 'border-gray-200 hover:border-red-300'
             }`}
           >
-            <span className="font-medium text-red-700">✕ Odrzuć</span>
+            <span className="font-medium text-red-700">✕ Odrzuc</span>
             <p className="text-xs text-gray-500 mt-1">
-              Brief zostanie zamknięty bez realizacji
+              Brief zostanie zamkniety bez realizacji
             </p>
           </button>
         </div>
@@ -138,7 +159,7 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
       </div>
 
       {/* Priority and SLA (only for approval) */}
-      {decision === 'APPROVED' && (
+      {(decision === 'APPROVED' || decision === 'APPROVED_WITH_CHANGES') && (
         <>
           <div className="space-y-2">
             <Label htmlFor="priority">Priorytet realizacji</Label>
@@ -174,10 +195,10 @@ export function ApprovalForm({ briefId, defaultSLA }: ApprovalFormProps) {
       {/* Submit button */}
       <Button
         onClick={handleSubmit}
-        disabled={loading || !decision || (decision !== 'APPROVED' && !notes)}
+        disabled={loading || !decision || (decision !== 'APPROVED' && decision !== 'APPROVED_WITH_CHANGES' && !notes)}
         className="w-full"
       >
-        {loading ? 'Zapisywanie...' : 'Zatwierdź decyzję'}
+        {loading ? 'Zapisywanie...' : 'Zatwierdz decyzje'}
       </Button>
     </div>
   )

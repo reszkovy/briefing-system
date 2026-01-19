@@ -78,6 +78,10 @@ interface FormData {
   assetLinks: string[]
   formats: string[]
   customFormats: string[]
+  // Policy engine fields
+  confidenceLevel: string
+  estimatedCost: string
+  isCrisisCommunication: boolean
 }
 
 // Standard Benefit Systems graphic formats - organized by category
@@ -106,6 +110,13 @@ const FORMAT_CATEGORIES = {
   },
 }
 
+// Confidence level labels
+const ConfidenceLevelLabels: Record<string, string> = {
+  LOW: 'Niski (eksperyment)',
+  MEDIUM: 'Sredni',
+  HIGH: 'Wysoki (pewny ruch)',
+}
+
 const initialFormData: FormData = {
   clubId: '',
   brandId: '',
@@ -124,6 +135,10 @@ const initialFormData: FormData = {
   assetLinks: [],
   formats: [],
   customFormats: [],
+  // Policy engine fields
+  confidenceLevel: '',
+  estimatedCost: '',
+  isCrisisCommunication: false,
 }
 
 export function BriefForm({ clubs, templates, initialData, briefId, mode = 'create' }: BriefFormProps) {
@@ -252,6 +267,8 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
       const payload = {
         ...formData,
         kpiTarget: formData.kpiTarget ? parseFloat(formData.kpiTarget) : null,
+        estimatedCost: formData.estimatedCost ? parseFloat(formData.estimatedCost) : null,
+        confidenceLevel: formData.confidenceLevel || null,
         action,
       }
 
@@ -703,6 +720,74 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
                     </button>
                   )
                 })}
+              </div>
+            </div>
+          </details>
+
+          {/* Policy fields - Confidence Level & Crisis Communication */}
+          <details className="border-t border-gray-200 pt-4">
+            <summary className="cursor-pointer text-sm text-gray-600 hover:text-[#2b3b82]">
+              + Ustawienia Policy Enforcer (opcjonalne)
+            </summary>
+            <div className="mt-4 space-y-4">
+              {/* Confidence Level */}
+              <div>
+                <Label className="text-sm font-medium mb-2 block">Poziom pewnosci co do wplywu</Label>
+                <p className="text-xs text-gray-500 mb-2">Jak pewny jestes, ze ta komunikacja przyniesie oczekiwany efekt?</p>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(ConfidenceLevelLabels).map(([value, label]) => {
+                    const isSelected = formData.confidenceLevel === value
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        onClick={() => setFormData((prev) => ({ ...prev, confidenceLevel: isSelected ? '' : value }))}
+                        className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
+                          isSelected
+                            ? value === 'HIGH' ? 'bg-green-600 text-white border-green-600' :
+                              value === 'MEDIUM' ? 'bg-blue-600 text-white border-blue-600' :
+                              'bg-amber-600 text-white border-amber-600'
+                            : 'bg-white text-gray-700 border-gray-300 hover:border-[#2b3b82]'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Estimated Cost */}
+              <div>
+                <Label htmlFor="estimatedCost" className="text-sm font-medium">Szacowany koszt produkcji (PLN)</Label>
+                <p className="text-xs text-gray-500 mb-2">Wpisz 0 jezeli nie wiaze sie z dodatkowymi kosztami</p>
+                <Input
+                  type="number"
+                  id="estimatedCost"
+                  name="estimatedCost"
+                  value={formData.estimatedCost}
+                  onChange={handleInputChange}
+                  placeholder="0"
+                  min="0"
+                  className="w-40"
+                />
+              </div>
+
+              {/* Crisis Communication */}
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="isCrisisCommunication"
+                  checked={formData.isCrisisCommunication}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, isCrisisCommunication: e.target.checked }))}
+                  className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+                />
+                <div>
+                  <Label htmlFor="isCrisisCommunication" className="text-sm font-medium text-red-700">
+                    Komunikacja kryzysowa
+                  </Label>
+                  <p className="text-xs text-gray-500">Zaznacz tylko w przypadku pilnej sytuacji kryzysowej (min. 1 dzien roboczy)</p>
+                </div>
               </div>
             </div>
           </details>

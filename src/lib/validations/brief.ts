@@ -29,6 +29,15 @@ export const ApprovalDecisionEnum = z.enum([
   'REJECTED',
 ])
 
+// Learning Loop - outcome enum
+export const OutcomeEnum = z.enum(['POSITIVE', 'NEUTRAL', 'NEGATIVE'])
+
+// Exception vs Escalation
+export const EscalationTypeEnum = z.enum(['EXCEPTION', 'ESCALATION'])
+
+// Confidence Level
+export const ConfidenceLevelEnum = z.enum(['LOW', 'MEDIUM', 'HIGH'])
+
 // Objective labels (Polish)
 export const ObjectiveLabels: Record<string, string> = {
   ACQUISITION: 'Pozyskanie nowych klientów',
@@ -55,6 +64,26 @@ export const BriefStatusLabels: Record<string, string> = {
   APPROVED: 'Zatwierdzony',
   REJECTED: 'Odrzucony',
   CANCELLED: 'Anulowany',
+}
+
+// Outcome labels (Polish) - Learning Loop
+export const OutcomeLabels: Record<string, string> = {
+  POSITIVE: 'Pozytywny',
+  NEUTRAL: 'Neutralny',
+  NEGATIVE: 'Negatywny',
+}
+
+// Escalation type labels (Polish)
+export const EscalationTypeLabels: Record<string, string> = {
+  EXCEPTION: 'Wyjątek (świadoma decyzja)',
+  ESCALATION: 'Eskalacja (niepewność)',
+}
+
+// Confidence level labels (Polish)
+export const ConfidenceLevelLabels: Record<string, string> = {
+  LOW: 'Niski (eksperyment)',
+  MEDIUM: 'Średni',
+  HIGH: 'Wysoki (pewny ruch)',
 }
 
 // Helper to handle empty string as null for optional dates
@@ -109,6 +138,10 @@ export const createBriefSchema = z.object({
   assetLinks: z.array(z.string().url('Nieprawidłowy URL')).default([]),
   formats: z.array(z.string()).default([]),
   customFormats: z.array(z.string()).default([]),
+  // Policy engine fields
+  estimatedCost: z.coerce.number().min(0).optional().nullable(),
+  isCrisisCommunication: z.boolean().default(false),
+  confidenceLevel: ConfidenceLevelEnum.optional().nullable(),
 })
 
 // Schema for submitting a brief (same as create for simplified UX)
@@ -144,12 +177,15 @@ export const updateBriefStatusSchema = z.object({
   status: BriefStatusEnum,
 })
 
-// Schema for outcome tagging
+// Schema for outcome tagging (Learning Loop)
 export const tagOutcomeSchema = z.object({
   briefId: z.string().cuid(),
   wasExecuted: z.boolean(),
   perceivedResult: z.coerce.number().int().min(1).max(5).optional().nullable(),
   actualKpiValue: z.coerce.number().optional().nullable(),
+  // Learning Loop fields
+  outcome: OutcomeEnum.optional().nullable(),
+  outcomeNote: z.string().max(500).optional().nullable(),
 })
 
 // Schema for adding a comment
