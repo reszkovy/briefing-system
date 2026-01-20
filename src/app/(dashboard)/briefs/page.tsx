@@ -6,6 +6,7 @@ import { prisma } from '@/lib/prisma'
 import { LogoutButton } from '@/components/LogoutButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { BriefCard } from '@/components/briefs/brief-card'
+import { ClubContextPanel } from '@/components/clubs/ClubContextPanel'
 import { Button } from '@/components/ui/button'
 import { BriefStatusLabels } from '@/lib/validations/brief'
 import { formatDate } from '@/lib/utils'
@@ -33,6 +34,30 @@ export default async function BriefsPage({
       },
     },
   })
+
+  // Get clubs with context data for CLUB_MANAGER
+  const userClubsWithContext = session.user.role === 'CLUB_MANAGER'
+    ? await prisma.club.findMany({
+        where: {
+          users: {
+            some: { userId: session.user.id, isManager: true },
+          },
+        },
+        select: {
+          id: true,
+          name: true,
+          city: true,
+          clubCharacter: true,
+          customCharacter: true,
+          keyMemberGroups: true,
+          localConstraints: true,
+          topActivities: true,
+          activityReasons: true,
+          localDecisionBrief: true,
+          contextUpdatedAt: true,
+        },
+      })
+    : []
 
   if (!user) {
     redirect('/login')
@@ -271,6 +296,11 @@ export default async function BriefsPage({
               </div>
             ))}
           </div>
+        )}
+
+        {/* Club Context Panel - only for CLUB_MANAGER */}
+        {session.user.role === 'CLUB_MANAGER' && userClubsWithContext.length > 0 && (
+          <ClubContextPanel clubs={userClubsWithContext} />
         )}
 
         {/* Status filters */}
