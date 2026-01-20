@@ -17,17 +17,19 @@ export default async function AdminPage() {
     where: { id: session.user.id },
   })
 
-  if (!user || user.role !== 'ADMIN') {
+  // Allow ADMIN, REGIONAL_DIRECTOR, CMO to access admin panel
+  const adminRoles = ['ADMIN', 'REGIONAL_DIRECTOR', 'CMO']
+  if (!user || !adminRoles.includes(user.role)) {
     redirect('/')
   }
 
   // Get counts for dashboard
-  const [clubsCount, usersCount, templatesCount, briefsCount, regionsCount] = await Promise.all([
+  const [clubsCount, usersCount, briefsCount, regionsCount, brandsCount] = await Promise.all([
     prisma.club.count(),
     prisma.user.count(),
-    prisma.briefTemplate.count(),
     prisma.brief.count(),
     prisma.region.count(),
+    prisma.brand.count(),
   ])
 
   // Get recent briefs
@@ -83,8 +85,8 @@ export default async function AdminPage() {
             <p className="text-sm text-gray-500 dark:text-gray-400">Uzytkownicy</p>
           </div>
           <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
-            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{templatesCount}</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">Szablony</p>
+            <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{brandsCount}</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Marki</p>
           </div>
           <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#daff47]">
             <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{briefsCount}</p>
@@ -151,6 +153,18 @@ export default async function AdminPage() {
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Cele sprzedazowe</h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400">Definiuj focusy i priorytety</p>
+              </div>
+            </div>
+          </Link>
+          <Link
+            href="/admin/strategy"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-purple-500 group"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-3xl">📜</span>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Dokumenty strategiczne</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Kontekst strategiczny dla systemu</p>
               </div>
             </div>
           </Link>

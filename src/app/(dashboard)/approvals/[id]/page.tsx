@@ -41,8 +41,22 @@ export default async function ApprovalDetailPage({
           region: true,
         },
       },
-      brand: true,
-      template: true,
+      brand: {
+        select: {
+          id: true,
+          name: true,
+          primaryColor: true,
+        },
+      },
+      template: {
+        select: {
+          id: true,
+          name: true,
+          code: true,
+          defaultSLADays: true,
+          requiredFields: true,
+        },
+      },
       approvals: {
         include: {
           validator: {
@@ -77,6 +91,25 @@ export default async function ApprovalDetailPage({
   const customFields = brief.customFields as Record<string, unknown> | null
   const templateSchema = brief.template.requiredFields as unknown as TemplateSchema
 
+  // Get active strategy documents for alignment check
+  const strategyDocuments = await prisma.strategyDocument.findMany({
+    where: { isActive: true },
+    include: {
+      brand: { select: { id: true, name: true } },
+    },
+    orderBy: { updatedAt: 'desc' },
+  })
+
+  const formattedStrategy = strategyDocuments.map((doc) => ({
+    id: doc.id,
+    title: doc.title,
+    type: doc.type,
+    scope: doc.scope,
+    content: doc.content,
+    brandId: doc.brandId,
+    brandName: doc.brand?.name || null,
+  }))
+
   // Serialize the brief data for client component
   const briefData = {
     ...brief,
@@ -87,6 +120,7 @@ export default async function ApprovalDetailPage({
     startDate: brief.startDate?.toISOString() || null,
     endDate: brief.endDate?.toISOString() || null,
     estimatedCost: brief.estimatedCost ? Number(brief.estimatedCost) : null,
+    kpiTarget: brief.kpiTarget ? Number(brief.kpiTarget) : null,
     approvals: brief.approvals.map((a) => ({
       ...a,
       createdAt: a.createdAt.toISOString(),
@@ -99,6 +133,7 @@ export default async function ApprovalDetailPage({
       canApprove={canApprove}
       customFields={customFields}
       templateSchema={templateSchema}
+      strategyDocuments={formattedStrategy}
     />
   )
 }

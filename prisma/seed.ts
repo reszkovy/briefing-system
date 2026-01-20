@@ -1,7 +1,7 @@
 // Seed script for Club Manager Briefing System - Demo Data
 // Run with: npm run db:seed
 
-import { PrismaClient, UserRole, Objective, Priority, TaskStatus, BriefStatus, FocusPeriod, Outcome, ConfidenceLevel } from '@prisma/client'
+import { PrismaClient, UserRole, Objective, Priority, TaskStatus, BriefStatus, FocusPeriod, Outcome, ConfidenceLevel, StrategyDocumentType, StrategyDocumentScope } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 const prisma = new PrismaClient()
@@ -19,6 +19,7 @@ async function main() {
   await prisma.approval.deleteMany()
   await prisma.brief.deleteMany()
   await prisma.salesFocus.deleteMany()
+  await prisma.strategyDocument.deleteMany()
   await prisma.userClub.deleteMany()
   await prisma.club.deleteMany()
   await prisma.requestTemplate.deleteMany()
@@ -404,6 +405,272 @@ async function main() {
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[9].id, isManager: false } }),
     prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[10].id, isManager: false } }),
   ])
+
+  // ============== STRATEGY DOCUMENTS ==============
+  console.log('📚 Creating strategy documents...')
+
+  const globalStrategyContent = `# Kontekst strategiczny sieci fitness - cele i kluczowe założenia
+
+## 1. Zdrofit
+
+### Profil marki
+Największa sieć fitness w portfolio. Pozycjonowana jako **marka mainstreamowa z dostępną ceną** i szeroką ofertą dla różnych grup wiekowych.
+
+### Priorytet strategiczny
+**Wzrost liczby członków (akwizycja) przy zachowaniu retencji.**
+
+### Kluczowe działania
+- Promocje cenowe (np. "pierwsza składka 1 PLN")
+- Kampanie sezonowe (Nowy Rok, wakacje, Back to School)
+- Dni otwarte i eventy lokalne w klubach
+- Współpraca z lokalnymi społecznościami
+
+### Podejmowanie decyzji o aktywności
+- **TAK** dla akcji zwiększających ruch w klubie i pozyskujących nowych członków
+- **TAK** dla kampanii cenowych z jasnym ROI
+- **OSTROŻNIE** z akcjami premium (to nie jest pozycjonowanie Zdrofit)
+- **NIE** dla akcji wykluczających grupy wiekowe lub demograficzne
+
+---
+
+## 2. Fabryka Formy
+
+### Profil marki
+Sieć pozycjonowana wyżej cenowo. Focus na **jakość sprzętu, atmosferę i doświadczenie premium**.
+
+### Priorytet strategiczny
+**Budowanie lojalności i zwiększanie wartości członka (LTV) poprzez usługi dodatkowe.**
+
+### Kluczowe działania
+- Promowanie treningów personalnych i pakietów premium
+- Content edukacyjny (porady treningowe, odżywianie)
+- Ekskluzywne eventy dla członków
+- Programy lojalnościowe
+
+### Podejmowanie decyzji o aktywności
+- **TAK** dla akcji budujących wartość i jakość doświadczenia
+- **TAK** dla contentu edukacyjnego pozycjonującego markę jako eksperta
+- **OSTROŻNIE** z agresywnymi promocjami cenowymi (ryzyko dewaluacji marki)
+- **NIE** dla akcji "taniej" bez dodatkowej wartości
+
+---
+
+## 3. Fitness Academy
+
+### Profil marki
+Sieć skierowana do **młodszej grupy demograficznej** (18-35 lat). Nowoczesna, dynamiczna, social-media friendly.
+
+### Priorytet strategiczny
+**Engagement w social media i budowanie społeczności.**
+
+### Kluczowe działania
+- Kampanie influencer marketing
+- Challenges i konkursy w social media
+- Treningi grupowe jako główny produkt
+- Eventy fitness (maratony, zawody)
+
+### Podejmowanie decyzji o aktywności
+- **TAK** dla akcji viralowych i angażujących w social media
+- **TAK** dla współpracy z micro-influencerami
+- **TAK** dla eventów budujących społeczność
+- **OSTROŻNIE** z tradycyjnymi formami reklamy (outdoor, prasa)
+- **NIE** dla komunikacji "staromodnej" lub formalnej
+
+---
+
+## 4. My Fitness Place
+
+### Profil marki
+Sieć **butikowa**, mniejsze kluby w dobrych lokalizacjach. Focus na **personalizację i kameralność**.
+
+### Priorytet strategiczny
+**Retencja i polecenia (referrals).**
+
+### Kluczowe działania
+- Programy poleceń ("Przyprowadź znajomego")
+- Spersonalizowana komunikacja z członkami
+- Eventy kameralne (max 20-30 osób)
+- Feedback i ciągłe doskonalenie doświadczenia
+
+### Podejmowanie decyzji o aktywności
+- **TAK** dla akcji budujących relacje i lojalność
+- **TAK** dla programów referral z atrakcyjnymi nagrodami
+- **TAK** dla małych, ekskluzywnych eventów
+- **OSTROŻNIE** z masowymi kampaniami (nie pasują do pozycjonowania)
+- **NIE** dla akcji "taniej" kosztem jakości doświadczenia
+
+---
+
+## 5. Fit Fabric
+
+### Profil marki
+Najnowsza marka w portfolio. Pozycjonowana jako **innowacyjna, technologiczna** (tracking, aplikacja, smart equipment).
+
+### Priorytet strategiczny
+**Testowanie nowych rozwiązań i budowanie wizerunku innowatora.**
+
+### Kluczowe działania
+- Promocja funkcji aplikacji i technologii
+- Eventy pokazowe nowego sprzętu
+- Content o trendach fitness i technologii
+- Beta-testing nowych usług z członkami
+
+### Podejmowanie decyzji o aktywności
+- **TAK** dla akcji podkreślających innowacyjność
+- **TAK** dla early-adopter programów
+- **TAK** dla contentu edukacyjnego o technologii w fitness
+- **OSTROŻNIE** z tradycyjnymi promocjami (to nie jest core positioning)
+- **NIE** dla komunikacji, która nie wspiera wizerunku innowatora
+
+---
+
+## Ogólne zasady dla wszystkich marek
+
+### Hierarchia celów
+1. **Cele strategiczne (globalne)** - wyznaczane przez CMO/Admin
+2. **Cele regionalne** - wyznaczane przez Dyrektorów Regionalnych (węższy zakres)
+3. **Inicjatywy lokalne** - zgłaszane przez managerów klubów
+
+### Wskazówki dla managerów regionalnych
+System powinien sugerować kierunki działań, ale **nie narzucać konkretnych rozwiązań**. Manager regionalny zna lokalny kontekst najlepiej i powinien mieć swobodę w adaptacji strategii do lokalnych warunków.
+
+### Ocena aktywności
+Każda aktywność powinna być oceniana pod kątem:
+- Zgodności z pozycjonowaniem marki
+- Wpływu na KPI (akwizycja, retencja, LTV)
+- Efektywności kosztowej
+- Ryzyka wizerunkowego`
+
+  await prisma.strategyDocument.create({
+    data: {
+      title: 'Strategia komunikacji marek fitness - Q1 2025',
+      description: 'Główny dokument strategiczny określający cele i podejście do komunikacji dla wszystkich marek w portfolio sieci fitness.',
+      type: StrategyDocumentType.COMMUNICATION_STRATEGY,
+      scope: StrategyDocumentScope.GLOBAL,
+      content: globalStrategyContent,
+      validFrom: new Date('2025-01-01'),
+      validUntil: new Date('2025-12-31'),
+      version: 1,
+      isActive: true,
+      createdById: users[11].id, // Admin
+    },
+  })
+
+  // Brand-specific strategy documents
+  await Promise.all([
+    prisma.strategyDocument.create({
+      data: {
+        title: 'Zdrofit - Wytyczne marki 2025',
+        description: 'Szczegółowe wytyczne dla marki Zdrofit - ton komunikacji, wartości, do/dont.',
+        type: StrategyDocumentType.BRAND_GUIDELINES,
+        scope: StrategyDocumentScope.BRAND,
+        brandId: brands[0].id,
+        content: `# Zdrofit - Wytyczne marki
+
+## Ton komunikacji
+- Przyjazny i przystępny
+- Motywujący bez bycia nachalnym
+- Inkluzywny - dla każdego, niezależnie od poziomu zaawansowania
+
+## Wartości marki
+- Dostępność
+- Różnorodność oferty
+- Społeczność lokalna
+- Zdrowy styl życia dla wszystkich
+
+## DO
+- Używaj prostego, zrozumiałego języka
+- Pokazuj różnorodność członków (wiek, płeć, poziom)
+- Podkreślaj atmosferę i społeczność
+- Komunikuj promocje cenowe jasno
+
+## DON'T
+- Nie używaj żargonu fitness dla zaawansowanych
+- Nie pokazuj tylko "idealnych ciał"
+- Nie komunikuj ekskluzywności
+- Nie pomijaj informacji o cenach w promocjach`,
+        validFrom: new Date('2025-01-01'),
+        isActive: true,
+        createdById: users[11].id,
+      },
+    }),
+    prisma.strategyDocument.create({
+      data: {
+        title: 'Fabryka Formy - Wytyczne marki 2025',
+        description: 'Szczegółowe wytyczne dla marki Fabryka Formy - pozycjonowanie premium.',
+        type: StrategyDocumentType.BRAND_GUIDELINES,
+        scope: StrategyDocumentScope.BRAND,
+        brandId: brands[2].id,
+        content: `# Fabryka Formy - Wytyczne marki
+
+## Ton komunikacji
+- Profesjonalny i ekspercki
+- Aspiracyjny, ale nie wywyższający się
+- Skupiony na jakości i rezultatach
+
+## Wartości marki
+- Jakość ponad ilość
+- Eksperckość trenerów
+- Premium doświadczenie
+- Rezultaty i transformacja
+
+## DO
+- Podkreślaj jakość sprzętu i trenerów
+- Pokazuj transformacje i historie sukcesu
+- Używaj profesjonalnej terminologii (z wyjaśnieniami)
+- Komunikuj wartość dodaną usług premium
+
+## DON'T
+- Nie konkuruj ceną
+- Nie używaj tanich promocji ("wszystko za 1 PLN")
+- Nie komunikuj masowości
+- Nie pomijaj aspektu eksperckiego`,
+        validFrom: new Date('2025-01-01'),
+        isActive: true,
+        createdById: users[11].id,
+      },
+    }),
+    prisma.strategyDocument.create({
+      data: {
+        title: 'Fitness Academy - Wytyczne marki 2025',
+        description: 'Wytyczne dla marki Fitness Academy - młoda, dynamiczna społeczność.',
+        type: StrategyDocumentType.BRAND_GUIDELINES,
+        scope: StrategyDocumentScope.BRAND,
+        brandId: brands[4].id,
+        content: `# Fitness Academy - Wytyczne marki
+
+## Ton komunikacji
+- Energiczny i dynamiczny
+- Młodzieżowy, ale nie infantylny
+- Social-media native
+- Motywujący przez fun
+
+## Wartości marki
+- Społeczność i wspólne treningi
+- Energia i pozytywne vibes
+- Trendy fitness
+- Dostępność dla młodych
+
+## DO
+- Używaj języka social media (ale z umiarem)
+- Pokazuj treningi grupowe i energię
+- Angażuj influencerów i ambasadorów
+- Twórz content "shareable"
+
+## DON'T
+- Nie bądź formalny ani "korporacyjny"
+- Nie pomijaj treningów grupowych
+- Nie ignoruj trendów
+- Nie komunikuj się jak "stare" marki fitness`,
+        validFrom: new Date('2025-01-01'),
+        isActive: true,
+        createdById: users[11].id,
+      },
+    }),
+  ])
+
+  console.log('   - Created 1 global strategy document')
+  console.log('   - Created 3 brand-specific guidelines')
 
   // ============== SALES FOCUSES ==============
   console.log('🎯 Creating sales focuses...')
@@ -986,6 +1253,7 @@ async function main() {
   console.log(`   - ${clubs.length} clubs`)
   console.log(`   - ${templates.length} templates`)
   console.log(`   - ${users.length} users`)
+  console.log(`   - 4 strategy documents (1 global + 3 brand guidelines)`)
   console.log(`   - 5 sales focuses (targets)`)
   console.log(`   - ${submittedBriefs.length} briefs SUBMITTED (do zatwierdzenia)`)
   console.log(`   - ${approvedBriefs.length} briefs APPROVED (w produkcji)`)

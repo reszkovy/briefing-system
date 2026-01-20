@@ -56,9 +56,20 @@ interface Template {
   }
 }
 
+interface StrategyDocument {
+  id: string
+  title: string
+  type: string
+  scope: string
+  content: string
+  brandId: string | null
+  brandName: string | null
+}
+
 interface BriefFormProps {
   clubs: Club[]
   templates: Template[]
+  strategyDocuments?: StrategyDocument[]
   initialData?: Partial<FormData>
   briefId?: string
   mode?: 'create' | 'edit'
@@ -153,7 +164,7 @@ const initialFormData: FormData = {
   isCrisisCommunication: false,
 }
 
-export function BriefForm({ clubs, templates, initialData, briefId, mode = 'create' }: BriefFormProps) {
+export function BriefForm({ clubs, templates, strategyDocuments = [], initialData, briefId, mode = 'create' }: BriefFormProps) {
   const router = useRouter()
   const [formData, setFormData] = useState<FormData>({ ...initialFormData, ...initialData })
   const [loading, setLoading] = useState(false)
@@ -163,6 +174,38 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
 
   const selectedClub = clubs.find((c) => c.id === formData.clubId)
   const selectedTemplates = templates.filter((t) => formData.templateIds.includes(t.id))
+
+  // Get relevant strategy documents for selected brand
+  const getRelevantStrategy = () => {
+    if (!selectedClub) return null
+    const brandName = selectedClub.brand.name
+
+    // Find global strategy document
+    const globalStrategy = strategyDocuments.find(doc => doc.scope === 'GLOBAL')
+    if (!globalStrategy) return null
+
+    // Parse brand-specific section from content
+    const content = globalStrategy.content
+    const brandPatterns = [
+      new RegExp(`##\\s*\\d*\\.?\\s*${brandName}[\\s\\S]*?(?=##\\s*\\d|$)`, 'i'),
+      new RegExp(`#\\s*${brandName}[\\s\\S]*?(?=#\\s|$)`, 'i'),
+    ]
+
+    for (const pattern of brandPatterns) {
+      const match = content.match(pattern)
+      if (match) {
+        return {
+          brandName,
+          content: match[0].trim(),
+          documentTitle: globalStrategy.title,
+        }
+      }
+    }
+
+    return null
+  }
+
+  const relevantStrategy = getRelevantStrategy()
 
   const handleTemplateToggle = (templateId: string) => {
     setFormData((prev) => ({
@@ -510,6 +553,42 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
               ))}
             </Select>
           </div>
+
+          {/* Strategy Goals Highlight - shown when club is selected */}
+          {relevantStrategy && (
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-xl p-4 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">📜</span>
+                <div>
+                  <h3 className="font-semibold text-emerald-800 text-sm">
+                    Cele strategiczne: {relevantStrategy.brandName}
+                  </h3>
+                  <p className="text-xs text-emerald-600">
+                    Pamietaj o tych priorytetach przy tworzeniu briefu
+                  </p>
+                </div>
+              </div>
+              <div className="bg-white/60 rounded-lg p-3 text-sm text-gray-700 space-y-2">
+                {relevantStrategy.content.split('\n').map((line, idx) => {
+                  // Skip the header line (## X. Brand Name)
+                  if (line.match(/^##?\s*\d*\.?\s*\w+/)) return null
+                  // Empty lines
+                  if (!line.trim()) return null
+                  // Format bold text
+                  const formattedLine = line
+                    .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-emerald-700">$1</strong>')
+                    .replace(/^-\s*/, '• ')
+                  return (
+                    <p
+                      key={idx}
+                      className="leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: formattedLine }}
+                    />
+                  )
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Title */}
           <div className="space-y-2">

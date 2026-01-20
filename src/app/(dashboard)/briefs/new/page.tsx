@@ -48,6 +48,25 @@ export default async function NewBriefPage() {
     orderBy: { name: 'asc' },
   })
 
+  // Get active strategy documents for highlighting goals
+  const strategyDocuments = await prisma.strategyDocument.findMany({
+    where: { isActive: true },
+    include: {
+      brand: { select: { id: true, name: true } },
+    },
+    orderBy: { updatedAt: 'desc' },
+  })
+
+  const formattedStrategy = strategyDocuments.map((doc) => ({
+    id: doc.id,
+    title: doc.title,
+    type: doc.type,
+    scope: doc.scope,
+    content: doc.content,
+    brandId: doc.brandId,
+    brandName: doc.brand?.name || null,
+  }))
+
   const formattedTemplates = templates.map((t) => ({
     id: t.id,
     name: t.name,
@@ -101,7 +120,7 @@ export default async function NewBriefPage() {
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <BriefForm clubs={clubs} templates={formattedTemplates} />
+        <BriefForm clubs={clubs} templates={formattedTemplates} strategyDocuments={formattedStrategy} />
       </main>
     </div>
   )

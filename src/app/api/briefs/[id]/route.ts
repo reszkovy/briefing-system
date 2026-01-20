@@ -180,8 +180,6 @@ export async function PUT(
 
     if (validated.data.title !== undefined) updateData.title = validated.data.title
     if (validated.data.objective !== undefined) updateData.objective = validated.data.objective
-    if (validated.data.kpiDescription !== undefined) updateData.kpiDescription = validated.data.kpiDescription
-    if (validated.data.kpiTarget !== undefined) updateData.kpiTarget = validated.data.kpiTarget
     if (validated.data.deadline !== undefined) updateData.deadline = new Date(validated.data.deadline)
     if (validated.data.startDate !== undefined) updateData.startDate = validated.data.startDate ? new Date(validated.data.startDate) : null
     if (validated.data.endDate !== undefined) updateData.endDate = validated.data.endDate ? new Date(validated.data.endDate) : null
@@ -189,6 +187,17 @@ export async function PUT(
     if (validated.data.offerDetails !== undefined) updateData.offerDetails = validated.data.offerDetails
     if (validated.data.legalCopy !== undefined) updateData.legalCopy = validated.data.legalCopy
     if (validated.data.assetLinks !== undefined) updateData.assetLinks = validated.data.assetLinks
+
+    // Decision Layer fields (CORE MODULE 1)
+    if (validated.data.businessObjective !== undefined) updateData.businessObjective = validated.data.businessObjective
+    if (validated.data.decisionContext !== undefined) updateData.decisionContext = validated.data.decisionContext
+    if (validated.data.kpiDescription !== undefined) updateData.kpiDescription = validated.data.kpiDescription
+    if (validated.data.kpiTarget !== undefined) updateData.kpiTarget = validated.data.kpiTarget
+
+    // Policy engine fields
+    if (validated.data.estimatedCost !== undefined) updateData.estimatedCost = validated.data.estimatedCost
+    if (validated.data.isCrisisCommunication !== undefined) updateData.isCrisisCommunication = validated.data.isCrisisCommunication
+    if (validated.data.confidenceLevel !== undefined) updateData.confidenceLevel = validated.data.confidenceLevel
 
     // Store formats and customFormats in customFields
     const customFieldsWithFormats = {

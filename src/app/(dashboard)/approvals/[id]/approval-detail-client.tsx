@@ -22,13 +22,22 @@ interface BriefData {
   deadline: string
   createdAt: string
   submittedAt: string | null
+  startDate: string | null
+  endDate: string | null
   offerDetails: string | null
   legalCopy: string | null
   assetLinks: string[]
   customFields: Record<string, unknown> | null
+  // Decision Layer fields (CORE MODULE 1)
+  businessObjective: string | null
+  kpiDescription: string | null
+  kpiTarget: number | null
+  decisionContext: string | null
+  objective: string | null
   // Policy engine fields
   estimatedCost: number | null
   isCrisisCommunication: boolean
+  confidenceLevel: string | null
   policyCheckResult: PolicyCheckResult | null
   requiresOwnerApproval: boolean
   ownerApprovalReason: string | null
@@ -38,6 +47,7 @@ interface BriefData {
     email: string
   }
   club: {
+    id: string
     name: string
     city: string
     tier?: string
@@ -46,12 +56,16 @@ interface BriefData {
     }
   }
   brand: {
+    id: string
     name: string
     primaryColor: string | null
   }
   template: {
+    id: string
     name: string
+    code: string
     defaultSLADays: number
+    requiredFields: unknown
   }
   approvals: Array<{
     id: string
@@ -65,11 +79,22 @@ interface BriefData {
   }>
 }
 
+interface StrategyDocument {
+  id: string
+  title: string
+  type: string
+  scope: string
+  content: string
+  brandId: string | null
+  brandName: string | null
+}
+
 interface ApprovalDetailClientProps {
   brief: BriefData
   canApprove: boolean
   customFields: Record<string, unknown> | null
   templateSchema: TemplateSchema
+  strategyDocuments?: StrategyDocument[]
 }
 
 export function ApprovalDetailClient({
@@ -77,10 +102,42 @@ export function ApprovalDetailClient({
   canApprove,
   customFields,
   templateSchema,
+  strategyDocuments = [],
 }: ApprovalDetailClientProps) {
   const router = useRouter()
   const [isEditing, setIsEditing] = useState(false)
   const sla = getSLAIndicator(brief.deadline)
+
+  // Get relevant strategy for brand alignment check
+  const getRelevantStrategy = () => {
+    const brandName = brief.brand.name
+
+    // Find global strategy document
+    const globalStrategy = strategyDocuments.find(doc => doc.scope === 'GLOBAL')
+    if (!globalStrategy) return null
+
+    // Parse brand-specific section from content
+    const content = globalStrategy.content
+    const brandPatterns = [
+      new RegExp(`##\\s*\\d*\\.?\\s*${brandName}[\\s\\S]*?(?=##\\s*\\d|$)`, 'i'),
+      new RegExp(`#\\s*${brandName}[\\s\\S]*?(?=#\\s|$)`, 'i'),
+    ]
+
+    for (const pattern of brandPatterns) {
+      const match = content.match(pattern)
+      if (match) {
+        return {
+          brandName,
+          content: match[0].trim(),
+          documentTitle: globalStrategy.title,
+        }
+      }
+    }
+
+    return null
+  }
+
+  const relevantStrategy = getRelevantStrategy()
 
   const handleEditSave = () => {
     setIsEditing(false)
@@ -123,10 +180,27 @@ export function ApprovalDetailClient({
               title: brief.title,
               context: brief.context,
               deadline: brief.deadline,
+              startDate: brief.startDate,
+              endDate: brief.endDate,
               offerDetails: brief.offerDetails,
               legalCopy: brief.legalCopy,
               customFields: brief.customFields,
               assetLinks: brief.assetLinks,
+              // Decision Layer fields
+              businessObjective: brief.businessObjective,
+              kpiDescription: brief.kpiDescription,
+              kpiTarget: brief.kpiTarget,
+              decisionContext: brief.decisionContext,
+              objective: brief.objective,
+              // Policy engine fields
+              estimatedCost: brief.estimatedCost,
+              isCrisisCommunication: brief.isCrisisCommunication,
+              confidenceLevel: brief.confidenceLevel,
+              // Template and club/brand info
+              clubId: brief.club.id,
+              brandId: brief.brand.id,
+              templateId: brief.template.id,
+              templateRequiredFields: brief.template.requiredFields,
             }}
             onSave={handleEditSave}
             onCancel={() => setIsEditing(false)}
@@ -330,6 +404,44 @@ export function ApprovalDetailClient({
 
           {/* Sidebar with approval form */}
           <div className="space-y-6">
+            {/* Strategy Alignment Panel */}
+            {relevantStrategy && (
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg shadow p-5 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📜</span>
+                  <div>
+                    <h3 className="font-semibold text-emerald-800 text-sm">
+                      Alignment: {relevantStrategy.brandName}
+                    </h3>
+                    <p className="text-xs text-emerald-600">
+                      Sprawdz zgodnosc briefu z celami strategicznymi
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-white/60 rounded-lg p-3 text-sm text-gray-700 space-y-1 max-h-64 overflow-y-auto">
+                  {relevantStrategy.content.split('\n').map((line, idx) => {
+                    // Skip the header line (## X. Brand Name)
+                    if (line.match(/^##?\s*\d*\.?\s*\w+/)) return null
+                    // Empty lines
+                    if (!line.trim()) return null
+                    // Separator
+                    if (line.trim() === '---') return null
+                    // Format bold text
+                    const formattedLine = line
+                      .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-emerald-700">$1</strong>')
+                      .replace(/^-\s*/, '• ')
+                    return (
+                      <p
+                        key={idx}
+                        className="leading-relaxed text-xs"
+                        dangerouslySetInnerHTML={{ __html: formattedLine }}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
             {/* Policy Check Panel */}
             <PolicyCheckPanel
               policyResult={brief.policyCheckResult}

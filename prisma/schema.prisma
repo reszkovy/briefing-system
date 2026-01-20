@@ -22,6 +22,7 @@ model User {
   assignedTasks ProductionTask[] @relation("AssignedTo")
   clubs         UserClub[]
   salesFocuses  SalesFocus[]     @relation("FocusCreatedBy")
+  strategyDocuments StrategyDocument[] @relation("StrategyCreatedBy")
 }
 
 model Region {
@@ -31,6 +32,7 @@ model Region {
   createdAt    DateTime     @default(now())
   clubs        Club[]
   salesFocuses SalesFocus[]
+  strategyDocuments StrategyDocument[]
 }
 
 model Brand {
@@ -46,6 +48,7 @@ model Brand {
   clubs         Club[]
   templates     RequestTemplate[]
   salesFocuses  SalesFocus[]
+  strategyDocuments StrategyDocument[]
 }
 
 model Club {
@@ -320,6 +323,8 @@ enum UserRole {
   CLUB_MANAGER
   VALIDATOR
   PRODUCTION
+  REGIONAL_DIRECTOR  // Dyrektor Regionalny
+  CMO                // Chief Marketing Officer
   ADMIN
 }
 
@@ -430,4 +435,63 @@ model SalesFocus {
   @@index([brandId])
   @@index([regionId])
   @@index([startDate, endDate])
+}
+
+// ============================================
+// Strategy Document - dokument strategiczny
+// Dostep: ADMIN, REGIONAL_DIRECTOR, CMO
+// ============================================
+
+enum StrategyDocumentType {
+  BRAND_GUIDELINES      // Wytyczne marki
+  COMMUNICATION_STRATEGY // Strategia komunikacji
+  QUARTERLY_GOALS       // Cele kwartalne
+  ANNUAL_PLAN          // Plan roczny
+  POLICY               // Polityka / regulamin
+  OTHER                // Inny dokument
+}
+
+enum StrategyDocumentScope {
+  GLOBAL               // Dla calej organizacji
+  BRAND                // Dla konkretnej marki
+  REGION               // Dla konkretnego regionu
+}
+
+model StrategyDocument {
+  id          String               @id @default(cuid())
+  title       String
+  description String?
+  type        StrategyDocumentType
+  scope       StrategyDocumentScope @default(GLOBAL)
+
+  // Scope references (optional based on scope)
+  brandId     String?
+  regionId    String?
+
+  // Document content
+  content     String               @db.Text  // Markdown content
+  fileUrl     String?              // Optional file attachment URL
+
+  // Validity period
+  validFrom   DateTime             @default(now())
+  validUntil  DateTime?            // Null = no expiry
+
+  // Metadata
+  version     Int                  @default(1)
+  isActive    Boolean              @default(true)
+  createdById String
+
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  // Relations
+  brand       Brand?               @relation(fields: [brandId], references: [id])
+  region      Region?              @relation(fields: [regionId], references: [id])
+  createdBy   User                 @relation("StrategyCreatedBy", fields: [createdById], references: [id])
+
+  @@index([type])
+  @@index([scope])
+  @@index([brandId])
+  @@index([regionId])
+  @@index([isActive])
 }
