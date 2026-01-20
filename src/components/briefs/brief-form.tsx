@@ -7,7 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
-import { ObjectiveLabels } from '@/lib/validations/brief'
+import {
+  ObjectiveLabels,
+  BusinessObjectiveLabels,
+  DecisionContextLabels,
+} from '@/lib/validations/brief'
 
 // Local type definition for template fields
 interface TemplateFieldLocal {
@@ -65,9 +69,13 @@ interface FormData {
   brandId: string
   templateIds: string[]
   title: string
-  objective: string
+  // Decision Layer fields (CORE MODULE 1)
+  businessObjective: string
   kpiDescription: string
   kpiTarget: string
+  decisionContext: string
+  // Legacy field
+  objective: string
   deadline: string
   startDate: string
   endDate: string
@@ -122,9 +130,13 @@ const initialFormData: FormData = {
   brandId: '',
   templateIds: [],
   title: '',
-  objective: '',
+  // Decision Layer fields (CORE MODULE 1)
+  businessObjective: '',
   kpiDescription: '',
   kpiTarget: '',
+  decisionContext: '',
+  // Legacy field
+  objective: '',
   deadline: '',
   startDate: '',
   endDate: '',
@@ -247,10 +259,22 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     }
   }
 
+  // Check if Decision Layer is complete (CORE MODULE 1)
+  const isDecisionLayerComplete = (): boolean => {
+    return !!(
+      formData.businessObjective &&
+      formData.kpiDescription &&
+      formData.kpiTarget &&
+      formData.decisionContext
+    )
+  }
+
   const validateForm = (): boolean => {
-    // Only 5 required fields: klub, typ (at least one), tytuł, opis, deadline
+    // Basic required fields: klub, typ (at least one), tytuł, opis, deadline
     if (!formData.clubId || formData.templateIds.length === 0) return false
     if (!formData.title || !formData.context || !formData.deadline) return false
+    // CORE MODULE 1: Decision Layer validation for submission
+    if (!isDecisionLayerComplete()) return false
     return true
   }
 
@@ -266,7 +290,11 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
     try {
       const payload = {
         ...formData,
+        // Decision Layer fields
+        businessObjective: formData.businessObjective || null,
+        decisionContext: formData.decisionContext || null,
         kpiTarget: formData.kpiTarget ? parseFloat(formData.kpiTarget) : null,
+        // Policy fields
         estimatedCost: formData.estimatedCost ? parseFloat(formData.estimatedCost) : null,
         confidenceLevel: formData.confidenceLevel || null,
         action,
@@ -519,6 +547,114 @@ export function BriefForm({ clubs, templates, initialData, briefId, mode = 'crea
               placeholder="Opisz czego potrzebujesz, jaki jest kontekst, szczegoly oferty, typ wydarzenia, liczba uczestników, linki do rejestracji..."
               rows={5}
             />
+          </div>
+
+          {/* CORE MODULE 1: Decision Layer - MANDATORY for submission */}
+          <div className="border-t border-gray-200 pt-6">
+            <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-xl p-5 space-y-5">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🎯</span>
+                <div>
+                  <h3 className="font-semibold text-[#2b3b82]">Cel biznesowy i miernik sukcesu</h3>
+                  <p className="text-xs text-gray-600">Wymagane przed wyslaniem - okresl intencje biznesowa</p>
+                </div>
+                {isDecisionLayerComplete() ? (
+                  <span className="ml-auto px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
+                    Kompletne
+                  </span>
+                ) : (
+                  <span className="ml-auto px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-medium">
+                    Do uzupelnienia
+                  </span>
+                )}
+              </div>
+
+              {/* Business Objective - required chip selection */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Cel biznesowy *</Label>
+                <p className="text-xs text-gray-500">Na jaki wynik biznesowy ma wplynac ta komunikacja?</p>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(BusinessObjectiveLabels).map(([value, label]) => {
+                    const isSelected = formData.businessObjective === value
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        onClick={() => setFormData((prev) => ({ ...prev, businessObjective: isSelected ? '' : value }))}
+                        className={`px-4 py-2 rounded-lg text-sm border-2 transition-all ${
+                          isSelected
+                            ? 'bg-[#2b3b82] text-white border-[#2b3b82] shadow-md'
+                            : 'bg-white text-gray-700 border-gray-200 hover:border-[#2b3b82] hover:shadow-sm'
+                        }`}
+                      >
+                        {value === 'REVENUE_ACQUISITION' && '💰 '}
+                        {value === 'RETENTION_ENGAGEMENT' && '🤝 '}
+                        {value === 'OPERATIONAL_EFFICIENCY' && '⚙️ '}
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* KPI Description and Target - side by side */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="md:col-span-2 space-y-2">
+                  <Label htmlFor="kpiDescription" className="text-sm font-medium">Miernik sukcesu (KPI) *</Label>
+                  <p className="text-xs text-gray-500">Po czym poznasz, ze komunikacja zadziala?</p>
+                  <Input
+                    id="kpiDescription"
+                    name="kpiDescription"
+                    value={formData.kpiDescription}
+                    onChange={handleInputChange}
+                    placeholder="np. Liczba zapisow, Sprzedaz karnetow, Udzial w wydarzeniu..."
+                    className="bg-white"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="kpiTarget" className="text-sm font-medium">Wartosc docelowa *</Label>
+                  <p className="text-xs text-gray-500">Ile chcesz osiagnac?</p>
+                  <Input
+                    type="number"
+                    id="kpiTarget"
+                    name="kpiTarget"
+                    value={formData.kpiTarget}
+                    onChange={handleInputChange}
+                    placeholder="np. 50"
+                    min="0"
+                    className="bg-white"
+                  />
+                </div>
+              </div>
+
+              {/* Decision Context - required chip selection */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Kontekst decyzji *</Label>
+                <p className="text-xs text-gray-500">Kto podejmuje decyzje o tej komunikacji?</p>
+                <div className="flex flex-wrap gap-2">
+                  {Object.entries(DecisionContextLabels).map(([value, label]) => {
+                    const isSelected = formData.decisionContext === value
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        onClick={() => setFormData((prev) => ({ ...prev, decisionContext: isSelected ? '' : value }))}
+                        className={`px-4 py-2 rounded-lg text-sm border-2 transition-all ${
+                          isSelected
+                            ? 'bg-[#2b3b82] text-white border-[#2b3b82] shadow-md'
+                            : 'bg-white text-gray-700 border-gray-200 hover:border-[#2b3b82] hover:shadow-sm'
+                        }`}
+                      >
+                        {value === 'LOCAL' && '📍 '}
+                        {value === 'REGIONAL' && '🗺️ '}
+                        {value === 'CENTRAL' && '🏢 '}
+                        {label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Combined: Type of request + Formats - in columns - directly after description */}

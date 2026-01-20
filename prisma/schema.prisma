@@ -113,9 +113,18 @@ model Brief {
   status          BriefStatus     @default(DRAFT)
   priority        Priority        @default(MEDIUM)
   title           String
+
+  // ============================================
+  // CORE MODULE 1: Decision Layer (MANDATORY for submission)
+  // ============================================
+  businessObjective BusinessObjective?  // REQUIRED before submission
+  decisionContext   DecisionContext?    // REQUIRED before submission
+  kpiDescription    String?             // REQUIRED before submission
+  kpiTarget         Float?              // REQUIRED before submission
+
+  // Legacy field (backwards compatibility)
   objective       Objective?
-  kpiDescription  String?
-  kpiTarget       Float?
+
   deadline        DateTime
   startDate       DateTime?
   endDate         DateTime?
@@ -128,6 +137,7 @@ model Brief {
   perceivedResult Int?
   actualKpiValue  Float?
   submittedAt     DateTime?
+
   // Policy engine fields
   estimatedCost       Decimal?      @db.Decimal(10, 2)
   isCrisisCommunication Boolean     @default(false)
@@ -136,9 +146,17 @@ model Brief {
   ownerApprovalReason String?
   escalationType      EscalationType? // EXCEPTION vs ESCALATION
   confidenceLevel     ConfidenceLevel? // Poziom pewnosci co do wplywu
+
+  // ============================================
+  // CORE MODULE 3: AI Auditor Results
+  // ============================================
+  aiAuditResult       Json?           // Wyniki audytu AI (completeness, consistency, feasibility, policy)
+  aiAuditedAt         DateTime?       // Kiedy ostatnio przeprowadzono audyt AI
+
   // Learning Loop - outcome tagging
   outcome             Outcome?        // Wynik po realizacji
   outcomeNote         String?         // Opcjonalna notatka (1 zdanie)
+
   createdAt       DateTime        @default(now())
   updatedAt       DateTime        @updatedAt
   approvals       Approval[]
@@ -154,6 +172,7 @@ model Brief {
   @@index([createdById])
   @@index([clubId])
   @@index([deadline])
+  @@index([businessObjective])
 }
 
 model Approval {
@@ -169,6 +188,10 @@ model Approval {
   @@index([briefId])
 }
 
+// ============================================
+// CORE MODULE 2: Production as Internal Service
+// ============================================
+
 model ProductionTask {
   id           String        @id @default(cuid())
   briefId      String        @unique
@@ -177,15 +200,60 @@ model ProductionTask {
   slaDays      Int
   dueDate      DateTime
   notes        String?
+  // Capacity-driven fields
+  queuePosition   Int?          // Position in the queue
+  estimatedHours  Float?        // Estimated production hours
+  actualHours     Float?        // Actual hours spent
+  slotId          String?       // Reference to capacity slot
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   comments     Comment[]
   deliverables Deliverable[]
   assignee     User?         @relation("AssignedTo", fields: [assigneeId], references: [id])
   brief        Brief         @relation(fields: [briefId], references: [id], onDelete: Cascade)
+  slot         ProductionSlot? @relation(fields: [slotId], references: [id])
 
   @@index([status])
   @@index([dueDate])
+  @@index([queuePosition])
+}
+
+// Production Capacity Management
+model ProductionCapacity {
+  id              String   @id @default(cuid())
+  name            String   // e.g., "Design Team", "Video Production"
+  description     String?
+  // Capacity limits
+  dailyHours      Float    @default(8)   // Available hours per day
+  weeklySlots     Int      @default(10)  // Number of tasks per week
+  maxConcurrent   Int      @default(5)   // Max tasks in progress at once
+  // SLA configuration
+  defaultSLADays  Int      @default(5)
+  rushSLADays     Int      @default(2)   // For CRITICAL priority
+  // Supported formats
+  supportedFormats String[]  // e.g., ["SOCIAL", "PRINT", "EMAIL"]
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  slots           ProductionSlot[]
+}
+
+// Time-based production slots
+model ProductionSlot {
+  id              String   @id @default(cuid())
+  capacityId      String
+  date            DateTime @db.Date
+  availableHours  Float    // Hours available in this slot
+  bookedHours     Float    @default(0) // Hours already booked
+  isBlocked       Boolean  @default(false) // e.g., holidays
+  blockReason     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  capacity        ProductionCapacity @relation(fields: [capacityId], references: [id])
+  tasks           ProductionTask[]
+
+  @@unique([capacityId, date])
+  @@index([date])
 }
 
 model Deliverable {
@@ -281,6 +349,7 @@ enum Priority {
   CRITICAL
 }
 
+// Legacy Objective (for backwards compatibility)
 enum Objective {
   ACQUISITION
   RETENTION
@@ -288,6 +357,24 @@ enum Objective {
   UPSELL
   AWARENESS
   OTHER
+}
+
+// ============================================
+// CORE MODULE 1: Decision Layer Enums
+// ============================================
+
+// Business Objective - REQUIRED for submission
+enum BusinessObjective {
+  REVENUE_ACQUISITION      // Revenue / Acquisition
+  RETENTION_ENGAGEMENT     // Retention / Engagement
+  OPERATIONAL_EFFICIENCY   // Operational Efficiency
+}
+
+// Decision Context - REQUIRED for submission
+enum DecisionContext {
+  LOCAL      // Local decision
+  REGIONAL   // Regional decision
+  CENTRAL    // Central decision
 }
 
 enum ApprovalDecision {

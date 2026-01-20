@@ -2,7 +2,25 @@
 
 import { z } from 'zod'
 
-// Enums
+// ============================================
+// CORE MODULE 1: Decision Layer Enums
+// ============================================
+
+// Business Objective - REQUIRED, no free-text allowed
+export const BusinessObjectiveEnum = z.enum([
+  'REVENUE_ACQUISITION',    // Revenue / Acquisition
+  'RETENTION_ENGAGEMENT',   // Retention / Engagement
+  'OPERATIONAL_EFFICIENCY', // Operational Efficiency
+])
+
+// Decision Context - REQUIRED
+export const DecisionContextEnum = z.enum([
+  'LOCAL',     // Local decision
+  'REGIONAL',  // Regional decision
+  'CENTRAL',   // Central decision
+])
+
+// Legacy Objective Enum (for backwards compatibility)
 export const ObjectiveEnum = z.enum([
   'ACQUISITION',
   'RETENTION',
@@ -38,7 +56,25 @@ export const EscalationTypeEnum = z.enum(['EXCEPTION', 'ESCALATION'])
 // Confidence Level
 export const ConfidenceLevelEnum = z.enum(['LOW', 'MEDIUM', 'HIGH'])
 
-// Objective labels (Polish)
+// ============================================
+// CORE MODULE 1: Decision Layer Labels
+// ============================================
+
+// Business Objective labels (Polish) - REQUIRED
+export const BusinessObjectiveLabels: Record<string, string> = {
+  REVENUE_ACQUISITION: 'Przychód / Pozyskanie klientów',
+  RETENTION_ENGAGEMENT: 'Retencja / Zaangażowanie',
+  OPERATIONAL_EFFICIENCY: 'Efektywność operacyjna',
+}
+
+// Decision Context labels (Polish) - REQUIRED
+export const DecisionContextLabels: Record<string, string> = {
+  LOCAL: 'Decyzja lokalna',
+  REGIONAL: 'Decyzja regionalna',
+  CENTRAL: 'Decyzja centralna',
+}
+
+// Legacy Objective labels (Polish) - for backwards compatibility
 export const ObjectiveLabels: Record<string, string> = {
   ACQUISITION: 'Pozyskanie nowych klientów',
   RETENTION: 'Utrzymanie obecnych klientów',
@@ -104,7 +140,56 @@ const optionalNumber = z.preprocess(
   z.coerce.number().positive().nullable()
 )
 
-// Schema for creating a new brief (draft) - simplified validation
+// ============================================
+// CORE MODULE 1: Decision Layer Schema
+// ============================================
+// No business intent = no brief.
+// These fields are MANDATORY before submission.
+
+export const decisionLayerSchema = z.object({
+  // Business Objective - REQUIRED (no free-text)
+  businessObjective: BusinessObjectiveEnum,
+  // Success Metric / KPI - REQUIRED (quantifiable)
+  kpiDescription: z.string().min(1, 'Określ miernik sukcesu (KPI)').max(500),
+  kpiTarget: z.coerce.number().positive('Podaj wartość docelową KPI'),
+  // Decision Context - REQUIRED
+  decisionContext: DecisionContextEnum,
+})
+
+// ============================================
+// CORE MODULE 3: AI Auditor Result Schema
+// ============================================
+
+export const AuditCheckStatus = z.enum(['PASS', 'FAIL', 'WARNING'])
+
+export const aiAuditResultSchema = z.object({
+  completeness: z.object({
+    status: AuditCheckStatus,
+    missingFields: z.array(z.string()).optional(),
+    message: z.string().optional(),
+  }),
+  consistency: z.object({
+    status: AuditCheckStatus,
+    issues: z.array(z.string()).optional(),
+    message: z.string().optional(),
+  }),
+  feasibility: z.object({
+    status: AuditCheckStatus,
+    deadlineRealistic: z.boolean(),
+    capacityAvailable: z.boolean().optional(),
+    message: z.string().optional(),
+  }),
+  policyCompliance: z.object({
+    status: AuditCheckStatus,
+    violations: z.array(z.string()).optional(),
+    requiresEscalation: z.boolean(),
+    message: z.string().optional(),
+  }),
+  overallStatus: AuditCheckStatus,
+  auditedAt: z.coerce.date(),
+})
+
+// Schema for creating a new brief (draft) - with Decision Layer
 export const createBriefSchema = z.object({
   clubId: z.string().min(1, 'Wybierz klub'),
   brandId: z.string().min(1, 'Wybierz markę'),
@@ -113,12 +198,16 @@ export const createBriefSchema = z.object({
     .string()
     .min(1, 'Wprowadz tytul')
     .max(200, 'Tytuł może mieć max. 200 znaków'),
-  objective: optionalString,
+  // Decision Layer fields - REQUIRED for submission
+  businessObjective: BusinessObjectiveEnum.optional(), // Optional in draft
   kpiDescription: z.preprocess(
     (val) => (val === '' ? null : val),
     z.string().max(500).nullable()
   ),
   kpiTarget: optionalNumber,
+  decisionContext: DecisionContextEnum.optional(), // Optional in draft
+  // Legacy field
+  objective: optionalString,
   deadline: z.coerce.date(),
   startDate: optionalDateString,
   endDate: optionalDateString,
@@ -144,8 +233,42 @@ export const createBriefSchema = z.object({
   confidenceLevel: ConfidenceLevelEnum.optional().nullable(),
 })
 
-// Schema for submitting a brief (same as create for simplified UX)
+// ============================================
+// CORE MODULE 1: Submit Schema with Decision Layer ENFORCEMENT
+// ============================================
+// No business intent = no brief submission allowed.
+
 export const submitBriefSchema = createBriefSchema
+  // Decision Layer validation - BLOCKS submission if missing
+  .refine(
+    (data) => data.businessObjective !== undefined && data.businessObjective !== null,
+    {
+      message: 'Wybierz cel biznesowy - wymagane przed wysłaniem',
+      path: ['businessObjective'],
+    }
+  )
+  .refine(
+    (data) => data.kpiDescription !== null && data.kpiDescription !== undefined && data.kpiDescription.trim() !== '',
+    {
+      message: 'Określ miernik sukcesu (KPI) - wymagane przed wysłaniem',
+      path: ['kpiDescription'],
+    }
+  )
+  .refine(
+    (data) => data.kpiTarget !== null && data.kpiTarget !== undefined && data.kpiTarget > 0,
+    {
+      message: 'Podaj wartość docelową KPI - wymagane przed wysłaniem',
+      path: ['kpiTarget'],
+    }
+  )
+  .refine(
+    (data) => data.decisionContext !== undefined && data.decisionContext !== null,
+    {
+      message: 'Określ kontekst decyzji - wymagane przed wysłaniem',
+      path: ['decisionContext'],
+    }
+  )
+  // Date validation
   .refine(
     (data) => {
       if (data.startDate && data.endDate) {

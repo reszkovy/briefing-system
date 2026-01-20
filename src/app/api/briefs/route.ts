@@ -202,9 +202,13 @@ export async function POST(request: NextRequest) {
           brandId: validated.data.brandId,
           templateId: template.id,
           title: briefTitle,
-          objective: validated.data.objective || null,
+          // Decision Layer fields (CORE MODULE 1)
+          businessObjective: validated.data.businessObjective || null,
+          decisionContext: validated.data.decisionContext || null,
           kpiDescription: validated.data.kpiDescription || null,
           kpiTarget: validated.data.kpiTarget || null,
+          // Legacy field
+          objective: validated.data.objective || null,
           deadline: new Date(validated.data.deadline),
           startDate: validated.data.startDate ? new Date(validated.data.startDate) : null,
           endDate: validated.data.endDate ? new Date(validated.data.endDate) : null,
@@ -218,6 +222,7 @@ export async function POST(request: NextRequest) {
           // Policy engine fields
           estimatedCost: validated.data.estimatedCost || null,
           isCrisisCommunication: validated.data.isCrisisCommunication || false,
+          confidenceLevel: validated.data.confidenceLevel || null,
           policyCheckResult: policyResult,
           requiresOwnerApproval: policyResult.requiresOwnerApproval,
           ownerApprovalReason: policyResult.ownerApprovalReasons.join('; ') || null,
