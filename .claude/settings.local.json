@@ -34,7 +34,8 @@
       "Bash(git push origin main)",
       "Bash(gh run list:*)",
       "Bash(cd /Users/reszek/Desktop/Narzedzie\\\\ do\\\\ briefowania && npm run db:seed:*)",
-      "Bash(cd /Users/reszek/Desktop/Narzedzie\\\\ do\\\\ briefowania && npx tsc:*)"
+      "Bash(cd /Users/reszek/Desktop/Narzedzie\\\\ do\\\\ briefowania && npx tsc:*)",
+      "Bash(git push)"
     ]
   }
 }

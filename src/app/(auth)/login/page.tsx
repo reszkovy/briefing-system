@@ -19,35 +19,25 @@ const mvpUsers: DemoUser[] = [
     email: 'anna.kowalska@benefit.pl',
     name: 'Anna Kowalska',
     role: 'CLUB_MANAGER',
-    description: 'Manager Klubu - tworzy briefy dla swojego klubu',
+    description: 'Manager lokalny - Zgłasza lokalne potrzeby i inicjatywy w oparciu o kontekst, cele i realia operacyjne.',
     color: 'bg-green-500',
   },
   {
     email: 'michal.adamski@benefit.pl',
     name: 'Michał Adamski',
     role: 'VALIDATOR',
-    description: 'Walidator Regionalny - zatwierdza briefy i ustala cele',
+    description: 'Manager regionalny - Weryfikuje zgłoszenia pod kątem strategii, priorytetów i dostępnych zasobów.',
     color: 'bg-orange-500',
   },
   {
     email: 'admin@benefit.pl',
     name: 'Administrator',
     role: 'ADMIN',
-    description: 'Admin - zarządza systemem, klubami i użytkownikami',
+    description: 'Administrator systemu - Zarządza strukturą organizacji, rolami użytkowników oraz regułami systemowymi.',
     color: 'bg-purple-500',
   },
 ]
 
-// Future phase - production team
-const futureUsers: DemoUser[] = [
-  {
-    email: 'studio@benefit.pl',
-    name: 'Studio Graficzne',
-    role: 'PRODUCTION',
-    description: 'Zespół Produkcji - realizuje zatwierdzone briefy',
-    color: 'bg-blue-500',
-  },
-]
 
 export default function LoginPage() {
   const router = useRouter()
@@ -90,11 +80,12 @@ export default function LoginPage() {
             priority
           />
           <p className="mt-4 text-center text-[#2b3b82]">
-            System briefowania dla sieci fitness
+            System zarządzania lokalnym popytem w organizacjach rozproszonych
           </p>
-          <p className="mt-4 text-center text-sm text-[#2b3b82] bg-[#daff47]/20 px-4 py-2 rounded-lg border border-[#daff47]/40">
-            Tryb demonstracyjny - wybierz role aby zobaczyc system
-          </p>
+          <div className="mt-4 text-center text-sm text-[#2b3b82] bg-[#daff47]/20 px-4 py-3 rounded-lg border border-[#daff47]/40">
+            <p className="font-semibold">Tryb demonstracyjny</p>
+            <p className="mt-1 text-[#2b3b82]/70">Wybierz rolę, aby zobaczyć, jak system wspiera podejmowanie decyzji na różnych poziomach organizacji.</p>
+          </div>
         </div>
 
         {error && (
@@ -140,45 +131,31 @@ export default function LoginPage() {
           ))}
         </div>
 
-        {/* Future Phase Section */}
+        {/* Future Phase Section - Zespół produkcyjny */}
         <div className="space-y-3 pt-4 border-t border-[#2b3b82]/10">
           <div className="flex items-center gap-2 justify-center">
             <span className="px-3 py-1 bg-gray-200 text-gray-500 text-xs font-bold rounded-full">
-              POZNIEJSZY ETAP
+              KOLEJNY ETAP ROZWOJU
             </span>
           </div>
 
-          {futureUsers.map((user) => (
-            <button
-              key={user.email}
-              onClick={() => handleDemoLogin(user)}
-              disabled={loading !== null}
-              className={`w-full flex items-center gap-4 p-4 border-2 rounded-xl transition-all opacity-60 ${
-                loading === user.email
-                  ? 'border-gray-300 bg-gray-50'
-                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-              } disabled:opacity-40`}
-            >
-              <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                {user.name.charAt(0)}
-              </div>
-              <div className="flex-1 text-left">
-                <p className="font-semibold text-gray-500">{user.name}</p>
-                <p className="text-sm text-gray-400">{user.description}</p>
-              </div>
-              {loading === user.email ? (
-                <div className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
-              ) : (
-                <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              )}
-            </button>
-          ))}
+          <div className="w-full flex items-center gap-4 p-4 border-2 rounded-xl opacity-50 border-gray-200 bg-gray-50 cursor-not-allowed">
+            <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              Z
+            </div>
+            <div className="flex-1 text-left">
+              <p className="font-semibold text-gray-500">Zespół produkcyjny</p>
+              <p className="text-sm text-gray-400">Realizacja - Wykonuje zatwierdzone decyzje zgodnie z ustalonym zakresem i priorytetami.</p>
+              <p className="text-xs text-gray-400 mt-1 italic">(funkcja niedostępna w MVP)</p>
+            </div>
+            <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m0 0v2m0-2h2m-2 0H10m9.374-9.373a9 9 0 11-12.728 0" />
+            </svg>
+          </div>
         </div>
 
         <p className="text-xs text-[#2b3b82]/40 text-center pt-4 border-t border-[#2b3b82]/10">
-          To jest wersja demonstracyjna systemu. Wszystkie dane sa przykladowe.
+          To jest wersja demonstracyjna systemu.<br />Wszystkie dane i scenariusze są przykładowe.
         </p>
       </div>
     </div>
