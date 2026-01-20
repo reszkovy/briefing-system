@@ -1,7 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { ClubContextForm } from '@/components/clubs/ClubContextForm'
+import { ClubContextDisplay } from '@/components/clubs/ClubContextDisplay'
+import type { TopActivity, ActivityReasonsData } from '@/types/club-context'
+
+interface ClubContext {
+  clubCharacter?: string | null
+  customCharacter?: string | null
+  keyMemberGroups?: string[] | null
+  localConstraints?: string[] | null
+  topActivities?: TopActivity[] | null
+  activityReasons?: ActivityReasonsData | null
+  localDecisionBrief?: string | null
+  contextUpdatedAt?: string | null
+}
 
 interface Region {
   id: string
@@ -70,6 +84,13 @@ export function ClubList({ initialClubs, regions, brands, users }: Props) {
   const [error, setError] = useState<string | null>(null)
   const [filterBrand, setFilterBrand] = useState<string>('')
   const [filterRegion, setFilterRegion] = useState<string>('')
+
+  // Club Context Modal state
+  const [showContextModal, setShowContextModal] = useState(false)
+  const [contextClub, setContextClub] = useState<Club | null>(null)
+  const [clubContext, setClubContext] = useState<ClubContext | null>(null)
+  const [loadingContext, setLoadingContext] = useState(false)
+  const [contextMode, setContextMode] = useState<'view' | 'edit'>('view')
 
   // Form state
   const [formData, setFormData] = useState({
@@ -175,6 +196,45 @@ export function ClubList({ initialClubs, regions, brands, users }: Props) {
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Wystąpił błąd')
     }
+  }
+
+  // Club Context handlers
+  const openContextModal = async (club: Club) => {
+    setContextClub(club)
+    setShowContextModal(true)
+    setLoadingContext(true)
+    setContextMode('view')
+
+    try {
+      const response = await fetch(`/api/clubs/${club.id}/context`)
+      if (response.ok) {
+        const data = await response.json()
+        setClubContext(data)
+      }
+    } catch (err) {
+      console.error('Error loading context:', err)
+    } finally {
+      setLoadingContext(false)
+    }
+  }
+
+  const handleContextSaved = async () => {
+    if (contextClub) {
+      // Reload context after save
+      const response = await fetch(`/api/clubs/${contextClub.id}/context`)
+      if (response.ok) {
+        const data = await response.json()
+        setClubContext(data)
+      }
+    }
+    setContextMode('view')
+  }
+
+  const closeContextModal = () => {
+    setShowContextModal(false)
+    setContextClub(null)
+    setClubContext(null)
+    setContextMode('view')
   }
 
   return (
@@ -355,6 +415,63 @@ export function ClubList({ initialClubs, regions, brands, users }: Props) {
         </div>
       )}
 
+      {/* Club Context Modal */}
+      {showContextModal && contextClub && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-hidden">
+            <div className="p-6">
+              {loadingContext ? (
+                <div className="flex items-center justify-center py-12">
+                  <div className="w-8 h-8 border-2 border-[#2b3b82] border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : contextMode === 'edit' ? (
+                <ClubContextForm
+                  clubId={contextClub.id}
+                  clubName={contextClub.name}
+                  initialData={clubContext || undefined}
+                  onSave={handleContextSaved}
+                  onCancel={() => setContextMode('view')}
+                />
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <h2 className="text-lg font-semibold text-[#2b3b82]">
+                      Kontekst lokalny
+                    </h2>
+                    <button
+                      onClick={closeContextModal}
+                      className="text-gray-400 hover:text-gray-600 text-xl"
+                    >
+                      ✕
+                    </button>
+                  </div>
+
+                  <ClubContextDisplay
+                    clubName={contextClub.name}
+                    context={clubContext || {}}
+                  />
+
+                  <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                    <button
+                      onClick={closeContextModal}
+                      className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                    >
+                      Zamknij
+                    </button>
+                    <button
+                      onClick={() => setContextMode('edit')}
+                      className="px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1e2a5e] font-medium"
+                    >
+                      Edytuj kontekst
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Clubs list */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="min-w-full divide-y divide-gray-200">
@@ -434,6 +551,12 @@ export function ClubList({ initialClubs, regions, brands, users }: Props) {
                   {club._count.briefs}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button
+                    onClick={() => openContextModal(club)}
+                    className="text-[#2b3b82] hover:text-[#1e2a5e] mr-4"
+                  >
+                    Kontekst
+                  </button>
                   <button
                     onClick={() => openEditForm(club)}
                     className="text-blue-600 hover:text-blue-900 mr-4"

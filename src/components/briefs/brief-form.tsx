@@ -7,11 +7,24 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
+import { ClubContextDisplay } from '@/components/clubs/ClubContextDisplay'
 import {
   ObjectiveLabels,
   BusinessObjectiveLabels,
   DecisionContextLabels,
 } from '@/lib/validations/brief'
+import type { TopActivity, ActivityReasonsData } from '@/types/club-context'
+
+interface ClubContext {
+  clubCharacter?: string | null
+  customCharacter?: string | null
+  keyMemberGroups?: string[] | null
+  localConstraints?: string[] | null
+  topActivities?: TopActivity[] | null
+  activityReasons?: ActivityReasonsData | null
+  localDecisionBrief?: string | null
+  contextUpdatedAt?: string | null
+}
 
 // Local type definition for template fields
 interface TemplateFieldLocal {
@@ -171,9 +184,22 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
   const [error, setError] = useState<string | null>(null)
   const [assetLinkInput, setAssetLinkInput] = useState('')
   const [customFormatInput, setCustomFormatInput] = useState('')
+  const [clubContext, setClubContext] = useState<ClubContext | null>(null)
 
   const selectedClub = clubs.find((c) => c.id === formData.clubId)
   const selectedTemplates = templates.filter((t) => formData.templateIds.includes(t.id))
+
+  // Fetch club context when club is selected
+  useEffect(() => {
+    if (selectedClub) {
+      fetch(`/api/clubs/${selectedClub.id}/context`)
+        .then((res) => res.json())
+        .then((data) => setClubContext(data))
+        .catch(() => setClubContext(null))
+    } else {
+      setClubContext(null)
+    }
+  }, [selectedClub])
 
   // Get relevant strategy documents for selected brand
   const getRelevantStrategy = () => {
@@ -588,6 +614,18 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
                 })}
               </div>
             </div>
+          )}
+
+          {/* Club Context - shown when club is selected and has context */}
+          {selectedClub && clubContext && (clubContext.clubCharacter ||
+            (clubContext.keyMemberGroups && (clubContext.keyMemberGroups as string[]).length > 0) ||
+            (clubContext.topActivities && (clubContext.topActivities as TopActivity[]).length > 0) ||
+            clubContext.localDecisionBrief) && (
+            <ClubContextDisplay
+              clubName={selectedClub.name}
+              context={clubContext}
+              compact={true}
+            />
           )}
 
           {/* Title */}
