@@ -1,4 +1,4 @@
-// Seed script for Club Manager Briefing System - Demo Data
+// Seed script for Club Manager Briefing System - Demo Data with Real Zdrofit Clubs
 // Run with: npm run db:seed
 
 import { PrismaClient, UserRole, Objective, Priority, TaskStatus, BriefStatus, FocusPeriod, Outcome, ConfidenceLevel, StrategyDocumentType, StrategyDocumentScope } from '@prisma/client'
@@ -7,7 +7,7 @@ import { hash } from 'bcryptjs'
 const prisma = new PrismaClient()
 
 async function main() {
-  console.log('🌱 Starting demo seed...')
+  console.log('🌱 Starting demo seed with real Zdrofit clubs...')
 
   // Clean up existing data
   console.log('🧹 Cleaning up existing data...')
@@ -30,12 +30,16 @@ async function main() {
   // ============== REGIONS ==============
   console.log('📍 Creating regions...')
   const regions = await Promise.all([
-    prisma.region.create({ data: { name: 'Warszawa i okolice', code: 'WAW' } }),
-    prisma.region.create({ data: { name: 'Kraków i Małopolska', code: 'KRK' } }),
-    prisma.region.create({ data: { name: 'Wrocław i Dolny Śląsk', code: 'WRO' } }),
+    prisma.region.create({ data: { name: 'Warszawa', code: 'WAW' } }),
     prisma.region.create({ data: { name: 'Trójmiasto', code: 'TRI' } }),
-    prisma.region.create({ data: { name: 'Poznań i Wielkopolska', code: 'POZ' } }),
-    prisma.region.create({ data: { name: 'Śląsk', code: 'SLA' } }),
+    prisma.region.create({ data: { name: 'Pomorze Zachodnie', code: 'POM' } }),
+    prisma.region.create({ data: { name: 'Kujawsko-Pomorskie', code: 'KUJ' } }),
+    prisma.region.create({ data: { name: 'Lubelskie', code: 'LUB' } }),
+    prisma.region.create({ data: { name: 'Świętokrzyskie', code: 'SWI' } }),
+    prisma.region.create({ data: { name: 'Warmińsko-Mazurskie', code: 'WAR' } }),
+    prisma.region.create({ data: { name: 'Podlaskie', code: 'POD' } }),
+    prisma.region.create({ data: { name: 'Mazowieckie (poza Warszawą)', code: 'MAZ' } }),
+    prisma.region.create({ data: { name: 'Śląskie', code: 'SLA' } }),
   ])
 
   // ============== BRANDS ==============
@@ -49,171 +53,180 @@ async function main() {
         guidelinesUrl: 'https://drive.google.com/drive/folders/zdrofit-brand-guidelines',
       },
     }),
-    prisma.brand.create({
-      data: {
-        name: 'My Fitness Place',
-        code: 'MFP',
-        primaryColor: '#FF6B00',
-        guidelinesUrl: 'https://drive.google.com/drive/folders/mfp-brand-guidelines',
-      },
-    }),
-    prisma.brand.create({
-      data: {
-        name: 'Fabryka Formy',
-        code: 'FF',
-        primaryColor: '#1E3A8A',
-        guidelinesUrl: 'https://drive.google.com/drive/folders/ff-brand-guidelines',
-      },
-    }),
-    prisma.brand.create({
-      data: {
-        name: 'Fit Fabric',
-        code: 'FITFAB',
-        primaryColor: '#7C3AED',
-        guidelinesUrl: 'https://drive.google.com/drive/folders/fitfab-brand-guidelines',
-      },
-    }),
-    prisma.brand.create({
-      data: {
-        name: 'Fitness Academy',
-        code: 'FA',
-        primaryColor: '#E11D48',
-        guidelinesUrl: 'https://drive.google.com/drive/folders/fa-brand-guidelines',
-      },
-    }),
   ])
 
-  // ============== CLUBS ==============
-  console.log('🏢 Creating clubs...')
-  const clubs = await Promise.all([
-    // Zdrofit - Warszawa (FLAGSHIP)
-    prisma.club.create({
-      data: {
-        name: 'Zdrofit Arkadia',
-        code: 'ZDF-WAW-ARK',
-        city: 'Warszawa',
-        address: 'Al. Jana Pawła II 82, Centrum Handlowe Arkadia',
-        regionId: regions[0].id,
-        brandId: brands[0].id,
-        tier: 'FLAGSHIP',
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'Zdrofit Galeria Mokotów',
-        code: 'ZDF-WAW-MOK',
-        city: 'Warszawa',
-        address: 'ul. Wołoska 12, Galeria Mokotów',
-        regionId: regions[0].id,
-        brandId: brands[0].id,
-        tier: 'VIP',
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'Zdrofit Złote Tarasy',
-        code: 'ZDF-WAW-ZLT',
-        city: 'Warszawa',
-        address: 'ul. Złota 59, Złote Tarasy',
-        regionId: regions[0].id,
-        brandId: brands[0].id,
-        tier: 'VIP',
-      },
-    }),
-    // Zdrofit - Kraków
-    prisma.club.create({
-      data: {
-        name: 'Zdrofit Bonarka',
-        code: 'ZDF-KRK-BON',
-        city: 'Kraków',
-        address: 'ul. Kamieńskiego 11, Bonarka City Center',
-        regionId: regions[1].id,
-        brandId: brands[0].id,
-        tier: 'STANDARD',
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'Zdrofit Galeria Krakowska',
-        code: 'ZDF-KRK-GAL',
-        city: 'Kraków',
-        address: 'ul. Pawia 5, Galeria Krakowska',
-        regionId: regions[1].id,
-        brandId: brands[0].id,
-        tier: 'VIP',
-      },
-    }),
-    // My Fitness Place
-    prisma.club.create({
-      data: {
-        name: 'My Fitness Place Marszałkowska',
-        code: 'MFP-WAW-MAR',
-        city: 'Warszawa',
-        address: 'ul. Marszałkowska 104/122',
-        regionId: regions[0].id,
-        brandId: brands[1].id,
-        tier: 'FLAGSHIP',
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'My Fitness Place Wrocław',
-        code: 'MFP-WRO-CEN',
-        city: 'Wrocław',
-        address: 'ul. Świdnicka 40',
-        regionId: regions[2].id,
-        brandId: brands[1].id,
-        tier: 'STANDARD',
-      },
-    }),
-    // Fabryka Formy - Trójmiasto
-    prisma.club.create({
-      data: {
-        name: 'Fabryka Formy Gdańsk',
-        code: 'FF-GDA-001',
-        city: 'Gdańsk',
-        address: 'ul. Grunwaldzka 141',
-        regionId: regions[3].id,
-        brandId: brands[2].id,
-        tier: 'FLAGSHIP',
-      },
-    }),
-    prisma.club.create({
-      data: {
-        name: 'Fabryka Formy Sopot',
-        code: 'FF-SOP-001',
-        city: 'Sopot',
-        address: 'ul. Bohaterów Monte Cassino 49',
-        regionId: regions[3].id,
-        brandId: brands[2].id,
-        tier: 'VIP',
-      },
-    }),
-    // Fit Fabric - Poznań
-    prisma.club.create({
-      data: {
-        name: 'Fit Fabric Stary Browar',
-        code: 'FITFAB-POZ-SB',
-        city: 'Poznań',
-        address: 'ul. Półwiejska 42, Stary Browar',
-        regionId: regions[4].id,
-        brandId: brands[3].id,
-        tier: 'FLAGSHIP',
-      },
-    }),
-    // Fitness Academy - Śląsk
-    prisma.club.create({
-      data: {
-        name: 'Fitness Academy Katowice',
-        code: 'FA-KAT-SIL',
-        city: 'Katowice',
-        address: 'ul. Chorzowska 107, Silesia City Center',
-        regionId: regions[5].id,
-        brandId: brands[4].id,
-        tier: 'VIP',
-      },
-    }),
-  ])
+  const zdrofitBrand = brands[0]
+
+  // ============== REAL ZDROFIT CLUBS ==============
+  console.log('🏢 Creating real Zdrofit clubs with GPS coordinates...')
+
+  // Warsaw clubs (Region 0)
+  const warsawClubs = [
+    { name: 'Zdrofit Arkadia', code: 'ZDF-WAW-ARK', address: 'Al. Jana Pawła II 82', lat: 52.2567, lng: 20.9847, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Krucza', code: 'ZDF-WAW-KRU', address: 'ul. Krucza 50', lat: 52.2282, lng: 21.0165, tier: 'VIP' as const },
+    { name: 'Zdrofit Westfield Mokotów', code: 'ZDF-WAW-WMO', address: 'ul. Wołoska 12', lat: 52.1801, lng: 21.0007, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Rondo ONZ', code: 'ZDF-WAW-ONZ', address: 'Rondo ONZ 1', lat: 52.2325, lng: 20.9967, tier: 'VIP' as const },
+    { name: 'Zdrofit Warsaw Spire', code: 'ZDF-WAW-SPI', address: 'Plac Europejski 1', lat: 52.2328, lng: 20.9847, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit The Warsaw HUB', code: 'ZDF-WAW-HUB', address: 'Rondo Daszyńskiego 2', lat: 52.2301, lng: 20.9842, tier: 'VIP' as const },
+    { name: 'Zdrofit Mennica Towers', code: 'ZDF-WAW-MEN', address: 'ul. Prosta 18', lat: 52.2317, lng: 20.9925, tier: 'VIP' as const },
+    { name: 'Zdrofit Varso', code: 'ZDF-WAW-VAR', address: 'ul. Chmielna 71', lat: 52.2301, lng: 21.0012, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Metro Świętokrzyska', code: 'ZDF-WAW-SWI', address: 'ul. Marszałkowska 126/134', lat: 52.2353, lng: 21.0089, tier: 'VIP' as const },
+    { name: 'Zdrofit Metro Politechnika', code: 'ZDF-WAW-POL', address: 'ul. Polna 11', lat: 52.2198, lng: 21.0142, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Wola Park', code: 'ZDF-WAW-WPA', address: 'ul. Górczewska 124', lat: 52.2321, lng: 20.9357, tier: 'VIP' as const },
+    { name: 'Zdrofit Fort Wola', code: 'ZDF-WAW-FWO', address: 'ul. Połczyńska 4', lat: 52.2417, lng: 20.9289, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Galeria Północna', code: 'ZDF-WAW-PON', address: 'ul. Światowida 17', lat: 52.2967, lng: 20.9687, tier: 'VIP' as const },
+    { name: 'Zdrofit G City Targówek', code: 'ZDF-WAW-GCT', address: 'ul. Głębocka 150', lat: 52.2889, lng: 21.0645, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Koneser', code: 'ZDF-WAW-KON', address: 'Plac Konesera 5', lat: 52.2523, lng: 21.0456, tier: 'VIP' as const },
+    { name: 'Zdrofit Gocław', code: 'ZDF-WAW-GOC', address: 'ul. Ostrobramska 101', lat: 52.2401, lng: 21.0876, tier: 'STANDARD' as const },
+    { name: 'Zdrofit G City Promenada', code: 'ZDF-WAW-GCP', address: 'ul. Ostrobramska 75c', lat: 52.2367, lng: 21.0723, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Bemowo Lazurowa', code: 'ZDF-WAW-LAZ', address: 'ul. Lazurowa 71A', lat: 52.2412, lng: 20.9012, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Bemowo Świetlików', code: 'ZDF-WAW-SWT', address: 'ul. Świetlików 3', lat: 52.2289, lng: 20.8967, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Białołęka Modlińska', code: 'ZDF-WAW-BIA', address: 'ul. Modlińska 256', lat: 52.3123, lng: 20.9534, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Bielany Marymoncka', code: 'ZDF-WAW-BIE', address: 'ul. Marymoncka 34', lat: 52.2912, lng: 20.9312, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Bielany Dąbrowskiej', code: 'ZDF-WAW-DAB', address: 'ul. Marii Dąbrowskiej 15', lat: 52.2834, lng: 20.9156, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Żoliborz Hubnera', code: 'ZDF-WAW-ZOL', address: 'ul. Hübnera 3', lat: 52.2723, lng: 20.9789, tier: 'VIP' as const },
+    { name: 'Zdrofit Ochota Adgar', code: 'ZDF-WAW-ADG', address: 'Al. Jerozolimskie 181B', lat: 52.2012, lng: 20.9423, tier: 'VIP' as const },
+    { name: 'Zdrofit Ochota Grójecka', code: 'ZDF-WAW-GRO', address: 'ul. Grójecka 208', lat: 52.2089, lng: 20.9123, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Mokotów Puławska', code: 'ZDF-WAW-PUL', address: 'ul. Puławska 39', lat: 52.2112, lng: 21.0234, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Mokotów Europlex', code: 'ZDF-WAW-EUR', address: 'ul. Puławska 170', lat: 52.1923, lng: 21.0312, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Mokotów Konstruktorska', code: 'ZDF-WAW-KST', address: 'ul. Konstruktorska 13', lat: 52.1789, lng: 21.0123, tier: 'VIP' as const },
+    { name: 'Zdrofit Wilanów Rzeczypospolitej', code: 'ZDF-WAW-WIL', address: 'al. Rzeczypospolitej 10', lat: 52.1567, lng: 21.0645, tier: 'VIP' as const },
+    { name: 'Zdrofit Sadyba Nałęczowska', code: 'ZDF-WAW-SAD', address: 'ul. Nałęczowska 19', lat: 52.1789, lng: 21.0567, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Ursynów Koński Jar', code: 'ZDF-WAW-URS', address: 'ul. Koński Jar 6', lat: 52.1456, lng: 21.0423, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Ursus Pużaka', code: 'ZDF-WAW-PUZ', address: 'ul. Pużaka 10', lat: 52.1823, lng: 20.8789, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Włochy Krakowiaków', code: 'ZDF-WAW-KRA', address: 'ul. Krakowiaków 46', lat: 52.1912, lng: 20.9312, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Ferio Wawer', code: 'ZDF-WAW-FER', address: 'ul. Szpotańskiego 40', lat: 52.2234, lng: 21.1789, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Dworzec Gdański', code: 'ZDF-WAW-DWO', address: 'ul. Inflancka 4c', lat: 52.2578, lng: 20.9912, tier: 'VIP' as const },
+  ]
+
+  // Trójmiasto clubs (Region 1)
+  const trojmiastoClubs = [
+    { name: 'Zdrofit Gdańsk Alchemia', code: 'ZDF-GDA-ALC', address: 'al. Grunwaldzka 411', lat: 54.3853, lng: 18.5912, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Gdańsk Madison', code: 'ZDF-GDA-MAD', address: 'ul. Rajska 10', lat: 54.3517, lng: 18.6467, tier: 'VIP' as const },
+    { name: 'Zdrofit Gdańsk Manhattan', code: 'ZDF-GDA-MAN', address: 'al. Grunwaldzka 82', lat: 54.3789, lng: 18.6012, tier: 'VIP' as const },
+    { name: 'Zdrofit Gdańsk Galeria Przymorze', code: 'ZDF-GDA-PRZ', address: 'ul. Obrońców Wybrzeża 1', lat: 54.4012, lng: 18.5789, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Garnizon', code: 'ZDF-GDA-GAR', address: 'ul. Słonimskiego 8', lat: 54.3867, lng: 18.5634, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Morena', code: 'ZDF-GDA-MOR', address: 'ul. Schuberta 102A', lat: 54.3534, lng: 18.5534, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Kowale', code: 'ZDF-GDA-KOW', address: 'ul. Staropolska 32', lat: 54.3212, lng: 18.5367, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Chełm', code: 'ZDF-GDA-CHE', address: 'ul. Cieszyńskiego 1B', lat: 54.3312, lng: 18.5912, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Zaspa', code: 'ZDF-GDA-ZAS', address: 'al. Rzeczypospolitej 33', lat: 54.4067, lng: 18.6012, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Suchanino', code: 'ZDF-GDA-SUC', address: 'ul. Noskowskiego 1', lat: 54.3789, lng: 18.5534, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Rental Park', code: 'ZDF-GDA-REN', address: 'ul. Przywidzka 9', lat: 54.3423, lng: 18.5234, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdańsk Nieborowska', code: 'ZDF-GDA-NIE', address: 'ul. Nieborowska 10', lat: 54.3534, lng: 18.6423, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdynia Riviera', code: 'ZDF-GDY-RIV', address: 'ul. Kazimierza Górskiego 28', lat: 54.5189, lng: 18.5467, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Gdynia Klif', code: 'ZDF-GDY-KLI', address: 'al. Zwycięstwa 256', lat: 54.4912, lng: 18.5312, tier: 'VIP' as const },
+    { name: 'Zdrofit Gdynia Plac Kaszubski', code: 'ZDF-GDY-KAS', address: 'Plac Kaszubski 17', lat: 54.5178, lng: 18.5389, tier: 'VIP' as const },
+    { name: 'Zdrofit Gdynia Chwarzno', code: 'ZDF-GDY-CHW', address: 'ul. Czesława Niemena 28', lat: 54.4734, lng: 18.4912, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdynia Karwiny', code: 'ZDF-GDY-KAR', address: 'ul. Nowowiczlińska 35', lat: 54.4589, lng: 18.4789, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Gdynia Witawa', code: 'ZDF-GDY-WIT', address: 'ul. Wielkokacka 28', lat: 54.4612, lng: 18.5012, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Sopot Centrum', code: 'ZDF-SOP-CEN', address: 'ul. Dworcowa 7', lat: 54.4412, lng: 18.5612, tier: 'VIP' as const },
+    { name: 'Zdrofit Pruszcz Gdański Domeyki', code: 'ZDF-PRU-DOM', address: 'ul. Domeyki 38', lat: 54.2612, lng: 18.6412, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Pruszcz Gdański Kasprowicza', code: 'ZDF-PRU-KAS', address: 'ul. Kasprowicza 52', lat: 54.2534, lng: 18.6234, tier: 'STANDARD' as const },
+  ]
+
+  // Szczecin clubs (Region 2)
+  const szczecinClubs = [
+    { name: 'Zdrofit Szczecin Galaxy', code: 'ZDF-SZC-GAL', address: 'al. Wyzwolenia 18/20', lat: 53.4289, lng: 14.5512, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Szczecin Kaskada', code: 'ZDF-SZC-KAS', address: 'al. Niepodległości 36', lat: 53.4312, lng: 14.5412, tier: 'VIP' as const },
+    { name: 'Zdrofit Szczecin Outlet Park', code: 'ZDF-SZC-OUT', address: 'ul. Andrzeja Struga 42', lat: 53.4134, lng: 14.5234, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Szczecin Piastów', code: 'ZDF-SZC-PIA', address: 'al. Piastów 30', lat: 53.4234, lng: 14.5134, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Stargard Starówka', code: 'ZDF-STA-STA', address: 'ul. B. Chrobrego 87', lat: 53.3367, lng: 15.0512, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Stargard Zodiak', code: 'ZDF-STA-ZOD', address: 'ul. Wyszyńskiego 12-15a', lat: 53.3289, lng: 15.0412, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Koszalin Forum', code: 'ZDF-KOS-FOR', address: 'ul. Paderewskiego 17', lat: 54.1912, lng: 16.1712, tier: 'VIP' as const },
+    { name: 'Zdrofit Koszalin Kosmos', code: 'ZDF-KOS-KOS', address: 'ul. Stefana Okrzei 3', lat: 54.1856, lng: 16.1834, tier: 'STANDARD' as const },
+  ]
+
+  // Bydgoszcz/Toruń clubs (Region 3)
+  const kujawskoClubs = [
+    { name: 'Zdrofit Bydgoszcz Focus', code: 'ZDF-BYD-FOC', address: 'ul. Jagiellońska 39', lat: 53.1234, lng: 18.0012, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Bydgoszcz Balaton', code: 'ZDF-BYD-BAL', address: 'ul. M. Skłodowskiej Curie 33', lat: 53.1089, lng: 18.0534, tier: 'VIP' as const },
+    { name: 'Zdrofit Bydgoszcz Immobile K3', code: 'ZDF-BYD-K3', address: 'Plac Kościeleckich 3', lat: 53.1212, lng: 18.0112, tier: 'VIP' as const },
+    { name: 'Zdrofit Toruń Copernicus', code: 'ZDF-TOR-COP', address: 'ul. Żółkiewskiego 15', lat: 53.0134, lng: 18.6034, tier: 'VIP' as const },
+    { name: 'Zdrofit Toruń Rydygiera', code: 'ZDF-TOR-RYD', address: 'ul. Rydygiera 30/32', lat: 53.0034, lng: 18.5912, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Włocławek Wzorcownia', code: 'ZDF-WLO-WZO', address: 'ul. Kilińskiego 38', lat: 52.6534, lng: 19.0634, tier: 'STANDARD' as const },
+  ]
+
+  // Lublin clubs (Region 4)
+  const lublinClubs = [
+    { name: 'Zdrofit Lublin Galeria Olimp', code: 'ZDF-LUB-OLI', address: 'al. Spółdzielczości Pracy 34', lat: 51.2312, lng: 22.5534, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Lublin Batory', code: 'ZDF-LUB-BAT', address: 'al. Kraśnicka 31', lat: 51.2234, lng: 22.5012, tier: 'VIP' as const },
+    { name: 'Zdrofit Lublin Galeria Gala', code: 'ZDF-LUB-GAL', address: 'ul. Fabryczna 22', lat: 51.2456, lng: 22.5634, tier: 'VIP' as const },
+  ]
+
+  // Kielce clubs (Region 5)
+  const kielceClubs = [
+    { name: 'Zdrofit Kielce Galeria Echo', code: 'ZDF-KIE-ECH', address: 'ul. Świętokrzyska 20', lat: 50.8689, lng: 20.6312, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Kielce Galeria Korona', code: 'ZDF-KIE-KOR', address: 'ul. Warszawska 26', lat: 50.8734, lng: 20.6234, tier: 'VIP' as const },
+  ]
+
+  // Olsztyn/Elbląg clubs (Region 6)
+  const warmiaClubs = [
+    { name: 'Zdrofit Olsztyn Wilczyńskiego', code: 'ZDF-OLS-WIL', address: 'Bp. T. Wilczyńskiego 29', lat: 53.7734, lng: 20.4712, tier: 'FLAGSHIP' as const },
+    { name: 'Zdrofit Elbląg Nowowiejska', code: 'ZDF-ELB-NOW', address: 'ul. Nowowiejska 1a', lat: 54.1567, lng: 19.4012, tier: 'VIP' as const },
+  ]
+
+  // Białystok clubs (Region 7)
+  const podlaskieClubs = [
+    { name: 'Zdrofit Białystok Wrocławska', code: 'ZDF-BIA-WRO', address: 'ul. Wrocławska 51b', lat: 53.1312, lng: 23.1512, tier: 'FLAGSHIP' as const },
+  ]
+
+  // Mazowieckie (outside Warsaw) clubs (Region 8)
+  const mazowieckieClubs = [
+    { name: 'Zdrofit Legionowo', code: 'ZDF-LEG-CEN', address: 'ul. Siwińskiego 20', lat: 52.4012, lng: 20.9234, tier: 'VIP' as const },
+    { name: 'Zdrofit Legionowo Zegrzyńska', code: 'ZDF-LEG-ZEG', address: 'ul. Zegrzyńska 1D', lat: 52.4089, lng: 20.9312, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Pruszków Nowa Stacja', code: 'ZDF-PRU-NOW', address: 'ul. Sienkiewicza 19', lat: 52.1712, lng: 20.8112, tier: 'VIP' as const },
+    { name: 'Zdrofit Pruszków Zimińskiej', code: 'ZDF-PRU-ZIM', address: 'ul. Miry Zimińskiej Sygietyńskiej 10', lat: 52.1634, lng: 20.8034, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Piaseczno Pawia', code: 'ZDF-PIA-PAW', address: 'ul. Pawia 110', lat: 52.0712, lng: 21.0234, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Piaseczno Puławska', code: 'ZDF-PIA-PUL', address: 'ul. Puławska 44D', lat: 52.0789, lng: 21.0312, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Piastów Pasaż', code: 'ZDF-PIA-PAS', address: 'ul. Warszawska 43', lat: 52.1834, lng: 20.8334, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Otwock', code: 'ZDF-OTW-CEN', address: 'ul. Kołłątaja 40', lat: 52.1034, lng: 21.2634, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Wołomin', code: 'ZDF-WOL-CEN', address: 'ul. Geodetów 20', lat: 52.3512, lng: 21.2412, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Płock Galeria Mazovia', code: 'ZDF-PLO-MAZ', address: 'ul. Wyszogrodzka 127', lat: 52.5467, lng: 19.6834, tier: 'VIP' as const },
+    { name: 'Zdrofit Radom', code: 'ZDF-RAD-CEN', address: 'ul. Wernera 102', lat: 51.4034, lng: 21.1634, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Homepark Janki', code: 'ZDF-JAN-HOM', address: 'Plac Szwedzki 30', lat: 52.1012, lng: 20.8512, tier: 'STANDARD' as const },
+    { name: 'Zdrofit NPark Stara Iwiczna', code: 'ZDF-IWI-NPA', address: 'ul. Nowa 40', lat: 52.0512, lng: 20.9612, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Dawidy Bankowe', code: 'ZDF-DAW-CEN', address: 'ul. Długa 150', lat: 52.1234, lng: 20.9112, tier: 'STANDARD' as const },
+    { name: 'Zdrofit Banino', code: 'ZDF-BAN-CEN', address: 'ul. Północna 3', lat: 54.3912, lng: 18.4234, tier: 'STANDARD' as const },
+  ]
+
+  // Śląskie (Częstochowa) clubs (Region 9)
+  const slaskieClubs = [
+    { name: 'Zdrofit Częstochowa Piastowska', code: 'ZDF-CZE-PIA', address: 'ul. Piastowska 225', lat: 50.8134, lng: 19.1234, tier: 'VIP' as const },
+  ]
+
+  // Create all clubs
+  const allClubsData = [
+    ...warsawClubs.map(c => ({ ...c, regionId: regions[0].id, brandId: zdrofitBrand.id, city: 'Warszawa' })),
+    ...trojmiastoClubs.map(c => ({ ...c, regionId: regions[1].id, brandId: zdrofitBrand.id, city: c.name.includes('Gdynia') ? 'Gdynia' : c.name.includes('Sopot') ? 'Sopot' : c.name.includes('Pruszcz') ? 'Pruszcz Gdański' : 'Gdańsk' })),
+    ...szczecinClubs.map(c => ({ ...c, regionId: regions[2].id, brandId: zdrofitBrand.id, city: c.name.includes('Stargard') ? 'Stargard' : c.name.includes('Koszalin') ? 'Koszalin' : 'Szczecin' })),
+    ...kujawskoClubs.map(c => ({ ...c, regionId: regions[3].id, brandId: zdrofitBrand.id, city: c.name.includes('Toruń') ? 'Toruń' : c.name.includes('Włocławek') ? 'Włocławek' : 'Bydgoszcz' })),
+    ...lublinClubs.map(c => ({ ...c, regionId: regions[4].id, brandId: zdrofitBrand.id, city: 'Lublin' })),
+    ...kielceClubs.map(c => ({ ...c, regionId: regions[5].id, brandId: zdrofitBrand.id, city: 'Kielce' })),
+    ...warmiaClubs.map(c => ({ ...c, regionId: regions[6].id, brandId: zdrofitBrand.id, city: c.name.includes('Elbląg') ? 'Elbląg' : 'Olsztyn' })),
+    ...podlaskieClubs.map(c => ({ ...c, regionId: regions[7].id, brandId: zdrofitBrand.id, city: 'Białystok' })),
+    ...mazowieckieClubs.map(c => ({ ...c, regionId: regions[8].id, brandId: zdrofitBrand.id, city: c.name.split(' ')[1] || 'Mazowieckie' })),
+    ...slaskieClubs.map(c => ({ ...c, regionId: regions[9].id, brandId: zdrofitBrand.id, city: 'Częstochowa' })),
+  ]
+
+  const clubs = await Promise.all(
+    allClubsData.map(club =>
+      prisma.club.create({
+        data: {
+          name: club.name,
+          code: club.code,
+          city: club.city,
+          address: club.address,
+          latitude: club.lat,
+          longitude: club.lng,
+          regionId: club.regionId,
+          brandId: club.brandId,
+          tier: club.tier,
+        },
+      })
+    )
+  )
+
+  console.log(`✅ Created ${clubs.length} real Zdrofit clubs`)
 
   // ============== REQUEST TEMPLATES ==============
   console.log('📝 Creating request templates...')
@@ -275,7 +288,7 @@ async function main() {
   const passwordHash = await hash('demo123', 12)
 
   const users = await Promise.all([
-    // Club Managers (0-4)
+    // Club Managers
     prisma.user.create({
       data: {
         email: 'anna.kowalska@benefit.pl',
@@ -300,23 +313,7 @@ async function main() {
         role: UserRole.CLUB_MANAGER,
       },
     }),
-    prisma.user.create({
-      data: {
-        email: 'tomasz.zielinski@benefit.pl',
-        passwordHash,
-        name: 'Tomasz Zieliński',
-        role: UserRole.CLUB_MANAGER,
-      },
-    }),
-    prisma.user.create({
-      data: {
-        email: 'magdalena.dabrowska@benefit.pl',
-        passwordHash,
-        name: 'Magdalena Dąbrowska',
-        role: UserRole.CLUB_MANAGER,
-      },
-    }),
-    // Validators (5-7)
+    // Validators
     prisma.user.create({
       data: {
         email: 'michal.adamski@benefit.pl',
@@ -333,15 +330,7 @@ async function main() {
         role: UserRole.VALIDATOR,
       },
     }),
-    prisma.user.create({
-      data: {
-        email: 'jan.kowalczyk@benefit.pl',
-        passwordHash,
-        name: 'Jan Kowalczyk',
-        role: UserRole.VALIDATOR,
-      },
-    }),
-    // Production Team (8-10)
+    // Production Team
     prisma.user.create({
       data: {
         email: 'studio@benefit.pl',
@@ -350,23 +339,7 @@ async function main() {
         role: UserRole.PRODUCTION,
       },
     }),
-    prisma.user.create({
-      data: {
-        email: 'marta.grafik@benefit.pl',
-        passwordHash,
-        name: 'Marta Nowicka',
-        role: UserRole.PRODUCTION,
-      },
-    }),
-    prisma.user.create({
-      data: {
-        email: 'partner@reszek.pl',
-        passwordHash,
-        name: 'Reszek Studio',
-        role: UserRole.PRODUCTION,
-      },
-    }),
-    // Admin (11)
+    // Admin
     prisma.user.create({
       data: {
         email: 'admin@benefit.pl',
@@ -379,910 +352,310 @@ async function main() {
 
   // ============== USER-CLUB ASSIGNMENTS ==============
   console.log('🔗 Assigning users to clubs...')
-  await Promise.all([
-    // Manager assignments
-    prisma.userClub.create({ data: { userId: users[0].id, clubId: clubs[0].id, isManager: true } }), // Anna -> Zdrofit Arkadia
-    prisma.userClub.create({ data: { userId: users[1].id, clubId: clubs[1].id, isManager: true } }), // Piotr -> Zdrofit Mokotów
-    prisma.userClub.create({ data: { userId: users[1].id, clubId: clubs[2].id, isManager: true } }), // Piotr -> Złote Tarasy
-    prisma.userClub.create({ data: { userId: users[2].id, clubId: clubs[5].id, isManager: true } }), // Katarzyna -> MFP Marszałkowska
-    prisma.userClub.create({ data: { userId: users[3].id, clubId: clubs[3].id, isManager: true } }), // Tomasz -> Zdrofit Bonarka
-    prisma.userClub.create({ data: { userId: users[3].id, clubId: clubs[4].id, isManager: true } }), // Tomasz -> Galeria Krakowska
-    prisma.userClub.create({ data: { userId: users[4].id, clubId: clubs[7].id, isManager: true } }), // Magdalena -> FF Gdańsk
-    prisma.userClub.create({ data: { userId: users[4].id, clubId: clubs[8].id, isManager: true } }), // Magdalena -> FF Sopot
 
-    // Validator assignments - Michał (Warsaw)
-    prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[0].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[1].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[2].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[5].id, clubId: clubs[5].id, isManager: false } }),
-    // Validator assignments - Ewa (Krakow)
-    prisma.userClub.create({ data: { userId: users[6].id, clubId: clubs[3].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[6].id, clubId: clubs[4].id, isManager: false } }),
-    // Validator assignments - Jan (pozostałe)
-    prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[6].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[7].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[8].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[9].id, isManager: false } }),
-    prisma.userClub.create({ data: { userId: users[7].id, clubId: clubs[10].id, isManager: false } }),
-  ])
+  // Anna manages Warsaw clubs
+  const warsawClubsList = clubs.filter(c => c.city === 'Warszawa').slice(0, 5)
+  for (const club of warsawClubsList) {
+    await prisma.userClub.create({
+      data: { userId: users[0].id, clubId: club.id, isManager: true },
+    })
+  }
 
-  // ============== STRATEGY DOCUMENTS ==============
-  console.log('📚 Creating strategy documents...')
+  // Piotr manages Trójmiasto clubs
+  const trojmiastoClubsList = clubs.filter(c => ['Gdańsk', 'Gdynia', 'Sopot'].includes(c.city)).slice(0, 5)
+  for (const club of trojmiastoClubsList) {
+    await prisma.userClub.create({
+      data: { userId: users[1].id, clubId: club.id, isManager: true },
+    })
+  }
 
-  const globalStrategyContent = `# Kontekst strategiczny sieci fitness - cele i kluczowe założenia
+  // Katarzyna manages other clubs
+  const otherClubs = clubs.filter(c => !['Warszawa', 'Gdańsk', 'Gdynia', 'Sopot'].includes(c.city)).slice(0, 5)
+  for (const club of otherClubs) {
+    await prisma.userClub.create({
+      data: { userId: users[2].id, clubId: club.id, isManager: true },
+    })
+  }
 
-## 1. Zdrofit
+  // Validators have access to all clubs in their regions
+  const warsawRegionClubs = clubs.filter(c => c.regionId === regions[0].id)
+  for (const club of warsawRegionClubs) {
+    await prisma.userClub.create({
+      data: { userId: users[3].id, clubId: club.id, isManager: false },
+    })
+  }
 
-### Profil marki
-Największa sieć fitness w portfolio. Pozycjonowana jako **marka mainstreamowa z dostępną ceną** i szeroką ofertą dla różnych grup wiekowych.
+  const trojmiastoRegionClubs = clubs.filter(c => c.regionId === regions[1].id)
+  for (const club of trojmiastoRegionClubs) {
+    await prisma.userClub.create({
+      data: { userId: users[4].id, clubId: club.id, isManager: false },
+    })
+  }
 
-### Priorytet strategiczny
-**Wzrost liczby członków (akwizycja) przy zachowaniu retencji.**
+  // ============== SAMPLE BRIEFS (Q4 2025 - Q1 2026 activity simulation) ==============
+  console.log('📋 Creating sample briefs to simulate quarterly activity...')
 
-### Kluczowe działania
-- Promocje cenowe (np. "pierwsza składka 1 PLN")
-- Kampanie sezonowe (Nowy Rok, wakacje, Back to School)
-- Dni otwarte i eventy lokalne w klubach
-- Współpraca z lokalnymi społecznościami
+  // Generate briefs for activity simulation
+  const briefsToCreate = []
+  const now = new Date()
 
-### Podejmowanie decyzji o aktywności
-- **TAK** dla akcji zwiększających ruch w klubie i pozyskujących nowych członków
-- **TAK** dla kampanii cenowych z jasnym ROI
-- **OSTROŻNIE** z akcjami premium (to nie jest pozycjonowanie Zdrofit)
-- **NIE** dla akcji wykluczających grupy wiekowe lub demograficzne
+  // Brief descriptions - varied to show alignment differences
+  const briefVariants = [
+    // DOBRZE DOPASOWANE do strategii Zdrofit (retencja, yoga/pilates, wellness)
+    { title: 'Warsztaty Yoga dla Początkujących', context: 'Seria warsztatów wprowadzających do jogi dla nowych członków. Cel: budowanie nawyku regularnych wizyt i integracja z społecznością klubu.', alignment: 'high' },
+    { title: 'Program Pilates Reformer - Nowa Grupa', context: 'Promocja nowych zajęć Pilates Reformer. Komunikacja skierowana do obecnych członków z zachętą do rozszerzenia karnetu.', alignment: 'high' },
+    { title: 'Tydzień Mobility & Stretching', context: 'Event promujący zajęcia regeneracyjne. Cel: zwiększenie frekwencji na zajęciach wellness i budowanie świadomości ich wartości.', alignment: 'high' },
+    { title: 'Cykl Mindfulness & Medytacja', context: 'Wprowadzenie nowych zajęć łączących elementy wellness z medytacją. Dla obecnych klubowiczów szukających holistycznego podejścia do zdrowia.', alignment: 'high' },
+    { title: 'Program Lojalnościowy - Komunikacja', context: 'Materiały informujące o korzyściach programu lojalnościowego. Cel: zwiększenie retencji przez nagradzanie regularności.', alignment: 'high' },
 
----
+    // ŚREDNIO DOPASOWANE (fitness ogólny, nie akwizycja)
+    { title: 'Nowy Grafik Zajęć Grupowych', context: 'Informacja o zmianach w grafiku zajęć. Prośba o grafikę informacyjną do wywieszenia w klubie i na social media.', alignment: 'medium' },
+    { title: 'Trening Funkcjonalny - Nowy Trener', context: 'Przedstawienie nowego trenera prowadzącego zajęcia functional training. Komunikacja do obecnych członków.', alignment: 'medium' },
+    { title: 'Wakacyjne Godziny Otwarcia', context: 'Informacja o zmienionych godzinach pracy klubu w okresie wakacyjnym. Grafika informacyjna.', alignment: 'medium' },
+    { title: 'Strefa Saun - Nowe Zasady', context: 'Komunikat o zaktualizowanych zasadach korzystania ze strefy saun i wellness. Cel: poprawa doświadczenia klubowiczów.', alignment: 'medium' },
+    { title: 'Event Charytatywny w Klubie', context: 'Organizujemy zbiórkę charytatywną podczas zajęć fitness. Potrzebne materiały promocyjne dla obecnych członków.', alignment: 'medium' },
 
-## 2. Fabryka Formy
+    // SŁABO DOPASOWANE (akwizycja, promocje cenowe, HIIT - nie pasuje do strategii Zdrofit)
+    { title: 'Black Friday - Karnet Roczny -50%', context: 'Agresywna promocja akwizycyjna. Cel: pozyskanie maksymalnej liczby nowych członków z rabatem 50% na karnet roczny.', alignment: 'low' },
+    { title: 'Challenge CrossFit - Open Doors', context: 'Event otwarty dla osób spoza klubu. Zawody CrossFit z nagrodami. Cel: pokazanie klubu potencjalnym nowym członkom.', alignment: 'low' },
+    { title: 'Bring a Friend Week', context: 'Tydzień darmowych wejść dla znajomych członków. Promocja akwizycyjna z bonusem dla przyprowadzającego.', alignment: 'low' },
+    { title: 'Karnet Studencki - Promocja', context: 'Specjalna oferta dla studentów - karnet miesięczny za 99 zł. Kampania skierowana na pozyskanie młodych klientów.', alignment: 'low' },
+    { title: 'HIIT Marathon - Zapisy Otwarte', context: 'Intensywny maraton HIIT otwarty dla wszystkich. Promocja klubu w mediach społecznościowych, cel: viralowy zasięg i nowi klienci.', alignment: 'low' },
 
-### Profil marki
-Sieć pozycjonowana wyżej cenowo. Focus na **jakość sprzętu, atmosferę i doświadczenie premium**.
+    // NEUTRALNE (informacyjne, bez wyraźnego kierunku)
+    { title: 'Remont Szatni - Informacja', context: 'Komunikat o tymczasowym zamknięciu części szatni z powodu remontu. Grafika informacyjna.', alignment: 'neutral' },
+    { title: 'Nowe Maszyny Cardio', context: 'Informacja o dostawie nowych bieżni i orbitreki. Grafika do social media i plakatów w klubie.', alignment: 'neutral' },
+    { title: 'Zmiana Recepcjonistów', context: 'Powitanie nowych pracowników recepcji. Grafika przedstawiająca zespół.', alignment: 'neutral' },
+    { title: 'Parking - Nowe Zasady', context: 'Informacja o zmianie zasad parkowania dla członków klubu. Plakat i ulotka.', alignment: 'neutral' },
+    { title: 'Aplikacja Mobilna - Update', context: 'Komunikat o nowej wersji aplikacji mobilnej klubu z nowymi funkcjami rezerwacji zajęć.', alignment: 'neutral' },
+  ]
 
-### Priorytet strategiczny
-**Budowanie lojalności i zwiększanie wartości członka (LTV) poprzez usługi dodatkowe.**
+  // Warsaw region - VERY HIGH activity (green)
+  const warsawBriefClubs = clubs.filter(c => c.regionId === regions[0].id).slice(0, 15)
+  for (let i = 0; i < 45; i++) {
+    const club = warsawBriefClubs[i % warsawBriefClubs.length]
+    const daysAgo = Math.floor(Math.random() * 90)
+    const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+    const variant = briefVariants[i % briefVariants.length]
+    briefsToCreate.push({
+      code: `BRIEF-2025-${String(1000 + i).padStart(4, '0')}`,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status: ['APPROVED', 'APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 5] as BriefStatus,
+      priority: ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority,
+      createdById: users[0].id,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId: templates[i % templates.length].id,
+      createdAt,
+      submittedAt: createdAt,
+    })
+  }
 
-### Kluczowe działania
-- Promowanie treningów personalnych i pakietów premium
-- Content edukacyjny (porady treningowe, odżywianie)
-- Ekskluzywne eventy dla członków
-- Programy lojalnościowe
+  // Trójmiasto region - HIGH activity (light green)
+  const trojmiastoBriefClubs = clubs.filter(c => c.regionId === regions[1].id).slice(0, 10)
+  for (let i = 0; i < 28; i++) {
+    const club = trojmiastoBriefClubs[i % trojmiastoBriefClubs.length]
+    const daysAgo = Math.floor(Math.random() * 90)
+    const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+    const variant = briefVariants[(i + 3) % briefVariants.length] // offset to get different mix
+    briefsToCreate.push({
+      code: `BRIEF-2025-${String(2000 + i).padStart(4, '0')}`,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status: ['APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 4] as BriefStatus,
+      priority: ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority,
+      createdById: users[1].id,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId: templates[i % templates.length].id,
+      createdAt,
+      submittedAt: createdAt,
+    })
+  }
 
-### Podejmowanie decyzji o aktywności
-- **TAK** dla akcji budujących wartość i jakość doświadczenia
-- **TAK** dla contentu edukacyjnego pozycjonującego markę jako eksperta
-- **OSTROŻNIE** z agresywnymi promocjami cenowymi (ryzyko dewaluacji marki)
-- **NIE** dla akcji "taniej" bez dodatkowej wartości
+  // Pomorze Zachodnie - MEDIUM activity (blue)
+  const pomorzeClubs = clubs.filter(c => c.regionId === regions[2].id)
+  for (let i = 0; i < 12; i++) {
+    const club = pomorzeClubs[i % pomorzeClubs.length]
+    const daysAgo = Math.floor(Math.random() * 90)
+    const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+    const variant = briefVariants[(i + 7) % briefVariants.length] // different offset
+    briefsToCreate.push({
+      code: `BRIEF-2025-${String(3000 + i).padStart(4, '0')}`,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status: ['APPROVED', 'SUBMITTED', 'DRAFT'][i % 3] as BriefStatus,
+      priority: ['MEDIUM', 'LOW'][i % 2] as Priority,
+      createdById: users[2].id,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId: templates[i % templates.length].id,
+      createdAt,
+      submittedAt: createdAt,
+    })
+  }
 
----
+  // Kujawsko-Pomorskie - LOW activity (orange)
+  const kujawskoClubsList = clubs.filter(c => c.regionId === regions[3].id)
+  for (let i = 0; i < 5; i++) {
+    const club = kujawskoClubsList[i % kujawskoClubsList.length]
+    const daysAgo = Math.floor(Math.random() * 90)
+    const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+    const variant = briefVariants[(i + 10) % briefVariants.length] // starts from low alignment
+    briefsToCreate.push({
+      code: `BRIEF-2025-${String(4000 + i).padStart(4, '0')}`,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status: ['SUBMITTED', 'DRAFT'][i % 2] as BriefStatus,
+      priority: 'LOW' as Priority,
+      createdById: users[2].id,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId: templates[i % templates.length].id,
+      createdAt,
+      submittedAt: createdAt,
+    })
+  }
 
-## 3. Fitness Academy
+  // Lubelskie - VERY LOW activity (red)
+  const lublinClubsList = clubs.filter(c => c.regionId === regions[4].id)
+  for (let i = 0; i < 2; i++) {
+    const club = lublinClubsList[i % lublinClubsList.length]
+    const daysAgo = Math.floor(Math.random() * 90)
+    const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+    const variant = briefVariants[(i + 15) % briefVariants.length] // neutral variants
+    briefsToCreate.push({
+      code: `BRIEF-2025-${String(5000 + i).padStart(4, '0')}`,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status: 'DRAFT' as BriefStatus,
+      priority: 'LOW' as Priority,
+      createdById: users[2].id,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId: templates[0].id,
+      createdAt,
+      submittedAt: createdAt,
+    })
+  }
 
-### Profil marki
-Sieć skierowana do **młodszej grupy demograficznej** (18-35 lat). Nowoczesna, dynamiczna, social-media friendly.
+  // Other regions - minimal activity with varied content
+  const otherRegionVariants = [
+    { title: 'Yoga Nidra - Nowe Zajęcia', context: 'Wprowadzenie zajęć relaksacyjnych Yoga Nidra. Komunikacja dla obecnych członków szukających głębokiego odprężenia.' },
+    { title: 'Spinning Marathon Charytatywny', context: 'Event spinningowy na rzecz lokalnej fundacji. Cel: integracja społeczności klubowej i działania CSR.' },
+    { title: 'Promocja First Minute Lato', context: 'Wczesna promocja letnich karnetów. Kampania akwizycyjna z rabatem 30% dla nowych członków zapisujących się do końca maja.' },
+    { title: 'Dzień Otwarty - Open Gym', context: 'Dzień bezpłatnych wejść do klubu dla wszystkich. Cel: pozyskanie nowych klientów przez demonstrację oferty.' },
+    { title: 'Stretching po Pracy', context: 'Nowy cykl zajęć rozciągających o 18:00 dla osób pracujących. Komunikacja do obecnych członków o stresującym trybie życia.' },
+  ]
 
-### Priorytet strategiczny
-**Engagement w social media i budowanie społeczności.**
+  const otherRegions = [regions[5], regions[6], regions[7], regions[8], regions[9]]
+  for (const region of otherRegions) {
+    const regionClubs = clubs.filter(c => c.regionId === region.id)
+    if (regionClubs.length > 0) {
+      const club = regionClubs[0]
+      const daysAgo = Math.floor(Math.random() * 90)
+      const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
+      const variant = otherRegionVariants[otherRegions.indexOf(region)]
+      briefsToCreate.push({
+        code: `BRIEF-2025-${String(6000 + otherRegions.indexOf(region)).padStart(4, '0')}`,
+        title: `${variant.title} - ${club.name}`,
+        context: variant.context,
+        deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+        status: 'DRAFT' as BriefStatus,
+        priority: 'LOW' as Priority,
+        createdById: users[2].id,
+        clubId: club.id,
+        brandId: zdrofitBrand.id,
+        templateId: templates[0].id,
+        createdAt,
+        submittedAt: createdAt,
+      })
+    }
+  }
 
-### Kluczowe działania
-- Kampanie influencer marketing
-- Challenges i konkursy w social media
-- Treningi grupowe jako główny produkt
-- Eventy fitness (maratony, zawody)
+  // Create all briefs
+  for (const briefData of briefsToCreate) {
+    await prisma.brief.create({ data: briefData })
+  }
 
-### Podejmowanie decyzji o aktywności
-- **TAK** dla akcji viralowych i angażujących w social media
-- **TAK** dla współpracy z micro-influencerami
-- **TAK** dla eventów budujących społeczność
-- **OSTROŻNIE** z tradycyjnymi formami reklamy (outdoor, prasa)
-- **NIE** dla komunikacji "staromodnej" lub formalnej
+  console.log(`✅ Created ${briefsToCreate.length} sample briefs`)
 
----
-
-## 4. My Fitness Place
-
-### Profil marki
-Sieć **butikowa**, mniejsze kluby w dobrych lokalizacjach. Focus na **personalizację i kameralność**.
-
-### Priorytet strategiczny
-**Retencja i polecenia (referrals).**
-
-### Kluczowe działania
-- Programy poleceń ("Przyprowadź znajomego")
-- Spersonalizowana komunikacja z członkami
-- Eventy kameralne (max 20-30 osób)
-- Feedback i ciągłe doskonalenie doświadczenia
-
-### Podejmowanie decyzji o aktywności
-- **TAK** dla akcji budujących relacje i lojalność
-- **TAK** dla programów referral z atrakcyjnymi nagrodami
-- **TAK** dla małych, ekskluzywnych eventów
-- **OSTROŻNIE** z masowymi kampaniami (nie pasują do pozycjonowania)
-- **NIE** dla akcji "taniej" kosztem jakości doświadczenia
-
----
-
-## 5. Fit Fabric
-
-### Profil marki
-Najnowsza marka w portfolio. Pozycjonowana jako **innowacyjna, technologiczna** (tracking, aplikacja, smart equipment).
-
-### Priorytet strategiczny
-**Testowanie nowych rozwiązań i budowanie wizerunku innowatora.**
-
-### Kluczowe działania
-- Promocja funkcji aplikacji i technologii
-- Eventy pokazowe nowego sprzętu
-- Content o trendach fitness i technologii
-- Beta-testing nowych usług z członkami
-
-### Podejmowanie decyzji o aktywności
-- **TAK** dla akcji podkreślających innowacyjność
-- **TAK** dla early-adopter programów
-- **TAK** dla contentu edukacyjnego o technologii w fitness
-- **OSTROŻNIE** z tradycyjnymi promocjami (to nie jest core positioning)
-- **NIE** dla komunikacji, która nie wspiera wizerunku innowatora
-
----
-
-## Ogólne zasady dla wszystkich marek
-
-### Hierarchia celów
-1. **Cele strategiczne (globalne)** - wyznaczane przez CMO/Admin
-2. **Cele regionalne** - wyznaczane przez Dyrektorów Regionalnych (węższy zakres)
-3. **Inicjatywy lokalne** - zgłaszane przez managerów klubów
-
-### Wskazówki dla managerów regionalnych
-System powinien sugerować kierunki działań, ale **nie narzucać konkretnych rozwiązań**. Manager regionalny zna lokalny kontekst najlepiej i powinien mieć swobodę w adaptacji strategii do lokalnych warunków.
-
-### Ocena aktywności
-Każda aktywność powinna być oceniana pod kątem:
-- Zgodności z pozycjonowaniem marki
-- Wpływu na KPI (akwizycja, retencja, LTV)
-- Efektywności kosztowej
-- Ryzyka wizerunkowego`
-
-  await prisma.strategyDocument.create({
+  // ============== SALES FOCUS ==============
+  console.log('🎯 Creating sales focus...')
+  await prisma.salesFocus.create({
     data: {
-      title: 'Strategia komunikacji marek fitness - Q1 2025',
-      description: 'Główny dokument strategiczny określający cele i podejście do komunikacji dla wszystkich marek w portfolio sieci fitness.',
-      type: StrategyDocumentType.COMMUNICATION_STRATEGY,
-      scope: StrategyDocumentScope.GLOBAL,
-      content: globalStrategyContent,
-      validFrom: new Date('2025-01-01'),
-      validUntil: new Date('2025-12-31'),
-      version: 1,
-      isActive: true,
-      createdById: users[11].id, // Admin
+      title: 'Akwizycja Q1 2026 - Noworoczne postanowienia',
+      description: 'Główny cel na Q1: maksymalizacja nowych zapisów wykorzystując sezon noworoczny. Focus na karnety roczne i półroczne z atrakcyjnymi warunkami.',
+      period: FocusPeriod.QUARTERLY,
+      startDate: new Date('2026-01-01'),
+      endDate: new Date('2026-03-31'),
+      brandId: zdrofitBrand.id,
+      createdById: users[3].id,
     },
   })
 
-  // Brand-specific strategy documents
-  await Promise.all([
-    prisma.strategyDocument.create({
-      data: {
-        title: 'Zdrofit - Wytyczne marki 2025',
-        description: 'Szczegółowe wytyczne dla marki Zdrofit - ton komunikacji, wartości, do/dont.',
-        type: StrategyDocumentType.BRAND_GUIDELINES,
-        scope: StrategyDocumentScope.BRAND,
-        brandId: brands[0].id,
-        content: `# Zdrofit - Wytyczne marki
+  // ============== STRATEGY DOCUMENT ==============
+  console.log('📜 Creating strategy document...')
+  await prisma.strategyDocument.create({
+    data: {
+      title: 'Wytyczne strategiczne marek 2026',
+      description: 'Główne kierunki strategiczne dla wszystkich marek na rok 2026',
+      type: StrategyDocumentType.BRAND_GUIDELINES,
+      scope: StrategyDocumentScope.GLOBAL,
+      content: `# Wytyczne strategiczne marek 2026
 
-## Ton komunikacji
-- Przyjazny i przystępny
-- Motywujący bez bycia nachalnym
-- Inkluzywny - dla każdego, niezależnie od poziomu zaawansowania
+## 1. Zdrofit
 
-## Wartości marki
-- Dostępność
-- Różnorodność oferty
-- Społeczność lokalna
-- Zdrowy styl życia dla wszystkich
+**Priorytet strategiczny:**
+- retencja i LTV,
+- wysoka jakość doświadczenia klubowicza.
 
-## DO
-- Używaj prostego, zrozumiałego języka
-- Pokazuj różnorodność członków (wiek, płeć, poziom)
-- Podkreślaj atmosferę i społeczność
-- Komunikuj promocje cenowe jasno
+**Kluczowe zajęcia (rdzeń oferty):**
+- Yoga / Pilates
+- Mobility / Stretching
 
-## DON'T
-- Nie używaj żargonu fitness dla zaawansowanych
-- Nie pokazuj tylko "idealnych ciał"
-- Nie komunikuj ekskluzywności
-- Nie pomijaj informacji o cenach w promocjach`,
-        validFrom: new Date('2025-01-01'),
-        isActive: true,
-        createdById: users[11].id,
-      },
-    }),
-    prisma.strategyDocument.create({
-      data: {
-        title: 'Fabryka Formy - Wytyczne marki 2025',
-        description: 'Szczegółowe wytyczne dla marki Fabryka Formy - pozycjonowanie premium.',
-        type: StrategyDocumentType.BRAND_GUIDELINES,
-        scope: StrategyDocumentScope.BRAND,
-        brandId: brands[2].id,
-        content: `# Fabryka Formy - Wytyczne marki
+**Jak myśleć decyzyjnie:**
+- decyzje mają wzmacniać komfort, zdrowie i regularność,
+- zajęcia są argumentem utrzymaniowym, nie promocyjnym.
 
-## Ton komunikacji
-- Profesjonalny i ekspercki
-- Aspiracyjny, ale nie wywyższający się
-- Skupiony na jakości i rezultatach
+---
 
-## Wartości marki
-- Jakość ponad ilość
-- Eksperckość trenerów
-- Premium doświadczenie
-- Rezultaty i transformacja
+## 2. My Fitness Place
 
-## DO
-- Podkreślaj jakość sprzętu i trenerów
-- Pokazuj transformacje i historie sukcesu
-- Używaj profesjonalnej terminologii (z wyjaśnieniami)
-- Komunikuj wartość dodaną usług premium
+**Priorytet strategiczny:**
+- akwizycja młodych profesjonalistów (25-40 lat),
+- pozycjonowanie premium w segmencie corporate wellness.
 
-## DON'T
-- Nie konkuruj ceną
-- Nie używaj tanich promocji ("wszystko za 1 PLN")
-- Nie komunikuj masowości
-- Nie pomijaj aspektu eksperckiego`,
-        validFrom: new Date('2025-01-01'),
-        isActive: true,
-        createdById: users[11].id,
-      },
-    }),
-    prisma.strategyDocument.create({
-      data: {
-        title: 'Fitness Academy - Wytyczne marki 2025',
-        description: 'Wytyczne dla marki Fitness Academy - młoda, dynamiczna społeczność.',
-        type: StrategyDocumentType.BRAND_GUIDELINES,
-        scope: StrategyDocumentScope.BRAND,
-        brandId: brands[4].id,
-        content: `# Fitness Academy - Wytyczne marki
+**Kluczowe zajęcia:**
+- HIIT / Functional Training
+- Spinning / Indoor Cycling
 
-## Ton komunikacji
-- Energiczny i dynamiczny
-- Młodzieżowy, ale nie infantylny
-- Social-media native
-- Motywujący przez fun
+**Jak myśleć decyzyjnie:**
+- komunikacja aspiracyjna, lifestyle-oriented,
+- partnerstwa z firmami technologicznymi i startupami.`,
+      version: 1,
+      isActive: true,
+      validFrom: new Date('2026-01-01'),
+      createdById: users[6].id,
+    },
+  })
 
-## Wartości marki
-- Społeczność i wspólne treningi
-- Energia i pozytywne vibes
-- Trendy fitness
-- Dostępność dla młodych
-
-## DO
-- Używaj języka social media (ale z umiarem)
-- Pokazuj treningi grupowe i energię
-- Angażuj influencerów i ambasadorów
-- Twórz content "shareable"
-
-## DON'T
-- Nie bądź formalny ani "korporacyjny"
-- Nie pomijaj treningów grupowych
-- Nie ignoruj trendów
-- Nie komunikuj się jak "stare" marki fitness`,
-        validFrom: new Date('2025-01-01'),
-        isActive: true,
-        createdById: users[11].id,
-      },
-    }),
-  ])
-
-  console.log('   - Created 1 global strategy document')
-  console.log('   - Created 3 brand-specific guidelines')
-
-  // ============== SALES FOCUSES ==============
-  console.log('🎯 Creating sales focuses...')
-  const now = new Date()
-  const inDays = (days: number) => new Date(now.getTime() + days * 24 * 60 * 60 * 1000)
-  const daysAgo = (days: number) => new Date(now.getTime() - days * 24 * 60 * 60 * 1000)
-
-  await Promise.all([
-    // Strategic (global) focus
-    prisma.salesFocus.create({
-      data: {
-        title: 'Akwizycja Q1 2025 - Noworoczne postanowienia',
-        description: 'Główny cel na Q1: maksymalizacja nowych zapisów wykorzystując sezon noworoczny. Focus na karnety roczne i półroczne z atrakcyjnymi warunkami.',
-        period: FocusPeriod.QUARTERLY,
-        startDate: daysAgo(10),
-        endDate: inDays(80),
-        createdById: users[11].id,
-        isActive: true,
-      },
-    }),
-    // Regional focus - Warsaw
-    prisma.salesFocus.create({
-      data: {
-        title: 'Promocja Premium w Warszawie',
-        description: 'Kampania skierowana do segmentu premium w Warszawie. Podkreślamy jakość sprzętu i trenerów personalnych.',
-        period: FocusPeriod.MONTHLY,
-        startDate: daysAgo(5),
-        endDate: inDays(25),
-        regionId: regions[0].id,
-        createdById: users[5].id,
-        isActive: true,
-      },
-    }),
-    // Regional focus - Krakow
-    prisma.salesFocus.create({
-      data: {
-        title: 'Studenci - Kraków',
-        description: 'Promocja dla studentów krakowskich uczelni. Karnet studencki -30% + darmowy personal training na start.',
-        period: FocusPeriod.MONTHLY,
-        startDate: daysAgo(3),
-        endDate: inDays(27),
-        regionId: regions[1].id,
-        createdById: users[6].id,
-        isActive: true,
-      },
-    }),
-    // Brand focus - Zdrofit
-    prisma.salesFocus.create({
-      data: {
-        title: 'Zdrofit Family - rodziny z dziećmi',
-        description: 'Promocja karnetów rodzinnych. Dzieci do 14 lat ćwiczą za 50% ceny przy karnecie rodzica.',
-        period: FocusPeriod.MONTHLY,
-        startDate: daysAgo(7),
-        endDate: inDays(23),
-        brandId: brands[0].id,
-        createdById: users[5].id,
-        isActive: true,
-      },
-    }),
-    // Brand focus - My Fitness Place
-    prisma.salesFocus.create({
-      data: {
-        title: 'MFP Corporate Wellness',
-        description: 'Pozyskiwanie klientów korporacyjnych. Pakiety firmowe z rabatami grupowymi.',
-        period: FocusPeriod.QUARTERLY,
-        startDate: daysAgo(15),
-        endDate: inDays(75),
-        brandId: brands[1].id,
-        createdById: users[5].id,
-        isActive: true,
-      },
-    }),
-  ])
-
-  // ============== BRIEFS - RÓŻNE STATUSY ==============
-  console.log('📋 Creating briefs with various statuses...')
-  let briefCounter = 1
-  const generateBriefCode = () => {
-    const code = `BRIEF-2025-${String(briefCounter).padStart(4, '0')}`
-    briefCounter++
-    return code
-  }
-
-  // ---------- SUBMITTED - do zatwierdzenia przez walidatora ----------
-  const submittedBriefs = await Promise.all([
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[0].id,
-        clubId: clubs[0].id,
-        brandId: brands[0].id,
-        templateId: templates[4].id,
-        status: BriefStatus.SUBMITTED,
-        priority: Priority.HIGH,
-        title: 'Kampania Noworoczna - Nowy Ty 2025',
-        objective: Objective.ACQUISITION,
-        kpiDescription: '80 nowych karnetów rocznych',
-        kpiTarget: 80,
-        deadline: inDays(7),
-        startDate: inDays(10),
-        endDate: inDays(45),
-        context: 'Największa kampania roku! Sezon noworoczny to nasza główna szansa na pozyskanie nowych członków. Arkadia to flagship, więc musimy dać przykład innym klubom.',
-        offerDetails: 'Karnet roczny -25% (1499 PLN zamiast 1999 PLN). Karnet półroczny -20%. Darmowy personal training na start (3 sesje). Torba sportowa premium gratis.',
-        legalCopy: 'Promocja ważna do 31.01.2025 lub do wyczerpania puli 100 karnetów.',
-        customFields: { campaignName: 'Nowy Ty 2025', channels: ['facebook', 'instagram', 'google_ads', 'plakaty'] },
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(1),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[1].id,
-        clubId: clubs[1].id,
-        brandId: brands[0].id,
-        templateId: templates[1].id,
-        status: BriefStatus.SUBMITTED,
-        priority: Priority.MEDIUM,
-        title: 'Plakaty - Walentynkowy Trening w Parach',
-        objective: Objective.ATTENDANCE,
-        kpiDescription: '40 par na wydarzeniu',
-        kpiTarget: 40,
-        deadline: inDays(5),
-        startDate: inDays(20),
-        endDate: inDays(21),
-        context: 'Coroczna tradycja - trening walentynkowy. W zeszłym roku mieliśmy 25 par, w tym roku chcemy więcej.',
-        offerDetails: 'Trening w parach GRATIS dla członków + partner bez karnetu. 14.02, godz. 18:00-20:00.',
-        customFields: { printFormats: ['A3', 'A2'], quantity: '11-50' },
-        confidenceLevel: ConfidenceLevel.MEDIUM,
-        submittedAt: daysAgo(2),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[2].id,
-        clubId: clubs[5].id,
-        brandId: brands[1].id,
-        templateId: templates[0].id,
-        status: BriefStatus.SUBMITTED,
-        priority: Priority.HIGH,
-        title: 'Post FB/IG - Nowy trener personalny',
-        objective: Objective.AWARENESS,
-        kpiDescription: 'Minimum 50 zapisów na konsultacje',
-        kpiTarget: 50,
-        deadline: inDays(3),
-        startDate: inDays(5),
-        endDate: inDays(35),
-        context: 'Zatrudniliśmy Marka Kowalskiego - byłego reprezentanta Polski w kulturystyce. To świetna okazja promocyjna!',
-        offerDetails: 'Darmowa konsultacja z Markiem dla nowych i obecnych członków. Pakiet 10 treningów personalnych -15%.',
-        customFields: { channels: ['facebook', 'instagram_feed', 'instagram_stories'] },
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: now,
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[3].id,
-        clubId: clubs[3].id,
-        brandId: brands[0].id,
-        templateId: templates[3].id,
-        status: BriefStatus.SUBMITTED,
-        priority: Priority.CRITICAL,
-        title: 'PILNE: Awaria klimatyzacji - info',
-        objective: Objective.OTHER,
-        kpiDescription: 'Poinformować wszystkich członków',
-        deadline: inDays(1),
-        startDate: now,
-        endDate: inDays(3),
-        context: 'Awaria klimatyzacji w strefie cardio. Naprawa potrwa 2-3 dni. Musimy pilnie poinformować członków.',
-        offerDetails: 'Strefa cardio tymczasowo nieczynna. Przepraszamy za utrudnienia. Alternatywnie zapraszamy na zajęcia grupowe.',
-        isCrisisCommunication: true,
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: now,
-      },
-    }),
-  ])
-
-  // ---------- APPROVED - w produkcji ----------
-  const approvedBriefs = await Promise.all([
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[0].id,
-        clubId: clubs[0].id,
-        brandId: brands[0].id,
-        templateId: templates[2].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.CRITICAL,
-        title: 'Dzień Otwarty - Nowa Strefa Functional',
-        objective: Objective.ACQUISITION,
-        kpiDescription: '150 uczestników, 30 nowych karnetów',
-        kpiTarget: 150,
-        deadline: inDays(4),
-        startDate: inDays(14),
-        endDate: inDays(14),
-        context: 'Otwarcie nowej strefy functional training po remoncie za 800k PLN. Największa inwestycja w tym roku!',
-        offerDetails: 'Darmowe treningi pokazowe co godzinę 10:00-18:00. Dla uczestników -30% na pierwszy miesiąc.',
-        customFields: { eventName: 'Otwarcie Strefy Functional', eventDate: inDays(14).toISOString().split('T')[0] },
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(5),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[4].id,
-        clubId: clubs[7].id,
-        brandId: brands[2].id,
-        templateId: templates[0].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.MEDIUM,
-        title: 'Post - Zimowe treningi na plaży',
-        objective: Objective.ATTENDANCE,
-        kpiDescription: '25 uczestników na każdym treningu',
-        kpiTarget: 25,
-        deadline: inDays(6),
-        startDate: inDays(10),
-        endDate: inDays(60),
-        context: 'Organizujemy zimowe treningi outdoor na plaży w Gdańsku. Wyjątkowa atrakcja dla hartownych!',
-        offerDetails: 'Soboty 10:00, plaża przy molo. Darmowe dla członków, dla gości 30 PLN.',
-        confidenceLevel: ConfidenceLevel.MEDIUM,
-        submittedAt: daysAgo(3),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[1].id,
-        clubId: clubs[2].id,
-        brandId: brands[0].id,
-        templateId: templates[1].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.LOW,
-        title: 'Ulotka - Grafik zajęć Q1',
-        objective: Objective.AWARENESS,
-        kpiDescription: 'Rozdać 500 ulotek',
-        deadline: inDays(8),
-        startDate: inDays(12),
-        endDate: inDays(90),
-        context: 'Nowy grafik zajęć grupowych na Q1. Dodaliśmy 5 nowych klas.',
-        offerDetails: 'Nowe zajęcia: Pilates Advance, HIIT Extreme, Yoga Flow, Dance Cardio, TRX Intro',
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(4),
-      },
-    }),
-  ])
-
-  // ---------- CHANGES_REQUESTED - do poprawy ----------
-  const changesRequestedBriefs = await Promise.all([
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[3].id,
-        clubId: clubs[4].id,
-        brandId: brands[0].id,
-        templateId: templates[0].id,
-        status: BriefStatus.CHANGES_REQUESTED,
-        priority: Priority.MEDIUM,
-        title: 'Post - Promocja na saunę',
-        objective: Objective.UPSELL,
-        kpiDescription: '20 nowych pakietów SPA',
-        kpiTarget: 20,
-        deadline: inDays(5),
-        startDate: inDays(8),
-        endDate: inDays(38),
-        context: 'Chcemy promować nasz pakiet SPA z dostępem do sauny.',
-        offerDetails: 'Pakiet SPA -20% przy zakupie z karnetem.',
-        confidenceLevel: ConfidenceLevel.MEDIUM,
-        submittedAt: daysAgo(3),
-      },
-    }),
-  ])
-
-  // ---------- DELIVERED - zrealizowane, do oceny ----------
-  const deliveredBriefs = await Promise.all([
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[2].id,
-        clubId: clubs[5].id,
-        brandId: brands[1].id,
-        templateId: templates[4].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.HIGH,
-        title: 'Kampania Black Week 2024',
-        objective: Objective.ACQUISITION,
-        kpiDescription: '60 nowych karnetów',
-        kpiTarget: 60,
-        deadline: daysAgo(10),
-        startDate: daysAgo(20),
-        endDate: daysAgo(5),
-        context: 'Black Week kampania - największa promocja roku.',
-        offerDetails: 'Wszystkie karnety -40%. Tylko 5 dni!',
-        outcome: Outcome.POSITIVE,
-        outcomeNote: 'Przekroczyliśmy cel - 78 nowych karnetów!',
-        actualKpiValue: 78,
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(25),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[0].id,
-        clubId: clubs[0].id,
-        brandId: brands[0].id,
-        templateId: templates[0].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.MEDIUM,
-        title: 'Post - Świąteczne życzenia',
-        objective: Objective.RETENTION,
-        deadline: daysAgo(15),
-        startDate: daysAgo(18),
-        endDate: daysAgo(14),
-        context: 'Świąteczne życzenia dla społeczności.',
-        offerDetails: 'Grafika ze świątecznymi życzeniami.',
-        outcome: Outcome.NEUTRAL,
-        outcomeNote: 'Standardowy engagement.',
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(22),
-      },
-    }),
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[4].id,
-        clubId: clubs[8].id,
-        brandId: brands[2].id,
-        templateId: templates[2].id,
-        status: BriefStatus.APPROVED,
-        priority: Priority.HIGH,
-        title: 'Event - Maraton Fitness Sopot',
-        objective: Objective.AWARENESS,
-        kpiDescription: '80 uczestników',
-        kpiTarget: 80,
-        deadline: daysAgo(8),
-        startDate: daysAgo(12),
-        endDate: daysAgo(12),
-        context: 'Całodniowy maraton fitness w Sopocie.',
-        offerDetails: '12 godzin zajęć non-stop! Wstęp 50 PLN, członkowie gratis.',
-        outcome: Outcome.POSITIVE,
-        outcomeNote: 'Super event! 95 uczestników, świetne opinie.',
-        actualKpiValue: 95,
-        confidenceLevel: ConfidenceLevel.HIGH,
-        submittedAt: daysAgo(18),
-      },
-    }),
-  ])
-
-  // ---------- DRAFT - szkice ----------
-  await Promise.all([
-    prisma.brief.create({
-      data: {
-        code: generateBriefCode(),
-        createdById: users[1].id,
-        clubId: clubs[1].id,
-        brandId: brands[0].id,
-        templateId: templates[0].id,
-        status: BriefStatus.DRAFT,
-        priority: Priority.LOW,
-        title: 'Post - Wiosenna promocja (szkic)',
-        objective: Objective.ACQUISITION,
-        deadline: inDays(30),
-        context: 'Planowana kampania wiosenna...',
-      },
-    }),
-  ])
-
-  // ============== APPROVALS ==============
-  console.log('✅ Creating approvals...')
-  await Promise.all([
-    // Approved briefs
-    prisma.approval.create({
-      data: {
-        briefId: approvedBriefs[0].id,
-        validatorId: users[5].id,
-        decision: 'APPROVED',
-        notes: 'Świetny brief! Priorytet CRITICAL uzasadniony - to nasza największa inwestycja. Realizacja ASAP.',
-      },
-    }),
-    prisma.approval.create({
-      data: {
-        briefId: approvedBriefs[1].id,
-        validatorId: users[7].id,
-        decision: 'APPROVED',
-        notes: 'Ciekawa inicjatywa. Akceptuję.',
-      },
-    }),
-    prisma.approval.create({
-      data: {
-        briefId: approvedBriefs[2].id,
-        validatorId: users[5].id,
-        decision: 'APPROVED',
-        notes: 'OK, prosty brief.',
-      },
-    }),
-    // Changes requested
-    prisma.approval.create({
-      data: {
-        briefId: changesRequestedBriefs[0].id,
-        validatorId: users[6].id,
-        decision: 'CHANGES_REQUESTED',
-        notes: 'Proszę doprecyzować: 1) Czy promocja dotyczy nowych klientów czy też obecnych? 2) Dodaj info o dostępności sauny (godziny). 3) Sprawdź czy mamy zdjęcia strefy SPA do wykorzystania.',
-      },
-    }),
-    // Delivered briefs
-    prisma.approval.create({
-      data: {
-        briefId: deliveredBriefs[0].id,
-        validatorId: users[5].id,
-        decision: 'APPROVED',
-        notes: 'Black Week - kluczowa kampania. Zatwierdzam.',
-      },
-    }),
-    prisma.approval.create({
-      data: {
-        briefId: deliveredBriefs[1].id,
-        validatorId: users[5].id,
-        decision: 'APPROVED',
-        notes: 'OK',
-      },
-    }),
-    prisma.approval.create({
-      data: {
-        briefId: deliveredBriefs[2].id,
-        validatorId: users[7].id,
-        decision: 'APPROVED',
-        notes: 'Maraton to super pomysł! Powodzenia.',
-      },
-    }),
-  ])
-
-  // ============== PRODUCTION TASKS ==============
-  console.log('🔧 Creating production tasks...')
-  const productionTasks = await Promise.all([
-    // QUEUED
-    prisma.productionTask.create({
-      data: {
-        briefId: approvedBriefs[2].id,
-        status: TaskStatus.QUEUED,
-        slaDays: 5,
-        dueDate: inDays(8),
-        notes: 'Prosta ulotka, niski priorytet.',
-      },
-    }),
-    // IN_PROGRESS
-    prisma.productionTask.create({
-      data: {
-        briefId: approvedBriefs[0].id,
-        assigneeId: users[8].id,
-        status: TaskStatus.IN_PROGRESS,
-        slaDays: 5,
-        dueDate: inDays(4),
-        notes: 'PRIORYTET! Dzień otwarty - wszystkie materiały potrzebne na raz.',
-      },
-    }),
-    prisma.productionTask.create({
-      data: {
-        briefId: approvedBriefs[1].id,
-        assigneeId: users[9].id,
-        status: TaskStatus.IN_PROGRESS,
-        slaDays: 3,
-        dueDate: inDays(6),
-        notes: 'Zimowe treningi outdoor.',
-      },
-    }),
-    // IN_REVIEW
-    prisma.productionTask.create({
-      data: {
-        briefId: deliveredBriefs[1].id,
-        assigneeId: users[9].id,
-        status: TaskStatus.IN_REVIEW,
-        slaDays: 2,
-        dueDate: daysAgo(15),
-        notes: 'Świąteczna grafika - do akceptacji.',
-      },
-    }),
-    // DELIVERED
-    prisma.productionTask.create({
-      data: {
-        briefId: deliveredBriefs[0].id,
-        assigneeId: users[8].id,
-        status: TaskStatus.DELIVERED,
-        slaDays: 7,
-        dueDate: daysAgo(10),
-        notes: 'Black Week - wszystkie materiały dostarczone.',
-      },
-    }),
-    prisma.productionTask.create({
-      data: {
-        briefId: deliveredBriefs[2].id,
-        assigneeId: users[10].id,
-        status: TaskStatus.DELIVERED,
-        slaDays: 5,
-        dueDate: daysAgo(8),
-        notes: 'Maraton Sopot - zrealizowane.',
-      },
-    }),
-  ])
-
-  // ============== DELIVERABLES ==============
-  console.log('📦 Creating deliverables...')
-  await Promise.all([
-    // Black Week deliverables
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[4].id,
-        name: 'Post Facebook - Black Week główny',
-        type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/black-week-fb-main',
-        version: 2,
-        isApproved: true,
-        changeNotes: 'v2 - poprawiony CTA',
-      },
-    }),
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[4].id,
-        name: 'Post Instagram - Black Week',
-        type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/black-week-ig',
-        version: 1,
-        isApproved: true,
-      },
-    }),
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[4].id,
-        name: 'Stories set - Black Week',
-        type: 'stories',
-        fileUrl: 'https://drive.google.com/file/d/black-week-stories',
-        version: 1,
-        isApproved: true,
-      },
-    }),
-    // Maraton deliverables
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[5].id,
-        name: 'Plakat A2 - Maraton Fitness',
-        type: 'print',
-        fileUrl: 'https://drive.google.com/file/d/maraton-plakat-a2',
-        version: 1,
-        isApproved: true,
-      },
-    }),
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[5].id,
-        name: 'Post FB - Maraton',
-        type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/maraton-fb',
-        version: 1,
-        isApproved: true,
-      },
-    }),
-    // In review deliverable
-    prisma.deliverable.create({
-      data: {
-        taskId: productionTasks[3].id,
-        name: 'Post świąteczny',
-        type: 'social_post',
-        fileUrl: 'https://drive.google.com/file/d/xmas-post',
-        version: 1,
-        isApproved: false,
-        changeNotes: 'Do sprawdzenia przez managera.',
-      },
-    }),
-  ])
-
-  // ============== SUMMARY ==============
-  console.log('')
-  console.log('✅ Demo seed completed successfully!')
-  console.log('')
-  console.log('📊 Created:')
-  console.log(`   - ${regions.length} regions`)
-  console.log(`   - ${brands.length} brands`)
-  console.log(`   - ${clubs.length} clubs`)
-  console.log(`   - ${templates.length} templates`)
-  console.log(`   - ${users.length} users`)
-  console.log(`   - 4 strategy documents (1 global + 3 brand guidelines)`)
-  console.log(`   - 5 sales focuses (targets)`)
-  console.log(`   - ${submittedBriefs.length} briefs SUBMITTED (do zatwierdzenia)`)
-  console.log(`   - ${approvedBriefs.length} briefs APPROVED (w produkcji)`)
-  console.log(`   - ${changesRequestedBriefs.length} briefs CHANGES_REQUESTED`)
-  console.log(`   - ${deliveredBriefs.length} briefs DELIVERED (zrealizowane)`)
-  console.log(`   - ${productionTasks.length} production tasks`)
-  console.log('')
-  console.log('🔐 Test accounts (password: demo123):')
-  console.log('')
-  console.log('   📝 Club Managers:')
-  console.log('   - anna.kowalska@benefit.pl (Zdrofit Arkadia - FLAGSHIP)')
-  console.log('   - piotr.nowak@benefit.pl (Zdrofit Mokotów, Złote Tarasy)')
-  console.log('   - katarzyna.wiszniewska@benefit.pl (MFP Marszałkowska)')
-  console.log('   - tomasz.zielinski@benefit.pl (Zdrofit Kraków)')
-  console.log('   - magdalena.dabrowska@benefit.pl (FF Gdańsk, Sopot)')
-  console.log('')
-  console.log('   ✅ Validators:')
-  console.log('   - michal.adamski@benefit.pl (Warszawa - 4 briefy do zatwierdzenia)')
-  console.log('   - ewa.mazur@benefit.pl (Kraków)')
-  console.log('   - jan.kowalczyk@benefit.pl (pozostałe regiony)')
-  console.log('')
-  console.log('   🎨 Production:')
-  console.log('   - studio@benefit.pl (Studio Kreacji BS)')
-  console.log('   - marta.grafik@benefit.pl (Marta Nowicka)')
-  console.log('   - partner@reszek.pl (Reszek Studio)')
-  console.log('')
-  console.log('   👑 Admin:')
-  console.log('   - admin@benefit.pl')
-  console.log('')
+  console.log('✅ Seed completed successfully!')
+  console.log(`
+📊 Summary:
+- Regions: ${regions.length}
+- Brands: ${brands.length}
+- Clubs: ${clubs.length} (real Zdrofit locations)
+- Users: ${users.length}
+- Templates: ${templates.length}
+- Briefs: ${briefsToCreate.length}
+  `)
 }
 
 main()

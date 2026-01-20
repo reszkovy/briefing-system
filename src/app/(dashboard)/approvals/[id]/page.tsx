@@ -21,6 +21,13 @@ export default async function ApprovalDetailPage({
 
   const { id } = await params
 
+  // Get clubs the validator has access to
+  const userClubs = await prisma.userClub.findMany({
+    where: { userId: session.user.id },
+    select: { clubId: true },
+  })
+  const clubIds = userClubs.map((uc) => uc.clubId)
+
   const brief = await prisma.brief.findUnique({
     where: { id },
     include: {
@@ -91,6 +98,30 @@ export default async function ApprovalDetailPage({
   const customFields = brief.customFields as Record<string, unknown> | null
   const templateSchema = brief.template.requiredFields as unknown as TemplateSchema
 
+  // Get all pending briefs for keyboard navigation
+  const pendingBriefs = await prisma.brief.findMany({
+    where: {
+      status: 'SUBMITTED',
+      clubId: { in: clubIds },
+    },
+    select: {
+      id: true,
+      code: true,
+      title: true,
+    },
+    orderBy: { submittedAt: 'desc' },
+  })
+
+  // Find current index and adjacent briefs
+  const currentIndex = pendingBriefs.findIndex((b) => b.id === id)
+  const navigationData = {
+    currentIndex,
+    total: pendingBriefs.length,
+    prevBriefId: currentIndex > 0 ? pendingBriefs[currentIndex - 1].id : null,
+    nextBriefId: currentIndex < pendingBriefs.length - 1 ? pendingBriefs[currentIndex + 1].id : null,
+    allBriefs: pendingBriefs.map((b) => ({ id: b.id, code: b.code, title: b.title })),
+  }
+
   // Get active strategy documents for alignment check
   const strategyDocuments = await prisma.strategyDocument.findMany({
     where: { isActive: true },
@@ -134,6 +165,7 @@ export default async function ApprovalDetailPage({
       customFields={customFields}
       templateSchema={templateSchema}
       strategyDocuments={formattedStrategy}
+      navigation={navigationData}
     />
   )
 }

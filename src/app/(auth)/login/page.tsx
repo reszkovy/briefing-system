@@ -13,7 +13,8 @@ interface DemoUser {
   color: string
 }
 
-const demoUsers: DemoUser[] = [
+// MVP roles - fully implemented
+const mvpUsers: DemoUser[] = [
   {
     email: 'anna.kowalska@benefit.pl',
     name: 'Anna Kowalska',
@@ -29,18 +30,22 @@ const demoUsers: DemoUser[] = [
     color: 'bg-orange-500',
   },
   {
-    email: 'studio@benefit.pl',
-    name: 'Studio Graficzne',
-    role: 'PRODUCTION',
-    description: 'Zespół Produkcji - realizuje zatwierdzone briefy',
-    color: 'bg-blue-500',
-  },
-  {
     email: 'admin@benefit.pl',
     name: 'Administrator',
     role: 'ADMIN',
     description: 'Admin - zarządza systemem, klubami i użytkownikami',
     color: 'bg-purple-500',
+  },
+]
+
+// Future phase - production team
+const futureUsers: DemoUser[] = [
+  {
+    email: 'studio@benefit.pl',
+    name: 'Studio Graficzne',
+    role: 'PRODUCTION',
+    description: 'Zespół Produkcji - realizuje zatwierdzone briefy',
+    color: 'bg-blue-500',
   },
 ]
 
@@ -98,12 +103,15 @@ export default function LoginPage() {
           </div>
         )}
 
+        {/* MVP Section */}
         <div className="space-y-4">
-          <p className="text-sm font-medium text-[#2b3b82] text-center">
-            Wybierz role do zalogowania:
-          </p>
+          <div className="flex items-center gap-2 justify-center">
+            <span className="px-3 py-1 bg-[#daff47] text-[#2b3b82] text-xs font-bold rounded-full">
+              ZAKRES MVP
+            </span>
+          </div>
 
-          {demoUsers.map((user) => (
+          {mvpUsers.map((user) => (
             <button
               key={user.email}
               onClick={() => handleDemoLogin(user)}
@@ -125,6 +133,43 @@ export default function LoginPage() {
                 <div className="w-6 h-6 border-2 border-[#2b3b82] border-t-transparent rounded-full animate-spin" />
               ) : (
                 <svg className="w-6 h-6 text-[#2b3b82]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Future Phase Section */}
+        <div className="space-y-3 pt-4 border-t border-[#2b3b82]/10">
+          <div className="flex items-center gap-2 justify-center">
+            <span className="px-3 py-1 bg-gray-200 text-gray-500 text-xs font-bold rounded-full">
+              POZNIEJSZY ETAP
+            </span>
+          </div>
+
+          {futureUsers.map((user) => (
+            <button
+              key={user.email}
+              onClick={() => handleDemoLogin(user)}
+              disabled={loading !== null}
+              className={`w-full flex items-center gap-4 p-4 border-2 rounded-xl transition-all opacity-60 ${
+                loading === user.email
+                  ? 'border-gray-300 bg-gray-50'
+                  : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+              } disabled:opacity-40`}
+            >
+              <div className="w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                {user.name.charAt(0)}
+              </div>
+              <div className="flex-1 text-left">
+                <p className="font-semibold text-gray-500">{user.name}</p>
+                <p className="text-sm text-gray-400">{user.description}</p>
+              </div>
+              {loading === user.email ? (
+                <div className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <svg className="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               )}

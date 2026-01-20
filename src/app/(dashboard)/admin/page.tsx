@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { LogoutButton } from '@/components/LogoutButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { RegionHeatmap } from '@/components/admin/RegionHeatmap'
 
 export default async function AdminPage() {
   const session = await auth()
@@ -41,6 +42,77 @@ export default async function AdminPage() {
       createdBy: { select: { name: true } },
     },
   })
+
+  // Get region activity data for heatmap
+  const regionsWithActivity = await prisma.region.findMany({
+    include: {
+      clubs: {
+        include: {
+          briefs: {
+            where: {
+              createdAt: {
+                gte: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // Last 90 days
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  // Calculate activity levels
+  const regionData = regionsWithActivity.map(region => {
+    const clubCount = region.clubs.length
+    const briefCount = region.clubs.reduce((sum, club) => sum + club.briefs.length, 0)
+    const approvedCount = region.clubs.reduce(
+      (sum, club) => sum + club.briefs.filter(b => b.status === 'APPROVED').length,
+      0
+    )
+
+    let activityLevel: 'very_high' | 'high' | 'medium' | 'low' | 'very_low'
+    if (briefCount >= 30) activityLevel = 'very_high'
+    else if (briefCount >= 15) activityLevel = 'high'
+    else if (briefCount >= 8) activityLevel = 'medium'
+    else if (briefCount >= 3) activityLevel = 'low'
+    else activityLevel = 'very_low'
+
+    return {
+      id: region.id,
+      name: region.name,
+      code: region.code,
+      clubCount,
+      briefCount,
+      approvedCount,
+      activityLevel,
+    }
+  })
+
+  // Get all clubs with coordinates for map
+  const clubsWithCoords = await prisma.club.findMany({
+    where: {
+      latitude: { not: null },
+      longitude: { not: null },
+    },
+    include: {
+      briefs: {
+        where: {
+          createdAt: {
+            gte: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000),
+          },
+        },
+      },
+    },
+  })
+
+  const clubData = clubsWithCoords.map(club => ({
+    id: club.id,
+    name: club.name,
+    city: club.city,
+    latitude: club.latitude,
+    longitude: club.longitude,
+    briefCount: club.briefs.length,
+    tier: club.tier,
+  }))
 
   return (
     <div className="min-h-screen bg-[#f5f7fa] dark:bg-background">
@@ -180,6 +252,11 @@ export default async function AdminPage() {
               </div>
             </div>
           </Link>
+        </div>
+
+        {/* Region Heatmap */}
+        <div className="mb-8">
+          <RegionHeatmap regions={regionData} clubs={clubData} />
         </div>
 
         {/* Recent briefs */}

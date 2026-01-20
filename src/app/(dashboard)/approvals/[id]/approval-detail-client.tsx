@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { StatusBadge, PriorityBadge } from '@/components/briefs/status-badge'
@@ -8,6 +8,8 @@ import { formatDate, formatDateTime, getSLAIndicator } from '@/lib/utils'
 import { ApprovalForm } from './approval-form'
 import { ValidatorBriefEditor } from './validator-brief-editor'
 import { PolicyCheckPanel } from '@/components/briefs/policy-check-panel'
+import { AlignmentBar } from '@/components/briefs/alignment-bar'
+import { BriefCopyTemplate } from '@/components/briefs/brief-copy-template'
 import type { TemplateSchema, TemplateField } from '@/types'
 import type { PolicyCheckResult } from '@/lib/policy-engine'
 import { Button } from '@/components/ui/button'
@@ -89,12 +91,21 @@ interface StrategyDocument {
   brandName: string | null
 }
 
+interface NavigationData {
+  currentIndex: number
+  total: number
+  prevBriefId: string | null
+  nextBriefId: string | null
+  allBriefs: Array<{ id: string; code: string; title: string }>
+}
+
 interface ApprovalDetailClientProps {
   brief: BriefData
   canApprove: boolean
   customFields: Record<string, unknown> | null
   templateSchema: TemplateSchema
   strategyDocuments?: StrategyDocument[]
+  navigation?: NavigationData
 }
 
 export function ApprovalDetailClient({
@@ -103,10 +114,40 @@ export function ApprovalDetailClient({
   customFields,
   templateSchema,
   strategyDocuments = [],
+  navigation,
 }: ApprovalDetailClientProps) {
   const router = useRouter()
   const [isEditing, setIsEditing] = useState(false)
-  const sla = getSLAIndicator(brief.deadline)
+  const sla = getSLAIndicator(new Date(brief.deadline))
+
+  // Keyboard navigation handler
+  const handleKeyNavigation = useCallback(
+    (e: KeyboardEvent) => {
+      // Don't navigate if user is typing in a form field
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        e.target instanceof HTMLSelectElement
+      ) {
+        return
+      }
+
+      if (e.key === 'ArrowLeft' && navigation?.prevBriefId) {
+        router.push(`/approvals/${navigation.prevBriefId}`)
+      } else if (e.key === 'ArrowRight' && navigation?.nextBriefId) {
+        router.push(`/approvals/${navigation.nextBriefId}`)
+      }
+    },
+    [navigation, router]
+  )
+
+  // Setup keyboard listeners
+  useEffect(() => {
+    if (!isEditing && navigation) {
+      window.addEventListener('keydown', handleKeyNavigation)
+      return () => window.removeEventListener('keydown', handleKeyNavigation)
+    }
+  }, [isEditing, navigation, handleKeyNavigation])
 
   // Get relevant strategy for brand alignment check
   const getRelevantStrategy = () => {
@@ -230,6 +271,47 @@ export function ApprovalDetailClient({
               <PriorityBadge priority={brief.priority} />
             </div>
           </div>
+
+          {/* Navigation bar */}
+          {navigation && navigation.total > 0 && (
+            <div className="mt-3 pt-3 border-t border-white/20 flex items-center justify-between">
+              <button
+                onClick={() => navigation.prevBriefId && router.push(`/approvals/${navigation.prevBriefId}`)}
+                disabled={!navigation.prevBriefId}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm transition-colors ${
+                  navigation.prevBriefId
+                    ? 'bg-white/10 hover:bg-white/20 text-white'
+                    : 'text-white/30 cursor-not-allowed'
+                }`}
+              >
+                <span>←</span>
+                <span>Poprzedni</span>
+              </button>
+
+              <div className="flex items-center gap-2 text-white/70 text-sm">
+                <span className="text-white font-medium">{navigation.currentIndex + 1}</span>
+                <span>/</span>
+                <span>{navigation.total}</span>
+                <span className="text-white/50 ml-2">do zatwierdzenia</span>
+                <span className="ml-3 text-xs text-white/40 hidden sm:inline">
+                  ← → nawigacja klawiaturą
+                </span>
+              </div>
+
+              <button
+                onClick={() => navigation.nextBriefId && router.push(`/approvals/${navigation.nextBriefId}`)}
+                disabled={!navigation.nextBriefId}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded text-sm transition-colors ${
+                  navigation.nextBriefId
+                    ? 'bg-white/10 hover:bg-white/20 text-white'
+                    : 'text-white/30 cursor-not-allowed'
+                }`}
+              >
+                <span>Następny</span>
+                <span>→</span>
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
@@ -338,6 +420,29 @@ export function ApprovalDetailClient({
               )}
             </div>
 
+            {/* Trello Copy Template - moved here under Context */}
+            <BriefCopyTemplate
+              brief={{
+                code: brief.code,
+                title: brief.title,
+                context: brief.context,
+                deadline: brief.deadline,
+                priority: brief.priority,
+                offerDetails: brief.offerDetails,
+                legalCopy: brief.legalCopy,
+                assetLinks: brief.assetLinks,
+                startDate: brief.startDate,
+                endDate: brief.endDate,
+                businessObjective: brief.businessObjective,
+                kpiDescription: brief.kpiDescription,
+                customFields: customFields,
+                club: brief.club,
+                brand: brief.brand,
+                template: brief.template,
+                createdBy: brief.createdBy,
+              }}
+            />
+
             {/* Custom fields */}
             {customFields && Object.keys(customFields).filter(k => !['formats', 'customFormats'].includes(k)).length > 0 && (
               <div className="bg-white rounded-lg shadow p-6">
@@ -404,6 +509,16 @@ export function ApprovalDetailClient({
 
           {/* Sidebar with approval form */}
           <div className="space-y-6">
+            {/* Alignment Score Bar */}
+            {relevantStrategy && (
+              <AlignmentBar
+                briefContext={brief.context}
+                briefTitle={brief.title}
+                strategyContent={relevantStrategy.content}
+                brandName={brief.brand.name}
+              />
+            )}
+
             {/* Strategy Alignment Panel */}
             {relevantStrategy && (
               <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-lg shadow p-5 space-y-3">
@@ -411,7 +526,7 @@ export function ApprovalDetailClient({
                   <span className="text-xl">📜</span>
                   <div>
                     <h3 className="font-semibold text-emerald-800 text-sm">
-                      Alignment: {relevantStrategy.brandName}
+                      Alignment Strategiczny: {relevantStrategy.brandName}
                     </h3>
                     <p className="text-xs text-emerald-600">
                       Sprawdz zgodnosc briefu z celami strategicznymi

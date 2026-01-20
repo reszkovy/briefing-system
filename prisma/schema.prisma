@@ -57,6 +57,8 @@ model Club {
   code      String     @unique
   city      String
   address   String?
+  latitude  Float?     // GPS latitude for map
+  longitude Float?     // GPS longitude for map
   regionId  String
   brandId   String
   tier      ClubTier   @default(STANDARD)
