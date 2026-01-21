@@ -228,6 +228,127 @@ async function main() {
 
   console.log(`✅ Created ${clubs.length} real Zdrofit clubs`)
 
+  // ============== CLUB CONTEXTS ==============
+  console.log('🏢 Adding club contexts for demo...')
+
+  // Context data for different club types
+  const clubContexts = [
+    // FLAGSHIP clubs - premium/lifestyle
+    {
+      filter: (c: typeof clubs[0]) => c.tier === 'FLAGSHIP',
+      context: {
+        clubCharacter: 'PREMIUM_LIFESTYLE',
+        keyMemberGroups: ['regular_members', 'lifestyle_wellbeing', 'advanced_users'],
+        localConstraints: [],
+        topActivities: [
+          { name: 'Yoga', popularity: 'HIGH' },
+          { name: 'Pilates Reformer', popularity: 'HIGH' },
+          { name: 'Fitness grupowy', popularity: 'MEDIUM' },
+        ],
+        activityReasons: {
+          selected: ['matches_local_demographics', 'strong_trainer_presence', 'wellbeing_health_focus'],
+          note: 'Klienci premium cenią jakość i komfort, mniej wrażliwi na cenę.',
+        },
+        localDecisionBrief: 'Klub o profilu premium w prestiżowej lokalizacji. Kluczowa jest jakość obsługi i doświadczenia, nie promocje cenowe. Skupiamy się na retencji przez wartość dodaną.',
+      },
+    },
+    // VIP clubs - community-driven, mixed
+    {
+      filter: (c: typeof clubs[0]) => c.tier === 'VIP',
+      context: {
+        clubCharacter: 'COMMUNITY_DRIVEN',
+        keyMemberGroups: ['regular_members', 'seniors_40_plus', 'lifestyle_wellbeing'],
+        localConstraints: ['limited_trainer_availability'],
+        topActivities: [
+          { name: 'Fitness grupowy', popularity: 'HIGH' },
+          { name: 'Stretching', popularity: 'MEDIUM' },
+          { name: 'Siłownia', popularity: 'HIGH' },
+        ],
+        activityReasons: {
+          selected: ['convenient_schedule', 'low_entry_barrier', 'matches_local_demographics'],
+          note: 'Silna społeczność stałych bywalców, wielu członków 40+.',
+        },
+        localDecisionBrief: 'Klub z lojalnymi członkami i silnym poczuciem społeczności. Warto inwestować w wydarzenia integracyjne i programy lojalnościowe.',
+      },
+    },
+    // STANDARD clubs - mass-market or functional
+    {
+      filter: (c: typeof clubs[0]) => c.tier === 'STANDARD' && c.name.includes('Bemowo'),
+      context: {
+        clubCharacter: 'MASS_MARKET',
+        keyMemberGroups: ['beginners', 'regular_members', 'custom:Rodziny z dziećmi'],
+        localConstraints: ['limited_space', 'high_seasonality'],
+        topActivities: [
+          { name: 'Siłownia', popularity: 'HIGH' },
+          { name: 'HIIT', popularity: 'MEDIUM' },
+          { name: 'Zumba', popularity: 'MEDIUM' },
+        ],
+        activityReasons: {
+          selected: ['low_entry_barrier', 'convenient_schedule'],
+          note: 'Dzielnica mieszkalna, dużo rodzin. Sezonowość - lato słabsze.',
+        },
+        localDecisionBrief: 'Typowy klub osiedlowy. Klienci wrażliwi na cenę, ale lojalni gdy znajdą swoje miejsce. Wyzwanie: zatrzymać ich po okresie próbnym.',
+      },
+    },
+    {
+      filter: (c: typeof clubs[0]) => c.tier === 'STANDARD' && c.name.includes('Mokotów'),
+      context: {
+        clubCharacter: 'FUNCTIONAL_COMPACT',
+        keyMemberGroups: ['regular_members', 'performance_sport', 'advanced_users'],
+        localConstraints: ['limited_space', 'limited_opening_hours'],
+        topActivities: [
+          { name: 'Siłownia', popularity: 'HIGH' },
+          { name: 'Trening funkcjonalny', popularity: 'HIGH' },
+          { name: 'Cycling / Spinning', popularity: 'MEDIUM' },
+        ],
+        activityReasons: {
+          selected: ['intensity_performance_effect', 'convenient_schedule', 'strong_trainer_presence'],
+          note: 'Kompaktowa lokalizacja, ale świetni trenerzy. Klienci cenią efektywność.',
+        },
+        localDecisionBrief: 'Mniejsza powierzchnia wymusza kreatywność. Skupiamy się na jakości treningów personalnych i małych grupach.',
+      },
+    },
+    {
+      filter: (c: typeof clubs[0]) => c.tier === 'STANDARD' && !c.name.includes('Bemowo') && !c.name.includes('Mokotów'),
+      context: {
+        clubCharacter: 'COMMUNITY_DRIVEN',
+        keyMemberGroups: ['beginners', 'regular_members', 'seniors_40_plus'],
+        localConstraints: ['specific_local_demographics'],
+        topActivities: [
+          { name: 'Fitness grupowy', popularity: 'HIGH' },
+          { name: 'Aqua fitness', popularity: 'MEDIUM' },
+          { name: 'Stretching', popularity: 'MEDIUM' },
+        ],
+        activityReasons: {
+          selected: ['low_entry_barrier', 'matches_local_demographics', 'wellbeing_health_focus'],
+          note: 'Dużo emerytów w okolicy, cenią spokojne zajęcia i atmosferę.',
+        },
+        localDecisionBrief: 'Zróżnicowana grupa wiekowa z przewagą 40+. Komunikacja powinna być inkluzywna i skupiona na zdrowiu, nie na wynikach sportowych.',
+      },
+    },
+  ]
+
+  // Apply contexts to clubs
+  for (const contextDef of clubContexts) {
+    const matchingClubs = clubs.filter(contextDef.filter).slice(0, 10) // Limit to first 10 per category
+    for (const club of matchingClubs) {
+      await prisma.club.update({
+        where: { id: club.id },
+        data: {
+          clubCharacter: contextDef.context.clubCharacter,
+          keyMemberGroups: contextDef.context.keyMemberGroups,
+          localConstraints: contextDef.context.localConstraints,
+          topActivities: contextDef.context.topActivities,
+          activityReasons: contextDef.context.activityReasons,
+          localDecisionBrief: contextDef.context.localDecisionBrief,
+          contextUpdatedAt: new Date(),
+        },
+      })
+    }
+  }
+
+  console.log('✅ Added club contexts')
+
   // ============== REQUEST TEMPLATES ==============
   console.log('📝 Creating request templates...')
   const templates = await Promise.all([

@@ -46,6 +46,15 @@ export default async function ApprovalDetailPage({
           tier: true,
           brand: true,
           region: true,
+          // Club Context
+          clubCharacter: true,
+          customCharacter: true,
+          keyMemberGroups: true,
+          localConstraints: true,
+          topActivities: true,
+          activityReasons: true,
+          localDecisionBrief: true,
+          contextUpdatedAt: true,
         },
       },
       brand: {
@@ -156,6 +165,10 @@ export default async function ApprovalDetailPage({
       ...a,
       createdAt: a.createdAt.toISOString(),
     })),
+    club: {
+      ...brief.club,
+      contextUpdatedAt: brief.club.contextUpdatedAt?.toISOString() || null,
+    },
   }
 
   return (

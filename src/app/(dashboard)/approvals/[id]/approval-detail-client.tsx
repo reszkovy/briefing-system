@@ -10,8 +10,10 @@ import { ValidatorBriefEditor } from './validator-brief-editor'
 import { PolicyCheckPanel } from '@/components/briefs/policy-check-panel'
 import { AlignmentBar } from '@/components/briefs/alignment-bar'
 import { BriefCopyTemplate } from '@/components/briefs/brief-copy-template'
+import { ClubContextDisplay } from '@/components/clubs/ClubContextDisplay'
 import type { TemplateSchema, TemplateField } from '@/types'
 import type { PolicyCheckResult } from '@/lib/policy-engine'
+import type { TopActivity, ActivityReasonsData } from '@/types/club-context'
 import { Button } from '@/components/ui/button'
 
 interface BriefData {
@@ -56,6 +58,15 @@ interface BriefData {
     region: {
       name: string
     }
+    // Club Context fields
+    clubCharacter?: string | null
+    customCharacter?: string | null
+    keyMemberGroups?: string[] | null
+    localConstraints?: string[] | null
+    topActivities?: TopActivity[] | null
+    activityReasons?: ActivityReasonsData | null
+    localDecisionBrief?: string | null
+    contextUpdatedAt?: string | null
   }
   brand: {
     id: string
@@ -509,6 +520,22 @@ export function ApprovalDetailClient({
 
           {/* Sidebar with approval form */}
           <div className="space-y-6">
+            {/* Club Context Panel */}
+            <ClubContextDisplay
+              clubName={brief.club.name}
+              context={{
+                clubCharacter: brief.club.clubCharacter,
+                customCharacter: brief.club.customCharacter,
+                keyMemberGroups: brief.club.keyMemberGroups,
+                localConstraints: brief.club.localConstraints,
+                topActivities: brief.club.topActivities,
+                activityReasons: brief.club.activityReasons,
+                localDecisionBrief: brief.club.localDecisionBrief,
+                contextUpdatedAt: brief.club.contextUpdatedAt,
+              }}
+              compact={true}
+            />
+
             {/* Alignment Score Bar */}
             {relevantStrategy && (
               <AlignmentBar
