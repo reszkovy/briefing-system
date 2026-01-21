@@ -15,6 +15,12 @@ import {
 } from '@/lib/constants/club-context'
 import type { TopActivity, ActivityReasonsData } from '@/types/club-context'
 
+interface ClubManager {
+  name: string
+  email: string
+  phone?: string | null
+}
+
 interface ClubContextDisplayProps {
   clubName: string
   context: {
@@ -27,12 +33,14 @@ interface ClubContextDisplayProps {
     localDecisionBrief?: string | null
     contextUpdatedAt?: string | Date | null
   }
+  manager?: ClubManager | null // Club manager info
   compact?: boolean // For inline display in brief form
 }
 
 export function ClubContextDisplay({
   clubName,
   context,
+  manager,
   compact = false,
 }: ClubContextDisplayProps) {
   const hasCharacter = context.clubCharacter
@@ -152,6 +160,29 @@ export function ClubContextDisplay({
         {hasBrief && (
           <div className="bg-white/50 rounded p-2 text-sm text-gray-700 italic">
             &ldquo;{context.localDecisionBrief}&rdquo;
+          </div>
+        )}
+
+        {/* Manager Info - Compact */}
+        {manager && (
+          <div className="border-t border-blue-200 pt-2 mt-2">
+            <div className="flex items-center gap-2 text-sm">
+              <span className="text-blue-600">👤</span>
+              <span className="font-medium text-gray-700">{manager.name}</span>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs text-gray-500 mt-1 ml-5">
+              <a href={`mailto:${manager.email}`} className="hover:text-blue-600">
+                {manager.email}
+              </a>
+              {manager.phone && (
+                <>
+                  <span>•</span>
+                  <a href={`tel:${manager.phone}`} className="hover:text-blue-600">
+                    {manager.phone}
+                  </a>
+                </>
+              )}
+            </div>
           </div>
         )}
       </div>
@@ -296,6 +327,28 @@ export function ClubContextDisplay({
           </h4>
           <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3">
             <p className="text-sm text-gray-700">{context.localDecisionBrief}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Manager Info - Full Display */}
+      {manager && (
+        <div className="border-t border-gray-100 pt-4">
+          <h4 className="text-sm font-medium text-gray-600 flex items-center gap-2 mb-2">
+            <span>👤</span> Opiekun klubu
+          </h4>
+          <div className="bg-gray-50 rounded-lg p-3">
+            <p className="font-medium text-gray-800">{manager.name}</p>
+            <div className="flex flex-wrap gap-3 mt-1 text-sm text-gray-600">
+              <a href={`mailto:${manager.email}`} className="hover:text-[#2b3b82] flex items-center gap-1">
+                <span>📧</span> {manager.email}
+              </a>
+              {manager.phone && (
+                <a href={`tel:${manager.phone}`} className="hover:text-[#2b3b82] flex items-center gap-1">
+                  <span>📞</span> {manager.phone}
+                </a>
+              )}
+            </div>
           </div>
         </div>
       )}

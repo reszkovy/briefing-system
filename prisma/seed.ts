@@ -415,6 +415,7 @@ async function main() {
         email: 'anna.kowalska@benefit.pl',
         passwordHash,
         name: 'Anna Kowalska',
+        phone: '+48 601 234 567',
         role: UserRole.CLUB_MANAGER,
       },
     }),
@@ -423,6 +424,7 @@ async function main() {
         email: 'piotr.nowak@benefit.pl',
         passwordHash,
         name: 'Piotr Nowak',
+        phone: '+48 602 345 678',
         role: UserRole.CLUB_MANAGER,
       },
     }),
@@ -431,6 +433,7 @@ async function main() {
         email: 'katarzyna.wiszniewska@benefit.pl',
         passwordHash,
         name: 'Katarzyna Wiśniewska',
+        phone: '+48 603 456 789',
         role: UserRole.CLUB_MANAGER,
       },
     }),
@@ -440,6 +443,7 @@ async function main() {
         email: 'michal.adamski@benefit.pl',
         passwordHash,
         name: 'Michał Adamski',
+        phone: '+48 604 567 890',
         role: UserRole.VALIDATOR,
       },
     }),
@@ -448,6 +452,7 @@ async function main() {
         email: 'ewa.mazur@benefit.pl',
         passwordHash,
         name: 'Ewa Mazur',
+        phone: '+48 605 678 901',
         role: UserRole.VALIDATOR,
       },
     }),
@@ -457,6 +462,7 @@ async function main() {
         email: 'studio@benefit.pl',
         passwordHash,
         name: 'Studio Kreacji BS',
+        phone: '+48 22 123 45 67',
         role: UserRole.PRODUCTION,
       },
     }),
@@ -466,6 +472,7 @@ async function main() {
         email: 'admin@benefit.pl',
         passwordHash,
         name: 'Administrator',
+        phone: '+48 22 987 65 43',
         role: UserRole.ADMIN,
       },
     }),
@@ -498,19 +505,27 @@ async function main() {
     })
   }
 
-  // Validators have access to all clubs in their regions
-  const warsawRegionClubs = clubs.filter(c => c.regionId === regions[0].id)
-  for (const club of warsawRegionClubs) {
-    await prisma.userClub.create({
-      data: { userId: users[3].id, clubId: club.id, isManager: false },
-    })
+  // Validators have access to clubs across multiple regions
+  // Michał Adamski (users[3]) - Warsaw + Śląskie + Mazowieckie (poza Warszawą)
+  const michalRegions = [regions[0], regions[9], regions[8]] // WAW, SLA, MAZ
+  for (const region of michalRegions) {
+    const regionClubs = clubs.filter(c => c.regionId === region.id)
+    for (const club of regionClubs) {
+      await prisma.userClub.create({
+        data: { userId: users[3].id, clubId: club.id, isManager: false },
+      })
+    }
   }
 
-  const trojmiastoRegionClubs = clubs.filter(c => c.regionId === regions[1].id)
-  for (const club of trojmiastoRegionClubs) {
-    await prisma.userClub.create({
-      data: { userId: users[4].id, clubId: club.id, isManager: false },
-    })
+  // Ewa Mazur (users[4]) - Trójmiasto + Pomorze Zachodnie + Kujawsko-Pomorskie
+  const ewaRegions = [regions[1], regions[2], regions[3]] // TRI, POM, KUJ
+  for (const region of ewaRegions) {
+    const regionClubs = clubs.filter(c => c.regionId === region.id)
+    for (const club of regionClubs) {
+      await prisma.userClub.create({
+        data: { userId: users[4].id, clubId: club.id, isManager: false },
+      })
+    }
   }
 
   // ============== SAMPLE BRIEFS (Q4 2025 - Q1 2026 activity simulation) ==============
@@ -521,35 +536,334 @@ async function main() {
   const now = new Date()
 
   // Brief descriptions - varied to show alignment differences
-  const briefVariants = [
+  // Each variant now includes full data: businessObjective, decisionContext, kpiDescription, kpiTarget, formats, offerDetails, estimatedCost
+  type BriefVariant = {
+    title: string
+    context: string
+    alignment: string
+    businessObjective: 'REVENUE_ACQUISITION' | 'RETENTION_ENGAGEMENT' | 'OPERATIONAL_EFFICIENCY'
+    decisionContext: 'LOCAL' | 'REGIONAL' | 'CENTRAL'
+    kpiDescription: string
+    kpiTarget: number
+    formats: string[]
+    customFormats?: string[]
+    offerDetails?: string
+    legalCopy?: string
+    estimatedCost: number
+    durationDays: number // how long the campaign runs
+  }
+
+  const briefVariants: BriefVariant[] = [
     // DOBRZE DOPASOWANE do strategii Zdrofit (retencja, yoga/pilates, wellness)
-    { title: 'Warsztaty Yoga dla Początkujących', context: 'Seria warsztatów wprowadzających do jogi dla nowych członków. Cel: budowanie nawyku regularnych wizyt i integracja z społecznością klubu.', alignment: 'high' },
-    { title: 'Program Pilates Reformer - Nowa Grupa', context: 'Promocja nowych zajęć Pilates Reformer. Komunikacja skierowana do obecnych członków z zachętą do rozszerzenia karnetu.', alignment: 'high' },
-    { title: 'Tydzień Mobility & Stretching', context: 'Event promujący zajęcia regeneracyjne. Cel: zwiększenie frekwencji na zajęciach wellness i budowanie świadomości ich wartości.', alignment: 'high' },
-    { title: 'Cykl Mindfulness & Medytacja', context: 'Wprowadzenie nowych zajęć łączących elementy wellness z medytacją. Dla obecnych klubowiczów szukających holistycznego podejścia do zdrowia.', alignment: 'high' },
-    { title: 'Program Lojalnościowy - Komunikacja', context: 'Materiały informujące o korzyściach programu lojalnościowego. Cel: zwiększenie retencji przez nagradzanie regularności.', alignment: 'high' },
+    {
+      title: 'Warsztaty Yoga dla Początkujących',
+      context: 'Seria warsztatów wprowadzających do jogi dla nowych członków. Cel: budowanie nawyku regularnych wizyt i integracja z społecznością klubu.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba uczestników warsztatów / wzrost frekwencji na zajęciach Yoga',
+      kpiTarget: 25,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram'],
+      estimatedCost: 150,
+      durationDays: 14,
+    },
+    {
+      title: 'Program Pilates Reformer - Nowa Grupa',
+      context: 'Promocja nowych zajęć Pilates Reformer. Komunikacja skierowana do obecnych członków z zachętą do rozszerzenia karnetu.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba zapisów na nowy kurs Pilates Reformer',
+      kpiTarget: 15,
+      formats: ['Post Instagram', 'Post Facebook', 'Plakat A3', 'Ulotka A5'],
+      offerDetails: 'Pierwszy miesiąc zajęć Pilates Reformer w cenie standardowego karnetu. Wymaga rezerwacji przez aplikację.',
+      estimatedCost: 350,
+      durationDays: 21,
+    },
+    {
+      title: 'Tydzień Mobility & Stretching',
+      context: 'Event promujący zajęcia regeneracyjne. Cel: zwiększenie frekwencji na zajęciach wellness i budowanie świadomości ich wartości.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Wzrost frekwencji na zajęciach Mobility/Stretching w %',
+      kpiTarget: 40,
+      formats: ['Post Instagram', 'Story Instagram', 'Post Facebook', 'Plakat A2'],
+      estimatedCost: 250,
+      durationDays: 7,
+    },
+    {
+      title: 'Cykl Mindfulness & Medytacja',
+      context: 'Wprowadzenie nowych zajęć łączących elementy wellness z medytacją. Dla obecnych klubowiczów szukających holistycznego podejścia do zdrowia.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba uczestników pierwszych zajęć Mindfulness',
+      kpiTarget: 20,
+      formats: ['Post Instagram', 'Post Facebook', 'Newsletter'],
+      estimatedCost: 200,
+      durationDays: 30,
+    },
+    {
+      title: 'Program Lojalnościowy - Komunikacja',
+      context: 'Materiały informujące o korzyściach programu lojalnościowego. Cel: zwiększenie retencji przez nagradzanie regularności.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'REGIONAL',
+      kpiDescription: 'Liczba aktywacji programu lojalnościowego',
+      kpiTarget: 100,
+      formats: ['Post Instagram', 'Post Facebook', 'Plakat A3', 'Ulotka A6', 'Email'],
+      offerDetails: 'Za każde 10 wizyt w miesiącu - 1 darmowe wejście dla znajomego. Za 20 wizyt - rabat 10% na następny miesiąc.',
+      estimatedCost: 400,
+      durationDays: 60,
+    },
 
     // ŚREDNIO DOPASOWANE (fitness ogólny, nie akwizycja)
-    { title: 'Nowy Grafik Zajęć Grupowych', context: 'Informacja o zmianach w grafiku zajęć. Prośba o grafikę informacyjną do wywieszenia w klubie i na social media.', alignment: 'medium' },
-    { title: 'Trening Funkcjonalny - Nowy Trener', context: 'Przedstawienie nowego trenera prowadzącego zajęcia functional training. Komunikacja do obecnych członków.', alignment: 'medium' },
-    { title: 'Wakacyjne Godziny Otwarcia', context: 'Informacja o zmienionych godzinach pracy klubu w okresie wakacyjnym. Grafika informacyjna.', alignment: 'medium' },
-    { title: 'Strefa Saun - Nowe Zasady', context: 'Komunikat o zaktualizowanych zasadach korzystania ze strefy saun i wellness. Cel: poprawa doświadczenia klubowiczów.', alignment: 'medium' },
-    { title: 'Event Charytatywny w Klubie', context: 'Organizujemy zbiórkę charytatywną podczas zajęć fitness. Potrzebne materiały promocyjne dla obecnych członków.', alignment: 'medium' },
+    {
+      title: 'Nowy Grafik Zajęć Grupowych',
+      context: 'Informacja o zmianach w grafiku zajęć. Prośba o grafikę informacyjną do wywieszenia w klubie i na social media.',
+      alignment: 'medium',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Zmniejszenie liczby pytań na recepcji o grafik',
+      kpiTarget: 50,
+      formats: ['Post Instagram', 'Post Facebook', 'Plakat A2'],
+      estimatedCost: 150,
+      durationDays: 7,
+    },
+    {
+      title: 'Trening Funkcjonalny - Nowy Trener',
+      context: 'Przedstawienie nowego trenera prowadzącego zajęcia functional training. Komunikacja do obecnych członków.',
+      alignment: 'medium',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Frekwencja na zajęciach nowego trenera w pierwszym miesiącu',
+      kpiTarget: 15,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram'],
+      estimatedCost: 150,
+      durationDays: 14,
+    },
+    {
+      title: 'Wakacyjne Godziny Otwarcia',
+      context: 'Informacja o zmienionych godzinach pracy klubu w okresie wakacyjnym. Grafika informacyjna.',
+      alignment: 'medium',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Dotarcie do członków z informacją (zasięg posta)',
+      kpiTarget: 500,
+      formats: ['Post Instagram', 'Post Facebook', 'Plakat A3'],
+      estimatedCost: 100,
+      durationDays: 3,
+    },
+    {
+      title: 'Strefa Saun - Nowe Zasady',
+      context: 'Komunikat o zaktualizowanych zasadach korzystania ze strefy saun i wellness. Cel: poprawa doświadczenia klubowiczów.',
+      alignment: 'medium',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Zmniejszenie incydentów związanych z nieprzestrzeganiem zasad',
+      kpiTarget: 80,
+      formats: ['Plakat A3', 'Naklejka', 'Post Facebook'],
+      legalCopy: 'Korzystanie ze strefy saun na własną odpowiedzialność. Osoby z przeciwwskazaniami zdrowotnymi proszone o konsultację z lekarzem.',
+      estimatedCost: 200,
+      durationDays: 30,
+    },
+    {
+      title: 'Event Charytatywny w Klubie',
+      context: 'Organizujemy zbiórkę charytatywną podczas zajęć fitness. Potrzebne materiały promocyjne dla obecnych członków.',
+      alignment: 'medium',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Kwota zebrana na cele charytatywne (PLN)',
+      kpiTarget: 2000,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A2'],
+      estimatedCost: 200,
+      durationDays: 14,
+    },
 
     // SŁABO DOPASOWANE (akwizycja, promocje cenowe, HIIT - nie pasuje do strategii Zdrofit)
-    { title: 'Black Friday - Karnet Roczny -50%', context: 'Agresywna promocja akwizycyjna. Cel: pozyskanie maksymalnej liczby nowych członków z rabatem 50% na karnet roczny.', alignment: 'low' },
-    { title: 'Challenge CrossFit - Open Doors', context: 'Event otwarty dla osób spoza klubu. Zawody CrossFit z nagrodami. Cel: pokazanie klubu potencjalnym nowym członkom.', alignment: 'low' },
-    { title: 'Bring a Friend Week', context: 'Tydzień darmowych wejść dla znajomych członków. Promocja akwizycyjna z bonusem dla przyprowadzającego.', alignment: 'low' },
-    { title: 'Karnet Studencki - Promocja', context: 'Specjalna oferta dla studentów - karnet miesięczny za 99 zł. Kampania skierowana na pozyskanie młodych klientów.', alignment: 'low' },
-    { title: 'HIIT Marathon - Zapisy Otwarte', context: 'Intensywny maraton HIIT otwarty dla wszystkich. Promocja klubu w mediach społecznościowych, cel: viralowy zasięg i nowi klienci.', alignment: 'low' },
+    {
+      title: 'Black Friday - Karnet Roczny -50%',
+      context: 'Agresywna promocja akwizycyjna. Cel: pozyskanie maksymalnej liczby nowych członków z rabatem 50% na karnet roczny.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'CENTRAL',
+      kpiDescription: 'Liczba nowych karnetów rocznych sprzedanych w promocji',
+      kpiTarget: 50,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A1', 'Roll-up', 'Banner www'],
+      customFormats: ['Billboard LED zewnętrzny'],
+      offerDetails: 'Karnet roczny z 50% rabatem. Cena regularna 2400 PLN, cena promocyjna 1200 PLN. Oferta ważna 24-27 listopada.',
+      legalCopy: 'Promocja ważna tylko dla nowych członków. Nie łączy się z innymi rabatami. Karnet nieprzenoszalny.',
+      estimatedCost: 1500,
+      durationDays: 4,
+    },
+    {
+      title: 'Challenge CrossFit - Open Doors',
+      context: 'Event otwarty dla osób spoza klubu. Zawody CrossFit z nagrodami. Cel: pokazanie klubu potencjalnym nowym członkom.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba uczestników eventu spoza klubu',
+      kpiTarget: 30,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A2', 'Ulotka A5'],
+      offerDetails: 'Wstęp wolny dla wszystkich. Rejestracja przez formularz online. Nagrody: karnety miesięczne dla TOP 3.',
+      estimatedCost: 500,
+      durationDays: 1,
+    },
+    {
+      title: 'Bring a Friend Week',
+      context: 'Tydzień darmowych wejść dla znajomych członków. Promocja akwizycyjna z bonusem dla przyprowadzającego.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'REGIONAL',
+      kpiDescription: 'Liczba przyprowadzonych gości / konwersja na karnety',
+      kpiTarget: 100,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Email', 'Plakat A3'],
+      offerDetails: 'Każdy członek może przyprowadzić max 2 znajomych. Goście mają darmowy dostęp 1-7 marca. Przyprowadzający otrzymuje 50 PLN zniżki na kolejny miesiąc.',
+      legalCopy: 'Goście muszą wypełnić oświadczenie zdrowotne. Wiek minimalny 16 lat.',
+      estimatedCost: 400,
+      durationDays: 7,
+    },
+    {
+      title: 'Karnet Studencki - Promocja',
+      context: 'Specjalna oferta dla studentów - karnet miesięczny za 99 zł. Kampania skierowana na pozyskanie młodych klientów.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'REGIONAL',
+      kpiDescription: 'Liczba sprzedanych karnetów studenckich',
+      kpiTarget: 40,
+      formats: ['Post Instagram', 'Story Instagram', 'TikTok', 'Ulotka A6'],
+      customFormats: ['Plakat na uczelniach A2'],
+      offerDetails: 'Karnet miesięczny 99 PLN (zamiast 159 PLN) dla studentów z ważną legitymacją. Dostęp do wszystkich zajęć grupowych i siłowni.',
+      legalCopy: 'Wymagana ważna legitymacja studencka. Oferta dla osób do 26 roku życia.',
+      estimatedCost: 600,
+      durationDays: 30,
+    },
+    {
+      title: 'HIIT Marathon - Zapisy Otwarte',
+      context: 'Intensywny maraton HIIT otwarty dla wszystkich. Promocja klubu w mediach społecznościowych, cel: viralowy zasięg i nowi klienci.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Zasięg w social media / liczba nowych obserwujących',
+      kpiTarget: 5000,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Reels', 'Plakat A2'],
+      offerDetails: '4-godzinny maraton HIIT. Wstęp: 20 PLN dla nieczłonków, bezpłatny dla członków. Nagrody dla najwytrwalszych.',
+      estimatedCost: 300,
+      durationDays: 1,
+    },
 
     // NEUTRALNE (informacyjne, bez wyraźnego kierunku)
-    { title: 'Remont Szatni - Informacja', context: 'Komunikat o tymczasowym zamknięciu części szatni z powodu remontu. Grafika informacyjna.', alignment: 'neutral' },
-    { title: 'Nowe Maszyny Cardio', context: 'Informacja o dostawie nowych bieżni i orbitreki. Grafika do social media i plakatów w klubie.', alignment: 'neutral' },
-    { title: 'Zmiana Recepcjonistów', context: 'Powitanie nowych pracowników recepcji. Grafika przedstawiająca zespół.', alignment: 'neutral' },
-    { title: 'Parking - Nowe Zasady', context: 'Informacja o zmianie zasad parkowania dla członków klubu. Plakat i ulotka.', alignment: 'neutral' },
-    { title: 'Aplikacja Mobilna - Update', context: 'Komunikat o nowej wersji aplikacji mobilnej klubu z nowymi funkcjami rezerwacji zajęć.', alignment: 'neutral' },
+    {
+      title: 'Remont Szatni - Informacja',
+      context: 'Komunikat o tymczasowym zamknięciu części szatni z powodu remontu. Grafika informacyjna.',
+      alignment: 'neutral',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Dotarcie do wszystkich aktywnych członków',
+      kpiTarget: 100,
+      formats: ['Post Facebook', 'Plakat A3', 'Email'],
+      estimatedCost: 75,
+      durationDays: 14,
+    },
+    {
+      title: 'Nowe Maszyny Cardio',
+      context: 'Informacja o dostawie nowych bieżni i orbitreki. Grafika do social media i plakatów w klubie.',
+      alignment: 'neutral',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Wzrost korzystania ze strefy cardio w %',
+      kpiTarget: 20,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram'],
+      estimatedCost: 150,
+      durationDays: 7,
+    },
+    {
+      title: 'Zmiana Recepcjonistów',
+      context: 'Powitanie nowych pracowników recepcji. Grafika przedstawiająca zespół.',
+      alignment: 'neutral',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Zaangażowanie pod postem (polubienia + komentarze)',
+      kpiTarget: 50,
+      formats: ['Post Instagram', 'Post Facebook'],
+      estimatedCost: 100,
+      durationDays: 7,
+    },
+    {
+      title: 'Parking - Nowe Zasady',
+      context: 'Informacja o zmianie zasad parkowania dla członków klubu. Plakat i ulotka.',
+      alignment: 'neutral',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Zmniejszenie problemów z parkowaniem',
+      kpiTarget: 70,
+      formats: ['Plakat A3', 'Ulotka A6', 'Post Facebook'],
+      legalCopy: 'Parking jest monitorowany. Klub nie odpowiada za szkody na pojazdach.',
+      estimatedCost: 150,
+      durationDays: 30,
+    },
+    {
+      title: 'Aplikacja Mobilna - Update',
+      context: 'Komunikat o nowej wersji aplikacji mobilnej klubu z nowymi funkcjami rezerwacji zajęć.',
+      alignment: 'neutral',
+      businessObjective: 'OPERATIONAL_EFFICIENCY',
+      decisionContext: 'CENTRAL',
+      kpiDescription: 'Liczba aktualizacji aplikacji w pierwszym tygodniu',
+      kpiTarget: 500,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Push notification'],
+      estimatedCost: 200,
+      durationDays: 14,
+    },
   ]
+
+  // Helper function to build complete brief data from variant
+  const buildBriefData = (
+    variant: BriefVariant,
+    club: typeof clubs[0],
+    code: string,
+    createdAt: Date,
+    status: BriefStatus,
+    priority: Priority,
+    createdById: string,
+    templateId: string
+  ) => {
+    const startDate = new Date(createdAt.getTime() + 3 * 24 * 60 * 60 * 1000) // starts 3 days after creation
+    const endDate = new Date(startDate.getTime() + variant.durationDays * 24 * 60 * 60 * 1000)
+
+    return {
+      code,
+      title: `${variant.title} - ${club.name}`,
+      context: variant.context,
+      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
+      status,
+      priority,
+      createdById,
+      clubId: club.id,
+      brandId: zdrofitBrand.id,
+      templateId,
+      createdAt,
+      submittedAt: status !== 'DRAFT' ? createdAt : null,
+      // Decision Layer fields
+      businessObjective: variant.businessObjective,
+      decisionContext: variant.decisionContext,
+      kpiDescription: variant.kpiDescription,
+      kpiTarget: variant.kpiTarget,
+      // Dates
+      startDate,
+      endDate,
+      // Custom fields with formats
+      customFields: {
+        formats: variant.formats,
+        ...(variant.customFormats && { customFormats: variant.customFormats }),
+      },
+      // Optional fields
+      offerDetails: variant.offerDetails || null,
+      legalCopy: variant.legalCopy || null,
+      // Cost estimate
+      estimatedCost: variant.estimatedCost,
+    }
+  }
 
   // Warsaw region - VERY HIGH activity (green)
   const warsawBriefClubs = clubs.filter(c => c.regionId === regions[0].id).slice(0, 15)
@@ -558,20 +872,19 @@ async function main() {
     const daysAgo = Math.floor(Math.random() * 90)
     const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
     const variant = briefVariants[i % briefVariants.length]
-    briefsToCreate.push({
-      code: `BRIEF-2025-${String(1000 + i).padStart(4, '0')}`,
-      title: `${variant.title} - ${club.name}`,
-      context: variant.context,
-      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-      status: ['APPROVED', 'APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 5] as BriefStatus,
-      priority: ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority,
-      createdById: users[0].id,
-      clubId: club.id,
-      brandId: zdrofitBrand.id,
-      templateId: templates[i % templates.length].id,
+    const status = ['APPROVED', 'APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 5] as BriefStatus
+    const priority = ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority
+
+    briefsToCreate.push(buildBriefData(
+      variant,
+      club,
+      `BRIEF-2025-${String(1000 + i).padStart(4, '0')}`,
       createdAt,
-      submittedAt: createdAt,
-    })
+      status,
+      priority,
+      users[0].id,
+      templates[i % templates.length].id
+    ))
   }
 
   // Trójmiasto region - HIGH activity (light green)
@@ -580,21 +893,20 @@ async function main() {
     const club = trojmiastoBriefClubs[i % trojmiastoBriefClubs.length]
     const daysAgo = Math.floor(Math.random() * 90)
     const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
-    const variant = briefVariants[(i + 3) % briefVariants.length] // offset to get different mix
-    briefsToCreate.push({
-      code: `BRIEF-2025-${String(2000 + i).padStart(4, '0')}`,
-      title: `${variant.title} - ${club.name}`,
-      context: variant.context,
-      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-      status: ['APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 4] as BriefStatus,
-      priority: ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority,
-      createdById: users[1].id,
-      clubId: club.id,
-      brandId: zdrofitBrand.id,
-      templateId: templates[i % templates.length].id,
+    const variant = briefVariants[(i + 3) % briefVariants.length]
+    const status = ['APPROVED', 'APPROVED', 'SUBMITTED', 'DRAFT'][i % 4] as BriefStatus
+    const priority = ['HIGH', 'MEDIUM', 'LOW'][i % 3] as Priority
+
+    briefsToCreate.push(buildBriefData(
+      variant,
+      club,
+      `BRIEF-2025-${String(2000 + i).padStart(4, '0')}`,
       createdAt,
-      submittedAt: createdAt,
-    })
+      status,
+      priority,
+      users[1].id,
+      templates[i % templates.length].id
+    ))
   }
 
   // Pomorze Zachodnie - MEDIUM activity (blue)
@@ -603,21 +915,20 @@ async function main() {
     const club = pomorzeClubs[i % pomorzeClubs.length]
     const daysAgo = Math.floor(Math.random() * 90)
     const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
-    const variant = briefVariants[(i + 7) % briefVariants.length] // different offset
-    briefsToCreate.push({
-      code: `BRIEF-2025-${String(3000 + i).padStart(4, '0')}`,
-      title: `${variant.title} - ${club.name}`,
-      context: variant.context,
-      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-      status: ['APPROVED', 'SUBMITTED', 'DRAFT'][i % 3] as BriefStatus,
-      priority: ['MEDIUM', 'LOW'][i % 2] as Priority,
-      createdById: users[2].id,
-      clubId: club.id,
-      brandId: zdrofitBrand.id,
-      templateId: templates[i % templates.length].id,
+    const variant = briefVariants[(i + 7) % briefVariants.length]
+    const status = ['APPROVED', 'SUBMITTED', 'DRAFT'][i % 3] as BriefStatus
+    const priority = ['MEDIUM', 'LOW'][i % 2] as Priority
+
+    briefsToCreate.push(buildBriefData(
+      variant,
+      club,
+      `BRIEF-2025-${String(3000 + i).padStart(4, '0')}`,
       createdAt,
-      submittedAt: createdAt,
-    })
+      status,
+      priority,
+      users[2].id,
+      templates[i % templates.length].id
+    ))
   }
 
   // Kujawsko-Pomorskie - LOW activity (orange)
@@ -626,21 +937,19 @@ async function main() {
     const club = kujawskoClubsList[i % kujawskoClubsList.length]
     const daysAgo = Math.floor(Math.random() * 90)
     const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
-    const variant = briefVariants[(i + 10) % briefVariants.length] // starts from low alignment
-    briefsToCreate.push({
-      code: `BRIEF-2025-${String(4000 + i).padStart(4, '0')}`,
-      title: `${variant.title} - ${club.name}`,
-      context: variant.context,
-      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-      status: ['SUBMITTED', 'DRAFT'][i % 2] as BriefStatus,
-      priority: 'LOW' as Priority,
-      createdById: users[2].id,
-      clubId: club.id,
-      brandId: zdrofitBrand.id,
-      templateId: templates[i % templates.length].id,
+    const variant = briefVariants[(i + 10) % briefVariants.length]
+    const status = ['SUBMITTED', 'DRAFT'][i % 2] as BriefStatus
+
+    briefsToCreate.push(buildBriefData(
+      variant,
+      club,
+      `BRIEF-2025-${String(4000 + i).padStart(4, '0')}`,
       createdAt,
-      submittedAt: createdAt,
-    })
+      status,
+      'LOW' as Priority,
+      users[2].id,
+      templates[i % templates.length].id
+    ))
   }
 
   // Lubelskie - VERY LOW activity (red)
@@ -649,30 +958,85 @@ async function main() {
     const club = lublinClubsList[i % lublinClubsList.length]
     const daysAgo = Math.floor(Math.random() * 90)
     const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
-    const variant = briefVariants[(i + 15) % briefVariants.length] // neutral variants
-    briefsToCreate.push({
-      code: `BRIEF-2025-${String(5000 + i).padStart(4, '0')}`,
-      title: `${variant.title} - ${club.name}`,
-      context: variant.context,
-      deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-      status: 'DRAFT' as BriefStatus,
-      priority: 'LOW' as Priority,
-      createdById: users[2].id,
-      clubId: club.id,
-      brandId: zdrofitBrand.id,
-      templateId: templates[0].id,
+    const variant = briefVariants[(i + 15) % briefVariants.length]
+
+    briefsToCreate.push(buildBriefData(
+      variant,
+      club,
+      `BRIEF-2025-${String(5000 + i).padStart(4, '0')}`,
       createdAt,
-      submittedAt: createdAt,
-    })
+      'DRAFT' as BriefStatus,
+      'LOW' as Priority,
+      users[2].id,
+      templates[0].id
+    ))
   }
 
-  // Other regions - minimal activity with varied content
-  const otherRegionVariants = [
-    { title: 'Yoga Nidra - Nowe Zajęcia', context: 'Wprowadzenie zajęć relaksacyjnych Yoga Nidra. Komunikacja dla obecnych członków szukających głębokiego odprężenia.' },
-    { title: 'Spinning Marathon Charytatywny', context: 'Event spinningowy na rzecz lokalnej fundacji. Cel: integracja społeczności klubowej i działania CSR.' },
-    { title: 'Promocja First Minute Lato', context: 'Wczesna promocja letnich karnetów. Kampania akwizycyjna z rabatem 30% dla nowych członków zapisujących się do końca maja.' },
-    { title: 'Dzień Otwarty - Open Gym', context: 'Dzień bezpłatnych wejść do klubu dla wszystkich. Cel: pozyskanie nowych klientów przez demonstrację oferty.' },
-    { title: 'Stretching po Pracy', context: 'Nowy cykl zajęć rozciągających o 18:00 dla osób pracujących. Komunikacja do obecnych członków o stresującym trybie życia.' },
+  // Other regions - minimal activity with full brief data
+  const otherRegionVariants: BriefVariant[] = [
+    {
+      title: 'Yoga Nidra - Nowe Zajęcia',
+      context: 'Wprowadzenie zajęć relaksacyjnych Yoga Nidra. Komunikacja dla obecnych członków szukających głębokiego odprężenia.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba uczestników pierwszych zajęć Yoga Nidra',
+      kpiTarget: 15,
+      formats: ['Post Instagram', 'Post Facebook', 'Plakat A3'],
+      estimatedCost: 150,
+      durationDays: 14,
+    },
+    {
+      title: 'Spinning Marathon Charytatywny',
+      context: 'Event spinningowy na rzecz lokalnej fundacji. Cel: integracja społeczności klubowej i działania CSR.',
+      alignment: 'medium',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba uczestników maratonu / kwota zebrana',
+      kpiTarget: 25,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A2'],
+      estimatedCost: 250,
+      durationDays: 1,
+    },
+    {
+      title: 'Promocja First Minute Lato',
+      context: 'Wczesna promocja letnich karnetów. Kampania akwizycyjna z rabatem 30% dla nowych członków zapisujących się do końca maja.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'REGIONAL',
+      kpiDescription: 'Liczba sprzedanych karnetów w promocji',
+      kpiTarget: 30,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A2', 'Ulotka A5'],
+      offerDetails: 'Karnet 3-miesięczny z 30% rabatem dla nowych członków. Oferta ważna do 31 maja.',
+      legalCopy: 'Oferta dla nowych członków. Nie łączy się z innymi promocjami.',
+      estimatedCost: 400,
+      durationDays: 30,
+    },
+    {
+      title: 'Dzień Otwarty - Open Gym',
+      context: 'Dzień bezpłatnych wejść do klubu dla wszystkich. Cel: pozyskanie nowych klientów przez demonstrację oferty.',
+      alignment: 'low',
+      businessObjective: 'REVENUE_ACQUISITION',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Liczba gości / konwersja na karnety',
+      kpiTarget: 50,
+      formats: ['Post Instagram', 'Post Facebook', 'Story Instagram', 'Plakat A2'],
+      offerDetails: 'Darmowe wejście dla wszystkich w sobotę 15 marca. Bez rezerwacji, wymagane oświadczenie.',
+      estimatedCost: 200,
+      durationDays: 1,
+    },
+    {
+      title: 'Stretching po Pracy',
+      context: 'Nowy cykl zajęć rozciągających o 18:00 dla osób pracujących. Komunikacja do obecnych członków o stresującym trybie życia.',
+      alignment: 'high',
+      businessObjective: 'RETENTION_ENGAGEMENT',
+      decisionContext: 'LOCAL',
+      kpiDescription: 'Frekwencja na zajęciach Stretching 18:00',
+      kpiTarget: 20,
+      formats: ['Post Instagram', 'Post Facebook', 'Newsletter'],
+      estimatedCost: 150,
+      durationDays: 30,
+    },
   ]
 
   const otherRegions = [regions[5], regions[6], regions[7], regions[8], regions[9]]
@@ -683,20 +1047,17 @@ async function main() {
       const daysAgo = Math.floor(Math.random() * 90)
       const createdAt = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000)
       const variant = otherRegionVariants[otherRegions.indexOf(region)]
-      briefsToCreate.push({
-        code: `BRIEF-2025-${String(6000 + otherRegions.indexOf(region)).padStart(4, '0')}`,
-        title: `${variant.title} - ${club.name}`,
-        context: variant.context,
-        deadline: new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000),
-        status: 'DRAFT' as BriefStatus,
-        priority: 'LOW' as Priority,
-        createdById: users[2].id,
-        clubId: club.id,
-        brandId: zdrofitBrand.id,
-        templateId: templates[0].id,
+
+      briefsToCreate.push(buildBriefData(
+        variant,
+        club,
+        `BRIEF-2025-${String(6000 + otherRegions.indexOf(region)).padStart(4, '0')}`,
         createdAt,
-        submittedAt: createdAt,
-      })
+        'DRAFT' as BriefStatus,
+        'LOW' as Priority,
+        users[2].id,
+        templates[0].id
+      ))
     }
   }
 

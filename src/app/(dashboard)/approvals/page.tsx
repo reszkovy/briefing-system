@@ -212,92 +212,69 @@ export default async function ApprovalsPage() {
         </div>
       </header>
 
-      {/* Main content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Validator Stats */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 mb-3">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Moje kluby</h2>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              (tylko kluby, którymi się opiekujesz)
-            </span>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
-              <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{totalClubs}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Klubów pod opieką</p>
-            </div>
-            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#daff47]">
-              <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{totalBriefs}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Briefów (90 dni)</p>
-            </div>
-            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-green-500">
-              <p className="text-2xl font-bold text-green-600 dark:text-green-400">{approvedBriefs}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Zatwierdzonych</p>
-            </div>
-            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-orange-500">
-              <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">{pendingCount}</p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Oczekujących</p>
+      {/* Pinned Sales Focuses - sticky at top */}
+      {activeFocuses.length > 0 && (
+        <div className="sticky top-0 z-40 bg-gradient-to-r from-amber-50 to-orange-50 border-b border-amber-200 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <div className="flex items-center gap-3 overflow-x-auto">
+              <span className="text-lg flex-shrink-0">🎯</span>
+              <span className="text-xs font-medium text-amber-700 flex-shrink-0">Cele:</span>
+              {activeFocuses.slice(0, 3).map((focus, idx) => (
+                <span
+                  key={focus.id}
+                  className="inline-flex items-center gap-1 px-2 py-1 bg-white/60 rounded text-sm text-gray-800 whitespace-nowrap flex-shrink-0"
+                >
+                  {focus.brand && (
+                    <span
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: focus.brand.primaryColor || '#888' }}
+                    />
+                  )}
+                  {focus.title}
+                </span>
+              ))}
+              {activeFocuses.length > 3 && (
+                <span className="text-xs text-amber-600 flex-shrink-0">+{activeFocuses.length - 3} więcej</span>
+              )}
             </div>
           </div>
         </div>
+      )}
 
-        {/* Region Heatmap for validator's clubs */}
-        {validatorClubsWithCoords.length > 0 && (
-          <div className="mb-8">
-            <RegionHeatmap regions={validatorRegionData} clubs={validatorClubsWithCoords} />
+      {/* Main content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Quick stats bar */}
+        <div className="flex items-center gap-6 mb-6 text-sm">
+          <div className="flex items-center gap-2">
+            <span className="text-[#2b3b82] dark:text-rf-lime font-bold text-lg">{totalClubs}</span>
+            <span className="text-gray-500">klubów</span>
           </div>
-        )}
-
-        {/* Active Sales Focuses */}
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Aktywne cele sprzedażowe</h2>
+          <div className="flex items-center gap-2">
+            <span className="text-green-600 font-bold text-lg">{approvedBriefs}</span>
+            <span className="text-gray-500">zatwierdzonych</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-orange-600 font-bold text-lg">{pendingCount}</span>
+            <span className="text-gray-500">oczekujących</span>
+          </div>
+          <div className="ml-auto flex items-center gap-2">
+            <Link
+              href="/admin/context"
+              className="text-xs text-gray-500 hover:text-[#2b3b82] transition-colors"
+            >
+              🏢 Konteksty klubów
+            </Link>
+            <span className="text-gray-300">|</span>
             <Link
               href="/admin/focus"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-[#2b3b82] text-white rounded-lg hover:bg-[#1e2a5e] transition-colors text-sm font-medium"
+              className="text-xs text-gray-500 hover:text-[#2b3b82] transition-colors"
             >
-              🎯 Zarządzaj celami
+              🎯 Cele sprzedażowe
             </Link>
           </div>
-          {activeFocuses.length > 0 ? (
-            <div className="space-y-2">
-              {activeFocuses.map((focus) => (
-              <div
-                key={focus.id}
-                className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-3 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-xl">🎯</span>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-xs font-medium px-2 py-0.5 bg-amber-200 text-amber-800 rounded">
-                      Focus
-                    </span>
-                    {focus.brand && (
-                      <span
-                        className="text-xs px-2 py-0.5 rounded"
-                        style={{
-                          backgroundColor: (focus.brand.primaryColor || '#888') + '20',
-                          color: focus.brand.primaryColor || '#888',
-                        }}
-                      >
-                        {focus.brand.name}
-                      </span>
-                    )}
-                    <span className="font-medium text-gray-900">{focus.title}</span>
-                  </div>
-                </div>
-              </div>
-              ))}
-            </div>
-          ) : (
-            <div className="bg-gray-50 dark:bg-card border border-gray-200 dark:border-border rounded-lg p-4 text-center text-gray-500 dark:text-gray-400">
-              Brak aktywnych celów sprzedażowych
-            </div>
-          )}
         </div>
 
-        {/* Pending approvals */}
+        {/* MAIN: Pending approvals - the key element */}
         <section className="mb-10">
           {pendingBriefs.length === 0 ? (
             <div className="bg-white dark:bg-card rounded-lg shadow p-12 text-center">
@@ -367,15 +344,15 @@ export default async function ApprovalsPage() {
           )}
         </section>
 
-        {/* Recent approvals */}
+        {/* Recent approvals - compact list */}
         {recentApprovals.length > 0 && (
-          <section>
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          <section className="mb-10">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
               Ostatnie decyzje
             </h2>
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-[#f5f7fa] dark:bg-background">
+            <div className="bg-white dark:bg-card rounded-lg shadow overflow-hidden">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-border">
+                <thead className="bg-[#f5f7fa] dark:bg-muted">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                       Brief
@@ -391,18 +368,18 @@ export default async function ApprovalsPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-gray-200 dark:divide-border">
                   {recentApprovals.map((approval) => (
-                    <tr key={approval.id} className="hover:bg-[#f5f7fa] dark:bg-background">
+                    <tr key={approval.id} className="hover:bg-[#f5f7fa] dark:hover:bg-muted">
                       <td className="px-6 py-4">
                         <Link
                           href={`/briefs/${approval.briefId}`}
-                          className="text-[#2b3b82] hover:underline"
+                          className="text-[#2b3b82] dark:text-rf-lime hover:underline"
                         >
                           {approval.brief.title}
                         </Link>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-500">
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
                         {approval.brief.club.name}
                       </td>
                       <td className="px-6 py-4">
@@ -420,7 +397,7 @@ export default async function ApprovalsPage() {
                           {approval.decision === 'CHANGES_REQUESTED' && 'Poprawki'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-500">
+                      <td className="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">
                         {formatRelativeTime(approval.createdAt)}
                       </td>
                     </tr>
@@ -429,6 +406,21 @@ export default async function ApprovalsPage() {
               </table>
             </div>
           </section>
+        )}
+
+        {/* Region Heatmap - collapsed/secondary section */}
+        {validatorClubsWithCoords.length > 0 && (
+          <details className="mb-8 group">
+            <summary className="flex items-center gap-2 cursor-pointer text-gray-600 dark:text-gray-400 hover:text-[#2b3b82] dark:hover:text-rf-lime mb-4">
+              <span className="text-lg">🗺️</span>
+              <span className="font-medium">Mapa aktywności klubów</span>
+              <span className="text-xs text-gray-400 ml-2">({totalClubs} klubów w {validatorRegionData.length} regionach)</span>
+              <svg className="w-4 h-4 ml-auto transform transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <RegionHeatmap regions={validatorRegionData} clubs={validatorClubsWithCoords} />
+          </details>
         )}
       </main>
     </div>

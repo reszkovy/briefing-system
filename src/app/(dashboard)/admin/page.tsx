@@ -241,6 +241,18 @@ export default async function AdminPage() {
             </div>
           </Link>
           <Link
+            href="/admin/context"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-teal-500 group"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-3xl">🏢</span>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Kontekst klubów</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Przeglądaj konteksty lokalne klubów</p>
+              </div>
+            </div>
+          </Link>
+          <Link
             href="/statistics"
             className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-emerald-500 group"
           >

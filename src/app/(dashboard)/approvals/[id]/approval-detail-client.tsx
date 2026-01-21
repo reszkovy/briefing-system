@@ -90,6 +90,11 @@ interface BriefData {
       name: string | null
     }
   }>
+  clubManager?: {
+    name: string
+    email: string
+    phone?: string | null
+  } | null
 }
 
 interface StrategyDocument {
@@ -533,6 +538,7 @@ export function ApprovalDetailClient({
                 localDecisionBrief: brief.club.localDecisionBrief,
                 contextUpdatedAt: brief.club.contextUpdatedAt,
               }}
+              manager={brief.clubManager}
               compact={true}
             />
 

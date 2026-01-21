@@ -103,6 +103,23 @@ export default async function ApprovalDetailPage({
     redirect('/approvals')
   }
 
+  // Get club manager for context display
+  const clubManager = await prisma.userClub.findFirst({
+    where: {
+      clubId: brief.clubId,
+      isManager: true,
+    },
+    include: {
+      user: {
+        select: {
+          name: true,
+          email: true,
+          phone: true,
+        },
+      },
+    },
+  })
+
   const canApprove = brief.status === 'SUBMITTED'
   const customFields = brief.customFields as Record<string, unknown> | null
   const templateSchema = brief.template.requiredFields as unknown as TemplateSchema
@@ -169,6 +186,13 @@ export default async function ApprovalDetailPage({
       ...brief.club,
       contextUpdatedAt: brief.club.contextUpdatedAt?.toISOString() || null,
     },
+    clubManager: clubManager
+      ? {
+          name: clubManager.user.name,
+          email: clubManager.user.email,
+          phone: clubManager.user.phone,
+        }
+      : null,
   }
 
   return (
