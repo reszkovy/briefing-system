@@ -7,6 +7,7 @@ import { LogoutButton } from '@/components/LogoutButton'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { PriorityBadge } from '@/components/briefs/status-badge'
 import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
+import { RegionHeatmap } from '@/components/admin/RegionHeatmap'
 
 export default async function ApprovalsPage() {
   const session = await auth()
@@ -38,6 +39,89 @@ export default async function ApprovalsPage() {
   }
 
   const clubIds = user.clubs.map((uc) => uc.clubId)
+
+  // Get validator's clubs with detailed data for statistics
+  const validatorClubs = await prisma.club.findMany({
+    where: { id: { in: clubIds } },
+    include: {
+      region: true,
+      briefs: {
+        where: {
+          createdAt: {
+            gte: new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), // Last 90 days
+          },
+        },
+      },
+    },
+  })
+
+  // Calculate region activity data for validator's clubs only
+  const regionMap = new Map<string, {
+    id: string
+    name: string
+    code: string
+    clubCount: number
+    briefCount: number
+    approvedCount: number
+  }>()
+
+  for (const club of validatorClubs) {
+    const regionId = club.region.id
+    const existing = regionMap.get(regionId)
+    const briefCount = club.briefs.length
+    const approvedCount = club.briefs.filter(b => b.status === 'APPROVED').length
+
+    if (existing) {
+      existing.clubCount += 1
+      existing.briefCount += briefCount
+      existing.approvedCount += approvedCount
+    } else {
+      regionMap.set(regionId, {
+        id: regionId,
+        name: club.region.name,
+        code: club.region.code,
+        clubCount: 1,
+        briefCount,
+        approvedCount,
+      })
+    }
+  }
+
+  const validatorRegionData = Array.from(regionMap.values()).map(region => {
+    let activityLevel: 'very_high' | 'high' | 'medium' | 'low' | 'very_low'
+    if (region.briefCount >= 30) activityLevel = 'very_high'
+    else if (region.briefCount >= 15) activityLevel = 'high'
+    else if (region.briefCount >= 8) activityLevel = 'medium'
+    else if (region.briefCount >= 3) activityLevel = 'low'
+    else activityLevel = 'very_low'
+
+    return { ...region, activityLevel }
+  })
+
+  // Get clubs with coordinates for map (only validator's clubs)
+  const validatorClubsWithCoords = validatorClubs
+    .filter(club => club.latitude && club.longitude)
+    .map(club => ({
+      id: club.id,
+      name: club.name,
+      city: club.city,
+      latitude: club.latitude,
+      longitude: club.longitude,
+      briefCount: club.briefs.length,
+      tier: club.tier,
+    }))
+
+  // Calculate total stats for validator
+  const totalClubs = validatorClubs.length
+  const totalBriefs = validatorClubs.reduce((sum, c) => sum + c.briefs.length, 0)
+  const approvedBriefs = validatorClubs.reduce(
+    (sum, c) => sum + c.briefs.filter(b => b.status === 'APPROVED').length,
+    0
+  )
+  const pendingCount = validatorClubs.reduce(
+    (sum, c) => sum + c.briefs.filter(b => b.status === 'SUBMITTED').length,
+    0
+  )
 
   // Get briefs pending approval (SUBMITTED status)
   const pendingBriefs = await prisma.brief.findMany({
@@ -130,6 +214,41 @@ export default async function ApprovalsPage() {
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Validator Stats */}
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Moje kluby</h2>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              (tylko kluby, którymi się opiekujesz)
+            </span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#2b3b82] dark:border-rf-lime">
+              <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{totalClubs}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Klubów pod opieką</p>
+            </div>
+            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-[#daff47]">
+              <p className="text-2xl font-bold text-[#2b3b82] dark:text-rf-lime">{totalBriefs}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Briefów (90 dni)</p>
+            </div>
+            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-green-500">
+              <p className="text-2xl font-bold text-green-600 dark:text-green-400">{approvedBriefs}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Zatwierdzonych</p>
+            </div>
+            <div className="bg-white dark:bg-card rounded-lg shadow p-4 border-l-4 border-orange-500">
+              <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">{pendingCount}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Oczekujących</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Region Heatmap for validator's clubs */}
+        {validatorClubsWithCoords.length > 0 && (
+          <div className="mb-8">
+            <RegionHeatmap regions={validatorRegionData} clubs={validatorClubsWithCoords} />
+          </div>
+        )}
+
         {/* Active Sales Focuses */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-3">
