@@ -408,9 +408,9 @@ export default async function ApprovalsPage() {
           </section>
         )}
 
-        {/* Region Heatmap - collapsed/secondary section */}
+        {/* Region Heatmap - open by default */}
         {validatorClubsWithCoords.length > 0 && (
-          <details className="mb-8 group">
+          <details className="mb-8 group" open>
             <summary className="flex items-center gap-2 cursor-pointer text-gray-600 dark:text-gray-400 hover:text-[#2b3b82] dark:hover:text-rf-lime mb-4">
               <span className="text-lg">🗺️</span>
               <span className="font-medium">Mapa aktywności klubów</span>
