@@ -2,10 +2,12 @@ import { redirect } from 'next/navigation'
 import { auth } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import { FocusList } from './FocusList'
+import { CampaignList } from './CampaignList'
 import { LogoutButton } from '@/components/LogoutButton'
 
-export default async function AdminFocusPage() {
+const ADMIN_ROLES = ['ADMIN', 'CMO', 'REGIONAL_DIRECTOR']
+
+export default async function AdminCampaignsPage() {
   const session = await auth()
 
   if (!session) {
@@ -16,11 +18,11 @@ export default async function AdminFocusPage() {
     where: { id: session.user.id },
   })
 
-  if (!currentUser || !['ADMIN', 'VALIDATOR'].includes(currentUser.role)) {
+  if (!currentUser || !ADMIN_ROLES.includes(currentUser.role)) {
     redirect('/dashboard')
   }
 
-  const focuses = await prisma.salesFocus.findMany({
+  const campaigns = await prisma.campaign.findMany({
     include: {
       brand: true,
       region: true,
@@ -53,15 +55,15 @@ export default async function AdminFocusPage() {
               ← Dashboard
             </Link>
             <h1 className="text-2xl font-bold text-white">
-              Cele sprzedażowe (Focus)
+              Kampanie globalne
             </h1>
           </div>
           <div className="flex items-center gap-4">
             <Link
-              href="/admin/campaigns"
+              href="/admin/focus"
               className="text-sm text-white/70 hover:text-white"
             >
-              Kampanie
+              Cele sprzedażowe
             </Link>
             <Link
               href="/admin/clubs"
@@ -87,8 +89,8 @@ export default async function AdminFocusPage() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <FocusList
-          initialFocuses={JSON.parse(JSON.stringify(focuses))}
+        <CampaignList
+          initialCampaigns={JSON.parse(JSON.stringify(campaigns))}
           regions={JSON.parse(JSON.stringify(regions))}
           brands={JSON.parse(JSON.stringify(brands))}
         />

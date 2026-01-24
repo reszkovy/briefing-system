@@ -229,6 +229,18 @@ export default async function AdminPage() {
             </div>
           </Link>
           <Link
+            href="/admin/campaigns"
+            className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-rose-500 group"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-3xl">📢</span>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 group-hover:text-[#2b3b82] dark:group-hover:text-rf-lime">Kampanie globalne</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Aktywacje i materialy dla klubow</p>
+              </div>
+            </div>
+          </Link>
+          <Link
             href="/admin/strategy"
             className="bg-white dark:bg-card rounded-lg shadow p-6 hover:shadow-md transition-all border-l-4 border-purple-500 group"
           >

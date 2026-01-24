@@ -147,6 +147,23 @@ export default async function BriefsPage({
     orderBy: [{ period: 'asc' }, { startDate: 'desc' }],
   })
 
+  // Get active campaigns for user's clubs
+  const activeCampaigns = await prisma.campaign.findMany({
+    where: {
+      isActive: true,
+      startDate: { lte: now },
+      endDate: { gte: now },
+      OR: [
+        { brandId: null, regionId: null },
+        { brandId: { in: userBrandIds }, regionId: null },
+        { regionId: { in: userRegionIds }, brandId: null },
+        { brandId: { in: userBrandIds }, regionId: { in: userRegionIds } },
+      ],
+    },
+    include: { brand: true, region: true },
+    orderBy: [{ startDate: 'desc' }],
+  })
+
   // Categorize focuses by tier
   const strategicFocuses = activeFocuses.filter(f => !f.brandId && !f.regionId)
   const regionalFocuses = activeFocuses.filter(f => f.regionId && !f.brandId)
@@ -194,6 +211,82 @@ export default async function BriefsPage({
 
       {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Active Campaigns - Global activations */}
+        {activeCampaigns.length > 0 && (
+          <div className="mb-6 space-y-3">
+            {activeCampaigns.map((campaign) => (
+              <div
+                key={campaign.id}
+                className="bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-200 rounded-lg p-4 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">📢</span>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 flex-wrap mb-1">
+                      <span className="text-xs font-medium px-2 py-0.5 rounded bg-rose-200 text-rose-800">
+                        Kampania globalna
+                      </span>
+                      {campaign.brand && (
+                        <span
+                          className="text-xs px-2 py-0.5 rounded"
+                          style={{
+                            backgroundColor: (campaign.brand.primaryColor || '#888') + '20',
+                            color: campaign.brand.primaryColor || '#888',
+                          }}
+                        >
+                          {campaign.brand.name}
+                        </span>
+                      )}
+                      {campaign.region && (
+                        <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">
+                          {campaign.region.name}
+                        </span>
+                      )}
+                      <span className="text-xs text-gray-500">
+                        {formatDate(campaign.startDate)} - {formatDate(campaign.endDate)}
+                      </span>
+                    </div>
+                    <h3 className="font-semibold text-gray-900">{campaign.title}</h3>
+                    <p className="text-sm text-rose-700 mt-1">
+                      <span className="font-medium">Cel:</span> {campaign.objective}
+                    </p>
+                    {campaign.description && (
+                      <p className="text-sm text-gray-600 mt-1">{campaign.description}</p>
+                    )}
+                    {campaign.materials && Array.isArray(campaign.materials) && campaign.materials.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-rose-100">
+                        <p className="text-xs font-medium text-gray-700 mb-2">Materiały dla klubu:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {(campaign.materials as Array<{ name: string; description?: string; fileUrl?: string }>).map((material, idx) => (
+                            <div key={idx} className="flex items-center gap-1 text-sm">
+                              <span className="text-gray-500">•</span>
+                              {material.fileUrl ? (
+                                <a
+                                  href={material.fileUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-blue-600 hover:underline"
+                                >
+                                  {material.name}
+                                </a>
+                              ) : (
+                                <span className="text-gray-700">{material.name}</span>
+                              )}
+                              {material.description && (
+                                <span className="text-gray-400 text-xs">({material.description})</span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Active Sales Focuses - Tiered display */}
         {activeFocuses.length > 0 && (
           <div className="mb-6 space-y-3">

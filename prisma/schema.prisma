@@ -25,6 +25,7 @@ model User {
   salesFocuses  SalesFocus[]     @relation("FocusCreatedBy")
   strategyDocuments StrategyDocument[] @relation("StrategyCreatedBy")
   clubContextUpdates Club[]      @relation("ClubContextUpdatedBy")
+  campaigns     Campaign[]       @relation("CampaignCreatedBy")
 }
 
 model Region {
@@ -35,6 +36,7 @@ model Region {
   clubs        Club[]
   salesFocuses SalesFocus[]
   strategyDocuments StrategyDocument[]
+  campaigns    Campaign[]
 }
 
 model Brand {
@@ -51,6 +53,7 @@ model Brand {
   templates     RequestTemplate[]
   salesFocuses  SalesFocus[]
   strategyDocuments StrategyDocument[]
+  campaigns     Campaign[]
 }
 
 model Club {
@@ -520,6 +523,46 @@ model StrategyDocument {
 
   @@index([type])
   @@index([scope])
+  @@index([brandId])
+  @@index([regionId])
+  @@index([isActive])
+}
+
+// ============================================
+// Campaign - Globalne aktywacje/kampanie
+// Dostep do zarzadzania: ADMIN, CMO, REGIONAL_DIRECTOR
+// Widok informacyjny: wszyscy
+// ============================================
+
+model Campaign {
+  id              String         @id @default(cuid())
+  title           String
+  description     String?        @db.Text
+  objective       String         // Cel kampanii
+
+  // Okres trwania
+  startDate       DateTime
+  endDate         DateTime
+
+  // Materialy dla klubow
+  materials       Json?          // [{name: "Plakat A3", description: "...", fileUrl: "..."}]
+
+  // Zakres (opcjonalnie zawezony do marki/regionu)
+  brandId         String?
+  regionId        String?
+
+  // Status i metadata
+  isActive        Boolean        @default(true)
+  createdById     String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relacje
+  brand           Brand?         @relation(fields: [brandId], references: [id])
+  region          Region?        @relation(fields: [regionId], references: [id])
+  createdBy       User           @relation("CampaignCreatedBy", fields: [createdById], references: [id])
+
+  @@index([startDate, endDate])
   @@index([brandId])
   @@index([regionId])
   @@index([isActive])
