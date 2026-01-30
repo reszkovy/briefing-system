@@ -9,6 +9,43 @@ import { PriorityBadge } from '@/components/briefs/status-badge'
 import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
 import { RegionHeatmap } from '@/components/admin/RegionHeatmap'
 
+// Cost per day of delay (in PLN)
+const DELAY_COST_PER_DAY = 50
+
+// Alignment score calculation (simplified version for list view)
+function calculateAlignmentScore(context: string, title: string, brandName: string): number | null {
+  if (brandName.toLowerCase() !== 'zdrofit') return null
+
+  const text = `${title} ${context}`.toLowerCase()
+  let score = 50
+
+  const positiveKeywords: Record<string, number> = {
+    'yoga': 15, 'joga': 15, 'pilates': 15, 'mobility': 12, 'stretching': 12,
+    'wellness': 10, 'mindfulness': 10, 'medytacja': 10, 'retencja': 15,
+    'lojalność': 12, 'klubowicz': 10, 'członek': 8,
+  }
+
+  const negativeKeywords: Record<string, number> = {
+    'akwizycja': -15, 'nowi klienci': -12, 'rabat': -8, 'zniżka': -8,
+    'promocja cenowa': -10, 'black friday': -12, 'hiit': -10, 'crossfit': -10,
+  }
+
+  for (const [keyword, weight] of Object.entries(positiveKeywords)) {
+    if (text.includes(keyword)) score += weight
+  }
+  for (const [keyword, weight] of Object.entries(negativeKeywords)) {
+    if (text.includes(keyword)) score += weight
+  }
+
+  return Math.max(0, Math.min(100, score))
+}
+
+function getAlignmentBadge(score: number): { color: string; bgColor: string; label: string } {
+  if (score >= 70) return { color: 'text-green-700', bgColor: 'bg-green-100', label: `${score}%` }
+  if (score >= 50) return { color: 'text-yellow-700', bgColor: 'bg-yellow-100', label: `${score}%` }
+  return { color: 'text-red-700', bgColor: 'bg-red-100', label: `⚠️ ${score}%` }
+}
+
 export default async function ApprovalsPage() {
   const session = await auth()
 
@@ -139,6 +176,20 @@ export default async function ApprovalsPage() {
     orderBy: [{ priority: 'desc' }, { submittedAt: 'asc' }],
   })
 
+  // Calculate worst delays (top 10 most overdue briefs)
+  const now = new Date()
+  const worstDelays = pendingBriefs
+    .map(brief => {
+      const deadline = new Date(brief.deadline)
+      const daysOverdue = Math.floor((now.getTime() - deadline.getTime()) / (1000 * 60 * 60 * 24))
+      return { ...brief, daysOverdue, delayCost: Math.max(0, daysOverdue) * DELAY_COST_PER_DAY }
+    })
+    .filter(brief => brief.daysOverdue > 0)
+    .sort((a, b) => b.daysOverdue - a.daysOverdue)
+    .slice(0, 10)
+
+  const totalDelayCost = worstDelays.reduce((sum, b) => sum + b.delayCost, 0)
+
   // Get recently processed briefs
   const recentApprovals = await prisma.approval.findMany({
     where: { validatorId: session.user.id },
@@ -154,7 +205,6 @@ export default async function ApprovalsPage() {
   })
 
   // Get active sales focuses
-  const now = new Date()
   const userBrandIds = user.clubs.map((uc) => uc.club.brandId)
   const userRegionIds = user.clubs.map((uc) => uc.club.regionId)
 
@@ -274,6 +324,64 @@ export default async function ApprovalsPage() {
           </div>
         </div>
 
+        {/* Worst Delays Alert - only show if there are overdue briefs */}
+        {worstDelays.length > 0 && (
+          <details className="mb-6 group">
+            <summary className="flex items-center gap-3 cursor-pointer bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors">
+              <span className="text-2xl">🔥</span>
+              <div className="flex-1">
+                <span className="font-semibold text-red-700 dark:text-red-400">
+                  Najgorsze opóźnienia
+                </span>
+                <span className="text-red-600 dark:text-red-400 text-sm ml-2">
+                  ({worstDelays.length} briefów • łączny koszt: {totalDelayCost} zł)
+                </span>
+              </div>
+              <svg className="w-5 h-5 text-red-500 transform transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div className="mt-3 bg-white dark:bg-card rounded-lg shadow overflow-hidden border border-red-100 dark:border-red-900">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-border">
+                <thead className="bg-red-50 dark:bg-red-900/30">
+                  <tr>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-red-700 dark:text-red-400 uppercase">Brief</th>
+                    <th className="px-4 py-2 text-left text-xs font-medium text-red-700 dark:text-red-400 uppercase">Klub</th>
+                    <th className="px-4 py-2 text-right text-xs font-medium text-red-700 dark:text-red-400 uppercase">Dni opóźnienia</th>
+                    <th className="px-4 py-2 text-right text-xs font-medium text-red-700 dark:text-red-400 uppercase">Koszt</th>
+                    <th className="px-4 py-2 text-right text-xs font-medium text-red-700 dark:text-red-400 uppercase">Akcja</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-border">
+                  {worstDelays.map((brief, idx) => (
+                    <tr key={brief.id} className={idx === 0 ? 'bg-red-100/50 dark:bg-red-900/40' : ''}>
+                      <td className="px-4 py-2">
+                        <span className="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1">{brief.title}</span>
+                        <span className="text-xs text-gray-500 block">{brief.code}</span>
+                      </td>
+                      <td className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">{brief.club.name}</td>
+                      <td className="px-4 py-2 text-right">
+                        <span className="text-red-600 dark:text-red-400 font-bold">{brief.daysOverdue} dni</span>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <span className="text-red-600 dark:text-red-400 font-semibold">{brief.delayCost} zł</span>
+                      </td>
+                      <td className="px-4 py-2 text-right">
+                        <Link
+                          href={`/approvals/${brief.id}`}
+                          className="inline-block px-2 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 transition-colors"
+                        >
+                          Rozpatrz
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </details>
+        )}
+
         {/* MAIN: Pending approvals - the key element */}
         <section className="mb-10">
           {pendingBriefs.length === 0 ? (
@@ -286,6 +394,15 @@ export default async function ApprovalsPage() {
             <div className="space-y-3">
               {pendingBriefs.map((brief) => {
                 const sla = getSLAIndicator(brief.deadline)
+                const alignmentScore = calculateAlignmentScore(brief.context || '', brief.title, brief.club.brand.name)
+                const alignmentBadge = alignmentScore !== null ? getAlignmentBadge(alignmentScore) : null
+
+                // Calculate delay cost
+                const now = new Date()
+                const deadline = new Date(brief.deadline)
+                const daysOverdue = Math.max(0, Math.floor((now.getTime() - deadline.getTime()) / (1000 * 60 * 60 * 24)))
+                const delayCost = daysOverdue > 0 ? daysOverdue * DELAY_COST_PER_DAY : 0
+
                 return (
                   <Link
                     key={brief.id}
@@ -313,6 +430,12 @@ export default async function ApprovalsPage() {
                             <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300">
                               {brief.template.name}
                             </span>
+                            {/* Alignment Score Badge */}
+                            {alignmentBadge && (
+                              <span className={`text-xs px-2 py-0.5 rounded font-medium ${alignmentBadge.bgColor} ${alignmentBadge.color}`}>
+                                {alignmentBadge.label} alignment
+                              </span>
+                            )}
                           </div>
                           <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 truncate">
                             {brief.title}
@@ -330,7 +453,12 @@ export default async function ApprovalsPage() {
                           <p className={`text-sm font-medium ${sla.color}`}>
                             {formatDate(brief.deadline)}
                           </p>
-                          <p className={`text-xs ${sla.color}`}>{sla.text}</p>
+                          <p className={`text-xs ${sla.color}`}>
+                            {sla.text}
+                            {delayCost > 0 && (
+                              <span className="ml-1 font-semibold">• {delayCost} zł</span>
+                            )}
+                          </p>
                           <span className="inline-block mt-2 px-3 py-1 bg-[#daff47] text-[#2b3b82] font-semibold rounded text-sm">
                             Rozpatrz →
                           </span>

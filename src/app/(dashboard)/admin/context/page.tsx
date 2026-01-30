@@ -18,8 +18,8 @@ export default async function ClubContextPage() {
     where: { id: session.user.id },
   })
 
-  // Allow ADMIN, REGIONAL_DIRECTOR, CMO to access
-  const allowedRoles = ['ADMIN', 'REGIONAL_DIRECTOR', 'CMO']
+  // Allow ADMIN, REGIONAL_DIRECTOR, CMO, VALIDATOR to access (read-only for validators)
+  const allowedRoles = ['ADMIN', 'REGIONAL_DIRECTOR', 'CMO', 'VALIDATOR']
   if (!user || !allowedRoles.includes(user.role)) {
     redirect('/')
   }
