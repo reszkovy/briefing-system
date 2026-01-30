@@ -10,7 +10,7 @@ import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
 import { RegionHeatmap } from '@/components/admin/RegionHeatmap'
 
 // Cost per day of delay (in PLN)
-const DELAY_COST_PER_DAY = 50
+const DELAY_COST_PER_DAY = 10
 
 // Alignment score calculation (simplified version for list view)
 function calculateAlignmentScore(context: string, title: string, brandName: string): number | null {
