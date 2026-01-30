@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
+import { Presentation } from 'lucide-react'
 
 interface DemoUser {
   email: string
@@ -152,6 +154,18 @@ export default function LoginPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m0 0v2m0-2h2m-2 0H10m9.374-9.373a9 9 0 11-12.728 0" />
             </svg>
           </div>
+        </div>
+
+        {/* Pitch deck link */}
+        <div className="pt-4 border-t border-[#2b3b82]/10">
+          <Link
+            href="/pitch"
+            className="flex items-center justify-center gap-3 w-full p-4 rounded-xl bg-gradient-to-r from-[#1a2654] to-[#2b3b82] text-white hover:from-[#2b3b82] hover:to-[#3c4d9e] transition-all group"
+          >
+            <Presentation className="w-5 h-5 group-hover:scale-110 transition-transform" />
+            <span className="font-medium">Zobacz pitch deck</span>
+            <span className="text-white/60 text-sm">— jaki problem rozwiązujemy?</span>
+          </Link>
         </div>
 
         <p className="text-xs text-[#2b3b82]/40 text-center pt-4 border-t border-[#2b3b82]/10">

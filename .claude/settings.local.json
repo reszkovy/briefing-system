@@ -40,7 +40,8 @@
       "Bash(cd /Users/reszek/Desktop/Narzedzie\\\\ do\\\\ briefowania && npx prisma migrate dev:*)",
       "Bash(git add prisma/schema.prisma src/app/api/clubs/[id]/ src/components/clubs/ src/lib/constants/ src/lib/validations/club-context.ts src/types/club-context.ts src/app/\\\\\\(dashboard\\\\\\)/admin/clubs/ClubList.tsx src/components/briefs/brief-form.tsx)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Club Context panel for local managers\n\nClub managers now have a dedicated panel on their /briefs page to\nview and edit the context of their assigned clubs. The panel shows:\n- List of all clubs assigned to the manager\n- Status badges \\(completed/to complete\\) for each club\n- Expandable sections with full context display\n- Edit functionality directly from the panel\n\nThis allows managers to maintain club context without needing admin access.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(npx prisma:*)"
+      "Bash(npx prisma:*)",
+      "Bash(cd /Users/reszek/Desktop/Claude_zadania/Narzedzie\\\\ do\\\\ briefowania && git add:*)"
     ]
   }
 }
