@@ -340,8 +340,8 @@ export function ApprovalDetailClient({
             {canApprove && (
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-amber-800">Mozesz edytowac brief przed zatwierdzeniem</p>
-                  <p className="text-sm text-amber-600">Wprowadz zmiany jesli to konieczne, a nastepnie zatwierdz lub przekaz dalej.</p>
+                  <p className="font-medium text-amber-800">Możesz edytować brief przed zatwierdzeniem</p>
+                  <p className="text-sm text-amber-600">Wprowadź zmiany jeśli to konieczne, a następnie zatwierdź lub przekaż dalej.</p>
                 </div>
                 <Button
                   onClick={() => setIsEditing(true)}
@@ -614,7 +614,7 @@ export function ApprovalDetailClient({
             ) : (
               <div className="bg-gray-100 rounded-lg p-6">
                 <p className="text-gray-600 text-center">
-                  Ten brief zostal juz rozpatrzony.
+                  Ten brief został już rozpatrzony.
                 </p>
               </div>
             )}

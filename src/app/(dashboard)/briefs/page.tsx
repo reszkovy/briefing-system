@@ -433,11 +433,11 @@ export default async function BriefsPage({
         {briefs.length === 0 ? (
           <div className="bg-white dark:bg-card rounded-lg shadow p-12 text-center">
             <div className="text-5xl mb-4">📝</div>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Brak briefow</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Brak briefów</h2>
             <p className="text-gray-500 dark:text-gray-400 mb-4">
               {statusFilter === 'all'
-                ? 'Nie masz jeszcze zadnych briefow.'
-                : `Brak briefow o statusie "${BriefStatusLabels[statusFilter]}".`}
+                ? 'Nie masz jeszcze żadnych briefów.'
+                : `Brak briefów o statusie "${BriefStatusLabels[statusFilter]}".`}
             </p>
             {session.user.role === 'CLUB_MANAGER' && (
               <Link href="/briefs/new">

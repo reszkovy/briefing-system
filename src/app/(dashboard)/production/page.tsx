@@ -176,10 +176,10 @@ export default async function ProductionPage() {
             </div>
             <div className="ml-auto flex items-center gap-3">
               <span className="text-xs text-gray-400">
-                Przeciagnij karty aby zmienic status
+                Przeciągnij karty aby zmienić status
               </span>
               <span className="px-3 py-1 rounded-full bg-[#daff47] text-[#2b3b82] font-semibold text-xs">
-                {tasks.length} zadan lacznie
+                {tasks.length} zadań łącznie
               </span>
             </div>
           </div>
@@ -191,8 +191,8 @@ export default async function ProductionPage() {
         {tasks.length === 0 ? (
           <div className="bg-white rounded-xl shadow-lg p-12 text-center max-w-md mx-auto">
             <div className="text-6xl mb-4">📭</div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Brak zadan w kolejce</h2>
-            <p className="text-gray-500">Nowe zadania pojawia sie tutaj po zatwierdzeniu briefow.</p>
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Brak zadań w kolejce</h2>
+            <p className="text-gray-500">Nowe zadania pojawią się tutaj po zatwierdzeniu briefów.</p>
           </div>
         ) : (
           <KanbanBoard initialTasks={serializedTasks} columns={columns} />

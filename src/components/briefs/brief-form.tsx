@@ -349,7 +349,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
 
   const handleSubmit = async (action: 'draft' | 'submit') => {
     if (action === 'submit' && !validateForm()) {
-      setError('Wypelnij wszystkie wymagane pola przed wyslaniem')
+      setError('Wypełnij wszystkie wymagane pola przed wysłaniem')
       return
     }
 
@@ -381,7 +381,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
       const result = await response.json()
 
       if (!response.ok) {
-        throw new Error(result.error || 'Wystapil blad podczas zapisywania briefu')
+        throw new Error(result.error || 'Wystąpił błąd podczas zapisywania briefu')
       }
 
       router.push('/briefs')
@@ -557,7 +557,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
           <h2 className="text-xl font-semibold text-white">
             {mode === 'edit' ? 'Edytuj brief' : 'Nowe zlecenie'}
           </h2>
-          <p className="text-white/70 text-sm mt-1">Wypelnij podstawowe informacje</p>
+          <p className="text-white/70 text-sm mt-1">Wypełnij podstawowe informacje</p>
         </div>
 
         {/* Form content - all in one section */}
@@ -590,7 +590,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
                     Cele strategiczne: {relevantStrategy.brandName}
                   </h3>
                   <p className="text-xs text-emerald-600">
-                    Pamietaj o tych priorytetach przy tworzeniu briefu
+                    Pamiętaj o tych priorytetach przy tworzeniu briefu
                   </p>
                 </div>
               </div>
@@ -630,13 +630,13 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
 
           {/* Title */}
           <div className="space-y-2">
-            <Label htmlFor="title">Tytul zlecenia *</Label>
+            <Label htmlFor="title">Tytuł zlecenia *</Label>
             <Input
               id="title"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              placeholder="np. Promocja karnetu - styczen"
+              placeholder="np. Promocja karnetu — styczeń"
             />
           </div>
 
@@ -661,7 +661,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
               name="context"
               value={formData.context}
               onChange={handleInputChange}
-              placeholder="Opisz czego potrzebujesz, jaki jest kontekst, szczegoly oferty, typ wydarzenia, liczba uczestników, linki do rejestracji..."
+              placeholder="Opisz czego potrzebujesz, jaki jest kontekst, szczegóły oferty, typ wydarzenia, liczbę uczestników, linki do rejestracji…"
               rows={5}
             />
           </div>
@@ -673,7 +673,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
                 <span className="text-2xl">🎯</span>
                 <div>
                   <h3 className="font-semibold text-[#2b3b82]">Cel biznesowy i miernik sukcesu</h3>
-                  <p className="text-xs text-gray-600">Wymagane przed wyslaniem - okresl intencje biznesowa</p>
+                  <p className="text-xs text-gray-600">Wymagane przed wysłaniem — określ intencję biznesową</p>
                 </div>
                 {isDecisionLayerComplete() ? (
                   <span className="ml-auto px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-medium">
@@ -681,7 +681,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
                   </span>
                 ) : (
                   <span className="ml-auto px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-xs font-medium">
-                    Do uzupelnienia
+                    Do uzupełnienia
                   </span>
                 )}
               </div>
@@ -689,7 +689,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
               {/* Business Objective - required chip selection */}
               <div className="space-y-2">
                 <Label className="text-sm font-medium">Cel biznesowy *</Label>
-                <p className="text-xs text-gray-500">Na jaki wynik biznesowy ma wplynac ta komunikacja?</p>
+                <p className="text-xs text-gray-500">Na jaki wynik biznesowy ma wpłynąć ta komunikacja?</p>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(BusinessObjectiveLabels).map(([value, label]) => {
                     const isSelected = formData.businessObjective === value
@@ -718,19 +718,19 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="md:col-span-2 space-y-2">
                   <Label htmlFor="kpiDescription" className="text-sm font-medium">Miernik sukcesu (KPI) *</Label>
-                  <p className="text-xs text-gray-500">Po czym poznasz, ze komunikacja zadziala?</p>
+                  <p className="text-xs text-gray-500">Po czym poznasz, że komunikacja zadziała?</p>
                   <Input
                     id="kpiDescription"
                     name="kpiDescription"
                     value={formData.kpiDescription}
                     onChange={handleInputChange}
-                    placeholder="np. Liczba zapisow, Sprzedaz karnetow, Udzial w wydarzeniu..."
+                    placeholder="np. Liczba zapisów, Sprzedaż karnetów, Udział w wydarzeniu…"
                     className="bg-white"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="kpiTarget" className="text-sm font-medium">Wartosc docelowa *</Label>
-                  <p className="text-xs text-gray-500">Ile chcesz osiagnac?</p>
+                  <Label htmlFor="kpiTarget" className="text-sm font-medium">Wartość docelowa *</Label>
+                  <p className="text-xs text-gray-500">Ile chcesz osiągnąć?</p>
                   <Input
                     type="number"
                     id="kpiTarget"
@@ -778,7 +778,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
           <div className="border-t border-gray-200 pt-6 space-y-6">
             <div>
               <Label className="text-lg">Co potrzebujesz? *</Label>
-              <p className="text-xs text-gray-500 mt-1">Wybierz typy zlecen i formaty - mozesz laczyc rozne kategorie w jednym briefie</p>
+              <p className="text-xs text-gray-500 mt-1">Wybierz typy zleceń i formaty — możesz łączyć różne kategorie w jednym briefie</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -867,7 +867,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
             {/* Custom formats - below columns */}
             <div className="space-y-2">
               <h4 className="text-sm font-medium text-[#2b3b82]">Inne formaty</h4>
-              <p className="text-xs text-gray-500">Dodaj niestandardowe formaty jesli potrzebujesz</p>
+              <p className="text-xs text-gray-500">Dodaj niestandardowe formaty jeśli potrzebujesz</p>
               <div className="flex gap-2">
                 <Input
                   type="text"
@@ -1114,7 +1114,7 @@ export function BriefForm({ clubs, templates, strategyDocuments = [], initialDat
               disabled={loading || !validateForm()}
               className="bg-[#daff47] text-[#2b3b82] hover:bg-[#c5eb3d]"
             >
-              {loading ? 'Wysylanie...' : 'Wyslij'}
+              {loading ? 'Wysyłanie…' : 'Wyślij'}
             </Button>
           </div>
         </div>

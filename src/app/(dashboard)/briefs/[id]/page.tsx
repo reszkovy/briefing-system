@@ -370,10 +370,10 @@ export default async function BriefDetailPage({
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
                 <h3 className="font-medium text-yellow-800 mb-2">Wymagane poprawki</h3>
                 <p className="text-sm text-yellow-700 mb-3">
-                  {brief.approvals[0]?.notes || 'Walidator poprosil o wprowadzenie poprawek.'}
+                  {brief.approvals[0]?.notes || 'Walidator poprosił o wprowadzenie poprawek.'}
                 </p>
                 <Link href={`/briefs/${brief.id}/edit`}>
-                  <Button className="w-full">Wprowadz poprawki</Button>
+                  <Button className="w-full">Wprowadź poprawki</Button>
                 </Link>
               </div>
             )}
@@ -382,10 +382,10 @@ export default async function BriefDetailPage({
               <div className="bg-[#f5f7fa] border border-gray-200 rounded-lg p-4">
                 <h3 className="font-medium text-gray-800 mb-2">Szkic</h3>
                 <p className="text-sm text-gray-600 mb-3">
-                  Ten brief nie zostal jeszcze wyslany do zatwierdzenia.
+                  Ten brief nie został jeszcze wysłany do zatwierdzenia.
                 </p>
                 <Link href={`/briefs/${brief.id}/edit`}>
-                  <Button className="w-full">Kontynuuj edycje</Button>
+                  <Button className="w-full">Kontynuuj edycję</Button>
                 </Link>
               </div>
             )}

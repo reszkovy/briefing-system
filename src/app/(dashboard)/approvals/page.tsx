@@ -8,11 +8,22 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { PriorityBadge } from '@/components/briefs/status-badge'
 import { formatDate, formatRelativeTime, getSLAIndicator } from '@/lib/utils'
 import { RegionHeatmap } from '@/components/admin/RegionHeatmap'
+import { getAlignmentBadgeColor } from '@/lib/llm-auditor'
 
 // Cost per day of delay (in PLN)
 const DELAY_COST_PER_DAY = 10
 
-// Alignment score calculation (simplified version for list view)
+/**
+ * LEGACY: hardkodowane keyword-based scoring dla zdrofit.
+ * Używane jako FALLBACK gdy brief nie ma jeszcze LLM-derived alignment
+ * w aiAuditResult.alignment (np. stare briefy sprzed wdrożenia LLM auditora).
+ *
+ * NEW briefy mają alignment score liczony przez Claude w llm-auditor.ts
+ * — odpalany przy submicie briefu (TODO w tyg 3) lub on-demand.
+ *
+ * Po pełnym backfillu LLM scores dla wszystkich briefów (tyg 8 — seed),
+ * tę funkcję można usunąć.
+ */
 function calculateAlignmentScore(context: string, title: string, brandName: string): number | null {
   if (brandName.toLowerCase() !== 'zdrofit') return null
 
@@ -40,10 +51,33 @@ function calculateAlignmentScore(context: string, title: string, brandName: stri
   return Math.max(0, Math.min(100, score))
 }
 
+/**
+ * LEGACY badge wrapper — używany razem z legacy calculateAlignmentScore.
+ * Nowe LLM scores używają getAlignmentBadgeColor() z @/lib/llm-auditor.
+ */
 function getAlignmentBadge(score: number): { color: string; bgColor: string; label: string } {
   if (score >= 70) return { color: 'text-green-700', bgColor: 'bg-green-100', label: `${score}%` }
   if (score >= 50) return { color: 'text-yellow-700', bgColor: 'bg-yellow-100', label: `${score}%` }
   return { color: 'text-red-700', bgColor: 'bg-red-100', label: `⚠️ ${score}%` }
+}
+
+/**
+ * Type guard dla aiAuditResult.alignment.
+ * Brief.aiAuditResult to JSON, więc trzeba bezpiecznie wyciągnąć score.
+ */
+function extractLlmAlignment(
+  aiAuditResult: unknown
+): { score: number; rationale: string } | null {
+  if (!aiAuditResult || typeof aiAuditResult !== 'object') return null
+  const audit = aiAuditResult as { alignment?: { score?: unknown; rationale?: unknown } }
+  if (!audit.alignment) return null
+  const score = audit.alignment.score
+  const rationale = audit.alignment.rationale
+  if (typeof score !== 'number') return null
+  return {
+    score: Math.max(0, Math.min(100, score)),
+    rationale: typeof rationale === 'string' ? rationale : '',
+  }
 }
 
 export default async function ApprovalsPage() {
@@ -148,17 +182,16 @@ export default async function ApprovalsPage() {
       tier: club.tier,
     }))
 
-  // Calculate total stats for validator
+  // Calculate total stats for validator (clubs scope)
   const totalClubs = validatorClubs.length
   const totalBriefs = validatorClubs.reduce((sum, c) => sum + c.briefs.length, 0)
-  const approvedBriefs = validatorClubs.reduce(
-    (sum, c) => sum + c.briefs.filter(b => b.status === 'APPROVED').length,
-    0
-  )
-  const pendingCount = validatorClubs.reduce(
-    (sum, c) => sum + c.briefs.filter(b => b.status === 'SUBMITTED').length,
-    0
-  )
+
+  // Aggregate counts SCOPED to validator's clubs but NOT date-filtered
+  // (validatorClubs.briefs is 90-day filtered — for accurate live counts we query separately)
+  const [approvedBriefs, pendingCount] = await Promise.all([
+    prisma.brief.count({ where: { status: 'APPROVED', clubId: { in: clubIds } } }),
+    prisma.brief.count({ where: { status: 'SUBMITTED', clubId: { in: clubIds } } }),
+  ])
 
   // Get briefs pending approval (SUBMITTED status)
   const pendingBriefs = await prisma.brief.findMany({
@@ -243,7 +276,7 @@ export default async function ApprovalsPage() {
             <h1 className="text-xl font-semibold text-white">Zatwierdzenia</h1>
             {pendingBriefs.length > 0 && (
               <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
-                {pendingBriefs.length} oczekujacych
+                {pendingBriefs.length} oczekujących
               </span>
             )}
           </div>
@@ -388,14 +421,19 @@ export default async function ApprovalsPage() {
             <div className="bg-white dark:bg-card rounded-lg shadow p-12 text-center">
               <div className="text-5xl mb-4">✅</div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">Wszystko zatwierdzone!</h2>
-              <p className="text-gray-500 dark:text-gray-400">Nie ma briefow oczekujacych na Twoja decyzje.</p>
+              <p className="text-gray-500 dark:text-gray-400">Nie ma briefów oczekujących na Twoją decyzję.</p>
             </div>
           ) : (
             <div className="space-y-3">
               {pendingBriefs.map((brief) => {
                 const sla = getSLAIndicator(brief.deadline)
-                const alignmentScore = calculateAlignmentScore(brief.context || '', brief.title, brief.club.brand.name)
-                const alignmentBadge = alignmentScore !== null ? getAlignmentBadge(alignmentScore) : null
+
+                // LLM-first alignment: prefer Claude-derived score, fall back to legacy keyword logic
+                const llmAlignment = extractLlmAlignment(brief.aiAuditResult)
+                const alignmentScore = llmAlignment?.score ?? calculateAlignmentScore(brief.context || '', brief.title, brief.club.brand.name)
+                const alignmentBadge = alignmentScore !== null ? getAlignmentBadgeColor(alignmentScore) : null
+                const isLlmDerived = !!llmAlignment
+                const alignmentTooltip = llmAlignment?.rationale
 
                 // Calculate delay cost
                 const now = new Date()
@@ -430,10 +468,16 @@ export default async function ApprovalsPage() {
                             <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-muted text-gray-600 dark:text-gray-300">
                               {brief.template.name}
                             </span>
-                            {/* Alignment Score Badge */}
-                            {alignmentBadge && (
-                              <span className={`text-xs px-2 py-0.5 rounded font-medium ${alignmentBadge.bgColor} ${alignmentBadge.color}`}>
-                                {alignmentBadge.label} alignment
+                            {/* Alignment Score Badge — LLM-first with legacy fallback */}
+                            {alignmentBadge && alignmentScore !== null && (
+                              <span
+                                className={`text-xs px-2 py-0.5 rounded font-medium border ${alignmentBadge.bg} ${alignmentBadge.text} ${alignmentBadge.border}`}
+                                title={alignmentTooltip || `Alignment: ${alignmentBadge.label}`}
+                              >
+                                {Math.round(alignmentScore)}% {alignmentBadge.label}
+                                {isLlmDerived && (
+                                  <span className="ml-1 opacity-70 font-bold">AI</span>
+                                )}
                               </span>
                             )}
                           </div>
@@ -446,7 +490,7 @@ export default async function ApprovalsPage() {
                           <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                             <span>Autor: {brief.createdBy.name}</span>
                             <span>•</span>
-                            <span>Wyslano: {formatRelativeTime(brief.submittedAt || brief.createdAt)}</span>
+                            <span>Wysłano: {formatRelativeTime(brief.submittedAt || brief.createdAt)}</span>
                           </div>
                         </div>
                         <div className="text-right flex-shrink-0">
