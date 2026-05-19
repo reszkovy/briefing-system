@@ -27,12 +27,27 @@ interface ClubContextPanelProps {
   clubs: ClubWithContext[]
 }
 
+function hasContextStatic(club: ClubWithContext): boolean {
+  return Boolean(
+    club.clubCharacter ||
+    (club.keyMemberGroups && (club.keyMemberGroups as string[]).length > 0) ||
+    (club.topActivities && (club.topActivities as TopActivity[]).length > 0) ||
+    club.localDecisionBrief
+  )
+}
+
 export function ClubContextPanel({ clubs }: ClubContextPanelProps) {
   const [expandedClubId, setExpandedClubId] = useState<string | null>(null)
   const [editingClubId, setEditingClubId] = useState<string | null>(null)
   const [clubContexts, setClubContexts] = useState<Record<string, ClubWithContext>>(
     clubs.reduce((acc, club) => ({ ...acc, [club.id]: club }), {})
   )
+
+  // Compact mode: when all clubs have context, collapse to a single bar
+  // User can expand on demand. Reduces screen real estate by ~80%.
+  const initialFilledCount = clubs.filter((c) => hasContextStatic(c)).length
+  const initiallyAllFilled = initialFilledCount === clubs.length && clubs.length > 0
+  const [isPanelCollapsed, setIsPanelCollapsed] = useState<boolean>(initiallyAllFilled)
 
   const handleToggleExpand = (clubId: string) => {
     setExpandedClubId(expandedClubId === clubId ? null : clubId)
@@ -77,6 +92,32 @@ export function ClubContextPanel({ clubs }: ClubContextPanelProps) {
     return null
   }
 
+  // Reactive counts based on current state (after edits)
+  const filledCount = clubs.filter((c) => hasContext(clubContexts[c.id])).length
+  const allFilled = filledCount === clubs.length
+
+  // COMPACT MODE: when all clubs are filled AND user hasn't expanded — show single-line bar
+  if (allFilled && isPanelCollapsed) {
+    return (
+      <div className="mb-6">
+        <button
+          type="button"
+          onClick={() => setIsPanelCollapsed(false)}
+          className="w-full flex items-center gap-3 bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 rounded-xl px-4 py-2.5 shadow-sm hover:from-indigo-100 hover:to-blue-100 transition-colors text-left"
+        >
+          <span className="text-lg">🏢</span>
+          <span className="font-medium text-indigo-800 text-sm">Kontekst Twoich klubów</span>
+          <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full font-semibold">
+            {filledCount}/{clubs.length} uzupełnione ✓
+          </span>
+          <span className="ml-auto text-xs text-indigo-600 hover:underline">
+            Zarządzaj →
+          </span>
+        </button>
+      </div>
+    )
+  }
+
   return (
     <div className="mb-6">
       <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 rounded-xl p-4 shadow-sm">
@@ -84,8 +125,18 @@ export function ClubContextPanel({ clubs }: ClubContextPanelProps) {
           <span className="text-xl">🏢</span>
           <h3 className="font-semibold text-indigo-800">Kontekst Twoich klubów</h3>
           <span className="text-xs text-indigo-600 ml-auto">
-            {clubs.filter((c) => hasContext(clubContexts[c.id])).length}/{clubs.length} uzupełnione
+            {filledCount}/{clubs.length} uzupełnione
           </span>
+          {allFilled && (
+            <button
+              type="button"
+              onClick={() => setIsPanelCollapsed(true)}
+              className="text-xs text-indigo-600 hover:text-indigo-800 hover:underline ml-2"
+              title="Zwiń panel"
+            >
+              Zwiń ✕
+            </button>
+          )}
         </div>
 
         <p className="text-sm text-indigo-700/70 mb-4">
