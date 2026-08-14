@@ -99,7 +99,7 @@
 
   /* ── HERO / ATF (mechanika: FitStyle HeroPresale) ────────────────────── */
   .hero{position:relative;min-height:88svh;display:flex;flex-direction:column;overflow:clip}
-  .hero__stage{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:var(--sp8) var(--sp7)}
+  .hero__stage{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:var(--sp7) var(--sp6)}
   .hero__over{
     display:inline-flex;align-items:center;gap:var(--sp3);margin:0 0 var(--sp5);
     font-family:var(--font-ui);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--vermilion);
@@ -116,8 +116,8 @@
   .hero__cta-note{font-size:.78rem;letter-spacing:.06em;color:var(--ink-muted);font-style:italic}
   /* pieczęć w tle ATF */
   .hero__seal{
-    position:absolute;z-index:1;right:2rem;top:0;width:clamp(17rem,30vw,27rem);height:auto;pointer-events:none;
-    opacity:1;
+    display:block;width:clamp(15rem,24vw,21rem);height:auto;flex:none;pointer-events:none;
+    filter:drop-shadow(0 18px 30px rgb(14 107 82 / .18));
   }
   .reveal{animation:reveal .7s var(--ease) both}
   .reveal:nth-child(2){animation-delay:.08s}.reveal:nth-child(3){animation-delay:.16s}
@@ -151,7 +151,7 @@
     .mega__cols,.mega__cols--2{grid-template-columns:1fr;gap:var(--sp4)}
     .mega__aside{display:none}
     .hdr__zaslona{display:none}
-    .hero__seal{opacity:.28;right:-6rem}
+    .hero__seal{display:none}
     .wings__grid{grid-template-columns:1fr}
   }
 
@@ -362,7 +362,7 @@
   .faq__last p{margin:0;font-size:1.08rem;font-style:italic;color:var(--ink-muted)}
 
   /* pieczęć: parallax sterowany JS-em przez --plx */
-  .hero__seal{translate:0 var(--plx,0px);rotate:none;transition:none;will-change:translate}
+  
 
   .art__fig{margin:0 0 var(--sp6);border:1px solid var(--line-soft)}
   .art__fig img{width:100%;height:auto;max-height:17rem;object-fit:cover;object-position:center 35%;display:block}
@@ -452,7 +452,9 @@
   .hero__source a:hover{text-decoration:underline}
 
   /* prawdy Tablicy jako kroki obok siebie (wzorzec procesu r352) */
-  .hero__tenets{margin-top:var(--sp5);max-width:calc(100% - clamp(13rem,26vw,24rem))}
+  .hero__top{display:flex;align-items:center;justify-content:space-between;gap:var(--sp7)}
+  .hero__head{max-width:38rem}
+  .hero__tenets{margin-top:var(--sp6);max-width:100%;border-top:1px solid var(--line-soft);padding-top:var(--sp5)}
   .hero__tenets-head{margin:0 0 var(--sp4);font-family:var(--font-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
   .hero__tenets-head a{color:var(--vermilion);text-decoration:none}
   .hero__tenets-head a:hover{text-decoration:underline}
