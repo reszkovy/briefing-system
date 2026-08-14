@@ -156,6 +156,12 @@ def render(p):
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
+</script>
 {ld_tags}
 </head>
 <body>
@@ -859,7 +865,8 @@ page("privacy",
 provider (Resend Inc.) solely to send you the letter. Every letter contains an unsubscribe link; unsubscribing
 removes you from the list.</p>
 <p><strong>Anonymous usage statistics</strong> &mdash; we use cookieless analytics (Vercel Web Analytics) to count
-visits and see which pages are read. It sets no cookies and identifies no one.</p>
+visits and see which pages are read, plus Google Analytics running in consent-denied mode &mdash; without
+consent it sets no cookies and sends only anonymous, aggregated pings. It identifies no one.</p>
 <h2>What we don&rsquo;t do</h2>
 <p>No advertising trackers. No sale or sharing of your data. No profiling. Embedded videos load only after you
 press play (via YouTube&rsquo;s privacy-enhanced mode).</p>
@@ -956,5 +963,11 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
 </div></article></main>{FOOTER}<script src="/assets/site.js" defer></script>
-<script defer src="/_vercel/insights/script.js"></script></body></html>""")
+<script defer src="/_vercel/insights/script.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
+</script></body></html>""")
 print("sitemap/robots/rss/404 written")
