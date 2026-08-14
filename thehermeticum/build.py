@@ -34,6 +34,46 @@ def faq_ld(faq):
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}
 
 # grafiki kontekstowe (styl ilustracji z home); klucz = path strony
+
+# ── Zweryfikowane linki zewnętrzne (Read online) — dołączane do sekcji Sources ──
+MEAD3 = '<a href="https://archive.org/details/thrice-greatest-hermes-vol-1-2-3-grs-mead" rel="noopener">G.R.S. Mead, <i>Thrice-Greatest Hermes</i> (1906), full scan at the Internet Archive</a> — public domain, pre-critical; see our <a href="/about/method/">Method</a> note.'
+EVERARD = '<a href="https://archive.org/details/hermetica" rel="noopener">John Everard, <i>The Divine Pymander in XVII Books</i> (1650), scan at the Internet Archive</a> — the classic early-modern English rendering.'
+SCOTT1 = '<a href="https://archive.org/details/hermeticapart1an0000sirw" rel="noopener">Walter Scott, <i>Hermetica</i> vol. I, at the Internet Archive (lending)</a>.'
+KYB_SCAN = '<a href="https://archive.org/details/Kybalion" rel="noopener">The Kybalion (1908), original scan at the Internet Archive</a>.'
+HM_WAITE = '<a href="https://archive.org/details/TheHermeticMuseum" rel="noopener">A.E. Waite (tr.), <i>The Hermetic Museum</i> (1893), scan at the Internet Archive</a>.'
+NHL_ROB = '<a href="https://archive.org/details/TheNagHammadiLibrary_201701" rel="noopener">J.M. Robinson (ed.), <i>The Nag Hammadi Library</i>, scan at the Internet Archive</a>.'
+PMC_STEELE = '<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2101974/" rel="noopener">Steele &amp; Singer, &ldquo;The Emerald Table&rdquo; (1928), full text at PubMed Central</a> — the critical edition we quote.'
+EXTRA_SOURCES = {
+    "texts/corpus-hermeticum": [MEAD3, EVERARD, SCOTT1],
+    "texts/corpus-hermeticum/poimandres": [MEAD3],
+    "texts/asclepius": [MEAD3],
+    "texts/emerald-tablet": [PMC_STEELE],
+    "texts/kybalion": [KYB_SCAN],
+    "texts/stobaean-fragments": [MEAD3],
+    "texts/nag-hammadi-hermetica": [NHL_ROB],
+    "texts/musaeum-hermeticum": [HM_WAITE],
+    "path/04-reading-poimandres": [MEAD3, EVERARD],
+    "figures/hermes-trismegistus": [MEAD3],
+    "figures/grs-mead": [MEAD3],
+    "figures/john-dee": ['<a href="https://archive.org/details/privatediaryofdr00deej" rel="noopener">The Private Diary of Dr. John Dee (1842 ed.), scan at the Internet Archive</a>.'],
+    "figures/balinas": [PMC_STEELE],
+    "figures/marsilio-ficino": ['<a href="https://plato.stanford.edu/entries/ficino/" rel="noopener">Stanford Encyclopedia of Philosophy: Marsilio Ficino</a>.'],
+    "figures/pico-della-mirandola": ['<a href="https://plato.stanford.edu/entries/pico-della-mirandola/" rel="noopener">Stanford Encyclopedia of Philosophy: Pico della Mirandola</a>.'],
+    "figures/giordano-bruno": ['<a href="https://plato.stanford.edu/entries/bruno/" rel="noopener">Stanford Encyclopedia of Philosophy: Giordano Bruno</a>.'],
+    "figures/zosimos-of-panopolis": ['<a href="https://shwep.net/themes/hermetica/" rel="noopener">SHWEP podcast, Hermetica theme</a> — scholarly episodes incl. Zosimos.'],
+    "ideas/gnosis": ['<a href="https://iep.utm.edu/gnostic/" rel="noopener">Internet Encyclopedia of Philosophy: Gnosticism</a>.'],
+    "ideas/theurgy": ['<a href="https://plato.stanford.edu/entries/iamblichus/" rel="noopener">Stanford Encyclopedia of Philosophy: Iamblichus</a>.'],
+    "ideas/palingenesia": [MEAD3],
+    "ideas/the-ogdoad-and-ennead": [NHL_ROB],
+    "ideas/prisca-theologia": ['<a href="https://plato.stanford.edu/entries/ficino/" rel="noopener">Stanford Encyclopedia of Philosophy: Marsilio Ficino</a>.'],
+    "ideas/the-great-work": [HM_WAITE],
+    "ideas/hermeticism-and-its-neighbours": [
+        '<a href="https://plato.stanford.edu/entries/neoplatonism/" rel="noopener">Stanford Encyclopedia of Philosophy: Neoplatonism</a>.',
+        '<a href="https://plato.stanford.edu/entries/plotinus/" rel="noopener">Stanford Encyclopedia of Philosophy: Plotinus</a>.',
+        '<a href="https://iep.utm.edu/gnostic/" rel="noopener">Internet Encyclopedia of Philosophy: Gnosticism</a>.'],
+    "about/method": ['<a href="https://embassyofthefreemind.com/en/" rel="noopener">Embassy of the Free Mind (Bibliotheca Philosophica Hermetica), Amsterdam</a> — the great physical library of this tradition.'],
+}
+
 IMGS = {
     "start-here": "art-doorway.jpg",
     "path/01-what-is-hermeticism": "art-four-masks.jpg",
@@ -109,8 +149,9 @@ def render(p):
         items = "".join(f'<details class="faq__item"><summary>{q}</summary><p>{a}</p></details>' for q, a in p["faq"])
         faq_html = f'<section class="art__faq"><h2>Fair questions</h2>{items}</section>'
     src = ""
-    if p.get("sources"):
-        li = "".join(f"<li>{s}</li>" for s in p["sources"])
+    srcs = list(p.get("sources") or []) + EXTRA_SOURCES.get(p.get("path",""), [])
+    if srcs:
+        li = "".join(f"<li>{s}</li>" for s in srcs)
         src = f'<section class="art__src"><h2>Sources &amp; further reading</h2><ul>{li}</ul></section>'
     media = ""
     if p.get("media"):
