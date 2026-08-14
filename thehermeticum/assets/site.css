@@ -108,7 +108,7 @@
   .hero__title{margin:0 0 var(--sp5);font-family:var(--font-display);font-weight:500;font-size:clamp(2.6rem,7.2vw,5.4rem);line-height:1.04;letter-spacing:.01em}
   .hero__line{display:block}
   .hero__line--foil{background:var(--grad-foil);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
-  .hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp6);border-top:1px solid var(--line);padding-top:var(--sp5)}
+  .hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp6);padding-top:var(--sp4)}
   .hero__lead{max-width:34rem;margin:0;font-size:1.16rem;color:var(--ink-muted)}
   .hero__lead b{color:var(--ink);font-weight:600}
   .hero__cta{display:grid;gap:var(--sp3);justify-items:start}
@@ -452,7 +452,7 @@
   .hero__source a:hover{text-decoration:underline}
 
   /* prawdy Tablicy jako kroki obok siebie (wzorzec procesu r352) */
-  .hero__tenets{margin-top:var(--sp5)}
+  .hero__tenets{margin-top:var(--sp5);max-width:calc(100% - clamp(13rem,26vw,24rem))}
   .hero__tenets-head{margin:0 0 var(--sp4);font-family:var(--font-ui);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
   .hero__tenets-head a{color:var(--vermilion);text-decoration:none}
   .hero__tenets-head a:hover{text-decoration:underline}
@@ -462,5 +462,5 @@
   .tenets i{display:block;font-style:normal;font-family:var(--font-ui);font-size:.66rem;font-weight:600;letter-spacing:.14em;color:var(--gold);margin-bottom:.5em}
   .tenets b{display:block;font-family:var(--font-ui);font-weight:600;font-size:.9rem;letter-spacing:-.01em;margin-bottom:.35em}
   .tenets span{display:block;font-size:.88rem;font-style:italic;line-height:1.45;color:var(--ink-muted)}
-  @media (max-width:900px){.tenets{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp4)}}
+  @media (max-width:900px){.tenets{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--sp4)}.hero__tenets{max-width:100%}}
   @media (max-width:560px){.tenets{grid-template-columns:1fr}}
