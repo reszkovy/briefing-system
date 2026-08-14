@@ -116,7 +116,7 @@
   .hero__cta-note{font-size:.78rem;letter-spacing:.06em;color:var(--ink-muted);font-style:italic}
   /* pieczęć w tle ATF */
   .hero__seal{
-    display:block;width:clamp(23rem,36vw,33rem);height:auto;max-height:min(62vh,34rem);object-fit:contain;flex:none;pointer-events:none;
+    display:block;width:clamp(26rem,40vw,37rem);height:auto;max-height:min(74vh,40rem);object-fit:contain;flex:none;pointer-events:none;
     filter:drop-shadow(0 18px 30px rgb(14 107 82 / .18));
   }
   .reveal{animation:reveal .7s var(--ease) both}
