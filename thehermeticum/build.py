@@ -71,6 +71,8 @@ IMGS = {
 
 PORTRAITS = {
     "figures/hermes-trismegistus": "portrait-hermes.jpg",
+    "figures/balinas": "portrait-balinas.jpg",
+    "figures/grs-mead": "portrait-mead.jpg",
     "figures/thoth": "portrait-thoth.jpg",
     "figures/zosimos-of-panopolis": "portrait-zosimos.jpg",
     "figures/marsilio-ficino": "portrait-ficino.jpg",
