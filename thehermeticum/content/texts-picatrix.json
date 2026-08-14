@@ -1,6 +1,11 @@
 {
   "path": "texts/picatrix",
-  "trail": [["Texts", "/texts/"]],
+  "trail": [
+    [
+      "Texts",
+      "/texts/"
+    ]
+  ],
   "crumb": "Picatrix",
   "kicker": "The Texts",
   "title": "Picatrix — the Arabic handbook of astral magic",
@@ -8,10 +13,60 @@
   "h1": "Picatrix",
   "tldr": "The Ghayat al-Hakim (\"The Goal of the Sage\"), Latinized as Picatrix: a 10th-century compendium of astral magic written in al-Andalus, translated at the court of Alfonso X, and the single most influential magic manual in Western history.",
   "body": "<p>The <i>Picatrix</i> is what happened to the Hermetic current after antiquity: not a dialogue on mind and rebirth like the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a>, but a working compendium — the most influential manual of astral magic ever written. Its Arabic original, the <i>Ghayat al-Hakim</i> (&ldquo;The Goal of the Sage&rdquo;), was composed in al-Andalus; its author states he finished it around 348 AH (c. 959 CE), after completing its companion volume, the <i>Rutbat al-Hakim</i>.</p><h2>Who wrote it</h2><p>For centuries the book was misattributed to the mathematician Maslama al-Majriti. In 1996 Maribel Fierro identified the real author as <b>Maslama al-Qurtubi</b> (d. 964), a scholar from C&oacute;rdoba — an identification confirmed and extended by Godefroid de Callata&yuml;, which also settled the dating: 10th century, not the mid-11th as older scholarship held. Even the Latin name remains a puzzle: whether &ldquo;Picatrix&rdquo; is a corruption of &ldquo;Buqratis&rdquo; (Hippocrates) or a nickname of the author is unresolved.</p><h2>What&rsquo;s inside</h2><p>Talismans, planetary invocations, elections of astrologically favourable moments, suffumigations — but embedded in a theory: rays, <i>spiritus</i>, a cosmic hierarchy through which celestial influence descends into matter. The book cites <a href=\"/figures/hermes-trismegistus/\">Hermes</a> and Sabian rites extensively, synthesizing Hermetic, Sabian and Neoplatonic material. It is a compilation rather than a doctrinal Hermetic treatise — the practical cousin of the statue-animating passages in the <a href=\"/texts/asclepius/\">Asclepius</a>, and of the technical tradition that also produced the <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a>.</p><h2>The road to the Renaissance</h2><p>Between 1256 and 1258, Alfonso X of Castile ordered the Arabic translated into Castilian; a Latin version followed in the 13th century, and with it the name <i>Picatrix</i>. Through that Latin text the book reached the Renaissance: Ficino&rsquo;s and Agrippa&rsquo;s astral magic stand demonstrably downstream of it. The route runs through the translation workshops of Iberia — C&oacute;rdoba to Toledo — mapped in our <a href=\"/atlas/\">Atlas</a>, a later chapter of the story that began in <a href=\"/path/03-alexandria/\">Alexandria</a>.</p><h2>How to read it</h2><p>The scholarly landmarks are David Pingree&rsquo;s edition of the Latin version (Warburg Institute, 1986) and the Attrell &amp; Porreca English translation of that Latin (Penn State UP, 2019) — the standard way into the text in English; work on translating directly from the Arabic continues. Both are modern and in copyright; there is no public-domain English Picatrix, so treat free PDFs online accordingly. Modern occult publishing markets the book as a plug-and-play grimoire; historically it is a learned philosophical-magical compendium in which the theory matters as much as the recipes.</p>",
-  "facts": [["Composed", "al-Andalus, finished c. 959 CE (348 AH)"], ["Author", "Maslama al-Qurtubi (d. 964) — identified by Maribel Fierro, 1996"], ["Arabic title", "Ghayat al-Hakim — 'The Goal of the Sage'"], ["Translation chain", "Arabic → Castilian (Alfonso X, 1256–58) → Latin (13th c.), as 'Picatrix'"], ["Influence", "Ficino's and Agrippa's Renaissance astral magic stand downstream of it"], ["Standard English", "Attrell & Porreca (Penn State UP, 2019), from Pingree's 1986 Latin edition"]],
-  "faq": [["Is the Picatrix dangerous?", "It is a 10th-century historical document, and we treat it as one. Its 'danger' in medieval and early modern eyes was real — astral magic sat at the edge of licit knowledge — but for a modern reader the risks are prosaic: bad translations, credulous framing, and occult marketing that sells a learned compendium as a spellbook. Read it with a historian's questions, not a shopping list."], ["Why is it called Picatrix?", "Nobody is sure. The name appears with the Latin translation; proposals include a corruption of 'Buqratis' (the Arabic form of Hippocrates) or a nickname of the author. The question is genuinely unresolved."], ["Is the Picatrix a Hermetic text?", "It cites Hermes and Sabian rites extensively and carries Hermetic material, but it is a compilation of astral magic, not a doctrinal treatise like the Corpus Hermeticum. It belongs to the technical, practical side of the tradition."]],
-  "sources": ["Maribel Fierro, 'Batinism in al-Andalus', <i>Studia Islamica</i> 84 (1996) — authorship.", "David Pingree (ed.), <i>Picatrix: The Latin Version</i> (Warburg Institute, 1986).", "Dan Attrell & David Porreca (trans.), <i>Picatrix</i> (Penn State UP, 2019).", "Research dossier: emerald-tablet-arabic.md §3.3."],
+  "facts": [
+    [
+      "Composed",
+      "al-Andalus, finished c. 959 CE (348 AH)"
+    ],
+    [
+      "Author",
+      "Maslama al-Qurtubi (d. 964) — identified by Maribel Fierro, 1996"
+    ],
+    [
+      "Arabic title",
+      "Ghayat al-Hakim — 'The Goal of the Sage'"
+    ],
+    [
+      "Translation chain",
+      "Arabic → Castilian (Alfonso X, 1256–58) → Latin (13th c.), as 'Picatrix'"
+    ],
+    [
+      "Influence",
+      "Ficino's and Agrippa's Renaissance astral magic stand downstream of it"
+    ],
+    [
+      "Standard English",
+      "Attrell & Porreca (Penn State UP, 2019), from Pingree's 1986 Latin edition"
+    ]
+  ],
+  "faq": [
+    [
+      "Is the Picatrix dangerous?",
+      "It is a 10th-century historical document, and we treat it as one. Its 'danger' in medieval and early modern eyes was real — astral magic sat at the edge of licit knowledge — but for a modern reader the risks are prosaic: bad translations, credulous framing, and occult marketing that sells a learned compendium as a spellbook. Read it with a historian's questions, not a shopping list."
+    ],
+    [
+      "Why is it called Picatrix?",
+      "Nobody is sure. The name appears with the Latin translation; proposals include a corruption of 'Buqratis' (the Arabic form of Hippocrates) or a nickname of the author. The question is genuinely unresolved."
+    ],
+    [
+      "Is the Picatrix a Hermetic text?",
+      "It cites Hermes and Sabian rites extensively and carries Hermetic material, but it is a compilation of astral magic, not a doctrinal treatise like the Corpus Hermeticum. It belongs to the technical, practical side of the tradition."
+    ]
+  ],
+  "sources": [
+    "Maribel Fierro, 'Batinism in al-Andalus', <i>Studia Islamica</i> 84 (1996) — authorship.",
+    "David Pingree (ed.), <i>Picatrix: The Latin Version</i> (Warburg Institute, 1986).",
+    "Dan Attrell & David Porreca (trans.), <i>Picatrix</i> (Penn State UP, 2019).",
+    "Research dossier: emerald-tablet-arabic.md §3.3."
+  ],
   "ld_type": "Book",
   "ld_name": "Picatrix (Ghayat al-Hakim)",
-  "next": "From magic to the laboratory &rarr; <a href=\"/texts/musaeum-hermeticum/\">Musaeum Hermeticum</a>"
+  "next": "From magic to the laboratory &rarr; <a href=\"/texts/musaeum-hermeticum/\">Musaeum Hermeticum</a>",
+  "media": [
+    [
+      "Picatrix: A Medieval Treatise on Astral Magic",
+      "https://www.youtube.com/watch?v=oTXfGA3Qbns",
+      "Medievalists.net · lecture"
+    ]
+  ]
 }

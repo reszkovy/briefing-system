@@ -1,6 +1,11 @@
 {
   "path": "figures/john-dee",
-  "trail": [["Figures", "/figures/"]],
+  "trail": [
+    [
+      "Figures",
+      "/figures/"
+    ]
+  ],
   "crumb": "John Dee",
   "kicker": "The Figures",
   "title": "John Dee — the royal mathematician who spoke to angels",
@@ -8,10 +13,60 @@
   "h1": "John Dee",
   "tldr": "John Dee (1527–1608/9) was an Elizabethan mathematician, geographer and royal adviser who designed a universal symbol — the Monas Hieroglyphica (1564) — and, from 1582, meticulously recorded \"angel conversations\" conducted with the medium Edward Kelley. He was not a secret agent called 007, and the \"Enochian magic system\" attributed to him is largely a later construction.",
   "body": "<p>Few careers hold together as strangely as John Dee&rsquo;s: royal adviser and geographer to Elizabethan England, serious mathematician &mdash; and, for years, a man who sat beside a scryer writing down what angels allegedly said. The temptation is to split him into a scientist who went wrong. The scholarship says: don&rsquo;t.</p><h2>One glyph to hold everything</h2><p>His <em>Propaedeumata Aphoristica</em> (1558) set out an astral-physical natural philosophy. Six years later the <em>Monas Hieroglyphica</em> (Antwerp, 1564) compressed his ambitions into a single composite glyph of his own devising, expounded in 24 theorems, uniting astronomical, alchemical and Kabbalistic symbolism &mdash; a one-character theory of everything, and the fullest expression of his alchemical natural philosophy. Its cast of mind &mdash; the cosmos as a web of correspondences a sign can capture &mdash; is the world of <a href=\"/ideas/as-above-so-below/\">as above, so below</a>.</p><h2>The angel conversations</h2><p>From 1582 Dee held scrying sessions with the medium Edward Kelley, recording thousands of pages of &ldquo;angelic&rdquo; dictation in his diaries. Deborah Harkness&rsquo;s study treats the sessions not as senile credulity but as a coherent program: a universal science sought directly from the source, when books had run out. That a convicted forger sat at the crystal is part of the documented record too &mdash; the reality is stranger than any embellishment.</p><h2>How Hermetic was Dee?</h2><p>Frances Yates cast him as the archetypal &ldquo;Hermetic magus&rdquo; of Elizabethan England. Nicholas Clulee&rsquo;s <em>John Dee&rsquo;s Natural Philosophy</em> (1988) took the portrait apart: Dee&rsquo;s sources were far more eclectic &mdash; medieval optics, Roger Bacon, Kabbalah &mdash; and his career falls into distinct stages rather than one magus-arc. Dee is a key case study in the collapse of the strong Yates thesis, mapped with the rest of the tradition on <a href=\"/atlas/\">the Atlas</a>.</p><h2>Two myths to retire</h2><p>Dee was not &ldquo;the Queen&rsquo;s secret agent 007&rdquo; &mdash; that tale was popularized by Richard Deacon&rsquo;s 1968 biography. And the ceremonial &ldquo;Enochian magic system&rdquo; sold under his name is largely a later construction, re-engineered from his diaries by the Golden Dawn three centuries on. The documented Dee &mdash; a royal mathematician transcribing angelic dictation night after night &mdash; needs neither.</p>",
-  "facts": [["Born", "1527"], ["Died", "1608/9"], ["Key works", "Propaedeumata Aphoristica (1558); Monas Hieroglyphica (1564)"], ["From 1582", "\"Angel conversations\" with the medium Edward Kelley, recorded in his diaries"], ["Role", "Mathematician, geographer and adviser at the Elizabethan court"], ["Why he matters", "Test case for the \"Hermetic magus\" reading of early modern science"]],
-  "faq": [["Did John Dee really talk to angels?", "He believed so, and recorded thousands of pages of scrying sessions held with Edward Kelley from 1582. Harkness reads the diaries as a coherent program of natural philosophy — an attempt at universal science — whatever one makes of the angels."], ["Was John Dee a spy called 007?", "No. The \"Queen's secret agent 007\" story is a modern embellishment popularized by Richard Deacon's 1968 biography, not a documented fact."], ["What is the Monas Hieroglyphica?", "A 1564 treatise expounding, in 24 theorems, a single composite glyph of Dee's own devising that unites astronomical, alchemical and Kabbalistic symbolism — his one-symbol summary of the cosmos."]],
-  "sources": ["Deborah E. Harkness, <i>John Dee's Conversations with Angels</i> (Cambridge UP, 1999).", "Nicholas H. Clulee, <i>John Dee's Natural Philosophy</i> (1988).", "Stephen Clucas (ed.), <i>John Dee: Interdisciplinary Studies</i> (Springer, 2006).", "Research dossier: renaissance.md §7."],
+  "facts": [
+    [
+      "Born",
+      "1527"
+    ],
+    [
+      "Died",
+      "1608/9"
+    ],
+    [
+      "Key works",
+      "Propaedeumata Aphoristica (1558); Monas Hieroglyphica (1564)"
+    ],
+    [
+      "From 1582",
+      "\"Angel conversations\" with the medium Edward Kelley, recorded in his diaries"
+    ],
+    [
+      "Role",
+      "Mathematician, geographer and adviser at the Elizabethan court"
+    ],
+    [
+      "Why he matters",
+      "Test case for the \"Hermetic magus\" reading of early modern science"
+    ]
+  ],
+  "faq": [
+    [
+      "Did John Dee really talk to angels?",
+      "He believed so, and recorded thousands of pages of scrying sessions held with Edward Kelley from 1582. Harkness reads the diaries as a coherent program of natural philosophy — an attempt at universal science — whatever one makes of the angels."
+    ],
+    [
+      "Was John Dee a spy called 007?",
+      "No. The \"Queen's secret agent 007\" story is a modern embellishment popularized by Richard Deacon's 1968 biography, not a documented fact."
+    ],
+    [
+      "What is the Monas Hieroglyphica?",
+      "A 1564 treatise expounding, in 24 theorems, a single composite glyph of Dee's own devising that unites astronomical, alchemical and Kabbalistic symbolism — his one-symbol summary of the cosmos."
+    ]
+  ],
+  "sources": [
+    "Deborah E. Harkness, <i>John Dee's Conversations with Angels</i> (Cambridge UP, 1999).",
+    "Nicholas H. Clulee, <i>John Dee's Natural Philosophy</i> (1988).",
+    "Stephen Clucas (ed.), <i>John Dee: Interdisciplinary Studies</i> (Springer, 2006).",
+    "Research dossier: renaissance.md §7."
+  ],
   "ld_type": "Person",
   "ld_name": "John Dee",
-  "next": "The maxim behind the Monas &rarr; <a href=\"/ideas/as-above-so-below/\">As above, so below</a>"
+  "next": "The maxim behind the Monas &rarr; <a href=\"/ideas/as-above-so-below/\">As above, so below</a>",
+  "media": [
+    [
+      "ESOTERICA: What is Enochian Magic? John Dee and the angelic language",
+      "https://www.youtube.com/watch?v=4hnuB9MCpmY",
+      "Dr Justin Sledge · academic"
+    ]
+  ]
 }
