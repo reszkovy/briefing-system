@@ -30,6 +30,16 @@ bez przepisywania architektury i bez CMS-a. Powtarzalne w projektach klienckich
    terminów kanonicznych, zasady HTML: nie ruszać tagów/encji/URL-i zewnętrznych,
    prefiksować wewnętrzne), partie po 4-8 stron, walidacja `json.load` po każdym pliku,
    agenci raportują wątpliwości terminologiczne 1-linijkowo → integrator normalizuje.
+6. **Szlif natywny = OBOWIĄZKOWA druga fala.** Po integracji osobny fan-out
+   agentów-korektorów na poziomie zawodowego redaktora języka docelowego, z WŁASNĄ
+   specyfikacją (SPEC-KOREKTA), rozłączną od tłumaczeniowej: fleksja nazw własnych,
+   kalki składniowe z języka źródłowego, interpunkcja normatywna (u nas: przecinki
+   przed „że/który", kropka PO cudzysłowie wg PWN), typografia docelowa (cudzysłowy
+   „…", półpauzy), egzekucja kanonu terminologicznego, rytm zdań („czy tak powiedziałby
+   rodzimy eseista?"). Korektor edytuje pliki w miejscu, nie tłumaczy od nowa; ma zakaz
+   dotykania HTML-u, cytatów źródłowych, tytułów dzieł i merytoryki; raportuje
+   „było → jest". Rozdzielenie ról tłumacz/korektor jest celowe: tłumacz broni wierności,
+   korektor broni języka — jedna osoba (agent) robiąca obie rzeczy naraz gubi drugą.
 
 ## Evidence
 - thehermeticum: 44 strony EN → PL w jednej sesji; 8 agentów równolegle;
@@ -51,4 +61,4 @@ bez przepisywania architektury i bez CMS-a. Powtarzalne w projektach klienckich
 ## Wpływ na decyzje (decision_impact)
 changes: [mechanism, workflow]
 targets: ["mech:static-i18n-mirror (nowa karta)", "workflow: fan-out tłumaczeniowy ze SPEC"]
-note: "Wyceniane dotąd ad hoc; karta daje powtarzalny szablon wyceny (infra 0,5 sesji + ~6 stron/agenta/partię + QA integracyjne)."
+note: "Wyceniane dotąd ad hoc; karta daje powtarzalny szablon wyceny (infra 0,5 sesji + ~6 stron/agenta/partię tłumaczenia + druga fala korekty natywnej ~10-12 stron/agenta + QA integracyjne). Dowód z wdrożenia: korekta po dobrym tłumaczeniu nadal znajduje realne błędy (niezgodność liczby, rozjechane dopełniacze, kalki, norma PWN kropki przy cytacie) — pomijanie tej fazy to fałszywa oszczędność."
