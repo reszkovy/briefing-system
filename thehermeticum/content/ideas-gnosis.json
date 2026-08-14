@@ -1,0 +1,24 @@
+{
+  "path": "ideas/gnosis",
+  "trail": [["Ideas", "/ideas/"]],
+  "crumb": "Gnosis",
+  "kicker": "The Ideas",
+  "title": "Gnosis — knowledge that transforms the knower",
+  "desc": "Gnosis in the Hermetica: salvific knowledge of God that deifies the knower — where the texts say it, how it differs from Gnosticism and 'secret knowledge'.",
+  "h1": "Gnosis",
+  "tldr": "Greek for \"knowledge\" — but in the Hermetica, gnosis is knowledge of God that changes what you are: \"to be made god\" is how CH I describes its endpoint. It arrives as vision and experience within a teacher–student relationship, not as secret information or a philosophical proof.",
+  "body": "<p>Every path needs a destination. In the Hermetica the destination is <em>gn&#333;sis theou</em> &mdash; knowledge of God &mdash; and it is not information but transformation: &ldquo;This is the final good for those who have received knowledge: to be made god&rdquo; (CH I.26).</p>\n<h2>In the sources</h2>\n<p>In <a href=\"/texts/corpus-hermeticum/poimandres/\">Poimandres</a>, the initiate who receives the vision becomes &ldquo;guide to the human race&rdquo;, preaching repentance and knowledge. CH X calls ignorance of God &ldquo;the greatest evil in humankind&rdquo; (CH X.8), and the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> keeps insisting that this knowledge arrives as vision and experience, not as the conclusion of an argument &mdash; the rebirth of CH XIII is its dramatised form. Structurally, gnosis moves along a master&ndash;disciple line: Hermes teaches Tat and Asclepius; <a href=\"/ideas/nous/\">Nous</a> teaches Hermes. Fowden summarised this &ldquo;way of Hermes&rdquo; as leading from knowledge of the world, through knowledge of the self, to knowledge of God.</p>\n<h2>Not quite &ldquo;Gnosticism&rdquo;</h2>\n<p>Older scholarship filed the Hermetica under Gnosticism. Most specialists now keep them apart: the Hermetica have no evil demiurge and no systematic hatred of the cosmos &mdash; the world is repeatedly called a &ldquo;second god&rdquo;. The two literatures shared a milieu (both turn up in the Nag Hammadi find) without sharing a doctrine, and scholars such as Hanegraaff prefer &ldquo;Hermetic spirituality&rdquo; precisely to avoid the Gnosticism frame.</p>\n<h2>Traps</h2>\n<p>Pop-esotericism flattens gnosis into &ldquo;secret knowledge they don&rsquo;t want you to have&rdquo;. In the texts, the secrecy is pedagogical &mdash; protecting the unprepared &mdash; and the content is theological vision, not conspiratorial information. The claim of an unbroken hidden lineage running from Egypt to a modern order has no evidential basis; transmission was manuscript-based and repeatedly interrupted.</p>\n<h2>Why it matters</h2>\n<p>Gnosis names what the <a href=\"/path/01-what-is-hermeticism/\">whole enterprise</a> is for. Cosmology, rebirth, hymns, the ascent through the spheres &mdash; all of it serves one claim: that a human being can come to know God, and that this knowing remakes the knower. Miss this, and the Hermetica read like scattered philosophy; see it, and they read like a curriculum.</p>",
+  "faq": [
+    ["Is Hermetic gnosis the same as Gnosticism?", "No. They share a late-antique milieu, but the Hermetica lack an evil demiurge and systematic anticosmism — the cosmos is even called a 'second god'. Most specialists now treat them as cousins, not one movement."],
+    ["Is gnosis secret knowledge?", "Not in the conspiratorial sense. The texts protect their teaching pedagogically, from the unprepared — but the content is a vision of God, not hidden facts, and no unbroken secret lineage from Egypt is documented."],
+    ["Can gnosis be learned from books?", "The texts themselves say no: CH XIII calls the rebirth-vision unteachable by discourse. Gnosis is framed as experience granted within a master–disciple relationship — pedagogy plus revelation."]
+  ],
+  "sources": [
+    "Copenhaver, <i>Hermetica</i> (1992): CH I, X, XIII.",
+    "Fowden, <i>The Egyptian Hermes</i> (1986) — the 'way of Hermes'.",
+    "Research dossier: ideas-glossary.md §2."
+  ],
+  "ld_type": "DefinedTerm",
+  "ld_name": "Gnosis",
+  "next": "The faculty that makes it possible &rarr; <a href=\"/ideas/nous/\">Nous</a>"
+}

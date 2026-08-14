@@ -1,0 +1,25 @@
+{
+  "path": "ideas/theurgy",
+  "trail": [["Ideas", "/ideas/"]],
+  "crumb": "Theurgy",
+  "kicker": "The Ideas",
+  "title": "Theurgy — ritual ascent to the divine",
+  "desc": "Theurgy: the late-antique ritual path to union with the divine, defended by Iamblichus and Proclus — and its real relation to the Hermetic writings.",
+  "h1": "Theurgy",
+  "tldr": "Theurgy (Greek theourgia, \"god-working\") is late-antique ritual practice aimed at uniting the soul with the divine, defended philosophically by Iamblichus and systematized by Proclus. It works, Iamblichus argued, through divine symbols and divine action — not human thinking. It is a cousin of Hermetism, not its core.",
+  "body": "<p>Can ritual do what philosophy cannot? Late antiquity&rsquo;s most sophisticated answer was <em>theourgia</em> &mdash; &ldquo;god-working&rdquo; &mdash; ritual practice aimed at uniting the soul with the divine.</p>\n<h2>In the sources</h2>\n<p>Its great defence is Iamblichus&rsquo; <em>Response to Porphyry</em> (transmitted as <em>De mysteriis</em>, c. 300 CE), written under the persona of an Egyptian priest. Against Porphyry&rsquo;s scepticism, Iamblichus argues that ritual works through divine symbols (<em>synth&#275;mata</em>) and divine action: &ldquo;it is not thought that links the theurgists to the gods.&rdquo; A century later Proclus ranked theurgy above philosophy for the soul&rsquo;s ascent. The Hermetic connection is explicit: the <em>De mysteriis</em> opens by invoking Hermes and claims to answer from &ldquo;the books of Hermes&rdquo; &mdash; a Neoplatonist philosopher treating Hermetic literature as authoritative Egyptian theology.</p>\n<h2>The Hermetic relation, kept clean</h2>\n<p>The philosophical Hermetica are <em>not</em> theurgic manuals; the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> teaches through dialogue and vision, not rite. But the <a href=\"/texts/asclepius/\">Asclepius</a> (23&ndash;24, 37&ndash;38) &mdash; humans &ldquo;making gods&rdquo; by drawing spirits into statues &mdash; supplied the most famous ancient description of what later readers assimilated to theurgy. Scholars debate the linkage: Bull argues Hermetic ritual and Iamblichus&rsquo; defence both grew from Egyptian priestly milieus; others see parallel cousins rather than one lineage. Since Gregory Shaw&rsquo;s work (1995), theurgy is read as coherent religious philosophy, not Dodds&rsquo; &ldquo;decline into magic&rdquo;.</p>\n<h2>Traps</h2>\n<p>Occultist reception from the Golden Dawn onward uses &ldquo;theurgy&rdquo; for ceremonial magic generally and labels the whole package &ldquo;Hermetic magic&rdquo;, fusing categories the ancients kept distinct. The tidy scheme &ldquo;theurgy = white magic, goetia = black magic&rdquo; is also a later simplification &mdash; it is not Iamblichus&rsquo; distinction.</p>\n<h2>Why it matters</h2>\n<p>Theurgy is where late-antique philosophy admitted that knowing about the divine is not the same as reaching it &mdash; the same gap the Hermetic rebirth addresses from another side. Understanding the two as neighbours, not synonyms, is a good test of whether a modern book on &ldquo;Hermetic magic&rdquo; knows its history.</p>",
+  "faq": [
+    ["Is theurgy a Hermetic practice?", "Not strictly. Theurgy belongs to Neoplatonism (Iamblichus, Proclus). The philosophical Hermetica are not theurgic manuals, but the Asclepius' statue-animation passages describe something later readers assimilated to theurgy, and Iamblichus cited 'the books of Hermes' as authority."],
+    ["Is theurgy just magic?", "Iamblichus would say no: theurgy works through divine symbols and divine action, not human technique, and aims at the soul's union with the gods. 'Theurgy = white magic vs. goetia = black magic' is a later simplification."],
+    ["Did Neoplatonists agree about theurgy?", "No — it was a live debate. Plotinus and (ambivalently) Porphyry held philosophy alone leads up; Iamblichus, then Proclus, argued ritual is necessary because thought alone cannot bridge the gap to the gods."]
+  ],
+  "sources": [
+    "Stanford Encyclopedia of Philosophy, \"Iamblichus\".",
+    "Shaw, <i>Theurgy and the Soul</i> (1995).",
+    "Copenhaver, <i>Hermetica</i> (1992): Ascl. 23–24, 37–38.",
+    "Research dossier: ideas-glossary.md §7."
+  ],
+  "ld_type": "DefinedTerm",
+  "ld_name": "Theurgy",
+  "next": "The statues that started it &rarr; <a href=\"/texts/asclepius/\">Asclepius</a>"
+}

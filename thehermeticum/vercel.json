@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.thehermeticum.com" }],
+      "destination": "https://thehermeticum.com/$1",
+      "permanent": true
+    }
+  ]
+}

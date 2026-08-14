@@ -1,0 +1,29 @@
+{
+  "path": "ideas/palingenesia",
+  "trail": [["Ideas", "/ideas/"]],
+  "crumb": "Palingenesia",
+  "kicker": "The Ideas",
+  "title": "Palingenesia — rebirth in Corpus Hermeticum XIII",
+  "desc": "Palingenesia in CH XIII: rebirth as ten divine powers expelling twelve zodiacal torments — liberation from astral fate in this life, not reincarnation.",
+  "h1": "Palingenesia",
+  "tldr": "Palingenesia is the Hermetic rebirth staged in Corpus Hermeticum XIII: ten divine powers enter the initiate and drive out twelve torments matched to the zodiac, making him \"no longer the same\". It is a transformation in this life — not reincarnation — and the text insists it cannot be taught, only experienced.",
+  "body": "<p>The most dramatic scene in the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> is a rebirth. In treatise XIII &mdash; &ldquo;On being born again, and on the promise to be silent&rdquo; &mdash; Hermes guides his son Tat through <em>palingenesia</em>, and Tat comes out the other side seeing &ldquo;not with the eyes of the body&rdquo;.</p>\n<h2>In the sources</h2>\n<p>The mechanism is startlingly arithmetical. Ten divine &ldquo;powers&rdquo; &mdash; knowledge of God, joy, self-control, perseverance, justice, generosity, truth, the Good, life, light &mdash; descend into the initiate and expel twelve &ldquo;torments&rdquo;: ignorance, grief, incontinence, lust, injustice, greed, deceit, envy, treachery, anger, recklessness, malice. The twelve are explicitly zodiacal (CH XIII.12): the decad of powers drives out the dodecad of the zodiac. Rebirth is framed as liberation from astral determinism <em>using astrology&rsquo;s own categories</em> &mdash; the stars&rsquo; grip on the self is broken sign by sign. The treatise closes with a secret &ldquo;hymn of rebirth&rdquo;, and Hermes warns that the whole event is unteachable by discourse: it is silent knowledge, experienced rather than argued (CH XIII.2&ndash;3). The vision granted in <a href=\"/texts/corpus-hermeticum/poimandres/\">Poimandres</a> is its natural companion piece.</p>\n<h2>Ritual or literature?</h2>\n<p>Scholars disagree about what CH XIII records. Festugi&egrave;re read it as literary mysticism; Van den Kerchove and Bull read it as reflecting actual initiatory practice; Hanegraaff reads it as the record of an induced ecstatic experience. The parallels with &ldquo;born again&rdquo; language in John 3 are usually explained as shared late-antique idiom, not borrowing in either direction.</p>\n<h2>Traps</h2>\n<p>Modern esoteric readers sometimes equate palingenesia with reincarnation. Wrong register: CH XIII&rsquo;s rebirth is a transformation <em>in this life</em> &mdash; becoming a new, noetic self &mdash; not the soul&rsquo;s migration between bodies. (Metempsychosis appears elsewhere in the Hermetica, but it is a different doctrine.)</p>\n<h2>Why it matters</h2>\n<p>For a site whose motto is &ldquo;no fortune-telling&rdquo;, this is the key text: the Hermetica take astrology seriously enough to stage an escape from it. Rebirth is where <a href=\"/ideas/nous/\">Nous</a> stops being theory and becomes biography.</p>",
+  "facts": [
+    ["Text", "Corpus Hermeticum XIII — 'On being born again'"],
+    ["The arithmetic", "Ten divine powers expel twelve zodiacal torments (CH XIII.12)"],
+    ["What it is", "Transformation in this life — a new, noetic self"],
+    ["What it is not", "Reincarnation; metempsychosis is a separate doctrine (e.g. CH X)"]
+  ],
+  "faq": [
+    ["Is palingenesia the same as reincarnation?", "No. CH XIII's rebirth happens within this life — the initiate becomes a new, noetic self. Reincarnation (metempsychosis) appears elsewhere in the Hermetica, but it is a different doctrine."],
+    ["Why ten powers against twelve torments?", "The twelve torments are matched to the zodiac; the ten powers form a decad that 'generates the soul' and expels the dodecad. Rebirth is staged as liberation from astral fate using astrology's own categories."],
+    ["Was CH XIII a real ritual?", "Debated. Festugière read it as literary mysticism; Van den Kerchove and Bull see real initiatory practice behind it; Hanegraaff reads it as a record of induced ecstatic experience."]
+  ],
+  "sources": [
+    "Copenhaver, <i>Hermetica</i> (1992): CH XIII.",
+    "Research dossier: ideas-glossary.md §3."
+  ],
+  "ld_type": "DefinedTerm",
+  "ld_name": "Palingenesia",
+  "next": "The companion vision &rarr; <a href=\"/texts/corpus-hermeticum/poimandres/\">Poimandres</a>"
+}

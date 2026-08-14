@@ -1,0 +1,25 @@
+{
+  "path": "ideas/correspondences",
+  "trail": [["Ideas", "/ideas/"]],
+  "crumb": "Correspondences",
+  "kicker": "The Ideas",
+  "title": "Correspondences — the web of cosmic sympathy",
+  "desc": "Correspondences in Hermetic thought: cosmic sympathy linking heaven, earth and humanity — the ancient sources, and why the famous tables are much later.",
+  "h1": "Correspondences",
+  "tldr": "Correspondences is the claim that the levels of reality — stars, earth, body, soul — mirror and answer one another, so that what happens at one level resonates at another. The intuition is genuinely ancient (Stoic sympatheia, the Hermetic microcosm); the neat gem–planet–angel tables are Renaissance and modern constructions.",
+  "body": "<p>Before it was a poster slogan, correspondence was a working theory of nature: the cosmos as one living, ensouled whole whose levels answer each other &mdash; star to stone, heaven to body, world to soul.</p>\n<h2>In the sources</h2>\n<p>The background is Stoic <em>sympatheia</em> &mdash; cosmic interconnection &mdash; fused with the astrological doctrine that celestial configurations map onto terrestrial events. In the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> this becomes a hierarchy of images: &ldquo;the cosmos is an image of God, and man an image of the cosmos&rdquo; (CH X.11). The technical Hermetica then operationalise it: astro-botanical and astro-medical treatises assign plants and stones to decans and planets for talismanic medicine, in layers Fowden traces back to Ptolemaic astrological literature. And the <a href=\"/texts/asclepius/\">Asclepius</a> (24&ndash;26) shows the theory at its boldest &mdash; temple statues drawing down and housing divine presences. The most famous compression of the idea, &ldquo;<a href=\"/ideas/as-above-so-below/\">as above, so below</a>&rdquo;, belongs to the later Emerald Tablet tradition, not the Greek corpus.</p>\n<h2>A modern word for an ancient intuition</h2>\n<p>&ldquo;Correspondences&rdquo; as a formal category is itself modern: Antoine Faivre made it the first of his four defining characteristics of Western esotericism (1994). Useful shorthand &mdash; but anachronistic if projected wholesale onto antiquity, where the idea lived inside astrology, medicine and cult rather than as a named doctrine.</p>\n<h2>Traps</h2>\n<p>The elaborate &ldquo;tables of correspondence&rdquo; circulating online &mdash; gem to planet to angel to Hebrew letter &mdash; descend from Agrippa&rsquo;s <em>De occulta philosophia</em> (1533), the Golden Dawn, and Crowley&rsquo;s <em>777</em>. Claiming any specific table as &ldquo;ancient Egyptian Hermeticism&rdquo; is almost always false in detail. Nor is correspondence a &ldquo;law of attraction&rdquo;: in its home context it grounded disciplined practice, not wish-fulfilment.</p>\n<h2>Why it matters</h2>\n<p>Correspondence is the connective tissue of the whole tradition mapped in the <a href=\"/atlas/\">Atlas</a>: it is why astrology, alchemy and talismanic medicine could all call themselves Hermetic. One claim &mdash; the levels of reality answer each other &mdash; underwrites them all.</p>",
+  "faq": [
+    ["Are correspondences an ancient Hermetic doctrine?", "The intuition is ancient — Stoic sympatheia plus the Hermetic microcosm (CH X.11) — but 'correspondences' as a named category of esotericism is a modern scholarly construct, coined in that role by Antoine Faivre in 1994."],
+    ["Are the gem–planet–angel tables ancient?", "No. Systematic tables descend from Agrippa (1533), then the Golden Dawn and Crowley's 777. Ancient sources assign plants and stones to decans and planets, but the tidy modern tables are Renaissance-to-modern constructions."],
+    ["Is correspondence the same as 'as above, so below'?", "That phrase is one later compression of the idea, from the Emerald Tablet tradition. The underlying claim — that the world's levels mirror and answer one another — is older and broader than the slogan."]
+  ],
+  "sources": [
+    "Copenhaver, <i>Hermetica</i> (1992): CH VIII, X; Ascl. 24–26.",
+    "Fowden, <i>The Egyptian Hermes</i> (1986), ch. 1–2 — the technical Hermetica.",
+    "Faivre, <i>Access to Western Esotericism</i> (1994).",
+    "Research dossier: ideas-glossary.md §5."
+  ],
+  "ld_type": "DefinedTerm",
+  "ld_name": "Correspondences",
+  "next": "The famous compression &rarr; <a href=\"/ideas/as-above-so-below/\">As above, so below</a>"
+}

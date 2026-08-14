@@ -1,0 +1,24 @@
+{
+  "path": "ideas/prisca-theologia",
+  "trail": [["Ideas", "/ideas/"]],
+  "crumb": "Prisca theologia",
+  "kicker": "The Ideas",
+  "title": "Prisca theologia — the ancient theology that wasn't",
+  "desc": "Prisca theologia: the Renaissance belief that Hermes taught an ancient theology older than Plato — its rise with Ficino, its fall with Casaubon in 1614.",
+  "h1": "Prisca theologia",
+  "tldr": "Prisca theologia (\"ancient theology\") is the Renaissance idea that God gave one true theology to remote antiquity, handed down through a chain of sages — Hermes Trismegistus near its head — and flowing into Plato and Christianity. It rested on a wrong chronology, demolished philologically by Isaac Casaubon in 1614.",
+  "body": "<p>In 1463 Cosimo de&rsquo; Medici told Marsilio Ficino to pause translating Plato and translate Hermes first. That decision only makes sense inside one big idea: <em>prisca theologia</em>, the &ldquo;ancient theology&rdquo;.</p>\n<h2>The idea</h2>\n<p>God, the theory ran, gave a single true theology to remote antiquity, transmitted through a genealogy of sages &mdash; in Ficino&rsquo;s chain: Zoroaster, Hermes Trismegistus, Orpheus, Aglaophemus, Pythagoras, Plato. Since Hermes was believed older than Plato and near-contemporary with Moses, the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> seemed to <em>anticipate</em> Genesis and the Gospel of John. The claim had patristic cover: Lactantius treated Hermes as an ancient gentile prophet of Christ; Augustine accepted his antiquity while condemning the idolatry of the <a href=\"/texts/asclepius/\">Asclepius</a>. Crucially, the Renaissance version was an attempt to <em>prove</em> Christianity&rsquo;s truth, not an alternative to it.</p>\n<h2>The demolition</h2>\n<p>In 1614 Isaac Casaubon showed on philological grounds &mdash; post-classical Greek vocabulary, anachronisms, echoes of Plato and Christian idiom &mdash; that the Corpus is a product of the early Roman imperial era, not primeval Egypt. It is a landmark of historical criticism. It did not, however, kill Hermes: post-1614 Hermetic currents flourished, and Athanasius Kircher simply ignored the redating.</p>\n<h2>Traps</h2>\n<p>Keep two terms apart: <em>prisca theologia</em> locates truth in the deep past, degenerating over time; the related <em>philosophia perennis</em> holds truth to be always and everywhere available. Popular writing conflates them constantly. And any site claiming the Corpus Hermeticum is &ldquo;5,000 years old&rdquo; is repeating a Renaissance error refuted in 1614 &mdash; though the honest nuance is that the late texts do preserve older, genuinely Egyptian traditions.</p>\n<h2>Why it matters</h2>\n<p>Prisca theologia explains why <a href=\"/path/01-what-is-hermeticism/\">Hermeticism</a> mattered so enormously to the Renaissance &mdash; and why its history is a story about chronology. One dating error powered two centuries of Christian Hermetism; one philological fact-check founded modern source criticism.</p>",
+  "faq": [
+    ["What does prisca theologia mean?", "Latin for 'ancient theology': the idea that God gave one true theology to remote antiquity, passed down through sages — Zoroaster, Hermes, Orpheus, Pythagoras, Plato in Ficino's chain — and harmonizing with Christianity."],
+    ["How is it different from philosophia perennis?", "Prisca theologia locates truth in the deep past, degenerating over time; philosophia perennis holds truth is always available everywhere. The Renaissance worked with the first; modern perennialism recycles the second — they are often conflated."],
+    ["Who disproved the antiquity of Hermes?", "Isaac Casaubon, in 1614, using philological evidence — post-classical vocabulary and anachronisms — dated the Corpus Hermeticum to the early Roman imperial era. Many occult writers simply ignored him."]
+  ],
+  "sources": [
+    "Copenhaver, <i>Hermetica</i> (1992), introduction.",
+    "Ebeling, <i>The Secret History of Hermes Trismegistus</i> (2007).",
+    "Research dossiers: ideas-glossary.md §6; renaissance.md §2."
+  ],
+  "ld_type": "DefinedTerm",
+  "ld_name": "Prisca theologia",
+  "next": "Where the story starts &rarr; <a href=\"/path/01-what-is-hermeticism/\">What is Hermeticism?</a>"
+}
