@@ -88,10 +88,12 @@ def render(p):
     ld_tags = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     crumbs = " <span>/</span> ".join(f'<a href="{u}">{H.escape(n)}</a>' for n, u in trail[:-1]) + f' <span>/</span> <em>{H.escape(p["crumb"])}</em>'
     img = IMGS.get(p["path"])
+    og_img = f"{SITE}/assets/{img}" if img else f"{SITE}/assets/og.png"
+    preload = f'<link rel="preload" as="image" href="/assets/{img}" fetchpriority="high">' if img else ""
     port = PORTRAITS.get(p["path"])
     portrait = (f'<figure class="art__portrait"><img src="/assets/{port}" alt="Portrait: {H.escape(p["crumb"])}" '
                 f'width="400" height="400" loading="lazy"><figcaption>An imagined likeness, after the historical sources</figcaption></figure>') if port else ""
-    fig = f'<figure class="art__fig"><img src="/assets/{img}" alt="" width="1600" height="800" loading="eager"></figure>' if img else ""
+    fig = f'<figure class="art__fig"><img src="/assets/{img}" alt="" width="1600" height="800" loading="eager" fetchpriority="high"></figure>' if img else ""
     tldr = f'<div class="tldr"><span>TL;DR</span><p>{p["tldr"]}</p></div>' if p.get("tldr") else ""
     facts = ""
     if p.get("facts"):
@@ -135,10 +137,13 @@ def render(p):
 <link rel="canonical" href="{SITE}{p["url"]}">
 <meta property="og:title" content="{H.escape(p["title"])}">
 <meta property="og:description" content="{H.escape(p["desc"])}">
-<meta property="og:image" content="{SITE}/assets/og.png">
+<meta property="og:image" content="{og_img}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{SITE}{p["url"]}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{og_img}">
+<meta property="og:locale" content="en_US">
+{preload}
 <meta name="twitter:title" content="{H.escape(p["title"])}">
 <meta name="twitter:description" content="{H.escape(p["desc"])}">
 <meta name="robots" content="index, follow">
@@ -227,7 +232,7 @@ if '── PODSTRONY ──' not in css:
 BOOK = lambda n: {"@context": "https://schema.org", "@type": "Book", "name": n}
 PERSON = lambda n: {"@context": "https://schema.org", "@type": "Person", "name": n}
 TERM = lambda n, d: {"@context": "https://schema.org", "@type": "DefinedTerm", "name": n, "description": d}
-ART = lambda t, d: {"@context": "https://schema.org", "@type": "Article", "headline": t, "description": d, "author": {"@type": "Organization", "name": "The Hermeticum"}}
+ART = lambda t, d: {"@context": "https://schema.org", "@type": "Article", "headline": t, "description": d, "datePublished": "2026-08-14", "dateModified": "2026-08-14", "author": {"@type": "Organization", "name": "The Hermeticum"}, "publisher": {"@type": "Organization", "name": "The Hermeticum", "url": SITE}}
 
 PAGES = []
 def page(path, **kw):
