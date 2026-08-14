@@ -1,26 +1,61 @@
 {
   "path": "path/06-as-above-so-below",
-  "trail": [["The Path", "/path/"]],
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
   "crumb": "06 · As above, so below",
   "kicker": "The Path — step 06",
   "title": "As above, so below — what it actually means",
   "desc": "The most quoted line in esotericism is a 19th-century paraphrase of a medieval Latin sentence from an Arabic text. Here is the real wording — and the real meaning.",
   "h1": "As above, so below:<br>the autopsy of a quote",
   "tldr": "The famous four words are a Victorian-era condensation of a Latin sentence from the Emerald Tablet — a text first attested in Arabic in the 8th&ndash;9th century. The original is not a cosmic slogan but a working claim with a purpose clause: the levels of reality answer each other <em>so that</em> the operator can accomplish the work.",
-  "img": "wing-ideas.jpg",
+  "img": "art-lens.jpg",
   "body": "<p>You&rsquo;ve seen it on posters, tattoos and a thousand videos. Today we put the tradition&rsquo;s most famous sentence on the table and trace where every word actually comes from. This is the path&rsquo;s first full exercise in our method — and a preview of step 07.</p><h2>What the source says</h2><p>The line descends from the <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a>, whose oldest known home is an Arabic book of secrets from the 8th&ndash;9th century. In the medieval Latin vulgate — per the critical edition of Steele &amp; Singer — the sentence runs: <em>Quod est inferius est sicut quod est superius, et quod est superius est sicut quod est inferius, ad preparanda miracula rei unius</em>. In our working translation: <em>&ldquo;What is below is like what is above, and what is above is like what is below — for preparing the miracles of the one thing.&rdquo;</em> (Many printed editions since 1541 read <em>ad perpetranda</em>, &ldquo;for accomplishing&rdquo; — a genuine variant of the print tradition; the meaning barely shifts, but knowing which text you&rsquo;re quoting is the whole game on this site.)</p><h2>Three things the original has that the slogan lost</h2><p><strong>&ldquo;Is like&rdquo;, not &ldquo;is&rdquo;.</strong> The Latin gives a simile — resemblance between levels, not identity. <strong>Both directions.</strong> Above mirrors below just as below mirrors above; the traffic runs two ways. <strong>A purpose clause.</strong> The sentence exists <em>for</em> something: the miracles of the one thing — in context, the alchemical work. This is an operator&rsquo;s sentence: a claim about why transformation is possible, not a fridge magnet about vibes.</p><h2>Where the short version came from</h2><p>The tidy epigram &ldquo;as above, so below&rdquo; spread through 19th-century occultism — the era of Blavatsky — as a compression of the Latin. It stuck because it&rsquo;s beautiful. But compression cut the purpose clause, and with it the meaning drifted: from a thesis grounding a craft to an all-purpose mystical wink.</p><h2>Is the idea itself Hermetic, then?</h2><p>Yes — and here honesty cuts our way for once. The intuition behind the line, cosmic sympathy and <a href=\"/ideas/correspondences/\">correspondence</a>, runs genuinely deep in the <a href=\"/texts/corpus-hermeticum/\">Corpus</a> and its world: the human as microcosm, heaven mapped onto body and fate. The slogan&rsquo;s wording is modern; its instinct is ancient. Distinguishing the two is what separates knowing the tradition from quoting it.</p><h2>Your takeaway sentence</h2><p>Next time someone tells you &ldquo;as above, so below&rdquo; is an ancient Egyptian incantation, you can smile and say: <em>medieval Latin, translating Arabic, compressed by Victorians — and still a better sentence in the original.</em> Step 07 opens the Tablet itself.</p>",
-  "facts": [["Popular form", "'As above, so below' — 19th-century condensation"],
-            ["Source text", "Emerald Tablet (first attested in Arabic, 8th–9th c.)"],
-            ["Critical Latin reading", "ad <i>preparanda</i> miracula rei unius (Steele & Singer 1928)"],
-            ["Print-tradition variant", "ad <i>perpetranda</i> (Nuremberg 1541 →)"],
-            ["The idea behind it", "Correspondence / cosmic sympathy — genuinely ancient"]],
-  "faq": [["So is the phrase 'fake'?", "No — it's a compression with a real pedigree. The wording is modern shorthand; the underlying idea of correspondence is ancient. Both facts are true, and both matter."],
-          ["Does it appear in the Corpus Hermeticum?", "Not in this form. The Corpus carries the correspondence idea; the sentence itself belongs to the Emerald Tablet tradition."],
-          ["Why do you cite two Latin variants?", "Because manuscripts and printed editions genuinely differ, and pretending otherwise is how myths start. We quote the critical edition and flag the variant — that's the house method."]],
-  "sources": ["Robert Steele &amp; Dorothea Waley Singer, 'The Emerald Table', <i>Proc. Royal Society of Medicine</i> 21 (1928).",
-              "Julius Ruska, <i>Tabula Smaragdina</i> (1926).",
-              "Working translation ours — see <a href=\"/about/method/\">Method &rarr; Quotations</a>.",
-              "Research dossiers: emerald-tablet-arabic.md §2, ideas-glossary.md §4–5."],
+  "facts": [
+    [
+      "Popular form",
+      "'As above, so below' — 19th-century condensation"
+    ],
+    [
+      "Source text",
+      "Emerald Tablet (first attested in Arabic, 8th–9th c.)"
+    ],
+    [
+      "Critical Latin reading",
+      "ad <i>preparanda</i> miracula rei unius (Steele & Singer 1928)"
+    ],
+    [
+      "Print-tradition variant",
+      "ad <i>perpetranda</i> (Nuremberg 1541 →)"
+    ],
+    [
+      "The idea behind it",
+      "Correspondence / cosmic sympathy — genuinely ancient"
+    ]
+  ],
+  "faq": [
+    [
+      "So is the phrase 'fake'?",
+      "No — it's a compression with a real pedigree. The wording is modern shorthand; the underlying idea of correspondence is ancient. Both facts are true, and both matter."
+    ],
+    [
+      "Does it appear in the Corpus Hermeticum?",
+      "Not in this form. The Corpus carries the correspondence idea; the sentence itself belongs to the Emerald Tablet tradition."
+    ],
+    [
+      "Why do you cite two Latin variants?",
+      "Because manuscripts and printed editions genuinely differ, and pretending otherwise is how myths start. We quote the critical edition and flag the variant — that's the house method."
+    ]
+  ],
+  "sources": [
+    "Robert Steele &amp; Dorothea Waley Singer, 'The Emerald Table', <i>Proc. Royal Society of Medicine</i> 21 (1928).",
+    "Julius Ruska, <i>Tabula Smaragdina</i> (1926).",
+    "Working translation ours — see <a href=\"/about/method/\">Method &rarr; Quotations</a>.",
+    "Research dossiers: emerald-tablet-arabic.md §2, ideas-glossary.md §4–5."
+  ],
   "ld_type": "Article",
   "next": "Next &rarr; <a href=\"/path/07-the-emerald-tablet/\">Step 07: The Emerald Tablet</a> <em>(unlocks Sep 14)</em>"
 }
