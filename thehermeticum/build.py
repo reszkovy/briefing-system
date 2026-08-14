@@ -567,7 +567,8 @@ page("figures",
   <li><a href="/figures/lodovico-lazzarelli/"><b>Lodovico Lazzarelli</b><span>The purest Hermeticist you&rsquo;ve never heard of.</span></a></li>
   <li><a href="/figures/giordano-bruno/"><b>Giordano Bruno</b><span>Burned — but not for what you think.</span></a></li>
   <li><a href="/figures/john-dee/"><b>John Dee</b><span>The queen&rsquo;s magus.</span></a></li>
-  <li><span class="hub__soon"><b>G.R.S. Mead</b><span>The Victorian who translated Hermes for the occult age.</span></span></li>
+  <li><a href="/figures/grs-mead/"><b>G.R.S. Mead</b><span>The Victorian who translated Hermes for the occult age.</span></a></li>
+  <li><a href="/figures/balinas/"><b>Balinas (pseudo-Apollonius)</b><span>The name on the Emerald Tablet&rsquo;s birth certificate.</span></a></li>
   <li><a href="/figures/frances-yates/"><b>Frances Yates</b><span>The historian who took magic seriously — and overreached.</span></a></li>
 </ul>''')
 

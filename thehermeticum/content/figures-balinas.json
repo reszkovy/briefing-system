@@ -1,0 +1,59 @@
+{
+  "path": "figures/balinas",
+  "trail": [
+    [
+      "Figures",
+      "/figures/"
+    ]
+  ],
+  "crumb": "Balinas (pseudo-Apollonius)",
+  "kicker": "The Figures",
+  "title": "Balinas — the 'discoverer' of the Emerald Tablet",
+  "desc": "Who was Balinas? The Arabic pseudo-Apollonius of Tyana whose Book of the Secret of Creation holds the first known text of the Emerald Tablet.",
+  "h1": "Balinas",
+  "tldr": "Balinas is the Arabic name for Apollonius of Tyana — and the pen-name under which an unknown Arabic author wrote the Kitab sirr al-khaliqa ('Book of the Secret of Creation'), compiled in the late 8th or early 9th century and certainly finished before 833. At its end sits the earliest documented text of the Emerald Tablet. The 'discovery' in a vault beneath a statue of Hermes is a literary device — but it launched a thousand years of alchemy.",
+  "body": "<p>The most influential page in Western alchemy first appears at the end of a book signed by a man who could not have written it. &ldquo;Balinas&rdquo; is the Arabic rendering of Apollonius of Tyana, the first-century Greek sage — which is why scholars call the actual author, an unknown Arabic writer working seven centuries later, <em>pseudo</em>-Apollonius. His book is where the <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a> enters history.</p><h2>The Book of the Secret of Creation</h2><p>The <em>Kitab sirr al-khaliqa wa-san&lsquo;at al-tabi&lsquo;a</em> — &ldquo;Book of the Secret of Creation and the Art of Nature&rdquo; — is an Arabic cosmological treatise, and the Tablet stands embedded at its end. The three landmark datings frame it tightly: Julius Ruska (1926) allowed underlying material from as early as the 6th&ndash;8th centuries; Paul Kraus (1943) placed the compilation under Caliph al-Ma&rsquo;mun (813&ndash;833); Ursula Weisser (1980), author of the standard critical study, settled on c. 750&ndash;800. The safe formulation: compiled in Arabic in the late 8th or early 9th century, certainly before 833.</p><h2>The vault under the statue</h2><p>Inside the book, Balinas tells how he found the Tablet: in a vault beneath a statue of Hermes in Tyana, where a corpse seated on a golden throne held the emerald slab. It is a superb scene — and a standard literary topos, the &ldquo;discovery narrative&rdquo; that Hermetic and alchemical texts routinely use to give new writing ancient authority. It is not a historical report, any more than the attribution to Apollonius is a byline.</p><h2>Why this card matters</h2><p>Because it fixes the Emerald Tablet&rsquo;s real coordinates. No Greek or Egyptian original of the Tablet is known to exist; its earliest attested language is Arabic, and every later version — the shorter recension in the Jabirian corpus, the one framed as Aristotle&rsquo;s letter to Alexander in the <em>Sirr al-asrar</em>, the medieval Latin — descends from this tradition. Whether lost Greek or Syriac sources stand behind parts of the <em>Sirr al-khaliqa</em> is an open scholarly question; the Tablet as a text is documented only from the Arabic tradition onward. The physical emerald slab of vast antiquity, the Great Pyramid find, the &ldquo;Atlantean tablets&rdquo; of 1930s channeling — all reception, no evidence. The pseudonym, meanwhile, is the tradition in miniature: like <a href=\"/figures/hermes-trismegistus/\">Hermes Trismegistus</a> himself, Balinas is a borrowed name lending old authority to new thought — and the borrowing worked for a thousand years.</p>",
+  "facts": [
+    [
+      "Name",
+      "Balinas = Arabic for Apollonius of Tyana; actual author unknown ('pseudo-Apollonius')"
+    ],
+    [
+      "Work",
+      "Kitab sirr al-khaliqa ('Book of the Secret of Creation and the Art of Nature')"
+    ],
+    [
+      "Date",
+      "Late 8th–early 9th century CE; certainly before 833 (Ruska 1926; Kraus 1943; Weisser 1980)"
+    ],
+    [
+      "Claim to fame",
+      "Contains the earliest documented text of the Emerald Tablet"
+    ],
+    [
+      "Earliest language of the Tablet",
+      "Arabic — no Greek or Egyptian original is known"
+    ]
+  ],
+  "faq": [
+    [
+      "Was Balinas a real person?",
+      "The name refers to a real person — Apollonius of Tyana, a first-century sage — but the book's actual author was an unknown Arabic writer of the 8th–9th century using that name, hence 'pseudo-Apollonius.'"
+    ],
+    [
+      "Is the Emerald Tablet ancient Egyptian?",
+      "No evidence supports that. Its earliest documented text is Arabic, in the Sirr al-khaliqa (before 833 CE). The Egyptian and Atlantean origin stories are later legend and modern invention."
+    ],
+    [
+      "Did Balinas really find a tablet in a vault?",
+      "The vault, the corpse on the golden throne and the emerald slab are a literary discovery-narrative — a standard device for granting new texts ancient authority — not a historical report."
+    ]
+  ],
+  "sources": [
+    "Julius Ruska, <i>Tabula Smaragdina</i> (1926); Paul Kraus (1943); Ursula Weisser, critical study of the <i>Sirr al-khaliqa</i> (1980).",
+    "Research dossier: emerald-tablet-arabic.md §1 (each claim sourced there)."
+  ],
+  "ld_type": "Person",
+  "ld_name": "Balinas (pseudo-Apollonius of Tyana)",
+  "next": "The page he &lsquo;found&rsquo; &rarr; <a href=\"/texts/emerald-tablet/\">The Emerald Tablet</a>"
+}

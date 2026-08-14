@@ -1,0 +1,62 @@
+{
+  "path": "path/08-the-renaissance-revival",
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
+  "crumb": "08 · The Renaissance revival",
+  "kicker": "The Path — step 08",
+  "title": "The Renaissance revival: Hermes before Plato",
+  "desc": "In 1463 a dying Medici made his translator shelve Plato to do Hermes first. The century that followed ran on a dating error — a productive one.",
+  "h1": "The revival:<br>Hermes jumps the queue",
+  "tldr": "In 1463, Cosimo de' Medici — dying, with Plato's complete works on his translator's desk — ordered Marsilio Ficino to translate Hermes first. That queue-jump captures the whole Renaissance revival: the Hermetica were believed to be older than Moses, so they outranked Plato. The belief was a dating error; the error powered 150 years of philosophy and magic; and when one philologist corrected it in 1614, Hermeticism went on living for another three centuries anyway.",
+  "img": "art-ficino.jpg",
+  "body": "<p>Florence, 1463. Cosimo de&rsquo; Medici is dying, and on <a href=\"/figures/marsilio-ficino/\">Marsilio Ficino</a>&rsquo;s desk sits the complete works of Plato, waiting to enter Latin for the first time in a thousand years. A monk, Leonardo da Pistoia, has recently arrived from Macedonia carrying a Greek manuscript of the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a>. Cosimo&rsquo;s order: stop the Plato. Do Hermes first — he wants to read him before he dies. Ficino delivers the translation in 1463, a year before Cosimo&rsquo;s death; printed in 1471 as the <em>Pimander</em>, it becomes one of the best-selling philosophical books of the era. Hold that image: <strong>the Renaissance made Plato wait for Hermes.</strong> Everything in this step explains why.</p><h2>The licence: prisca theologia</h2><p>The reason was chronology. Ficino called Hermes &ldquo;the first author of theology&rdquo;, head of a succession running through Orpheus and Pythagoras down to Plato — the doctrine of <a href=\"/ideas/prisca-theologia/\">prisca theologia</a>, an ancient wisdom flowing toward Christianity. Because the Hermetica were believed roughly contemporary with Moses, they seemed to <em>anticipate</em> Genesis and the Gospel of John — which made quoting Hermes not heresy but evidence. That belief was the operating licence of the whole revival: it let Christian scholars practise astral magic and read pagan revelation as prophecy. It was also, as we&rsquo;ll see, wrong.</p><h2>The cast</h2><p>Under that licence, a remarkable cast went to work. <a href=\"/figures/pico-della-mirandola/\">Pico della Mirandola</a> posted 900 theses for public debate in 1486 and folded Jewish Kabbalah into the synthesis — though he actually preferred Orphic and Chaldean sources and downplayed the Hermetica. <a href=\"/figures/lodovico-lazzarelli/\">Lodovico Lazzarelli</a> completed Ficino&rsquo;s corpus by translating the treatises Ficino&rsquo;s manuscript lacked — and, having met a street prophet he took for Hermes reborn, actually <em>lived</em> the Hermetic rebirth the texts describe. Heinrich Cornelius Agrippa distilled the era&rsquo;s magic into <em>De occulta philosophia</em> (printed 1533), the most comprehensive manual of occult philosophy ever assembled — after publishing, three years earlier, a book arguing all sciences are vanity. In Elizabethan England, <a href=\"/figures/john-dee/\">John Dee</a> compressed the cosmos into a single glyph (<em>Monas Hieroglyphica</em>, 1564) and spent his later years transcribing conversations with angels.</p><h2>1614: the audit</h2><p>Then a philologist checked the dates. Isaac Casaubon, in a 1614 polemic against Catholic church history, showed that the Corpus&rsquo;s Greek is post-classical — Hellenistic vocabulary, echoes of Plato and Scripture — and placed the texts in the early Christian centuries. The pre-Mosaic Hermes evaporated; the chronology under prisca theologia collapsed. One footnote of honesty: Nag Hammadi and demotic parallels have since shown genuine Egyptian material inside those late Greek texts. Casaubon was right about the date and too quick about the &ldquo;forgery&rdquo;.</p><h2>The tradition that outlived its death</h2><p>Here is the twist worth keeping: <strong>Hermeticism survived its own debunking by 300 years.</strong> Robert Fludd built his macrocosm&ndash;microcosm system after 1614 as if nothing had happened; Athanasius Kircher was still channelling Hermes in 1652; Ralph Cudworth argued in 1678 that late texts could preserve older oral tradition; and in 1888 a new occult order put the refuted name on its front door: the Hermetic Order of the Golden Dawn. Philology corrected a date. It could not kill a tradition. What that tradition did in the laboratory — alchemy, the Great Work — is step 09.</p>",
+  "facts": [
+    [
+      "The queue-jump",
+      "1463: Cosimo orders Hermes translated before Plato"
+    ],
+    [
+      "The bestseller",
+      "Ficino's <i>Pimander</i>, printed 1471; dozens of editions by 1600"
+    ],
+    [
+      "The licence",
+      "Prisca theologia — Hermes believed older than Moses"
+    ],
+    [
+      "The audit",
+      "Casaubon 1614: the Greek is post-classical, texts early CE"
+    ],
+    [
+      "The afterlife",
+      "Fludd → Kircher 1652 → Cudworth 1678 → Golden Dawn 1888"
+    ]
+  ],
+  "faq": [
+    [
+      "Where is Giordano Bruno in this story?",
+      "Deliberately in a footnote: the 'Hermetic martyr' image owes more to 1960s historiography (Frances Yates) and the 1889 monument than to the trial record. He has <a href=\"/figures/giordano-bruno/\">his own card</a> — myths included."
+    ],
+    [
+      "Did Casaubon set out to destroy Hermeticism?",
+      "No — his 1614 book was Protestant source-criticism aimed at Cardinal Baronius's church history. The Hermetic redating was a demolition performed in passing, which makes it better, not worse, as philology."
+    ],
+    [
+      "So was the Renaissance revival built on nothing?",
+      "It was built on a wrong date attached to real ancient texts. The texts remain genuinely late-antique — and the philosophy, art and science the error licensed were entirely real."
+    ]
+  ],
+  "sources": [
+    "Florian Ebeling, <i>The Secret History of Hermes Trismegistus</i> (Cornell UP, 2007), esp. pp. 59–60.",
+    "Brian Copenhaver, <i>Hermetica</i> (Cambridge UP, 1992), Introduction.",
+    "Stanford Encyclopedia of Philosophy: entries on Ficino, Pico, Agrippa, Bruno.",
+    "Anthony Grafton, 'Protestant versus Prophet: Isaac Casaubon on Hermes Trismegistus', <i>JWCI</i> 46 (1983).",
+    "Research dossiers: renaissance.md §1–9, ancient-texts.md §1.4."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/09-alchemy-and-the-great-work/\">Step 09: Alchemy and the Great Work</a> <em>(unlocks Sep 28)</em>"
+}

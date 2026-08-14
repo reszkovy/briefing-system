@@ -18,4 +18,11 @@ Status szkiców:
 - [x] 04 Reading Poimandres — KOMPLETNY (artykuł + list #01)
 - [x] 05 The key ideas in one map — KOMPLETNY (list: adaptacja intro/outro w tygodniu wysyłki)
 - [x] 06 As above, so below — KOMPLETNY (list: jw.)
-- [ ] 07–12 — do napisania (materiał: research/INDEX.md sekcja 2)
+- [x] 07 The Emerald Tablet — KOMPLETNY („the find that never was")
+- [x] 08 The Renaissance revival — KOMPLETNY („Hermes jumps the queue")
+- [x] 09 Alchemy and the Great Work — KOMPLETNY
+- [x] 10 The Kybalion problem — KOMPLETNY
+- [x] 11 Hermeticism today — KOMPLETNY
+- [x] 12 The reading map — KOMPLETNY (finał z klamrą)
+- [x] Karty Mead + Balinas — OPUBLIKOWANE od razu (poza harmonogramem serialu)
+UWAGA: krok 04 opublikowany przedterminowo 14.08 (decyzja Reszka).

@@ -1,0 +1,60 @@
+{
+  "path": "path/12-the-reading-map",
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
+  "crumb": "12 · The reading map",
+  "kicker": "The Path — step 12",
+  "title": "The reading map: zero to advanced in ten books",
+  "desc": "A ten-step reading path through the Hermetica — what's legally free, what's worth buying, what to listen to, and what to skip at the start.",
+  "h1": "The reading map",
+  "tldr": "Ten books take you from zero to the research frontier: Copenhaver's introduction, the texts themselves, then Ebeling, Yates (with a warning), Fowden, Litwa, Bull and Hanegraaff. The real texts are free and legal in Mead's 1906 translation; the modern ones are worth buying; the Kybalion, Walter Scott's edition and Doreal's 'Atlantean tablets' are the three doors not to enter first.",
+  "img": "art-definitions.jpg",
+  "body": "<p>Twelve steps ago you asked <a href=\"/path/01-what-is-hermeticism/\">one question</a>: what is Hermeticism? You now know enough to be dangerous — which is exactly when a reader needs a map with every road labelled by price, legality and risk. Here it is: ten books, in order, each earning its place.</p><h2>The ten steps</h2><p><strong>1. Copenhaver, <em>Hermetica</em> (1992) — the introduction only.</strong> Seventy pages that replace a semester: what the texts are, when, and how they reached us. <strong>2. Corpus Hermeticum I and XI</strong> — the founding vision (<a href=\"/texts/corpus-hermeticum/poimandres/\">Poimandres</a>) plus the most ambitious tractate, short enough to finish. <strong>3. The <a href=\"/texts/asclepius/\">Asclepius</a></strong> — the one treatise the Middle Ages never lost. <strong>4. Salaman et al., <em>The Way of Hermes</em></strong> — for the <a href=\"/texts/definitions-of-hermes/\">Definitions</a>, the tradition&rsquo;s aphoristic classroom layer, in cheap English print nowhere else. <strong>5. Ebeling, <em>The Secret History of Hermes Trismegistus</em> (2007)</strong> — the whole reception arc in 200 pages. <strong>6. <a href=\"/figures/frances-yates/\">Yates</a>, <em>Giordano Bruno and the Hermetic Tradition</em> (1964) — with a warning label:</strong> read it because everything since responds to it, not because it is right. <strong>7. Fowden, <em>The Egyptian Hermes</em></strong> — from reading texts to understanding a milieu. <strong>8. Litwa, <em>Hermetica II</em> (2018)</strong> — everything Copenhaver left out, including the <a href=\"/texts/stobaean-fragments/\">Stobaean fragments</a> and the Kor&emacr; Kosmou. <strong>9. Bull, <em>The Tradition of Hermes Trismegistus</em> (2018)</strong> — the strongest current case for real Egyptian priestly communities behind the texts. <strong>10. Hanegraaff, <em>Hermetic Spirituality and the Historical Imagination</em> (2022)</strong> — the field&rsquo;s boldest recent thesis, which you are now equipped to judge.</p><h2>Free and legal vs. worth buying</h2><p>The ancient texts cost nothing. Mead&rsquo;s complete <em>Thrice-Greatest Hermes</em> (1906) is public domain, scanned in full on <a href=\"https://archive.org/details/thricegreatesthe01hermuoft\">archive.org</a>; Everard&rsquo;s 1650 <em>Divine Pymander</em> sits on sacred-texts and Wikisource as a historical artifact. Note the irony: Project Gutenberg holds no real Corpus Hermeticum — its main &ldquo;Hermetic&rdquo; text is the 1908 <a href=\"/texts/kybalion/\">Kybalion</a>. What is worth money: Copenhaver, Salaman and Litwa are in copyright, and the &ldquo;free PDFs&rdquo; that circulate are piracy — buy the two Cambridge volumes and you own the complete philosophical Hermetica in modern English.</p><h2>Listen and watch</h2><p>Two free resources match this site&rsquo;s standards. <a href=\"https://www.youtube.com/watch?v=kHHTt6Yiv5U\">Esoterica</a>, Dr. Justin Sledge&rsquo;s channel, runs a 61-video Hermetic playlist — start with the 19-minute Corpus Hermeticum introduction. <a href=\"https://shwep.net/themes/hermetica/\">SHWEP</a>, Earl Fontainelle&rsquo;s footnoted podcast, interviews the exact scholars on this list — Wildberg, Litwa, Bull, Hanegraaff — in its episode-100s block. A university curriculum, no door fee.</p><h2>Three doors not to enter first</h2><p>The Kybalion teaches a 1908 New Thought vocabulary you would only have to unlearn. Walter Scott&rsquo;s 1924 translation &ldquo;corrected&rdquo; the Greek so aggressively that scholars discarded it — a famous cautionary tale, not a reading text. And Doreal&rsquo;s <em>Emerald Tablets of Thoth the Atlantean</em> (1930s, channeled) has no textual relation to the real <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a> beyond the stolen name.</p><h2>Where the path ends</h2><p>It ends where it began. Step 01 asked what Hermeticism is; the honest answer took eleven steps and turns out to be a library card. The texts are open, the scholarship is public, and the map is now yours. Walk it slowly — Hermes has waited eighteen centuries, and he will wait for you.</p>",
+  "facts": [
+    [
+      "The path",
+      "10 books: Copenhaver → texts → Ebeling → Yates → Fowden → Litwa → Bull → Hanegraaff"
+    ],
+    [
+      "Free & legal",
+      "Mead 1906 (archive.org), Everard 1650 (sacred-texts, Wikisource)"
+    ],
+    [
+      "Worth buying",
+      "Copenhaver (1992) + Litwa (2018) = the complete philosophical Hermetica; Salaman for the Definitions"
+    ],
+    [
+      "Listen",
+      "Esoterica's 61-video playlist; SHWEP episodes 102–109"
+    ],
+    [
+      "Avoid at the start",
+      "The Kybalion, Walter Scott's 1924 edition, Doreal's 'Atlantean tablets'"
+    ]
+  ],
+  "faq": [
+    [
+      "Can I read the real Hermetica for free?",
+      "Yes, legally: Mead's 1906 translation of the Corpus Hermeticum, Asclepius and fragments is public domain on archive.org. It's dated but complete — just skip its Theosophical framing."
+    ],
+    [
+      "Why not just start with the Kybalion?",
+      "Because it's a 1908 New Thought book, not ancient Hermetica — its vocabulary ('vibration', 'mentalism') has to be unlearned before the real texts make sense. Read it later, as a reception document."
+    ],
+    [
+      "Do I really need ten books?",
+      "No — steps 1–4 alone give you the ancient texts with orientation. Steps 5–10 are for going deeper; each one is optional and each rationale is stated so you can stop anywhere."
+    ]
+  ],
+  "sources": [
+    "Brian P. Copenhaver, <i>Hermetica</i> (1992); M. David Litwa, <i>Hermetica II</i> (2018).",
+    "Internet Archive scans of Mead (1906); sacred-texts and Wikisource editions of Everard (1650).",
+    "Research dossiers: bibliography.md (all sections); audio-video-editions.md (links verified 2026-08-14)."
+  ],
+  "ld_type": "Article",
+  "next": "You&rsquo;ve walked the path &rarr; <a href=\"/#subscribe\">Stay for the letters</a>"
+}

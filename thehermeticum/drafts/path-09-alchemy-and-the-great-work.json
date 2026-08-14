@@ -1,0 +1,61 @@
+{
+  "path": "path/09-alchemy-and-the-great-work",
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
+  "crumb": "09 · Alchemy and the Great Work",
+  "kicker": "The Path — step 09",
+  "title": "Alchemy and the Great Work — reading the lab",
+  "desc": "Zosimos's laboratory nightmares, the four colors of the Great Work — one went missing — and how historians took alchemy back from Jung.",
+  "h1": "Alchemy and<br>the Great Work",
+  "tldr": "The Great Work — magnum opus — is the alchemists' name for making the philosophers' stone, tracked by a color sequence: black, white, yellow, red. Its first named practitioner, Zosimos of Panopolis (fl. c. 300 CE), wrote the craft up as visionary nightmares that decode into apparatus. Since the 1990s, historians who actually replicate the recipes (Principe, Newman) have shown the Work was real laboratory practice — and that &ldquo;alchemy as psychology&rdquo; is Jung's 20th-century reading, not the alchemists' own.",
+  "img": "art-retort.jpg",
+  "body": "<p>The first chemist history knows by name wrote down his nightmares. A priest dismembered by the sword, flayed, burned, transformed &ldquo;from body into spirit&rdquo;; men boiling alive around a bowl-shaped altar. Then Zosimos wakes and calmly explains: the torment is the recipe.</p><h2>The man who signed his work</h2><p><a href=\"/figures/zosimos-of-panopolis/\">Zosimos of Panopolis</a> (fl. c. 300 CE, Upper Egypt) is the first alchemist known as a real, datable author — everyone before him is legend or pseudonym, known largely through his quotations. His famous &ldquo;Visions&rdquo; sit inside the <em>Authentic Memoirs</em>, and in the standard scholarly reading (Mertens's 1995 critical edition) they are deliberate literary allegory: the &ldquo;punishments&rdquo; of the priest Ion map onto distillation, calcination, the refining of metals. The dream-frame is a genre; the furnace is real. He is also our hinge figure: the same man cites Poimandres and the krater — proof that around 300 CE one person could hold the philosophical and the technical Hermetica as a single curriculum.</p><h2>The colors of the Work</h2><p><a href=\"/ideas/the-great-work/\">The Great Work</a> is the process of making the philosophers' stone, and its progress was read in color: <em>nigredo</em> (blackening), <em>albedo</em> (whitening), <em>citrinitas</em> (yellowing), <em>rubedo</em> (reddening). Zosimos says the staged scheme was already traditional in his day — &ldquo;known to Mary the Jewess.&rdquo; Then, after the 15th century, the yellow stage quietly vanished, compressed into red. A whole stage of the &ldquo;eternal ancient system&rdquo; got deprecated — remember that next time an infographic sells you <em>the</em> steps of alchemy. The sources never agreed on a canon: Ripley counted twelve gates, Norton fourteen.</p><h2>The theory underneath</h2><p>Why did serious minds believe metals could change? Because theory said they were made: from the Jabirian corpus (9th&ndash;10th c.) onward, metals were held to form from a sulfur principle and a mercury principle, their balance deciding the species. Rebalance the pair, perfect the metal. Within that framework — dominant until the 18th century — transmutation was a rational research program, not a fever dream.</p><h2>Whose Work is it?</h2><p>Here is the modern fight. C. G. Jung (<em>Psychology and Alchemy</em>, 1944) read the opus as the psyche's self-portrait: nigredo as shadow, the stone as the Self. Since the 1990s, Lawrence Principe and William Newman have dismantled that as history — decoding cover names into real substances and re-running recipes; Principe grew an actual golden &ldquo;Philosophers' Tree&rdquo; from a 17th-century procedure. Their verdict: period alchemy was work on matter in vessels; &ldquo;spiritual alchemy&rdquo; as its secret essence is a 19th&ndash;20th-century reception layer. The twist: Zosimos is the one ancient author where the mystical reading is genuinely grounded — which is exactly why he gets over-used as a proxy for all alchemy.</p><h2>A word you already use</h2><p>Alchemy was <em>ars hermetica</em>, the Hermetic art — welded to Hermes by the <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a>, not by the Corpus, which never describes a laboratory. Alchemists sealed glass vessels by fusing the neck shut — the &ldquo;Hermes seal,&rdquo; attested in English from 1559. Every &ldquo;hermetically sealed&rdquo; jar in your kitchen is a fossil of the Great Work.</p>",
+  "facts": [
+    [
+      "First named alchemist",
+      "Zosimos of Panopolis, fl. c. 300 CE (<a href=\"/figures/zosimos-of-panopolis/\">Figures entry</a>)"
+    ],
+    [
+      "The color stages",
+      "Nigredo → albedo → citrinitas → rubedo; citrinitas dropped after the 15th c."
+    ],
+    [
+      "The theory of metals",
+      "Sulfur–mercury (Jabirian corpus, 9th–10th c.) — standard until the 18th c."
+    ],
+    [
+      "The interpretive dispute",
+      "Laboratory practice (Principe, Newman) vs psyche (Jung — a reception layer)"
+    ],
+    [
+      "'Hermetically sealed'",
+      "The alchemists' fused-glass 'Hermes seal' — attested in English from 1559"
+    ]
+  ],
+  "faq": [
+    [
+      "Did anyone actually make gold?",
+      "No — and skepticism is old: Avicenna argued in the 11th century that alchemists produce only the appearance of change. What replication shows (Principe) is that the color reports encode real, repeatable chemistry — not that transmutation worked."
+    ],
+    [
+      "So is 'spiritual alchemy' fake?",
+      "As a claim about the whole tradition, it's a 19th–20th-century construction (Atwood, Hitchcock, Jung). But in Zosimos the spiritual and the technical genuinely interlock — one author, not a rule."
+    ],
+    [
+      "Where does the Corpus Hermeticum describe the Work?",
+      "Nowhere. The Corpus and Asclepius contain no laboratory. Alchemy became 'the Hermetic art' on the authority of the Emerald Tablet — a different branch of the tradition."
+    ]
+  ],
+  "sources": [
+    "Lawrence M. Principe, <i>The Secrets of Alchemy</i> (University of Chicago Press, 2013).",
+    "Mich&egrave;le Mertens, <i>Les alchimistes grecs</i> IV.1: <i>Zosime de Panopolis, M&eacute;moires authentiques</i> (Les Belles Lettres, 1995).",
+    "Newman &amp; Principe, 'What Have We Learned from the Recent Historiography of Alchemy?', <i>Isis</i> 102:2 (2011).",
+    "Research dossiers: great-work.md (all sections), zosimos.md §2–4, §6, emerald-tablet-arabic.md §3.2."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/10-the-kybalion-problem/\">Step 10: The Kybalion problem</a> <em>(unlocks Oct 5)</em>"
+}

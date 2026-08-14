@@ -1,0 +1,66 @@
+{
+  "path": "path/07-the-emerald-tablet",
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
+  "crumb": "07 · The Emerald Tablet",
+  "kicker": "The Path — step 07",
+  "title": "The Emerald Tablet: the find that never was",
+  "desc": "A corpse on a golden throne, an emerald in its hands — and a paper trail that runs from an Arabic book to Newton's desk. Full text inside.",
+  "h1": "The Emerald Tablet:<br>the find that never was",
+  "tldr": "The most famous object in esotericism is not an object. The Emerald Tablet is a short text first attested in an Arabic book of the 8th&ndash;9th century — complete with its own built-in discovery legend. No emerald, no Egypt, no Greek original. What exists instead is better: a documented trail from Baghdad-era Arabic to medieval Latin to Isaac Newton's own handwriting — and twelve sentences you can now read in full.",
+  "img": "art-tablet.jpg",
+  "body": "<p>A vault under a statue of Hermes. Inside, a corpse on a golden throne, holding an emerald tablet. That is how the story goes — and here is the twist that organizes this step: <strong>the story is part of the text.</strong> The discovery legend was written into the book that first contains the Tablet. Nobody ever found anything; the finding is literature.</p><h2>The paper trail</h2><p>The oldest documentable home of the <a href=\"/texts/emerald-tablet/\">Emerald Tablet</a> is the <em>Kitab sirr al-khaliqa</em> — the &ldquo;Book of the Secret of Creation&rdquo; — an Arabic work attributed to &ldquo;Balinas&rdquo;, the Arabic name for Apollonius of Tyana (hence &ldquo;pseudo-Apollonius&rdquo;). It is Balinas who narrates the vault, the corpse and the throne: a classic discovery topos of Hermetic literature. The scholarly datings triangulate tightly — Ruska (1926), Kraus (1943, under Caliph al-Ma&rsquo;mun), Weisser (1980, the standard critical study, c. 750&ndash;800): compiled in Arabic in the late 8th or early 9th century, certainly before 833. No Greek or Egyptian original has ever been found.</p><h2>Three roads into Latin</h2><p>Europe got the Tablet three separate times: through Hugo of Santalla&rsquo;s translation of the whole <em>Sirr al-khaliqa</em> (c. 1145&ndash;1151); inside the <em>Secretum secretorum</em>, a medieval bestseller Latinized by John of Seville and then Philip of Tripoli; and via the anonymous 12th-century &ldquo;vulgate&rdquo; — the version the entire Western alchemical tradition worked from.</p><h2>Newton&rsquo;s copy</h2><p>The trail&rsquo;s most famous stop: in the 1680s&ndash;90s Isaac Newton copied the Latin, translated it into English and wrote a commentary — the manuscript, Keynes MS 28, is <a href=\"https://cudl.lib.cam.ac.uk/view/MS-KINGS-KEYNES-00028\">free to read at Cambridge Digital Library</a>. Newton read the &ldquo;one thing&rdquo; as philosophical mercury — a working substance, not a cosmic secret. John Maynard Keynes, who bought the papers in 1936, called him &ldquo;the last of the magicians.&rdquo;</p><h2>The text itself</h2><p>Here is the medieval vulgate in our working translation (from Steele &amp; Singer&rsquo;s critical text; on our translation policy see the sources below):</p><p><em>1. True it is, without falsehood, certain and most true. 2. What is below is like what is above, and what is above is like what is below — for preparing the miracles of the one thing. 3. And as all things were from one, by the mediation of one, so all things were born from this one thing, by adaptation. 4. Its father is the Sun, its mother the Moon; the wind carried it in its belly; the earth is its nurse. 5. The father of all the telesma of the whole world is here. 6. Its power is complete if it is turned towards earth. 7. You will separate the earth from the fire, the subtle from the gross — gently, with great ingenuity. 8. It ascends from earth to heaven and descends again to earth, and receives the power of things above and below. 9. So you will have the glory of the whole world, and all obscurity will flee from you. 10. This is the strong strength of all strength, for it overcomes every subtle thing and penetrates every solid thing. 11. So was the world created; from this come marvellous adaptations, whose manner is here. 12. Therefore I am called Hermes Trismegistus, having the three parts of the philosophy of the whole world. What I have said of the operation of the Sun is complete.</em></p><p>Sentence 2 is the one the world quotes — we performed its full autopsy in <a href=\"/path/06-as-above-so-below/\">step 06</a>, so we won&rsquo;t repeat it here. Notice instead how much of the rest is process: separate, ascend, descend, receive. This is a recipe wearing a robe. Step 09 follows that recipe into the laboratory.</p>",
+  "facts": [
+    [
+      "Oldest attested source",
+      "Kitab sirr al-khaliqa (Arabic, before 833 CE)"
+    ],
+    [
+      "Attributed narrator",
+      "'Balinas' — pseudo-Apollonius of Tyana"
+    ],
+    [
+      "Scholarly datings",
+      "Ruska 1926 · Kraus 1943 · Weisser 1980"
+    ],
+    [
+      "Latin entries",
+      "Hugo of Santalla, Secretum secretorum, 12th-c. vulgate"
+    ],
+    [
+      "Newton's manuscript",
+      "Keynes MS 28, King's College, Cambridge (1680s–90s)"
+    ],
+    [
+      "Physical emerald tablets found",
+      "0"
+    ]
+  ],
+  "faq": [
+    [
+      "So there was never an actual emerald tablet?",
+      "None is attested. The discovery legend — vault, corpse, golden throne — is written into the Arabic text itself, a standard literary topos of Hermetic and alchemical books. 'Tablet' is a frame, not a find."
+    ],
+    [
+      "What about the 'Emerald Tablets of Thoth the Atlantean'?",
+      "A 1930s channeled text by 'Doreal' with no textual relationship to the Tabula Smaragdina beyond the borrowed name. Cite it as modern reception, never as a source."
+    ],
+    [
+      "Is the Tablet part of the Corpus Hermeticum?",
+      "No. It belongs to the technical Hermetica (alchemy, astrology, magic); the Corpus never quotes it. Linking the two is largely a Renaissance-and-later construction — which step 08 explores."
+    ]
+  ],
+  "sources": [
+    "Julius Ruska, <i>Tabula Smaragdina</i> (1926); Paul Kraus, <i>Jabir ibn Hayyan</i> (1942–43); Ursula Weisser, <i>Das \"Buch über das Geheimnis der Schöpfung\"</i> (1980).",
+    "Robert Steele &amp; Dorothea Waley Singer, 'The Emerald Table', <i>Proc. Royal Society of Medicine</i> 21 (1928).",
+    "Keynes MS 28, Cambridge Digital Library; Newton Project catalogue ALCH00017.",
+    "Working translation ours, from the Steele &amp; Singer vulgate text — see <a href=\"/about/method/\">Method &rarr; Quotations</a>.",
+    "Research dossier: emerald-tablet-arabic.md §1–2, 4–5."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/08-the-renaissance-revival/\">Step 08: The Renaissance revival</a> <em>(unlocks Sep 21)</em>"
+}
