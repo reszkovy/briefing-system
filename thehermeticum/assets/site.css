@@ -99,7 +99,7 @@
 
   /* ── HERO / ATF (mechanika: FitStyle HeroPresale) ────────────────────── */
   .hero{position:relative;min-height:88svh;display:flex;flex-direction:column;overflow:clip}
-  .hero__stage{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:var(--sp7) var(--sp6)}
+  .hero__stage{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:var(--sp5) var(--sp6)}
   .hero__over{
     display:inline-flex;align-items:center;gap:var(--sp3);margin:0 0 var(--sp5);
     font-family:var(--font-ui);font-size:.68rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--vermilion);
@@ -109,14 +109,14 @@
   .hero__line{display:block}
   .hero__line--foil{background:var(--grad-foil);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
   .hero__row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:var(--sp6);padding-top:var(--sp4)}
-  .hero__lead{max-width:34rem;margin:0;font-size:1.16rem;color:var(--ink-muted)}
+  .hero__lead{max-width:34rem;margin:0 0 var(--sp6);font-size:1.16rem;line-height:1.5;color:var(--ink-muted)}
   .hero__lead b{color:var(--ink);font-weight:600}
-  .hero__cta{display:grid;gap:var(--sp3);justify-items:start}
+  .hero__cta{display:flex;align-items:center;gap:var(--sp5);flex-wrap:wrap}
   .hero__cta .btn{font-size:.78rem;padding:1.05em 1.7em}
   .hero__cta-note{font-size:.78rem;letter-spacing:.06em;color:var(--ink-muted);font-style:italic}
   /* pieczęć w tle ATF */
   .hero__seal{
-    display:block;width:clamp(23rem,36vw,33rem);height:auto;flex:none;pointer-events:none;
+    display:block;width:clamp(23rem,36vw,33rem);height:auto;max-height:min(62vh,34rem);object-fit:contain;flex:none;pointer-events:none;
     filter:drop-shadow(0 18px 30px rgb(14 107 82 / .18));
   }
   .reveal{animation:reveal .7s var(--ease) both}
