@@ -1,0 +1,44 @@
+# The Hermeticum
+
+> A modern gateway to the Hermetic tradition: serious history, real sources, no fortune-telling. Every page separates established fact, scholarly debate, and reception/myth, with citations.
+
+## Core
+- [Start Here](https://thehermeticum.com/start-here/): orientation for newcomers
+- [The Path](https://thehermeticum.com/path/): twelve-step guided route from zero to the sources
+- [Method](https://thehermeticum.com/about/method/): our sourcing and correction rules
+- [The Atlas](https://thehermeticum.com/atlas/): map of the tradition, Hermopolis to Amsterdam
+
+## Reference
+- [Frances Yates — the thesis and its afterlife](https://thehermeticum.com/figures/frances-yates/): Frances Yates and the Yates thesis: how her 1964 book on Giordano Bruno created "the Hermetic tradition" as a field — and how scholars took it apart.
+- [Giordano Bruno — not the martyr you think](https://thehermeticum.com/figures/giordano-bruno/): Why was Giordano Bruno burned at the stake in 1600? Not for Copernicanism — the charges were theological. The martyr-of-science myth, examined.
+- [Hermes Trismegistus — the author who never lived](https://thehermeticum.com/figures/hermes-trismegistus/): Hermes Trismegistus: the fusion of Greek Hermes and Egyptian Thoth, the persona behind the Hermetica, prophet in Islam, sage of the Renaissance.
+- [John Dee — the queen's mathematician-magus](https://thehermeticum.com/figures/john-dee/): John Dee (1527–1608/9): Elizabethan mathematician, author of the Monas Hieroglyphica, and diarist of "angel conversations" — facts vs. the 007 spy myth.
+- [Lodovico Lazzarelli — the purest Hermetist](https://thehermeticum.com/figures/lodovico-lazzarelli/): Lodovico Lazzarelli completed the Latin Corpus Hermeticum and actually lived its rebirth doctrine — the purest Christian Hermetist of the Renaissance.
+- [Marsilio Ficino — the man who lit the fuse](https://thehermeticum.com/figures/marsilio-ficino/): Marsilio Ficino translated the Corpus Hermeticum into Latin in 1463 — before Plato, on Cosimo de' Medici's orders — and launched Renaissance Hermeticism.
+- [Pico della Mirandola — the 900 theses](https://thehermeticum.com/figures/pico-della-mirandola/): Pico della Mirandola, his 900 Theses, and why the famous Oration on the Dignity of Man was never delivered — and isn't the humanist manifesto you think.
+- [Thoth — the god behind Hermes Trismegistus](https://thehermeticum.com/figures/thoth/): Who was Thoth? Egypt's god of writing and reckoning, scribe of the gods at the weighing of the heart — and the origin of Hermes Trismegistus.
+- [Zosimos of Panopolis — the first named alchemist](https://thehermeticum.com/figures/zosimos-of-panopolis/): Zosimos of Panopolis (c. 300 CE): history's first alchemist known by name, his dream-visions of tormented metal men, and his link to the Hermetica.
+- [As above, so below — what it actually means](https://thehermeticum.com/ideas/as-above-so-below/): 'As above, so below' comes from the Emerald Tablet's Latin — an 8th-9th c. Arabic text — and the famous wording is a 19th-century paraphrase.
+- [Correspondences — the web of cosmic sympathy](https://thehermeticum.com/ideas/correspondences/): Correspondences in Hermetic thought: cosmic sympathy linking heaven, earth and humanity — the ancient sources, and why the famous tables are much later.
+- [Gnosis — knowledge that transforms the knower](https://thehermeticum.com/ideas/gnosis/): Gnosis in the Hermetica: salvific knowledge of God that deifies the knower — where the texts say it, how it differs from Gnosticism and 'secret knowledge'.
+- [Hermeticism vs Gnosticism & the rest](https://thehermeticum.com/ideas/hermeticism-and-its-neighbours/): How Hermeticism relates to Gnosticism, Platonism, Stoicism, Kabbalah and Christianity — real historical kinships versus modern look-alikes.
+- [Nous — the divine Mind](https://thehermeticum.com/ideas/nous/): Nous in the Hermetica: the divine Mind that is both God's essence and humanity's deepest faculty — definition, sources and common misreadings.
+- [Palingenesia — rebirth in Corpus Hermeticum XIII](https://thehermeticum.com/ideas/palingenesia/): Palingenesia in CH XIII: rebirth as ten divine powers expelling twelve zodiacal torments — liberation from astral fate in this life, not reincarnation.
+- [Prisca theologia — the first-wisdom myth](https://thehermeticum.com/ideas/prisca-theologia/): Prisca theologia: the Renaissance belief that Hermes taught an ancient theology older than Plato — its rise with Ficino, its fall with Casaubon in 1614.
+- [The Great Work — what alchemists actually did](https://thehermeticum.com/ideas/the-great-work/): The Great Work (magnum opus): the alchemists' staged process for making the philosophers' stone — the color stages, the lost yellow, and the Jung problem.
+- [The Ogdoad and Ennead — the Eighth and the Ninth](https://thehermeticum.com/ideas/the-ogdoad-and-ennead/): The Ogdoad and Ennead: the Eighth and Ninth spheres of Hermetic ascent in CH I and Nag Hammadi — and why they differ from Egypt's Ennead of nine gods.
+- [Theurgy — ritual ascent to the divine](https://thehermeticum.com/ideas/theurgy/): Theurgy: the late-antique ritual path to union with the divine, defended by Iamblichus and Proclus — and its real relation to the Hermetic writings.
+- [What is Hermeticism? The honest answer](https://thehermeticum.com/path/01-what-is-hermeticism/): Hermeticism explained honestly: ancient Greek-Egyptian texts, the Renaissance revival, occult orders and a 1908 book — four things, one word.
+- [Who was Hermes Trismegistus?](https://thehermeticum.com/path/02-who-was-hermes-trismegistus/): Hermes Trismegistus was not a person but a literary persona fusing Greek Hermes and Egyptian Thoth — and the story of how a god became an author.
+- [Alexandria — the world that made the Hermetica](https://thehermeticum.com/path/03-alexandria/): The Hermetic texts were written in Roman Egypt, where Greek philosophy met a temple religion in decline. This is the world that produced them.
+- [Reading Poimandres — a guided first source](https://thehermeticum.com/path/04-reading-poimandres/): Read Poimandres (Corpus Hermeticum I) with a guide: the vision, the cosmogony, the fall of the Human and the ascent through the spheres — plainly explained.
+- [Asclepius — the perfect discourse](https://thehermeticum.com/texts/asclepius/): The Asclepius: the longest Hermetic treatise, surviving in Latin — 'man is a great miracle', the god-making passages, and the lament for Egypt.
+- [Corpus Hermeticum — guide to the treatises](https://thehermeticum.com/texts/corpus-hermeticum/): The Corpus Hermeticum: seventeen Greek treatises from Roman Egypt — dating, contents, the 'missing Book XV' myth, and which translation to read.
+- [Poimandres — the vision that opens the Corpus](https://thehermeticum.com/texts/corpus-hermeticum/poimandres/): Poimandres (Corpus Hermeticum I): the visionary cosmogony that opens the Hermetic corpus — summary, structure and how to read it without Greek.
+- [Definitions of Hermes — the oldest Hermetic text](https://thehermeticum.com/texts/definitions-of-hermes/): The Definitions of Hermes to Asclepius: probably the oldest Hermetic text, preserved in Armenian and first translated into English in 1999.
+- [The Emerald Tablet — the real origin](https://thehermeticum.com/texts/emerald-tablet/): The Emerald Tablet is first attested in Arabic (8th-9th c.) — no Greek original, no emerald. The real history, the Latin text, Newton's own copy.
+- [The Kybalion — 1908, read with care](https://thehermeticum.com/texts/kybalion/): The Kybalion (1908) was written by W.W. Atkinson, not ancient masters. What its seven principles are, where they come from, how to read it honestly.
+- [Musaeum Hermeticum — the 1625 anthology](https://thehermeticum.com/texts/musaeum-hermeticum/): The Musaeum Hermeticum (Frankfurt 1625, expanded 1678): a Baroque anthology of 21 alchemical treatises — with no ancient Hermetica inside.
+- [Nag Hammadi Hermetica — the 1945 desert find](https://thehermeticum.com/texts/nag-hammadi-hermetica/): Three Hermetic texts found in the Egyptian desert in 1945 — including the ritual Discourse on the Eighth and Ninth. What the find changed.
+- [Picatrix — the Arabic handbook of astral magic](https://thehermeticum.com/texts/picatrix/): The Picatrix (Ghayat al-Hakim): a 10th-century Arabic manual of astral magic from al-Andalus that shaped Renaissance magic via Alfonso X's court.
+- [Stobaean Fragments — the Kore Kosmou](https://thehermeticum.com/texts/stobaean-fragments/): The Stobaean fragments: nearly thirty Hermetic excerpts saved in a 5th-century anthology, including the Kore Kosmou — Isis teaching Horus.

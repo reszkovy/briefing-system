@@ -90,7 +90,7 @@ def render(p):
     img = IMGS.get(p["path"])
     port = PORTRAITS.get(p["path"])
     portrait = (f'<figure class="art__portrait"><img src="/assets/{port}" alt="Portrait: {H.escape(p["crumb"])}" '
-                f'width="400" height="400"><figcaption>An imagined likeness, after the historical sources</figcaption></figure>') if port else ""
+                f'width="400" height="400" loading="lazy"><figcaption>An imagined likeness, after the historical sources</figcaption></figure>') if port else ""
     fig = f'<figure class="art__fig"><img src="/assets/{img}" alt="" width="1600" height="800" loading="eager"></figure>' if img else ""
     tldr = f'<div class="tldr"><span>TL;DR</span><p>{p["tldr"]}</p></div>' if p.get("tldr") else ""
     facts = ""
@@ -137,7 +137,11 @@ def render(p):
 <meta property="og:description" content="{H.escape(p["desc"])}">
 <meta property="og:image" content="{SITE}/assets/og.png">
 <meta property="og:type" content="article">
+<meta property="og:url" content="{SITE}{p["url"]}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{H.escape(p["title"])}">
+<meta name="twitter:description" content="{H.escape(p["desc"])}">
+<meta name="robots" content="index, follow">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="alternate" type="application/rss+xml" title="The Hermeticum" href="/rss.xml">
@@ -856,6 +860,50 @@ press play (via YouTube&rsquo;s privacy-enhanced mode).</p>
 <h2>Your rights</h2>
 <p>Ask us at any time to see or delete your data &mdash; reply to any letter, or write to the address in its footer.
 This site is operated from the European Union; GDPR applies.</p>''')
+
+
+# korekty długości title/desc (audyt SEO 14.08; wzorzec DailyFruits)
+SEO_PATCH = {
+  "atlas": ("The Atlas — map of the Hermetic tradition", None),
+  "figures/frances-yates": ("Frances Yates — the thesis and its afterlife", None),
+  "figures/giordano-bruno": ("Giordano Bruno — not the martyr you think", None),
+  "figures/john-dee": ("John Dee — the queen's mathematician-magus", None),
+  "figures/lodovico-lazzarelli": ("Lodovico Lazzarelli — the purest Hermetist", None),
+  "figures/marsilio-ficino": ("Marsilio Ficino — the man who lit the fuse", None),
+  "figures/pico-della-mirandola": ("Pico della Mirandola — the 900 theses", None),
+  "figures/thoth": ("Thoth — the god behind Hermes Trismegistus", None),
+  "ideas/hermeticism-and-its-neighbours": ("Hermeticism vs Gnosticism & the rest", None),
+  "ideas": ("The Ideas — Hermetic glossary, sourced", None),
+  "ideas/prisca-theologia": ("Prisca theologia — the first-wisdom myth", None),
+  "texts/corpus-hermeticum": ("Corpus Hermeticum — guide to the treatises",
+    "The Corpus Hermeticum: seventeen Greek treatises from Roman Egypt — dating, contents, the 'missing Book XV' myth, and which translation to read."),
+  "texts/emerald-tablet": ("The Emerald Tablet — the real origin",
+    "The Emerald Tablet is first attested in Arabic (8th-9th c.) — no Greek original, no emerald. The real history, the Latin text, Newton's own copy."),
+  "texts/kybalion": ("The Kybalion — 1908, read with care",
+    "The Kybalion (1908) was written by W.W. Atkinson, not ancient masters. What its seven principles are, where they come from, how to read it honestly."),
+  "texts/musaeum-hermeticum": ("Musaeum Hermeticum — the 1625 anthology", None),
+  "texts/stobaean-fragments": ("Stobaean Fragments — the Kore Kosmou", None),
+  "about/method": (None,
+    "Our method: three layers — fact, scholarly debate, reception and myth — named sources with dates, honest gaps, corrections in the open."),
+  "ideas/as-above-so-below": (None,
+    "'As above, so below' comes from the Emerald Tablet's Latin — an 8th-9th c. Arabic text — and the famous wording is a 19th-century paraphrase."),
+  "path/01-what-is-hermeticism": (None,
+    "Hermeticism explained honestly: ancient Greek-Egyptian texts, the Renaissance revival, occult orders and a 1908 book — four things, one word."),
+}
+for p in PAGES:
+    t_d = SEO_PATCH.get(p["path"])
+    if t_d:
+        if t_d[0]: p["title"] = t_d[0]
+        if t_d[1]: p["desc"] = t_d[1]
+
+# llms.txt — mapa serwisu dla silników generatywnych (wzorzec DailyFruits/GEO)
+llms = "# The Hermeticum\n\n> A modern gateway to the Hermetic tradition: serious history, real sources, no fortune-telling. Every page separates established fact, scholarly debate, and reception/myth, with citations.\n\n"
+llms += "## Core\n- [Start Here](%s/start-here/): orientation for newcomers\n- [The Path](%s/path/): twelve-step guided route from zero to the sources\n- [Method](%s/about/method/): our sourcing and correction rules\n- [The Atlas](%s/atlas/): map of the tradition, Hermopolis to Amsterdam\n\n## Reference\n" % (SITE, SITE, SITE, SITE)
+for p in sorted(PAGES, key=lambda x: x["url"]):
+    if p["path"].count("/") >= 1 and not p["path"].startswith(("about", "privacy")):
+        llms += f"- [{p['title']}]({SITE}{p['url']}): {p['desc']}\n"
+open(os.path.join(ROOT, "llms.txt"), "w").write(llms)
+print("llms.txt written")
 
 # ── zapis ──
 written = []
