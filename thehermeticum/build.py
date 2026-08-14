@@ -697,7 +697,7 @@ page("ideas",
   crumb="Ideas", kicker="Wing III", title="The Ideas — a working glossary of Hermetic thought",
   desc="The working vocabulary of Hermetic thought, defined plainly and sourced honestly: nous, gnosis, as above so below, correspondences and more.",
   h1="The Ideas",
-  tldr="Eleven load-bearing concepts. Each entry: what the sources say, what scholars debate, what the internet gets wrong.",
+  tldr="Ten load-bearing concepts. Each entry: what the sources say, what scholars debate, what the internet gets wrong.",
   body='''
 <ul class="hub">
   <li><a href="/ideas/as-above-so-below/"><b>As above, so below</b><span>Everyone quotes it. Few know where it&rsquo;s from.</span></a></li>
