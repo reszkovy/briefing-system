@@ -262,7 +262,7 @@ page("path",
   <li><a href="/path/01-what-is-hermeticism/"><b>01 &middot; What is Hermeticism?</b><span>The five-minute honest answer — and the four different things people mean by the word.</span></a></li>
   <li><a href="/path/02-who-was-hermes-trismegistus/"><b>02 &middot; Who was Hermes Trismegistus?</b><span>A god, a man, a pen name? The strangest author in history.</span></a></li>
   <li><a href="/path/03-alexandria/"><b>03 &middot; Alexandria</b><span>The world that made the Hermetica: Roman Egypt, dying temples, Greek questions.</span></a></li>
-  <li><span class="hub__soon"><b>04 &middot; Reading Poimandres<i class="hub__date">Aug 24</i></b><span>Your first source text, guided line by line.</span></span></li>
+  <li><a href="/path/04-reading-poimandres/"><b>04 &middot; Reading Poimandres</b><span>Your first source text, guided line by line.</span></a></li>
   <li><span class="hub__soon"><b>05 &middot; The key ideas in one map<i class="hub__date">Aug 31</i></b><span>Eleven concepts, one diagram.</span></span></li>
   <li><span class="hub__soon"><b>06 &middot; As above, so below — what it actually means<i class="hub__date">Sep 7</i></b><span>The most misquoted line in esotericism.</span></span></li>
   <li><span class="hub__soon"><b>07 &middot; The Emerald Tablet<i class="hub__date">Sep 14</i></b><span>No emerald, no Greek, no Egypt — a better story instead.</span></span></li>
@@ -366,7 +366,7 @@ page("path/03-alexandria",
   sources=["Garth Fowden, <i>The Egyptian Hermes</i> (1986).",
            "Christian H. Bull, <i>The Tradition of Hermes Trismegistus</i> (Brill, 2018).",
            "Research dossiers: ancient-texts.md, scholarship.md. <em>A dedicated Alexandria dossier is in preparation — this step will grow.</em>"],
-  next='Next step unlocks with the next letter &rarr; <a href="/#subscribe">Subscribe to As Above</a>')
+  next='Next &rarr; <a href="/path/04-reading-poimandres/">Step 04: Reading Poimandres</a>')
 
 # ═══ TEXTS INDEX ═══
 page("texts",
