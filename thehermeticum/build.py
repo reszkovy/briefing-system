@@ -158,9 +158,9 @@ def render(p):
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
-gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});
+gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
 </script>
 {ld_tags}
 </head>
@@ -966,8 +966,8 @@ try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
-gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('consent','default',{{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'}});
+gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
 </script></body></html>""")
 print("sitemap/robots/rss/404 written")
