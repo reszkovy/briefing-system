@@ -1,0 +1,38 @@
+{
+ "path": "ideas/theurgy",
+ "url": "/ideas/theurgy/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Teurgia",
+ "kicker": "Idee",
+ "title": "Teurgia — rytualne wstępowanie ku boskości",
+ "desc": "Teurgia: późnoantyczna rytualna droga do zjednoczenia z boskością, broniona przez Jamblicha i Proklosa — i jej rzeczywisty związek z pismami hermetycznymi.",
+ "h1": "Teurgia",
+ "tldr": "Teurgia (gr. theourgia, „boskie działanie”) to późnoantyczna praktyka rytualna nakierowana na zjednoczenie duszy z boskością, filozoficznie broniona przez Jamblicha i usystematyzowana przez Proklosa. Działa — dowodził Jamblich — przez boskie symbole i boskie działanie, nie przez ludzkie myślenie. To kuzynka hermetyzmu, nie jego rdzeń.",
+ "body": "<p>Czy rytuał może to, czego nie może filozofia? Najbardziej wyrafinowaną odpowiedzią późnego antyku była <em>theourgia</em> &mdash; „boskie działanie&rdquo; &mdash; praktyka rytualna nakierowana na zjednoczenie duszy z boskością.</p>\n<h2>W źródłach</h2>\n<p>Jej wielką obroną jest <em>Odpowiedź Porfiriuszowi</em> Jamblicha (przekazana jako <em>De mysteriis</em>, ok. 300 n.e.), napisana pod maską egipskiego kapłana. Przeciw sceptycyzmowi Porfiriusza Jamblich dowodzi, że rytuał działa przez boskie symbole (<em>synth&#275;mata</em>) i boskie działanie: „to nie myśl łączy teurgów z bogami&rdquo;. Sto lat później Proklos postawił teurgię ponad filozofią jako drogę wstępowania duszy. Związek hermetyczny jest jawny: <em>De mysteriis</em> otwiera się inwokacją do Hermesa i deklaruje, że odpowiada z „ksiąg Hermesa&rdquo; &mdash; neoplatoński filozof traktujący literaturę hermetyczną jako autorytatywną teologię egipską.</p>\n<h2>Relacja z hermetyzmem, bez rozmycia</h2>\n<p>Filozoficzne Hermetica <em>nie są</em> podręcznikami teurgii; <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a> uczy przez dialog i wizję, nie przez obrzęd. Ale <a href=\"/pl/texts/asclepius/\">Asclepius</a> (23&ndash;24, 37&ndash;38) &mdash; ludzie „czyniący bogów&rdquo; przez ściąganie duchów w posągi &mdash; dostarczył najsłynniejszego starożytnego opisu tego, co późniejsi czytelnicy upodobnili do teurgii. Badacze spierają się o to powiązanie: Bull dowodzi, że rytuał hermetyczny i obrona Jamblicha wyrosły z tych samych egipskich środowisk kapłańskich; inni widzą równoległych kuzynów, nie jedną linię. Od prac Gregory&rsquo;ego Shawa (1995) teurgię czyta się jako spójną filozofię religijną, a nie &mdash; jak u Doddsa &mdash; „stoczenie się w magię&rdquo;.</p>\n<h2>Pułapki</h2>\n<p>Recepcja okultystyczna od Złotego Brzasku wzwyż używa „teurgii&rdquo; na magię ceremonialną w ogóle i etykietuje cały pakiet jako „magię hermetyczną&rdquo;, zlewając kategorie, które starożytni trzymali osobno. Schludny schemat „teurgia = biała magia, goecja = czarna magia&rdquo; to również późniejsze uproszczenie &mdash; to nie jest rozróżnienie Jamblicha.</p>\n<h2>Dlaczego to ważne</h2>\n<p>Teurgia to miejsce, gdzie późnoantyczna filozofia przyznała, że wiedzieć o boskości to nie to samo, co jej dosięgnąć &mdash; ta sama luka, którą hermetyczne odrodzenie atakuje z innej strony. Rozumienie obu jako sąsiadów, nie synonimów, to dobry test, czy współczesna książka o „magii hermetycznej&rdquo; zna swoją historię.</p>",
+ "faq": [
+  [
+   "Czy teurgia to praktyka hermetyczna?",
+   "Nie w ścisłym sensie. Teurgia należy do neoplatonizmu (Jamblich, Proklos). Filozoficzne Hermetica nie są podręcznikami teurgii, ale pasaże Asclepiusa o ożywianiu posągów opisują coś, co późniejsi czytelnicy upodobnili do teurgii, a Jamblich powoływał się na „księgi Hermesa” jako autorytet."
+  ],
+  [
+   "Czy teurgia to po prostu magia?",
+   "Jamblich powiedziałby, że nie: teurgia działa przez boskie symbole i boskie działanie, nie przez ludzką technikę, a celem jest zjednoczenie duszy z bogami. „Teurgia = biała magia kontra goecja = czarna magia” to późniejsze uproszczenie."
+  ],
+  [
+   "Czy neoplatonicy byli co do teurgii zgodni?",
+   "Nie — to był żywy spór. Plotyn i (ambiwalentnie) Porfiriusz utrzymywali, że w górę prowadzi sama filozofia; Jamblich, a po nim Proklos dowodzili, że rytuał jest konieczny, bo sama myśl nie przerzuci mostu do bogów."
+  ]
+ ],
+ "sources": [
+  "Stanford Encyclopedia of Philosophy, \"Iamblichus\".",
+  "Shaw, <i>Theurgy and the Soul</i> (1995).",
+  "Copenhaver, <i>Hermetica</i> (1992): Ascl. 23–24, 37–38.",
+  "Dossier badawcze: ideas-glossary.md §7."
+ ],
+ "next": "Posągi, od których się zaczęło &rarr; <a href=\"/pl/texts/asclepius/\">Asclepius</a>"
+}

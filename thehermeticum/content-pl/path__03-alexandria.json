@@ -1,0 +1,55 @@
+{
+ "path": "path/03-alexandria",
+ "url": "/path/03-alexandria/",
+ "trail": [
+  [
+   "Ścieżka",
+   "/pl/path/"
+  ]
+ ],
+ "crumb": "03 · Aleksandria",
+ "kicker": "Ścieżka — krok 03",
+ "title": "Aleksandria — świat, który stworzył pisma hermetyczne",
+ "desc": "Teksty hermetyczne powstały w rzymskim Egipcie, gdzie grecka filozofia spotkała religię świątynną w odwrocie. Oto świat, który je wydał.",
+ "h1": "Aleksandria: świat,<br>który stworzył pisma hermetyczne",
+ "tldr": "Pisma hermetyczne powstały w rzymskim Egipcie (ok. 100&ndash;300 n.e.), gdzie greka była językiem myśli, egipska religia świątynna traciła wsparcie państwa, a kapłani i filozofowie mijali się na tych samych ulicach. Nowsze badania czytają te teksty jako strategię przetrwania: egipską wiedzę religijną przepakowaną w grecki kostium filozoficzny.",
+ "body": "\n<p>Każdy tekst ma swój dom. Domem pism hermetycznych był Egipt pod rzymskim panowaniem — a ściślej świat promieniujący z Aleksandrii, wielkiej śródziemnomorskiej maszyny greckiej uczoności, zasadzonej na egipskiej ziemi.</p>\n<h2>Dwie cywilizacje, jedna ulica</h2>\n<p>Około 100 roku n.e. Egipt miał za sobą cztery stulecia greckojęzycznej władzy. Wykształceni Egipcjanie pisali po grecku; greccy osadnicy radzili się egipskich świątyń. Platonizm i stoicyzm dostarczały epoce intelektualnego słownika — umysł, kosmos, materia, przeznaczenie — a świątynie strzegły starszego dziedzictwa: wiedzy rytualnej, świętego pisma, postaci Thota. Pisma hermetyczne mówią oboma językami naraz: greckie pojęcia, egipska dusza.</p>\n<h2>Świątynie w odwrocie</h2>\n<p>Rzym opodatkował świątynie, przyciął ich przywileje i powoli dusił kapłańską gospodarkę. Warstwa uczonych mężów patrzyła, jak ich świat się kurczy. Badacz Christian Bull dowodzi, że pisma hermetyczne najlepiej czytać właśnie na tym tle: kapłańscy nauczyciele, zwracając się do greckojęzycznych poszukujących, przekładali to, co dało się ocalić z egipskiej religii, na filozoficzny idiom epoki. Nie nostalgia — adaptacja.</p>\n<h2>Nastrój tekstów</h2>\n<p>Czytana w tym świetle słynna „apokalipsa\" z <a href=\"/pl/texts/asclepius/\">Asclepiusa</a> — Egipt opuszczony przez swoich bogów, kraj świątyń zamieniony w kraj grobów — przestaje być generyczną przepowiednią i staje się czymś bardziej surowym: lamentem pisanym w chwili, gdy właśnie się spełniał.</p>\n<h2>Nie tajne stowarzyszenie</h2>\n<p>Czy istniały realne kręgi hermetyczne — nauczyciele i uczniowie, modlitwa i praktyka? Przez większość XX wieku badacze w to wątpili. Aż znaleziska z Nag Hammadi (1945) przyniosły hermetyczny tekst rytualny i wspólnotową modlitwę poświadczoną w trzech językach. Dzisiejszy stan wiedzy: małe wspólnoty nauczania, realna praktyka, żadnego wielkiego tajnego zakonu. Jak zwykle skromna prawda okazuje się dziwniejsza niż mit.</p>",
+ "facts": [
+  [
+   "Kiedy",
+   "ok. 100–300 n.e. (Hermetica filozoficzne)"
+  ],
+  [
+   "Gdzie",
+   "rzymski Egipt — Aleksandria i miasta świątynne"
+  ],
+  [
+   "Klimat intelektualny",
+   "średni platonizm, stoicyzm, egipska religia świątynna"
+  ],
+  [
+   "Kluczowe studium współczesne",
+   "Christian H. Bull, <i>The Tradition of Hermes Trismegistos</i> (2018)"
+  ]
+ ],
+ "faq": [
+  [
+   "Autorzy byli Grekami czy Egipcjanami?",
+   "Najpewniej dwujęzycznymi Egipcjanami i greckojęzycznymi miejscowymi — spór między „grecką filozofią w egipskim kostiumie\" (Festugière) a autentycznie egipskim, kapłańskim rodowodem (Fowden, Bull) przechylił się w ostatnich dekadach na stronę Egiptu."
+  ],
+  [
+   "Czy Biblioteka Aleksandryjska miała pisma hermetyczne?",
+   "Nie ma na to dowodów — a słynna Biblioteka w dużej mierze przestała istnieć, zanim powstała większość pism hermetycznych. Ich światem było raczej świątynne skryptorium niż Muzejon."
+  ],
+  [
+   "Dlaczego datowanie ma znaczenie?",
+   "Bo przez 150 lat Europa wierzyła, że te teksty są starsze niż Mojżesz. Umieszczenie ich w rzymskim Egipcie (czego dokonał Casaubon w 1614 roku) przepisało ich sens — z pierwotnego objawienia na późnoantyczną syntezę."
+  ]
+ ],
+ "sources": [
+  "Garth Fowden, <i>The Egyptian Hermes</i> (1986).",
+  "Christian H. Bull, <i>The Tradition of Hermes Trismegistos</i> (Brill, 2018).",
+  "Dossier badawcze: ancient-texts.md, scholarship.md. <em>Osobne dossier o Aleksandrii jest w przygotowaniu — ten krok będzie rósł.</em>"
+ ],
+ "next": "Dalej &rarr; <a href=\"/pl/path/04-reading-poimandres/\">Krok 04: Czytamy Poimandresa</a>"
+}

@@ -44,3 +44,6 @@
 - [Nag Hammadi Hermetica — the 1945 desert find](https://thehermeticum.com/texts/nag-hammadi-hermetica/): Three Hermetic texts found in the Egyptian desert in 1945 — including the ritual Discourse on the Eighth and Ninth. What the find changed.
 - [Picatrix — the Arabic handbook of astral magic](https://thehermeticum.com/texts/picatrix/): The Picatrix (Ghayat al-Hakim): a 10th-century Arabic manual of astral magic from al-Andalus that shaped Renaissance magic via Alfonso X's court.
 - [Stobaean Fragments — the Kore Kosmou](https://thehermeticum.com/texts/stobaean-fragments/): The Stobaean fragments: nearly thirty Hermetic excerpts saved in a 5th-century anthology, including the Kore Kosmou — Isis teaching Horus.
+
+## Languages
+- Polish mirror of the whole site: https://thehermeticum.com/pl/

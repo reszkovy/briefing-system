@@ -1,0 +1,64 @@
+{
+ "path": "texts/musaeum-hermeticum",
+ "url": "/texts/musaeum-hermeticum/",
+ "trail": [
+  [
+   "Teksty",
+   "/pl/texts/"
+  ]
+ ],
+ "crumb": "Musaeum Hermeticum",
+ "kicker": "Teksty",
+ "title": "Musaeum Hermeticum — antologia z 1625 roku",
+ "desc": "Musaeum Hermeticum (Frankfurt 1625, rozszerzone 1678): barokowa antologia 21 traktatów alchemicznych — bez ani jednej linijki starożytnych pism hermetycznych.",
+ "h1": "Musaeum Hermeticum",
+ "tldr": "Łacińska antologia traktatów alchemicznych wydana we Frankfurcie w 1625 roku i znacznie rozszerzona w 1678 do dwudziestu jeden tekstów, ilustrowana przez warsztat Meriana. Wbrew nazwie nie zawiera żadnych starożytnych pism hermetycznych — „hermetyczny” znaczy tu tyle, co alchemiczny.",
+ "body": "<p>Zacznijmy od pułapki ukrytej w tytule: <i>Musaeum Hermeticum</i> — „muzeum hermetyczne” — nie zawiera ani jednej linijki starożytnych pism hermetycznych. Żadnego <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a>, żadnego <a href=\"/pl/texts/asclepius/\">Asclepiusa</a>, nawet <a href=\"/pl/texts/emerald-tablet/\">Tablicy Szmaragdowej</a>. W XVII wieku „hermetyczny” oznaczał już <i>ars hermetica</i> — alchemię, sztukę pod patronatem <a href=\"/pl/figures/hermes-trismegistus/\">Hermesa Trismegistosa</a> (to samo przesunięcie znaczeń, któremu zawdzięczamy „hermetycznie zamknięte”). Ta książka to pomost między starożytnym korpusem a wczesnonowożytną alchemią laboratoryjną — inna tradycja pod tym samym szyldem.</p><h2>Co jest w środku</h2><p>Pierwsze wydanie — <b>Frankfurt, 1625</b>, nakładem Lucasa Jennisa, po <b>łacinie</b> (Wikipedia podaje niemiecki; to błąd, wzięty z niemieckiego tomu bliźniaczego, który Jennis wydał w tym samym roku — <i>Dyas chymica tripartita</i>). Kanoniczna jest poprawiona i rozszerzona edycja frankfurcka z <b>1678</b> roku: <b>dwadzieścia jeden traktatów</b> według własnej karty tytułowej, z dodanym Sendivogiusem, <i>Golden Calf</i> Helvetiusa — relacją naocznego świadka transmutacji w Hadze z 1666 roku — oraz pismami „Eirenaeusa Philalethesa”, przez stulecia branego za tajemniczego adepta, aż William Newman zidentyfikował go jako George'a Starkeya (1628&ndash;1665), chemika po Harvardzie. Wizualną sławę tomu zbudowały ryciny z warsztatu Meriana, przede wszystkim piętnaście emblematycznych plansz <i>Book of Lambspring</i> — obrazy, które do dziś krążą w sieci jako „starożytne symbole alchemiczne”, zwykle bez książki, rytownika i daty.</p><h2>Jeden wiktoriański filtr</h2><p>Wszystko, co anglojęzyczni czytelnicy znają jako „the Hermetic Museum”, przechodzi przez jedno wydanie: <i>The Hermetic Museum, Restored and Enlarged</i> A. E. Waite'a (Londyn, 1893, 250 egzemplarzy). Waite nie przełożył tekstu sam — bazową wersję przygotował niezidentyfikowany tłumacz, a Waite ją zredagował — z własnego przyznania skraca łacińską „rozwlekłość”, a wstępy Waite'a czytają traktaty jako zawoalowany mistycyzm duchowy. Współcześni historycy (Newman, Principe) wykazali, że spora część tej literatury koduje powtarzalną praktykę laboratoryjną — choć kilka traktatów jest naprawdę przesiąkniętych językiem dewocyjnym; uczciwa lektura przyjmuje, że antologia miesza jedno z drugim. Kompletny nowoczesny przekład naukowy na angielski nie istnieje.</p><h2>Jak to czytać</h2><p>Legalnie i za darmo: łacina z 1678 roku jest zeskanowana w wysokiej rozdzielczości na e-rara.ch (ETH Z&uuml;rich) i w Internet Archive (egzemplarz Getty); angielski Waite'a z 1893 roku należy do domeny publicznej i jest dostępny w Internet Archive oraz na Sacred Texts. Ryciny (Merian, zm. 1650) także są w domenie publicznej. Czytaj Waite'a dla dostępu, pamiętając o jego ograniczeniach — i o tym, w którym stuleciu i w którym „hermetyzmie” właśnie jesteś. Szersza opowieść o miejscu alchemii w tradycji zaczyna się z powrotem w <a href=\"/pl/path/03-alexandria/\">Aleksandrii</a>.</p>",
+ "facts": [
+  [
+   "Pierwsze wydanie",
+   "Frankfurt 1625, wydawca Lucas Jennis — po łacinie (nie po niemiecku, wbrew Wikipedii)"
+  ],
+  [
+   "Wydanie kanoniczne",
+   "Frankfurt 1678 (Hermann à Sande): 21 traktatów; wznowienie 1749"
+  ],
+  [
+   "Ryciny",
+   "Warsztat Meriana — w tym 15 emblematycznych plansz Book of Lambspring"
+  ],
+  [
+   "Ważniejsze teksty",
+   "Basil Valentine, Sendivogius, „Philalethes” (= George Starkey), Golden Calf Helvetiusa"
+  ],
+  [
+   "Jedyny pełny angielski",
+   "A. E. Waite, The Hermetic Museum (1893) — redakcja anonimowego przekładu, skrócona"
+  ],
+  [
+   "Zawartość",
+   "Zero starożytnych pism hermetycznych — „hermetyczny” znaczy tu: alchemiczny"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy Musaeum Hermeticum jest częścią Corpus Hermeticum?",
+   "Nie. Wbrew nazwie nie zawiera żadnych starożytnych tekstów hermetycznych — to XVII-wieczna antologia traktatów alchemicznych. „Hermetyczny” oznaczał wtedy sztukę alchemii, jak w „hermetycznie zamknięte”."
+  ],
+  [
+   "Czy pierwsze wydanie było po niemiecku?",
+   "Nie — pierwsza edycja z 1625 roku jest po łacinie i liczy dziewięć traktatów. Zamieszanie (powtarzane przez Wikipedię) bierze się z niemieckiej antologii, którą ten sam wydawca opublikował w tym samym roku — Dyas chymica tripartita — dzielącej z nią teksty i ryciny."
+  ],
+  [
+   "Gdzie mogę to legalnie przeczytać za darmo?",
+   "Łacińska edycja z 1678 roku jest zeskanowana na e-rara.ch (ETH Zürich) i w Internet Archive (egzemplarz Getty Research Institute); angielski przekład Waite'a z 1893 roku jest w domenie publicznej w Internet Archive i na Sacred Texts. Ryciny warsztatu Meriana również są w domenie publicznej."
+  ]
+ ],
+ "sources": [
+  "<i>Musaeum Hermeticum</i> (Frankfurt, 1678) — skany w Internet Archive (egzemplarz Getty) i na e-rara.ch.",
+  "A. E. Waite (ed.), <i>The Hermetic Museum</i> (London, 1893).",
+  "Lawrence M. Principe, <i>The Secrets of Alchemy</i> (Chicago, 2013) — o czytaniu alchemii barokowej.",
+  "Dossier badawcze: musaeum-hermeticum.md."
+ ],
+ "next": "Powrót do skrzydła &rarr; <a href=\"/pl/texts/\">Wszystkie teksty</a>"
+}

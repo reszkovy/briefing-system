@@ -1,0 +1,86 @@
+{
+ "path": "texts/corpus-hermeticum",
+ "url": "/texts/corpus-hermeticum/",
+ "trail": [
+  [
+   "Teksty",
+   "/pl/texts/"
+  ]
+ ],
+ "crumb": "Corpus Hermeticum",
+ "kicker": "Teksty",
+ "title": "Corpus Hermeticum — przewodnik po traktatach",
+ "desc": "Corpus Hermeticum: siedemnaście greckich traktatów z rzymskiego Egiptu — datowanie, zawartość, mit „zaginionej Księgi XV” i który przekład czytać.",
+ "h1": "Corpus Hermeticum",
+ "tldr": "Siedemnaście greckich traktatów spisanych w Egipcie około 100&ndash;300 n.e., zebranych w jedną księgę w Bizancjum, przełożonych w 1463 roku i błędnie datowanych przez 150 lat. Nie ma żadnej zaginionej „Księgi XV” — luka to artefakt wczesnonowożytnej redakcji.",
+ "body": "\n<p>Corpus Hermeticum nie jest książką, którą ktokolwiek napisał. To antologia: siedemnaście krótkich traktatów różnych anonimowych autorów, spisanych po grecku w rzymskim Egipcie i zebranych — zapewne w rękach bizantyńskich, po raz pierwszy poświadczonych u filozofa Michała Psellosa w XI wieku — w zbiór, który w latach 60. XV wieku dotarł do Florencji.</p>\n<h2>Co jest w środku</h2>\n<p>Dialogi, kazania i hymny o wielkich pytaniach: skąd bierze się kosmos, czym jest umysł (<a href=\"/pl/ideas/nous/\">nous</a>), jak dusza zstępuje i wstępuje, co znaczy odrodzić się w poznaniu. Traktat I (<a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandres</a>) otwiera kosmiczna wizja; traktat XIII inscenizuje misterium odrodzenia, w którym dziesięć boskich mocy wypędza dwanaście zodiakalnych udręk — wyzwolenie od astrologii, dowiedzione w kategoriach samej astrologii.</p>\n<h2>Zaginiona Księga XV</h2>\n<p>Wydania numerują traktaty I&ndash;XIV i XVI&ndash;XVIII. „Zaginiona” XV nie jest żadnym wyciszonym sekretem: wczesny wydawca wstawił jako XV dodatkowy materiał, późniejsi go usunęli, a numeracja została. Cztery stulecia teorii spiskowych opierają się na decyzji o paginacji.</p>\n<h2>Krótka historia błędnych odczytań</h2>\n<p>Renesansowa Europa wierzyła, że Corpus to pierwotna mądrość starsza od Platona. W 1614 roku Isaac Casaubon wykazał na gruncie językowym, że greka jest późnoantyczna. Miał rację co do dat — a jednak znaleziska z Nag Hammadi z 1945 roku dowiodły, że teksty niosą autentycznie egipski materiał religijny. Obie rzeczy są prawdziwe; ta podwójna prawda to współczesne badania nad hermetyzmem.</p>\n<h2>Jak to czytać</h2>\n<p>Standardem naukowym po angielsku jest <i>Hermetica</i> Copenhavera (1992), dopełniona przez <i>Hermetica II</i> Litwy (2018). Darmowe przekłady, które dominują w internecie — Everard (1650) i Mead (1906) — same są dokumentami historycznymi, powstałymi przed nowoczesnym tekstem krytycznym; czytaj je świadomie, nie naiwnie.</p>",
+ "facts": [
+  [
+   "Zawartość",
+   "17 greckich traktatów (I–XIV, XVI–XVIII)"
+  ],
+  [
+   "Powstanie",
+   "ok. 100–300 n.e., rzymski Egipt"
+  ],
+  [
+   "Pierwsze poświadczenie jako zbioru",
+   "Michał Psellos, XI w., Bizancjum"
+  ],
+  [
+   "Przekład łaciński",
+   "Marsilio Ficino, 1463 (druk 1471)"
+  ],
+  [
+   "Ponowne datowanie",
+   "Isaac Casaubon, 1614"
+  ],
+  [
+   "Standard po angielsku",
+   "Copenhaver 1992 · Litwa 2018"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy Corpus Hermeticum to „biblia hermetyzmu”?",
+   "Nie — nigdy nie był kanonem. To jedna z kilku zachowanych antologii wśród różnych korpusów pism hermetycznych (Asclepius, Definicje, fragmenty, traktaty techniczne)."
+  ],
+  [
+   "Czy jest w nim Tablica Szmaragdowa?",
+   "Nie. Tablica Szmaragdowa to osobny, dużo późniejszy tekst, po raz pierwszy poświadczony po arabsku w VIII–IX wieku."
+  ],
+  [
+   "Który traktat przeczytać najpierw?",
+   "Poimandresa (I) — potem IV (krater umysłu), X, XI i XIII. Nasza lektura z przewodnikiem zaczyna się od Poimandresa."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (Cambridge, 1992).",
+  "M. David Litwa, <i>Hermetica II</i> (Cambridge, 2018).",
+  "Dossier badawcze: ancient-texts.md §1 (pełna historia rękopisów i tabela przekładów)."
+ ],
+ "next": "Przeczytaj wizję otwierającą &rarr; <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandres</a>",
+ "media": [
+  [
+   "ESOTERICA: Introduction to Hermes Trismegistus & Hermetic Philosophy",
+   "https://www.youtube.com/watch?v=kHHTt6Yiv5U",
+   "dr Justin Sledge · 19 min · akademicki"
+  ],
+  [
+   "SHWEP podcast: the Hermetica series (episodes 102+)",
+   "https://shwep.net/themes/hermetica/",
+   "Earl Fontainelle · gęsto uprzypisowany"
+  ],
+  [
+   "Full reading: The Divine Pymander (Everard 1650 translation)",
+   "https://www.youtube.com/watch?v=a7afy9fnVnc",
+   "Altrusian Grace · 3 h 27 · domena publiczna"
+  ],
+  [
+   "Full reading: Corpus Hermeticum (Mead 1906 translation)",
+   "https://www.youtube.com/watch?v=P03-unYILuQ",
+   "Man of Letters · 3 h 10 · domena publiczna"
+  ]
+ ],
+ "media_note": "Uwaga: najczęściej oglądane audiobooki Corpusu na YouTube czytają współczesne przekłady objęte prawem autorskim bez zezwolenia — nie linkujemy ich. Powyższe nagrania korzystają z tekstów z domeny publicznej."
+}

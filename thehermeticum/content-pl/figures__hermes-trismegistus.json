@@ -1,0 +1,67 @@
+{
+ "path": "figures/hermes-trismegistus",
+ "url": "/figures/hermes-trismegistus/",
+ "trail": [
+  [
+   "Postaci",
+   "/pl/figures/"
+  ]
+ ],
+ "crumb": "Hermes Trismegistos",
+ "kicker": "Postaci",
+ "title": "Hermes Trismegistos — autor, który nigdy nie żył",
+ "desc": "Hermes Trismegistos: zrost greckiego Hermesa i egipskiego Thota, persona stojąca za pismami hermetycznymi, prorok w islamie, mędrzec renesansu.",
+ "h1": "Hermes Trismegistos",
+ "tldr": "Nie człowiek, lecz maska: grecko-egipska persona, pod której imieniem późnoantyczni autorzy pisali pisma hermetyczne — później prorok w islamie, najstarszy mędrzec renesansu i powód, dla którego istnieje ten serwis.",
+ "body": "\n<p>Ta karta streszcza <a href=\"/pl/path/02-who-was-hermes-trismegistus/\">krok 02 Ścieżki</a> — tam znajdziesz pełną opowieść.</p>\n<h2>Trzy życia Hermesa</h2>\n<p><strong>Jako bóg:</strong> narodzony ze spotkania greckiego Hermesa i egipskiego Thota w Egipcie Ptolemeuszy; „po trzykroć największy” to echo egipskich epitetów Thota. <strong>Jako autor:</strong> wspólny głos hermetyki filozoficznej i technicznej — persona, dzięki której rozproszeni pisarze mogli powoływać się na jedną pradawną mądrość. <strong>Jako pamięć:</strong> prorok Idris dla tradycji islamu, rówieśnik Mojżesza dla renesansowej Florencji, a w końcu — po przedatowaniu przez Casaubona w 1614 roku — maska, którą historia zdjęła, odsłaniając ciekawszą prawdę pod spodem.</p>\n<h2>Dlaczego wciąż ma znaczenie</h2>\n<p>Każda epoka dostawała Hermesa, jakiego potrzebowała: autorytet dla późnoantycznych poszukujących, licencję dla magii renesansu, rodowód dla nowoczesnego okultyzmu, a dla nas — modelowe studium tego, jak naprawdę działają tradycje: nie nieprzerwane łańcuchy, lecz twórcza reinwencja pod pożyczonym imieniem.</p>",
+ "facts": [
+  [
+   "Typ",
+   "Persona literacka (Hermes + Thot)"
+  ],
+  [
+   "Święte zwierzę",
+   "Ibis — emblemat tego serwisu"
+  ],
+  [
+   "W islamie",
+   "Prorok Idris"
+  ],
+  [
+   "Centrum kultu Thota",
+   "Hermopolis Magna, Egipt"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy kiedykolwiek uważano go za postać realną?",
+   "Przez większość dziejów Zachodu — tak. Ojcowie Kościoła, uczeni islamu i filozofowie renesansu traktowali go jako pradawnego mędrca."
+  ],
+  [
+   "Kiedy to się zmieniło?",
+   "W 1614 roku, gdy Isaac Casaubon wykazał, że greka pism hermetycznych jest późnoantyczna, a nie pierwotna."
+  ],
+  [
+   "Co o nim czytać?",
+   "The Egyptian Hermes Fowdena i The Arabic Hermes van Bladela to dwa naukowe filary."
+  ]
+ ],
+ "sources": [
+  "Fowden, <i>The Egyptian Hermes</i> (1986).",
+  "van Bladel, <i>The Arabic Hermes</i> (2009).",
+  "Dossier badawcze: ancient-texts.md §6.4, emerald-tablet-arabic.md §3.1."
+ ],
+ "next": "Pełna opowieść &rarr; <a href=\"/pl/path/02-who-was-hermes-trismegistus/\">krok 02 Ścieżki</a>",
+ "media": [
+  [
+   "ESOTERICA: Who is Thoth? The Egyptian God who became Hermes Trismegistus",
+   "https://www.youtube.com/watch?v=CIWq_k2tiYg",
+   "~841 tys. wyświetleń · akademicki"
+  ],
+  [
+   "Hermes Yesterday and Today — Hanegraaff & Sledge in conversation",
+   "https://www.youtube.com/watch?v=rgzuj1joXX0",
+   "Embassy of the Free Mind, Amsterdam"
+  ]
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "path": "ideas/palingenesia",
+ "url": "/ideas/palingenesia/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Palingeneza",
+ "kicker": "Idee",
+ "title": "Palingeneza — odrodzenie w Corpus Hermeticum XIII",
+ "desc": "Palingeneza w CH XIII: odrodzenie jako dziesięć boskich mocy wypędzających dwanaście zodiakalnych udręk — wyzwolenie z astralnego losu w tym życiu, nie reinkarnacja.",
+ "h1": "Palingeneza",
+ "tldr": "Palingeneza to hermetyczne odrodzenie wystawione na scenie Corpus Hermeticum XIII: dziesięć boskich mocy wchodzi we wtajemniczonego i wypędza dwanaście udręk przypisanych zodiakowi, czyniąc go „już nie tym samym”. To przemiana w tym życiu — nie reinkarnacja — a tekst upiera się, że nie można jej nauczyć, tylko doświadczyć.",
+ "body": "<p>Najbardziej dramatyczna scena <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a> to odrodzenie. W traktacie XIII &mdash; „O ponownych narodzinach i o obietnicy milczenia&rdquo; &mdash; Hermes przeprowadza swojego syna Tata przez <em>palingenezę</em>, a Tat wychodzi z niej, widząc już „nie oczami ciała&rdquo;.</p>\n<h2>W źródłach</h2>\n<p>Mechanizm jest zaskakująco arytmetyczny. Dziesięć boskich „mocy&rdquo; &mdash; wiedza o Bogu, radość, panowanie nad sobą, wytrwałość, sprawiedliwość, hojność, prawda, Dobro, życie, światło &mdash; zstępuje we wtajemniczonego i wypędza dwanaście „udręk&rdquo;: niewiedzę, smutek, niepowściągliwość, żądzę, niesprawiedliwość, chciwość, oszustwo, zawiść, zdradę, gniew, lekkomyślność, złośliwość. Ta dwunastka jest wprost zodiakalna (CH XIII.12): dekada mocy wypędza dodekadę zodiaku. Odrodzenie jest ujęte jako wyzwolenie z astralnego determinizmu <em>przy użyciu kategorii samej astrologii</em> &mdash; uścisk gwiazd na jaźni zostaje złamany znak po znaku. Traktat zamyka tajemny „hymn odrodzenia&rdquo;, a Hermes ostrzega, że całego wydarzenia nie da się przekazać wywodem: to wiedza milcząca, doświadczana, nie dowodzona (CH XIII.2&ndash;3). Wizja udzielona w <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandresie</a> to jej naturalny utwór towarzyszący.</p>\n<h2>Rytuał czy literatura?</h2>\n<p>Badacze spierają się, co właściwie zapisuje CH XIII. Festugi&egrave;re czytał go jako mistykę literacką; Van den Kerchove i Bull &mdash; jako odbicie rzeczywistej praktyki inicjacyjnej; Hanegraaff &mdash; jako zapis wywołanego doświadczenia ekstatycznego. Paralele z językiem „powtórnych narodzin&rdquo; w J 3 tłumaczy się zwykle wspólnym późnoantycznym idiomem, nie zapożyczeniem w którąkolwiek stronę.</p>\n<h2>Pułapki</h2>\n<p>Współcześni czytelnicy ezoteryczni utożsamiają czasem palingenezę z reinkarnacją. Zły rejestr: odrodzenie z CH XIII to przemiana <em>w tym życiu</em> &mdash; stawanie się nową, noetyczną jaźnią &mdash; a nie wędrówka duszy między ciałami. (Metempsychoza pojawia się gdzie indziej w pismach hermetycznych, ale to odrębna doktryna.)</p>\n<h2>Dlaczego to ważne</h2>\n<p>Dla serwisu z mottem „bez wróżenia&rdquo; to tekst kluczowy: pisma hermetyczne biorą astrologię na tyle poważnie, że inscenizują z niej ucieczkę. Odrodzenie to miejsce, gdzie <a href=\"/pl/ideas/nous/\">Nous</a> przestaje być teorią i staje się biografią.</p>",
+ "facts": [
+  [
+   "Tekst",
+   "Corpus Hermeticum XIII — „O ponownych narodzinach”"
+  ],
+  [
+   "Arytmetyka",
+   "Dziesięć boskich mocy wypędza dwanaście zodiakalnych udręk (CH XIII.12)"
+  ],
+  [
+   "Czym jest",
+   "Przemianą w tym życiu — nową, noetyczną jaźnią"
+  ],
+  [
+   "Czym nie jest",
+   "Reinkarnacją; metempsychoza to osobna doktryna (np. CH X)"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy palingeneza to to samo co reinkarnacja?",
+   "Nie. Odrodzenie z CH XIII dokonuje się w obrębie tego życia — wtajemniczony staje się nową, noetyczną jaźnią. Reinkarnacja (metempsychoza) pojawia się gdzie indziej w pismach hermetycznych, ale to odrębna doktryna."
+  ],
+  [
+   "Dlaczego dziesięć mocy przeciw dwunastu udrękom?",
+   "Dwanaście udręk jest przypisanych zodiakowi; dziesięć mocy tworzy dekadę, która „rodzi duszę” i wypędza dodekadę. Odrodzenie jest zainscenizowane jako wyzwolenie z astralnego losu przy użyciu kategorii samej astrologii."
+  ],
+  [
+   "Czy CH XIII był prawdziwym rytuałem?",
+   "Sprawa sporna. Festugière czytał go jako mistykę literacką; Van den Kerchove i Bull widzą za nim realną praktykę inicjacyjną; Hanegraaff czyta go jako zapis wywołanego doświadczenia ekstatycznego."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992): CH XIII.",
+  "Dossier badawcze: ideas-glossary.md §3."
+ ],
+ "next": "Wizja towarzysząca &rarr; <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandres</a>"
+}

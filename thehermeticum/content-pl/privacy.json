@@ -1,0 +1,11 @@
+{
+ "path": "privacy",
+ "url": "/privacy/",
+ "crumb": "Prywatność",
+ "kicker": "Drobny druk",
+ "title": "Prywatność — co zbieramy i po co",
+ "desc": "Polityka prywatności The Hermeticum: Twój e-mail do wysyłki listu, statystyki bez cookies, zero śledzenia reklamowego, wypisujesz się, kiedy chcesz.",
+ "h1": "Prywatność, po ludzku",
+ "tldr": "Zbieramy Twój e-mail, jeśli subskrybujesz (przechowywany u naszego dostawcy wysyłki, Resend), oraz anonimowe, bezcookiesowe statystyki stron. Żadnych trackerów reklamowych, żadnych profili, żadnej sprzedaży czegokolwiek komukolwiek.",
+ "body": "\n<h2>Co zbieramy</h2>\n<p><strong>Twój adres e-mail</strong> &mdash; tylko jeśli subskrybujesz As Above. Jest przechowywany u naszego dostawcy wysyłki (Resend Inc.) wyłącznie po to, by dostarczać Ci list. Każdy list zawiera link do wypisania się; wypisanie usuwa Cię z listy.</p>\n<p><strong>Anonimowe statystyki użycia</strong> &mdash; korzystamy z analityki bez cookies (Vercel Web Analytics), by liczyć wizyty i widzieć, które strony są czytane, oraz z Google Analytics działającego w trybie odmowy zgody &mdash; bez zgody nie zapisuje on żadnych cookies i wysyła wyłącznie anonimowe, zagregowane sygnały. Nikogo nie identyfikuje.</p>\n<h2>Czego nie robimy</h2>\n<p>Żadnych trackerów reklamowych. Żadnej sprzedaży ani udostępniania Twoich danych. Żadnego profilowania. Osadzone filmy ładują się dopiero po naciśnięciu play (przez tryb rozszerzonej prywatności YouTube).</p>\n<h2>Twoje prawa</h2>\n<p>W każdej chwili możesz poprosić o wgląd w swoje dane lub ich usunięcie &mdash; odpowiedz na dowolny list albo napisz na adres z jego stopki.\nSerwis jest prowadzony z Unii Europejskiej; obowiązuje RODO.</p>"
+}

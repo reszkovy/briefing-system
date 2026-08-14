@@ -1,0 +1,38 @@
+{
+ "path": "ideas/correspondences",
+ "url": "/ideas/correspondences/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Odpowiedniości",
+ "kicker": "Idee",
+ "title": "Odpowiedniości — sieć kosmicznej sympatii",
+ "desc": "Odpowiedniości w myśli hermetycznej: kosmiczna sympatia łącząca niebo, ziemię i człowieka — starożytne źródła i powód, dla którego słynne tabele są znacznie późniejsze.",
+ "h1": "Odpowiedniości",
+ "tldr": "Odpowiedniości to teza, że poziomy rzeczywistości — gwiazdy, ziemia, ciało, dusza — odbijają się w sobie nawzajem i odpowiadają sobie, więc to, co dzieje się na jednym poziomie, rezonuje na innym. Sama intuicja jest autentycznie starożytna (stoicka sympatheia, hermetyczny mikrokosmos); schludne tabele kamień–planeta–anioł to konstrukcje renesansowe i nowoczesne.",
+ "body": "<p>Zanim odpowiedniość stała się sloganem z plakatu, była roboczą teorią przyrody: kosmos jako jedna żywa, obdarzona duszą całość, której poziomy odpowiadają sobie nawzajem &mdash; gwiazda kamieniowi, niebo ciału, świat duszy.</p>\n<h2>W źródłach</h2>\n<p>Tłem jest stoicka <em>sympatheia</em> &mdash; kosmiczne powiązanie wszystkiego ze wszystkim &mdash; zespolona z astrologiczną doktryną, że układy ciał niebieskich przekładają się na zdarzenia ziemskie. W <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a> wyrasta z tego hierarchia obrazów: „kosmos jest obrazem Boga, a człowiek obrazem kosmosu&rdquo; (CH X.11). Hermetica techniczne przekuwają teorię w praktykę: traktaty astrobotaniczne i astromedyczne przypisują rośliny i kamienie dekanom i planetom na użytek medycyny talizmanicznej &mdash; w warstwach, które Fowden wywodzi z ptolemejskiej literatury astrologicznej. A <a href=\"/pl/texts/asclepius/\">Asclepius</a> (24&ndash;26) pokazuje teorię w najśmielszym wydaniu: świątynne posągi ściągające na siebie i goszczące boskie obecności. Najsłynniejsza kompresja tej idei, „<a href=\"/pl/ideas/as-above-so-below/\">jak w górze, tak i na dole</a>&rdquo;, należy do późniejszej tradycji Tablicy Szmaragdowej, nie do greckiego korpusu.</p>\n<h2>Nowoczesne słowo na starożytną intuicję</h2>\n<p>„Odpowiedniości&rdquo; jako formalna kategoria są same w sobie nowoczesne: Antoine Faivre uczynił z nich pierwszą ze swoich czterech cech definiujących zachodni ezoteryzm (1994). Poręczny skrót &mdash; ale anachroniczny, gdy rzutować go hurtem na starożytność, gdzie idea żyła wewnątrz astrologii, medycyny i kultu, a nie jako nazwana doktryna.</p>\n<h2>Pułapki</h2>\n<p>Rozbudowane „tabele odpowiedniości&rdquo; krążące po sieci &mdash; kamień do planety, planeta do anioła, anioł do hebrajskiej litery &mdash; pochodzą od <em>De occulta philosophia</em> Agrippy (1533), Złotego Brzasku i <em>777</em> Crowleya. Podawanie którejkolwiek konkretnej tabeli za „starożytny egipski hermetyzm&rdquo; jest niemal zawsze fałszywe w szczegółach. Odpowiedniość nie jest też żadnym „prawem przyciągania&rdquo;: w swoim macierzystym kontekście ugruntowywała zdyscyplinowaną praktykę, nie spełnianie życzeń.</p>\n<h2>Dlaczego to ważne</h2>\n<p>Odpowiedniość to tkanka łączna całej tradycji rozrysowanej w <a href=\"/pl/atlas/\">Atlasie</a>: to dzięki niej astrologia, alchemia i medycyna talizmaniczna mogły wszystkie nazywać się hermetycznymi. Jedna teza &mdash; poziomy rzeczywistości odpowiadają sobie nawzajem &mdash; podpiera je wszystkie.</p>",
+ "faq": [
+  [
+   "Czy odpowiedniości to starożytna doktryna hermetyczna?",
+   "Intuicja jest starożytna — stoicka sympatheia plus hermetyczny mikrokosmos (CH X.11) — ale „odpowiedniości” jako nazwana kategoria ezoteryzmu to nowoczesny konstrukt badawczy, w tej roli ukuty przez Antoine'a Faivre'a w 1994 roku."
+  ],
+  [
+   "Czy tabele kamień–planeta–anioł są starożytne?",
+   "Nie. Systematyczne tabele pochodzą od Agrippy (1533), a potem od Złotego Brzasku i 777 Crowleya. Źródła starożytne przypisują rośliny i kamienie dekanom i planetom, ale schludne nowoczesne tabele to konstrukcje od renesansu po współczesność."
+  ],
+  [
+   "Czy odpowiedniość to to samo co „jak w górze, tak i na dole”?",
+   "Ta fraza to jedna z późniejszych kompresji idei, z tradycji Tablicy Szmaragdowej. Teza leżąca u podstaw — że poziomy świata odbijają się w sobie i odpowiadają sobie nawzajem — jest starsza i szersza niż slogan."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992): CH VIII, X; Ascl. 24–26.",
+  "Fowden, <i>The Egyptian Hermes</i> (1986), rozdz. 1–2 — Hermetica techniczne.",
+  "Faivre, <i>Access to Western Esotericism</i> (1994).",
+  "Dossier badawcze: ideas-glossary.md §5."
+ ],
+ "next": "Słynna kompresja &rarr; <a href=\"/pl/ideas/as-above-so-below/\">Jak w górze, tak i na dole</a>"
+}

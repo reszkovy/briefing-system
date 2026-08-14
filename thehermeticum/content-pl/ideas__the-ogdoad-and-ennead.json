@@ -1,0 +1,55 @@
+{
+ "path": "ideas/the-ogdoad-and-ennead",
+ "url": "/ideas/the-ogdoad-and-ennead/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Ogdoada i Enneada",
+ "kicker": "Idee",
+ "title": "Ogdoada i Enneada — Ósemka i Dziewiątka",
+ "desc": "Ogdoada i Enneada: Ósma i Dziewiąta sfera hermetycznego wstępowania w CH I i Nag Hammadi — i czym różnią się od egipskiej Enneady dziewięciu bogów.",
+ "h1": "Ogdoada i Enneada",
+ "tldr": "W kosmologii hermetycznej dusza wstępuje przez siedem sfer planetarnych do Ósemki (ogdoady, sfery gwiazd stałych) i Dziewiątki (enneady, boskiej dziedziny poza kosmosem), z Bogiem w Dziewiątce lub poza nią. Pewien tekst z Nag Hammadi inscenizuje to wstępowanie jako żywy rytuał — najlepszy dowód, że hermetycy praktykowali, a nie tylko czytali.",
+ "body": "<p>Hermetyczne zbawienie ma adres: za siedmioma planetami &mdash; Ósemka; za Ósemką &mdash; Dziewiątka; w Dziewiątce lub poza nią &mdash; Bóg.</p>\n<h2>W źródłach</h2>\n<p>W <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandresie</a> (CH I.24&ndash;26) dusza po śmierci wznosi się przez siedem sfer planetarnych, w każdej oddając jedną wadę-energię, po czym wchodzi w „naturę ogdoadyczną&rdquo; &mdash; ósmą sferę &mdash; dołącza do mocy hymnujących Ojca, a dalej błogosławieni „wchodzą w Boga&rdquo;. Standardowe mapowanie: siedem planet, potem ósemka jako sfera gwiazd stałych (ogdoada), potem dziewiątka jako boska dziedzina poza kosmosem (enneada). Koptyjski <em>Discourse on the Eighth and Ninth</em> (Kodeks VI,6 z Nag Hammadi) zamienia mapę w wydarzenie: Hermes i jego „syn&rdquo; modlą się, obejmują i doświadczają Ósemki i Dziewiątki w ekstatycznej wizji <em>za życia</em> &mdash; wraz z instrukcjami hymnów i poleceniem wyrycia księgi hieroglifami na turkusowych stelach. To najmocniejszy pojedynczy dowód na praktykowany rytuał hermetyczny, choć badacze wciąż spierają się: wspólnotowa liturgia czy literacka mistagogia.</p>\n<h2>Egipskie echo</h2>\n<p>Ogdoada &mdash; ośmioro pierwotnych bogów &mdash; była teologią Hermopolis, kultowego miasta Thota, boga, którego Grecy odczytali jako Hermesa. Ta zbieżność terminów jest częścią argumentu (Bull, Fowden, Mah&eacute;), że za greckim strojem <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a> stoi egipska tradycja kapłańska.</p>\n<h2>Pułapki</h2>\n<p>Dwa słowa, dwie pułapki. Po pierwsze: egipska <em>Enneada</em> &mdash; dziewięcioro bogów Heliopolis &mdash; to co innego niż hermetyczna Dziewiątka; łączy je tylko greckie słowo oznaczające „dziewięć&rdquo;. Po drugie: nowoczesna literatura channelingowa pożycza „Enneadę&rdquo; i „istoty z 8. wymiaru&rdquo;, gubiąc kosmologię &mdash; starożytny schemat to stopniowane wstępowanie wewnątrz geocentrycznego kosmosu, a nie „wymiary&rdquo;.</p>\n<h2>Dlaczego to ważne</h2>\n<p>Ósemka i Dziewiątka pokazują, po co było hermetyczne mówienie o <a href=\"/pl/ideas/nous/\">Nous</a>: nie spekulacja, lecz marszruta. A dyskurs z Nag Hammadi to najbliższe, co mamy, usłyszenia hermetyków, jak rzeczywiście coś robią &mdash; modlą się, obejmują, śpiewają &mdash; a nie tylko piszą.</p>",
+ "facts": [
+  [
+   "Sfery 1–7",
+   "Sfery planetarne — w każdej dusza zrzuca jedną wadę-energię (CH I.25)"
+  ],
+  [
+   "Ósemka (ogdoada)",
+   "Sfera gwiazd stałych — dusza dołącza do mocy hymnujących Ojca"
+  ],
+  [
+   "Dziewiątka (enneada)",
+   "Boska dziedzina poza kosmosem, z Bogiem w niej lub poza nią"
+  ],
+  [
+   "Kluczowy świadek",
+   "Discourse on the Eighth and Ninth (NHC VI,6) — żywe, rytualne wstępowanie"
+  ]
+ ],
+ "faq": [
+  [
+   "Czym są Ósemka i Dziewiątka?",
+   "Stacjami hermetycznego wstępowania: za siedmioma sferami planetarnymi leży ósma, sfera gwiazd stałych (ogdoada), a za nią dziewiąta (enneada), boska dziedzina — z Bogiem w Dziewiątce lub poza nią."
+  ],
+  [
+   "Czy hermetyczna Enneada to to samo co Enneada egipska?",
+   "Nie. Egipska Enneada to dziewięcioro bogów Heliopolis; hermetyczna Dziewiątka to kosmologiczna stacja wstępowania. Łączy je greckie słowo oznaczające „dziewięć” i nic więcej — klasyczna pułapka treściowa."
+  ],
+  [
+   "Czy hermetycy naprawdę praktykowali to wstępowanie?",
+   "Discourse on the Eighth and Ninth (Nag Hammadi) zawiera modlitwy, rytualny uścisk i instrukcje rycia — najmocniejszy dowód realnej praktyki, choć badacze spierają się: wspólnotowa liturgia czy literacka mistagogia."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992): CH I.24–26.",
+  "<i>The Discourse on the Eighth and Ninth</i> (NHC VI,6); Bull, <i>The Tradition of Hermes Trismegistos</i> (2018).",
+  "Dossier badawcze: ideas-glossary.md §8."
+ ],
+ "next": "Tekst źródłowy wstępowania &rarr; <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandres</a>"
+}

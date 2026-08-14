@@ -1,0 +1,73 @@
+{
+ "path": "texts/emerald-tablet",
+ "url": "/texts/emerald-tablet/",
+ "trail": [
+  [
+   "Teksty",
+   "/pl/texts/"
+  ]
+ ],
+ "crumb": "Tablica Szmaragdowa",
+ "kicker": "Teksty",
+ "title": "Tablica Szmaragdowa — prawdziwe pochodzenie",
+ "desc": "Tablica Szmaragdowa jest po raz pierwszy poświadczona po arabsku (VIII–IX w.) — bez greckiego oryginału i bez szmaragdu. Prawdziwa historia, tekst łaciński, egzemplarz Newtona.",
+ "h1": "Tablica Szmaragdowa",
+ "tldr": "Nie ma szmaragdu, nie ma Egiptu, nie ma greckiego oryginału. Najsłynniejszy „starożytny&rdquo; tekst ezoteryki po raz pierwszy pojawia się w arabskiej księdze z VIII&ndash;IX wieku — a jego najczęściej cytowana linijka to dziewiętnastowieczna parafraza.",
+ "body": "\n<p>Kilkanaście zagadkowych zdań, jakoby wyrytych na szmaragdzie przez samego Hermesa i znalezionych w dłoniach jego mumii. Tyle legenda. Trop dokumentów opowiada coś lepszego.</p>\n<h2>Skąd naprawdę pochodzi</h2>\n<p>Najstarsze znane pojawienie się Tablicy to arabskie dzieło <i>Kitab sirr al-khaliqa</i> („Księga tajemnicy stworzenia&rdquo;), przypisywane pseudo-Apolloniuszowi z Tiany — po arabsku Balinasowi. Naukowe datowania tego dzieła skupiają się wokół VIII i początków IX wieku n.e. Grecki oryginał nigdy nie wypłynął. Ze świata arabskiego tekst trafił do łacińskiej Europy co najmniej trzema osobnymi drogami w XII&ndash;XIII wieku i stał się tekstem założycielskim zachodniej alchemii.</p>\n<h2>Co naprawdę mówi słynna linijka</h2>\n<p>Łacińska wulgata nie mówi „jak w górze, tak i na dole&rdquo;. Proponuje robocze porównanie ze zdaniem celowym — że to, co na dole, jest <em>podobne</em> do tego, co w górze, i na odwrót, <em>aby dokonały się cuda jednej rzeczy</em>. To operacyjna teza o tym, jak działa przemiana, a nie kosmiczny slogan. Zgrabny epigram, który wszyscy znamy, spopularyzowała epoka Bławatskiej. (Tradycja rękopiśmienna różni się w szczegółach łacińskiego brzmienia — w kroku 06 wydrukujemy tekst krytyczny obok przekładu.)</p>\n<h2>Egzemplarz Newtona</h2>\n<p>Wśród alchemicznych papierów Izaaka Newtona zachował się jego własny angielski przekład Tablicy z komentarzem (Keynes MS 28, King&rsquo;s College w Cambridge — zdigitalizowany i dostępny online). Dla Newtona „jedną rzeczą&rdquo; była rtęć filozoficzna: język laboratorium, nie mistyka. Ojciec fizyki czytający Tablicę jak chemik.</p>\n<h2>Dlaczego prawdziwa historia jest lepsza</h2>\n<p>Fałszywy rodowód daje ci slogan. Prawdziwy przekaz — Egipt zapamiętany po arabsku, przełożony w Toledo, obiekt obsesji Newtona — daje tysiącletnią sztafetę ludzi, którzy wierzyli, że materia ma gramatykę, i zamierzali się jej nauczyć.</p>",
+ "facts": [
+  [
+   "Pierwsze poświadczenie",
+   "Kitab sirr al-khaliqa (pseudo-Apolloniusz/Balinas), ok. 750–833 n.e."
+  ],
+  [
+   "Grecki oryginał",
+   "Nieznany"
+  ],
+  [
+   "Przekaz łaciński",
+   "Trzy drogi, XII–XIII w."
+  ],
+  [
+   "Rękopis Newtona",
+   "Keynes MS 28, King's College Cambridge (lata 80.–90. XVII w., datowanie za Dobbs)"
+  ],
+  [
+   "Słynny epigram",
+   "XIX-wieczna kondensacja łacińskiego porównania"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy fizyczna szmaragdowa tablica kiedykolwiek istniała?",
+   "Nie ma na to żadnego dowodu. Historia o „odkryciu w grobowcu” to topos literacki — standardowy sposób, w jaki teksty starożytne i średniowieczne uwiarygadniały swój autorytet."
+  ],
+  [
+   "Czy to część Corpus Hermeticum?",
+   "Nie. Podróżuje pod imieniem Hermesa, ale należy do arabsko-łacińskiej tradycji alchemicznej — o stulecia późniejszej."
+  ],
+  [
+   "Czyli „jak w górze, tak i na dole” to błąd?",
+   "To kompresja. Idea odpowiedniości jest autentycznie hermetyczna; brzmienie sloganu i jego instagramowy sens są nowoczesne."
+  ]
+ ],
+ "sources": [
+  "Julius Ruska, <i>Tabula Smaragdina</i> (1926) — studium fundamentalne.",
+  "Kevin van Bladel, <i>The Arabic Hermes</i> (2009).",
+  "The Newton Project / Cambridge Digital Library: Keynes MS 28.",
+  "Dossier badawcze: emerald-tablet-arabic.md (pełna debata o datowaniu i mapa przekazu)."
+ ],
+ "next": "Zobacz też &rarr; <a href=\"/pl/ideas/as-above-so-below/\">„Jak w górze, tak i na dole” — idea</a>",
+ "media": [
+  [
+   "ESOTERICA: What is the Emerald Tablet of Hermes Trismegistus?",
+   "https://www.youtube.com/watch?v=5qa4woIz_Ag",
+   "prawdziwa arabska historia tekstu · ~707 tys. wyświetleń"
+  ],
+  [
+   "The Emerald Tablet — history and three translations",
+   "https://www.youtube.com/watch?v=uK7hLq8QAc4",
+   "Altrusian Grace · krótki materiał"
+  ]
+ ],
+ "media_note": "Omijaj nagrania „Szmaragdowych Tablic Thota&rdquo; Doreala — to channelowany tekst z lat 30. XX wieku, niezwiązany z historyczną Tablicą."
+}

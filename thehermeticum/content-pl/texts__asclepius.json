@@ -1,0 +1,66 @@
+{
+ "path": "texts/asclepius",
+ "url": "/texts/asclepius/",
+ "trail": [
+  [
+   "Teksty",
+   "/pl/texts/"
+  ]
+ ],
+ "crumb": "Asclepius",
+ "kicker": "Teksty",
+ "title": "Asclepius — mowa doskonała",
+ "desc": "Asclepius: najdłuższy traktat hermetyczny, zachowany po łacinie — „człowiek to wielki cud”, fragmenty o tworzeniu bogów i lament nad Egiptem.",
+ "h1": "Asclepius",
+ "tldr": "Najdłuższy traktat hermetyczny, zachowany w całości jedynie w swobodnej łacińskiej adaptacji zaginionego greckiego oryginału. Dom najsłynniejszego zdania tradycji — „człowiek to wielki cud&rdquo; — jej najbardziej gorszących fragmentów i najbardziej przejmującego proroctwa.",
+ "body": "\n<p>Starożytność znała go jako <i>Logos teleios</i> — Mowę Doskonałą. Grecki tekst zaginął; w całości przetrwała stara łacińska adaptacja, krążąca wśród czytelników, którzy nie mieli pojęcia, jak dziwną odbyła podróż. Koptyjski wyimek znaleziony w Nag Hammadi pozwala badaczom porównać łacinę z czymś bliższym oryginałowi: tłumacz, jak się okazuje, pozwalał sobie na wiele.</p>\n<h2>Wielki cud</h2>\n<p><em>Magnum miraculum est homo</em> — „wielkim cudem jest człowiek&rdquo;. Deklaracja Asclepiusa, że istota ludzka spina świat boski i materialny, stała się jedenaście stuleci później otwarciem słynnej Mowy Pico della Mirandoli. Sztandarowe zdanie renesansowego humanizmu ma hermetyczny rodowód.</p>\n<h2>Skandal: tworzenie bogów</h2>\n<p>Najbardziej osławione fragmenty tekstu opisują egipskie rzemiosło świątynne: ściąganie mocy niebiańskich w posągi kultowe, tak by stały się ożywionymi, prorokującymi bogami. Augustyn zaatakował dokładnie te linijki — i po części dlatego Asclepius przetrwał: zachowali go wrogowie, jako materiał dowodowy.</p>\n<h2>Lament</h2>\n<p>A potem proroctwo: przyjdzie czas, gdy bogowie opuszczą Egipt, gdy najpobożniejsza z ziem stanie się krainą grobów, jej obrzędy będą wyszydzone, a pismo zapomniane. Napisane — jak widzieliśmy w <a href=\"/pl/path/03-alexandria/\">kroku 03</a> — gdy świat świątyń rzeczywiście umierał, brzmi mniej jak przepowiednia, a bardziej jak żałoba na żywo.</p>",
+ "facts": [
+  [
+   "Oryginał",
+   "grecki Logos teleios — zaginiony"
+  ],
+  [
+   "Zachowany jako",
+   "łacińska adaptacja (kompletna) + koptyjski wyimek (Nag Hammadi) + greckie fragmenty"
+  ],
+  [
+   "Słynne zdanie",
+   "Magnum miraculum est homo"
+  ],
+  [
+   "Wrogi świadek",
+   "Augustyn, City of God (o fragmentach o posągach)"
+  ]
+ ],
+ "faq": [
+  [
+   "Dlaczego pogański tekst przetrwał po łacinie?",
+   "Krążył w późnoantycznych i średniowiecznych łacińskich sylwach — a jego krytycy cytowali go obszernie. Przetrwanie przez kontrowersję."
+  ],
+  [
+   "Czy ta „apokalipsa” to proroctwo?",
+   "Czyta się ją tak, ale powstała, gdy egipska religia świątynna zapadała się pod rzymskim naciskiem — to lament przebrany za przepowiednię."
+  ],
+  [
+   "Gdzie to czytać?",
+   "Hermetica Copenhavera (1992) zawiera pełnego Asclepiusa z przypisami."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992), Asclepius z przypisami.",
+  "Dossier badawcze: ancient-texts.md §2, ideas-glossary.md §11."
+ ],
+ "next": "Dalej w kanonie &rarr; <a href=\"/pl/texts/kybalion/\">Kybalion — czytaj ostrożnie</a>",
+ "media": [
+  [
+   "Audio reading: The Perfect Sermon / Asclepius (Mead translation)",
+   "https://www.youtube.com/watch?v=THGJCc5FOZg",
+   "domena publiczna"
+  ],
+  [
+   "SHWEP 105: The Asclepius and Korê Kosmou",
+   "https://shwep.net/podcast/other-hermetic-worlds-the-asclepius-and-kore-kosmou/",
+   "naukowe omówienie"
+  ]
+ ]
+}

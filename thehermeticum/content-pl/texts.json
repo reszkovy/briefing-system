@@ -1,0 +1,11 @@
+{
+ "path": "texts",
+ "url": "/texts/",
+ "crumb": "Teksty",
+ "kicker": "Skrzydło I",
+ "title": "Teksty — kanon hermetyczny na mapie",
+ "desc": "Kanon hermetyczny na mapie: Corpus Hermeticum, Asclepius, Tablica Szmaragdowa, fragmenty i znaleziska — czym jest każdy tekst i jak go czytać.",
+ "h1": "Teksty",
+ "tldr": "Dziewięć korpusów tekstów, trzy języki, siedemnaście stuleci. Zacznij od Corpus Hermeticum — albo od jedynego „hermetycznego” bestsellera, który wcale nie jest starożytny.",
+ "body": "\n<ul class=\"hub\">\n  <li><a href=\"/pl/texts/corpus-hermeticum/\"><b>Corpus Hermeticum</b><span>Siedemnaście traktatów w sercu tradycji (ok. 100&ndash;300 n.e.).</span></a></li>\n  <li><a href=\"/pl/texts/corpus-hermeticum/poimandres/\"><b>&mdash; Poimandres</b><span>Wizja otwierająca Corpus, z przewodnikiem.</span></a></li>\n  <li><a href=\"/pl/texts/emerald-tablet/\"><b>Tablica Szmaragdowa</b><span>„Jak w górze, tak i na dole” — prawdziwe, arabskie pochodzenie.</span></a></li>\n  <li><a href=\"/pl/texts/asclepius/\"><b>Asclepius</b><span>Mowa doskonała — i lament nad Egiptem.</span></a></li>\n  <li><a href=\"/pl/texts/kybalion/\"><b>Kybalion (1908)</b><span>Co trafnie oddaje, a co zmyśla.</span></a></li>\n  <li><a href=\"/pl/texts/definitions-of-hermes/\"><b>Definicje Hermesa</b><span>Najstarszy filozoficzny tekst hermetyczny — po ormiańsku.</span></a></li>\n  <li><a href=\"/pl/texts/stobaean-fragments/\"><b>Fragmenty Stobajosa</b><span>W tym Korē Kosmou.</span></a></li>\n  <li><a href=\"/pl/texts/nag-hammadi-hermetica/\"><b>Hermetica z Nag Hammadi</b><span>Pustynne znaleziska z 1945 roku — dowód praktyki rytualnej.</span></a></li>\n  <li><a href=\"/pl/texts/picatrix/\"><b>Picatrix</b><span>Arabski podręcznik magii astralnej.</span></a></li>\n  <li><a href=\"/pl/texts/musaeum-hermeticum/\"><b>Musaeum Hermeticum</b><span>Barokowa antologia alchemiczna.</span></a></li>\n</ul>"
+}

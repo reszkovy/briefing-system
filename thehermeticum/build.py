@@ -17,6 +17,34 @@ def _slice(s, a, b):
 HEADER = _slice(idx, '<header class="hdr" data-hdr>', '</header>')
 FOOTER = _slice(idx, '<footer class="foot">', '</footer>')
 
+# ── i18n: rama PL z index-pl.html; treści PL w content-pl/*.json ──
+_idx_pl_path = os.path.join(ROOT, 'index-pl.html')
+if os.path.exists(_idx_pl_path):
+    idx_pl = open(_idx_pl_path).read()
+    HEADER_PL = _slice(idx_pl, '<header class="hdr" data-hdr>', '</header>')
+    FOOTER_PL = _slice(idx_pl, '<footer class="foot">', '</footer>')
+else:
+    HEADER_PL = HEADER; FOOTER_PL = FOOTER
+
+UI = {
+  'en': dict(home='Home', locale='en_US', tldr='TL;DR', facts='Key facts',
+             faq='Fair questions', src='Sources &amp; further reading',
+             media='Listen &amp; watch', portrait='An imagined likeness, after the historical sources',
+             portrait_alt='Portrait'),
+  'pl': dict(home='Start', locale='pl_PL', tldr='TL;DR', facts='Najważniejsze fakty',
+             faq='Uczciwe pytania', src='Źródła i dalsza lektura',
+             media='Słuchaj i oglądaj', portrait='Wyobrażony wizerunek, za źródłami historycznymi',
+             portrait_alt='Portret'),
+}
+
+CTA_PL = '''
+  <aside class="band">
+    <div class="container band__in">
+      <p><b>As Above</b> — jeden list tygodniowo przechodzi całą ścieżkę. Po angielsku, za darmo, ze źródłami, bez wróżenia.</p>
+      <a class="btn" href="/pl/#subscribe">Zapisz się</a>
+    </div>
+  </aside>'''
+
 CTA = '''
   <aside class="band">
     <div class="container band__in">
@@ -126,8 +154,9 @@ PORTRAITS = {
     "figures/frances-yates": "portrait-yates.jpg",
 }
 
-def render(p):
-    trail = [("Home", "/")] + p.get("trail", []) + [(p["crumb"], p["url"])]
+def render(p, lang='en'):
+    ui = UI[lang]
+    trail = [((ui["home"]), ("/" if lang == 'en' else "/pl/"))] + p.get("trail", []) + [(p["crumb"], p["url"])]
     lds = [crumbs_ld(trail)] + p.get("ld", [])
     if p.get("faq"): lds.append(faq_ld(p["faq"]))
     ld_tags = "\n".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
@@ -136,23 +165,23 @@ def render(p):
     og_img = f"{SITE}/assets/{img}" if img else f"{SITE}/assets/og.png"
     preload = f'<link rel="preload" as="image" href="/assets/{img}" fetchpriority="high">' if img else ""
     port = PORTRAITS.get(p["path"])
-    portrait = (f'<figure class="art__portrait"><img src="/assets/{port}" alt="Portrait: {H.escape(p["crumb"])}" '
-                f'width="400" height="400" loading="lazy"><figcaption>An imagined likeness, after the historical sources</figcaption></figure>') if port else ""
+    portrait = (f'<figure class="art__portrait"><img src="/assets/{port}" alt="{ui["portrait_alt"]}: {H.escape(p["crumb"])}" '
+                f'width="400" height="400" loading="lazy"><figcaption>{ui["portrait"]}</figcaption></figure>') if port else ""
     fig = f'<figure class="art__fig"><img src="/assets/{img}" alt="" width="1600" height="800" loading="eager" fetchpriority="high"></figure>' if img else ""
     tldr = f'<div class="tldr"><span>TL;DR</span><p>{p["tldr"]}</p></div>' if p.get("tldr") else ""
     facts = ""
     if p.get("facts"):
         rows = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in p["facts"])
-        facts = f'<table class="facts"><caption>Key facts</caption>{rows}</table>'
+        facts = f'<table class="facts"><caption>{ui["facts"]}</caption>{rows}</table>'
     faq_html = ""
     if p.get("faq"):
         items = "".join(f'<details class="faq__item"><summary>{q}</summary><p>{a}</p></details>' for q, a in p["faq"])
-        faq_html = f'<section class="art__faq"><h2>Fair questions</h2>{items}</section>'
+        faq_html = f'<section class="art__faq"><h2>{ui["faq"]}</h2>{items}</section>'
     src = ""
     srcs = list(p.get("sources") or []) + EXTRA_SOURCES.get(p.get("path",""), [])
     if srcs:
         li = "".join(f"<li>{s}</li>" for s in srcs)
-        src = f'<section class="art__src"><h2>Sources &amp; further reading</h2><ul>{li}</ul></section>'
+        src = f'<section class="art__src"><h2>{ui["src"]}</h2><ul>{li}</ul></section>'
     media = ""
     if p.get("media"):
         import re as _re
@@ -171,10 +200,22 @@ def render(p):
         emb_html = f'<div class="media__grid">{"".join(embeds)}</div>' if embeds else ""
         li_html = f'<ul>{"".join(links)}</ul>' if links else ""
         note = f'<p class="media__note">{p["media_note"]}</p>' if p.get("media_note") else ""
-        media = f'<section class="art__media"><h2>Listen &amp; watch</h2>{emb_html}{li_html}{note}</section>'
+        media = f'<section class="art__media"><h2>{ui["media"]}</h2>{emb_html}{li_html}{note}</section>'
     nxt = f'<p class="art__next">{p["next"]}</p>' if p.get("next") else ""
+    alt_links = ""
+    if p.get("_alt_url"):
+        en_u, pl_u = (p["url"], p["_alt_url"]) if lang == 'en' else (p["_alt_url"], p["url"])
+        alt_links = (f'<link rel="alternate" hreflang="en" href="{SITE}{en_u}">\n'
+                     f'<link rel="alternate" hreflang="pl" href="{SITE}{pl_u}">\n'
+                     f'<link rel="alternate" hreflang="x-default" href="{SITE}{en_u}">')
+    hdr = HEADER if lang == 'en' else HEADER_PL
+    ftr = FOOTER if lang == 'en' else FOOTER_PL
+    cta_band = CTA if lang == 'en' else CTA_PL
+    if p.get("_alt_url"):
+        import re as _re2
+        hdr = _re2.sub(r'(class="hdr__lang" href=")[^"]*(")', r'\g<1>' + p["_alt_url"] + r'\g<2>', hdr)
     return f'''<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -188,7 +229,8 @@ def render(p):
 <meta property="og:url" content="{SITE}{p["url"]}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{og_img}">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="{ui["locale"]}">
+{alt_links}
 {preload}
 <meta name="twitter:title" content="{H.escape(p["title"])}">
 <meta name="twitter:description" content="{H.escape(p["desc"])}">
@@ -199,8 +241,8 @@ def render(p):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=11">
-<script src="/assets/site.js?v=11" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=12">
+<script src="/assets/site.js?v=12" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -211,7 +253,7 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
 {ld_tags}
 </head>
 <body>
-{HEADER}
+{hdr}
 <main>
   <article class="art">
     <div class="container art__in">
@@ -229,9 +271,9 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
       {nxt}
     </div>
   </article>
-{CTA}
+{cta_band}
 </main>
-{FOOTER}
+{ftr}
 </body>
 </html>'''
 
@@ -961,8 +1003,30 @@ llms += "## Core\n- [Start Here](%s/start-here/): orientation for newcomers\n- [
 for p in sorted(PAGES, key=lambda x: x["url"]):
     if p["path"].count("/") >= 1 and not p["path"].startswith(("about", "privacy")):
         llms += f"- [{p['title']}]({SITE}{p['url']}): {p['desc']}\n"
+llms += "\n## Languages\n- Polish mirror of the whole site: %s/pl/\n" % SITE
 open(os.path.join(ROOT, "llms.txt"), "w").write(llms)
 print("llms.txt written")
+
+# ── wersja PL: content-pl/<path z __>.json nakłada tłumaczenia na strony EN ──
+PL_DIR = os.path.join(ROOT, 'content-pl')
+PAGES_PL = []
+if os.path.isdir(PL_DIR):
+    for p in PAGES:
+        fn = os.path.join(PL_DIR, p['path'].replace('/', '__') + '.json')
+        if not os.path.exists(fn):
+            continue
+        try:
+            ov = json.load(open(fn))
+        except Exception as e:
+            print(f"PL POMINIĘTE (błąd JSON): {fn}: {e}"); continue
+        q = dict(p)
+        for k in ('crumb','kicker','title','desc','h1','tldr','body','facts','faq','sources','next','trail','media','media_note'):
+            if k in ov and ov[k]:
+                q[k] = ov[k]
+        q['url'] = '/pl' + p['url']
+        q['_alt_url'] = p['url']
+        p['_alt_url'] = q['url']
+        PAGES_PL.append(q)
 
 # ── zapis ──
 written = []
@@ -973,10 +1037,19 @@ for p in PAGES:
     open(out, "w").write(render(p))
     written.append(p["path"])
 print(f"OK: {len(written)} stron:", ", ".join(written))
+for q in PAGES_PL:
+    d = os.path.join(ROOT, 'pl', q["path"])
+    os.makedirs(d, exist_ok=True)
+    open(os.path.join(d, "index.html"), "w").write(render(q, lang='pl'))
+print(f"OK PL: {len(PAGES_PL)} stron")
+if os.path.exists(_idx_pl_path):
+    os.makedirs(os.path.join(ROOT, 'pl'), exist_ok=True)
+    open(os.path.join(ROOT, 'pl', 'index.html'), 'w').write(idx_pl)
+    print("OK PL home")
 
 # ── AEO/SEO: sitemap, robots, rss, 404 ──
 today = "2026-08-14"
-urls = ["/"] + [p["url"] for p in PAGES]
+urls = ["/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else [])
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u in urls:
     sm += f"  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>\n"
@@ -1002,13 +1075,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=11"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=12"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=11" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=12" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>

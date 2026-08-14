@@ -1,0 +1,67 @@
+{
+ "path": "ideas/the-great-work",
+ "url": "/ideas/the-great-work/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Wielkie Dzieło",
+ "kicker": "Idee",
+ "title": "Wielkie Dzieło — co alchemicy naprawdę robili",
+ "desc": "Wielkie Dzieło (magnum opus): etapowy proces wytwarzania kamienia filozofów — stadia barw, zaginiona żółć i problem z Jungiem.",
+ "h1": "Wielkie Dzieło",
+ "tldr": "Wielkie Dzieło (magnum opus) to alchemiczna nazwa procesu wytwarzania kamienia filozofów — etapowej operacji na materii wyjściowej, śledzonej po zmianach barwy: czerń, biel, żółć, czerwień. W źródłach z epoki to praca laboratoryjna na materii; odczytanie „wewnętrznej przemiany” to warstwa z XIX–XX wieku.",
+ "body": "<p>„Wielkie Dzieło&rdquo; brzmi jak metafora. W źródłach to procedura: <em>magnum opus</em> to alchemiczna nazwa wytwarzania kamienia filozofów &mdash; czynnika, który miał transmutować metale nieszlachetne w srebro lub złoto, a w wielu tradycjach także leczyć i przedłużać życie.</p>\n<h2>W źródłach</h2>\n<p>Dzieło należy do alchemii praktycznej, nie do filozoficznych pism hermetycznych: <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a> nigdzie nie opisuje laboratorium. Jego kanoniczny kształt to sekwencja barw &mdash; <em>nigredo</em> (czernienie), <em>albedo</em> (bielenie), <em>citrinitas</em> (żółcenie), <em>rubedo</em> (czerwienienie) &mdash; łacińskie nazwy greckiego schematu, tradycyjnego już za czasów Zosimosa z Panopolis (ok. 300 n.e.), który przypisuje go Marii Żydówce. Stadia zaczęły się jako obserwacje barw w naczyniach, nie jako abstrakcyjne symbole. I schemat ewoluował: po XV wieku większość autorów porzuciła citrinitas, wciskając ją w rubedo &mdash; całe stadium „odwiecznego pradawnego systemu&rdquo; po cichu wycofane z użycia. Poza barwami nigdy nie istniała jedna ustalona procedura: Ripley liczył dwanaście bram, Norton czternaście. Od średniowiecza <a href=\"/pl/texts/emerald-tablet/\">Tablicę Szmaragdową</a> czytano jako skompresowany opis Dzieła &mdash; i w dużej mierze tak właśnie alchemia stała się „sztuką hermetyczną&rdquo;.</p>\n<h2>Laboratorium czy dusza?</h2>\n<p>Nowoczesna historiografia (Principe, Newman) rozszyfrowała alchemiczne kryptonimy na realne substancje i powtórzyła przepisy z epoki &mdash; Principe wyhodował prawdziwe dendrytyczne „Drzewo Filozofów&rdquo; ze złota i rtęci &mdash; pokazując, że obrazowanie koduje powtarzalną chemię. Ich kluczowe ustalenie negatywne: teza „Wielkie Dzieło było tak naprawdę pracą wewnętrzną&rdquo; to konstrukcja XIX-wieczna (Atwood, Hitchcock), spsychologizowana przez Junga, którego odczytanie nigredo-jako-cienia to wpływowa <em>recepcja</em>, nie historia. Alchemicy byli ludźmi religijnymi, ale Dzieło wykonywano na materii w naczyniach.</p>\n<h2>Pułapki</h2>\n<p>Każda infografika oferująca „TE siedem (albo dwanaście) kroków alchemii&rdquo; przekłamuje literaturę autentycznie niespójną. A treści o „twojej fazie nigredo&rdquo; cytują Junga, nie alchemików.</p>\n<h2>Dlaczego to ważne</h2>\n<p>Wielkie Dzieło to miejsce, gdzie Hermes spotkał laboratorium &mdash; i gdzie współczesny czytelnik najczęściej spotyka warstwę recepcji przebraną za starożytną mądrość. Rozplątanie tego to najlepsza dostępna lekcja historycznego czytania alchemii.</p>",
+ "facts": [
+  [
+   "Nigredo",
+   "Czernienie (gr. melanosis) — putrefakcja/kalcynacja materii wyjściowej"
+  ],
+  [
+   "Albedo",
+   "Bielenie (leukosis) — „obmywanie”; stadium białego kamienia"
+  ],
+  [
+   "Citrinitas",
+   "Żółcenie (xanthosis) — porzucone po XV w., wchłonięte przez rubedo"
+  ],
+  [
+   "Rubedo",
+   "Czerwienienie/purpurowienie (iosis) — czerwony kamień; sukces"
+  ]
+ ],
+ "faq": [
+  [
+   "Jaki był cel Wielkiego Dzieła?",
+   "Wytworzenie kamienia filozofów — czynnika chryzopei, transmutującego metale nieszlachetne w srebro lub złoto, a w wielu tradycjach także leczącego i przedłużającego życie. Cel materialny, realizowany w laboratoriach."
+  ],
+  [
+   "Czy cztery stadia to ustalony starożytny kanon?",
+   "Schemat barw czerń–biel–żółć–czerwień jest starożytny (tradycyjny już ok. 300 n.e.), ale citrinitas porzucono po XV wieku, a drabiny operacyjne różniły się drastycznie — dwanaście bram, czternaście stadiów. Jednej standardowej procedury nigdy nie było."
+  ],
+  [
+   "Czy Wielkie Dzieło dotyczy przemiany duchowej?",
+   "To odczytanie jest recepcją z XIX–XX wieku: okultystyczna teza Atwood i Hitchcocka, potem psychologia Junga. Historycy (Principe, Newman) pokazują, że alchemia epoki była pracą laboratoryjną na materii — religijną w kontekście, materialną w celu."
+  ]
+ ],
+ "sources": [
+  "Principe, <i>The Secrets of Alchemy</i> (2013).",
+  "Newman & Principe, \"What Have We Learned from the Recent Historiography of Alchemy?\", <i>Isis</i> 102:2 (2011).",
+  "Dossier badawcze: great-work.md."
+ ],
+ "next": "Motto Dzieła &rarr; <a href=\"/pl/texts/emerald-tablet/\">Tablica Szmaragdowa</a>",
+ "media": [
+  [
+   "Zosimos — the 3rd-century alchemical allegory (the visions)",
+   "https://www.youtube.com/watch?v=SRi0cUF-PJw",
+   "Altrusian Grace · czytanie"
+  ],
+  [
+   "ESOTERICA: The Egyptian Origins of Alchemy",
+   "https://www.youtube.com/watch?v=nyv6RF09oyw",
+   "dr Justin Sledge · akademicki"
+  ]
+ ]
+}

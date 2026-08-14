@@ -159,6 +159,8 @@
   .hdr__links{display:flex;gap:var(--sp1);margin-inline:auto}
   .hdr__links a{font-family:var(--font-ui);font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:inherit;text-decoration:none;padding:.6em .85em;transition:color var(--dur) var(--ease)}
   .hdr__links a:hover{color:var(--vermilion)}
+  .hdr__lang{font-family:var(--font-ui);font-size:.72rem;font-weight:600;letter-spacing:.08em;color:var(--ink-muted);text-decoration:none;padding:.5em .6em;border-bottom:1px solid transparent;transition:color var(--dur) var(--ease)}
+  .hdr__lang:hover{color:var(--vermilion)}
   .hdr__codexBtn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--font-ui);font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;background:none;border:1px solid var(--line);color:inherit;padding:.66em 1em;cursor:pointer;transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
   .hdr__codexBtn:hover{border-color:var(--vermilion);color:var(--vermilion)}
   .hdr__codexIcon{font-size:.6rem;border:1px solid var(--line);padding:.12em .4em;border-radius:4px;color:var(--ink-muted)}

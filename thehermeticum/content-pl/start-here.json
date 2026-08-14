@@ -1,0 +1,26 @@
+{
+ "path": "start-here",
+ "url": "/start-here/",
+ "crumb": "Zacznij tutaj",
+ "kicker": "Zacznij tutaj",
+ "title": "Zacznij tutaj — przejrzysta ścieżka do hermetyzmu",
+ "desc": "Uporządkowane, uczciwe wprowadzenie do tradycji hermetycznej: czym jest, czym nie jest — i dwanaście kroków od zera do lektury źródeł.",
+ "h1": "Znasz tę nazwę ze słyszenia.<br>Oto prawdziwa historia.",
+ "tldr": "Hermetyzm to rodzina starożytnych grecko-egipskich tekstów i dwa tysiące lat myślenia, które wprawiły w ruch. Większość tego, co internet o nim mówi, jest błędna — na ciekawe sposoby. Ta strona przeprowadzi cię od zera do źródeł, jeden krótki krok naraz.",
+ "body": "\n<p>Gdzieś między TikTokiem o „manifestowaniu\" a seminarium doktoranckim w Amsterdamie leży jeden z najdziwniejszych zbiorów pism w dziejach Zachodu: dialogi spisane w rzymskim Egipcie pod imieniem <a href=\"/pl/figures/hermes-trismegistus/\">Hermesa Trismegistosa</a> — postaci, która nigdy nie istniała, a której księgi i tak zmieniły świat.</p>\n<p>Pomogły rozniecić renesans. Ukształtowały to, jak pierwsi naukowcy wyobrażali sobie przyrodę. Dały współczesnemu okultyzmowi większość jego umeblowania, a popkulturze jej ulubioną frazę: <a href=\"/pl/ideas/as-above-so-below/\">jak w górze, tak i na dole</a> — która, uprzedzamy od razu, nie pochodzi stamtąd, skąd myślisz.</p>\n<h2>Jak działa ta strona</h2>\n<p>Jedna zasada: <strong>poważna historia, prawdziwe źródła, bez wróżenia.</strong> Każde twierdzenie ma przypis. Tam, gdzie badacze się spierają, wymieniamy obie strony. Tam, gdzie ukochana opowieść okazuje się mitem, mówimy to wprost — i opowiadamy historię prawdziwą, zwykle ciekawszą.</p>\n<p>Kręgosłupem strony jest <a href=\"/pl/path/\">Ścieżka</a>: dwanaście krótkich kroków, każdy do przeczytania w kwadrans, od „co to w ogóle jest?\" po samodzielną lekturę starożytnych tekstów w dobrych przekładach. Wokół niej rosną trzy skrzydła: <a href=\"/pl/texts/\">Teksty</a>, <a href=\"/pl/figures/\">Postaci</a> i <a href=\"/pl/ideas/\">Idee</a>.</p>\n<h2>Od czego zacząć</h2>\n<p>Zacznij od kroku pierwszego. Odpowiada na pytanie, które zadają wszyscy — a na które prawie nikt nie odpowiada uczciwie.</p>",
+ "faq": [
+  [
+   "Czy potrzebuję jakiegoś przygotowania?",
+   "Żadnego. Ścieżka zakłada zero wcześniejszej wiedzy — wystarczy ciekawość."
+  ],
+  [
+   "Czy dołączam do jakiegoś systemu wierzeń?",
+   "Nie. To historia idei, czytana tak, jak czytałoby ją dobre seminarium uniwersyteckie — bez inicjacji i bez członkostwa."
+  ],
+  [
+   "Ile zajmuje ścieżka?",
+   "Dwanaście kroków, po około piętnaście minut. Nowe kroki ukazują się z każdym wydaniem naszego listu As Above."
+  ]
+ ],
+ "next": "Zacznij ścieżkę &rarr; <a href=\"/pl/path/01-what-is-hermeticism/\">Krok 01: Czym jest hermetyzm?</a>"
+}

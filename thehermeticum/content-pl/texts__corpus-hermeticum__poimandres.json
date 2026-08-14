@@ -1,0 +1,52 @@
+{
+ "path": "texts/corpus-hermeticum/poimandres",
+ "url": "/texts/corpus-hermeticum/poimandres/",
+ "trail": [
+  [
+   "Teksty",
+   "/pl/texts/"
+  ],
+  [
+   "Corpus Hermeticum",
+   "/pl/texts/corpus-hermeticum/"
+  ]
+ ],
+ "crumb": "Poimandres",
+ "kicker": "Teksty — Corpus Hermeticum I",
+ "title": "Poimandres — wizja otwierająca Corpus",
+ "desc": "Poimandres (Corpus Hermeticum I): wizyjna kosmogonia otwierająca korpus hermetyczny — streszczenie, struktura i jak ją czytać bez greki.",
+ "h1": "Poimandres",
+ "tldr": "Pierwszy traktat Corpusu: wizyjny dialog, w którym kosmiczny Umysł pokazuje narratorowi, jak powstał świat, czym jest człowiek i jak dusza wspina się do domu przez sfery planetarne.",
+ "body": "\n<p>Człowiek zapada w stan między snem a jawą. Pojawia się bezgraniczna istota i pyta, co chce wiedzieć. „Chcę poznać rzeczy, które są — odpowiada — i poznać Boga.” To, co następuje, jest jednym z wielkich wizyjnych tekstów późnego antyku.</p>\n<h2>Kształt wizji</h2>\n<p>Światło bez granic; ciemność zwijająca się w dół, w wilgotny chaos; święte Słowo porządkujące żywioły. Istota nazywa siebie Poimandresem, „<a href=\"/pl/ideas/nous/\">Nous</a> zwierzchniej mocy” — samym Umysłem. Pokazuje stwarzanie kosmosu, a potem najdziwniejszy moment tekstu: niebiański Anthropos, boski Człowiek, przechyla się przez kosmiczną ramę, zakochuje się w Naturze, a Natura w nim. Ludzkość rodzi się podwójna — śmiertelna w ciele, nieśmiertelna w istocie.</p>\n<h2>Wstępowanie</h2>\n<p>Ponieważ spadliśmy przez sfery, możemy się przez nie wspiąć z powrotem. Po śmierci dusza wznosi się przez siedem stref planetarnych, oddając każdej namiętność, którą kiedyś od niej dostała — jednej podstęp, innej ambicję — aż ogołocona wchodzi w ósmą sferę i dołącza do mocy śpiewających Bogu. Ta drabina — upadek, ogołocenie, pieśń — pobrzmiewa w zachodniej mistyce przez dwa tysiąclecia.</p>\n<h2>Jak to czytać</h2>\n<p>Powoli, dwa razy. Najpierw dla obrazów; potem dla ukrytego w nich argumentu: że poznanie kosmosu i poznanie siebie to jeden akt, bo umysł w tobie i Umysł w świecie są spokrewnione. Ta teza — a nie żadne „prawo” czy „zasada” — jest silnikiem całej tradycji hermetycznej.</p>\n<blockquote>Lektura z przewodnikiem, sekcja po sekcji, nadchodzi jako krok 04 Ścieżki — razem z listem.</blockquote>",
+ "faq": [
+  [
+   "Co znaczy „Poimandres”?",
+   "Rzecz sporna. Tradycyjne greckie odczytanie: „pasterz ludzi”; szeroko dyskutowana współczesna propozycja wywodzi nazwę z egipskiego „poznanie Re”. Sam ten spór mówi ci, czym jest ten tekst: grecki na powierzchni, egipski pod spodem."
+  ],
+  [
+   "Czy to tekst gnostycki?",
+   "Dzieli z epoką umeblowanie — wizyjne wstępowanie, boski Umysł, materię jako uwikłanie — ale hermetyczny nastrój jest cieplejszy wobec kosmosu niż większość tekstów gnostyckich."
+  ],
+  [
+   "Gdzie mogę to teraz przeczytać?",
+   "Standardem jest przekład Copenhavera; wersja Meada z 1906 roku, z domeny publicznej, jest darmowa w sieci i wystarczy na pierwsze podejście — czytana ze świadomością jej wieku."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992) — CH I z komentarzem.",
+  "Dossier badawcze: ancient-texts.md §1.2–1.3, ideas-glossary.md §1, §8."
+ ],
+ "next": "Powrót do hubu &rarr; <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a>",
+ "media": [
+  [
+   "SHWEP 103: Corpus Hermeticum I, the Poimandres",
+   "https://shwep.net/podcast/corpus-hermeticum-i-the-poimandres/",
+   "uważna lektura, z aparatem naukowym"
+  ],
+  [
+   "ESOTERICA: Introduction to the Corpus Hermeticum",
+   "https://www.youtube.com/watch?v=kHHTt6Yiv5U",
+   "19 min · akademicki"
+  ]
+ ]
+}

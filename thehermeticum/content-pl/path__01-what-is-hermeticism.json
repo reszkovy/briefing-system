@@ -1,0 +1,56 @@
+{
+ "path": "path/01-what-is-hermeticism",
+ "url": "/path/01-what-is-hermeticism/",
+ "trail": [
+  [
+   "Ścieżka",
+   "/pl/path/"
+  ]
+ ],
+ "crumb": "01 · Czym jest hermetyzm?",
+ "kicker": "Ścieżka — krok 01",
+ "title": "Czym jest hermetyzm? Uczciwa odpowiedź",
+ "desc": "Hermetyzm wyjaśniony uczciwie: starożytne grecko-egipskie teksty, renesansowe odrodzenie, zakony okultystyczne i książka z 1908 roku — cztery rzeczy, jedno słowo.",
+ "h1": "Czym jest hermetyzm?",
+ "tldr": "„Hermetyzm\" oznacza co najmniej cztery różne rzeczy: starożytne grecko-egipskie teksty mądrościowe (ok. 100&ndash;300 n.e.), ich renesansowe odrodzenie, systemy okultystyczne XIX i XX wieku oraz amerykański poradnik z 1908 roku. Większość zamieszania bierze się ze sklejania ich w jedno fałszywe kontinuum.",
+ "body": "\n<p>Zapytaj trzy osoby, czym jest hermetyzm, a usłyszysz o mistycznej religii, tajnym stowarzyszeniu i life-hacku o „wibracji\". Żadna z tych odpowiedzi nie jest całkiem błędna — i właśnie na tym polega problem. To słowo tak długo naciągano na cztery różne ciała, że pierwszym uczciwym krokiem jest je rozdzielić.</p>\n<h2>Rzecz pierwsza: starożytne teksty</h2>\n<p>Mniej więcej między 100 a 300 rokiem n.e. greckojęzyczni autorzy w rzymskim Egipcie pisali dialogi filozoficzne głosem <a href=\"/pl/figures/hermes-trismegistus/\">Hermesa Trismegistosa</a>. Rdzeń tego, co ocalało, to <a href=\"/pl/texts/corpus-hermeticum/\">Corpus Hermeticum</a>, <a href=\"/pl/texts/asclepius/\">Asclepius</a> oraz rozsypka fragmentów i znalezisk — w tym teksty rytualne wydobyte z egipskiego piasku w Nag Hammadi w 1945 roku. Badacze nazywają tę starożytną warstwę <em>hermetyzmem antycznym</em> (ang. <em>Hermetism</em>). Jej tematy: Bóg, umysł, kosmos i to, jak człowiek dochodzi do <em>poznania</em> — przemieniającego poznania, które teksty nazywają gnozą daną przez <a href=\"/pl/ideas/nous/\">nous</a>.</p>\n<h2>Rzecz druga: renesansowe odrodzenie</h2>\n<p>W 1463 roku umierający Kosma Medyceusz kazał swojemu tłumaczowi odłożyć Platona i najpierw przełożyć Hermesa. Przez następne 150 lat najlepsze umysły Europy wierzyły, że te teksty są starsze niż Mojżesz — pierwotne objawienie, <em>prisca theologia</em>. Myliły się co do datowania (dowiódł tego filolog Isaac Casaubon w 1614 roku), ale był to błąd wspaniale płodny: karmił renesansową sztukę, magię i wczesne wizje matematycznej, harmonijnej przyrody.</p>\n<h2>Rzecz trzecia: hermetyzm okultystyczny</h2>\n<p>Wiek XIX i XX przebudowały „hermetyzm\" w system praktyczny: Hermetyczny Zakon Złotego Brzasku, magia rytualna, tarot, podręczniki treningowe Franza Bardona. Biegną tędy autentyczne linie idei — ale też wymyślone rodowody i co najmniej jeden dokument założycielski, który niemal na pewno był fałszerstwem.</p>\n<h2>Rzecz czwarta: książka z 1908 roku</h2>\n<p>„Siedem zasad hermetycznych\", które cytuje twój feed, pochodzi z <a href=\"/pl/texts/kybalion/\">Kybalionu</a> — wydanego w Chicago w 1908 roku i napisanego nie przez starożytnych mistrzów, lecz, jak ustaliła nauka, przez Williama Walkera Atkinsona, autora nurtu New Thought. To fascynujący dokument własnej epoki. Ale nie starożytny Egipt.</p>\n<h2>Czym więc jest hermetyzm?</h2>\n<p>Całym tym splotem: starożytnymi tekstami, ich długim życiem po życiu i sporami między nimi. Ta strona trzyma pasma osobno — bo prawdziwa, splątana historia jest o wiele ciekawsza niż gładka podróbka.</p>",
+ "facts": [
+  [
+   "Rdzeń starożytny",
+   "Corpus Hermeticum, Asclepius, Definitions, fragmenty (ok. 100–300 n.e.)"
+  ],
+  [
+   "Język",
+   "greka (z zachowanymi wersjami koptyjskimi, łacińskimi i ormiańskimi)"
+  ],
+  [
+   "Terminy badaczy",
+   "Hermetism (warstwa starożytna) vs Hermeticism (późniejsza tradycja)"
+  ],
+  [
+   "Współczesny przekład standardowy",
+   "Copenhaver, <i>Hermetica</i> (Cambridge, 1992); Litwa, <i>Hermetica II</i> (2018)"
+  ]
+ ],
+ "faq": [
+  [
+   "Czy hermetyzm to religia?",
+   "Starożytne teksty zakładają żywą praktykę duchową i mamy ślady realnych wspólnot rytualnych — ale nie było żadnego kościoła, kanonu ani kapłaństwa „hermetyzmu\". Dziś bada się go jako historię idei i praktykuje w wielu wymyślonych na nowo formach."
+  ],
+  [
+   "Egipski czy grecki?",
+   "Jedno i drugie — i to żywy spór wśród badaczy. Teksty napisano po grecku, słownikiem platońskim i stoickim, ale nowsze badania (Fowden, Bull) dowodzą, że wyrosły z autentycznie egipskich środowisk kapłańskich."
+  ],
+  [
+   "Czy siedem zasad hermetycznych jest starożytne?",
+   "Nie. Sformułowano je w Kybalionie (1908). Starożytne teksty zawierają inne — i bogatsze — idee."
+  ]
+ ],
+ "sources": [
+  "Brian P. Copenhaver, <i>Hermetica</i> (Cambridge University Press, 1992) — wstęp.",
+  "Wouter J. Hanegraaff, <i>Esotericism and the Academy</i> (Cambridge, 2012).",
+  "Christian H. Bull, <i>The Tradition of Hermes Trismegistos</i> (Brill, 2018).",
+  "Dossier badawcze: scholarship.md, modern-occult.md (pliki źródłowe tej strony)."
+ ],
+ "next": "Dalej &rarr; <a href=\"/pl/path/02-who-was-hermes-trismegistus/\">Krok 02: Kim był Hermes Trismegistos?</a>"
+}

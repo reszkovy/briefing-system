@@ -1,0 +1,36 @@
+{
+ "path": "ideas/nous",
+ "url": "/ideas/nous/",
+ "trail": [
+  [
+   "Idee",
+   "/pl/ideas/"
+  ]
+ ],
+ "crumb": "Nous",
+ "kicker": "Idee",
+ "title": "Nous — boski Umysł",
+ "desc": "Nous w pismach hermetycznych: boski Umysł, który jest zarazem istotą Boga i najgłębszą władzą człowieka — definicja, źródła i częste błędne odczytania.",
+ "h1": "Nous",
+ "tldr": "Po grecku „umysł” — ale w pismach hermetycznych Nous to sam boski Umysł: źródło rzeczywistości, nauczyciel z Poimandresa i ta władza w nas, dzięki której poznanie Boga jest w ogóle możliwe. Nie „intelekt”, nie „mózg” i nie „wibracja”.",
+ "body": "\n<p>Jeśli pisma hermetyczne mają jedno słowo nośne, to właśnie to. <em>Nous</em> jest tym, co objawia, co stwarza i co przebudza — czasem wszystkim trojgiem na jednej stronie.</p>\n<h2>W źródłach</h2>\n<p>W <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandresie</a> objawiciel przedstawia się jako „Nous najwyższej mocy”: Umysł jest twarzą, którą Bóg zwraca ku szukającemu. Traktat IV opowiada o czaszy do mieszania (<em>krater</em>) napełnionej Nous i zesłanej w dół, by dusze, które zechcą, mogły ochrzcić się w umyśle — zdumiewający obraz przebudzenia jako zanurzenia. Gdzie indziej Nous jest sternikiem duszy: obecny w ludziach czci, nieobecny w bezmyślnym tłumie.</p>\n<h2>Przekłady i pułapki</h2>\n<p>„Umysł” to najmniej złe polskie słowo. „Intelekt” brzmi jak kalkulacja; „świadomość” wciąga współczesne spory; parafrazy New Age („umysł uniwersalny” jako mentalne Wi-Fi) spłaszczają religijny ciężar terminu. W pismach hermetycznych przyjęcie Nous bliższe jest łasce niż IQ — zmienia to, kim jesteś, a nie tylko to, co wiesz.</p>\n<h2>Dlaczego to ważne</h2>\n<p>Na tym wisi cała hermetyczna obietnica: umysł w tobie jest spokrewniony z Umysłem w świecie, więc poznawanie jest powrotem do domu. To jedno równanie napędzało dwa tysiące lat mistyki, magii i — przefiltrowanej, zsekularyzowanej — części pewności wczesnonowożytnej nauki, że natura w ogóle daje się zrozumieć.</p>",
+ "faq": [
+  [
+   "Czy Nous to to samo co Bóg?",
+   "Teksty się różnią — czasem Nous jest istotą Boga, czasem Jego pierwszą emanacją. Corpus to antologia, nie system; ta rozbieżność jest częścią danych."
+  ],
+  [
+   "Czy każdy rodzi się z Nous?",
+   "CH IV mówi dobitnie, że nie — rozum (logos) jest powszechny, ale Nous trzeba przyjąć lub wybrać. To rozróżnienie między miewaniem myśli a posiadaniem Umysłu jest kluczowe."
+  ],
+  [
+   "Czy przetrwał w późniejszej tradycji?",
+   "Wszędzie: Intelekt neoplatonizmu, iskierka duszy średniowiecznej mistyki i — mocno rozcieńczone — każde współczesne twierdzenie, że „umysł jest fundamentalny”."
+  ]
+ ],
+ "sources": [
+  "Copenhaver, <i>Hermetica</i> (1992): CH I, IV, X–XII.",
+  "Dossier badawcze: ideas-glossary.md §1."
+ ],
+ "next": "Zobacz go w działaniu &rarr; <a href=\"/pl/texts/corpus-hermeticum/poimandres/\">Poimandres</a>"
+}
