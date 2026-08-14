@@ -2,9 +2,25 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "www.thehermeticum.com" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "www.thehermeticum.com"
+        }
+      ],
       "destination": "https://thehermeticum.com/$1",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
