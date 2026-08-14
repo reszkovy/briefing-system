@@ -1,0 +1,23 @@
+{
+  "path": "path/05-the-key-ideas-in-one-map",
+  "trail": [["The Path", "/path/"]],
+  "crumb": "05 · The key ideas in one map",
+  "kicker": "The Path — step 05",
+  "title": "Hermeticism's key ideas in one map",
+  "desc": "The working vocabulary of Hermetic thought in one connected map: Nous, gnosis, rebirth, correspondence, ascent — and how the pieces fit together.",
+  "h1": "The key ideas,<br>in one map",
+  "tldr": "Eleven concepts carry the whole tradition, and they form one machine: a cosmos born from Mind (Nous), knit together by correspondence, inhabited by a double human being whose task is transformative knowledge (gnosis) — achieved as rebirth, practised as ascent. Learn the map once and every text on this site snaps into place.",
+  "img": "art-spheres.jpg",
+  "body": "<p>You&rsquo;ve read <a href=\"/path/04-reading-poimandres/\">Poimandres</a>. Before we go further into texts, let&rsquo;s zoom out — because the Hermetica, for all their variety, keep running the same conceptual machine. Here is the whole map, one gear at a time.</p><h2>The source: Nous</h2><p>At the top sits <a href=\"/ideas/nous/\">Nous</a> — Mind — which is both what God is and what God gives. Reality flows from it; revelation is it speaking. Everything else on this map is a way of getting back to it.</p><h2>The fabric: correspondence</h2><p>The cosmos hangs together by sympathy: <a href=\"/ideas/correspondences/\">correspondences</a> bind stars to stones, heavens to bodies. This is what the famous <a href=\"/ideas/as-above-so-below/\">&ldquo;as above, so below&rdquo;</a> gestures at — and it&rsquo;s why astrology and alchemy could count as <em>sciences</em> in this world: they read the threads.</p><h2>The protagonist: the double human</h2><p>From Poimandres you know the twist: humans are mortal by body, immortal by essence — the Asclepius goes further and calls the human <em>a great miracle</em>. We are the one being that stands on both floors of the building, which is why we alone can climb.</p><h2>The goal: gnosis</h2><p>Not information — <a href=\"/ideas/gnosis/\">gnosis</a>: knowledge that transforms the knower. Its opposite in the texts isn&rsquo;t ignorance but drunkenness, sleep, forgetting. The cure is waking up to what you already are.</p><h2>The event: rebirth</h2><p>Treatise XIII stages the change as <a href=\"/ideas/palingenesia/\">palingenesia</a> — rebirth — in which ten divine powers drive out twelve zodiacal torments. Count those numbers: liberation from astrology, argued in astrology&rsquo;s own arithmetic. The map contains its own escape route.</p><h2>The practice: ascent</h2><p>And the route has stations: up through the spheres to the <a href=\"/ideas/the-ogdoad-and-ennead/\">Eighth and Ninth</a>, in prayer and song. A ritual text found at <a href=\"/texts/nag-hammadi-hermetica/\">Nag Hammadi</a> shows this wasn&rsquo;t just imagery — someone practised it, together, with liturgy. The neighbouring name for practice-as-ascent is <a href=\"/ideas/theurgy/\">theurgy</a>.</p><h2>One warning label</h2><p>The corpus is an anthology, not a system — some treatises love the cosmos, some fear it; scholars debate whether that&rsquo;s contradiction or curriculum. Hold the map lightly. It&rsquo;s a reader&rsquo;s tool, not a creed — and now you own it.</p>",
+  "facts": [["Core concepts", "11 (all linked in our glossary)"],
+            ["The engine", "Nous → correspondence → double human → gnosis → rebirth → ascent"],
+            ["Key texts behind the map", "CH I, IV, X–XIII; Asclepius; NHC VI,6"],
+            ["Deep dives", "Every idea has its own sourced entry in <a href=\"/ideas/\">the Ideas wing</a>"]],
+  "faq": [["Is this 'the Hermetic system'?", "It's our reader's map of recurring ideas — the ancient texts themselves never state a single system, and honest reading means keeping that in view."],
+          ["Where do the 'seven principles' fit on this map?", "They don't — they're a 1908 formulation from the Kybalion, not an ancient scheme. Step 10 tells that story in full."],
+          ["Which idea should I explore first?", "Nous — everything else on the map is downstream of it. Then follow your curiosity; the entries cross-link."]],
+  "sources": ["Copenhaver, <i>Hermetica</i> (1992).",
+              "Research dossier: ideas-glossary.md (all sections; each claim sourced there)."],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/06-as-above-so-below/\">Step 06: As above, so below — what it actually means</a> <em>(unlocks Sep 7)</em>"
+}
