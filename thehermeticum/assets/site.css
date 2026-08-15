@@ -185,7 +185,8 @@
   .cx__foot{margin:var(--sp3) 0 0}
 
   /* ── CODEX: jeden układ, cztery głosy typograficzne ── */
-  .codex__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp6)}
+  .codex__grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--sp5)}
+  .cx--guide .cx__item{font-family:var(--font-ui);font-size:.8rem;font-weight:600;letter-spacing:.01em}
   /* I. Ścieżka — interfejsowa, z numeracją tabelaryczną */
   .cx--path .cx__item{font-family:var(--font-ui);font-size:.82rem;font-weight:500;letter-spacing:.005em}
   /* II. Teksty — szeryfowe tytuły, jak w katalogu biblioteki */
@@ -319,6 +320,13 @@
   .art p{font-size:1.06rem;line-height:1.78}
   .art h2{margin:var(--sp6) 0 var(--sp3);font-family:var(--font-body);font-weight:600;font-size:1.4rem}
   .art .rule{margin:var(--sp3) 0 var(--sp5);padding-left:var(--sp4);border-left:2px solid var(--gold-bright);font-family:var(--font-ui);font-size:.9rem;line-height:1.6;color:var(--ink)}
+  .map{list-style:none;margin:0 0 var(--sp6);padding:0}
+  .map li{display:flex;align-items:baseline;gap:.7em;padding:.42em 0;border-bottom:1px solid var(--line-soft)}
+  .map li:last-child{border-bottom:0}
+  .map a{flex:1;color:var(--ink);text-decoration:none;font-family:var(--font-body);font-size:1.02rem}
+  .map a:hover{color:var(--vermilion)}
+  .map a i{display:inline-block;min-width:2.1em;font-style:normal;font-family:var(--font-ui);font-size:.66rem;font-weight:600;letter-spacing:.08em;color:var(--gold);font-variant-numeric:tabular-nums}
+  .map span{font-family:var(--font-ui);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);opacity:.7;white-space:nowrap}
   .art blockquote{margin:var(--sp5) 0;padding:var(--sp3) var(--sp5);border-left:2px solid var(--gold-bright);font-style:italic;color:var(--ink-muted)}
   .art a{color:var(--vermilion)}
   .art .btn{color:var(--paper)}
