@@ -610,3 +610,23 @@
   .stp__i.is-soon{opacity:.42}
   .stp__i.is-soon i{color:var(--ink-muted)}
   @media (max-width:720px){.stp__lbl{display:none}.stp__i b{max-width:8rem}}
+
+  /* ── NAPIĘCIE + METODA + CZYM TO NIE JEST ── */
+  .tension{padding-block:var(--sp8)}
+  .method{list-style:none;margin:var(--sp7) 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp5)}
+  .method li{padding-left:var(--sp4);border-left:1px solid var(--line-soft)}
+  .method i{display:block;font-style:normal;font-family:var(--font-ui);font-size:.62rem;font-weight:600;letter-spacing:.22em;color:var(--gold);margin-bottom:.5em}
+  .method b{display:block;font-family:var(--font-body);font-size:1.12rem;font-weight:600;margin-bottom:.3em}
+  .method span{font-size:.94rem;line-height:1.55;color:var(--ink-muted)}
+  .isnot{margin-top:var(--sp7);padding-top:var(--sp5);border-top:2px solid var(--ink);max-width:44rem}
+  .isnot__h{font-family:var(--font-ui);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--vermilion);margin:0 0 var(--sp3)}
+  .isnot ul{list-style:none;margin:0;padding:0;columns:2;column-gap:var(--sp6)}
+  .isnot li{padding:.28em 0;font-size:.98rem;color:var(--ink-muted);break-inside:avoid}
+  .isnot li::before{content:"—";color:var(--gold);margin-right:.5em}
+  .isnot__f{margin-top:var(--sp4);font-size:.94rem;color:var(--ink-muted)}
+  .tension__cta{margin-top:var(--sp7);display:flex;align-items:center;gap:var(--sp5);flex-wrap:wrap}
+  @media (max-width:900px){.method{grid-template-columns:1fr 1fr}.isnot ul{columns:1}}
+  @media (max-width:560px){.method{grid-template-columns:1fr}}
+  /* ilustracja rozdziału książki */
+  .book__fig{margin:0 0 var(--sp6)}
+  .book__fig img{width:100%;height:auto;display:block;max-height:15rem;object-fit:cover;object-position:center 40%}
