@@ -61,6 +61,15 @@ L10N = {
 }
 
 
+
+def _fig(c):
+    """Ilustracja rozdziału: najpierw po numerze (wspólna dla języków), potem po slugu."""
+    for name in (f"{c['n']:02d}.jpg", c['slug'] + '.jpg'):
+        if os.path.exists(os.path.join(ROOT, 'assets', 'book', name)):
+            return (f'<figure class="book__fig"><img src="/assets/book/{name}" alt="" '
+                    f'width="1400" height="700" loading="eager"></figure>')
+    return ''
+
 def build_from_chapters(chs, lang, t, pre):
     """Czytnik z prawdziwych rozdziałów książki (book-pl/*.json)."""
     L = lang == 'pl'
@@ -118,7 +127,7 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=37"><script src="/assets/site.js?v=37" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=39"><script src="/assets/site.js?v=39" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
@@ -163,7 +172,7 @@ def build_from_chapters(chs, lang, t, pre):
     <article class="book__body">
       <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl}</p>
       <h1 class="book__h1">{H.escape(c['title'])}</h1>
-      {f'<figure class="book__fig"><img src="/assets/book/{c["slug"]}.jpg" alt="" width="1400" height="700" loading="eager"></figure>' if os.path.exists(os.path.join(ROOT, 'assets', 'book', c['slug'] + '.jpg')) else ''}
+      {_fig(c)}
       {f'<p class="book__sub">{H.escape(c["subtitle"])}</p>' if c.get('subtitle') else ''}
       {secs}
       {closing}
@@ -242,8 +251,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=37">
-<script src="/assets/site.js?v=37" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=39">
+<script src="/assets/site.js?v=39" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>
@@ -298,7 +307,7 @@ def build_lang(lang):
     <article class="book__body">
       <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {t['parts'][c['part']]} &middot; {t['chapter']} {c['num']:02d} {t['of']} {total}</p>
       <h1 class="book__h1">{H.escape(c['title'])}</h1>
-      {f'<figure class="book__fig"><img src="/assets/book/{c["slug"]}.jpg" alt="" width="1400" height="700" loading="eager"></figure>' if os.path.exists(os.path.join(ROOT, 'assets', 'book', c['slug'] + '.jpg')) else ''}
+      {_fig(c)}
       {c['html']}
       <p class="book__src">{"Źródło" if L else "Source"}: <a href="{srcurl}">{src}</a></p>
       <nav class="bnav">{nav}</nav>

@@ -718,3 +718,13 @@
     .nav__sep{margin-inline:.2rem}
     .hdr__links a{font-size:.64rem;padding:.3em .25em}
   }
+
+  /* ── PRZYCISK INDEKSU: klasyczne menu ── */
+  .hdr__codexBtn{display:inline-flex;align-items:center;gap:.5em}
+  .hdr__burgerIcon{display:inline-flex;align-items:center;color:var(--ink)}
+  .hdr__burgerIcon svg{display:block}
+  .hdr__codexBtn[aria-expanded="true"] .hdr__burgerIcon svg path{stroke:var(--vermilion)}
+  @media (max-width:1180px){
+    .hdr__codexBtn{padding:.55em .7em}
+    .hdr__codexIcon{display:none}
+  }

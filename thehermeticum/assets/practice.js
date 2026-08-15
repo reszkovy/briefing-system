@@ -160,15 +160,58 @@
   }
 
   /* ── Markdown ── */
+
+  /* ── Rama metody: klucz do czytania zapisu (i dla modelu) ── */
+  var FRAME_EN = [
+    '> **Method frame — Operational Hermeticism**',
+    '>',
+    '> Read the pattern. Align the system. Act with energy. Transmute the result.',
+    '>',
+    '> - **Read** — see the structure under the noise, in yourself and in the systems you live in.',
+    '> - **Align** — action in line with values, energy, body and the long horizon.',
+    '> - **Act** — energy is the real currency; spend it deliberately and protect the core.',
+    '> - **Transmute** — turn tension into form, knowledge into practice, chaos into system.',
+    '>',
+    '> Working principles behind these questions:',
+    '> - The body is the first system that requires alignment.',
+    '> - Not everything requires action. Not everything that can be changed should be changed.',
+    '> - Agency increases responsibility. The more you can do, the more carefully you must choose.',
+    '> - Relationships are infrastructure, not assets. People are not tasks.',
+    '> - Not everything has to be useful: curiosity, beauty and rest need no justification.',
+    '> - Keep source, interpretation and practice apart — they are different kinds of claim.',
+    ''
+  ].join('\n');
+  var FRAME_PL = [
+    '> **Rama metody — hermetyzm operacyjny**',
+    '>',
+    '> Czytaj wzór. Ustaw system. Działaj z energią. Przekształcaj wynik.',
+    '>',
+    '> - **Czytaj** — zobacz strukturę pod hałasem: w sobie i w systemach, w których żyjesz.',
+    '> - **Ustaw** — działanie zgodne z wartościami, energią, ciałem i długim horyzontem.',
+    '> - **Działaj** — energia jest prawdziwą walutą; wydawaj ją świadomie i chroń rdzeń.',
+    '> - **Przekształcaj** — zamieniaj napięcie w formę, wiedzę w praktykę, chaos w system.',
+    '>',
+    '> Zasady stojące za tymi pytaniami:',
+    '> - Ciało jest pierwszym systemem, z którym trzeba się uzgodnić.',
+    '> - Nie wszystko wymaga działania. Nie wszystko, co można zmienić, powinno zostać zmienione.',
+    '> - Sprawczość zwiększa odpowiedzialność. Im więcej możesz, tym uważniej musisz wybierać.',
+    '> - Relacje są infrastrukturą, nie aktywami. Ludzie nie są zadaniami.',
+    '> - Nie wszystko musi być użyteczne: ciekawość, piękno i odpoczynek nie potrzebują uzasadnienia.',
+    '> - Trzymaj osobno źródło, interpretację i praktykę — to różne rodzaje twierdzeń.',
+    ''
+  ].join('\n');
+
   function esc(s) { return (s || '').trim(); }
   function sec(title, val, out) { if (esc(val)) out.push('### ' + title, '', esc(val), ''); }
-  function md(rec) {
+  function md(rec, withFrame) {
     var o = [];
     var protos = rec.protocols.map(function (p) { return p.type; }).filter(function (v, i, a) { return a.indexOf(v) === i; });
     o.push('---', 'date: ' + rec.date, 'timezone: ' + rec.timezone, 'language: ' + rec.language);
     if (rec.energy_morning != null) o.push('energy_morning: ' + rec.energy_morning);
     if (protos.length) { o.push('protocols:'); protos.forEach(function (p) { o.push('  - ' + p); }); }
+    o.push('method: operational-hermeticism');
     o.push('status: ' + rec.status, '---', '', '# ' + (PL ? 'Praktyka dnia' : 'Daily Practice'), '');
+    if (withFrame !== false) o.push(PL ? FRAME_PL : FRAME_EN);
     var b = rec.begin;
     if (esc(b.state) || esc(b.matters) || esc(b.not_doing)) {
       o.push('## ' + (PL ? 'Początek' : 'Begin'), '');
@@ -325,7 +368,7 @@
     });
     var cp = root.querySelector('[data-copy]');
     if (cp) cp.addEventListener('click', function () {
-      var text = (PL ? AI_PL : AI_EN) + '\n---\n\n' + md(rec);
+      var text = (PL ? AI_PL : AI_EN) + '\n' + (PL ? FRAME_PL : FRAME_EN) + '\n---\n\n' + md(rec, false);
       navigator.clipboard.writeText(text).then(function () {
         cp.textContent = T.copied; ev('ai_context_copied');
         setTimeout(function () { cp.textContent = T.copyAI; }, 2500);
