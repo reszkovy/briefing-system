@@ -138,6 +138,7 @@ IMGS = {
     "ideas/prisca-theologia": "art-torch.jpg",
     "ideas/theurgy": "art-ladder.jpg",
     "ideas/the-ogdoad-and-ennead": "art-spheres.jpg",
+    "ideas/tarot": "art-tarot.jpg",
 }
 
 PORTRAITS = {
@@ -264,8 +265,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=13">
-<script src="/assets/site.js?v=13" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=14">
+<script src="/assets/site.js?v=14" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -721,7 +722,7 @@ page("ideas",
   crumb="Ideas", kicker="Wing III", title="The Ideas — a working glossary of Hermetic thought",
   desc="The working vocabulary of Hermetic thought, defined plainly and sourced honestly: nous, gnosis, as above so below, correspondences and more.",
   h1="The Ideas",
-  tldr="Ten load-bearing concepts. Each entry: what the sources say, what scholars debate, what the internet gets wrong.",
+  tldr="Eleven load-bearing concepts. Each entry: what the sources say, what scholars debate, what the internet gets wrong.",
   body='''
 <ul class="hub">
   <li><a href="/ideas/as-above-so-below/"><b>As above, so below</b><span>Everyone quotes it. Few know where it&rsquo;s from.</span></a></li>
@@ -1099,13 +1100,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=13"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=14"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=13" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=14" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>

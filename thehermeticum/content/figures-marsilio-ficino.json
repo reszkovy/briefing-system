@@ -1,6 +1,11 @@
 {
   "path": "figures/marsilio-ficino",
-  "trail": [["Figures", "/figures/"]],
+  "trail": [
+    [
+      "Figures",
+      "/figures/"
+    ]
+  ],
   "crumb": "Marsilio Ficino",
   "kicker": "The Figures",
   "title": "Marsilio Ficino — the translation that revived Hermes",
@@ -8,10 +13,65 @@
   "h1": "Marsilio Ficino",
   "tldr": "Marsilio Ficino (1433–1499), court philosopher-translator to the Medici, made the Latin translation of the Corpus Hermeticum (1463, printed 1471 as the Pimander) that launched Renaissance Hermeticism. He believed Hermes was an Egyptian sage roughly contemporary with Moses — a dating that stood until Casaubon demolished it in 1614.",
   "body": "<p>In 1462&ndash;63 a Greek manuscript of the Hermetica reached Florence, and the dying Cosimo de&rsquo; Medici gave his translator an extraordinary order: set aside Plato. Do Hermes first. Marsilio Ficino shelved the complete works of Plato to translate fourteen treatises of the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a>, finishing in 1463, a year before Cosimo&rsquo;s death. Printed in 1471 as the <em>Pimander</em>, the translation became one of the best-selling philosophical texts of the era &mdash; dozens of editions by 1600.</p><h2>Why Hermes outranked Plato</h2><p>Because everyone believed he was older. In his preface Ficino called Hermes Trismegistus &ldquo;the first author of theology,&rdquo; head of a golden chain running through Orpheus and Pythagoras down to Plato &mdash; the idea historians call <em>prisca theologia</em>, the ancient theology. The Hermetica seemed to anticipate Genesis and the Gospel of John precisely because they were thought to predate both, written by an Egyptian sage roughly contemporary with Moses. The whole edifice rested on a chronology &mdash; and the chronology was wrong, as Isaac Casaubon proved philologically in 1614. The story of what Ficino actually revived begins at <a href=\"/path/01-what-is-hermeticism/\">Path step 01</a>.</p><h2>How Hermetic was Ficino?</h2><p>Less than the legend says. Frances Yates made the Hermetica the engine of Renaissance thought; critics led by Brian Copenhaver showed that Ficino&rsquo;s astrological magic owes far more to Proclus and Neoplatonism than to the Corpus, which contains little practical magic. The current consensus: Hermes mattered to Ficino chiefly as an <em>authority</em> legitimizing ancient theology, less as a source of doctrine. Even the deathbed-order story rests on Ficino&rsquo;s own preface &mdash; genuine piety or elegant self-mythologizing, scholars still debate.</p><h2>The Academy that wasn&rsquo;t a lodge</h2><p>Pop-esoteric histories cast Ficino as head of a secret initiatory &ldquo;Platonic Academy.&rdquo; Scholarship (James Hankins) shows the &ldquo;Academy&rdquo; was an informal circle of pupils and correspondents &mdash; not an institution, and certainly not an occult order. What Ficino actually did needs no embellishment: one translator&rsquo;s decision, made for a dying patron, put a late-antique Egyptian-Greek corpus at the head of European thought for a century and a half &mdash; and gave every figure that follows on this site, from <a href=\"/figures/hermes-trismegistus/\">Hermes Trismegistus</a> himself to Bruno and Dee, their common text.</p>",
-  "facts": [["Born", "1433"], ["Died", "1499, Florence"], ["Key work", "Pimander — Latin Corpus Hermeticum I–XIV (1463; printed 1471)"], ["Patron", "Cosimo de' Medici, who ordered Hermes translated before Plato"], ["Core idea", "Prisca theologia — Hermes as \"the first author of theology\""], ["Why he matters", "His translation launched Renaissance Hermeticism"]],
-  "faq": [["Why did Ficino translate Hermes before Plato?", "Cosimo de' Medici, near death, ordered it: he wanted to read Hermes first, because Hermes was believed to be far older than Plato — the fountainhead of the ancient theology Plato merely inherited."], ["Did Ficino believe the Hermetica were really ancient Egyptian?", "Yes — he held them roughly contemporary with Moses. The dating was accepted for 150 years, until Isaac Casaubon's linguistic analysis of 1614 placed the texts in the early centuries CE."], ["Was Ficino's Platonic Academy a secret society?", "No. Scholarship shows it was an informal circle of pupils and correspondents, not an institution or initiatory lodge — that version is a modern esoteric embellishment."]],
-  "sources": ["Stanford Encyclopedia of Philosophy, \"Marsilio Ficino.\"", "Florian Ebeling, <i>The Secret History of Hermes Trismegistus</i> (Cornell UP, 2007), pp. 59–60.", "Brian P. Copenhaver, <i>Hermetica</i> (Cambridge UP, 1992), Introduction.", "Research dossier: renaissance.md §1–2; ancient-texts.md §1.4."],
+  "facts": [
+    [
+      "Born",
+      "1433"
+    ],
+    [
+      "Died",
+      "1499, Florence"
+    ],
+    [
+      "Key work",
+      "Pimander — Latin Corpus Hermeticum I–XIV (1463; printed 1471)"
+    ],
+    [
+      "Patron",
+      "Cosimo de' Medici, who ordered Hermes translated before Plato"
+    ],
+    [
+      "Core idea",
+      "Prisca theologia — Hermes as \"the first author of theology\""
+    ],
+    [
+      "Why he matters",
+      "His translation launched Renaissance Hermeticism"
+    ]
+  ],
+  "faq": [
+    [
+      "Why did Ficino translate Hermes before Plato?",
+      "Cosimo de' Medici, near death, ordered it: he wanted to read Hermes first, because Hermes was believed to be far older than Plato — the fountainhead of the ancient theology Plato merely inherited."
+    ],
+    [
+      "Did Ficino believe the Hermetica were really ancient Egyptian?",
+      "Yes — he held them roughly contemporary with Moses. The dating was accepted for 150 years, until Isaac Casaubon's linguistic analysis of 1614 placed the texts in the early centuries CE."
+    ],
+    [
+      "Was Ficino's Platonic Academy a secret society?",
+      "No. Scholarship shows it was an informal circle of pupils and correspondents, not an institution or initiatory lodge — that version is a modern esoteric embellishment."
+    ]
+  ],
+  "sources": [
+    "Stanford Encyclopedia of Philosophy, \"Marsilio Ficino.\"",
+    "Florian Ebeling, <i>The Secret History of Hermes Trismegistus</i> (Cornell UP, 2007), pp. 59–60.",
+    "Brian P. Copenhaver, <i>Hermetica</i> (Cambridge UP, 1992), Introduction.",
+    "Research dossier: renaissance.md §1–2; ancient-texts.md §1.4."
+  ],
   "ld_type": "Person",
   "ld_name": "Marsilio Ficino",
-  "next": "The book he translated &rarr; <a href=\"/texts/corpus-hermeticum/\">The Corpus Hermeticum</a>"
+  "next": "The book he translated &rarr; <a href=\"/texts/corpus-hermeticum/\">The Corpus Hermeticum</a>",
+  "media": [
+    [
+      "ESOTERICA: Renaissance Esotericism — the 15th-century fusion of magic, Kabbalah &amp; philosophy",
+      "https://www.youtube.com/watch?v=gKOCLGwHNW8",
+      "Dr Justin Sledge · academic"
+    ],
+    [
+      "Ross King: Renaissance Discoveries — the Hermetic texts",
+      "https://www.youtube.com/watch?v=woqI-4TYsZI",
+      "historian of the Italian Renaissance"
+    ]
+  ]
 }

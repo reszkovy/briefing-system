@@ -56,5 +56,12 @@
   ],
   "ld_type": "Person",
   "ld_name": "G.R.S. Mead",
-  "next": "The texts he carried into English &rarr; <a href=\"/texts/corpus-hermeticum/\">The Corpus Hermeticum</a>"
+  "next": "The texts he carried into English &rarr; <a href=\"/texts/corpus-hermeticum/\">The Corpus Hermeticum</a>",
+  "media": [
+    [
+      "Full reading: Corpus Hermeticum (Mead 1906 translation)",
+      "https://www.youtube.com/watch?v=P03-unYILuQ",
+      "Mead&rsquo;s own text, read aloud · 3 h 10"
+    ]
+  ]
 }

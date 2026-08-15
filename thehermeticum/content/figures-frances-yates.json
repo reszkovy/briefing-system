@@ -1,6 +1,11 @@
 {
   "path": "figures/frances-yates",
-  "trail": [["Figures", "/figures/"]],
+  "trail": [
+    [
+      "Figures",
+      "/figures/"
+    ]
+  ],
   "crumb": "Frances Yates",
   "kicker": "The Figures",
   "title": "Frances Yates — the historian who invented 'Hermeticism'",
@@ -8,10 +13,61 @@
   "h1": "Frances Yates",
   "tldr": "Frances A. Yates, historian at London's Warburg Institute, published Giordano Bruno and the Hermetic Tradition in 1964, arguing that a coherent magical \"Hermetic tradition\" drove Renaissance thought and helped spark modern science. The book created Renaissance Hermeticism as a field of study; its strong causal claims are now rejected, while its core insight — that magic mattered to intellectual history — survives.",
   "body": "<p>The only figure on this list who worked in a library rather than a temple, a court or a laboratory &mdash; and arguably none shaped what &ldquo;Hermeticism&rdquo; means today more than she did. Frances A. Yates, of the Warburg Institute in London, published <em>Giordano Bruno and the Hermetic Tradition</em> in 1964, and the field this site covers has been arguing with the book ever since.</p><h2>The thesis</h2><p>Yates argued that a coherent Hermetic tradition &mdash; magical, religious, centred on the divinity of the cosmos and the dignity of man, flowing from Ficino&rsquo;s translation of the <a href=\"/texts/corpus-hermeticum/\">Corpus Hermeticum</a> &mdash; was a driving force of Renaissance thought; that Bruno died a &ldquo;Hermetic magus&rdquo; preaching Egyptian revival; and, in her stronger formulations, that this magical current stimulated the rise of early modern science. The book was enormously influential: it effectively created &ldquo;Hermeticism&rdquo; as a historiographical category and made magic respectable as intellectual history.</p><h2>The critique</h2><p>From the 1970s on, the grand narrative came apart. Robert Westman and J.&nbsp;E. McGuire dismantled the science claim; Brian Copenhaver showed Ficino&rsquo;s magic owed more to Proclus than to the Hermetica; Nicholas Clulee did the same for Dee; Hilary Gatti re-read Bruno as a serious cosmologist. The counts against Yates: &ldquo;Hermeticism&rdquo; stretched to cover alchemy and Kabbalah, which the Corpus never mentions; a unified &ldquo;tradition&rdquo; where the sources show many currents; a causal arrow to the Scientific Revolution that did not survive scrutiny; medieval continuities underplayed.</p><h2>What survives</h2><p>The verdict is not demolition. Most scholars keep Yates&rsquo;s materials and her insistence that Renaissance magic and Hermetic texts mattered &mdash; while dropping the causal architecture. Wouter Hanegraaff treats the &ldquo;Yatesian grand narrative&rdquo; as itself a historical object worth studying. In shorthand: strong thesis rejected, weak thesis accepted.</p><h2>Why she is on this list</h2><p>Because popular esoteric media still recycle the strong version &mdash; &ldquo;Hermeticism caused the Scientific Revolution,&rdquo; &ldquo;Bruno was burned for his science&rdquo; &mdash; decades after scholarship moved on. Reading Yates today means reading a great historian <em>as historiography</em>: the classic model of how one brilliant book can create a field, mislead it, and still deserve its place on the shelf. The tradition she mapped, redrawn with current scholarship, is <a href=\"/atlas/\">the Atlas</a>.</p>",
-  "facts": [["Institution", "The Warburg Institute, London"], ["Key work", "Giordano Bruno and the Hermetic Tradition (1964)"], ["Thesis", "A coherent magical \"Hermetic tradition\" drove Renaissance thought"], ["Fate of the thesis", "Strong form rejected (Westman, McGuire, Copenhaver); weak form accepted"], ["Why she matters", "Created \"Renaissance Hermeticism\" as a field — and its central debate"]],
-  "faq": [["What is the Yates thesis?", "The claim, from Frances Yates's 1964 book, that a coherent magical Hermetic tradition drove Renaissance thought and stimulated the rise of early modern science, with Giordano Bruno as its \"Hermetic magus.\""], ["Is the Yates thesis still accepted?", "Not in its strong form: the causal link from Hermeticism to the Scientific Revolution did not survive scrutiny. Her weaker point — that Hermetic and magical currents were a real part of early modern intellectual life — is accepted."], ["Should I still read Giordano Bruno and the Hermetic Tradition?", "Yes — as a classic of historiography. It remains a brilliant, readable book; just read it alongside the post-Yates scholarship (Copenhaver, Hanegraaff) that corrected its architecture."]],
-  "sources": ["Frances A. Yates, <i>Giordano Bruno and the Hermetic Tradition</i> (1964).", "Wouter J. Hanegraaff, <i>Esotericism and the Academy</i> (Cambridge UP, 2012).", "Brian Vickers (ed.), <i>Occult and Scientific Mentalities in the Renaissance</i> (1984).", "Research dossier: scholarship.md §2."],
+  "facts": [
+    [
+      "Institution",
+      "The Warburg Institute, London"
+    ],
+    [
+      "Key work",
+      "Giordano Bruno and the Hermetic Tradition (1964)"
+    ],
+    [
+      "Thesis",
+      "A coherent magical \"Hermetic tradition\" drove Renaissance thought"
+    ],
+    [
+      "Fate of the thesis",
+      "Strong form rejected (Westman, McGuire, Copenhaver); weak form accepted"
+    ],
+    [
+      "Why she matters",
+      "Created \"Renaissance Hermeticism\" as a field — and its central debate"
+    ]
+  ],
+  "faq": [
+    [
+      "What is the Yates thesis?",
+      "The claim, from Frances Yates's 1964 book, that a coherent magical Hermetic tradition drove Renaissance thought and stimulated the rise of early modern science, with Giordano Bruno as its \"Hermetic magus.\""
+    ],
+    [
+      "Is the Yates thesis still accepted?",
+      "Not in its strong form: the causal link from Hermeticism to the Scientific Revolution did not survive scrutiny. Her weaker point — that Hermetic and magical currents were a real part of early modern intellectual life — is accepted."
+    ],
+    [
+      "Should I still read Giordano Bruno and the Hermetic Tradition?",
+      "Yes — as a classic of historiography. It remains a brilliant, readable book; just read it alongside the post-Yates scholarship (Copenhaver, Hanegraaff) that corrected its architecture."
+    ]
+  ],
+  "sources": [
+    "Frances A. Yates, <i>Giordano Bruno and the Hermetic Tradition</i> (1964).",
+    "Wouter J. Hanegraaff, <i>Esotericism and the Academy</i> (Cambridge UP, 2012).",
+    "Brian Vickers (ed.), <i>Occult and Scientific Mentalities in the Renaissance</i> (1984).",
+    "Research dossier: scholarship.md §2."
+  ],
   "ld_type": "Person",
   "ld_name": "Frances Yates",
-  "next": "The magus she made famous &rarr; <a href=\"/atlas/\">See the tradition on the Atlas</a>"
+  "next": "The magus she made famous &rarr; <a href=\"/atlas/\">See the tradition on the Atlas</a>",
+  "media": [
+    [
+      "Frances Yates: Giordano Bruno and the Hermetic Tradition — the thesis explained",
+      "https://www.youtube.com/watch?v=Nish66GSDh0",
+      "on the book that started the debate"
+    ],
+    [
+      "From Ficino to Crowley: Hermeticism explained",
+      "https://www.youtube.com/watch?v=tBiBQjRG3nc",
+      "Dr Angela Puca · academic overview"
+    ]
+  ]
 }
