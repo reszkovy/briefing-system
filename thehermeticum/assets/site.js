@@ -103,12 +103,12 @@
   if(saved==='granted'){grant();return;}
   if(saved==='denied'){return;}
   var pl=(document.documentElement.lang||'en').indexOf('pl')===0;
-  var t=pl?{h:'Pomiar odwiedzin',
-      p:'Chcemy wiedzieć, ile osób czyta i które teksty — nic więcej. Bez reklam, bez profilowania, bez sprzedaży danych. Możesz odmówić i serwis będzie działał tak samo.',
-      y:'Zgadzam się',n:'Tylko niezbędne',more:'Prywatność'}
-    :{h:'Measuring visits',
-      p:'We would like to know how many people read, and which texts — nothing else. No advertising, no profiling, no data sold. Decline and the site works exactly the same.',
-      y:'Allow',n:'Essential only',more:'Privacy'};
+  var t=pl?{h:'Pliki cookies',
+      p:'Ta strona nie zapisuje żadnych cookies, dopóki nie wyrazisz zgody. Prosimy tylko o cookies analityczne Google Analytics — po to, żeby wiedzieć, ile osób czyta i które teksty. Bez reklam, bez profilowania, bez sprzedaży danych. Jeśli odmówisz, żaden plik nie zostanie zapisany, a serwis będzie działał tak samo.',
+      y:'Akceptuję cookies',n:'Odrzuć',more:'Więcej o prywatności'}
+    :{h:'Cookies',
+      p:'This site writes no cookies until you agree. We ask only for Google Analytics cookies, so we can see how many people read and which texts. No advertising, no profiling, no data sold. Decline and nothing is stored — the site works exactly the same.',
+      y:'Accept cookies',n:'Decline',more:'More on privacy'};
   var priv=pl?'/pl/privacy/':'/privacy/';
   var el=document.createElement('aside');
   el.className='cnst'; el.setAttribute('role','dialog'); el.setAttribute('aria-label',t.h);

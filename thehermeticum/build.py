@@ -326,8 +326,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=34">
-<script src="/assets/site.js?v=34" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=36">
+<script src="/assets/site.js?v=36" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -872,7 +872,7 @@ page("about/method",
 <p><strong>Fact:</strong> what the manuscripts, documents and peer-reviewed scholarship establish — always with a source you can check. <strong>Scholarly debate:</strong> where serious researchers disagree, we name the positions and the people (Festugière vs Fowden on Egyptian origins; the dating of the Sirr al-khaliqa; the Yates thesis and its critics). <strong>Reception &amp; myth:</strong> what popular culture repeats — quoted as reception, never laundered into fact.</p>
 <h2>Sources</h2>
 <p>Our working standards are the modern critical translations (Copenhaver 1992, Litwa 2018) and the field&rsquo;s core scholarship (Fowden, Hanegraaff, Bull, van Bladel, and others cited per page). Public-domain translations (Everard 1650, Mead 1906) are linked as historical documents with their limitations flagged. We never link pirated copies of in-print scholarship.</p>
-<h2>Analytics and your consent</h2><p>We use Google Analytics to count visits and see which texts are read. Nothing runs until you choose: measurement is set to <em>denied</em> by default, so on your first visit no analytics cookie is written and no data is sent. You are asked once, in a small panel; if you decline, the site behaves identically and the panel does not return. If you accept, a standard Google Analytics cookie is set and page views are recorded with IP anonymisation on. Your choice is stored locally in this browser and you can reverse it at any time by clearing site data. We do not run advertising, profiling or remarketing, and we do not sell data.</p><h2>Why there is no name on this</h2><p>The Hermeticum is anonymous by design. That is not an absence of accountability &mdash; every claim here carries its source, and the sources are checkable by anyone. It is the removal of ego from the centre. In a field crowded with teachers selling access to themselves, we would rather the text mattered more than a face, the system more than a persona, and the practice more than the performance. Judge the pages by what they cite.</p><h2>How these pages are made</h2>
+<h2>Cookies and your consent</h2><p><strong>This site writes no cookies until you agree.</strong> We use Google Analytics to count visits and see which texts are read. Consent is set to <em>denied</em> by default, so on your first visit no cookie is written and no data is sent. You are asked once, in a small panel; if you decline, the site behaves identically and the panel does not return. If you accept, a standard Google Analytics cookie is set and page views are recorded with IP anonymisation on. Your choice is stored locally in this browser and you can reverse it at any time by clearing site data. We do not run advertising, profiling or remarketing, and we do not sell data.</p><h2>Why there is no name on this</h2><p>The Hermeticum is anonymous by design. That is not an absence of accountability &mdash; every claim here carries its source, and the sources are checkable by anyone. It is the removal of ego from the centre. In a field crowded with teachers selling access to themselves, we would rather the text mattered more than a face, the system more than a persona, and the practice more than the performance. Judge the pages by what they cite.</p><h2>How these pages are made</h2>
 <p>Plainly: this is a <strong>compilation, assembled with AI research tools</strong>, and we would rather say so on the first page you look at than have you discover it later. Every entry is built from published scholarship &mdash; the critical editions, monographs and journal articles named in its sources &mdash; and then checked against those sources. What that means for you: no original historical research is claimed here, no manuscript has been read for the first time by us, and nothing on this site should be cited as if it were a peer-reviewed study. Cite what we cite.</p>
 <p>What the tools are good at is coverage and consistency: holding a hundred pages to the same three-layer rule, keeping the vocabulary steady, catching the moment a beloved claim turns out to rest on a nineteenth-century paraphrase. What they are bad at is knowing when they are wrong. So the rules above &mdash; named sources with dates, both sides of a live debate, an explicit &ldquo;we don&rsquo;t know&rdquo; &mdash; are not decoration. They are the part that makes the compilation checkable by you, which is the only safeguard that survives contact with a machine.</p>
 <p>Where we have found our own errors, we have fixed them and said so. If you find one &mdash; a misdated text, a mangled quotation, a scholar&rsquo;s position stated too crudely &mdash; it is worth telling us, and it will be corrected in the open.</p>
@@ -1202,8 +1202,8 @@ def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=34">
-<script src="/assets/site.js?v=34" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=36">
+<script src="/assets/site.js?v=36" defer></script>
 </head>
 <body>
 {hdr_x}
@@ -1238,7 +1238,7 @@ print(f"OK zapowiedzi: {_n} stron (noindex, poza sitemapą)")
 
 # ── AEO/SEO: sitemap, robots, rss, 404 ──
 today = "2026-08-14"
-urls = ["/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else [])
+urls = ["/", "/practice/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else []) + (["/pl/practice/"] if PAGES_PL else [])
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u in urls:
     sm += f"  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>\n"
@@ -1268,13 +1268,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=34"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=36"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=34" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=36" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
