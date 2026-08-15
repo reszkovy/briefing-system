@@ -34,7 +34,7 @@
   .hdr.is-rozwiniete .hdr__zaslona{opacity:1;visibility:visible}
   .hdr__in{display:flex;align-items:center;gap:var(--sp5);padding-block:var(--sp3)}
   .hdr__brand{display:flex;align-items:center;gap:.5em;text-decoration:none;color:inherit}
-  .hdr__sigil{width:1.05rem;height:1.05rem;color:var(--gold);display:block;flex:none}
+  .hdr__sigil{width:1.22rem;height:1.24rem;color:var(--ink);display:block;flex:none;margin-right:.15em}
   .hdr__mark{font-family:var(--font-ui);font-size:1.14rem;font-weight:600;letter-spacing:-.05em;color:var(--ink)}
   .hdr__mark em{font-style:normal;color:var(--ink-muted)}
   
