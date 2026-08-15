@@ -1,0 +1,83 @@
+<!-- ══════════ STOPKA ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">
+          <img src="{{a}}assets/dimedical-logo-new.svg" alt="DiMedical" width="226" height="63">
+        </div>
+        <p>{{fOpis}}</p>
+        <p class="foot-motto">„Salus aegroti suprema lex"</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>{{fSerwis}}</h4>
+        <ul>
+          <li><a href="{{mtyper}}">M-Typer</a></li>
+          <li><a href="{{onas}}">{{nOnas}}</a></li>
+          <li><a href="{{news}}">{{nNews}}</a></li>
+          <li><a href="{{cennik}}">{{nCennik}}</a></li>
+          <li><a href="{{nagrody}}">{{fNagrody}}</a></li>
+          <li><a href="{{kontakt}}">{{nKontakt}}</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>{{nOferta}}</h4>
+        <ul>
+          <li><a href="{{tbc}}">{{nTbc}}</a></li>
+          <li><a href="{{mikro}}">{{nMikro}}</a></li>
+          <li><a href="{{br}}">{{nBr}}</a></li>
+        </ul>
+        <h4 style="margin-top:26px">{{fDok}}</h4>
+        <ul>
+          <li><a href="{{dPriv}}">{{fPriv}}</a></li>
+          <li><a href="{{dJakosc}}">{{fJakosc}}</a></li>
+          <li><a href="{{dBezstr}}">{{fBezstr}}</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>{{nKontakt}}</h4>
+        <ul>
+          <li><a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a></li>
+          <li><a href="tel:+48502660480">(+48) 502 660 480 — {{fLab}}</a></li>
+          <li><a href="tel:+48607705607">(+48) 607 705 607 — {{fSiedziba}}</a></li>
+          <li><a href="{{home}}#lokalizacja">ul. Żeromskiego 52<br>90-626 Łódź</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="eu-note">
+        <span>{{fUe}}</span>
+      </div>
+      <div>© 2026 DiMedical · {{fCredit}} <a href="https://r352.com" target="_blank" rel="noopener">r352.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ FAB ══════════ -->
+<div class="fab">
+  <a href="tel:+48502660480" aria-label="{{ariaTel}}">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+  </a>
+  <a href="{{kontakt}}" class="accent" aria-label="{{ariaMail}}">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 4 12a8.4 8.4 0 0 1 8.5-8.5 8.4 8.4 0 0 1 8.5 8Z"/></svg>
+  </a>
+</div>
+
+<!-- ══════════ ZGODA NA COOKIES ══════════ -->
+<div class="zgoda" id="zgodaCookies" role="dialog" aria-modal="false"
+     aria-labelledby="zgodaTytul" aria-describedby="zgodaOpis" hidden>
+  <div class="zgoda-tresc">
+    <p class="zgoda-tytul" id="zgodaTytul">{{cTytul}}</p>
+    <p class="zgoda-opis" id="zgodaOpis">
+      {{cOpis}} <a href="{{dPriv}}">{{fPriv}}</a>.
+    </p>
+  </div>
+  <div class="zgoda-akcje">
+    <button type="button" class="btn btn-ghost btn-sm" data-zgoda="niezbedne">{{cOdrzuc}}</button>
+    <button type="button" class="btn btn-lav btn-sm" data-zgoda="wszystkie">{{cAkceptuj}}</button>
+  </div>
+</div>

@@ -1,0 +1,1234 @@
+{
+ "nodes": [
+  {
+   "id": "brand-hub-os",
+   "label": "Brand Hub OS — framework F1–F5",
+   "type": "project",
+   "note": "Kluczowy projekt roku; rama LOCKED, pilot Mała Palarnia zaliczony; centralny hub, do którego wracają wnioski ze wszystkich realizacji"
+  },
+  {
+   "id": "r352-website",
+   "label": "Strona r352.com",
+   "type": "project",
+   "note": "Vite+React, prerender 35 tras, WebGL, llms.txt"
+  },
+  {
+   "id": "r352-brand-centre",
+   "label": "Brand centre r352 (/brand)",
+   "type": "project",
+   "note": "Dogfooding wzorca .brand/ na własnej marce"
+  },
+  {
+   "id": "r352-case-studies",
+   "label": "Case studies r352.com/work",
+   "type": "project",
+   "note": "Shadow cases, flagowy proof Sonova/Geers"
+  },
+  {
+   "id": "betterguide-hub",
+   "label": "betterguide.pl — hub BetterWorkplace",
+   "type": "project",
+   "note": "/strategia stała się kanonem deliverable'u strategii"
+  },
+  {
+   "id": "r352-operating-strategy",
+   "label": "Strategia operacyjna r352 (living doc)",
+   "type": "project",
+   "note": "Wyprowadzona przez agenta z treści strony"
+  },
+  {
+   "id": "r3loop-app",
+   "label": "r3loop.app (Briefly) — automat strategia+proposal",
+   "type": "project",
+   "note": "Generator LLM + Critic, LIVE od 12.07"
+  },
+  {
+   "id": "narzedzie-briefowania",
+   "label": "Club Manager Briefing System (regional.fit)",
+   "type": "project",
+   "note": "Alignment score briefu vs strategia marki (RAG/pgvector)"
+  },
+  {
+   "id": "briefsync",
+   "label": "briefsync — router Trello↔Figma↔Obsidian",
+   "type": "project",
+   "note": "8 tablic, 39+ briefów, launchd 8:00"
+  },
+  {
+   "id": "medium-pipeline",
+   "label": "Pipeline publikacji Medium",
+   "type": "project",
+   "note": "Człowiek = 1 klik Publish; DOM edit persists"
+  },
+  {
+   "id": "dailyfruits-relaunch",
+   "label": "Relaunch dailyfruits.pl (WP→static)",
+   "type": "project",
+   "note": "Mini-SSG build.js, 291 URL-i do 0×404"
+  },
+  {
+   "id": "dailyfruits-cms",
+   "label": "DailyFruits CMS v6 /admin",
+   "type": "project",
+   "note": "Git jako backend CMS — źródło całej rodziny CMS"
+  },
+  {
+   "id": "dailyfruits-seo",
+   "label": "DailyFruits SEO /oferta + archiwum Wayback",
+   "type": "project",
+   "note": "147 wpisów odtworzonych, 37/37 PASS, perf 52→94"
+  },
+  {
+   "id": "dailyfruits-katalog",
+   "label": "Katalog handlowy + kalkulatory",
+   "type": "project"
+  },
+  {
+   "id": "dailyfruits-consent",
+   "label": "Consent / GTM DailyFruits",
+   "type": "project",
+   "note": "Lazy-start analytics, UC-early loader"
+  },
+  {
+   "id": "zdrofit-hourly",
+   "label": "Hourly pipeline Trello→Figma (Zdrofit)",
+   "type": "project",
+   "note": "Cel: ~100 briefów/mies. automatycznie; przed startem"
+  },
+  {
+   "id": "zdrofit-cwicz",
+   "label": "Ćwicz w zieleni — 10 formatów z mastera",
+   "type": "project",
+   "note": "Render Aptly z OTF jako SVG (arc.py)"
+  },
+  {
+   "id": "zdrofit-lodygowa",
+   "label": "Witryny CH Łodygowa (wielki format)",
+   "type": "project",
+   "note": "HTML jako DTP, QR weryfikowany moduł po module"
+  },
+  {
+   "id": "ada-ewidencja",
+   "label": "Ada — podwykonawca + ewidencja Slack",
+   "type": "project",
+   "note": "Czas = okna wiadomości DM, SOP w pamięci"
+  },
+  {
+   "id": "archicom-atrium",
+   "label": "Archicom — tokeny + rebrand atrium",
+   "type": "project",
+   "note": "Realna paleta z elementu referencyjnego, nie ze zmiennych"
+  },
+  {
+   "id": "archicom-reymonta",
+   "label": "Archicom — prezenter Przystań Reymonta",
+   "type": "project"
+  },
+  {
+   "id": "osada-brand-system",
+   "label": "Osada Orle — brand system Figma (Dzień/Noc)",
+   "type": "project"
+  },
+  {
+   "id": "osada-deck-morisson",
+   "label": "Osada Orle — deck sponsorski Morisson (3 wersje)",
+   "type": "project"
+  },
+  {
+   "id": "teambudget",
+   "label": "TeamBudget — strategia GTM + MVP",
+   "type": "project",
+   "note": "Interaktywny hub zamiast PDF, skrypty build_*.py"
+  },
+  {
+   "id": "caterelo",
+   "label": "Caterelo — relocation engine + Deal Radar",
+   "type": "project",
+   "note": "MCP na produkcji, zero przychodu"
+  },
+  {
+   "id": "penya-saas",
+   "label": "Penya SaaS — onboarding penyi FCB",
+   "type": "project",
+   "note": "Multi-tenant od dnia 1, pilot Łódź"
+  },
+  {
+   "id": "campnou-3d",
+   "label": "Camp Nou 3D — every seat",
+   "type": "project",
+   "note": "~55k miejsc, kod od zera (licencja Noncommercial oryginału)"
+  },
+  {
+   "id": "kubota-stand-3d",
+   "label": "Stand KUBOTA×Baltona 3D z dielinów",
+   "type": "project",
+   "note": "CSS 3D bez bibliotek, bramka przed generacją AI"
+  },
+  {
+   "id": "human-commons",
+   "label": "The Post-AI Society (Human Commons)",
+   "type": "project",
+   "note": "Walidacja popytu przed zakupem nieruchomości; bramka GO/STOP 6.11"
+  },
+  {
+   "id": "dimedical-redesign",
+   "label": "DiMedical — redesign spekulacyjny",
+   "type": "project",
+   "note": "Lighthouse 100/100/100/100 jako benchmark sprzedażowy"
+  },
+  {
+   "id": "artoffnia-demo",
+   "label": "ARToffNIA — demo katalogu zajęć",
+   "type": "project",
+   "note": "Pełny serwis 19 stron zbudowany PRZED sprzedażą"
+  },
+  {
+   "id": "lemf-deck",
+   "label": "LEMF 2027 — pipeline PPTX→Figma",
+   "type": "project"
+  },
+  {
+   "id": "profichem24-rolka",
+   "label": "Profichem24 — rolka IG 15 s (Rigips)",
+   "type": "project"
+  },
+  {
+   "id": "lumo-brand",
+   "label": "Lumo — brand + wizytówka opinii",
+   "type": "project"
+  },
+  {
+   "id": "fitstyle-platform",
+   "label": "FitStyle — silnik LP przedsprzedażowych",
+   "type": "project",
+   "note": "Astro, location-as-data z polską fleksją"
+  },
+  {
+   "id": "wegobold-site",
+   "label": "wegobold.com — marka produktowa",
+   "type": "project",
+   "note": "Druga brama modelu hub-and-spoke"
+  },
+  {
+   "id": "beesknees-site",
+   "label": "bees-knees.pl — serwis + CMS + leady",
+   "type": "project",
+   "note": "Leady na niedeployowanej gałęzi git"
+  },
+  {
+   "id": "twojemenu-case",
+   "label": "Twoje Menu — case study (plan + boardy)",
+   "type": "project"
+  },
+  {
+   "id": "bartech-animacje",
+   "label": "Bartech — 3 animacje MP4",
+   "type": "project",
+   "note": "Jedyny projekt bez śladu wiedzy — anty-przykład"
+  },
+  {
+   "id": "stocki-miasta",
+   "label": "Harvester stocków — 33 miasta",
+   "type": "project"
+  },
+  {
+   "id": "btc-sentiment",
+   "label": "Tracker sentymentu BTC/ETH",
+   "type": "project"
+  },
+  {
+   "id": "btc-cyclicality",
+   "label": "Dashboard cykli halvingowych BTC",
+   "type": "project"
+  },
+  {
+   "id": "fotra-panel",
+   "label": "FOTRA — panel operacyjny (CRM+przychody)",
+   "type": "project",
+   "note": "Pętla eksport→AI→decyzja→CRM"
+  },
+  {
+   "id": "umowy-podwykonawcy",
+   "label": "Umowy podwykonawcze jako kod",
+   "type": "project",
+   "note": "NDA+ramowa+o dzieło generowane z dane.py"
+  },
+  {
+   "id": "benefit-zdrofit",
+   "label": "Benefit Systems / Zdrofit",
+   "type": "client",
+   "note": "49% przychodu — ryzyko koncentracji"
+  },
+  {
+   "id": "betterworkplace",
+   "label": "BetterWorkplace / DailyFruits",
+   "type": "client"
+  },
+  {
+   "id": "archicom",
+   "label": "Archicom",
+   "type": "client"
+  },
+  {
+   "id": "osada-orle",
+   "label": "Osada Orle / Izera",
+   "type": "client"
+  },
+  {
+   "id": "wlasciciel-9campnou",
+   "label": "Właściciel 9campnou.com",
+   "type": "client",
+   "note": "Jeden kontakt = dwa projekty (Camp Nou 3D + Penya SaaS)"
+  },
+  {
+   "id": "cms-git-backend",
+   "label": "Rodzina CMS: git jako backend",
+   "type": "component",
+   "note": "HMAC auth, Git Data API, atomic commits — potwierdzony na 2 markach"
+  },
+  {
+   "id": "prerender-spa-vercel",
+   "label": "Prerender SPA na Vercelu (sparticuz fix)",
+   "type": "component"
+  },
+  {
+   "id": "macs-framework",
+   "label": "MACS — framework kwalifikacji",
+   "type": "component",
+   "note": "Kanon 4-wym. + rozszerzenie 8-wym. w FOTRA"
+  },
+  {
+   "id": "stock-sources-map",
+   "label": "Mapa źródeł stockowych (co da się automatyzować)",
+   "type": "component",
+   "note": "Negatywne ustalenia zapisane jako aktywa"
+  },
+  {
+   "id": "krypto-design-system",
+   "label": "Design system dashboardów krypto",
+   "type": "component"
+  },
+  {
+   "id": "figma-comments-api",
+   "label": "Odczyt komentarzy Figmy przez wewn. API",
+   "type": "component",
+   "note": "fetch /api/file/<key>/comments z sesji Chrome"
+  },
+  {
+   "id": "strategia-wzorzec",
+   "label": "STRATEGIA-WZORZEC.md (kanon D01–D06)",
+   "type": "component"
+  },
+  {
+   "id": "context-vault",
+   "label": "Context vault Obsidian (pakiet kontekstu AI)",
+   "type": "component",
+   "note": "user.md + do-not-do + decision-framework"
+  },
+  {
+   "id": "tokens-first",
+   "label": "Wzorzec tokens-first (tokens.json → CSS/YAML/HTML)",
+   "type": "pattern"
+  },
+  {
+   "id": "brand-hub-wzorzec",
+   "label": "Wzorzec .brand/ — marka jako repo",
+   "type": "pattern",
+   "note": "Rdzeń produktu sprzedawanego klientom"
+  },
+  {
+   "id": "llm-quality-gate",
+   "label": "Bramka jakości LLM z twardym progiem",
+   "type": "pattern",
+   "note": "Critic 750/1000, test F2 ≥85, alignment 0–100 — jakość mierzona, nie oceniana na oko"
+  },
+  {
+   "id": "html-narzedzie-produkcyjne",
+   "label": "HTML+headless Chrome jako narzędzie DTP/3D",
+   "type": "pattern"
+  },
+  {
+   "id": "single-source-multi-views",
+   "label": "Jedno źródło danych → wiele widoków",
+   "type": "pattern"
+  },
+  {
+   "id": "ekstrakcja-szablonu",
+   "label": "Szablon przez ekstrakcję z działającego wdrożenia",
+   "type": "pattern",
+   "note": "Nigdy pisanie od zera"
+  },
+  {
+   "id": "tania-bramka-dostepu",
+   "label": "Tania bramka dostępu (hasło client-side + noindex)",
+   "type": "pattern"
+  },
+  {
+   "id": "multi-agent-research",
+   "label": "Research/klasyfikacja wieloagentowa",
+   "type": "pattern"
+  },
+  {
+   "id": "figma-programowo",
+   "label": "Programowa produkcja w Figmie (use_figma/API)",
+   "type": "pattern"
+  },
+  {
+   "id": "every-project-compounds",
+   "label": "Every Project Compounds (meta-zasada)",
+   "type": "pattern"
+  },
+  {
+   "id": "higgsfield-pipeline",
+   "label": "Generatywna produkcja wizualna Higgsfield (i2i, de-slop)",
+   "type": "pattern"
+  },
+  {
+   "id": "verify-first",
+   "label": "SOP verify-first (dowód przed twierdzeniem)",
+   "type": "sop",
+   "note": "Auto-memory, ładuje się do każdej sesji"
+  },
+  {
+   "id": "trello-read-only",
+   "label": "SOP Trello read-only wobec narzędzi klienta",
+   "type": "sop"
+  },
+  {
+   "id": "sop-handoff",
+   "label": "SOP handoff dla sesji AI (runbooki)",
+   "type": "sop",
+   "note": "Agenci traktowani jak zespół z onboardingiem"
+  },
+  {
+   "id": "generator-critic",
+   "label": "Agent: generator strategii + Critic (pętla)",
+   "type": "agent"
+  },
+  {
+   "id": "llm-auditor",
+   "label": "Agent: LLM-auditor briefów (RAG/pgvector)",
+   "type": "agent"
+  },
+  {
+   "id": "claude-dyspozytor",
+   "label": "Agent: Claude jako runtime pipeline'u (PRZENIEŚ)",
+   "type": "agent"
+  },
+  {
+   "id": "claude-browser-operator",
+   "label": "Agent: Claude jako operator przeglądarki",
+   "type": "agent"
+  },
+  {
+   "id": "brand-check",
+   "label": "brand-check.mjs — drift guard marka↔kod",
+   "type": "automation"
+  },
+  {
+   "id": "gated-content-nie-dziala",
+   "label": "Nauczka: gated content nie działa",
+   "type": "lesson",
+   "note": "Testy: lewe adresy, zero pipeline'u → treść otwarta + kontakt za personalizację"
+  },
+  {
+   "id": "hidden-tab-gotchas",
+   "label": "Nauczka: ukryte karty zamrażają rAF/IO/tranzycje",
+   "type": "lesson"
+  },
+  {
+   "id": "wiedza-umiera-w-sesji",
+   "label": "Nauczka: pipeline w sesji ginie — pakować w narzędzie",
+   "type": "lesson",
+   "note": "Najczęstsza powtarzająca się missed opportunity w korpusie"
+  },
+  {
+   "id": "bottleneck-reszek",
+   "label": "Problem: czas Reszka = wąskie gardło",
+   "type": "problem"
+  },
+  {
+   "id": "proof-gap",
+   "label": "Problem: dowód w tyle za pozycjonowaniem",
+   "type": "problem",
+   "note": "'Site ahead of the proof'; zero przychodu z produktów mimo gotowości"
+  }
+ ],
+ "edges": [
+  {
+   "source": "zdrofit-hourly",
+   "target": "benefit-zdrofit",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "zdrofit-cwicz",
+   "target": "benefit-zdrofit",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "zdrofit-lodygowa",
+   "target": "benefit-zdrofit",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "narzedzie-briefowania",
+   "target": "benefit-zdrofit",
+   "relation": "produkt pod buyera"
+  },
+  {
+   "source": "briefsync",
+   "target": "benefit-zdrofit",
+   "relation": "obsługuje tablice (m.in.)"
+  },
+  {
+   "source": "ada-ewidencja",
+   "target": "benefit-zdrofit",
+   "relation": "moce produkcyjne dla"
+  },
+  {
+   "source": "dailyfruits-relaunch",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "dailyfruits-cms",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "dailyfruits-seo",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "dailyfruits-katalog",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "dailyfruits-consent",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "betterguide-hub",
+   "target": "betterworkplace",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "teambudget",
+   "target": "betterworkplace",
+   "relation": "cel sprzedaży wdrożenia"
+  },
+  {
+   "source": "archicom-atrium",
+   "target": "archicom",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "archicom-reymonta",
+   "target": "archicom",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "osada-brand-system",
+   "target": "osada-orle",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "osada-deck-morisson",
+   "target": "osada-orle",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "campnou-3d",
+   "target": "wlasciciel-9campnou",
+   "relation": "dla klienta"
+  },
+  {
+   "source": "penya-saas",
+   "target": "wlasciciel-9campnou",
+   "relation": "z tej samej relacji"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "ekstrakcja-szablonu",
+   "relation": "kodyfikuje zasadę"
+  },
+  {
+   "source": "dailyfruits-cms",
+   "target": "cms-git-backend",
+   "relation": "zostawił komponent"
+  },
+  {
+   "source": "cms-git-backend",
+   "target": "beesknees-site",
+   "relation": "portowany do (dowód przenośności)"
+  },
+  {
+   "source": "cms-git-backend",
+   "target": "betterguide-hub",
+   "relation": "subset wdrożony w"
+  },
+  {
+   "source": "cms-git-backend",
+   "target": "brand-hub-os",
+   "relation": "wyekstrahowany jako szablon cms/"
+  },
+  {
+   "source": "betterguide-hub",
+   "target": "strategia-wzorzec",
+   "relation": "zostawił wzorzec (/strategia)"
+  },
+  {
+   "source": "strategia-wzorzec",
+   "target": "brand-hub-os",
+   "relation": "kanon deliverable'u F1"
+  },
+  {
+   "source": "dimedical-redesign",
+   "target": "brand-hub-os",
+   "relation": "wnioski wróciły commitem (F3/F5)"
+  },
+  {
+   "source": "artoffnia-demo",
+   "target": "brand-hub-os",
+   "relation": "wnioski wróciły commitem (F3/SPEC)"
+  },
+  {
+   "source": "dailyfruits-seo",
+   "target": "brand-hub-os",
+   "relation": "wnioski wróciły commitem (F3 consent/SEO)"
+  },
+  {
+   "source": "fitstyle-platform",
+   "target": "brand-hub-os",
+   "relation": "mini-case procesu F1–F5"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "brand-hub-os",
+   "relation": "automatyzuje fazę F1 (strategia+wycena)"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "tokens-first",
+   "relation": "kodyfikuje (generate-tokens.mjs)"
+  },
+  {
+   "source": "fitstyle-platform",
+   "target": "tokens-first",
+   "relation": "wdraża (tokens.json→CSS)"
+  },
+  {
+   "source": "r352-brand-centre",
+   "target": "tokens-first",
+   "relation": "wykorzystuje"
+  },
+  {
+   "source": "r352-brand-centre",
+   "target": "brand-hub-wzorzec",
+   "relation": "waliduje na sobie (dogfooding)"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "brand-hub-wzorzec",
+   "relation": "produktyzuje (.brand/)"
+  },
+  {
+   "source": "zdrofit-hourly",
+   "target": "brand-hub-wzorzec",
+   "relation": "wdraża u klienta (brand.json)"
+  },
+  {
+   "source": "context-vault",
+   "target": "brand-hub-wzorzec",
+   "relation": "prototyp na sobie (teza HubForBrands)"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "llm-quality-gate",
+   "relation": "wykorzystuje (Critic 0–1000, próg 750)"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "llm-quality-gate",
+   "relation": "wykorzystuje (bramka F2: test AI ≥85)"
+  },
+  {
+   "source": "narzedzie-briefowania",
+   "target": "llm-quality-gate",
+   "relation": "wykorzystuje (alignment score 0–100)"
+  },
+  {
+   "source": "generator-critic",
+   "target": "r3loop-app",
+   "relation": "agent w"
+  },
+  {
+   "source": "llm-auditor",
+   "target": "narzedzie-briefowania",
+   "relation": "agent w"
+  },
+  {
+   "source": "narzedzie-briefowania",
+   "target": "r3loop-app",
+   "relation": "zduplikowany scoring briefów (okazja na wspólny komponent)"
+  },
+  {
+   "source": "briefsync",
+   "target": "narzedzie-briefowania",
+   "relation": "39 realnych briefów = nieużyty korpus testowy"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "macs-framework",
+   "relation": "wykorzystuje (auto-suggest + RLS)"
+  },
+  {
+   "source": "fotra-panel",
+   "target": "macs-framework",
+   "relation": "rozszerza do 8 wymiarów"
+  },
+  {
+   "source": "context-vault",
+   "target": "macs-framework",
+   "relation": "przechowuje kanon 4-wym."
+  },
+  {
+   "source": "claude-dyspozytor",
+   "target": "briefsync",
+   "relation": "agent-runtime gałęzi Figma"
+  },
+  {
+   "source": "briefsync",
+   "target": "zdrofit-hourly",
+   "relation": "dostarcza skrypty i klucze API"
+  },
+  {
+   "source": "trello-read-only",
+   "target": "briefsync",
+   "relation": "obowiązuje w"
+  },
+  {
+   "source": "trello-read-only",
+   "target": "zdrofit-hourly",
+   "relation": "obowiązuje w"
+  },
+  {
+   "source": "trello-read-only",
+   "target": "ada-ewidencja",
+   "relation": "obowiązuje w"
+  },
+  {
+   "source": "trello-read-only",
+   "target": "zdrofit-cwicz",
+   "relation": "obowiązuje w"
+  },
+  {
+   "source": "zdrofit-cwicz",
+   "target": "zdrofit-hourly",
+   "relation": "modelowy przypadek (master→10 formatów)"
+  },
+  {
+   "source": "zdrofit-lodygowa",
+   "target": "zdrofit-hourly",
+   "relation": "kandydat na kartę 'otwarcie klubu'"
+  },
+  {
+   "source": "context-vault",
+   "target": "briefsync",
+   "relation": "zasila notatkę dnia (decision-framework)"
+  },
+  {
+   "source": "zdrofit-lodygowa",
+   "target": "html-narzedzie-produkcyjne",
+   "relation": "wykorzystuje (artboardy+render.sh)"
+  },
+  {
+   "source": "kubota-stand-3d",
+   "target": "html-narzedzie-produkcyjne",
+   "relation": "wykorzystuje (CSS 3D z dielinów)"
+  },
+  {
+   "source": "twojemenu-case",
+   "target": "html-narzedzie-produkcyjne",
+   "relation": "wykorzystuje (boardy plansz)"
+  },
+  {
+   "source": "kubota-stand-3d",
+   "target": "zdrofit-lodygowa",
+   "relation": "ta sama konwencja skali (10 j. = 1 cm)"
+  },
+  {
+   "source": "campnou-3d",
+   "target": "kubota-stand-3d",
+   "relation": "współdzielony wzorzec UI (pills/toggle)"
+  },
+  {
+   "source": "campnou-3d",
+   "target": "r352-website",
+   "relation": "publikowany w repo (public/9campnou)"
+  },
+  {
+   "source": "kubota-stand-3d",
+   "target": "r352-website",
+   "relation": "publikowany w repo (public/kubotabaltona)"
+  },
+  {
+   "source": "teambudget",
+   "target": "single-source-multi-views",
+   "relation": "wykorzystuje (build_*.py)"
+  },
+  {
+   "source": "artoffnia-demo",
+   "target": "single-source-multi-views",
+   "relation": "wykorzystuje (zajecia.js)"
+  },
+  {
+   "source": "umowy-podwykonawcy",
+   "target": "single-source-multi-views",
+   "relation": "wykorzystuje (dane.py/pola.py)"
+  },
+  {
+   "source": "dailyfruits-relaunch",
+   "target": "single-source-multi-views",
+   "relation": "wykorzystuje (_includes+build.js)"
+  },
+  {
+   "source": "dimedical-redesign",
+   "target": "single-source-multi-views",
+   "relation": "wykorzystuje (partiale+build.py)"
+  },
+  {
+   "source": "archicom-atrium",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (rebrand programowy)"
+  },
+  {
+   "source": "osada-brand-system",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (zmienne+tryby)"
+  },
+  {
+   "source": "osada-deck-morisson",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (11 slajdów draft)"
+  },
+  {
+   "source": "zdrofit-cwicz",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (fontTools→SVG)"
+  },
+  {
+   "source": "lemf-deck",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (PPTX→JSON→use_figma)"
+  },
+  {
+   "source": "lumo-brand",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (karty budowane API)"
+  },
+  {
+   "source": "briefsync",
+   "target": "figma-programowo",
+   "relation": "wykorzystuje (karty briefów+obrazki)"
+  },
+  {
+   "source": "osada-deck-morisson",
+   "target": "figma-comments-api",
+   "relation": "zostawił komponent"
+  },
+  {
+   "source": "figma-comments-api",
+   "target": "briefsync",
+   "relation": "kandydat na feedback router"
+  },
+  {
+   "source": "archicom-atrium",
+   "target": "archicom-reymonta",
+   "relation": "destylat tokenów zasila"
+  },
+  {
+   "source": "osada-brand-system",
+   "target": "osada-deck-morisson",
+   "relation": "design system zasila (tokeny+fonty)"
+  },
+  {
+   "source": "beesknees-site",
+   "target": "multi-agent-research",
+   "relation": "10 agentów klasyfikacji zdjęć"
+  },
+  {
+   "source": "human-commons",
+   "target": "multi-agent-research",
+   "relation": "4 agenty planu 90 dni"
+  },
+  {
+   "source": "fitstyle-platform",
+   "target": "multi-agent-research",
+   "relation": "3 agenty benchmarku"
+  },
+  {
+   "source": "wegobold-site",
+   "target": "multi-agent-research",
+   "relation": "wieloagentowy purge copy"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "multi-agent-research",
+   "relation": "subagenty ekstrakcji szablonów"
+  },
+  {
+   "source": "dailyfruits-katalog",
+   "target": "tania-bramka-dostepu",
+   "relation": "wykorzystuje (sessionStorage+noindex)"
+  },
+  {
+   "source": "betterguide-hub",
+   "target": "tania-bramka-dostepu",
+   "relation": "wykorzystuje (bramka na index)"
+  },
+  {
+   "source": "human-commons",
+   "target": "tania-bramka-dostepu",
+   "relation": "wykorzystuje (hasło longtable)"
+  },
+  {
+   "source": "r352-brand-centre",
+   "target": "tania-bramka-dostepu",
+   "relation": "wariant mocniejszy (staticrypt AES)"
+  },
+  {
+   "source": "r352-website",
+   "target": "prerender-spa-vercel",
+   "relation": "zostawił komponent (fix chromium/lambda)"
+  },
+  {
+   "source": "prerender-spa-vercel",
+   "target": "r352-case-studies",
+   "relation": "wykorzystywany (case'y w statycznym HTML)"
+  },
+  {
+   "source": "r352-brand-centre",
+   "target": "brand-check",
+   "relation": "zostawił automatyzację"
+  },
+  {
+   "source": "brand-check",
+   "target": "r352-website",
+   "relation": "pilnuje driftu marka↔kod"
+  },
+  {
+   "source": "claude-browser-operator",
+   "target": "medium-pipeline",
+   "relation": "agent-operator (import+czystka+tagi)"
+  },
+  {
+   "source": "claude-browser-operator",
+   "target": "osada-deck-morisson",
+   "relation": "odczyt komentarzy z sesji Chrome"
+  },
+  {
+   "source": "claude-browser-operator",
+   "target": "penya-saas",
+   "relation": "operacje w panelach (Supabase/import)"
+  },
+  {
+   "source": "profichem24-rolka",
+   "target": "higgsfield-pipeline",
+   "relation": "wykorzystuje (ugc-product-flow, de-slop)"
+  },
+  {
+   "source": "artoffnia-demo",
+   "target": "higgsfield-pipeline",
+   "relation": "kampania per grupa wiekowa"
+  },
+  {
+   "source": "human-commons",
+   "target": "higgsfield-pipeline",
+   "relation": "plansze Plate I–VI"
+  },
+  {
+   "source": "kubota-stand-3d",
+   "target": "higgsfield-pipeline",
+   "relation": "rendery i2i z plate'ów"
+  },
+  {
+   "source": "twojemenu-case",
+   "target": "higgsfield-pipeline",
+   "relation": "sceny wg promptów (planowane)"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "every-project-compounds",
+   "relation": "operacjonalizuje zasadę"
+  },
+  {
+   "source": "btc-cyclicality",
+   "target": "every-project-compounds",
+   "relation": "potwierdza (reużycie DS skróciło budowę)"
+  },
+  {
+   "source": "bartech-animacje",
+   "target": "every-project-compounds",
+   "relation": "łamie zasadę (zero wiedzy po projekcie)"
+  },
+  {
+   "source": "btc-sentiment",
+   "target": "krypto-design-system",
+   "relation": "zostawił komponent"
+  },
+  {
+   "source": "krypto-design-system",
+   "target": "btc-cyclicality",
+   "relation": "wykorzystany w"
+  },
+  {
+   "source": "btc-sentiment",
+   "target": "fotra-panel",
+   "relation": "wpięty jako zakładka Krypto (iframe)"
+  },
+  {
+   "source": "stocki-miasta",
+   "target": "stock-sources-map",
+   "relation": "zostawił komponent (mapa 5 rodzin źródeł)"
+  },
+  {
+   "source": "stock-sources-map",
+   "target": "r3loop-app",
+   "relation": "niespięty kandydat (research materiałów)"
+  },
+  {
+   "source": "r352-operating-strategy",
+   "target": "gated-content-nie-dziala",
+   "relation": "skodyfikował nauczkę"
+  },
+  {
+   "source": "gated-content-nie-dziala",
+   "target": "teambudget",
+   "relation": "nauczka zastosowana w"
+  },
+  {
+   "source": "gated-content-nie-dziala",
+   "target": "human-commons",
+   "relation": "nauczka zastosowana w (treść otwarta)"
+  },
+  {
+   "source": "campnou-3d",
+   "target": "hidden-tab-gotchas",
+   "relation": "źródło nauczki (rAF/GSAP)"
+  },
+  {
+   "source": "dimedical-redesign",
+   "target": "hidden-tab-gotchas",
+   "relation": "ta sama klasa nauczki (IO/opacity)"
+  },
+  {
+   "source": "penya-saas",
+   "target": "hidden-tab-gotchas",
+   "relation": "ta sama klasa nauczki (IO stall)"
+  },
+  {
+   "source": "beesknees-site",
+   "target": "hidden-tab-gotchas",
+   "relation": "ta sama klasa nauczki (tranzycje w tle)"
+  },
+  {
+   "source": "human-commons",
+   "target": "hidden-tab-gotchas",
+   "relation": "ta sama klasa nauczki (IO fallback)"
+  },
+  {
+   "source": "medium-pipeline",
+   "target": "wiedza-umiera-w-sesji",
+   "relation": "przykład (procedura w pamięci, nie skrypt)"
+  },
+  {
+   "source": "lemf-deck",
+   "target": "wiedza-umiera-w-sesji",
+   "relation": "przykład (skrypty w scratchpadzie)"
+  },
+  {
+   "source": "dailyfruits-seo",
+   "target": "wiedza-umiera-w-sesji",
+   "relation": "przykład (pipeline Wayback poza repo)"
+  },
+  {
+   "source": "stocki-miasta",
+   "target": "wiedza-umiera-w-sesji",
+   "relation": "przykład (niespakowany skill)"
+  },
+  {
+   "source": "zdrofit-cwicz",
+   "target": "wiedza-umiera-w-sesji",
+   "relation": "przykład (reformaty niesparametryzowane)"
+  },
+  {
+   "source": "verify-first",
+   "target": "dailyfruits-relaunch",
+   "relation": "egzekwowany (curl na produkcji)"
+  },
+  {
+   "source": "verify-first",
+   "target": "medium-pipeline",
+   "relation": "egzekwowany (reload i re-count)"
+  },
+  {
+   "source": "verify-first",
+   "target": "dimedical-redesign",
+   "relation": "egzekwowany (QA pomiarami DOM)"
+  },
+  {
+   "source": "verify-first",
+   "target": "r352-website",
+   "relation": "egzekwowany (curl po deployu)"
+  },
+  {
+   "source": "verify-first",
+   "target": "btc-sentiment",
+   "relation": "egzekwowany (test każdego API)"
+  },
+  {
+   "source": "fotra-panel",
+   "target": "sop-handoff",
+   "relation": "stosuje (INSTRUKCJA-CHAT-INFAKT)"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "sop-handoff",
+   "relation": "stosuje (briefly-runbook)"
+  },
+  {
+   "source": "penya-saas",
+   "target": "sop-handoff",
+   "relation": "stosuje (SETUP/SPRINT)"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "bottleneck-reszek",
+   "relation": "odpowiada na (40h→12h/pakiet)"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "bottleneck-reszek",
+   "relation": "odpowiada na (QA zamiast pisania)"
+  },
+  {
+   "source": "briefsync",
+   "target": "bottleneck-reszek",
+   "relation": "odpowiada na (dyspozytor feedbacku)"
+  },
+  {
+   "source": "zdrofit-hourly",
+   "target": "bottleneck-reszek",
+   "relation": "odpowiada na (~100 briefów/mies.)"
+  },
+  {
+   "source": "ada-ewidencja",
+   "target": "bottleneck-reszek",
+   "relation": "odpowiada na (podwykonawcy = ręce)"
+  },
+  {
+   "source": "fotra-panel",
+   "target": "bottleneck-reszek",
+   "relation": "monitoruje (delegacja, dźwignie)"
+  },
+  {
+   "source": "r352-case-studies",
+   "target": "proof-gap",
+   "relation": "odpowiada na (publiczny dowód)"
+  },
+  {
+   "source": "r352-operating-strategy",
+   "target": "proof-gap",
+   "relation": "diagnozuje ('site ahead of proof')"
+  },
+  {
+   "source": "brand-hub-os",
+   "target": "proof-gap",
+   "relation": "blokowany przez (zero sprzedaży mimo gotowości)"
+  },
+  {
+   "source": "caterelo",
+   "target": "proof-gap",
+   "relation": "przykład (zero przychodu i metryk)"
+  },
+  {
+   "source": "wegobold-site",
+   "target": "proof-gap",
+   "relation": "przykład (produkcja niewypuszczona)"
+  },
+  {
+   "source": "human-commons",
+   "target": "proof-gap",
+   "relation": "odpowiedź: walidacja przed kapitałem"
+  },
+  {
+   "source": "r3loop-app",
+   "target": "teambudget",
+   "relation": "pierwszy realny case (strategia 930/1000)"
+  },
+  {
+   "source": "betterguide-hub",
+   "target": "teambudget",
+   "relation": "hostuje materiały (sekcja TB + CMS)"
+  },
+  {
+   "source": "umowy-podwykonawcy",
+   "target": "ada-ewidencja",
+   "relation": "fundament prawny współpracy"
+  },
+  {
+   "source": "caterelo",
+   "target": "human-commons",
+   "relation": "wspólna teza (Włochy / wspólnoty AI)"
+  },
+  {
+   "source": "wegobold-site",
+   "target": "r352-website",
+   "relation": "siostrzana brama (hub-and-spoke)"
+  },
+  {
+   "source": "twojemenu-case",
+   "target": "r352-case-studies",
+   "relation": "shadow case na /work (isShadow)"
+  },
+  {
+   "source": "r352-operating-strategy",
+   "target": "r352-website",
+   "relation": "wyprowadzona przez agenta z treści strony"
+  },
+  {
+   "source": "context-vault",
+   "target": "fotra-panel",
+   "relation": "dryf: dwa źródła prawdy bez synchronizacji"
+  },
+  {
+   "source": "dailyfruits-cms",
+   "target": "dailyfruits-relaunch",
+   "relation": "działa na repo i buildzie"
+  },
+  {
+   "source": "dailyfruits-seo",
+   "target": "dailyfruits-relaunch",
+   "relation": "rozbudowuje (redirecty/archiwum)"
+  },
+  {
+   "source": "dailyfruits-katalog",
+   "target": "dailyfruits-relaunch",
+   "relation": "hostowany w repo strony"
+  },
+  {
+   "source": "dailyfruits-consent",
+   "target": "dailyfruits-relaunch",
+   "relation": "wdrożony przez _includes+build.js"
+  },
+  {
+   "source": "r352-case-studies",
+   "target": "r352-website",
+   "relation": "moduł strony (projects.tsx)"
+  }
+ ]
+}

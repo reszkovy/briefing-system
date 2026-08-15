@@ -1,0 +1,82 @@
+---
+id: "rec:backtests/dailyfruits-cms-v6"
+type: "record"
+title: "Backtest — dailyfruits-cms-v6"
+status: "created"
+created: "2026-08-09"
+updated: "2026-08-09"
+version: 2
+owner: "przemek"
+relations: {"attached_to":["proj:dailyfruits-cms-v6"]}
+tags: ["walidacja"]
+migrated_by: "mig:2026-08-evidence-contract-v1"
+---
+
+
+# Backtest — dailyfruits-cms-v6
+
+Data: 2026-08-09 · Protokół: PROTOKOL.md · dec:2026-08-09-program-walidacji
+T0 ≈ 30.06–02.07.2026 (przed PR #1 z 03.07). Źródła przebiegu rzeczywistego: memory/dailyfruits-blog-pipeline.md (log 07.2026), memory/dailyfruits-cms-scope.md (decyzja 03.07), karta proj:dailyfruits-cms-v6, kod ~/Fruityyyy (git log admin.html + api/, commity e27d3c0…41fbe07).
+
+## Pakiet T0 (skrót)
+
+Strona statyczna po relaunchu (repo git, Vercel, push=prod, CI z blokującą walidacją), bez CMS; stary panel (e27d3c0, 02.05) parsował strukturę HTML sprzed ~389 commitów i pokazywał puste treści. Klient potrzebuje self-service edycji: teksty, zdjęcia, 53 karty produktów, menu, blog. Warunki: bez developera przy zmianie, bez WordPressa, bez ryzyka rozjechania strony. Zasób r352: rura build/deploy z guardami + doświadczenie `_includes + build.js`.
+
+**Uwaga metodologiczna (kontaminacja T0):** pakiet T0 zawierał numer „v6" — to wiedza z przebiegu, nie z briefu. Osłabia wartość dowodową bt-03 (patrz niżej).
+
+## Raport Routera T0 (skrót)
+
+Rekomendowane: single-source-compiler, sandbox-promotion, incident-to-guard, working-artifact-extraction, negative-knowledge-ledger (wspierająco). Odrzucone: agent-as-runtime, format-dictionary/machine-narrows-human-picks, design-as-code, numeric-gates. Workflow 4 bramki (model treści → git-as-backend → draft/podgląd/Publikuj → oddanie bez drugiej ścieżki). Top-5 ryzyk: recydywa rozjazdu, boczne drzwi, destrukcja przez nietechnika, scope creep, auth/sekrety. 7 predykcji bt: (0.60–0.85).
+
+## Przebieg B — Porównanie z rzeczywistością
+
+Fakty przebiegu (git + pamięć): v2–v6 = PR #1–#10 wdrożone **JEDNEGO dnia (03.07.2026)**; potem #11 (04.07), PDF upload (06.07), fix składu produktu (27.07, `41fbe07`). Architektura realna: panel czyta pliki HTML z repo przez GitHub API, **parsuje wyrenderowany HTML pod AKTUALNĄ strukturę** (inwentarz offsetowy 482 pól na index, skaner głębokości `cat-panel` dla 53 produktów, regex kart), zapis = weryfikacja `sha` pliku + zgodność wycinka `old` (content.js:180: „Tekst zmienił się w międzyczasie…"), multi-file jednym commitem przez Git Data API, commit prosto na origin/main = produkcja (odliczanie 60s). Bezpieczeństwo edytora = stos odwracalności **Cofnij → Kosz → Historia** (v4/v6), nie draft→promote. Blog: create = klon najnowszego wpisu (zawsze zgodny z `_includes`).
+
+### Predykcje bt:
+
+- **bt-01 (p=0.85) — HIT (słaby/częściowy).** Mapowanie modelu treści faktycznie było rdzeniem złożoności (v3: inwentarz offsetowy, 62 strony/482 pola/53 produkty/menu na ~94 plikach, 88 testów harness) i JEDYNY bug po wdrożeniu to mapowanie karty produktu (dwie `<ul class="skladniki">` → duplikaty, fix 41fbe07). ALE w UI/UX poszło porównywalnie dużo iteracji (#3, #4, #5, #7, #8, #11 — belka zapisu, edytor wizualny, wykrywanie treści zwiniętych). „Najwięcej iteracji w pokrycie przypadków" — nie jednoznacznie; kwalifikuję jako słaby hit.
+- **bt-02 (p=0.75) — HIT.** Jawna decyzja graniczna zapadła 03.07 i została zapisana jako osobna pamięć (dailyfruits-cms-scope): „panel = wyłącznie elementy treści; struktura/layout/style — nie". Dokładnie treść claima.
+- **bt-03 (p=0.80) — HIT z zastrzeżeniem.** ≥3 istotne iteracje: tak (v2→v6 + późniejsze), historia/odwracalność faktycznie na końcu (Kosz #6, Historia #10). Zastrzeżenia: (a) numer „v6" był w pakiecie T0 = przeciek; (b) uzasadnienie („shipping modułami przez rurę") trafne co do struktury, ale NIE co do skali czasu — wszystkie wersje w jeden dzień, nie tygodnie iteracji.
+- **bt-04 (p=0.70) — HIT.** Guardy dokładane po ujawnieniu konkretnego trybu psucia: fix składu 27.07 (bug znaleziony po wdrożeniu → kanoniczny `buildSklad` podmieniający CAŁĄ sekcję), hardening auth (base64→HMAC, usunięcie CORS, #6), bezwarunkowa blokada linków w podglądzie (#8 — wcześniejszy wyjątek pozwalał nawigować), diagnoza brakującego GITHUB_TOKEN jako przyczyny „nie działa". Nie wszystko z góry — potwierdzono.
+- **bt-05 (p=0.80) — MISS (największy błąd Routera).** Claim: v6 będzie edytować źródło danych, nie parsować wyrenderowany HTML, a klasa „rozjazd po commitach" nie wróci. Rzeczywistość: v6 WŁAŚNIE parsuje wyrenderowany HTML (offsety, regexy, skaner div) — bo w statycznym serwisie pliki HTML w repo SĄ źródłem; nie powstała żadna osobna warstwa danych. I klasa rozjazdu WRÓCIŁA w miniaturze: `updateCardInPlace` zakładał jedną `<ul>`, realna struktura miała dwie → duplikaty/pusta lista (41fbe07). Różnica vs stary panel: parsowanie AKTUALNEJ struktury + weryfikacja sha+old + kanoniczny writer, czyli rozjazd jest WYKRYWANY i naprawialny, nie eliminowany strukturalnie.
+- **bt-06 (p=0.60) — HIT.** Pipeline docx→AI→blog jawnie odłożony: „pomińmy na razie — NIE budować bez wyraźnej prośby" (03.07), z adnotacją w karcie projektu i pamięci. Dokładnie wzorzec „jawne zawężenie".
+- **bt-07 (p=0.70) — HIT (z luką dowodową).** Panel LIVE na dailyfruits.pl/admin, v6 kompletny. Druga ścieżka edycji faktycznie istnieje i pozostała nieusunięta strukturalnie: sprawdzony przepis ręcznego dodawania wpisu przez kod (15.07, wpis-hejt-owoce) oraz GOTCHA dwóch klonów (lokalny ~/Fruityyyy był 12 commitów za origin, bo CMS commituje prosto na GitHub). Luka: brak bezpośredniego dowodu, że nietechniczna operatorka klienta opublikowała wpis end-to-end samodzielnie (panel gotowy ≠ udokumentowane użycie).
+
+Bilans bt: 5 HIT (w tym 1 słaby, 1 z przeciekiem T0), 1 MISS, 1 HIT-z-luką. Zastrzeżenie hindsight jak w pilocie: wykonawca zna wynik; wartość = struktura pudeł.
+
+### Ryzyka Routera
+
+5/5 zmaterializowane lub trafnie zaadresowane: R1 rozjazd (wrócił jako bug składu), R2 boczne drzwi (przepis ręczny + drift klonów), R3 destrukcja (Kosz/Historia zbudowane — ryzyko antycypowane, nie czekano na incydent), R4 scope creep (decyzja graniczna 03.07), R5 auth (HMAC, reset hasła, GITHUB_TOKEN; pozostała słabość: brak rate-limitu — zapisana). Uwaga krytyczna: ryzyka są na tyle generyczne dla klasy „panel dla nietechnika nad produkcją", że trafność 5/5 ma umiarkowaną wartość dowodową.
+
+### Mechanizmy — fit
+
+- **mech:single-source-compiler — WRONG (zła granica karty, nie zły kierunek).** Router sformułował twardy zakaz: „panel NIE może edytować wyrenderowanego HTML". Zwycięska architektura robi dokładnie to — bo dla strony statycznej wyrenderowany HTML w repo JEST źródłem (jedyna transformacja to `_includes` przez build.js). Kartę ratuje duch (panel i strona czytają ten sam plik → jedna prawda), zabija litera (source ≠ output nie istnieje tu jako rozróżnienie). Karta nie zna przypadku „output = source".
+- **mech:sandbox-promotion — WRONG/nieużyty.** Brak draftu, podglądu-przed-publikacją jako bramki i aktu promocji: zapis w panelu = commit na main = produkcja po ~60s. Realny mechanizm bezpieczeństwa to odwrotność sandboxa: publikuj od razu, ale każdy krok odwracalny (Cofnij krok-po-kroku → Kosz → Historia/revert). Router nie miał karty na ten wzorzec.
+- **mech:incident-to-guard — FULL HIT.** Incydent założycielski → parsowanie pod aktualną strukturę + sha+old; bug składu → kanoniczny writer; słaby token → HMAC; nawigacja z podglądu → bezwarunkowa blokada. Wzorzec nośny przez cały projekt.
+- **mech:working-artifact-extraction — FULL HIT.** Model treści zeskanowany z żywych stron (inwentarz offsetowy per strona, skaner kart w oferta.html), a nie zaprojektowany schemat; „klon najnowszego wpisu jako szkielet" = ekstrakcja wzorca z działającego artefaktu.
+- **mech:negative-knowledge-ledger — PARTIAL.** Lekcja starego panelu została skonsumowana, ale zgeneralizowana INACZEJ niż zapisał Router: nie „parsowanie DOM nie działa → edytuj źródło danych", lecz „parsowanie działa, jeśli jest pod aktualną strukturę + zweryfikowane (sha/old) + z kanonicznym writerem". Ledger z błędną generalizacją jest groźniejszy niż brak wpisu.
+- **Missed-used: mech:deterministic-spine** — nie rekomendowany, a realnie użyty: weryfikacja sha+old (optimistic locking), zapis wielu plików JEDNYM atomowym commitem (Git Data API), idempotentne kanoniczne buildery. To była techniczna podstawa zaufania do panelu.
+
+Mechanism-fit: 2/5 full, 1/5 partial, 2/5 wrong; miss rate: 1 (deterministic-spine). Fit ≈ 50–60% — wyraźnie gorzej niż briefsync (80–90%).
+
+## Raport 10 sekcji
+
+1. **Accuracy Routera:** predykcje 5/7 hit (z czego 1 słaby, 1 skażony przeciekiem „v6" w T0), 1 miss na predykcji z NAJWYŻSZYM p (0.80, bt-05) — to sygnał kalibracyjny: Router był najpewniejszy tam, gdzie przenosił doktrynę karty bez sprawdzenia, czy rozróżnienie source/output w ogóle istnieje w tym stacku. Ryzyka 5/5, ale generyczne.
+2. **Accuracy Mechanism Selection:** 2/5 full (incident-to-guard, working-artifact-extraction), 1/5 partial (negative-knowledge-ledger), 2/5 wrong (single-source-compiler co do litery, sandbox-promotion w całości), 1 missed-used (deterministic-spine). Odrzucenia 4/4 poprawne (agent-as-runtime, format-dictionary/machine-narrows, design-as-code, numeric-gates — nic z tego nie było potrzebne).
+3. **Największe błędy:** (a) bt-05/single-source-compiler — karta nie zna przypadku „wyrenderowany HTML = źródło" i wygenerowała fałszywy zakaz architektoniczny; zwycięska architektura formalnie łamie kartę; (b) sandbox-promotion rekomendowany tam, gdzie realny wzorzec to „direct publish + stos odwracalności" — brak karty na odwracalność post-hoc; (c) błędna generalizacja w ledgerze negatywnym („nie parsuj DOM" zamiast „parsuj aktualne + weryfikuj + pisz kanonicznie"); (d) skala czasu: Router zakładał tygodnie iteracji, rzeczywistość = 10 PR-ów w jeden dzień; predykcje o „kolejnych iteracjach" trafiają wtedy trywialnie.
+4. **Największe sukcesy:** incident-to-guard i working-artifact-extraction opisały rdzeń projektu (skan żywych stron jako model + guardy z incydentów); przewidzenie decyzji granicznej „treść tak, struktura nie" (bt-02) niemal co do słowa; przewidzenie drugiej ścieżki edycji jako nieusuniętej słabości (bt-07: przepis ręczny 15.07 + drift klonów potwierdzone).
+5. **Nowe mechanizmy (hipotezy):** mech:reversibility-stack — gdy operator potrzebuje publikacji wprost (bez bramki promocji), bezpieczeństwo daje warstwowa odwracalność: undo-w-sesji → kosz → historia/revert; alternatywa, nie degeneracja, sandbox-promotion. mech:canonical-writer — zapis nigdy nie patchuje fragmentu in-place; buduje całą kanoniczną sekcję i podmienia ją atomowo (buildSklad/buildCard po bugu 41fbo7; klon wpisu jako szkielet to ta sama zasada). Do rozważenia jako failure_condition w kartach, nie osobne karty: „optimistic-lock na artefakcie" (sha+old) jako standardowy guard każdego panelu piszącego do współdzielonego źródła.
+6. **Mechanizmy do usunięcia:** żadnego usuwać; single-source-compiler i sandbox-promotion wymagają KOREKTY GRANIC (patrz 7), nie kasacji — oba mają solidne evidence z innych projektów.
+7. **Confidence Changes (wyłącznie PROPOZYCJE — zapis robi sesja główna):** (a) mech:single-source-compiler — dopisać do karty warunek brzegowy „gdy output = source (statyczny HTML w repo), wymóg »edytuj źródło, nie output« redukuje się do: parsuj AKTUALNĄ strukturę + weryfikuj przed zapisem + kanoniczny writer"; flaga too-broad; bez zmiany confidence (evidence postmortem dopisać jako przypadek graniczny). (b) mech:sandbox-promotion — dopisać failure_condition/anti-context: „operator wymaga natychmiastowej publikacji → zamiast bramki promocji stos odwracalności (hipoteza mech:reversibility-stack)"; flaga too-broad. (c) mech:incident-to-guard + mech:working-artifact-extraction — evidence typu postmortem z tego backtestu (retro, wynik rzeczywisty); dedupe per projekt: NIE sumować ze skanem CKO 07.08 tego samego projektu. (d) mech:negative-knowledge-ledger — dopisać ostrzeżenie „wpis ledgera z błędną generalizacją szkodzi bardziej niż brak wpisu; zapisuj mechanizm awarii, nie zakaz techniki".
+8. **Nowe hipotezy:** poziom generalizacji lekcji jest osobnym ryzykiem (meta: ledger przechowuje pary przyczyna→mechanizm, nie technika→zakaz); tempo „wszystko w jeden dzień" sugeruje, że dla narzędzi wewnętrznych na gotowej rurze predykcje o iteracjach powinny mówić o LICZBIE wersji, nie o czasie; brak dowodu użycia przez klienta = otwarta pętla (czy operatorka realnie publikuje? — do sprawdzenia zanim projekt liczy się jako pełny sukces mechanizmów).
+9. **Czego Genome nie wiedziało w T0:** że w statycznym serwisie nie powstanie osobna warstwa danych (HTML = źródło) — to unieważnia oś „źródło vs output"; że przyczyną „CMS nie działa" był brakujący env GITHUB_TOKEN (klasa: sekret-zależność niewidoczna w kodzie); że karty produktów mają podwójną strukturę `<ul>` (krótka + details) — dokładnie taki wariant ogona, jaki bt-01 przewidywał ogólnie; że CMS commitujący prosto na origin wytwarza drift lokalnych klonów (nowa odmiana „bocznych drzwi": nie człowiek obok panelu, lecz panel obok człowieka).
+10. **Jak następny projekt będzie lepszy:** przed rekomendacją single-source-compiler Router sprawdza, czy w stacku istnieje rozróżnienie source/output — jeśli nie, rekomenduje „aktualna struktura + optimistic-lock + kanoniczny writer"; każdy panel z zapisem do produkcji dostaje pytanie bramkowe „sandbox czy stos odwracalności?" jako świadomy wybór, nie default; wpisy negative-knowledge zapisują przyczynę awarii, nie zakaz techniki; bramka oddania wymaga dowodu użycia przez realnego operatora, nie tylko „panel kompletny".
+
+## Evidence (propozycje do zapisu przez sesję główną)
+
+- E1 {obserwacja: zwycięska architektura CMS v6 parsuje/edytuje wyrenderowany HTML (offsety, regex, skaner div) wbrew zakazowi karty, bo w statycznym serwisie output = source; dowód: api/content.js (inwentarz offsetowy, sha+old:180) + memory/dailyfruits-blog-pipeline.md (03.07.2026) + brak jakiejkolwiek warstwy danych w repo; wpływ: karta generuje fałszywe zakazy w stackach bez rozróżnienia source/output; zmiana: warunek brzegowy w karcie + flaga too-broad; mech: single-source-compiler}
+- E2 {obserwacja: klasa „rozjazd parser↔struktura" wróciła mimo nowej architektury — updateCardInPlace zakładał jedną ul.skladniki, realne karty miały dwie; dowód: commit 41fbe07 (27.07.2026) + opis w memory/dailyfruits-blog-pipeline.md; wpływ: parsowanie artefaktu jest akceptowalne tylko z guardami (sha+old, kanoniczny writer) — rozjazd jest wykrywalny, nie wyeliminowany; zmiana: failure_condition „parser żywego artefaktu wymaga optimistic-lock + canonical writer"; mech: incident-to-guard, working-artifact-extraction}
+- E3 {obserwacja: zamiast draft→promote wdrożono direct-publish z trójwarstwową odwracalnością Cofnij→Kosz→Historia; dowód: PR #3/#6/#10 (03.07.2026, git log ~/Fruityyyy: 764c74b, eb4fb18, 5389bd5); wpływ: sandbox-promotion ma niezmapowaną alternatywę dla operatorów wymagających natychmiastowej publikacji; zmiana: anti-context w karcie + hipoteza mech:reversibility-stack; mech: sandbox-promotion}
+- E4 {obserwacja: deterministic-spine użyty a nierekomendowany — sha+old, atomowy multi-file commit przez Git Data API, idempotentne buildery; dowód: api/content.js (commitFiles, weryfikacja sha:180) + memory 03.07.2026; wpływ: miss selekcji — trigger karty nie objął „panel piszący do współdzielonego repo"; zmiana: rozszerzyć trigger o klasę concurrent-write na wspólnym źródle; mech: deterministic-spine}
+- E5 {obserwacja: druga ścieżka edycji przewidziana i potwierdzona — ręczny przepis dodania wpisu przez kod + drift lokalnego klonu (12 commitów za origin); dowód: memory/dailyfruits-blog-pipeline.md (wpis-hejt-owoce 15.07.2026 + GOTCHA git pull); wpływ: asymetria „u klienta guard, u siebie dyscyplina" potwierdzona po raz kolejny; zmiana: evidence postmortem do failure mode sandbox-promotion/incident-to-guard; mech: sandbox-promotion, incident-to-guard}
+- E6 {obserwacja: decyzja graniczna „treść tak, struktura nie" zapadła i została utrwalona jako osobna pamięć — przewidziana przez bt-02 niemal co do słowa; dowód: memory/dailyfruits-cms-scope.md (decyzja 03.07.2026); wpływ: klasa „panel dla nietechnika" niesie przewidywalną decyzję graniczną — kandydat na element checklisty Routera; zmiana: dopisać do workflow Routera pytanie bramkowe o granicę treść/struktura; mech: working-artifact-extraction}

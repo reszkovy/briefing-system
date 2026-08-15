@@ -8,10 +8,9 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49">
-<script src="/assets/site.js?v=49" defer></script>
-<script src="/assets/practice.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
+<script src="/assets/practice.js?v=86" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -34,8 +33,8 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
       </span>
       <span class="nav__sep" aria-hidden="true"></span>
       <span class="nav__grp nav__grp--tools">
-        <a href="/pl/practice/">The Practice</a>
-        <a href="/pl/book/">Książka</a>
+        <a href="/pl/practice/today/">Practice</a>
+        <a href="/pl/book/00-otwarcie/">Książka</a>
       </span>
     </nav>
     <div class="hdr__cta">
@@ -58,7 +57,8 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
         <section class="cx cx--guide">
           <p class="cx__head">Przewodnik</p>
           <ul class="cx__list">
-            <li><a class="cx__item" href="/pl/book/">Książka &mdash; czytaj online</a></li>
+            <li><a class="cx__item" href="/pl/practice/today/">The Practice &mdash; dzisiejsza praktyka</a></li>
+            <li><a class="cx__item" href="/pl/book/00-otwarcie/">Książka &mdash; czytaj online</a></li>
             <li><a class="cx__item" href="/pl/guide/contents/">Mapa &mdash; spis treści</a></li>
             <li><a class="cx__item" href="/pl/guide/">Współczesny hermeta</a></li>
             <li><a class="cx__item" href="/pl/guide/instruction/">Instrukcja &mdash; 15 praktyk</a></li>
@@ -146,26 +146,12 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
     <p class="pr__privacy">Twoje wpisy pozostają w tej przeglądarce. Nic nie jest wysyłane do The Hermeticum ani do AI, dopóki sam tego nie wyeksportujesz.</p>
   </div>
 </main><footer class="foot">
-  <div class="container foot__in">
-    <div class="foot__brand">
-      <span class="foot__mark"><em>the</em>Hermeticum</span>
-      <p>Nowoczesna brama do tradycji hermetycznej.<br>Poważna historia, prawdziwe źródła, bez wróżenia.</p>
-    </div>
-    <nav class="foot__col" aria-label="Eksploruj">
-      <p>Eksploruj</p>
-      <a href="/pl/practice/">The Practice</a>
-      <a href="/pl/practice/">The Practice</a><a href="/pl/start-here/">Zacznij tutaj</a><a href="/pl/guide/contents/">Mapa</a><a href="/pl/guide/">Współczesny hermeta</a><a href="/pl/guide/instruction/">Instrukcja</a><a href="/pl/guide/operational-alchemy/">Alchemia operacyjna</a><a href="/pl/path/">Ścieżka</a><a href="/pl/texts/">Teksty</a><a href="/pl/figures/">Postaci</a><a href="/pl/ideas/">Idee</a>
-    </nav>
-    <nav class="foot__col" aria-label="O serwisie">
-      <p>List</p>
-      <a href="/pl/letters/">Archiwum listów</a><a href="/pl/subscribe/">Zapisz się</a><a href="/pl/about/method/">O serwisie i metoda</a><a href="/rss.xml">RSS</a><a href="/pl/privacy/">Prywatność</a>
-    </nav>
+  <div class="container foot__row">
+    <a class="foot__brand" href="/pl/"><svg class="foot__sigil" viewBox="0 0 545 554" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M544.781 165.192H475.492V390.54H544.781V553.071H0V390.54H66.4902V165.192H0V0H544.781V165.192ZM56.209 124.889H115.522V426.137H56.209V498.717H248.977V426.137H187.322V305.169H357.457V426.137H296.583V498.717H488.57V426.137H429.257V124.889H488.57V52.3076H296.583V124.889H357.457V232.589H187.322V124.889H248.977V52.3076H56.209V124.889Z" fill="currentColor"/></svg><span class="foot__mark"><em>the</em>Hermeticum</span></a>
+    <nav class="foot__nav" aria-label="Stopka"><a href="/pl/pytania/">Pytania</a><a href="/pl/practice/today/">The Practice</a><a href="/pl/book/00-otwarcie/">Książka</a><a href="/pl/path/">Ścieżka</a><a href="/pl/texts/">Teksty</a><a href="/pl/figures/">Postaci</a><a href="/pl/ideas/">Idee</a><a href="/pl/letters/">Archiwum listów</a><a href="/pl/about/method/">Metodzie</a><a href="/pl/privacy/">Prywatność</a></nav>
   </div>
-  <div class="container foot__note">
-    <p><b>Jak powstaje ten serwis.</b> The Hermeticum jest kompilacją: strony powstają z pomocą narzędzi AI na podstawie opublikowanych badań &mdash; wydań, monografii i artykułów wymienionych w źródłach przy każdym haśle. Nie ma tu autorskich badań historycznych i nic nie jest podawane jako objawienie. Gdy badacze się różnią, mówimy o tym wprost; gdy twierdzenie jest sporne, oznaczamy je. Błędy są nasze i warto je zgłaszać &mdash; w <a href="/pl/about/method/">Metodzie</a> opisujemy, skąd bierzemy źródła i jak prostujemy.</p>
-  </div>
-  <div class="container foot__bar">
-    <span>&copy; 2026 The Hermeticum</span>
-    <span class="foot__motto">Jak w górze, tak i na dole.</span>
+  <div class="container foot__row foot__row--fine">
+    <p class="foot__note"><b>Kompilacja.</b> Strony powstają z pomocą narzędzi AI na podstawie opublikowanych badań; źródła stoją przy każdym haśle. <a href="/pl/about/method/">Metoda i pełna bibliografia</a></p>
+    <p class="foot__meta"><span>&copy; 2026 The Hermeticum</span><span class="foot__motto">Jak w górze, tak i na dole.</span></p>
   </div>
 </footer></body></html>

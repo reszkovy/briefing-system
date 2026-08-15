@@ -1,0 +1,60 @@
+---
+id: "mech:negative-knowledge-ledger"
+type: "mechanism"
+title: "Negative Knowledge Ledger"
+status: "emerging"
+created: "2026-08-07"
+updated: "2026-08-08"
+version: 2
+owner: "session"
+confidence: {"value":"emerging","evidence_strength":{"n":11,"projects":8,"types":{"measurement":0,"postmortem":7,"narracja":4},"last_confirmed":"2026-08-08"},"recommendation":"use-with-care"}
+category: "Knowledge Compounding"
+relations: {"implements": ["prin:pay-for-every-lesson-once"], "related": ["mech:session-to-sop", "mech:incident-to-guard", "mech:deterministic-spine"]}
+trigger: "Klient mówi 'tego nie robimy, bo kiedyś nie wyszło — ale nikt nie pamięta czemu', 'znowu spaliliśmy tydzień na coś, co już testowaliśmy' albo zespół diagnozuje od zera problemy, które są znanymi limitami narzędzi. Sygnał: folklor zakazów bez zapisu i recydywa znanych ślepych zaułków u różnych osób."
+context: "Zespoły eksperymentujące na wielu kanałach/narzędziach (marketing, growth, produkcja z dużym stackiem), z rotacją wykonawców — tam, gdzie ta sama lekcja bywa opłacana wielokrotnie. Tani we wdrożeniu, dobrze pakuje się jako moduł Brand Hub ('co wiemy, że nie działa w naszej marce/kanałach')."
+anti_context: "Nie stosować dla przypuszczeń — do ledgera trafiają tylko wyniki realnych testów, inaczej blokuje rzeczy, które mogłyby działać. Szkodzi bez dat/kontekstu: wpisy twardnieją w dogmat, choć limity środowisk są warunkowe i się zmieniają. Bez automatycznego kanału konsultacji (przed próbą, nie po porażce) ledger jest martwy."
+inputs: ["Zebrane dotychczasowe negatywne wyniki testów z kontekstem (co, kiedy, w jakich warunkach nie zadziałało)", "Wzorzec zastępczy dla każdego wpisu (co robić ZAMIAST)", "Automatyczny kanał konsultacji (auto-memory / plik w repo ładowany na start diagnozy)", "Daty ważności i triggery re-testu dla wpisów warunkowych", "Dostęp dla wszystkich wykonawców (podwykonawcy też)"]
+ai_tasks: ["Zapis każdego negatywnego wyniku jako pary 'nie działa bo X + zamiast tego Y'", "Konsultacja ledgera na starcie każdej diagnozy (najpierw środowisko/znane limity, potem kod)", "Ekstrakcja kandydatów do ledgera z logów sesji", "Tagowanie wpisów datą i warunkami + przypomnienie o re-teście po wygaśnięciu", "Mierzenie hit-rate (ile diagnoz zaczęło się od trafienia w ledger)"]
+human_tasks: ["Przemek-decyzja: kwalifikacja wpisu (realny test vs przypuszczenie) i akcept wzorca zastępczego", "Podwykonawca: konsultacja ledgera przed podjęciem próby i dopisywanie własnych wyników", "Klient: udostępnienie historii 'czego próbowaliśmy' przy onboardingu"]
+expected_outcome: "Znany ślepy zaułek nie jest opłacany drugi raz: mierzalny hit-rate ledgera przy diagnozach (odsetek incydentów będących recydywą znanych problemów spada), a każde trafienie oszczędza policzalny czas, bo wpis od razu podaje wzorzec zastępczy."
+evidence: [{"id":"ev:negative-knowledge-ledger-001","type":"narracja","date":"2026-08-07","source":"rec:reviews/skan-cko-2026-08-07","note":"gated-content-nie-dziala — bramkowane raporty przetestowane empirycznie (lewe adresy, zero pipeline'u), wynik zapisany jako wzorzec zastępczy 'treść otwarta + narzędzia, kontakt za personalizację' — zastosowany potem w T"},{"id":"ev:negative-knowledge-ledger-002","type":"narracja","date":"2026-08-07","source":"rec:reviews/skan-cko-2026-08-07","note":"stock-photo-sources — mapa negatywna: Unsplash/Pexels zablokowane, Envato tylko scrape bez podglądów, Adobe myli miasta (semantyka bez progu); pozytyw: Openverse najlepszy dla małych miast. Kolejny research startuje od m"},{"id":"ev:negative-knowledge-ledger-003","type":"narracja","date":"2026-08-07","source":"rec:reviews/skan-cko-2026-08-07","note":"preview-server-sandbox — odkrycie, że preview server nie czyta plików z ~/Desktop (404), zapisane z obejściem (serwuj kopię ze scratchpada); stosowane m.in. w campnou-3d."},{"id":"ev:negative-knowledge-ledger-004","type":"narracja","date":"2026-08-07","source":"rec:reviews/skan-cko-2026-08-07","note":"betterguide-hub — personal_scope_not_allowed zapisane jako twarda reguła 'deploy robi wyłącznie Reszek', co zapobiega ponawianiu nieudanych prób deployu w kolejnych sesjach."},{"id":"ev:negative-knowledge-ledger-bt-dailyfruits-cms-v6","type":"postmortem","date":"2026-08-09","source":"rec:backtests/dailyfruits-cms-v6","note":"(bt#T1) Lekcja starego panelu zgeneralizowana błędnie przez Router ('nie parsuj DOM → edytuj źródło danych'); realna generalizacja = 'parsuj aktualne + weryfikuj + pisz kanonicznie' | Zmiana: Zasada w karcie: zapisuj mechanizm awarii (przyczyna→warunek), nie zakaz techniki"},{"id":"ev:negative-knowledge-ledger-bt-dailyfruits-seo-oferta","type":"postmortem","date":"2026-08-09","source":"rec:backtests/dailyfruits-seo-oferta","note":"(bt#T1) ≥5 nowych par 'nie działa bo X→rób Y' zapisanych w trakcie projektu (urllib-308→curl -L; trailingSlash przed redirectami; redirecty przed filesystemem; PIL RGB zabija alpha; immutable cache→?v=; lab-LCP=baner) | Zmiana: +evidence typu postmortem"},{"id":"ev:negative-knowledge-ledger-bt-zdrofit-cwicz-w-zieleni","type":"postmortem","date":"2026-08-09","source":"rec:backtests/zdrofit-cwicz-w-zieleni","note":"(bt#T2) Bloker Aptly rozwiązany i zapisany dokładnie jako para NKL: limit loadFontAsync → działający wzorzec fontTools→SVG→createNodeFromSvg z parametrami operacyjnymi | Zmiana: +evidence typu postmortem dla NKL (propozycja podbicia confidence — decyzja sesji głównej)"},{"id":"ev:negative-knowledge-ledger-medium-publishing-pipeline","type":"postmortem","date":"2026-08-08","source":"rec:backtests/medium-publishing-pipeline","note":"Pary wiedzy negatywnej w komplecie (never-paste -> import z URL; syntetyczne kliki -> klawiatura z czekaniem 3-4 s; za krotkie czekanie -> zly chip; DOM edits persist, bo edytor serializuje DOM; warunek wstepny 200-nie-301), ale wylacznie wewnatrz SOP-a i brand-centre — bez osobnego ledgera. Trzeci projekt z rzedu z tym wzorcem (po briefsync i transzy 1 tego projektu). | Zmiana: Bez podbicia confidence; utrzymac flage candidate-merge lub dopisac adnotacje 'nosnikiem ledgera bywa SOP'. [dowód: memory/medium-publishing-pipeline.md (07.2026) + ~/.claude/scheduled-tasks/medium-weekly-draft/SKILL.md + .brand/brand-centre.html sekcja 11, vs genome/mechanisms/negative-knowledge-ledger.md]"},{"id":"ev:negative-knowledge-ledger-fotra-panel","type":"postmortem","date":"2026-08-08","source":"rec:backtests/fotra-panel","note":"Ledger przechowywany poza repo projektu (auto-memory, 92-KB audyt) nie zapobiega powtórzeniu błędu. | Zmiana: Dopisać warunek wykonania: ledger mieszka w repo projektu i jest czytany przez SOP odświeżania danych. Flaga too-broad, bez podbicia confidence. [dowód: Ta sama lekcja 'OAuth nie działa w cronie' odkryta 27.05.2026 (figma-brief-push, seria 401 w FOTRA/_scheduled-logs) i ponownie 07.08.2026 (FOTRA/docs/GMAIL-SWEEP.md: 'Gmail MCP wymaga OAuth — nie działa w cronie')]"},{"id":"ev:negative-knowledge-ledger-lumo-brand","type":"postmortem","date":"2026-08-08","source":"rec:backtests/lumo-brand","note":"Wzorzec pary 'co nie dziala + wzorzec zastepczy' zadzialal dwukrotnie w jednej sesji: exportAsync ('Failed to export node... no visible layers') -> reczny eksport SVG/PNG przez czlowieka; TT Commons niedostepny w Figmie webowej i .SF NS Mono systemowy -> jawna mapa substytutow (Hanken Grotesk / Space Mono). Ale obejscie delegowane czlowiekowi NIE domknelo sie — logo nigdy nie trafilo do projektu. | Zmiana: Dopisac typ wpisu 'obejscie delegowane' z wymogiem jawnego wlasciciela i terminu; warunek instytucjonalizacji (para zapisana w Genome, nie w notatce sesji). Confidence: +1 evidence typu postmortem (retro, wynik rzeczywisty). [dowód: memory/lumo-brand.md GOTCHA + sekcja Typografia, ~20.07.2026; proj:lumo-brand 2026-08-08 (logo SVG wciaz na liscie do dokonczenia)]"},{"id":"ev:negative-knowledge-ledger-kubota-stand-3d","type":"postmortem","date":"2026-08-08","source":"rec:backtests/kubota-stand-3d","note":"Pary 'nie działa bo X → rób Y' powstały co do jednej i wszystkie były użyteczne, ale nośnikiem została auto-memory zamiast ledgera — mechanizm zadziałał treścią, zawiódł formą. | Zmiana: +evidence typu postmortem z kierunkiem: karta potrzebuje twardego wskazania NOŚNIKA (konkretny plik ledgera w repo), inaczej jest nieodróżnialna od robienia notatek. BEZ podbicia confidence. [dowód: 2026-08-09, memory/kubota-stand-3d.md (mod. 2026-08-04) zawiera 4 pary: transform-origin musi być 0 0 (inaczej rotateY ±90 przesuwa panel o pół szerokości — potwierdzone komentarzem index.html:114-116); headless Chrome wymaga --allow-file-access-from-files; wersje dielinów na Desktopie bywają stare; logo Group 637722 to cały lockup z BIAŁĄ częścią KUBOTA, niewidoczną na białym podglądzie. Żadna nie istnieje jako wpis w ledgerze dostępnym podwykonawcom.]"}]
+tags: []
+---
+
+## Problem
+
+Organizacje zapisują to, co zadziałało, a wyniki negatywne (droga donikąd, limit środowiska, wzorzec który nie konwertuje) wyparowują — więc ten sam ślepy zaułek jest opłacany wielokrotnie, często przez różne osoby/sesje. Failure mode systemu to nie crash, lecz cicha strata czasu na znany problem.
+
+## Mechanizm działania
+
+Negatywny wynik testu jest traktowany jak aktywo i zapisywany z taką samą starannością jak sukces — zawsze jako para: co przetestowano i dlaczego nie działa + jaki wzorzec stosować ZAMIAST. Ledger jest konsultowany przed podjęciem próby (kanał automatyczny — auto-memory), więc koszt lekcji jest płacony raz, a zapis blokuje ponowną diagnozę od zera. Kluczowe: zapis zawiera wzorzec zastępczy, nie samo 'nie działa' — dzięki temu jest generatywny, nie tylko blokujący.
+
+## Warunki sukcesu
+
+- Zapis zawiera parę: negatywny wynik + wzorzec zastępczy (co robić zamiast)
+- Ledger jest przeszukiwany PRZED podjęciem próby (kanał automatyczny — auto-memory), nie po porażce
+- Wynik negatywny pochodzi z realnego testu, nie z przypuszczenia — inaczej ledger blokuje rzeczy, które mogłyby działać
+
+## Warunki porażki
+
+- Wynik negatywny bez daty/kontekstu twardnieje w dogmat — limity środowisk się zmieniają (CoinGecko 429 tylko z IP sandboxa, token Dropbox 4h — warunkowe, nie wieczne)
+- Ledger nie konsultowany na początku diagnozy: limity darmowych tierów mylone z bugami własnego kodu, diagnoza 'za każdym razem od kodu zamiast od środowiska' (common_errors)
+- Wiedza negatywna nietransferowana do podwykonawców — Natalia/Ada mogą opłacać lekcje, które system już ma
+
+## Potencjał automatyzacji
+
+Średni-wysoki: automatyczny prompt diagnozy 'najpierw sprawdź ledger środowiska' (odwraca kolejność kod→środowisko); tagowanie wpisów datą ważności i triggerem re-testu; ekstrakcja negatywnych wyników z logów sesji jako kandydatów do ledgera.
+
+## Transfer
+
+Bardzo wysoki i tani we wdrożeniu — każdy zespół marketingowy ma folklor 'tego nie robimy, bo kiedyś nie wyszło' bez zapisu dlaczego; sformalizowany ledger z wzorcami zastępczymi to natychmiastowa wartość. Dobrze pakuje się jako moduł Brand Hub ('co wiemy, że nie działa w naszej marce/kanałach').
+
+## Eksperyment · BetterWorkplace/DailyFruits
+
+Założyć jawny ledger negatywny dla ekosystemu DailyFruits/betterguide (znane pułapki: Vercel scope, GTM/Usercentrics, drift klonów repo, limity formularzy) jako plik w repo + wpis pamięci. Przez 6 tygodni logować każdy przypadek, gdy diagnoza problemu zaczęła się od trafienia w ledger vs od ponownego odkrywania. Metryka: hit-rate ledgera i szacowany czas zaoszczędzony per trafienie; dodatkowo test transferu — czy wpis w repo (nie w auto-memory) zostaje znaleziony przez świeżą sesję.
+
+**Czego się dowiemy:** Dowiemy się, jaki odsetek incydentów na dojrzałym kliencie to recydywa znanych problemów oraz czy ledger w repo (dostępny podwykonawcom) działa równie dobrze jak auto-memory — to rozstrzyga, gdzie powinna mieszkać wiedza negatywna sprzedawana klientom.
+
+## Version
+- v2 · 2026-08-08 — migracja F0: frontmatter + DOWNGRADE proven→emerging (evt: ontologia validated — cały Evidence typu narracja).
+- v1 · 2026-08-07 — destylacja ze skanu CKO (47 projektów).

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LLM Council — Manifest r352/FOTRA v2</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b0c0d;--panel:#141618;--text:#f3f4f6;--muted:#9ca3af;--line:#292d31;--lime:#a3e635;--blue:#60a5fa}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 Inter,ui-sans-serif,system-ui,sans-serif}.wrap{max-width:980px;margin:auto;padding:54px 24px 80px}h1{font-size:38px;line-height:1.05;margin:0 0 12px}h2{font-size:19px;margin:38px 0 12px}p{margin:8px 0}.muted{color:var(--muted)}.score{margin:28px 0;padding:28px;border:1px solid #4d681c;background:#10150a;border-radius:8px}.score strong{display:block;color:var(--lime);font-size:52px;line-height:1}.score span{display:block;margin-top:10px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{padding:17px;border:1px solid var(--line);background:var(--panel);border-radius:8px}.card strong{display:block;font-size:20px}.card small{color:var(--muted)}table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line)}th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.flow{color:var(--lime);font-weight:700;padding:16px;border:1px dashed #4d681c;border-radius:8px}.callout{border-left:3px solid var(--blue);padding:4px 0 4px 16px;color:#dbeafe}.done{color:var(--lime)}@media(max-width:700px){.grid{grid-template-columns:1fr}h1{font-size:30px}.score strong{font-size:40px}}
+  </style>
+</head>
+<body><main class="wrap">
+  <p class="muted">LLM Council · 12 sierpnia 2026 · runda po wdrożeniu</p>
+  <h1>Manifest r352 przestał być deklaracją. Stał się mechanizmem decyzji.</h1>
+  <p class="muted">Pięciu doradców, pięciu anonimowych recenzentów i przewodniczący ocenili działającą Kartę Decyzji i Portfela w FOTRA.</p>
+
+  <section class="score"><strong>94 600 / 100 000</strong><span>Cel &gt;90 000 został jednoznacznie osiągnięty dla jakości konstrukcji i gotowości. Skuteczność wymaga jeszcze 30 dni danych.</span></section>
+
+  <h2>Co zostało wdrożone</h2>
+  <div class="grid">
+    <div class="card"><strong>Brama wejścia</strong><small>Marża, czas właściciela, dowód, owner, handoff, reuse, koszt alternatywny, kill criteria i veto.</small></div>
+    <div class="card"><strong>Kontrola portfela</strong><small>8 h na inicjatywę, 24 h całego portfela, maksymalnie jeden eksperyment.</small></div>
+    <div class="card"><strong>Zamknięta pętla</strong><small>OVERDUE blokuje nowe GO. Rozliczenie wymusza CONTINUE, REVISE albo KILL.</small></div>
+    <div class="card"><strong>Prognoza kontra fakt</strong><small>Marża, godziny, interwencje, niezależny przychód, reuse i rzeczywisty handoff.</small></div>
+    <div class="card"><strong>Dźwignia strategiczna</strong><small>Eksperyment wymaga mierzalnego aktywa i konkretnego dowodu do zdobycia.</small></div>
+    <div class="card"><strong>Historia append-only</strong><small>Kolejne rozliczenia nie nadpisują poprzednich. Zachowują fakty, wariancję, stan i datę.</small></div>
+  </div>
+
+  <h2>Wyniki doradców po poprawkach</h2>
+  <table><thead><tr><th>Perspektywa</th><th>Ocena</th><th>Wniosek</th></tr></thead><tbody>
+    <tr><td>Kontrariańska</td><td>93 000</td><td>&gt;90k tak; ryzyko samooszukiwania pozostaje.</td></tr>
+    <tr><td>First principles</td><td>96 200</td><td>Pętla OVERDUE → rozliczenie → decyzja jest kompletna.</td></tr>
+    <tr><td>Ekspansja</td><td>96 400</td><td>Dźwignia strategiczna chroni przed nadmierną zachowawczością.</td></tr>
+    <tr><td>Outsider</td><td>97 200</td><td>Mechanizm działa; brak jeszcze zachowania pod presją.</td></tr>
+    <tr><td>Egzekucja</td><td>93 200</td><td>Pełna pionowa ciągłość, ale potrzeba realnego cyklu.</td></tr>
+  </tbody></table>
+
+  <h2>Anonimowa recenzja</h2>
+  <p>Recenzenci zgodnie obniżyli entuzjazm pierwszej piątki. Cztery oceny wyniosły <strong>92 400</strong>, jedna <strong>91 800</strong>. Każdy uznał próg 90 000 za osiągnięty, lecz wskazał, że wyniki 96–97 tys. są przedwczesne.</p>
+  <p class="callout">Główny wykryty defekt: rozliczenia nadpisywałyby wcześniejsze fakty. Został naprawiony po recenzji. Dwa kolejne rozliczenia CONTINUE → KILL zachowały oba wpisy.</p>
+
+  <h2>Werdykt przewodniczącego</h2>
+  <p class="flow">Kwalifikacja → zobowiązanie → termin → OVERDUE → blokada → rozliczenie → CONTINUE / REVISE / KILL</p>
+  <p>System ma wejście, ograniczenia, konsekwencję niedomykania, pomiar rzeczywistości i decyzję kończącą. To już system zarządczy, nie manifest z kalkulatorem.</p>
+  <p>Pozostałe ryzyko jest behawioralne: optymistyczne dane, obchodzenie statusów i brak gotowości do kosztownego NO lub KILL wobec atrakcyjnej okazji.</p>
+
+  <h2>Jedna rzecz teraz</h2>
+  <div class="card"><strong class="done">30 dni bez wyjątków</strong><small>Każdą nową inicjatywę przepuścić przez Kartę. Rozliczyć wszystkie terminy. Najważniejszym dowodem będzie niewygodne NO lub KILL, którego naprawdę posłuchasz.</small></div>
+</main></body></html>

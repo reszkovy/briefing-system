@@ -1,0 +1,32 @@
+{
+ "nazwa": "animacja-zostan-trenerem-personalnym-ogolna-akad",
+ "zestaw": "formats-szkic.json",
+ "zdjecie": "/Users/reszek/Desktop/Claude_zadania/Narzedzie do briefowania/benefit-automatyzacja/generator/jobs/zdjecia/animacja-zostan-trenerem-personalnym-ogolna-akad.webp",
+ "naglowek": "zostań trenerem\npersonalnym",
+ "payoff": "Akademia",
+ "_rozpoznanie": {
+  "karta": "animacja - zostań trenerem personalnym - ogólna - Akademia Zdrofit",
+  "link": "https://trello.com/c/Co3fX76b",
+  "typ": "warsztat",
+  "wszystkie_typy": [
+   "warsztat"
+  ],
+  "marka": "zdrofit",
+  "miasto": null,
+  "lokalizacja": null,
+  "aktywnosci": [],
+  "data": "10.15",
+  "zdjecie": "z załącznika karty",
+  "pewnosc": 2,
+  "do_wyboru": [
+   {
+    "id": "6a636a25ca620ab8e96085a6",
+    "nazwa": "image.png",
+    "miniatura": "https://trello.com/1/cards/69bc5faf27afab6291f3b8bd/attachments/6a636a25ca620ab8e96085a6/previews/6a636a26ca620ab8e96085ba/download/image.webp",
+    "w": 1341,
+    "h": 782,
+    "podejrzany": false
+   }
+  ]
+ }
+}

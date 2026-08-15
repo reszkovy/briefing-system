@@ -1,0 +1,6 @@
+{
+ "migration": "mig:2026-08-evidence-contract-v1",
+ "created": "2026-08-09T06:17:13.527Z",
+ "exception": "jednorazowy wyjątek migracyjny dla 32 Recordów — zmiana wyłącznie relations.attached_to",
+ "records": []
+}

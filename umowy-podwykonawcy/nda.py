@@ -1,0 +1,206 @@
+# -*- coding: utf-8 -*-
+"""Treść NDA dla podwykonawców (polska JDG -> polscy freelancerzy B2B)."""
+
+BLOKI = [
+("h1", "UMOWA O ZACHOWANIU POUFNOŚCI"),
+("sub", "(współpraca podwykonawcza)"),
+
+("p", "zawarta w dniu ____________________ pomiędzy:"),
+
+("p", "**{IMIE_NAZWISKO}**, prowadzącym działalność gospodarczą pod firmą **{FIRMA}**, wpisaną do "
+      "Centralnej Ewidencji i Informacji o Działalności Gospodarczej, adres: {ADRES}, NIP: {NIP}, "
+      "REGON: {REGON}, adres e-mail do doręczeń: {EMAIL},"),
+("p", "zwanym dalej **Zleceniodawcą**,"),
+("p", "a"),
+("p", "____________________________________________, prowadzącym działalność gospodarczą pod firmą "
+      "____________________________________________, adres: ____________________________________________, "
+      "NIP: ____________________, adres e-mail do doręczeń: ____________________,"),
+("p", "zwanym dalej **Podwykonawcą**,"),
+("p", "zwanymi łącznie **Stronami**, a każda z osobna **Stroną**."),
+
+("h2", "PREAMBUŁA"),
+("p", "Zważywszy, że:"),
+("lia", "Zleceniodawca świadczy na rzecz swoich klientów usługi w zakresie strategii i projektowania marki, "
+        "produkcji materiałów graficznych, animacji i wideo oraz projektowania i wdrażania rozwiązań cyfrowych;"),
+("lia", "w relacjach z klientami Zleceniodawca jest związany zobowiązaniami do zachowania poufności, których zakres "
+        "zobowiązany jest przenieść na osoby i podmioty, którym powierza wykonanie części prac;"),
+("lia", "Strony zamierzają nawiązać współpracę, w ramach której Zleceniodawca powierzy Podwykonawcy wykonanie "
+        "określonych prac i w tym celu ujawni mu informacje własne oraz informacje swoich klientów;"),
+("lia", "obie Strony zawierają Umowę w zakresie prowadzonej przez siebie działalności gospodarczej,"),
+("p", "Strony zawierają umowę (dalej: **Umowa**) o następującej treści:"),
+
+("h2", "§ 1. DEFINICJE"),
+("li", "**Cel** – nawiązanie i realizacja współpracy pomiędzy Stronami, w szczególności wykonanie przez Podwykonawcę "
+       "prac zleconych przez Zleceniodawcę, w tym prac realizowanych na rzecz Klienta."),
+("li", "**Klient** – każdy podmiot, na rzecz którego Zleceniodawca świadczy lub zamierza świadczyć usługi, a także "
+       "podmiot z nim powiązany, jego agencja, dostawca lub kontrahent, o którym Podwykonawca powziął wiedzę "
+       "w związku ze współpracą ze Zleceniodawcą."),
+("li", "**Informacje Poufne** – wszelkie informacje i dane dotyczące Zleceniodawcy lub Klienta, przekazane lub "
+       "udostępnione Podwykonawcy w jakiejkolwiek formie (ustnie, pisemnie, elektronicznie, wizualnie), zarówno przed, "
+       "jak i po zawarciu Umowy, niezależnie od tego, czy zostały oznaczone jako poufne, w szczególności:"),
+("lia", "briefy, strategie marki, architektura marki, założenia kreatywne, koncepcje, scenariusze, projekty graficzne "
+        "i pliki produkcyjne – także w wersjach roboczych i odrzuconych;"),
+("lia", "niepublikowane materiały marketingowe, plany kampanii, terminy premier i embarga, nazwy i wizualizacje "
+        "produktów przed ich publiczną prezentacją;"),
+("lia", "projekty animacji i materiałów wideo, w tym pliki projektowe, sceny, modele, biblioteki assetów oraz "
+        "wykorzystywane w nich prompty, konfiguracje i zbiory referencyjne;"),
+("lia", "kod źródłowy, repozytoria, dokumentacja techniczna, architektura rozwiązań, dane dostępowe, klucze API, "
+        "loginy, hasła oraz dostępy do środowisk testowych i produkcyjnych;"),
+("lia", "dane handlowe: wysokość wynagrodzeń, stawek, budżetów, kosztorysów, marż i warunków rozliczeń – zarówno "
+        "Zleceniodawcy, jak i Klientów;"),
+("lia", "treść Umowy oraz treść umowy ramowej i Zamówień zawieranych pomiędzy Stronami;"),
+("lia", "tożsamość Klientów oraz dane kontaktowe osób po stronie Klientów;"),
+("lia", "know-how, procesy, szablony, metodyki pracy, systemy i narzędzia Zleceniodawcy, w tym konfiguracje, prompty "
+        "i automatyzacje;"),
+("lia", "dane osobowe udostępnione w związku z Celem;"),
+("lia", "informacje o sporach, reklamacjach, incydentach i zdarzeniach mogących wpłynąć na reputację Zleceniodawcy "
+        "lub Klienta;"),
+("lia", "wszelkie opracowania i materiały wytworzone przez Podwykonawcę, które zawierają Informacje Poufne lub są "
+        "na nich oparte;"),
+("lia", "informacje stanowiące tajemnicę przedsiębiorstwa w rozumieniu ustawy z dnia 16 kwietnia 1993 r. "
+        "o zwalczaniu nieuczciwej konkurencji;"),
+("lia", "sam fakt prowadzenia rozmów lub współpracy pomiędzy Stronami oraz pomiędzy Zleceniodawcą a danym Klientem, "
+        "o ile nie został podany do wiadomości publicznej."),
+("li", "**Materiały** – wszelkie nośniki Informacji Poufnych, w tym pliki, wydruki, prototypy, próbki, nagrania, "
+       "repozytoria i dostępy do systemów, przekazane Podwykonawcy lub przez niego wytworzone w związku z Celem."),
+("li", "**Dalszy Podwykonawca** – każda osoba lub podmiot, któremu Podwykonawca powierza wykonanie części "
+       "powierzonych mu prac."),
+
+("h2", "§ 2. WYŁĄCZENIA"),
+("li", "Informacjami Poufnymi nie są informacje, które:"),
+("lia", "są powszechnie dostępne lub zostały podane do wiadomości publicznej w sposób zgodny z prawem "
+        "i nienaruszający Umowy;"),
+("lia", "były znane Podwykonawcy przed ich ujawnieniem przez Zleceniodawcę, co Podwykonawca może udokumentować;"),
+("lia", "zostały uzyskane od osoby trzeciej uprawnionej do ich przekazania i nieobjętej obowiązkiem poufności;"),
+("lia", "zostały opracowane przez Podwykonawcę samodzielnie, bez korzystania z Informacji Poufnych."),
+("li", "Ciężar wykazania, że dana informacja jest objęta wyłączeniem, spoczywa na Podwykonawcy."),
+
+("h2", "§ 3. OBOWIĄZKI PODWYKONAWCY"),
+("li", "Podwykonawca zobowiązuje się zachować Informacje Poufne w ścisłej tajemnicy i nie ujawniać ich osobom trzecim "
+       "bez uprzedniej zgody Zleceniodawcy wyrażonej co najmniej w formie dokumentowej."),
+("li", "Podwykonawca wykorzysta Informacje Poufne wyłącznie w Celu. Zabronione jest wykorzystywanie ich na własny "
+       "rachunek lub na rzecz osoby trzeciej, w tym w pracach dla innych zleceniodawców."),
+("li", "Podwykonawca udostępni Informacje Poufne wyłącznie tym osobom, którym są one niezbędne do wykonania prac "
+       "(zasada wiedzy koniecznej), po uprzednim zobowiązaniu ich do zachowania poufności."),
+("li", "Powierzenie prac Dalszemu Podwykonawcy wymaga uprzedniej zgody Zleceniodawcy wyrażonej co najmniej w formie "
+       "dokumentowej oraz związania Dalszego Podwykonawcy obowiązkami poufności nie mniej rygorystycznymi niż "
+       "wynikające z Umowy. Za działania i zaniechania Dalszego Podwykonawcy Podwykonawca odpowiada jak za własne."),
+("li", "Podwykonawca zabezpieczy Informacje Poufne i Materiały w sposób adekwatny do ich charakteru, "
+       "w szczególności: będzie korzystał wyłącznie z kanałów przekazywania plików wskazanych przez Zleceniodawcę, "
+       "zabezpieczy urządzenia i konta hasłem oraz uwierzytelnianiem dwuskładnikowym, nie będzie przechowywał "
+       "Materiałów na niezabezpieczonych nośnikach ani udostępniał ich przez publiczne, nieograniczone czasowo linki."),
+("li", "W odniesieniu do danych dostępowych, kluczy API oraz dostępów do repozytoriów i środowisk produkcyjnych "
+       "Podwykonawca zobowiązuje się: korzystać z nich wyłącznie w zakresie niezbędnym do wykonania zleconych prac, "
+       "nie przekazywać ich osobom trzecim, nie zapisywać ich w kodzie źródłowym ani w publicznych repozytoriach oraz "
+       "niezwłocznie zgłosić Zleceniodawcy zakończenie korzystania z nich w celu ich unieważnienia."),
+("li", "Podwykonawca nie będzie wprowadzał Informacji Poufnych, w szczególności Materiałów Klienta, kodu źródłowego "
+       "oraz niepublikowanych materiałów wizualnych, do publicznie dostępnych narzędzi, usług i systemów sztucznej "
+       "inteligencji, których warunki korzystania dopuszczają wykorzystanie wprowadzonych danych do trenowania modeli "
+       "lub ich udostępnianie osobom trzecim. Korzystanie z narzędzi sztucznej inteligencji w wariantach z wyłączonym "
+       "uczeniem na danych użytkownika jest dopuszczalne; na żądanie Zleceniodawcy Podwykonawca wskaże, z jakich "
+       "narzędzi korzystał."),
+("li", "Podwykonawca nie będzie kopiował ani powielał Informacji Poufnych i Materiałów w zakresie szerszym, niż jest "
+       "to niezbędne do realizacji Celu."),
+("li", "O każdym przypadku utraty, ujawnienia lub podejrzenia nieuprawnionego dostępu do Informacji Poufnych "
+       "Podwykonawca poinformuje Zleceniodawcę niezwłocznie, nie później niż w ciągu 24 godzin od powzięcia "
+       "wiadomości, oraz podejmie działania ograniczające skutki zdarzenia."),
+("li", "Na żądanie Zleceniodawcy Podwykonawca potwierdzi w formie dokumentowej sposób zabezpieczenia, zwrotu albo "
+       "usunięcia Informacji Poufnych."),
+
+("h2", "§ 4. PORTFOLIO, REFERENCJE I PUBLIKACJE"),
+("li", "Podwykonawca nie jest uprawniony do publikowania, prezentowania ani wykorzystywania w celach "
+       "autopromocyjnych efektów prac, ich fragmentów lub wersji roboczych, ani do posługiwania się nazwą, znakami "
+       "towarowymi lub wizerunkiem Klienta, ani do ujawniania samego faktu współpracy z Klientem, bez uprzedniej "
+       "zgody Zleceniodawcy wyrażonej co najmniej w formie dokumentowej."),
+("li", "Po publicznej premierze projektu, którego dotyczą efekty prac, zgoda na ich umieszczenie w portfolio "
+       "Podwykonawcy nie zostanie bezpodstawnie odmówiona. Zgoda określa zakres publikacji, dopuszczalne kanały oraz "
+       "termin, a jej udzielenie może zależeć od stanowiska Klienta."),
+("li", "Ograniczenie dotyczy w szczególności stron internetowych, mediów społecznościowych, serwisów portfolio, "
+       "prezentacji ofertowych oraz zgłoszeń konkursowych i przetargowych."),
+
+("h2", "§ 5. WŁASNOŚĆ INFORMACJI I BRAK LICENCJI"),
+("li", "Informacje Poufne oraz Materiały pozostają własnością Zleceniodawcy lub Klienta."),
+("li", "Umowa nie przenosi na Podwykonawcę żadnych praw własności intelektualnej ani nie udziela mu licencji – "
+       "w szczególności nie uprawnia do korzystania z Informacji Poufnych po zakończeniu współpracy."),
+("li", "Zasady nabycia przez Zleceniodawcę praw do efektów prac Podwykonawcy reguluje odrębna umowa ramowa "
+       "o współpracy podwykonawczej. Umowa nie zastępuje tych ustaleń."),
+
+("h2", "§ 6. UJAWNIENIE WYMAGANE PRZEPISAMI PRAWA"),
+("li", "Jeżeli obowiązek ujawnienia Informacji Poufnych wynika z bezwzględnie obowiązujących przepisów prawa albo "
+       "z orzeczenia sądu lub decyzji uprawnionego organu, Podwykonawca ujawni je wyłącznie w niezbędnym zakresie."),
+("li", "O żądaniu ujawnienia Podwykonawca poinformuje Zleceniodawcę niezwłocznie i przed ujawnieniem, o ile jest to "
+       "prawnie dopuszczalne, aby umożliwić mu podjęcie działań ochronnych."),
+
+("h2", "§ 7. ZWROT I USUNIĘCIE INFORMACJI"),
+("li", "Na każde żądanie Zleceniodawcy, a w każdym przypadku w terminie 14 dni od zakończenia współpracy, "
+       "Podwykonawca zwróci wszystkie Materiały w postaci materialnej oraz trwale usunie ich postać elektroniczną, "
+       "w tym kopie robocze i kopie w usługach chmurowych, a także zaprzestanie korzystania z udostępnionych "
+       "dostępów. Obowiązek ten nie dotyczy materiałów i plików źródłowych przekazanych Zleceniodawcy w wykonaniu zleconych prac."),
+("li", "Podwykonawca może zachować kopie Informacji Poufnych wyłącznie w zakresie wymaganym przepisami prawa lub "
+       "znajdujące się w automatycznych kopiach zapasowych, które nie są przywracane w toku bieżącej pracy. Kopie te "
+       "pozostają objęte Umową."),
+
+("h2", "§ 8. ZAKAZ OBCHODZENIA I POZYSKIWANIA"),
+("li", "W okresie współpracy oraz przez {OKRES_ZAKAZU} miesięcy od zakończenia realizacji ostatniego zlecenia "
+       "Podwykonawca nie będzie, bez uprzedniej zgody Zleceniodawcy, nawiązywał – bezpośrednio ani za pośrednictwem "
+       "osoby trzeciej – współpracy z Klientem w zakresie usług tożsamych lub zbliżonych do tych, które były "
+       "przedmiotem prac zleconych przez Zleceniodawcę, jeżeli wiedzę o Kliencie lub kontakt do niego Podwykonawca "
+       "uzyskał w związku ze współpracą ze Zleceniodawcą."),
+("li", "Ograniczenie z ust. 1 nie dotyczy Klientów, z którymi Podwykonawca współpracował przed nawiązaniem "
+       "współpracy ze Zleceniodawcą, co może udokumentować. Jeżeli Klient samodzielnie zwróci się do Podwykonawcy, "
+       "Podwykonawca niezwłocznie poinformuje o tym Zleceniodawcę, a Strony uzgodnią dalszy sposób postępowania."),
+("li", "Podwykonawca nie będzie nakłaniał pracowników, współpracowników ani podwykonawców Zleceniodawcy do "
+       "rozwiązania łączących ich ze Zleceniodawcą umów ani do ich nienależytego wykonania, ani nie będzie ich "
+       "pozyskiwał do współpracy w okresie wskazanym w ust. 1."),
+("li", "Poza przypadkami wskazanymi w ust. 1 i 3 Umowa nie ogranicza prawa Podwykonawcy do świadczenia usług na rzecz "
+       "innych podmiotów, w tym prowadzących działalność konkurencyjną wobec Zleceniodawcy."),
+
+("h2", "§ 9. DANE OSOBOWE"),
+("li", "Strony udostępniają sobie wzajemnie dane osobowe osób odpowiedzialnych za nawiązanie i realizację "
+       "współpracy. Każda ze Stron staje się administratorem danych, które otrzymała, i przetwarza je zgodnie z RODO. "
+       "Strony potwierdzają, że posiadają podstawę prawną do ich udostępnienia."),
+("li", "Jeżeli w ramach realizacji Celu Podwykonawca miałby przetwarzać dane osobowe, których administratorem jest "
+       "Zleceniodawca lub Klient, Strony zawrą odrębną umowę powierzenia przetwarzania danych osobowych zgodnie "
+       "z art. 28 RODO. Do czasu jej zawarcia Podwykonawca nie jest uprawniony do przetwarzania takich danych."),
+
+("h2", "§ 10. ODPOWIEDZIALNOŚĆ I KARY UMOWNE"),
+("li", "W razie naruszenia przez Podwykonawcę obowiązków określonych w § 3, § 4, § 5 lub § 7 Umowy Zleceniodawca "
+       "może żądać zapłaty kary umownej w wysokości {KARA_POUFNOSC} zł (słownie: {KARA_POUFNOSC_SLOWNIE} złotych) "
+       "za każdy przypadek naruszenia."),
+("li", "W razie naruszenia obowiązków określonych w § 8 Umowy Zleceniodawca może żądać zapłaty kary umownej "
+       "w wysokości {KARA_OBEJSCIE} zł (słownie: {KARA_OBEJSCIE_SLOWNIE} złotych) za każdy przypadek naruszenia."),
+("li", "Wezwanie do zapłaty kary umownej zawiera opis i okoliczności naruszenia. Kara płatna jest w terminie 14 dni "
+       "od dnia doręczenia wezwania, przelewem na rachunek bankowy wskazany w wezwaniu."),
+("li", "Zapłata kary umownej nie wyłącza prawa Zleceniodawcy do dochodzenia odszkodowania przewyższającego wysokość "
+       "zastrzeżonych kar umownych na zasadach ogólnych."),
+("li", "Niezależnie od kar umownych Zleceniodawca może żądać natychmiastowego zaniechania naruszenia oraz usunięcia "
+       "jego skutków, wyznaczając Podwykonawcy odpowiedni termin. Wezwanie wymaga formy dokumentowej."),
+
+("h2", "§ 11. CZAS TRWANIA"),
+("li", "Umowa wchodzi w życie z dniem jej zawarcia i obejmuje również Informacje Poufne ujawnione przed tą datą."),
+("li", "Obowiązek zachowania poufności trwa przez {OKRES_POUFNOSCI} lat od zakończenia współpracy Stron, "
+       "a w odniesieniu do informacji stanowiących tajemnicę przedsiębiorstwa – tak długo, jak zachowują one "
+       "taki charakter."),
+("li", "Zakaz określony w § 8 obowiązuje przez okres tam wskazany."),
+
+("h2", "§ 12. POSTANOWIENIA KOŃCOWE"),
+("li", "Umowa zostaje zawarta w formie dokumentowej. Wszelkie jej zmiany wymagają formy dokumentowej pod rygorem "
+       "nieważności. Za zachowanie formy dokumentowej Strony uznają wiadomość e-mail wysłaną z adresów wskazanych "
+       "w komparycji oraz dokument opatrzony kwalifikowanym podpisem elektronicznym lub podpisem zaufanym."),
+("li", "Oświadczenia związane z Umową Strony składają na adresy e-mail wskazane w komparycji. Zmiana adresu wymaga "
+       "powiadomienia drugiej Strony i nie stanowi zmiany Umowy."),
+("li", "Żadna ze Stron nie może przenieść praw ani obowiązków wynikających z Umowy na osobę trzecią bez uprzedniej "
+       "zgody drugiej Strony wyrażonej w formie dokumentowej. Ograniczenie to nie dotyczy przeniesienia przez "
+       "Zleceniodawcę uprawnień na Klienta."),
+("li", "Umowa wraz z umową ramową o współpracy podwykonawczej stanowi całość porozumień Stron w zakresie ochrony "
+       "informacji i zastępuje wcześniejsze ustalenia w tym przedmiocie."),
+("li", "Jeżeli którekolwiek postanowienie Umowy okaże się nieważne lub bezskuteczne, pozostałe postanowienia "
+       "pozostają w mocy, a Strony zastąpią je postanowieniem o zbliżonym skutku gospodarczym."),
+("li", "W sprawach nieuregulowanych Umową stosuje się prawo polskie, w szczególności Kodeks cywilny oraz ustawę "
+       "o zwalczaniu nieuczciwej konkurencji."),
+("li", "Spory wynikające z Umowy rozstrzyga sąd {SAD}."),
+("li", "Umowę sporządzono w dwóch jednobrzmiących egzemplarzach, po jednym dla każdej ze Stron, albo w postaci "
+       "jednego dokumentu elektronicznego podpisanego przez obie Strony."),
+
+("sig", ""),
+]

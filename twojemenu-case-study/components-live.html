@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Twoje Menu — Real UI Elements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Instrument Sans',sans-serif;color:#26201A;background:#141110;
+  display:flex;flex-wrap:wrap;gap:60px;padding:60px}
+.board{width:1440px;height:1080px;position:relative;overflow:hidden;border-radius:8px;
+  background:radial-gradient(120% 90% at 20% 0%, #FBF2E1 0%, #F5E7CE 55%, #F0DFC0 100%)}
+.board:after{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(38,32,26,.05) 1px,transparent 1px);background-size:28px 28px}
+.blabel{position:absolute;left:64px;top:52px;z-index:5}
+.blabel .k{font:600 12px/1 'Instrument Sans';letter-spacing:.22em;text-transform:uppercase;color:#B29B7F}
+.blabel h2{font:640 40px/1.05 'Bricolage Grotesque';letter-spacing:-.025em;margin-top:12px}
+.blabel h2 em{font:600 42px 'Caveat';color:#E85D26;letter-spacing:0}
+.shot{position:absolute;z-index:2;border-radius:24px;overflow:hidden;
+  box-shadow:0 6px 14px rgba(38,32,26,.06),0 36px 80px rgba(38,32,26,.16)}
+.shot img{display:block}
+.cap{position:absolute;z-index:3;background:#26201A;color:#FFFBF4;border-radius:999px;
+  padding:12px 20px;font:600 13px/1 'Instrument Sans';letter-spacing:.02em;
+  box-shadow:0 10px 26px rgba(38,32,26,.3)}
+.strip{position:absolute;z-index:2;background:#fff;border-radius:20px;padding:26px 30px;
+  box-shadow:0 6px 14px rgba(38,32,26,.06),0 36px 80px rgba(38,32,26,.16)}
+.strip img{display:block}
+</style>
+</head>
+<body>
+
+<!-- R1: wybór diety -->
+<div class="board" id="r1">
+  <div class="blabel"><div class="k">twojemenu.pl · Live Product</div>
+    <h2>Wybór diety.<br><em>Prosto z produktu.</em></h2></div>
+
+  <div class="shot" style="left:130px;top:250px;width:440px">
+    <img src="shots/el-wege.png" style="width:100%">
+  </div>
+  <div class="cap" style="left:110px;top:228px">Karta diety · mobile</div>
+
+  <div class="strip" style="right:130px;top:280px;width:600px">
+    <img src="shots/el-badges.png" style="width:100%">
+  </div>
+  <div class="cap" style="right:110px;top:258px">System badge 8 diet</div>
+
+  <div class="shot" style="right:250px;top:520px;width:360px;transform:rotate(2deg)">
+    <img src="shots/el-reviews.png" style="width:100%">
+  </div>
+  <div class="cap" style="right:230px;top:500px">Social proof · Google + Dietly</div>
+</div>
+
+<!-- R2: jadłospis -->
+<div class="board" id="r2">
+  <div class="blabel"><div class="k">twojemenu.pl · Live Product</div>
+    <h2>Jadłospis tygodnia.<br><em>Codziennie nowe menu.</em></h2></div>
+
+  <div class="shot" style="left:150px;top:240px;width:450px">
+    <img src="shots/el-menu.png" style="width:100%">
+  </div>
+  <div class="cap" style="left:130px;top:218px">Widżet jadłospisu · Dieta Standard</div>
+
+  <div class="shot" style="right:170px;top:300px;width:470px;transform:rotate(-2deg)">
+    <img src="shots/el-hero.png" style="width:100%">
+  </div>
+  <div class="cap" style="right:150px;top:278px">Kampania sezonowa · hero</div>
+
+  <div class="strip" style="right:210px;top:720px;width:420px;transform:rotate(1.5deg)">
+    <img src="shots/el-reviews.png" style="width:100%">
+  </div>
+</div>
+
+<script>
+const only = new URLSearchParams(location.search).get('only');
+if (only) {
+  document.querySelectorAll('.board').forEach(b => { if (b.id !== only) b.remove(); });
+  document.body.style.padding = '0'; document.body.style.gap = '0';
+}
+</script>
+</body>
+</html>

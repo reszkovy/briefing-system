@@ -1,0 +1,119 @@
+<section class="subhero">
+  <div class="wrap">
+    <div class="hero-enter" style="max-width:760px">
+      <nav class="crumbs" aria-label="Ścieżka nawigacji">
+        <a href="index.html">Start</a><span>/</span><b>Kontakt</b>
+      </nav>
+      <h1>Kontakt</h1>
+      <p class="lead">
+        Umów badanie, zapytaj o&nbsp;technologię M-Typer albo o&nbsp;współpracę badawczą.
+        Jesteśmy do dyspozycji 7 dni w&nbsp;tygodniu.
+      </p>
+      <div class="metabar">
+        <div class="meta-chip"><b>Laboratorium</b><span><a href="tel:+48502660480">+48 502 660 480</a></span></div>
+        <div class="meta-chip"><b>Siedziba spółki</b><span><a href="tel:+48607705607">+48 607 705 607</a></span></div>
+        <div class="meta-chip"><b>E-mail</b><span><a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-sm">
+  <div class="wrap">
+    <div class="split">
+
+      <!-- formularz -->
+      <div class="card rv" style="padding:clamp(26px,3.4vw,40px)">
+        <span class="eyebrow">Formularz</span>
+        <h2 style="font-size:clamp(24px,3vw,34px);margin-bottom:10px">Napisz do nas</h2>
+        <p style="font-size:14.5px;color:var(--body);margin-bottom:26px">
+          Odpowiadamy zwykle w&nbsp;ciągu 1–2 dni roboczych.
+        </p>
+
+        <form class="form-grid" id="kontaktForm" novalidate>
+          <input type="text" name="_pole" tabindex="-1" autocomplete="off"
+                 aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+          <div class="field">
+            <label for="k-imie">Imię i&nbsp;nazwisko *</label>
+            <input id="k-imie" name="imie" type="text" required placeholder="Jan Kowalski" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="k-firma">Firma / instytucja</label>
+            <input id="k-firma" name="firma" type="text" placeholder="Nazwa laboratorium" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="k-mail">E-mail *</label>
+            <input id="k-mail" name="email" type="email" required placeholder="jan@przyklad.pl" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="k-tel">Telefon</label>
+            <input id="k-tel" name="telefon" type="tel" placeholder="+48 600 000 000" autocomplete="tel">
+          </div>
+          <div class="field full">
+            <label for="k-temat">Temat</label>
+            <select id="k-temat" name="temat">
+              <option>Umówienie badania</option>
+              <option>Technologia M-Typer — wdrożenie</option>
+              <option>Technologia M-Typer — dokumentacja</option>
+              <option>Diagnostyka gruźlicy</option>
+              <option>Mikrobiologia</option>
+              <option>Współpraca badawcza / B+R</option>
+              <option>Dystrybucja</option>
+              <option>Inny temat</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="k-tresc">Wiadomość *</label>
+            <textarea id="k-tresc" name="tresc" required placeholder="W czym możemy pomóc?"></textarea>
+          </div>
+          <div class="field full">
+            <label class="consent">
+              <input type="checkbox" name="zgoda" required>
+              <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w&nbsp;celu udzielenia
+                    odpowiedzi na zapytanie, zgodnie z&nbsp;<a href="#" style="color:var(--lav-2)">polityką prywatności</a>. *</span>
+            </label>
+          </div>
+          <div class="field full">
+            <button type="submit" class="btn btn-lav" style="justify-content:center">
+              Wyślij wiadomość
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+
+      <!-- dane kontaktowe -->
+      <aside class="rv rv-d1" style="display:flex;flex-direction:column;gap:14px">
+        <div class="card" style="padding:28px">
+          <span class="loc-tag">Laboratorium i&nbsp;siedziba spółki</span>
+          <h3 style="font-size:20px;margin-top:4px">ul. Żeromskiego 52</h3>
+          <p class="loc-city" style="margin-top:2px">90-626 Łódź</p>
+          <div class="loc-tel" style="margin-top:18px">
+            <a href="tel:+48502660480">
+              <span class="loc-tel-l">Laboratorium</span>
+              <span class="loc-tel-v">(+48) 502 660 480</span>
+            </a>
+            <a href="tel:+48607705607">
+              <span class="loc-tel-l">Siedziba spółki</span>
+              <span class="loc-tel-v">(+48) 607 705 607</span>
+            </a>
+            <a href="mailto:kontakt@dimedical.pl">
+              <span class="loc-tel-l">E-mail</span>
+              <span class="loc-tel-v">kontakt@dimedical.pl</span>
+            </a>
+          </div>
+        </div>
+
+        <a class="loc-map card" href="https://www.google.com/maps/search/?api=1&amp;query=51.7663738,19.4477804"
+           target="_blank" rel="noopener" aria-label="ul. Żeromskiego 52 w Łodzi — otwórz w Mapach Google">
+          <img src="assets/mapa-lodz.svg" alt="Mapa okolicy ul. Żeromskiego 52 w Łodzi" width="1200" height="760" loading="lazy">
+          <span class="loc-pin" aria-hidden="true"><i></i></span>
+          <span class="loc-open">Otwórz w&nbsp;Mapach<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+        </a>
+        <p class="map-attr">Mapa © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> · © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></p>
+      </aside>
+
+    </div>
+  </div>
+</section>

@@ -1,3 +1,16 @@
+---
+id: "rec:plate/thehermeticum-plate-2026-08-14"
+type: "record"
+title: "PLATE draft v1 + Project Contract — The Hermeticum"
+status: "created"
+created: "2026-08-14"
+updated: "2026-08-14"
+version: 1
+owner: "przemek"
+relations: {"attached_to":["proj:thehermeticum"]}
+tags: ["plate","side-project"]
+---
+
 # PLATE — The Hermeticum (tryb quick-win)
 
 Data: 2026-08-14 · prepared_by: session:claude-fable-5 · decided_by: przemek

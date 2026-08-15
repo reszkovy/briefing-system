@@ -1,0 +1,47 @@
+{
+  "_": [
+    "REJESTR TYPÓW ONTOLOGII — jedyne źródło prawdy.",
+    "",
+    "Czytają go: build.js (walidacja kart), ingest.js (gdzie zapisać kartę),",
+    "genome-os (etykiety i widoczność w grafie). Wcześniej ta sama lista istniała",
+    "w trzech kopiach i rozjeżdżała się po cichu — dodanie typu wymagało znalezienia",
+    "wszystkich trzech. Dlatego rozszerzanie ontologii wyglądało na ryzykowne:",
+    "ryzykowna była duplikacja, nie samo rozszerzanie.",
+    "",
+    "DODANIE TYPU = jeden wpis tutaj + katalog + Decision uzasadniająca.",
+    "Bramka wejścia: rules/rozszerzanie-ontologii.md. Bramka nie jest zakazem —",
+    "jest pytaniem, na które trzeba odpowiedzieć na piśmie, żeby za rok dało się",
+    "zrozumieć, czemu ten typ istnieje.",
+    "",
+    "graph: czy węzły tego typu pokazują się w widoku Grafu. false nie znaczy",
+    "'mniej ważny' — znaczy 'zaszumia widok relacji między wiedzą a projektami'."
+  ],
+  "types": {
+    "axiom":      { "dir": "axioms",      "prefix": "ax",    "statuses": ["draft","accepted","deprecated"], "graph": true,  "label": "Aksjomat" },
+    "principle":  { "dir": "principles",  "prefix": "prin",  "statuses": ["draft","active","deprecated"], "graph": true,  "label": "Zasada" },
+    "mechanism":  { "dir": "mechanisms",  "prefix": "mech",  "statuses": ["hypothesis","emerging","validated","disproven","deprecated"], "graph": true,  "label": "Mechanizm" },
+    "workflow":   { "dir": "workflows",   "prefix": "wf",    "statuses": ["draft","active","deprecated"], "graph": false, "label": "Workflow" },
+    "sop":        { "dir": "sops",        "prefix": "sop",   "statuses": ["draft","active","superseded"], "graph": false, "label": "SOP" },
+    "rule":       { "dir": "rules",       "prefix": "rule",  "statuses": ["active","retired"], "graph": false, "label": "Reguła" },
+    "guard":      { "dir": "guards",      "prefix": "guard", "statuses": ["proposed","armed","retired"], "graph": false, "label": "Guard" },
+    "benchmark":  { "dir": "benchmarks",  "prefix": "bench", "statuses": ["draft","calibrated","active","deprecated"], "graph": false, "label": "Benchmark" },
+    "capability": { "dir": "capabilities","prefix": "cap",   "statuses": ["available","degraded","retired"], "graph": false, "label": "Zdolność" },
+    "agent":      { "dir": "agents",      "prefix": "agent", "statuses": ["defined","active","retired"], "graph": false, "label": "Agent" },
+    "component":  { "dir": "components",  "prefix": "comp",  "statuses": ["proposed","extracted","active","superseded"], "graph": false, "label": "Komponent" },
+    "client":     { "dir": "clients",     "prefix": "cli",   "statuses": ["prospect","active","dormant","archived"], "graph": true,  "label": "Klient" },
+    "project":    { "dir": "projects",    "prefix": "proj",  "statuses": ["proposed","routed","active","closed","archived"], "graph": true,  "label": "Projekt" },
+    "experiment": { "dir": "experiments", "prefix": "exp",   "statuses": ["proposed","running","resolved","folded"], "graph": true,  "label": "Eksperyment" },
+    "decision":   { "dir": "decisions",   "prefix": "dec",   "statuses": ["open","decided","reviewed"], "graph": true,  "label": "Decyzja" },
+    "signal":     { "dir": "signals",     "prefix": "sig",   "statuses": ["observed","investigated","linked","dismissed"], "graph": false, "label": "Sygnał" },
+    "record":     { "dir": "records",     "prefix": "rec",   "statuses": ["created","superseded"], "graph": false, "label": "Record" },
+    "council":    { "dir": "council",     "prefix": "council", "statuses": ["analyzed","decided","resolved","void"], "graph": true,  "label": "Council" }
+  },
+  "added": [
+    {
+      "type": "council",
+      "date": "2026-08-15",
+      "decision": "dec:2026-08-15-rozszerzalna-ontologia",
+      "why": "Narada Councilu ma własny cykl życia (analyzed → decided → resolved), własny scorecard 10 kategorii, własny rozrzut i własne powiązanie z predykcją. Zapisana jako Record traci cykl życia i staje się nieodróżnialna od backtestu, przez co track record Councilu jest niepoliczalny."
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zajęcia — ARToffNIA</title>
+<link rel="icon" type="image/svg+xml" href="sygnet.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .ghero{background:var(--gcol,var(--ph))}
+  .ghero-in{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+  .ghero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center;padding:3rem 0 0}
+  @media (max-width:860px){.ghero-grid{grid-template-columns:1fr;gap:1.6rem;padding-top:2rem}}
+  .ghero h1{font-weight:200}
+  .ghero h1 b{font-weight:800;display:block}
+  .ghero .lead{color:rgba(17,17,16,.72)}
+  .ghero img{width:100%;max-width:440px;display:block;margin:0 auto}
+  .ghero .ph-media{aspect-ratio:3/4;max-width:440px;margin:0 auto}
+  .gwhy{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1px solid var(--ink);border-left:1px solid var(--line);margin-top:2.6rem}
+  .gwhy .w{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.5rem 1.3rem}
+  .gwhy .w b{display:block;font-size:1.05rem;font-weight:800;margin-bottom:.4rem;letter-spacing:-.01em}
+  .gwhy .w span{font-size:.85rem;color:var(--mid);line-height:1.6}
+  .zrow{display:grid;grid-template-columns:1fr auto auto;gap:1.4rem;align-items:center;padding:1.15rem 0;border-bottom:1px solid var(--line)}
+  @media (max-width:700px){.zrow{grid-template-columns:1fr;gap:.5rem}}
+  .zrow .t a{font-size:1.1rem;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+  .zrow .t a:hover{text-decoration:underline}
+  .zrow .t .d{display:block;font-size:.8rem;color:var(--mid);font-weight:400;margin-top:.3rem}
+  .zrow .p{font-weight:800;white-space:nowrap}
+  .zrow .p small{font-weight:400;font-size:.72rem;color:var(--mid)}
+  .gabout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:3rem}
+  @media (max-width:860px){.gabout{grid-template-columns:1fr;gap:1.6rem}}
+  .gabout p{font-size:.98rem;color:var(--mid);line-height:1.75}
+  .gabout b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div class="ghero" id="ghero">
+  <div class="ghero-in">
+    <nav class="nav" style="border-color:rgba(17,17,16,.18)">
+      <a class="nav-logo" href="index.html"><img src="logo-artoffnia.svg" alt="ARToffNIA — Fundacja Tańca i Sztuki"></a>
+      <div class="nav-links">
+        <a href="index.html#zajecia">Zajęcia</a>
+        <a href="obozy.html">Obozy i ferie</a>
+        <a href="cennik.html">Cennik</a>
+        <a href="zapisy.html">Zapisy</a>
+        <a href="fundacja.html">Fundacja</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+    </nav>
+    <div class="ghero-grid">
+      <div>
+        <div class="kicker" style="color:rgba(17,17,16,.6)">Fundacja Tańca i Sztuki · Olsztyn</div>
+        <h1 id="g-h1">Zajęcia.<b>Dla każdego.</b></h1>
+        <p class="lead" id="g-lead"></p>
+        <p style="margin-top:1.6rem"><a class="btn" href="#oferta">Zobacz zajęcia ↓</a>&nbsp;&nbsp;&nbsp;<a class="txtlink" href="zapisy.html">Zapisz się</a></p>
+      </div>
+      <div id="g-media"></div>
+    </div>
+
+    <div class="gwhy" id="g-why" style="background:var(--bg)"></div>
+    <div style="height:2.6rem"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section class="sec" id="oferta">
+    <div class="sec-h" id="g-oferta-h">Zajęcia</div>
+    <div id="g-lista"></div>
+    <p class="f-note" style="margin-top:1rem">💡 Drugie zajęcia −20%, trzecie i kolejne −50%. <a href="cennik.html" style="color:var(--ink)">Pełny cennik</a></p>
+  </section>
+
+  <div class="gabout">
+    <div>
+      <div class="sec-h" style="margin-bottom:1rem">Kim jesteśmy</div>
+      <p><b>ARToffNIA</b> to olsztyńska fundacja tańca i sztuki działająca od 2014 roku — dom Pracowni Tańca <b>Pryzmat</b> i korzenie zawodowego Olsztyńskiego Teatru Tańca. Uczymy w dwóch pracowniach: na Zatorzu (Sybiraków 2) i w centrum (Smętka 28a).</p>
+      <p style="margin-top:.8rem">Zajęcia prowadzą pedagodzy i tancerze z doświadczeniem scenicznym — od Teatru im. Jaracza i Filharmonii Warmińsko-Mazurskiej po europejskie programy taneczne. <a href="fundacja.html" style="color:var(--ink);font-weight:700">Poznaj nas →</a></p>
+    </div>
+    <div class="stats" style="margin-top:0">
+      <div class="stat"><div class="n">2014</div><div class="l">rok założenia</div></div>
+      <div class="stat"><div class="n">350+</div><div class="l">artystów w zespole</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">pracownie w Olsztynie</div></div>
+      <div class="stat"><div class="n" id="g-stat-n">—</div><div class="l" id="g-stat-l">grup w tej kategorii</div></div>
+    </div>
+  </div>
+
+  <div class="callout" style="display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-top:3rem">
+    <span id="g-cta-txt"><b>Nie wiesz, od czego zacząć?</b> Zadzwoń — doradzimy najlepsze zajęcia na start.</span>
+    <span><a class="btn" href="zapisy.html">Zapisz się</a>&nbsp;&nbsp;<a class="txtlink" href="tel:+48604110894">604 110 894</a></span>
+  </div>
+
+  <footer class="footer">
+    <div class="col"><b>ARToffNIA Sybiraków</b>al. Sybiraków 2, Olsztyn (Zatorze)</div>
+    <div class="col"><b>ARToffNIA Smętka</b>ul. Smętka 28a, Olsztyn (Centrum)</div>
+    <div class="col"><b>Kontakt</b><a href="tel:+48604110894">604 110 894</a><br><a href="mailto:biuro@artoffnia.pl">biuro@artoffnia.pl</a></div>
+    <div class="col"><b>Na skróty</b><a href="wynajem.html">Wynajem sal</a><br><a href="obozy.html">Obozy i ferie</a><br><a href="galeria.html">Galeria</a><br><a href="aktualnosci.html">Aktualności</a><br><span>Olsztyński Teatr Tańca — ott.olsztyn.pl</span></div>
+    <div class="col"><b>Dokumenty</b><a href="statut.html">Statut</a><br><a href="regulamin-2025-26.pdf" target="_blank" rel="noopener">Regulamin 2025/26</a><br><a href="standardy.html">Standardy ochrony małoletnich</a><br><a href="wspieraj.html">Wspieraj kulturę</a></div>
+  </footer>
+</div>
+<script src="zajecia.js"></script>
+<script>
+(function(){
+"use strict";
+var CFG={
+ dzieci:{col:"var(--g-dzieci)",rng:[4,12],foto:"foto-dzieci.jpg",
+   h1:'Tu dzieci <b>tańczą, skaczą i rosną.</b>',
+   lead:"Balet, taniec, breakdance, akrobatyka i teatr dla dzieci od 4 lat — w grupach dobranych do wieku, u pedagogów, którzy uczą przez zabawę.",
+   why:[["Grupy co rok–dwa","Dziecko trafia dokładnie do rówieśników — od 4-latków po 12-latki."],["Pokazy na prawdziwej scenie","Występy w Filharmonii Warmińsko-Mazurskiej zostają w pamięci na lata."],["Pedagodzy, nie animatorzy","Uczą tancerze ze scenicznym doświadczeniem i sercem do dzieci."],["Blisko domu","Zatorze albo centrum — wybierz wygodniejszą pracownię."]],
+   cta:"<b>Pierwsze zajęcia bez stresu:</b> przyjdźcie, zobaczcie salę, poznajcie prowadzącą."},
+ nastolatki:{col:"var(--g-nastolatki)",rng:[13,17],foto:"foto-nastolatki.jpg",
+   h1:'Miejsce, gdzie <b>scena należy do młodych.</b>',
+   lead:"Hip-hop, breakdance, taniec współczesny, jazz i teatr — od pierwszych kroków po grupy turniejowe i przygotowanie do szkół artystycznych.",
+   why:[["Od chill po turnieje","Grupy rekreacyjne i reprezentacyjne — poziom dobierasz Ty."],["Prawdziwa kultura tańca","Bitwy, pokazy, spektakle — nie tylko sala i lustro."],["Instruktorzy z Bolonii i Berlina","Kadra szkolona na europejskich programach tanecznych."],["Droga do zawodowstwa","Stąd wyrósł Olsztyński Teatr Tańca — niektórzy zostają na scenie na zawsze."]],
+   cta:"<b>Wpadnij na zajęcia próbne</b> — zobacz grupę, zanim zdecydujesz."},
+ dorosli:{col:"var(--g-dorosli)",rng:[18,59],foto:"foto-dorosli.jpg",
+   h1:'Na taniec <b>nigdy nie jest za późno.</b>',
+   lead:"Balet i jazz od zera, hip-hop, flamenco, high heels, joga i pilates — wieczorne grupy dla dorosłych, w których nikt nie pyta o doświadczenie.",
+   why:[["Naprawdę od zera","Grupy OPEN są projektowane dla początkujących dorosłych."],["Wieczorami, po pracy","Większość zajęć startuje po 18:00 — zdążysz."],["Ruch zamiast siłowni","Technika, muzyka i ludzie — trening, na który się czeka."],["Twoja godzina dla siebie","50+ minut tygodniowo, które należą tylko do Ciebie."]],
+   cta:"<b>Przyjdź na pierwsze zajęcia</b> — najtrudniejszy jest tylko pierwszy krok przez drzwi."},
+ seniorzy:{col:"var(--g-seniorzy)",rng:[60,99],foto:"foto-seniorzy.jpg",
+   h1:'Ruch, który <b>dodaje lat w zdrowiu.</b>',
+   lead:"Poranna gimnastyka dla seniorów 60+ w dwóch lokalizacjach, joga i taniec w dobrym tempie — z opieką doświadczonej instruktorki i w świetnym towarzystwie.",
+   why:[["Poranne godziny","Zajęcia przed południem — wracasz z energią na cały dzień."],["20 zł za zajęcia","Bez karnetów i zobowiązań — płacisz za tyle, ile ćwiczysz."],["Tempo dobrane do Ciebie","Ćwiczenia na sprawność, równowagę i zdrowe plecy."],["Towarzystwo","Stałe grupy sąsiadek i sąsiadów — połowa siły tych zajęć."]],
+   cta:"<b>Przyjdź z koleżanką lub kolegą</b> — pierwsza rozgrzewka i kawa po zajęciach integrują najlepiej."}
+};
+var g=new URLSearchParams(location.search).get("g");
+var c=CFG[g];
+if(!c){ location.replace("index.html#zajecia"); return; }
+var NAMES={dzieci:"dla dzieci 4–12",nastolatki:"dla nastolatków 13–17",dorosli:"dla dorosłych",seniorzy:"dla seniorów 60+"};
+document.title="Zajęcia "+NAMES[g]+" — ARToffNIA";
+document.getElementById("ghero").style.setProperty("--gcol",c.col);
+document.getElementById("g-h1").innerHTML=c.h1;
+document.getElementById("g-lead").textContent=c.lead;
+document.getElementById("g-media").innerHTML='<img src="'+c.foto+'" alt="Zajęcia '+NAMES[g]+' w ARToffNI">';
+var why=document.getElementById("g-why");
+c.why.forEach(function(w){var d=document.createElement("div");d.className="w";d.innerHTML="<b>"+w[0]+"</b><span>"+w[1]+"</span>";why.appendChild(d);});
+document.getElementById("g-cta-txt").innerHTML=c.cta;
+/* zakres grupy z jednego źródła */
+var Z=window.AFF_Z,LOK=window.AFF_LOK,KATN=window.AFF_KATN;
+var res=Z.filter(function(z){return !(z.wiek[1]<c.rng[0]||z.wiek[0]>c.rng[1]);})
+         .sort(function(a,b){return (a.wiek[0]>=c.rng[0]?0:1)-(b.wiek[0]>=c.rng[0]?0:1);});
+document.getElementById("g-oferta-h").textContent="Zajęcia "+NAMES[g]+" · "+res.length+" grup";
+document.getElementById("g-stat-n").textContent=res.length;
+document.getElementById("g-stat-l").textContent="grup "+NAMES[g];
+var L=document.getElementById("g-lista");
+res.forEach(function(z){
+  var wl=z.wiek[1]>=99?z.wiek[0]+"+":z.wiek[0]+"–"+z.wiek[1];
+  var row=document.createElement("div");row.className="zrow";
+  row.innerHTML='<span class="t"><a href="zajecie.html?id='+z.id+'">'+z.n+'</a><span class="d">'+KATN[z.kat]+' · wiek '+wl+' · '+z.t[0]+(z.t.length>1?" (+"+(z.t.length-1)+")":"")+' · '+z.lok.map(function(l){return LOK[l];}).join(" / ")+'</span></span>'+
+    '<span class="p">'+z.c+'</span>'+
+    '<a class="btn" style="padding:.6rem 1.4rem;font-size:.72rem" href="zajecie.html?id='+z.id+'">Zapisz się</a>';
+  L.appendChild(row);
+});
+window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"landing_grupa_view",grupa:g});
+})();
+</script>
+<script defer src="menu.js"></script>
+</body>
+</html>

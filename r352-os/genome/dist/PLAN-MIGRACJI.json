@@ -1,0 +1,79 @@
+{
+ "migration_id": "mig:2026-08-evidence-contract-v1",
+ "genome_root": "/Users/reszek/Desktop/Claude_zadania/Narzedzie do briefowania/r352-os/genome",
+ "ledger": {
+  "file": "ledger/events-2026-08.jsonl",
+  "original_sha256": "fc0228f90d3c52ca7ff008cd72a881e90a4295d237f5a94dda27af04781f3494",
+  "events_total": 204,
+  "id_renames": [],
+  "events_reordered": 0,
+  "rehash_from_line": null,
+  "rehash_count": 0,
+  "chronology_violations_left_as_seed_defect": [
+   {
+    "line": 40,
+    "id": "evt:2026-08-08-0040",
+    "ts": "2026-08-08T19:00:00+02:00",
+    "prev": "2026-08-08T19:57:00+02:00"
+   },
+   {
+    "line": 109,
+    "id": "evt:2026-08-08-0056",
+    "ts": "2026-08-08T12:54:11.509+00:00",
+    "prev": "2026-08-09T03:01:00+02:00"
+   }
+  ],
+  "payload_gaps": 38,
+  "new_lines": "<204 linii>"
+ },
+ "freeze_card": {
+  "id": "rec:F0-SEED-FREEZE",
+  "file": "records/F0-SEED-FREEZE.md",
+  "seed_ledger_file": "events-2026-08.jsonl",
+  "seed_event_count": 204,
+  "seed_tail_hash": "e612466d691856ff",
+  "payload_gaps": 38,
+  "chronology_defects": 2,
+  "last_seed_event_id": "evt:2026-08-09-0225"
+ },
+ "records": [],
+ "program_records_left_unattached": [
+  {
+   "id": "rec:backtests/ANALIZA-KONCOWA",
+   "reason": "brak projektu proj:ANALIZA-KONCOWA — dokument programowy"
+  },
+  {
+   "id": "rec:backtests/LISTA",
+   "reason": "brak projektu proj:LISTA — dokument programowy"
+  },
+  {
+   "id": "rec:backtests/PROTOKOL",
+   "reason": "brak projektu proj:PROTOKOL — dokument programowy"
+  },
+  {
+   "id": "rec:backtests/TRANSZA1-SYNTEZA",
+   "reason": "brak projektu proj:TRANSZA1-SYNTEZA — dokument programowy"
+  }
+ ],
+ "mechanisms": [],
+ "evidence_stats": {
+  "type_narracja": 0,
+  "type_backtest": 0,
+  "project_filled": 0,
+  "key_filled": 0,
+  "unresolved": 88
+ },
+ "inputs_fingerprint": {
+  "ledger_sha256": "fc0228f90d3c52ca7ff008cd72a881e90a4295d237f5a94dda27af04781f3494",
+  "records": {},
+  "mechanisms": {},
+  "code": {
+   "migrate.js": "a3583e720d0193410dcc9cdb900d221bdd7d231b2d9d8504aa18624dd34e74de",
+   "build.js": "dfbcf9501757238202586df1137a70078d1503af5f5eadb2ec320004c4a6d26b"
+  }
+ },
+ "nonce": "c9222bbf597f3a2a8cd1684a1e545baf",
+ "generated_at": "2026-08-09T06:12:57.566Z",
+ "valid_until": "2026-08-09T07:12:57.567Z",
+ "plan_hash": "20a278113b32a0e0fce242f88aa832a8d099c5ecaf23f45a8880c99214c06663"
+}

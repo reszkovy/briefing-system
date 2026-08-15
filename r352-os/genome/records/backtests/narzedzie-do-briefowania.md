@@ -1,0 +1,88 @@
+---
+id: "rec:backtests/narzedzie-do-briefowania"
+type: "record"
+title: "Backtest — narzedzie-do-briefowania"
+status: "created"
+created: "2026-08-09"
+updated: "2026-08-09"
+version: 2
+owner: "przemek"
+relations: {"attached_to":["proj:narzedzie-do-briefowania"]}
+tags: ["walidacja"]
+migrated_by: "mig:2026-08-evidence-contract-v1"
+---
+
+
+# Backtest — narzedzie-do-briefowania (regional.fit)
+
+Data: 2026-08-09 · Protokół: PROTOKOL.md · dec:2026-08-09-program-walidacji
+Realny T0 wg git: **18.01.2026** (initial commit). Źródła przebiegu: karta proj:narzedzie-do-briefowania (status archived, 08.08), git log 42 commitów (18.01–19.05.2026), kod (src/lib, prisma/seed.ts), BUILD_SPEC.md, PLAN_10_TYG.md, LLM_INTEGRATION_SPEC.md, ENV_ADDITIONS.md, src/app/pitch/page.tsx.
+
+## Pakiet T0 (skrót przebiegu A)
+
+Benefit Systems, buyer Group Marketing Manager, ~100 briefów/mies. z 12–15 osób; briefy niekompletne/niezgodne ze strategią, chaos mailowy; zamówienie: SaaS brief→walidacja→produkcja, pilot 20 lokalizacji 50–100k PLN. Router rekomendował: numeric-gates, deterministic-spine, machine-narrows-human-picks, format-dictionary, sandbox-promotion, proof-first-demo-pitch; odrzucił location-as-data, presale-demand-ledger, single-source-compiler, working-artifact-extraction. 7 predykcji bt:.
+
+**⚠ Wada metodologiczna przebiegu A (do protokołu):** pakiet T0 zakładał, że Genome „dysponuje wzorcami" z r3loop (LIVE 12.07.2026), briefsync (06–07.2026) i zdrofit-hourly — a realny start projektu to **18.01.2026**, PRZED powstaniem całego tego korpusu. T0 był anachroniczny (datowany z importu karty 08.2026, nie z gitu). Predykcje oceniam niżej mimo to, ale każdy claim odwołujący się do „istniejącego briefsync" jest z definicji ułomny.
+
+## Przebieg B — Porównanie z rzeczywistością
+
+### Rzeczywisty przebieg (fakty)
+
+- **Burst #1 (18–30.01.2026, ~35 commitów):** pełny MVP w ~6 dni: wizard/form (potem uproszczony do 5 pól obowiązkowych), inbox walidatora, Kanban produkcji, statystyki, role-based routing, Policy Engine v2 (learning loop, eskalacje), AI-auditor (completeness/consistency/feasibility/policy — czysto regułowy), rebranding na własny produkt **regional.fit**, demo data „for stakeholder presentation", pitch deck jako strona w aplikacji (30.01), delay costs 10 PLN/dzień, heatmapy, dark mode, global campaigns.
+- **Przerwa luty–maj.**
+- **Burst #2 (17–19.05.2026, 2 commity):** JEDEN commit (a4118a7, 18.05, 3:33 w nocy) wnosi całą warstwę LLM (llm-auditor.ts 345 linii, embeddings.ts, llm-config.ts z cost capami), PLAN_10_TYG.md (demo-ready tydz. 8, go-live tydz. 10, „anti-abandonment trigger": niedzielne retro), LLM_INTEGRATION_SPEC, legal (DPA, privacy policy), skrypty testowe.
+- **Potem cisza.** Tabela trackingu w PLAN_10_TYG: wszystkie tygodnie puste (Real h `__`, bramki ☐). 07–08.08.2026: import do Genome jako `archived`.
+- **Kluczowy fakt kodu:** `getOrComputeAlignment` z llm-auditor.ts **nie ma żadnego produkcyjnego wywołania** (tylko scripts/test-llm-auditor.ts); approvals/page.tsx używa legacy `calculateAlignmentScore` — hardkodowane wagi keywordów tylko dla Zdrofit (yoga +15, black friday −12…), baseline 50, progi badge 70/50 w configu — zero kalibracji na jakimkolwiek korpusie.
+- **Dane:** prisma/seed.ts = realne kluby Zdrofit z GPS, ale **briefy w 100% syntetyczne** (12 wymyślonych tytułów). Żaden realny brief nie zasilił systemu.
+- **Brak pokazu:** brak jakiegokolwiek śladu demo/pitchu u buyera (pitch deck istnieje jako strona, kontakt — brak dowodu); brak pilota, brak kontraktu; status archived.
+
+### Predykcje bt: — kwalifikacja
+
+| ID | p | Werdykt | Uzasadnienie |
+|---|---|---|---|
+| bt-01 (brak pokazu/pilotu) | 0.75 | **HIT (mocny)** | MVP + pitch deck + demo data + plan sprzedażowy gotowe; pokaz u Group Marketing Managera bez śladu, pilot nie zaszedł, projekt archived. Dodatkowo: właściciel sam wbudował „anti-abandonment trigger" (retro niedzielne) — i tabela trackingu została pusta. |
+| bt-02 (MVP szybko, tech ≠ bottleneck) | 0.70 | **HIT (mocny)** | Funkcjonalnie kompletny MVP w ~6 dni commitów (18–24.01), 42 commity łącznie; zakres większy niż przewidziany (heatmapy, delay costs, pitch deck w aplikacji). |
+| bt-03 (próg bez kalibracji) | 0.65 | **HIT** | Progi 70/50 wpisane w llm-config.ts z komentarzem „used in UI badges"; legacy score = baseline 50 + wymyślone wagi keywordów; zero korpusu kalibracyjnego w repo. Zastrzeżenie: „back-test korpusu briefsync" był w T0 niemożliwy (anachronizm) — HIT liczę za sedno claimu (próg z głowy), nie za literę. |
+| bt-04 (drugi silnik obok briefsync) | 0.60 | **NIEOCENIALNE / MISS w literze** | Warunek claimu fałszywy: briefsync NIE istniał w T0 (powstał 06.2026). Wzorzec duplikacji wystąpił za to WEWNĄTRZ projektu: trzy współistniejące silniki oceny (policy-engine, legacy keyword score, niewpięty llm-auditor). Zapisane jako niewiedza + osobna obserwacja, nie hit. |
+| bt-05 (architektura warstwowa + cost cap) | 0.65 | **HIT (niemal dosłowny, z gwiazdką)** | LLM_INTEGRATION_SPEC: policy engine „deterministyczny fallback, zero cost", Haiku do reasoning, Sonnet do semantyki, `costCaps.perBriefUSD: 0.05` hard stop, degradacja do null+warn. Gwiazdka: warstwa ZAPROJEKTOWANA i scommitowana, ale nigdy nie wpięta w flow (patrz „napisane, niewpięte"). |
+| bt-06 (najwięcej iteracji w UX walidatora) | 0.55 | **HIT (słaby/częściowy)** | Warstwa walidatora/approvals faktycznie zebrała najwięcej commitów (~10: club context ×4, heatmapy, stats bar, compact mode), ale były to PRZYROSTY funkcji, nie rundy poprawek; równolegle 4 commity iterowały upraszczanie formularza. Generyczne trafienie. |
+| bt-07 (syntetyczne dane, realny korpus niepodpięty) | 0.60 | **HIT** | seed.ts: realne kluby, wymyślone briefy; demo data „for stakeholder presentation"; żaden realny brief Benefit nigdy w systemie. (Znów: korpus briefsync w T0 nie istniał — sedno claimu i tak trafione.) |
+
+**Bilans predykcji: 5 HIT (w tym 1 słaby), 1 nieoceniane (anachronizm), 0 czystych pudeł predykcyjnych.** Zastrzeżenie hindsight jak w bt#001: wykonawca zna wynik, wartość = struktura pudeł mechanizmów, nie % trafień.
+
+### Mechanizmy — trafienia / pudła / fałszywe alarmy
+
+- **mech:deterministic-spine — PEŁNY HIT.** Architektura odtworzyła kartę niemal словo w słowo (rule fallback zero-cost, tani model, cost cap w kodzie, degradacja). Najmocniejszy dowód backtestu.
+- **mech:machine-narrows-human-picks — PEŁNY HIT.** ai-auditor.ts to manifest karty: „AI does NOT write briefs / does NOT override human decisions / only flags". Detal chybiony: inbox sortowany po priority+submittedAt, NIE „najsłabszymi do góry" (jest za to sort worst-delays po daysOverdue).
+- **mech:numeric-gates — CZĘŚCIOWY, zła granica.** Alignment score istnieje, ale NIE jako twarda bramka — to **doradczy badge** dla walidatora. Twarde bramki liczbowe faktycznie są, ale gdzie indziej: policy-engine (auto-approve przy koszcie 0, VALIDATOR_MAX_COST, eskalacje). Router przewidział mechanizm, pomylił miejsce jego zaczepienia. Warunek karty (kalibracja przed progiem) złamany — zgodnie z bt-03.
+- **mech:format-dictionary — CZĘŚCIOWY.** RequestTemplate + formaty graficzne „to Benefit Systems standards" = słownik; ale commit 139244c dodaje **custom format field** — jawna furtka poza słownik, wbrew karcie („wszystko spoza słownika tylko klasyfikacja").
+- **mech:sandbox-promotion — FAŁSZYWY ALARM (wrong).** Narzędzie to standalone SaaS z własną bazą; ŻADNEJ integracji z zasobami produkcyjnymi klienta nie zbudowano (Trello występuje tylko jako pole szablonu tekstu). Problem zaufania rozwiązał się przez nieistnienie integracji — mechanizm nie miał czego chronić. Rekomendacja nietrafiona.
+- **mech:proof-first-demo-pitch — CZĘŚCIOWY (artefakt tak, akt nie).** Demo + pitch deck + demo data zbudowane w duchu karty, ale (a) na danych syntetycznych, nie „realnych briefach Benefit", (b) pitch nigdy niedoręczony. Mechanizm wykonany w połowie budowlanej, zerowo w połowie sprzedażowej — dokładnie tam, gdzie karta ma być bramką, nie feature'em.
+- **Missed-used: mech:dated-commitment-gates.** Router zdegradował go do „elementu bramki". Rzeczywistość: PLAN_10_TYG.md to pełnokrwiste wdrożenie tego mechanizmu (daty demo-ready/go-live, niedzielne retro, anti-abandonment trigger) — samodzielnie ustanowione przez właściciela 17.05 — i **całkowicie martwe** (tracking pusty, 2 dni commitów po napisaniu planu, potem archiwum). To najcenniejsza obserwacja: mechanizm był użyty i NIE ZADZIAŁAŁ bez zewnętrznego kontrahenta bramki.
+- **Odrzucenia Routera:** wszystkie 4 słuszne (location-as-data: rejestr klubów faktycznie tylko input/seed; presale-demand-ledger, single-source-compiler, working-artifact-extraction — brak śladów potrzeby).
+
+### Ryzyka Routera vs rzeczywistość
+
+R1 „zbudowane, niewysłane" — HIT (sedno projektu). R2 próg bez walidacji — HIT. R3 duplikacja silników — HIT w zmutowanej formie (duplikacja WEWNĄTRZ projektu: 3 silniki, w tym jeden bez callera). R4 budowa zamiast walidacji — HIT (global campaigns, delay costs, heatmapy, dark mode, compact mode — zero metryk popytu). R5 kryteria bez klienta w pętli — HIT (wagi keywordów Zdrofit wymyślone; brak śladu uzgodnień z realnym walidatorem).
+
+## Raport 10 sekcji
+
+1. **Accuracy Routera:** predykcje 5/7 HIT (1 słaby), 1 nieoceniane przez anachronizm T0; ryzyka 5/5 (z czego R3 w formie zmutowanej). Zastrzeżenie: T0-pack złamał pkt 1 protokołu (wiedza z przyszłości: briefsync/r3loop/zdrofit-hourly nie istniały 18.01.2026) — accuracy liczbowa jest przez to ZAWYŻONA, bo Router „przewidywał" wzorce, które w rzeczywistości dopiero z tego projektu i późniejszych się wykuły.
+2. **Accuracy Mechanism Selection:** 2/6 pełne (deterministic-spine, machine-narrows), 3/6 częściowe (numeric-gates — złe miejsce bramki; format-dictionary — furtka custom; proof-first — połowa budowlana bez aktu), 1/6 wrong (sandbox-promotion). Missed-used: dated-commitment-gates. Fit ≈ 58% ważony, wrong rate 17%, miss rate 1 mechanizm.
+3. **Największe błędy:** (a) **anachroniczny T0** — datowanie z karty importu zamiast z gitu unieważnia część dowodową (bt-04) i zawyża resztę; (b) sandbox-promotion rekomendowany dla produktu, który z definicji (standalone SaaS) nie dotyka zasobów klienta; (c) numeric-gates: Router włożył bramkę w alignment score, rzeczywistość włożyła ją w policy/koszty, a score został badge'em; (d) Router nie przewidział PIVOTU: narzędzie dla klienta → własny produkt z marką (regional.fit), własnym pitch deckiem i narracją „warstwa decyzyjna", co zmieniło ekonomię projektu (wysiłek na branding/produktyzację bez zamówienia).
+4. **Największe sukcesy:** (a) bt-01: systemowy failure mode „dowód dowieziony, niedoręczony" przewidziany z p=0.75 i zrealizowany wzorcowo — łącznie z tym, że samonarzucone bramki datowe (PLAN_10_TYG) nie wystarczyły; (b) bt-05: architektura warstwowa z cost capem przewidziana niemal co do pliku; (c) para bt-02×bt-01 („tech szybko, sprzedaż wcale") to najkrótszy opis całego portfela r352 — potwierdzona.
+5. **Nowe mechanizmy (hipotezy):** (a) **mech:wire-or-delete** (klasa „napisane, niewpięte"): kod warstwy AI scommitowany bez żadnego produkcyjnego callera (llm-auditor 345 linii + embeddings + config + skrypty w jednym nocnym commicie) = nowa, węższa postać „zbudowane, niewysłane" na poziomie kodu; bramka: żaden moduł nie wchodzi na main bez co najmniej jednego wywołania w ścieżce użytkownika; (b) **mech:external-gate-counterparty**: bramka datowa bez zewnętrznego odbiorcy (klient, partner, publiczny commit) nie działa — dowód: PLAN_10_TYG z pustym trackingiem; (c) guard protokołu: **T0 zawsze z gitu/najstarszego artefaktu, nigdy z daty karty**.
+6. **Mechanizmy do usunięcia:** brak twardych kandydatów; sandbox-promotion do ZAOSTRZENIA anti-context („nie rekomendować, gdy produkt nie integruje się z żadnym produkcyjnym zasobem klienta"), nie do usunięcia.
+7. **Confidence Changes (PROPOZYCJE — zapis robi sesja główna):** deterministic-spine: +evidence typu postmortem (druga niezależna realizacja wzorca, przed istnieniem r3loop! — to podnosi wagę: wzorzec jest starszy niż korpus, który go „uczył"); machine-narrows: +postmortem; numeric-gates: flaga **wrong-trigger** (bramka vs badge) bez podbicia; format-dictionary: druga flaga graniczna (furtka custom) — wzmacnia wniosek z bt#001 o podziale karty; sandbox-promotion: flaga **too-broad/anti-context** + zapis wrong-recommendation; proof-first-demo-pitch: evidence negatywne (artefakt bez aktu doręczenia nie realizuje karty); dated-commitment-gates: evidence postmortem NEGATYWNE (użyty solo → nie zadziałał) + kandydat na warunek „wymaga zewnętrznego kontrahenta". Dedupe: żadne z powyższych nie sumuje się z przyszłym skanem tego samego projektu (niezmiennik 10).
+8. **Nowe hipotezy do zmierzenia:** czy istnieje w portfelu choć jeden przypadek, gdzie samonarzucona bramka datowa BEZ zewnętrznego odbiorcy zadziałała (falsyfikacja external-gate-counterparty); ile modułów „napisane, niewpięte" leży w innych repo (skan callerów).
+9. **Czego Genome nie wiedziało w T0:** że projekt jest de facto PIERWSZY chronologicznie w klastrze brief-tooling (styczeń 2026) — briefsync i zdrofit-hourly to jego młodsi krewni, nie źródła wzorców; że właściciel spontanicznie produktyzuje (marka regional.fit, pitch deck w aplikacji) bez aktu sprzedaży; że rytm pracy to burst–pauza–burst–porzucenie (35 commitów w 13 dni → 3,5 miesiąca ciszy → 1 nocny mega-commit → archiwum); że „anti-abandonment trigger" można wpisać do planu i porzucić razem z planem.
+10. **Jak następny projekt będzie lepszy:** każdy projekt z pitch-deckiem dostaje bramkę zerową „data pokazu z nazwiskiem odbiorcy ZANIM powstanie deck"; każdy commit wnoszący nowy moduł lib/ przechodzi check „kto go woła"; backtesty datują T0 z `git log --reverse`; rekomendacja sandbox-promotion tylko po potwierdzeniu, że produkt w ogóle dotyka zasobów klienta; scoring semantyczny wchodzi wyłącznie z korpusem kalibracyjnym w repo (plik z ≥30 realnymi przypadkami + oczekiwane wyniki) — inaczej pozostaje badge, nie bramka, i tak ma być nazwany w UI.
+
+## Evidence (do zapisania w kartach + Ledger przez sesję główną)
+
+- E1 {obserwacja: warstwa LLM (345 linii llm-auditor + embeddings + config) scommitowana 18.05.2026 bez żadnego produkcyjnego wywołania — `getOrComputeAlignment` woła tylko skrypt testowy; UI używa legacy keyword score; dowód: commit a4118a7 (18.05.2026) + grep callerów w src/ (08.2026); wpływ: nowa klasa failure „napisane, niewpięte" — węższa i wcześniejsza niż „zbudowane, niewysłane"; zmiana: hipoteza mech:wire-or-delete + guard w workflow; confidence: n/d (nowa hipoteza); mech: deterministic-spine (kontekst), proof-first-demo-pitch}
+- E2 {obserwacja: numeric-gates zrealizowany jako doradczy badge (progi 70/50 „used in UI badges", wagi keywordów z głowy), a twarde bramki liczbowe żyją w policy-engine (auto-approve/eskalacje kosztowe); dowód: src/lib/llm-config.ts:48–52, approvals/page.tsx:27–52, policy-engine.ts:293–320 (stan 08.2026); wpływ: karta numeric-gates myli „score istnieje" z „score jest bramką" — wrong-trigger; zmiana: doprecyzować w karcie warunek „bramka = automatyczna konsekwencja poniżej progu, inaczej to badge"; confidence: bez zmian + flaga; mech: numeric-gates}
+- E3 {obserwacja: sandbox-promotion rekomendowany, ale produkt jest standalone SaaS bez jednej integracji z zasobem produkcyjnym klienta (Trello tylko jako pole tekstowe szablonu); dowód: BUILD_SPEC.md (files = external links only), git log 42 commitów bez integracji, commit b3cd0e1; wpływ: fałszywy alarm Routera — mechanizm bez desygnatu; zmiana: anti-context „wymaga istnienia produkcyjnego zasobu klienta w architekturze"; confidence: bez zmian + flaga too-broad; mech: sandbox-promotion}
+- E4 {obserwacja: samonarzucona bramka datowa (PLAN_10_TYG: demo-ready tydz. 8, retro niedzielne, anti-abandonment trigger) powstała 17.05.2026 i umarła natychmiast — tracking pusty, ostatni commit 19.05, projekt archived 08.2026; dowód: PLAN_10_TYG.md (tabela trackingu, „Last updated 2026-05-17") + git log + karta projektu (08.08.2026); wpływ: dated-commitment-gates bez zewnętrznego kontrahenta nie wiąże; zmiana: warunek karty „bramka datowa wymaga odbiorcy spoza systemu właściciela"; confidence: postmortem negatywny; mech: dated-commitment-gates, proof-first-demo-pitch}
+- E5 {obserwacja: przebieg A zbudował T0 na korpusie z przyszłości (r3loop 07.2026, briefsync 06.2026, zdrofit-hourly) wobec realnego startu 18.01.2026; dowód: git log --reverse (initial commit 18.01.2026) vs karta created 07.08.2026 i treść pakietu T0; wpływ: bt-04 nieoceniane, reszta accuracy zawyżona; deterministic-spine/machine-narrows wystąpiły tu NIEZALEŻNIE i WCZEŚNIEJ niż „wzorce źródłowe" — to wzmacnia karty, ale unieważnia narrację o transferze; zmiana: reguła protokołu „T0 z gitu"; confidence: n/d (metodologia); mech: wszystkie}
+- E6 {obserwacja: deterministic-spine i machine-narrows-human-picks odtworzone w styczniu 2026 wzorcowo (policy-engine jako darmowy fallback, „AI only flags", cost cap 0.05 USD/brief w kodzie) bez istnienia kart; dowód: src/lib/ai-auditor.ts:1–20, llm-config.ts:20–24, LLM_INTEGRATION_SPEC.md (commity 18–19.01 i 18.05.2026); wpływ: wzorce są realnym atraktorem stylu właściciela, nie artefaktem jednego projektu; zmiana: +evidence postmortem dla obu kart (dedupe: tylko z tego backtestu); confidence: propozycja podbicia; mech: deterministic-spine, machine-narrows-human-picks}

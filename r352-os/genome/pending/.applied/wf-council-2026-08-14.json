@@ -1,0 +1,129 @@
+{
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "wf:council",
+   "type": "workflow",
+   "title": "Council — pięć konkurencyjnych modeli jednej decyzji",
+   "status": "draft",
+   "created": "2026-08-14",
+   "owner": "przemek",
+   "category": "Strategy",
+   "relations": {
+    "implements": [
+     "prin:reduce-subjectivity"
+    ],
+    "related": [
+     "wf:salt",
+     "wf:plate",
+     "mech:dated-commitment-gates",
+     "prin:proof-before-promise"
+    ],
+    "born_from": [
+     "ax:uczenie-przez-decyzje"
+    ]
+   },
+   "requires_input": "Decyzja przechodząca bramkę wejścia (koszt błędu, niepewność, nieodwracalność, zmiana strategii, duże zaangażowanie, konflikt opcji) ORAZ próg ilościowy: ≥1 tydzień pracy lub ≥5 000 zł, albo odwrócenie droższe niż podjęcie. Do tego kompletny Context Pack z niepustą sekcją UNKNOWNS i nazwanym BASELINE.",
+   "trigger": "Stoi decyzja droga, trudna do odwrócenia albo strategiczna, a Genome podpowiada jeden model świata i nie ma w sobie nikogo, kto by go atakował. Sygnał: kilka sensownych opcji jednocześnie, brak rozstrzygającego dowodu, a koszt pomyłki przekracza koszt narady.",
+   "context": "Decyzje własne r352 i strategiczne decyzje klienckie: czy wchodzić w produkt, czy zamykać kierunek, czy przyjąć zlecenie zmieniające profil firmy, jak pozycjonować się przed wydarzeniem. Wymaga właściciela, który poda Context Pack uczciwie, łącznie z tym, czego nie wie.",
+   "anti_context": "NIE stosować gdy: (a) decyzja jest tania i odwracalna — test kosztuje mniej niż narada i daje twardszą odpowiedź; (b) decyzja jest już podjęta, a Council ma dostarczyć uzasadnienia — to produkuje ozdobne potwierdzenie i psuje track record, bo predykcja rejestrowana po fakcie nie testuje niczego; (c) brakuje danych do sekcji KNOWN FACTS i całość byłaby pięcioma spekulacjami na tym samym powietrzu; (d) nie ma nikogo, kto rozliczy predykcję — bez tego Council jest kosztem bez zwrotu.",
+   "inputs": [
+    "Context Pack: decyzja, opcje, cel, ograniczenia, fakty z prowieniencją, aktualne przekonania z kart Genome, niewiadome, baseline, deadline",
+    "Hash snapshotu — dowód, że wszyscy advisorzy dostali ten sam stan wiedzy",
+    "Nazwany resolution_owner predykcji, inny niż uczestnik narady",
+    "Definicja HIT / MISS / VOID rozstrzygalna bez interpretacji"
+   ],
+   "outputs": [
+    "Record rec:council/<slug>: pięć niezależnych analiz, macierz 10×5, mediany, rozrzuty, peer critique, synteza Chairmana",
+    "Rekomendacja GO / NO-GO / TEST / DEFER + wynik globalny + jedna rzecz do zrobienia najpierw",
+    "Decision dec:<slug> z decyzją właściciela — osobny obiekt, nigdy nie nadpisuje rekomendacji",
+    "Zdarzenie prediction.registered z kompletem siedmiu pól",
+    "Zapisany rozjazd rekomendacja↔decyzja, jeśli wystąpił"
+   ],
+   "ai_tasks": [
+    "Zebranie Context Packu z kart Genome, Ledgera i materiałów właściciela; jawne oznaczenie luk zamiast ich zasypywania",
+    "Pięć niezależnych analiz w izolacji, każda ze scorecardem 10 kategorii i uzasadnieniem przy każdej ocenie",
+    "Anonimizacja i rozdanie odpowiedzi do peer critique bez możliwości edycji pierwszej opinii",
+    "Synteza Chairmana: zgodność, konflikt, ślepe punkty, asymetrie, rekomendacja",
+    "Policzenie median, rozrzutów i wyniku globalnego wagami z tej karty",
+    "Zapis Recordu i przygotowanie pakietu do ingestu"
+   ],
+   "human_tasks": [
+    "Przemek: uczciwy Context Pack, w szczególności sekcja UNKNOWNS i BASELINE",
+    "Przemek: decyzja właściciela jako osobny zapis, z powodem — także (a zwłaszcza) gdy odbiega od rekomendacji",
+    "Przemek: wskazanie resolution_owner i pilnowanie terminu rozliczenia predykcji"
+   ],
+   "success_conditions": [
+    "Advisorzy dali realnie różne modele, nie pięć wariantów tego samego zdania — rozrzut przynajmniej w jednej kategorii przekracza 30k",
+    "Powstała predykcja rozstrzygalna bez interpretacji, z nazwanym właścicielem i źródłem pomiaru",
+    "Rekomendacja i decyzja właściciela są zapisane osobno, także gdy są zgodne",
+    "Council wskazał co najmniej jedną rzecz, której właściciel nie miał w głowie przed naradą"
+   ],
+   "failure_conditions": [
+    "ROZSTRZYGAJĄCY: predykcje z Councilu nie są rozliczane. Bez rozliczeń nie ma kalibracji, bez kalibracji Council jest pięcioma opiniami w ładnym formacie. Stan wyjściowy 14.08.2026: 9 predykcji zarejestrowanych, 3 zamknięte, ZERO skonfrontowanych z rzeczywistością jako HIT albo MISS.",
+    "Council uruchamiany do decyzji, które i tak były podjęte — produkuje uzasadnienia i zatruwa track record",
+    "Advisorzy zbiegają się do jednego głosu (rozrzuty poniżej 10k w każdej kategorii) — wtedy nie ma pięciu modeli, tylko jeden powtórzony pięć razy",
+    "Narada kosztuje więcej niż decyzja, którą rozstrzyga",
+    "Wynik globalny zaczyna być cytowany jako liczba bez pasma i rozrzutu — wtedy skala udaje pomiar"
+   ],
+   "guards": [
+    "Bramka wejścia: bez progu kosztowego Council nie startuje",
+    "Predykcja obowiązkowa: Council bez prediction.registered nie jest zamknięty i nie liczy się do próby",
+    "Zakaz nadpisywania: rekomendacja Councilu i decyzja właściciela to dwa obiekty, nigdy jeden",
+    "Zakaz nowego typu w ontologii: Council mapuje się na Record + Decision + Prediction"
+   ],
+   "provenance": "Specyfikacja właściciela z 14.08.2026, przyjęta w całości co do mechaniki. Zmiany wprowadzone przy zapisie: (1) obiekt council: zastąpiony mapowaniem na Record+Decision+Prediction, bo ontologia ma 19 typów i nie wolno jej rozszerzać; (2) dołożony próg ilościowy do bramki wejścia, bo lista jakościowa przepuszcza wszystko; (3) dołożony warunek porażki o rozliczaniu predykcji, oparty na stanie faktycznym Ledgera.",
+   "next_use": "Pierwsza decyzja próby. Kandydat wskazany przez właściciela; naturalnym kandydatem jest pozycjonowanie r352 przed Wave Turyn / Web Summit, bo spełnia bramkę i ma deadline.",
+   "tags": [
+    "strategy",
+    "decision",
+    "genome"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Council wchodzi jako workflow w statusie draft, siostrzany do wf:salt i wf:plate. Proba: 5 prawdziwych decyzji recznie, zero automatyzacji i zero widoku w tablicy do czasu istnienia pieciu Recordow. Ontologia NIE rozszerzana — council: z propozycji zmapowany na rec:council/<slug> + dec:<slug> + prediction.registered.",
+   "body": "## Po co to istnieje\n\nGenome ma jedną wadę wpisaną w konstrukcję: podpowiada jeden model świata. Router czyta karty,\nkarty niosą confidence, confidence pochodzi z dowodów, które sam system zebrał. To działa dopóki\ndecyzja mieści się w tym, co system już umie. Przy decyzji drogiej, nieodwracalnej albo\nstrategicznej ten sam mechanizm staje się pułapką: system potwierdza własny model, bo nie ma\nw sobie nikogo, kto by go atakował.\n\nCouncil jest tym kimś. Nie po to, żeby pięć razy ocenić pomysł, tylko żeby wygenerować\n**pięć konkurencyjnych modeli tej samej decyzji**, zapisać różnicę między nimi, rozstrzygnąć\ni po czasie sprawdzić, kto miał rację.\n\n## Sekwencja\n\n```\nDECYZJA → 5 NIEZALEŻNYCH MODELI → PEER CRITIQUE → SYNTEZA → SCORECARD\n        → PREDYKCJA → DECYZJA WŁAŚCICIELA → OUTCOME → KALIBRACJA COUNCILU\n```\n\nDwa ostatnie człony robią różnicę między Councilem a efektownym promptem. Bez nich to jest\npięć opinii bez konsekwencji.\n\n## Bramka wejścia\n\nCouncil NIE uruchamia się do każdej decyzji. Musi być spełniony co najmniej jeden warunek:\nwysoki koszt błędu, duża niepewność, trudna odwracalność, zmiana strategii, duże zaangażowanie\nczasu lub kapitału, albo realny konflikt między kilkoma sensownymi opcjami.\n\nDo tego warunek ilościowy, żeby bramka nie była deklaracją: decyzja kosztuje **co najmniej\ntydzień pracy albo 5 000 zł**, albo jej odwrócenie kosztuje więcej niż jej podjęcie.\nPoniżej tego progu tańszy jest test niż narada.\n\n## Context Pack — ten sam snapshot dla wszystkich\n\nAdvisorzy dostają identyczny, zamrożony pakiet i **nie widzą swoich odpowiedzi nawzajem**.\nSnapshot ma hash; jeśli w trakcie zmienia się stan faktyczny, Council leci od nowa albo notuje\nrozbieżność jawnie.\n\nDECISION · OPTIONS · OBJECTIVE · CONSTRAINTS · KNOWN FACTS (z prowieniencją) ·\nCURRENT BELIEFS (karty Genome + ich confidence) · UNKNOWNS · BASELINE (co się stanie,\njeśli nic nie zrobimy) · DEADLINE.\n\nSekcja UNKNOWNS jest obowiązkowa i nie może być pusta. Pusta znaczy, że pakiet jest\npropagandą decyzji, nie jej opisem.\n\n## Pięciu advisorów\n\n| | rola | pytanie kierujące |\n|---|---|---|\n| A | Contrarian | Dlaczego to zły pomysł? Co sprawi, że to nie zadziała? |\n| B | First Principles | Jaki problem naprawdę rozwiązujemy? Czy opcje są dobrze postawione? |\n| C | Expansionist | Jakiego maksymalnego upside'u nie widzimy? |\n| D | Outsider | Co zauważyłby ktoś mądry bez żadnego przywiązania do tego systemu? |\n| E | Executor | Czy to da się dowieźć i jaki jest najszybszy sposób, żeby się przekonać? |\n\nContrarian nie jest pesymistą — ma **próbować obalić decyzję**. First Principles ma prawo\npowiedzieć „ani A, ani B, problem jest źle postawiony\". Ulubioną odpowiedzią Executora powinno\nbyć „nie buduj tego, przetestuj najpierw jedną rzecz\".\n\nRola D istnieje, bo ten system jest intelektualnie atrakcyjny dla swojego autora. To jest\nudokumentowane ryzyko, nie hipoteza.\n\n## Scorecard: 10 kategorii, skala 1–100 000\n\nProblem Strength · Strategic Alignment · Evidence Strength · Expected Upside ·\nDownside Profile · Reversibility · Execution Feasibility · Leverage · Defensibility · Timing\n\nWszystkie skale idą w tę samą stronę: **więcej = lepiej**. Przy Downside Profile wysoki wynik\noznacza dobry profil ryzyka (mały downside, dobra asymetria), nie duże ryzyko.\n\nProgi: ≥90k wyjątkowo mocne · 80–90k bardzo mocne · 70–80k dobre · 60–70k umiarkowanie\npozytywne · 50–60k nierozstrzygnięte · 40–50k słabe · 30–40k poważne problemy · <30k brak podstaw.\n\nSkala jest wysokiej rozdzielczości, nie precyzyjna. Zapisujemy liczbę całkowitą, ale\n**pokazujemy zawsze pasmo i wartość zaokrągloną do 0,1k** (82,4k, nie 82 437). Rozdzielczość\njest po to, żeby dało się porównywać decyzje między sobą, nie żeby udawać pomiar.\n\n**Score bez uzasadnienia jest nieważny.** Każda ocena niesie `reason` i `confidence` autora.\nSama liczba wraca do advisora do poprawy.\n\n## Jak liczy się wynik Councilu\n\nWynik kategorii to **mediana** pięciu ocen, nie średnia. Expansionist dający 98k i Contrarian\ndający 25k wyprodukują średnią 61k, która nie opisuje niczyjego poglądu. Mediana mówi, gdzie\nleży centralny osąd.\n\nObok mediany zapisujemy **rozrzut** (`max − min`). Rozrzut bywa ciekawszy niż sam wynik:\nEvidence w paśmie 38–51k znaczy, że wszyscy widzą tę samą słabość; Defensibility w paśmie\n29–96k znaczy, że advisorzy mają sprzeczne modele świata i to jest właściwy temat rozmowy.\n\nWynik globalny liczony wagami: Problem Strength 15% · Strategic Alignment 15% ·\nEvidence Strength 15% · Expected Upside 10% · Downside Profile 10% · Execution Feasibility 10% ·\nLeverage 10% · Reversibility 5% · Defensibility 5% · Timing 5%.\n\nEvidence dostaje 15% świadomie — jest przeciwwagą dla znanego ryzyka tego systemu:\n**bardzo atrakcyjna teoria przy zbyt małej liczbie dowodów.**\n\n## Peer critique\n\nOdpowiedzi zostają zanonimizowane i rozdane wszystkim. Nikt **nie może zmienić swojej pierwszej\nodpowiedzi** — to jest cały sens, pierwsza opinia zostaje niezależna. Każdy odpowiada tylko na\npięć pytań: najmocniejszy argument kogoś innego, największy ślepy punkt w cudzych analizach,\nczego mogła nie zauważyć cała piątka, czyje rozumowanie jest najmocniejsze i dlaczego, oraz\njaka nowa informacja zmieniłaby jego rekomendację.\n\n## Chairman\n\nChairman nie głosuje większością — ma znaleźć **strukturę konfliktu**. Wynik:\nGDZIE COUNCIL JEST ZGODNY · GDZIE SIĘ ROZJEŻDŻA · ŚLEPE PUNKTY · ASYMETRIE ·\nREKOMENDACJA (GO / NO-GO / TEST / DEFER) · JEDNA RZECZ DO ZROBIENIA NAJPIERW.\n\n## Council nie podejmuje decyzji\n\nRekomendacja Councilu i decyzja właściciela to **dwa osobne zapisy** i nigdy nie wolno nadpisać\npierwszego drugim.\n\n```\nRekomendacja Councilu: TEST      wynik globalny 78,4k\nDecyzja właściciela:   GO        powód: wartość opcji strategicznej przewyższa słabość dowodów\n```\n\nRozjazd między tymi dwoma zapisami jest najcenniejszym materiałem, jaki ten mechanizm produkuje.\nPo roku pokaże, czy właściciel systematycznie wygrywa z Councilem, czy systematycznie przepłaca\nza własne przekonania. Jedno i drugie jest wiedzą.\n\n## Predykcja jest obowiązkowa\n\nCouncil bez zarejestrowanej predykcji **nie jest zamknięty** i nie liczy się do próby.\nRekomendacja musi odpowiedzieć na pytanie: jeśli mamy rację, co konkretnie powinno się wydarzyć?\n\nPredykcja idzie do Ledgera przez `prediction.registered` z kompletem siedmiu pól, w tym\n`measurement_source` i `resolution_owner`. Warunki HIT / MISS / VOID muszą być rozstrzygalne\nprzez kogoś, kto nie brał udziału w naradzie.\n\n## Gdzie to mieszka w ontologii\n\nOntologia ma 19 typów i Council nie dostaje dwudziestego. Mapowanie:\n\n- `rec:council/<slug>` — Record z zamrożonym Context Packiem, pięcioma analizami, macierzą\n  10×5, rozrzutami, peer critique i syntezą Chairmana. `attached_to` wskazuje projekt.\n- `dec:<slug>` — Decision z decyzją właściciela. `related` wskazuje Record Councilu.\n- `prediction.registered` — zdarzenie w Ledgerze, `on` wskazuje Decision.\n\nDzięki temu rozdział z punktu „Council nie podejmuje decyzji\" nie jest konwencją zapisu,\ntylko strukturą danych: to są dwa różne obiekty, o różnym cyklu życia i różnym właścicielu.\n\n## Track record Councilu\n\nKiedy rozliczonych predykcji będzie dość, da się policzyć kalibrację całości i poszczególnych\nról — czy Expansionist systematycznie przecenia timing, czy Executor najlepiej przewiduje\nwykonalność, przy jakich klasach decyzji Contrarian ma rację. Wtedy Council zaczyna uczyć się,\njak dobrze sam doradza.\n\n**To jest cel, nie stan.** Dziś jest niepoliczalny i będzie taki, dopóki predykcje nie zaczną\nbyć rozliczane — patrz warunki porażki.\n\n## Próba: 5 decyzji, ręcznie\n\nMechanizm wchodzi w statusie `draft` jako **ręczna próba na pięciu prawdziwych decyzjach**.\nZero automatyzacji, zero widoku w tablicy, dopóki nie istnieje pięć Recordów. Widok zbudowany\nprzed danymi pokazywałby pustą macierz i uczył, że Council to formularz.\n\nPo piątej decyzji rozstrzygnięcie: `active`, przerobienie, albo `deprecated`."
+  },
+  {
+   "op": "object.create",
+   "id": "dec:2026-08-14-council-proba",
+   "type": "decision",
+   "title": "Council wchodzi jako ręczna próba na 5 decyzjach, z warunkiem wyjścia",
+   "status": "decided",
+   "created": "2026-08-14",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "wf:council"
+    ]
+   },
+   "tags": [
+    "genome",
+    "decision"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Decyzja o przyjeciu Councilu z jawnym warunkiem smierci. Bez tego warunku mechanizm zyje wiecznie niezaleznie od tego, czy dziala.",
+   "body": "## Decyzja\n\nCouncil wchodzi do Genome jako `wf:council` w statusie `draft` i przechodzi **ręczną próbę\nna pięciu prawdziwych decyzjach**. Bez automatyzacji, bez widoku w tablicy, bez skilla\nuruchamianego odruchowo.\n\n## Warunek wyjścia — zapisany, żeby nie dało się go przemilczeć\n\nPo piątej decyzji rozstrzygnięcie jest obowiązkowe i ma trzy możliwe wyniki:\n\n- **`active`** — jeśli co najmniej trzy z pięciu Councilów wskazały rzecz, której właściciel\n  nie miał w głowie przed naradą, ORAZ co najmniej dwie predykcje zostały rozliczone jako\n  HIT albo MISS.\n- **przerobienie** — jeśli Council daje wartość, ale format jest za drogi względem tej wartości.\n- **`deprecated`** — jeśli żadna predykcja z Councilu nie została rozliczona. Wtedy mechanizm\n  nie ma jak się uczyć i jest kosztownym rytuałem.\n\n## Dlaczego warunek jest właśnie taki\n\nCała przewaga Councilu nad dobrym promptem siedzi w dwóch ostatnich członach sekwencji:\noutcome i kalibracja. Reszta — pięć ról, scorecard, peer critique — jest wykonalna w każdym\nczacie w dziesięć minut.\n\nStan faktyczny na dziś: **9 predykcji zarejestrowanych, 3 zamknięte, zero rozstrzygniętych\njako HIT albo MISS**, jedna dwa dni po terminie. To nie jest przewidywanie problemu, tylko\nodczyt z Ledgera. Council dokłada predykcje do systemu, który jeszcze ani razu nie zamknął\nżadnej z nich rzeczywistością.\n\nDlatego warunkiem życia mechanizmu jest nie jakość analiz, tylko to, czy ktokolwiek wraca\ndo zakładów po terminie."
+  }
+ ],
+ "events": [],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "wf-council-2026-08-14",
+  "signature": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "wf-council-2026-08-14",
+   "expires_at": "2026-09-14",
+   "claims": [
+    {
+     "kind": "scope",
+     "text": "Nowy workflow wf:council (draft) + decyzja o probie z warunkiem wyjscia. Bez zmian w istniejacych kartach."
+    }
+   ]
+  }
+ }
+}

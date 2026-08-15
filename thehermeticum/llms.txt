@@ -49,5 +49,18 @@
 - [Picatrix — the Arabic handbook of astral magic](https://thehermeticum.com/texts/picatrix/): The Picatrix (Ghayat al-Hakim): a 10th-century Arabic manual of astral magic from al-Andalus that shaped Renaissance magic via Alfonso X's court.
 - [Stobaean Fragments — the Kore Kosmou](https://thehermeticum.com/texts/stobaean-fragments/): The Stobaean fragments: nearly thirty Hermetic excerpts saved in a 5th-century anthology, including the Kore Kosmou — Isis teaching Horus.
 
+## The book
+- [Operational Hermeticism](https://thehermeticum.com/book/): twelve chapters on attention, energy, patterns, systems, planning, relationships, technology, alignment, transmutation, agency and integration. Chapters 00-02 are open in full; every chapter states its limits and its ethical question.
+- [Questions and answers](https://thehermeticum.com/questions/): what this is, what the weekly letter contains, where the data goes, what is free.
+
+## Tools you can take away
+- [Working file for your model](https://thehermeticum.com/assets/downloads/operational-hermeticism-working-file.md): role contract, twelve modules, session modes. Paste into any model.
+- [The Path, twelve weeks](https://thehermeticum.com/assets/downloads/the-modern-hermet-path.md): guided programme with a state block the reader carries between sessions.
+- [Pre-AI Orientation](https://thehermeticum.com/assets/downloads/pre-ai-orientation-en.md): five questions before you hand a problem to a model.
+- [The Practice](https://thehermeticum.com/practice/today/): five-minute daily tool; entries never leave the browser.
+
+## How this is made
+- Compiled with AI research tools from published scholarship; every page names its sources. Anonymous author, visible sources, testable practice. Full bibliography: https://thehermeticum.com/about/method/
+
 ## Languages
 - Polish mirror of the whole site: https://thehermeticum.com/pl/

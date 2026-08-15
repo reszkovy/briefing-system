@@ -1,0 +1,238 @@
+--- r352-os/genome/test/run-migration-tests.js	2026-08-08 16:11:47
++++ r352-os/genome/proposals/final-salt-plate/test/run-migration-tests.js	2026-08-09 14:48:42
+@@ -10,9 +10,27 @@
+ const os = require('os');
+ const crypto = require('crypto');
+ const { execFileSync } = require('child_process');
+-const M = require('../migrate.js');
+ 
+-const G = path.resolve(__dirname, '..');
++const G = path.resolve(__dirname, '..', '..', '..');            /* r352-os/genome — tylko dla build.js/migrate.js */
++/* FIXTURE ZAMROŻONY sprzed migracji. Testy migracji NIE MOGĄ czytać stanu żywego:
++   po wykonaniu migracji plan jest pusty i testy 1/2/7a/7e traciły sens.
++   Fixture = ledger z ledger/.archive/*.pre-mig-* + 32 Recordy z content_before ze snapshotu. */
++const FIXTURE = path.resolve(__dirname, 'fixtures', 'pre-migration');
++const CANON = path.resolve(__dirname, '..', '..', '..');
++/* Pełny hash drzewa kanonu — pojedyncza liczba obiektów/zdarzeń nie wykrywa nadpisania pliku. */
++function treeHash(root, skip = /(^|\/)(dist|node_modules|proposals|\.genome-write\.lock)(\/|$)/) {
++  const out = [];
++  (function walk(d) {
++    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
++      const q = path.join(d, e.name);
++      if (skip.test(q.slice(root.length))) continue;
++      e.isDirectory() ? walk(q) : out.push(q.slice(root.length) + ':' + crypto.createHash('sha256').update(fs.readFileSync(q)).digest('hex'));
++    }
++  })(root);
++  return crypto.createHash('sha256').update(out.sort().join('\n')).digest('hex');
++}
++const CANON_BEFORE = treeHash(CANON);
++const M = require(path.join(FIXTURE, 'migrate.js'));
+ const sha256 = s => crypto.createHash('sha256').update(s).digest('hex');
+ let pass = 0, fail = 0;
+ const results = [];
+@@ -21,7 +39,7 @@
+   const base = fs.mkdtempSync(path.join(os.tmpdir(), 'mig-test-'));
+   const d = path.join(base, 'r352-os', 'genome');
+   fs.mkdirSync(path.dirname(d), { recursive: true });
+-  fs.cpSync(G, d, { recursive: true, filter: s => !/(^|\/)(dist|node_modules|\.genome-write\.lock)$/.test(s) });
++  fs.cpSync(FIXTURE, d, { recursive: true, filter: s => !/(^|\/)(dist|node_modules|proposals|\.genome-write\.lock)$/.test(s) });
+   /* viewer w układzie repo — z markerem, żeby wykryć nadpisanie/rollback */
+   const vdir = path.join(base, 'genome-os', 'js');
+   fs.mkdirSync(vdir, { recursive: true });
+@@ -32,7 +50,7 @@
+ const viewerOf = d => path.join(baseOf(d), 'genome-os', 'js', 'genome-f0-data.js');
+ const rm = d => fs.rmSync(baseOf(d), { recursive: true, force: true });
+ const SIMAUTH = { simulation: true };
+-const checkOut = root => { try { return execFileSync('node', [path.join(G, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8' }); } catch (e) { return (e.stdout || '') + (e.stderr || ''); } };
++const checkOut = root => { try { return execFileSync('node', [path.join(root, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8' }); } catch (e) { return (e.stdout || '') + (e.stderr || ''); } };
+ 
+ /* ── 1. Zdarzenie PO granicy freeze nie korzysta z taryfy ulgowej ── */
+ {
+@@ -55,7 +73,11 @@
+ {
+   const d = fresh();
+   const plan = M.buildPlan(d);
+-  const victim = path.join(d, 'mechanisms/numeric-gates.md');
++  /* ofiarą musi być plik OBJĘTY planem — inaczej dryf nie ma czego wykryć.
++     Plan obejmuje 32 Recordy (relations.attached_to), nie karty mechanizmów. */
++  const victim = Object.keys(plan.records_by_file || {})[0]
++    ? path.join(d, Object.keys(plan.records_by_file)[0])
++    : path.join(d, 'records/backtests/briefsync.md');
+   fs.writeFileSync(victim, fs.readFileSync(victim, 'utf8') + '\n<!-- zmiana po zaplanowaniu -->\n');
+   const ledgerBefore = sha256(fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8'));
+   const res = M.applyPlan(d, plan, SIMAUTH);
+@@ -79,13 +101,26 @@
+ {
+   const d = fresh();
+   const plan = M.buildPlan(d);
+-  const keyFile = path.join(d, 'test-approval.key');
+-  fs.writeFileSync(keyFile, 'klucz-testowy-poza-repo');
+-  process.env.GENOME_APPROVAL_KEY_FILE = keyFile;
+-  delete require.cache[require.resolve('../migrate.js')];
+-  const M2 = require('../migrate.js');
++  /* Ed25519: podpisujemy PRÓBNYM kluczem prywatnym, a KOPIA modułu dostaje odpowiadający mu
++     klucz publiczny. Zaufanie produkcyjne (lib/approval-pubkey.pem w kanonie) pozostaje nietknięte —
++     nie ma i nie może być żadnego override ścieżki klucza. */
++  const { publicKey: tPub, privateKey: tPriv } = crypto.generateKeyPairSync('ed25519');
++  const migCopyDir = path.join(d, '.mig-test');
++  fs.mkdirSync(path.join(migCopyDir, 'lib'), { recursive: true });
++  fs.copyFileSync(path.join(FIXTURE, 'migrate.js'), path.join(migCopyDir, 'migrate.js'));
++  for (const f of fs.readdirSync(path.join(FIXTURE, 'lib'))) fs.copyFileSync(path.join(FIXTURE, 'lib', f), path.join(migCopyDir, 'lib', f));
++  {   /* kotwica testowa: przepisujemy trustDir() w KOPII modułu (migrate nie ma żadnej flagi) */
++    const anchor = path.join(migCopyDir, 'anchor'); fs.mkdirSync(anchor, { recursive: true });
++    fs.writeFileSync(path.join(anchor, 'approval-pubkey.pem'), tPub.export({ type: 'spki', format: 'pem' }));
++    const ap = path.join(migCopyDir, 'lib', 'approval.js');
++    const src2 = fs.readFileSync(ap, 'utf8').replace(/function trustDir\(\) \{[\s\S]*?\n\}/,
++      `function trustDir() { return ${JSON.stringify(anchor)}; }   /* KOPIA TESTOWA */`);
++    fs.writeFileSync(ap, src2);
++  }
++  fs.copyFileSync(path.join(FIXTURE, 'build.js'), path.join(migCopyDir, 'build.js'));
++  const M2 = require(path.join(migCopyDir, 'migrate.js'));
+   const good = { migration_id: M2.MIGRATION_ID, plan_hash: plan.plan_hash, nonce: plan.nonce, approved_by: 'przemek', approved_at: new Date().toISOString() };
+-  const sign = a => crypto.createHmac('sha256', 'klucz-testowy-poza-repo').update(M2.approvalPayload(a)).digest('hex');
++  const sign = a => crypto.sign(null, Buffer.from(M2.approvalPayload(a), 'utf8'), tPriv).toString('hex');
+ 
+   const fabricated = { ...good, signature: 'a'.repeat(64) };
+   const wrongNonce = { ...good, nonce: 'deadbeef'.repeat(4) }; wrongNonce.signature = sign(wrongNonce);
+@@ -96,8 +131,9 @@
+   ok('4b. zły nonce (replay) odrzucony', !M2.verifyApproval(wrongNonce, plan).ok);
+   ok('4c. wygasły plan odrzucony', !M2.verifyApproval(validSig, expiredPlan).ok);
+   ok('4d. poprawnie podpisana zgoda przechodzi', M2.verifyApproval(validSig, plan).ok, JSON.stringify(M2.verifyApproval(validSig, plan)));
+-  delete process.env.GENOME_APPROVAL_KEY_FILE;
+-  delete require.cache[require.resolve('../migrate.js')];
++  ok('4e. zgoda podpisana OBCYM kluczem odrzucona przez zaufanie produkcyjne',
++    !require(path.join(FIXTURE, 'migrate.js')).verifyApproval(validSig, plan).ok);
++  delete require.cache[require.resolve(path.join(migCopyDir, 'migrate.js'))];
+   rm(d);
+ }
+ 
+@@ -112,7 +148,15 @@
+   fs.writeFileSync(distDir, 'to jest PLIK, nie katalog — emisja dist musi paść');
+   const ledgerBefore = sha256(fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8'));
+   const recBefore = sha256(fs.readFileSync(path.join(d, 'records/backtests/briefsync.md'), 'utf8'));
+-  const res = M.applyPlan(d, plan, SIMAUTH);
++  /* EEXIST jest OCZEKIWANYM mechanizmem tego testu (dist celowo jest plikiem, nie katalogiem).
++     Przechwytujemy stderr, żeby nie wyciekał jako pozorny błąd, i asertujemy go wprost. */
++  const capturedErr = [];
++  const realErr = console.error;
++  console.error = (...a) => capturedErr.push(a.map(String).join(' '));
++  let res;
++  try { res = M.applyPlan(d, plan, SIMAUTH); } finally { console.error = realErr; }
++  /* Brak wycieku surowego stacka na stderr jest sprawdzany na poziomie CAŁEGO zestawu
++     (run-final-tests.js, sekcja N: exit code 0 + pusty stderr) — tam, gdzie ma sens. */
+   const ledgerAfter = sha256(fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8'));
+   const recAfter = sha256(fs.readFileSync(path.join(d, 'records/backtests/briefsync.md'), 'utf8'));
+   ok('5. błąd emisji dist → rollback całości (Ledger i karty bez zmian)',
+@@ -189,7 +233,21 @@
+   const after = sha256(fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8'));
+   ok('9a. bezpośrednie applyPlan bez auth → odmowa na warstwie zapisu', !r1.ok && /AUTORYZACJA ODRZUCONA/.test(r1.error), r1.error);
+   ok('9b. fałszywy approval w bezpośrednim wywołaniu → odmowa', !r2.ok && /AUTORYZACJA ODRZUCONA/.test(r2.error), r2.error);
+-  ok('9c. tryb symulacji nie działa na kanonicznym Genome', !M.applyPlan(G, M.buildPlan(G), SIMAUTH).ok, 'symulacja na kanonie musi być odrzucona');
++  /* „Kanoniczny" jest względny wobec ZAŁADOWANEGO modułu: migrate broni własnego korzenia.
++     Testujemy to na FIXTURE (korzeń tego modułu), a obecność guardu w module produkcyjnym
++     sprawdzamy statycznie — uruchamianie zapisu na realnym kanonie byłoby nieakceptowalnym ryzykiem. */
++  ok('9c. symulacja odrzucona na FIXTURE (korzeń nietymczasowy, nie kanon)',
++    !M.applyPlan(FIXTURE, M.buildPlan(FIXTURE), SIMAUTH).ok, 'symulacja poza piaskownicą musi być odrzucona');
++  /* ── INCYDENT 09.08 + audyt rundy 8 ──
++     Reguła „symulacja tylko w katalogu tymczasowym" została USUNIĘTA: `os.tmpdir()` respektuje
++     TMPDIR, więc wywołujący mógł przedstawić katalog obok kanonu jako piaskownicę. Zastąpiona
++     regułą niezależną od środowiska: symulacja nie może dotknąć INSTALACJI wykonawcy.
++     Dowody: testy 13h (odmowa na własnym korzeniu mimo TMPDIR) i 13i (kopia obok działa). */
++  const legal = M.applyPlan(d, M.buildPlan(d), SIMAUTH);
++  ok('9c1. guard nie blokuje legalnej symulacji w katalogu tymczasowym', legal.ok === true, JSON.stringify(legal).slice(0, 200));
++  ok('9c2. produkcyjny migrate.js zawiera ten sam guard',
++    /simulation[\s\S]{0,400}(kanon|__dirname)/i.test(fs.readFileSync(path.join(G, 'migrate.js'), 'utf8')),
++    'brak guardu symulacji w produkcyjnym migrate.js');
+   ok('9d. dane nietknięte po odmowach', before === after);
+   rm(d);
+ }
+@@ -256,7 +314,7 @@
+   fs.utimesSync(lock, old, old);
+   const r1 = M.applyPlan(d, M.buildPlan(d), SIMAUTH);
+   ok('12a. żywy proces z lockiem >5 min NADAL blokuje drugiego writera',
+-    !r1.ok && /właściciel żyje/.test(r1.error) && /UWAGA/.test(r1.error), r1.error);
++    !r1.ok && /właściciel PID \d+ żyje/.test(r1.error) && /UWAGA/.test(r1.error), r1.error);
+   /* martwy właściciel: PID, który na pewno nie żyje */
+   fs.writeFileSync(lock, JSON.stringify({ pid: 999999, started: new Date().toISOString() }));
+   const r2 = M.applyPlan(d, M.buildPlan(d), SIMAUTH);
+@@ -264,6 +322,80 @@
+   rm(d);
+ }
+ 
++/* ── 13. TWARDY NO-OP: zerowa delta nie zapisuje ANI BAJTU ── */
++{
++  const d = fresh();
++  const r1 = M.applyPlan(d, M.buildPlan(d), SIMAUTH);
++  const h1 = treeHash(d, /$^/);
++  const arch1 = fs.readFileSync(path.join(d, 'ledger/.archive/events-2026-08.pre-mig-2026-08-evidence-contract-v1.jsonl'), 'utf8');
++  const snap1 = fs.readFileSync(path.join(d, 'records/.snapshots/mig-2026-08-evidence-contract-v1-records.json'), 'utf8');
++  const freeze1 = fs.readFileSync(path.join(d, 'records/F0-SEED-FREEZE.md'), 'utf8');
++  const led1 = fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8');
++
++  const plan2 = M.buildPlan(d);
++  const r2 = M.applyPlan(d, plan2, SIMAUTH);
++  const h2 = treeHash(d, /$^/);
++
++  ok('13a. pierwsza migracja wykonuje się (delta niezerowa)', r1.ok && !r1.noop, JSON.stringify(r1).slice(0, 150));
++  ok('13b. druga migracja zwraca noop:true i zerową deltę',
++    r2.ok === true && r2.noop === true && Object.values(r2.delta).every(v => v === 0), JSON.stringify(r2));
++  ok('13c. CAŁE drzewo bajtowo identyczne po no-opie', h1 === h2, `${h1.slice(0, 16)} ≠ ${h2.slice(0, 16)}`);
++  ok('13d. no-op nie dopisał zdarzenia', fs.readFileSync(path.join(d, 'ledger/events-2026-08.jsonl'), 'utf8') === led1);
++  ok('13e. no-op nie nadpisał archiwum Ledgera',
++    fs.readFileSync(path.join(d, 'ledger/.archive/events-2026-08.pre-mig-2026-08-evidence-contract-v1.jsonl'), 'utf8') === arch1);
++  ok('13f. no-op nie nadpisał snapshotu Recordów',
++    fs.readFileSync(path.join(d, 'records/.snapshots/mig-2026-08-evidence-contract-v1-records.json'), 'utf8') === snap1);
++  ok('13g. no-op nie przesunął granicy seeda',
++    fs.readFileSync(path.join(d, 'records/F0-SEED-FREEZE.md'), 'utf8') === freeze1);
++  rm(d);
++}
++
++/* ── 13h. GUARD KANONU DLA simulation: TMPDIR nie czyni z instalacji piaskownicy ── */
++{
++  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'mig-guard-'));
++  const inst = path.join(home, 'g');
++  fs.cpSync(FIXTURE, inst, { recursive: true });
++  const M2 = require(path.join(inst, 'migrate.js'));
++  const led = path.join(inst, 'ledger', 'events-2026-08.jsonl');
++  const before = crypto.createHash('sha256').update(fs.readFileSync(led)).digest('hex');
++  /* 1) simulation na WŁASNYM korzeniu instalacji — musi odpaść, nawet z TMPDIR wskazującym tam */
++  const oldTmp = process.env.TMPDIR; process.env.TMPDIR = home;
++  const rSelf = M2.applyPlan(inst, M2.buildPlan(inst), SIMAUTH);
++  ok('13h. simulation na własnym korzeniu instalacji jest odrzucone niezależnie od TMPDIR',
++    rSelf.ok === false && /dotyka KANONICZNEGO Genome/.test(String(rSelf.error || ''))
++    && crypto.createHash('sha256').update(fs.readFileSync(led)).digest('hex') === before,
++    String(rSelf.error || '').split('\n')[0]);
++  /* 2) simulation na KOPII obok — ma działać (inaczej testy migracji byłyby nieuruchamialne) */
++  const kopia = path.join(home, 'kopia');
++  fs.cpSync(inst, kopia, { recursive: true });
++  const ledK = path.join(kopia, 'ledger', 'events-2026-08.jsonl');
++  const beforeK = crypto.createHash('sha256').update(fs.readFileSync(ledK)).digest('hex');
++  const rCopy = M2.applyPlan(kopia, M2.buildPlan(kopia), SIMAUTH);
++  ok('13i. simulation na kopii obok instalacji nadal działa (guard nie blokuje legalnych kopii)',
++    rCopy.ok === true && crypto.createHash('sha256').update(fs.readFileSync(ledK)).digest('hex') !== beforeK,
++    JSON.stringify(rCopy).slice(0, 200));
++  if (oldTmp === undefined) delete process.env.TMPDIR; else process.env.TMPDIR = oldTmp;
++  delete require.cache[require.resolve(path.join(inst, 'migrate.js'))];
++  fs.rmSync(home, { recursive: true, force: true });
++}
++
++/* ── 13j. MIGRATOR UŻYWA WSPÓLNEJ KOTWICY, nie klucza w repo ── */
++{
++  const src = fs.readFileSync(path.join(G, 'proposals', 'final-salt-plate', 'genome', 'migrate.js'), 'utf8');
++  const code = src.split('\n').filter(l => !/^\s*(\*|\/\*|\/\/)/.test(l)).join('\n');
++  ok('13j. migrate.js weryfikuje podpis przez lib/approval.js i nie szuka klucza w repo',
++    /require\('\.\/lib\/approval\.js'\)/.test(code) && /APPROVAL\.loadPublicKey\(\)/.test(code)
++    && !/approval-pubkey\.pem/.test(code) && !/GENOME_APPROVAL_KEY/.test(code),
++    code.split('\n').filter(l => /approval-pubkey|GENOME_APPROVAL_KEY/.test(l)).join(' | ').slice(0, 200));
++}
++
++/* ── 14. STRAŻNIK KANONU: pełny hash drzewa przed i po całym zestawie ── */
++{
++  const after = treeHash(CANON);
++  ok('14. kanoniczne Genome bajtowo nietknięte przez cały zestaw testów',
++    after === CANON_BEFORE, `przed ${CANON_BEFORE.slice(0, 16)} · po ${after.slice(0, 16)}`);
++}
++
+ console.log('\n═══ TESTY MIGRACJI ═══\n');
+ for (const r of results) console.log(`  ${r.cond ? '✓' : '✗'} ${r.name}${r.detail ? '\n      → ' + r.detail : ''}`);
+ console.log(`\n  ${pass} PASS · ${fail} FAIL\n`);

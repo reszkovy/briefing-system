@@ -1,0 +1,10 @@
+{
+  "nazwa": "trening-silowy-dla-mezczyzn",
+  "zdjecie": "jobs/zdjecie-test.jpg",
+  "podpis": "Zbuduj siłę\ni pewność siebie",
+
+  "_kv_artwork": "Opcjonalne. Ścieżka do artworku kampanii (łukowy nagłówek + plamka). Bez tego bierze domyślny z assets/.",
+
+  "_kadr": "Opcjonalne nadpisanie kadru per format, gdy automatyczny nie trafia w twarz/sylwetkę.",
+  "kadr": {}
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Post-AI Society — The numbers</title>
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=Plus+Jakarta+Sans:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#F4F0E8;--paper:#EDE8DD;--plaster:#E6E0D2;--stone:#A69D8B;--stone-dim:#8C8371;
+  --ink:#211E19;--ink-soft:#4A453C;--forest:#2E4A3B;--forest-deep:#22382D;--amber:#B97A2A;
+  --hairline:rgba(33,30,25,.16);--hairline-strong:rgba(33,30,25,.32);
+  --serif:'Newsreader',Georgia,serif;--sans:'Plus Jakarta Sans','Helvetica Neue',sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--linen);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+::selection{background:var(--forest);color:var(--linen)}
+em{font-style:italic;font-weight:400}
+.label{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-dim)}
+header.top{padding:clamp(3rem,8vh,5rem) var(--gutter) clamp(2rem,5vh,3rem);border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem}
+header.top .wordmark{font-size:.78rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.6rem}
+h1{font-family:var(--serif);font-weight:200;font-size:clamp(2.4rem,5.5vw,4.6rem);line-height:1.08;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:200;font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1.15;margin-bottom:1.4rem}
+h3{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,1.8vw,1.5rem)}
+section{padding:clamp(3.5rem,8vh,6rem) var(--gutter);border-bottom:1px solid var(--hairline)}
+.sec-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:clamp(1.8rem,4vh,2.8rem)}
+.sec-head .no{font-size:.66rem;letter-spacing:.22em;color:var(--stone-dim)}
+p{max-width:40em}
+.lede{font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:200;line-height:1.45;max-width:30em}
+.note{font-size:.82rem;color:var(--stone-dim);max-width:44em;margin-top:1.5rem}
+/* summary table */
+.tbl{width:100%;border-collapse:collapse;max-width:62em;font-size:.92rem}
+.tbl th{text-align:left;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-dim);padding:.7rem 1rem .7rem 0;border-bottom:1px solid var(--hairline-strong)}
+.tbl td{padding:.85rem 1rem .85rem 0;border-bottom:1px solid var(--hairline);vertical-align:top}
+.tbl td:first-child{font-family:var(--serif);font-size:1.05rem}
+.tbl .num{font-variant-numeric:tabular-nums}
+.risk-cell{color:var(--forest);font-weight:500}
+/* phase cards */
+.phase{border:1px solid var(--hairline-strong);padding:clamp(1.4rem,3vw,2.2rem);margin-bottom:1.5rem;background:rgba(255,255,255,.25)}
+.phase .ph{font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--forest)}
+.phase h3{font-size:clamp(1.4rem,2.4vw,1.9rem);margin:.4rem 0 .9rem;font-style:normal;font-weight:200}
+.rows{max-width:44em;border-top:1px solid var(--hairline);margin-top:.6rem}
+.row{display:grid;grid-template-columns:1fr auto;gap:1.5rem;padding:.55rem 0;border-bottom:1px solid var(--hairline);font-size:.92rem}
+.row span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+.row.total{font-weight:500}
+.row.total span:last-child{font-family:var(--serif);font-size:1.1rem}
+.gate{margin-top:1.2rem;padding:1rem 1.2rem;border-left:2px solid var(--forest);background:rgba(46,74,59,.06);max-width:42em}
+.gate b{display:block;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);margin-bottom:.3rem}
+.gate p{font-size:.92rem;color:var(--ink-soft)}
+/* calculator */
+.calc{background:var(--forest-deep);color:var(--paper)}
+.calc .label,.calc .sec-head .no{color:#9DB8A6}
+.calc h2{color:var(--linen)}
+.calc .ctrl{max-width:34em;margin-bottom:1.4rem}
+.calc label{display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#9DB8A6;margin-bottom:.4rem}
+.calc label output{font-family:var(--serif);font-size:1.05rem;letter-spacing:0;text-transform:none;color:var(--linen);font-variant-numeric:tabular-nums}
+.calc input[type=range]{width:100%;accent-color:#9DB8A6}
+.calc .result{border-top:1px solid rgba(244,240,232,.25);margin-top:2rem;padding-top:1.5rem;display:flex;gap:clamp(2rem,6vw,5rem);flex-wrap:wrap}
+.calc .result div b{display:block;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#9DB8A6;margin-bottom:.3rem}
+.calc .result div span{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:300;color:var(--linen);font-variant-numeric:tabular-nums}
+.calc .verdict{margin-top:1.4rem;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(244,240,232,.85)}
+/* rules */
+.rule-item{display:grid;grid-template-columns:2rem 1fr;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--hairline);max-width:46em}
+.rule-item .rn{font-size:.66rem;letter-spacing:.15em;color:var(--forest);font-weight:600;padding-top:.25rem}
+.rule-item h3{font-size:1.15rem;margin-bottom:.2rem}
+.rule-item p{font-size:.92rem;color:var(--ink-soft)}
+footer{padding:2.5rem var(--gutter);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer span{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone-dim)}
+#gate{position:fixed;inset:0;background:var(--linen);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;padding:var(--gutter)}
+#gate h1{font-size:clamp(1.8rem,4vw,3rem);text-align:center}
+#gate input{font-family:var(--sans);font-size:1rem;padding:.9rem 1.2rem;border:1px solid var(--hairline-strong);background:transparent;color:var(--ink);width:min(20rem,80vw);text-align:center;letter-spacing:.1em;outline:none}
+#gate input:focus{border-color:var(--forest)}
+#gate .hint{font-size:.78rem;color:var(--stone-dim)}
+body.locked{overflow:hidden}
+</style>
+</head>
+<body class="locked">
+
+<div id="gate">
+  <span class="label">Private — working estimate</span>
+  <h1>The Post-AI&nbsp;Society</h1>
+  <input id="pw" type="password" placeholder="passphrase" autocomplete="off" autofocus>
+  <span class="hint">Shared personally.</span>
+</div>
+
+<header class="top">
+  <div>
+    <span class="label">The numbers · working estimate · August MMXXVI</span>
+    <h1 style="margin-top:.8rem">Asset-light<br><em>until it is proven.</em></h1>
+  </div>
+  <span class="wordmark"><img src="../img/logo.svg" alt="" style="width:22px;height:22px;border-radius:50%">The Post-AI&nbsp;Society</span>
+</header>
+
+<section>
+  <div class="sec-head"><span class="no">I</span><h2>The one number that matters</h2></div>
+  <p class="lede">Capital at risk before the thesis is proven or disproven: <em>about €30–40 thousand.</em> Not millions. Every phase below must earn the right to the next one.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;max-width:56em;margin-top:2.2rem">
+    <div style="border:1px solid var(--hairline-strong);padding:1.2rem 1.4rem"><span class="label">Capital at risk, pre-proof</span><div style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;margin-top:.3rem">€30–40k</div></div>
+    <div style="border:1px solid var(--hairline-strong);padding:1.2rem 1.4rem"><span class="label">Seats to break even</span><div style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;margin-top:.3rem">15 <span style="font-size:1rem;color:var(--stone-dim)">of 20</span></div></div>
+    <div style="border:1px solid var(--hairline-strong);padding:1.2rem 1.4rem"><span class="label">Non-repayable grants in play</span><div style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;margin-top:.3rem">up to €75k</div></div>
+  </div>
+  <table class="tbl" style="margin-top:2.5rem">
+    <tr><th>Phase</th><th>When</th><th>Cost</th><th>Revenue</th><th>Capital at risk</th></tr>
+    <tr><td>0 · Brand &amp; materials</td><td>done</td><td class="num">~€0</td><td class="num">—</td><td class="num risk-cell">~€0</td></tr>
+    <tr><td>1 · Scouting trip</td><td>Oct 2026</td><td class="num">€2.5–4k</td><td class="num">—</td><td class="num risk-cell">all of it</td></tr>
+    <tr><td>2 · Test residency</td><td>Spring 2028</td><td class="num">€18–37k (by region)</td><td class="num">€27–36k</td><td class="num risk-cell">~€10k deposits</td></tr>
+    <tr><td>3 · Seasonal campus (lease)</td><td>2028/29</td><td class="num">€100–200k / yr</td><td class="num">€150–250k / yr</td><td class="num risk-cell">2–3 months of costs</td></tr>
+    <tr><td>4 · Ownership</td><td>2029+</td><td class="num">€0.5–1.5M</td><td class="num">residencies + membership</td><td class="num risk-cell">external capital</td></tr>
+  </table>
+  <p class="note">Working estimate, concept stage. Ranges are deliberate; precision at this point would be fiction — but every range below is anchored to a live market quote (see Benchmarks). Purchase anchors, Q3 2026: village houses in Puglia from €16k, masserie to restore from €27k, Abruzzo village houses under €50k, Tuscia centro storico ~€700/m².</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">II</span><h2>Phase by phase</h2></div>
+
+  <div class="phase">
+    <span class="ph">Phase 1 · October 2026 · €2.5–4k</span>
+    <h3>The scouting trip</h3>
+    <div class="rows">
+      <div class="row"><span>Flights + rental car, 10 days</span><span>€900–1,400</span></div>
+      <div class="row"><span>Nights across Tuscia, Abruzzo, Puglia</span><span>€800–1,200</span></div>
+      <div class="row"><span>Dinners with people who know more than the listings</span><span>€400–700</span></div>
+      <div class="row"><span>Buffer</span><span>€400–700</span></div>
+      <div class="row total"><span>Total</span><span>€2.5–4k</span></div>
+    </div>
+    <div class="gate"><b>Deliverable, not a gate</b><p>One written rental offer for a 2-week stay in 2028, and one sindaco who smiled. The only phase with no entry condition — it starts on courage alone.</p></div>
+  </div>
+
+  <div class="phase">
+    <span class="ph">Phase 2 · Spring 2028 · cost €18–37k by region · revenue €27–36k</span>
+    <h3>The test residency — two weeks, 15–20 people</h3>
+    <p style="max-width:42em;font-size:.95rem;color:var(--ink-soft);margin-bottom:1rem">Venue is the variable; everything else is constant. Exclusive-use, ~18 beds, off-season (April–May or October), 14 nights. Market quotes: comparable masserie/villas for 16 guests run €8.5–13k <em>per week</em> in season, with off-season discounts of 20–40%; mid-range agriturismi host 20-person retreat weeks at €8–15k all-in.</p>
+    <table class="tbl" style="margin-bottom:1.2rem">
+      <tr><th>Venue region</th><th>2-week venue cost</th><th>Total cost</th><th>Result at 15 × €1,800</th></tr>
+      <tr><td>Abruzzo — value play</td><td class="num">€5–9k</td><td class="num">€18–26k</td><td class="num risk-cell">+€1k to +€9k</td></tr>
+      <tr><td>Tuscia — accessible</td><td class="num">€8–14k</td><td class="num">€21–31k</td><td class="num risk-cell">−€4k to +€6k</td></tr>
+      <tr><td>Puglia — the favourite</td><td class="num">€10–18k</td><td class="num">€23–37k</td><td class="num risk-cell">−€10k to +€4k</td></tr>
+    </table>
+    <div class="rows">
+      <div class="row"><span>Cook (2 weeks) + groceries at ~€25/person/day — the long table is the product</span><span>€8–12k</span></div>
+      <div class="row"><span>Programme, workshops, materials</span><span>~€2k</span></div>
+      <div class="row"><span>Photography &amp; film — the proof that markets itself</span><span>€2–3k</span></div>
+      <div class="row"><span>Insurance, transfers, contingency (10%)</span><span>€3–4k</span></div>
+      <div class="row total"><span>Constant costs (excl. venue)</span><span>€15–21k</span></div>
+      <div class="row total"><span>Revenue at 15 seats × €1,800 (two weeks)</span><span>€27k</span></div>
+      <div class="row total"><span>Revenue at 18 seats × €2,000</span><span>€36k</span></div>
+    </div>
+    <p class="note" style="margin-top:1rem">Pricing sanity check: €1,800 for two weeks is deliberately below market — corporate offsites benchmark at $3,500–6,500 per person for a few days; week-long European founder retreats commonly price €1,500–3,000. The first cohort pays for proof, not margin.</p>
+    <div class="gate"><b>Entry gate — demand pays first</b><p>Seats are sold before any deposit is paid. Open applications, collect payments; only at 12+ confirmed participants is the venue booked. If it doesn't sell, the thesis got a cheap, honest answer — and the loss is one scouting trip. Abruzzo venue economics make the test nearly risk-free; Puglia buys stronger photography and an easier yes from participants.</p></div>
+  </div>
+
+  <div class="phase">
+    <span class="ph">Phase 3 · 2028/29 · cost €100–200k/yr · revenue €150–250k/yr</span>
+    <h3>The seasonal campus — a year on lease</h3>
+    <div class="rows">
+      <div class="row"><span>Annual lease, section of a borgo or masseria (~20 beds)</span><span>€25–60k</span></div>
+      <div class="row"><span>Adaptation &amp; furnishing: beds, kitchen, cowork, fibre</span><span>€30–80k</span></div>
+      <div class="row"><span>Operations &amp; hospitality lead (Italian market RAL: €22–30k junior, €50–65k senior; target profile mid)</span><span>€30–45k</span></div>
+      <div class="row"><span>Utilities, insurance, admin</span><span>~€15k</span></div>
+      <div class="row total"><span>Total, year one</span><span>€100–195k</span></div>
+      <div class="row total"><span>Revenue at 6–8 residencies × €20–35k</span><span>€150–250k</span></div>
+    </div>
+    <table class="tbl" style="margin-top:1.2rem;max-width:44em">
+      <tr><th>Year one scenario</th><th>Residencies sold</th><th>Result</th></tr>
+      <tr><td>Conservative</td><td class="num">5 · no grant</td><td class="num risk-cell">−€25k</td></tr>
+      <tr><td>Base</td><td class="num">7</td><td class="num risk-cell">+€30–40k</td></tr>
+      <tr><td>Upside</td><td class="num">8 + PNRR grant</td><td class="num risk-cell">+€120–155k</td></tr>
+    </table>
+    <div class="gate"><b>Entry gate — three sold, one grant, one partner</b><p>Three residencies pre-sold before the lease is signed. PNRR borghi application filed (up to €75k non-repayable — village choice is made partly for its bandi). A property partner taking revenue share instead of rent changes this table entirely — that is the ask in the concept briefing.</p></div>
+  </div>
+
+  <div class="phase">
+    <span class="ph">Phase 4 · 2029+ · €0.5–1.5M · external capital</span>
+    <h3>Ownership — bought with data, not hope</h3>
+    <p style="max-width:42em;color:var(--ink-soft);font-size:.95rem">Only after two seasons of numbers: occupancy, retention, what people say at the last dinner. Then the purchase is of a priced business, not a dream — and that is when first believers come in. Separately and privately: the founder's own house (≤€100k) is bought regardless, as the personal hedge — worst case, the project dies and there is still a home in a village worth loving.</p>
+  </div>
+</section>
+
+<section class="calc" id="calc">
+  <div class="sec-head"><span class="no">III</span><h2>Test residency — break-even</h2></div>
+  <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem">
+    <button class="preset" data-c="22000" style="font-family:var(--sans);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1.1rem;background:transparent;border:1px solid rgba(244,240,232,.35);color:#F4F0E8;cursor:pointer">Abruzzo</button>
+    <button class="preset" data-c="26000" style="font-family:var(--sans);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1.1rem;background:transparent;border:1px solid rgba(244,240,232,.35);color:#F4F0E8;cursor:pointer">Tuscia</button>
+    <button class="preset" data-c="30000" style="font-family:var(--sans);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1.1rem;background:transparent;border:1px solid rgba(244,240,232,.35);color:#F4F0E8;cursor:pointer">Puglia</button>
+  </div>
+  <div class="ctrl">
+    <label>Participants <output id="o-n">15</output></label>
+    <input type="range" id="r-n" min="8" max="22" step="1" value="15">
+  </div>
+  <div class="ctrl">
+    <label>Price per seat <output id="o-p">€1,700</output></label>
+    <input type="range" id="r-p" min="900" max="2600" step="50" value="1800">
+  </div>
+  <div class="ctrl">
+    <label>Total cost <output id="o-c">€25,000</output></label>
+    <input type="range" id="r-c" min="15000" max="40000" step="1000" value="27000">
+  </div>
+  <div class="result">
+    <div><b>Revenue</b><span id="res-rev">€25,500</span></div>
+    <div><b>Result</b><span id="res-net">+€500</span></div>
+    <div><b>Break-even seats</b><span id="res-be">15</span></div>
+  </div>
+  <p class="verdict" id="verdict">Fifteen people at dinner, and the experiment pays for itself.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">IV</span><h2>Benchmarks &amp; sources</h2></div>
+  <p style="max-width:42em">Every range on this page traces to a public market quote, Q3 2026:</p>
+  <div class="rows" style="max-width:52em;margin-top:1.2rem">
+    <div class="row"><span>Masseria/villa, 16 guests, Puglia — weekly rate in season <a href="https://www.abodevillas.com/villa/masseria-san-giovanni" style="color:var(--forest)">(Abode Villas)</a></span><span>€8.5–13k</span></div>
+    <div class="row"><span>Off-season discount on exclusive-use properties <a href="https://ilcipresso.co/comparing-luxury-villas-vs-masseria-stays-in-puglia-for-bespoke-experiences/" style="color:var(--forest)">(Il Cipresso)</a></span><span>−20–40%</span></div>
+    <div class="row"><span>Retreat week, 20 people, mid-range agriturismo, all-in <a href="https://www.directbookingsitaly.com/blog/italy-yoga-wellness-retreat-venues-2026.html" style="color:var(--forest)">(Direct Bookings Italy)</a></span><span>€8–15k</span></div>
+    <div class="row"><span>Full-board catering benchmark, per person per day <a href="https://www.directbookingsitaly.com/blog/italy-yoga-wellness-retreat-venues-2026.html" style="color:var(--forest)">(ibid.)</a></span><span>€40–70</span></div>
+    <div class="row"><span>Corporate offsite, per person, few days <a href="https://www.monikerpartners.com/blog/how-to-budget-for-a-company-retreat" style="color:var(--forest)">(Moniker)</a></span><span>$3.5–6.5k</span></div>
+    <div class="row"><span>Hospitality manager, Italy, gross annual (junior → senior) <a href="https://magazine.corsicef.it/hospitality-manager-stipendio-quanto-guadagna-davvero-oggi" style="color:var(--forest)">(RAL data)</a></span><span>€22–65k</span></div>
+    <div class="row"><span>Village houses: Puglia from €16k · Abruzzo under €50k · Tuscia ~€700/m² <a href="https://www.idealista.it/en/vendita-case/ceglie-messapica-brindisi/" style="color:var(--forest)">(idealista)</a></span><span>—</span></div>
+    <div class="row"><span>PNRR borghi grant, non-repayable, per project</span><span>up to €75k</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">V</span><h2>Three rules that hold it together</h2></div>
+  <div class="rule-item"><span class="rn">01</span><div><h3>Demand pays before we do</h3><p>Every phase has an entry gate based on sales, not enthusiasm. No deposit leaves the account until participants' deposits have arrived first.</p></div></div>
+  <div class="rule-item"><span class="rn">02</span><div><h3>Culture first, walls last</h3><p>Stone is the cheapest part of this project; community is the most expensive. We buy buildings only when the culture already fills them.</p></div></div>
+  <div class="rule-item"><span class="rn">03</span><div><h3>Maximum loss is written down in advance</h3><p>Through the end of 2028, total exposure stays within ~€30–35k — an amount that can go to zero without touching the life it is meant to improve.</p></div></div>
+</section>
+
+<footer>
+  <span>The Post-AI Society — internal</span>
+  <span>Working estimate · not an offer</span>
+  <span>August MMXXVI</span>
+</footer>
+
+<script>
+(function(){
+  const KEY='hc_inv', PASS='longtable';
+  const gate=document.getElementById('gate'), pw=document.getElementById('pw');
+  function unlock(){gate.style.display='none';document.body.classList.remove('locked')}
+  if(sessionStorage.getItem(KEY)===PASS) unlock();
+  pw.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      if(pw.value.trim().toLowerCase()===PASS){sessionStorage.setItem(KEY,PASS);unlock();}
+      else{pw.value='';pw.placeholder='try again';}
+    }
+  });
+  const rn=document.getElementById('r-n'), rp=document.getElementById('r-p'), rc=document.getElementById('r-c');
+  const f=n=>'€'+Math.round(n).toLocaleString('en-US');
+  function upd(){
+    const n=+rn.value, p=+rp.value, c=+rc.value, rev=n*p, net=rev-c, be=Math.ceil(c/p);
+    document.getElementById('o-n').textContent=n;
+    document.getElementById('o-p').textContent=f(p);
+    document.getElementById('o-c').textContent=f(c);
+    document.getElementById('res-rev').textContent=f(rev);
+    document.getElementById('res-net').textContent=(net>=0?'+':'−')+f(Math.abs(net)).slice(0);
+    document.getElementById('res-be').textContent=be;
+    const v=document.getElementById('verdict');
+    if(net>=0) v.textContent=`${n} people at dinner, and the experiment pays for itself.`;
+    else v.textContent=`${be} seats needed to break even — ${be-n} more than planned.`;
+  }
+  [rn,rp,rc].forEach(r=>r.addEventListener('input',upd));
+  document.querySelectorAll('.preset').forEach(b=>b.addEventListener('click',()=>{rc.value=b.dataset.c;upd();}));
+  upd();
+})();
+</script>
+</body>
+</html>

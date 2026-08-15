@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sentyment i zainteresowanie · BTC / ETH</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#12161f; --panel2:#161b26; --line:#232a38;
+    --txt:#e6e9ef; --mut:#8b93a7; --dim:#5d6577;
+    --btc:#f7931a; --eth:#8a92b2; --up:#2ecc71; --down:#ff5a5f; --acc:#5aa9ff;
+    --fear:#ff5a5f; --fear2:#ff9f43; --neutral:#f1c40f; --greed:#7ee787; --greed2:#2ecc71;
+    --radius:14px; font-synthesis:none;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;}
+  a{color:var(--acc)}
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px;justify-content:space-between;margin-bottom:6px}
+  h1{font-size:26px;margin:0;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+  .logo{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--btc),var(--acc));display:inline-grid;place-items:center;color:#0b0e14;font-weight:800;font-size:13px}
+  .sub{color:var(--mut);font-size:13px;margin:4px 0 0}
+  .status{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:6px;cursor:pointer}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--dim)}
+  .status.live .dot{background:var(--up);box-shadow:0 0 8px var(--up)}
+  .status.partial .dot{background:var(--btc);box-shadow:0 0 8px var(--btc)}
+  .status.fallback .dot{background:var(--down)}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:22px 0 8px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+  .kpi .lab{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+  .kpi .val{font-size:22px;font-weight:700;margin-top:6px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .kpi .val small{font-size:13px;color:var(--mut);font-weight:500}
+  .kpi .note{font-size:11px;color:var(--dim);margin-top:3px}
+  .pos{color:var(--up)}.neg{color:var(--down)}
+
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 20px;margin-top:20px}
+  section.card h2{font-size:16px;margin:0 0 2px;letter-spacing:-.01em;display:flex;align-items:center;gap:8px}
+  section.card .desc{font-size:12.5px;color:var(--mut);margin:0 0 14px;line-height:1.5;max-width:760px}
+  .badge{font-size:10px;color:var(--dim);border:1px solid var(--line);border-radius:6px;padding:2px 7px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+
+  svg.chart{width:100%;display:block;overflow:visible}
+  .grid line{stroke:var(--line);stroke-width:1}
+
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+  th,td{text-align:right;padding:9px 10px;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.04em}
+  td.coin{font-weight:700;display:flex;align-items:center;gap:8px}
+  .cdot{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;font-size:9px;font-weight:800;color:#0b0e14}
+  .cdot.btc{background:var(--btc)}.cdot.eth{background:var(--eth)}
+  td .spark{display:block}
+  .num{font-variant-numeric:tabular-nums}
+
+  .gaugewrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .gval{font-size:44px;font-weight:800;letter-spacing:-.03em;margin-top:-10px;font-variant-numeric:tabular-nums}
+  .gclass{font-size:14px;font-weight:700}
+  .ghist{display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--mut);flex-wrap:wrap;justify-content:center}
+  .ghist b{color:var(--txt);font-variant-numeric:tabular-nums}
+
+  .trend{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .trend .row{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;font-size:13px;
+    background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  .trend .rk{color:var(--dim);font-weight:700;text-align:center}
+  .trend .nm{font-weight:600}.trend .nm small{color:var(--mut);font-weight:400;margin-left:4px}
+  .trend .sc{color:var(--btc);font-variant-numeric:tabular-nums;font-size:12px}
+
+  .votebar{height:12px;border-radius:6px;overflow:hidden;display:flex;background:var(--down)}
+  .votebar>i{display:block;height:100%;background:var(--up)}
+  .votelab{display:flex;justify-content:space-between;font-size:11.5px;margin-top:5px;color:var(--mut)}
+
+  .deriv{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.deriv{grid-template-columns:1fr}}
+  .dcoin{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  .dcoin h3{margin:0 0 10px;font-size:14px;display:flex;align-items:center;gap:8px}
+  .dmetric{display:flex;justify-content:space-between;padding:6px 0;font-size:12.5px;border-bottom:1px solid var(--line)}
+  .dmetric:last-child{border-bottom:0}
+  .dmetric .k{color:var(--mut)}
+  .dmetric .v{font-weight:700;font-variant-numeric:tabular-nums}
+
+  .insights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  @media(max-width:820px){.insights{grid-template-columns:1fr}}
+  .ins{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55}
+  .ins b{color:#fff}.ins.warn{border-left-color:var(--btc)}.ins.risk{border-left-color:var(--down)}.ins.good{border-left-color:var(--up)}
+
+  .disc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:12px;color:var(--mut);line-height:1.6;margin-top:24px}
+  .muted{color:var(--dim)}
+
+  section.card.signal{border-width:1px}
+  .sighero{display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between;margin-top:4px}
+  .sigmain{display:flex;align-items:center;gap:16px;min-width:260px}
+  .sigicon{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:28px;font-weight:800;flex:0 0 auto;background:var(--panel2);border:1px solid var(--line)}
+  .siglabel{font-size:24px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .sigsub{font-size:13px;color:var(--mut);margin-top:3px}
+  .sigmeterwrap{flex:1;min-width:280px;max-width:520px}
+  .sigmeter{position:relative;height:14px;border-radius:8px;
+    background:linear-gradient(90deg,var(--down) 0%,var(--fear2) 30%,var(--neutral) 50%,var(--greed) 70%,var(--up) 100%)}
+  .sigmarker{position:absolute;top:-5px;width:6px;height:24px;border-radius:3px;background:#fff;
+    box-shadow:0 0 0 2px var(--panel),0 2px 8px rgba(0,0,0,.6);transform:translateX(-50%);transition:left .4s ease;left:50%}
+  .sigscale{display:flex;justify-content:space-between;font-size:11px;color:var(--dim);margin-top:8px}
+  .sigwhy{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  @media(max-width:720px){.sigwhy{grid-template-columns:1fr}}
+  .sigwhy li{font-size:12.5px;color:var(--mut);display:flex;gap:8px;align-items:flex-start;line-height:1.45}
+  .sigwhy li .ic{flex:0 0 auto;font-weight:700}
+  .sigwhy li.p .ic{color:var(--up)}.sigwhy li.n .ic{color:var(--down)}.sigwhy li.z .ic{color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1><span class="logo">S</span> Sentyment i zainteresowanie · BTC / ETH</h1>
+      <p class="sub">Fear &amp; Greed · ceny i wolumeny · rynek pochodnych (funding, long/short) · trending — dane na żywo</p>
+    </div>
+    <div id="status" class="status" title="kliknij, aby odświeżyć"><span class="dot"></span><span id="statusTxt">ładowanie danych…</span></div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <!-- SIGNAL (contrarian) -->
+  <section class="card signal" id="signalCard">
+    <h2>Sygnał rynkowy <span class="badge">kontrariański · mechaniczny</span></h2>
+    <p class="desc">Regułowy odczyt stanu rynku wg zasady „kupuj, gdy inni się boją; ostrożnie, gdy panuje chciwość". To odwrócenie złożonego indeksu sentymentu — <b>nie jest poradą inwestycyjną ani rekomendacją „kup/sprzedaj"</b>, tylko klasyfikacją tła.</p>
+    <div class="sighero">
+      <div class="sigmain">
+        <div class="sigicon" id="sigIcon">—</div>
+        <div>
+          <div class="siglabel" id="sigLabel">ładowanie…</div>
+          <div class="sigsub" id="sigSub"></div>
+        </div>
+      </div>
+      <div class="sigmeterwrap">
+        <div class="sigmeter"><span class="sigmarker" id="sigMarker"></span></div>
+        <div class="sigscale"><span>Dystrybucja / ostrożność</span><span>Neutralnie</span><span>Akumulacja</span></div>
+      </div>
+    </div>
+    <ul class="sigwhy" id="sigWhy"></ul>
+  </section>
+
+  <div class="grid2">
+    <!-- FEAR & GREED -->
+    <section class="card">
+      <h2>Indeks strachu i chciwości <span class="badge">alternative.me</span></h2>
+      <p class="desc">Zagregowany sentyment całego rynku krypto (0 = skrajny strach, 100 = skrajna chciwość). Liczony z wolatylności, momentum, wolumenu, mediów społ. i dominacji BTC.</p>
+      <div class="gaugewrap">
+        <svg id="gauge" viewBox="0 0 300 175" style="max-width:320px"></svg>
+        <div class="gval" id="fngVal">—</div>
+        <div class="gclass" id="fngClass">ładowanie…</div>
+        <div class="ghist" id="fngHist"></div>
+      </div>
+    </section>
+
+    <!-- COMPOSITE -->
+    <section class="card">
+      <h2>Złożony indeks zainteresowania <span class="badge">syntetyczny</span></h2>
+      <p class="desc">Jedna liczba 0–100 łącząca 4 sygnały: Fear&amp;Greed (40%), momentum ceny 7d (30%), funding rate (15%) i long/short (15%). Wyższy = tłum bardziej „byczo" nastawiony i zaangażowany.</p>
+      <div class="gaugewrap">
+        <svg id="compGauge" viewBox="0 0 300 175" style="max-width:320px"></svg>
+        <div class="gval" id="compVal">—</div>
+        <div class="gclass" id="compClass">ładowanie…</div>
+      </div>
+      <div id="compBreak" style="margin-top:10px;font-size:12px;color:var(--mut)"></div>
+    </section>
+  </div>
+
+  <!-- MARKET -->
+  <section class="card">
+    <h2>Rynek — cena, zmiany, wolumen <span class="badge">CoinGecko</span></h2>
+    <p class="desc">Cena, zmiany w oknach czasowych, wolumen 24h, kapitalizacja i 30-dniowy przebieg. Rosnący wolumen przy rosnącej cenie = realne zainteresowanie; rosnący wolumen przy spadku = kapitulacja.</p>
+    <div style="overflow-x:auto">
+      <table id="mktTable">
+        <thead><tr>
+          <th>Aktywo</th><th>Cena</th><th>24h</th><th>7d</th><th>30d</th><th>Wolumen 24h</th><th>Kapitalizacja</th><th>30 dni</th>
+        </tr></thead>
+        <tbody id="mktBody"><tr><td colspan="8" class="muted">ładowanie…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DERIVATIVES -->
+  <section class="card">
+    <h2>Rynek pochodnych — lewar i pozycjonowanie <span class="badge">Binance Futures</span></h2>
+    <p class="desc">Funding rate: dodatni = longi płacą shortom (tłum ustawiony na wzrosty, ryzyko przegrzania); ujemny = odwrotnie. Long/short ratio &gt; 1 = przewaga longów. Open interest = suma otwartych pozycji (zaangażowanie kapitału).</p>
+    <div class="deriv" id="derivBox">
+      <div class="dcoin"><h3><span class="cdot btc">₿</span> BTC</h3><div class="muted" style="font-size:12px">ładowanie…</div></div>
+      <div class="dcoin"><h3><span class="cdot eth">Ξ</span> ETH</h3><div class="muted" style="font-size:12px">ładowanie…</div></div>
+    </div>
+  </section>
+
+  <div class="grid2">
+    <!-- TRENDING -->
+    <section class="card">
+      <h2>Trending w wyszukiwaniach <span class="badge">CoinGecko</span></h2>
+      <p class="desc">Najczęściej wyszukiwane monety w ostatnich godzinach — proxy bieżącego zainteresowania i uwagi rynku.</p>
+      <div class="trend" id="trendBox"><div class="muted" style="font-size:12px">ładowanie…</div></div>
+    </section>
+
+    <!-- COMMUNITY VOTES -->
+    <section class="card">
+      <h2>Nastroje społeczności <span class="badge">CoinGecko</span></h2>
+      <p class="desc">Odsetek użytkowników głosujących „w górę" vs „w dół" na najbliższe 24h. Proxy sentymentu detalu.</p>
+      <div id="votesBox" style="margin-top:8px"><div class="muted" style="font-size:12px">ładowanie…</div></div>
+    </section>
+  </div>
+
+  <div class="insights" id="insights"></div>
+
+  <div class="disc">
+    <b>Źródła danych (darmowe, klient-side):</b> Fear&amp;Greed — alternative.me · ceny/wolumeny/trending/głosy — CoinGecko · funding/long-short/open interest — Binance Futures.
+    Dane pobierane bezpośrednio w przeglądarce; przy limitach API lub blokadach geo część kart może pokazać „n/d" — reszta działa niezależnie. Auto-odświeżanie co 60 s (kliknij status, by odświeżyć ręcznie).
+    <br><span class="muted">To narzędzie informacyjne/edukacyjne, nie porada inwestycyjna. Sentyment to wskaźnik kontrariański — skrajny strach bywał okazją, skrajna chciwość ostrzeżeniem, ale nic nie gwarantuje.</span>
+  </div>
+
+</div>
+
+<script>
+/* ============================================================
+   UTIL
+============================================================ */
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+function clear(n){while(n.firstChild)n.removeChild(n.firstChild);}
+function fmtUSD(v){
+  if(v==null||isNaN(v))return 'n/d';
+  if(v>=1e12)return '$'+(v/1e12).toFixed(2)+' bln';
+  if(v>=1e9)return '$'+(v/1e9).toFixed(2)+' mld';
+  if(v>=1e6)return '$'+(v/1e6).toFixed(2)+' mln';
+  if(v>=1000)return '$'+v.toLocaleString('pl-PL',{maximumFractionDigits:0});
+  return '$'+v.toLocaleString('pl-PL',{maximumFractionDigits:2});
+}
+function fmtPct(v,dp){if(v==null||isNaN(v))return 'n/d';const s=(v>=0?'+':'')+v.toFixed(dp==null?2:dp)+'%';return s;}
+function pctClass(v){return v==null||isNaN(v)?'':(v>=0?'pos':'neg');}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+
+async function fetchJSON(url,timeout=9000){
+  const c=new AbortController();const id=setTimeout(()=>c.abort(),timeout);
+  try{
+    const r=await fetch(url,{signal:c.signal,headers:{'accept':'application/json'}});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return await r.json();
+  } finally { clearTimeout(id); }
+}
+
+/* ============================================================
+   GAUGE (semicircle)
+============================================================ */
+function polar(cx,cy,r,valPct){ // valPct 0..100 -> angle 180(left)..0(right)
+  const th=(180 - valPct*1.8)*Math.PI/180;
+  return {x:cx+r*Math.cos(th), y:cy-r*Math.sin(th)};
+}
+function arcSeg(cx,cy,r,v0,v1,color,w){
+  const a=polar(cx,cy,r,v0), b=polar(cx,cy,r,v1);
+  const large=(v1-v0)>50?1:0;
+  // sweep: increasing value goes left->right = clockwise in screen coords => sweep 1
+  const p=el('path',{d:`M ${a.x.toFixed(2)} ${a.y.toFixed(2)} A ${r} ${r} 0 ${large} 1 ${b.x.toFixed(2)} ${b.y.toFixed(2)}`,
+    fill:'none',stroke:color,'stroke-width':w,'stroke-linecap':'round'});
+  return p;
+}
+function drawGauge(svgId,val,colorForVal){
+  const svg=$(svgId);if(!svg)return;clear(svg);
+  const cx=150,cy=150,r=118,w=20;
+  const segs=[[0,25,'var(--fear)'],[25,45,'var(--fear2)'],[45,55,'var(--neutral)'],[55,75,'var(--greed)'],[75,100,'var(--greed2)']];
+  segs.forEach(s=>svg.appendChild(arcSeg(cx,cy,r,s[0],s[1],s[2],w)));
+  if(val==null||isNaN(val))return;
+  const v=clamp(val,0,100);
+  // needle
+  const tip=polar(cx,cy,r-4,v);
+  svg.appendChild(el('circle',{cx,cy,r:8,fill:'#e6e9ef'}));
+  const needle=el('line',{x1:cx,y1:cy,x2:tip.x.toFixed(2),y2:tip.y.toFixed(2),stroke:'#e6e9ef','stroke-width':3.5,'stroke-linecap':'round'});
+  svg.appendChild(needle);
+  // end labels
+  const l0=el('text',{x:cx-r,y:cy+22,fill:'var(--dim)','font-size':11,'text-anchor':'middle'});l0.textContent='0';svg.appendChild(l0);
+  const l1=el('text',{x:cx+r,y:cy+22,fill:'var(--dim)','font-size':11,'text-anchor':'middle'});l1.textContent='100';svg.appendChild(l1);
+}
+function fngColor(v){
+  if(v<25)return 'var(--fear)';if(v<45)return 'var(--fear2)';if(v<55)return 'var(--neutral)';if(v<75)return 'var(--greed)';return 'var(--greed2)';
+}
+function fngLabel(v){
+  if(v<25)return 'Skrajny strach';if(v<45)return 'Strach';if(v<55)return 'Neutralnie';if(v<75)return 'Chciwość';return 'Skrajna chciwość';
+}
+
+/* ============================================================
+   SPARKLINE
+============================================================ */
+function sparkline(vals,color){
+  if(!vals||vals.length<2)return document.createTextNode('n/d');
+  const w=110,h=30,pad=2;
+  const min=Math.min(...vals),max=Math.max(...vals),rng=(max-min)||1;
+  const svg=el('svg',{viewBox:`0 0 ${w} ${h}`,width:w,height:h,class:'spark'});
+  let d='';vals.forEach((v,i)=>{
+    const x=pad+i/(vals.length-1)*(w-2*pad);
+    const y=h-pad-(v-min)/rng*(h-2*pad);
+    d+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);
+  });
+  const up=vals[vals.length-1]>=vals[0];
+  svg.appendChild(el('path',{d,fill:'none',stroke:color||(up?'var(--up)':'var(--down)'),'stroke-width':1.5,'stroke-linejoin':'round'}));
+  return svg;
+}
+
+/* ============================================================
+   STATE
+============================================================ */
+const state={fng:null,fngHist:null,price:null,global:null,trending:null,votes:{},deriv:{},sparks:{}};
+let okCount=0, totalSources=0;
+
+function setStatus(){
+  const s=$('status');
+  s.className='status '+(okCount===0?'fallback':(okCount<totalSources?'partial':'live'));
+  const now=new Date();
+  $('statusTxt').textContent=(okCount===0?'brak danych — spróbuj odświeżyć':
+    (okCount<totalSources?`częściowe dane (${okCount}/${totalSources})`:'dane na żywo'))+
+    ' · '+now.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'});
+}
+
+/* ============================================================
+   LOADERS
+============================================================ */
+async function loadFNG(){
+  const j=await fetchJSON('https://api.alternative.me/fng/?limit=90&format=json');
+  const arr=j.data.map(d=>({v:+d.value,t:+d.timestamp*1000,cls:d.value_classification})).reverse();
+  state.fngHist=arr;state.fng=arr[arr.length-1];
+  return true;
+}
+async function loadPrice(){
+  const j=await fetchJSON('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_market_cap=true');
+  state.price=j;return true;
+}
+async function loadGlobal(){
+  const j=await fetchJSON('https://api.coingecko.com/api/v3/global');
+  state.global=j.data;return true;
+}
+async function loadTrending(){
+  const j=await fetchJSON('https://api.coingecko.com/api/v3/search/trending');
+  state.trending=j.coins;return true;
+}
+async function loadCoin(id){ // 7d/30d change + community votes
+  const j=await fetchJSON(`https://api.coingecko.com/api/v3/coins/${id}?localization=false&tickers=false&market_data=true&community_data=true&developer_data=false&sparkline=false`);
+  const md=j.market_data||{};
+  state.votes[id]={up:j.sentiment_votes_up_percentage,down:j.sentiment_votes_down_percentage};
+  state['chg_'+id]={
+    d7:md.price_change_percentage_7d, d30:md.price_change_percentage_30d
+  };
+  return true;
+}
+async function loadSpark(id){
+  const j=await fetchJSON(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=30&interval=daily`);
+  state.sparks[id]=j.prices.map(p=>p[1]);
+  return true;
+}
+async function loadDeriv(sym,id){
+  // funding + mark price
+  const pi=await fetchJSON(`https://fapi.binance.com/fapi/v1/premiumIndex?symbol=${sym}`);
+  const oi=await fetchJSON(`https://fapi.binance.com/fapi/v1/openInterest?symbol=${sym}`).catch(()=>null);
+  let ls=null;
+  try{
+    const lsr=await fetchJSON(`https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${sym}&period=1h&limit=1`);
+    if(lsr&&lsr.length)ls=+lsr[0].longShortRatio;
+  }catch(e){}
+  state.deriv[id]={
+    funding:+pi.lastFundingRate,
+    mark:+pi.markPrice,
+    nextFundingTime:+pi.nextFundingTime,
+    oi: oi? +oi.openInterest : null,
+    ls
+  };
+  return true;
+}
+
+/* ============================================================
+   RENDER
+============================================================ */
+function renderKPIs(){
+  const box=$('kpis');
+  const btc=state.price&&state.price.bitcoin, eth=state.price&&state.price.ethereum;
+  const g=state.global;
+  const dom=g&&g.market_cap_percentage?g.market_cap_percentage.btc:null;
+  const cards=[
+    ['Fear & Greed', state.fng?state.fng.v:'n/d', state.fng?fngLabel(state.fng.v):'', state.fng?fngColor(state.fng.v):null],
+    ['BTC', btc?fmtUSD(btc.usd):'n/d', btc?`<span class="${pctClass(btc.usd_24h_change)}">${fmtPct(btc.usd_24h_change)}</span> 24h`:'', null],
+    ['ETH', eth?fmtUSD(eth.usd):'n/d', eth?`<span class="${pctClass(eth.usd_24h_change)}">${fmtPct(eth.usd_24h_change)}</span> 24h`:'', null],
+    ['Dominacja BTC', dom!=null?dom.toFixed(1)+'%':'n/d', g?'kap. rynku '+fmtUSD(g.total_market_cap&&g.total_market_cap.usd):'', null],
+  ];
+  box.innerHTML=cards.map(c=>`
+    <div class="kpi">
+      <div class="lab">${c[0]}</div>
+      <div class="val" ${c[3]?`style="color:${c[3]}"`:''}>${c[1]}</div>
+      <div class="note">${c[2]}</div>
+    </div>`).join('');
+}
+
+function renderFNG(){
+  if(!state.fng){$('fngVal').textContent='n/d';$('fngClass').textContent='brak danych';drawGauge('gauge',null);return;}
+  const v=state.fng.v;
+  drawGauge('gauge',v);
+  $('fngVal').textContent=v;$('fngVal').style.color=fngColor(v);
+  $('fngClass').textContent=fngLabel(v);$('fngClass').style.color=fngColor(v);
+  const h=state.fngHist;
+  const at=n=> h&&h.length>n ? h[h.length-1-n].v : null;
+  const yd=at(1), wk=at(7), mo=at(30);
+  $('fngHist').innerHTML=[
+    ['wczoraj',yd],['tydzień temu',wk],['miesiąc temu',mo]
+  ].map(x=>`<span>${x[0]}: <b style="color:${x[1]!=null?fngColor(x[1]):'var(--dim)'}">${x[1]!=null?x[1]:'n/d'}</b></span>`).join('');
+}
+
+function renderMarket(){
+  const rows=[['bitcoin','BTC','btc','₿'],['ethereum','ETH','eth','Ξ']];
+  const body=$('mktBody');body.innerHTML='';
+  rows.forEach(([id,sym,cls,gl])=>{
+    const p=state.price&&state.price[id];
+    const chg=state['chg_'+id]||{};
+    const tr=document.createElement('tr');
+    const c24=p?p.usd_24h_change:null;
+    const td=(html,c)=>`<td class="num ${c||''}">${html}</td>`;
+    tr.innerHTML=`
+      <td class="coin"><span class="cdot ${cls}">${gl}</span>${sym}</td>
+      ${td(p?fmtUSD(p.usd):'n/d')}
+      ${td(fmtPct(c24),pctClass(c24))}
+      ${td(fmtPct(chg.d7),pctClass(chg.d7))}
+      ${td(fmtPct(chg.d30),pctClass(chg.d30))}
+      ${td(p?fmtUSD(p.usd_24h_vol):'n/d')}
+      ${td(p?fmtUSD(p.usd_market_cap):'n/d')}
+      <td></td>`;
+    const sc=tr.lastElementChild;
+    sc.appendChild(sparkline(state.sparks[id], cls==='btc'?'var(--btc)':'var(--acc)'));
+    body.appendChild(tr);
+  });
+}
+
+function renderDeriv(){
+  const box=$('derivBox');box.innerHTML='';
+  [['bitcoin','BTC','btc','₿'],['ethereum','ETH','eth','Ξ']].forEach(([id,sym,cls,gl])=>{
+    const d=state.deriv[id];
+    const div=document.createElement('div');div.className='dcoin';
+    if(!d){
+      div.innerHTML=`<h3><span class="cdot ${cls}">${gl}</span> ${sym}</h3><div class="muted" style="font-size:12px">n/d — API Binance niedostępne (limit lub blokada geo)</div>`;
+      box.appendChild(div);return;
+    }
+    const fundPct=d.funding*100;
+    const fundCls=d.funding>=0?'pos':'neg';
+    const fundHint=d.funding>0.0005?'przegrzane longi':(d.funding<-0.0002?'przewaga shortów':'neutralnie');
+    const lsCls=d.ls==null?'':(d.ls>=1?'pos':'neg');
+    div.innerHTML=`
+      <h3><span class="cdot ${cls}">${gl}</span> ${sym}</h3>
+      <div class="dmetric"><span class="k">Funding rate (8h)</span><span class="v ${fundCls}">${fmtPct(fundPct,4)}</span></div>
+      <div class="dmetric"><span class="k">→ interpretacja</span><span class="v muted" style="font-weight:500">${fundHint}</span></div>
+      <div class="dmetric"><span class="k">Long/Short ratio</span><span class="v ${lsCls}">${d.ls!=null?d.ls.toFixed(2):'n/d'}</span></div>
+      <div class="dmetric"><span class="k">Open interest</span><span class="v">${d.oi!=null?d.oi.toLocaleString('pl-PL',{maximumFractionDigits:0})+' '+sym:'n/d'}</span></div>`;
+    box.appendChild(div);
+  });
+}
+
+function renderTrending(){
+  const box=$('trendBox');
+  if(!state.trending){box.innerHTML='<div class="muted" style="font-size:12px">n/d</div>';return;}
+  box.innerHTML=state.trending.slice(0,7).map((c,i)=>{
+    const it=c.item;
+    return `<div class="row">
+      <span class="rk">${i+1}</span>
+      <span class="nm">${it.name} <small>${it.symbol.toUpperCase()}</small></span>
+      <span class="sc">rank #${it.market_cap_rank||'—'}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderVotes(){
+  const box=$('votesBox');
+  const rows=[['bitcoin','BTC'],['ethereum','ETH']];
+  box.innerHTML=rows.map(([id,sym])=>{
+    const v=state.votes[id];
+    if(!v||v.up==null)return `<div style="margin-bottom:14px"><div style="font-size:13px;font-weight:600;margin-bottom:6px">${sym}</div><div class="muted" style="font-size:12px">n/d</div></div>`;
+    return `<div style="margin-bottom:16px">
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px">${sym}</div>
+      <div class="votebar"><i style="width:${v.up}%"></i></div>
+      <div class="votelab"><span class="pos">▲ ${v.up.toFixed(0)}% w górę</span><span class="neg">▼ ${v.down.toFixed(0)}% w dół</span></div>
+    </div>`;
+  }).join('');
+}
+
+/* ---- COMPOSITE ---- */
+function computeComposite(){
+  // returns {score, parts:[{lab,val,w}]}
+  const parts=[];
+  // 1. F&G (0..100) w 0.40
+  if(state.fng){parts.push({lab:'Fear&Greed',raw:state.fng.v,w:.40});}
+  // 2. momentum 7d BTC (map -20%..+20% -> 0..100) w 0.30
+  const m=state['chg_bitcoin']&&state['chg_bitcoin'].d7;
+  if(m!=null&&!isNaN(m)){parts.push({lab:'Momentum 7d',raw:clamp((m+20)/40*100,0,100),w:.30});}
+  // 3. funding BTC (map -0.05%..+0.10% -> 0..100) w 0.15
+  const f=state.deriv.bitcoin&&state.deriv.bitcoin.funding;
+  if(f!=null&&!isNaN(f)){parts.push({lab:'Funding',raw:clamp((f*100+0.05)/0.15*100,0,100),w:.15});}
+  // 4. long/short BTC — detal Binance ma strukturalny bias long (~1.3 baza), map 0.9..2.2 -> 0..100, w 0.15
+  const ls=state.deriv.bitcoin&&state.deriv.bitcoin.ls;
+  if(ls!=null&&!isNaN(ls)){parts.push({lab:'Long/Short',raw:clamp((ls-0.9)/1.3*100,0,100),w:.15});}
+  if(!parts.length)return null;
+  const wsum=parts.reduce((a,p)=>a+p.w,0);
+  const score=parts.reduce((a,p)=>a+p.raw*p.w,0)/wsum;
+  return {score:Math.round(score),parts};
+}
+function renderComposite(){
+  const c=computeComposite();
+  if(!c){$('compVal').textContent='n/d';$('compClass').textContent='brak danych';drawGauge('compGauge',null);return;}
+  drawGauge('compGauge',c.score);
+  $('compVal').textContent=c.score;$('compVal').style.color=fngColor(c.score);
+  $('compClass').textContent=fngLabel(c.score);$('compClass').style.color=fngColor(c.score);
+  $('compBreak').innerHTML='Składowe: '+c.parts.map(p=>`${p.lab} <b style="color:var(--txt)">${Math.round(p.raw)}</b>`).join(' · ')+
+    ` <span class="muted">(waga wg dostępnych: ${(c.parts.reduce((a,p)=>a+p.w,0)*100).toFixed(0)}%)</span>`;
+}
+
+/* ---- SIGNAL (contrarian, rule-based) ---- */
+function computeSignal(){
+  const comp=computeComposite();
+  if(!comp)return null;
+  // kontrariańsko: pozycja akumulacji = 100 - bullishness tłumu
+  let acc = 100 - comp.score;
+  const why=[];
+  // składowe uzasadnienia (kontrariańsko)
+  if(state.fng){
+    const v=state.fng.v;
+    if(v<25)why.push(['p','Skrajny strach ('+v+') — historycznie strefa okazji']);
+    else if(v<45)why.push(['p','Strach ('+v+') — brak euforii, ostrożny optymizm']);
+    else if(v<55)why.push(['z','Sentyment neutralny ('+v+')']);
+    else if(v<75)why.push(['n','Chciwość ('+v+') — tłum optymistyczny, uwaga']);
+    else why.push(['n','Skrajna chciwość ('+v+') — podwyższone ryzyko']);
+  }
+  const fb=state.deriv.bitcoin;
+  if(fb&&fb.funding!=null){
+    if(fb.funding>0.0005){why.push(['n','Przegrzany funding BTC ('+fmtPct(fb.funding*100,4)+') — zatłoczone longi']); acc-=8;}
+    else if(fb.funding<-0.0002){why.push(['p','Ujemny funding BTC — pesymizm w pochodnych (paliwo do odbicia)']); acc+=8;}
+    else why.push(['z','Funding BTC neutralny']);
+  }
+  const m=state['chg_bitcoin'];
+  if(m&&m.d7!=null){
+    if(m.d7<-10)why.push(['p','Głęboka przecena 7d ('+fmtPct(m.d7)+') — panika/wyprzedaż']);
+    else if(m.d7>15)why.push(['n','Silny wzrost 7d ('+fmtPct(m.d7)+') — ryzyko lokalnego szczytu']);
+    else why.push(['z','Momentum 7d umiarkowane ('+fmtPct(m.d7)+')']);
+  }
+  acc=clamp(acc,0,100);
+  // etykiety
+  let label,icon,sub,color;
+  if(acc>=75){label='Strefa akumulacji';icon='▲▲';color='var(--up)';sub='Skrajny pesymizm tłumu — historycznie sprzyjało kupującym (kontrariańsko).';}
+  else if(acc>=58){label='Sprzyjająco';icon='▲';color='var(--greed)';sub='Sentyment słaby — tło bardziej sprzyja akumulacji niż euforia.';}
+  else if(acc>=42){label='Neutralnie';icon='=';color='var(--neutral)';sub='Brak wyraźnej przewagi — rynek bez skrajności sentymentu.';}
+  else if(acc>=25){label='Ostrożnie';icon='▼';color='var(--fear2)';sub='Tłum optymistyczny — historycznie moment na ostrożność, nie pogoń.';}
+  else {label='Podwyższone ryzyko';icon='▼▼';color='var(--down)';sub='Euforia/chciwość — kontrariańsko strefa dystrybucji i podwyższonego ryzyka.';}
+  return {acc:Math.round(acc),label,icon,sub,color,why};
+}
+function renderSignal(){
+  const s=computeSignal();
+  if(!s){
+    $('sigLabel').textContent='brak danych';$('sigSub').textContent='';$('sigIcon').textContent='—';
+    $('sigWhy').innerHTML='';$('sigMarker').style.left='50%';return;
+  }
+  $('sigIcon').textContent=s.icon;$('sigIcon').style.color=s.color;$('sigIcon').style.borderColor=s.color;
+  $('sigLabel').textContent=s.label;$('sigLabel').style.color=s.color;
+  $('sigSub').textContent=s.sub;
+  $('sigMarker').style.left=s.acc+'%';
+  $('sigWhy').innerHTML=s.why.map(w=>`<li class="${w[0]}"><span class="ic">${w[0]==='p'?'▲':w[0]==='n'?'▼':'•'}</span><span>${w[1]}</span></li>`).join('');
+}
+
+function renderInsights(){
+  const box=$('insights');const out=[];
+  if(state.fng){
+    const v=state.fng.v;
+    let cls='ins',txt='';
+    if(v<25){cls='ins good';txt=`<b>Skrajny strach (${v}).</b> Historycznie takie odczyty bywały strefą kapitulacji i okazji — ale strach potrafi trwać. Sygnał kontrariański, nie timing.`;}
+    else if(v<45){cls='ins';txt=`<b>Strach (${v}).</b> Rynek ostrożny. Brak euforii — zwykle zdrowsze tło niż chciwość.`;}
+    else if(v<55){cls='ins';txt=`<b>Neutralnie (${v}).</b> Brak wyraźnego skrzywienia sentymentu w żadną stronę.`;}
+    else if(v<75){cls='ins warn';txt=`<b>Chciwość (${v}).</b> Optymizm rośnie — uwaga na przegrzanie, ale trend może trwać.`;}
+    else{cls='ins risk';txt=`<b>Skrajna chciwość (${v}).</b> Historycznie strefa podwyższonego ryzyka korekt. Kontrariańsko: czas na ostrożność.`;}
+    out.push(`<div class="${cls}">${txt}</div>`);
+  }
+  const fb=state.deriv.bitcoin;
+  if(fb&&fb.funding!=null){
+    if(fb.funding>0.0005)out.push(`<div class="ins risk"><b>Wysoki funding BTC (${fmtPct(fb.funding*100,4)}).</b> Longi mocno przepłacają — zatłoczona pozycja, ryzyko kaskady likwidacji w dół.</div>`);
+    else if(fb.funding<-0.0002)out.push(`<div class="ins good"><b>Ujemny funding BTC (${fmtPct(fb.funding*100,4)}).</b> Shorty płacą longom — pesymizm w pochodnych, bywa paliwem do short squeeze.</div>`);
+  }
+  const m=state['chg_bitcoin'];
+  if(m&&m.d30!=null){
+    out.push(`<div class="ins"><b>Momentum BTC:</b> 7d ${fmtPct(m.d7)}, 30d ${fmtPct(m.d30)}. ${m.d7>0&&m.d30>0?'Trend wzrostowy w obu oknach.':(m.d7<0&&m.d30<0?'Presja spadkowa w obu oknach.':'Sygnały mieszane między oknami.')}</div>`);
+  }
+  box.innerHTML=out.join('');
+}
+
+/* ============================================================
+   ORCHESTRATION
+============================================================ */
+async function refresh(){
+  const tasks=[
+    ['fng',loadFNG()],
+    ['price',loadPrice()],
+    ['global',loadGlobal()],
+    ['trending',loadTrending()],
+    ['coinBTC',loadCoin('bitcoin')],
+    ['coinETH',loadCoin('ethereum')],
+    ['sparkBTC',loadSpark('bitcoin')],
+    ['sparkETH',loadSpark('ethereum')],
+    ['derivBTC',loadDeriv('BTCUSDT','bitcoin')],
+    ['derivETH',loadDeriv('ETHUSDT','ethereum')],
+  ];
+  totalSources=tasks.length;okCount=0;
+  const results=await Promise.allSettled(tasks.map(t=>t[1]));
+  results.forEach((r,i)=>{ if(r.status==='fulfilled')okCount++; else console.warn('źródło padło:',tasks[i][0],r.reason&&r.reason.message); });
+
+  renderKPIs();renderSignal();renderFNG();renderComposite();renderMarket();renderDeriv();renderTrending();renderVotes();renderInsights();
+  setStatus();
+}
+
+$('status').addEventListener('click',()=>{$('statusTxt').textContent='odświeżanie…';refresh();});
+refresh();
+setInterval(refresh,60000);
+</script>
+</body>
+</html>

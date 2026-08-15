@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System projektowy — The Hermeticum</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
+<style>
+  .ds{padding-block:var(--secB)}
+  .ds h2{font-family:var(--font-display);font-size:var(--t-2xl);margin:0 0 var(--sp4)}
+  .ds h3{font-family:var(--font-ui);font-size:var(--t-sm);font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--gold);margin:var(--sp6) 0 var(--sp3)}
+  .ds p{max-width:44rem;line-height:1.6}
+  .ds table{width:100%;border-collapse:collapse;margin:var(--sp4) 0 var(--sp6);font-size:var(--t-base)}
+  .ds th,.ds td{text-align:left;padding:.6rem .75rem;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+  .ds th{font-family:var(--font-ui);font-size:var(--t-2xs);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted)}
+  .ds code{font-family:ui-monospace,monospace;font-size:var(--t-xs);background:var(--panel);
+    padding:.15em .4em;border:1px solid var(--line-soft)}
+  .ok{color:#1c6b3a;font-weight:600} .bad{color:var(--vermilion);font-weight:600}
+  .sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(9rem,1fr));gap:var(--sp4);margin:var(--sp4) 0 var(--sp6)}
+  .sw__c{height:4.5rem;border:1px solid var(--line)}
+  .sw__n{margin:.5rem 0 0;font-family:ui-monospace,monospace;font-size:var(--t-2xs)}
+  .sw__v{margin:.1rem 0 0;font-size:var(--t-2xs);color:var(--ink-muted)}
+  .bar{display:block;height:.6rem;background:var(--gold-bright);border:1px solid var(--gold)}
+  .rule{border-top:1px solid var(--line);padding-top:var(--sp3);margin-bottom:var(--sp5)}
+  .rule__y{margin:0;font-weight:600;font-size:var(--t-lg)}
+  .rule__n{margin:.2rem 0 .5rem;color:var(--vermilion);font-size:var(--t-base)}
+  .rule__d{margin:0;color:var(--ink-muted);font-size:var(--t-base)}
+  .no{columns:2;column-gap:var(--sp6);max-width:46rem;margin:var(--sp4) 0 0;padding-left:1.1rem}
+  .no li{margin-bottom:.4rem;font-size:var(--t-base);color:var(--ink-muted);break-inside:avoid}
+  .demo{display:flex;gap:var(--sp4);flex-wrap:wrap;align-items:center;margin:var(--sp4) 0 var(--sp6);
+    padding:var(--sp5);background:var(--panel);border:1px solid var(--line-soft)}
+  .demo--ink{background:var(--ink)}
+  @media (max-width:640px){.no{columns:1}}
+</style></head><body>
+<header class="hdr" data-hdr>
+  <div class="hdr__zaslona" aria-hidden="true"></div>
+  <div class="container hdr__in">
+    <a href="/" class="hdr__brand" aria-label="The Hermeticum — home">
+      <svg class="hdr__sigil" viewBox="0 0 545 554" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M544.781 165.192H475.492V390.54H544.781V553.071H0V390.54H66.4902V165.192H0V0H544.781V165.192ZM56.209 124.889H115.522V426.137H56.209V498.717H248.977V426.137H187.322V305.169H357.457V426.137H296.583V498.717H488.57V426.137H429.257V124.889H488.57V52.3076H296.583V124.889H357.457V232.589H187.322V124.889H248.977V52.3076H56.209V124.889Z" fill="currentColor"/></svg>
+      <span class="hdr__mark"><em>the</em>Hermeticum</span>
+    </a>
+    <nav class="hdr__links" aria-label="Primary">
+      <span class="nav__grp">
+        <a href="/start-here/">Start Here</a>
+        <a href="/path/">Path</a>
+        <a href="/texts/">Archive</a>
+        <a href="/letters/">Letter</a>
+      </span>
+      <span class="nav__sep" aria-hidden="true"></span>
+      <span class="nav__grp nav__grp--tools">
+        <a href="/practice/today/">Practice</a>
+        <a href="/book/00-the-opening/">Book</a>
+      </span>
+    </nav>
+    <div class="hdr__cta">
+      <a class="hdr__lang" href="/pl/" data-lang-alt aria-label="Wersja polska">PL</a>
+      <button class="hdr__codexBtn" data-codex-btn aria-expanded="false" aria-controls="codex" aria-label="Index">
+        <span class="hdr__burgerIcon" aria-hidden="true"><svg viewBox="0 0 20 14" width="20" height="14" fill="none"><path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/></svg></span><span class="hdr__codexTxt">Index</span><span class="hdr__codexIcon" aria-hidden="true">&#8984;K</span>
+      </button>
+      <a class="btn hdr__sub" href="/subscribe/">Subscribe</a>
+    </div>
+  </div>
+  <span class="foil" aria-hidden="true"></span>
+
+  <!-- CODEX: jeden indeks całego serwisu z filtrem — zamiast trzech hoverowych mega-paneli -->
+  <div class="codex" id="codex" data-codex hidden>
+    <div class="container codex__in">
+      <div class="codex__top">
+        <input class="codex__q" data-codex-q type="search" placeholder="Search the Hermeticum — texts, figures, ideas&hellip;" aria-label="Search the index">
+        <span class="codex__hint">type to filter &middot; Esc closes</span>
+      </div>
+      <div class="codex__grid">
+        <section class="cx cx--guide">
+          <p class="cx__head">The Guide</p>
+          <ul class="cx__list">
+            <li><a class="cx__item" href="/practice/today/">The Practice &mdash; today's practice</a></li>
+            <li><a class="cx__item" href="/book/00-the-opening/">The Book &mdash; read online</a></li>
+            <li><a class="cx__item" href="/guide/contents/">The Map &mdash; contents</a></li>
+            <li><a class="cx__item" href="/guide/">The Modern Hermet</a></li>
+            <li><a class="cx__item" href="/guide/instruction/">The Instruction &mdash; 15 practices</a></li>
+            <li><a class="cx__item" href="/guide/operational-alchemy/">Operational Alchemy &mdash; 12 principles</a></li>
+          </ul>
+          <p class="cx__foot"><a class="cx__item" href="/about/method/">About &amp; Method &rarr;</a></p>
+        </section>
+        <section class="cx cx--path">
+          <p class="cx__head">The Path</p>
+          <ol class="cx__list"><li><a class="cx__item" href="/path/01-what-is-hermeticism/"><i>01</i>What is Hermeticism?</a></li><li><a class="cx__item" href="/path/02-who-was-hermes-trismegistus/"><i>02</i>Who was Hermes Trismegistus?</a></li><li><a class="cx__item" href="/path/03-alexandria/"><i>03</i>Alexandria</a></li><li><a class="cx__item" href="/path/04-reading-poimandres/"><i>04</i>Reading Poimandres</a></li><li><a class="cx__item is-planned"><i>05</i>The key ideas in one map<em class="cx__date">Aug 31</em></a></li><li><a class="cx__item is-planned"><i>06</i>As above, so below<em class="cx__date">Sep 7</em></a></li><li><a class="cx__item is-planned"><i>07</i>The Emerald Tablet<em class="cx__date">Sep 14</em></a></li><li><a class="cx__item is-planned"><i>08</i>The Renaissance revival<em class="cx__date">Sep 21</em></a></li><li><a class="cx__item is-planned"><i>09</i>Alchemy and the Great Work<em class="cx__date">Sep 28</em></a></li><li><a class="cx__item is-planned"><i>10</i>The Kybalion problem<em class="cx__date">Oct 5</em></a></li><li><a class="cx__item is-planned"><i>11</i>Hermeticism today<em class="cx__date">Oct 12</em></a></li><li><a class="cx__item is-planned"><i>12</i>The reading map<em class="cx__date">Oct 19</em></a></li></ol>
+        </section>
+        <section class="cx cx--texts">
+          <p class="cx__head">The Texts</p>
+          <ul class="cx__list"><li><a class="cx__item" href="/texts/corpus-hermeticum/">Corpus Hermeticum</a></li><li><a class="cx__item" href="/texts/corpus-hermeticum/poimandres/">&mdash; Poimandres</a></li><li><a class="cx__item" href="/texts/emerald-tablet/">The Emerald Tablet</a></li><li><a class="cx__item" href="/texts/asclepius/">Asclepius</a></li><li><a class="cx__item" href="/texts/definitions-of-hermes/">Definitions of Hermes</a></li><li><a class="cx__item" href="/texts/stobaean-fragments/">Stobaean Fragments</a></li><li><a class="cx__item" href="/texts/nag-hammadi-hermetica/">Nag Hammadi Hermetica</a></li><li><a class="cx__item" href="/texts/picatrix/">Picatrix</a></li><li><a class="cx__item" href="/texts/musaeum-hermeticum/">Musaeum Hermeticum</a></li><li><a class="cx__item" href="/texts/kybalion/">The Kybalion (1908)</a></li></ul>
+          <p class="cx__foot"><a class="cx__item" href="/texts/">All texts &rarr;</a></p>
+        </section>
+        <section class="cx cx--figures">
+          <p class="cx__head">The Figures</p>
+          <ul class="cx__list"><li><a class="cx__item" href="/figures/hermes-trismegistus/">Hermes Trismegistus</a></li><li><a class="cx__item" href="/figures/thoth/">Thoth</a></li><li><a class="cx__item" href="/figures/balinas/">Balinas</a></li><li><a class="cx__item" href="/figures/zosimos-of-panopolis/">Zosimos of Panopolis</a></li><li><a class="cx__item" href="/figures/marsilio-ficino/">Marsilio Ficino</a></li><li><a class="cx__item" href="/figures/pico-della-mirandola/">Pico della Mirandola</a></li><li><a class="cx__item" href="/figures/lodovico-lazzarelli/">Lodovico Lazzarelli</a></li><li><a class="cx__item" href="/figures/giordano-bruno/">Giordano Bruno</a></li><li><a class="cx__item" href="/figures/john-dee/">John Dee</a></li><li><a class="cx__item" href="/figures/grs-mead/">G.R.S. Mead</a></li><li><a class="cx__item" href="/figures/frances-yates/">Frances Yates</a></li></ul>
+          <p class="cx__foot"><a class="cx__item" href="/figures/">All figures &rarr;</a></p>
+          <p class="cx__foot"><a class="cx__item" href="/atlas/">The Atlas — map of the tradition &rarr;</a></p>
+        </section>
+        <section class="cx cx--ideas">
+          <p class="cx__head">The Ideas</p>
+          <ul class="cx__list"><li><a class="cx__item" href="/ideas/as-above-so-below/">As above, so below</a></li><li><a class="cx__item" href="/ideas/nous/">Nous</a></li><li><a class="cx__item" href="/ideas/gnosis/">Gnosis</a></li><li><a class="cx__item" href="/ideas/correspondences/">Correspondences</a></li><li><a class="cx__item" href="/ideas/the-great-work/">The Great Work</a></li><li><a class="cx__item" href="/ideas/theurgy/">Theurgy</a></li><li><a class="cx__item" href="/ideas/palingenesia/">Palingenesia</a></li><li><a class="cx__item" href="/ideas/the-ogdoad-and-ennead/">The Ogdoad and Ennead</a></li><li><a class="cx__item" href="/ideas/tarot/">Tarot</a></li><li><a class="cx__item" href="/ideas/prisca-theologia/">Prisca theologia</a></li><li><a class="cx__item" href="/ideas/hermeticism-and-its-neighbours/">Hermeticism &amp; its neighbours</a></li></ul>
+          <p class="cx__foot"><a class="cx__item" href="/about/method/">About &amp; Method &rarr;</a></p>
+        </section>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <section class="ds">
+    <div class="container">
+      <p class="kicker">System projektowy</p>
+      <h1 class="hero__title" style="font-size:var(--t-2xl)">The Hermeticum</h1>
+      <p class="lead">Ta strona nie jest opisem systemu — jest jego odczytem. Każdy kolor, rozmiar
+        i odstęp poniżej pochodzi wprost z <code>assets/site.css</code> i jest renderowany tym samym
+        tokenem, którego używa serwis. Jeśli ktoś zmieni token, ta strona zmieni się sama. Jeśli token
+        zniknie albo para kolorów spadnie poniżej 4,5:1, build się nie wykona.</p>
+
+      <h2>Fundament</h2>
+      <p><b>Anonimowy autor. Jawne źródła. Sprawdzalna praktyka.</b> Marka nie sprzedaje dostępu do osoby,
+        tylko metodę, którą da się sprawdzić. Stąd wynika reszta: brak twarzy, obecność źródeł, jawne granice
+        każdej obietnicy i brak jakiejkolwiek skali oceniającej czytelnika.</p>
+
+      <h2>Kolor</h2>
+      <div class="sws"><div class="sw"><div class="sw__c" style="background:var(--paper)"></div><p class="sw__n">--paper</p><p class="sw__v">#faf5e4</p></div><div class="sw"><div class="sw__c" style="background:var(--panel)"></div><p class="sw__n">--panel</p><p class="sw__v">#fffdf4</p></div><div class="sw"><div class="sw__c" style="background:var(--paper-deep)"></div><p class="sw__n">--paper-deep</p><p class="sw__v">#f2e9d2</p></div><div class="sw"><div class="sw__c" style="background:var(--ink)"></div><p class="sw__n">--ink</p><p class="sw__v">#240B36</p></div><div class="sw"><div class="sw__c" style="background:var(--ink-muted)"></div><p class="sw__n">--ink-muted</p><p class="sw__v">#5b4470</p></div><div class="sw"><div class="sw__c" style="background:var(--vermilion)"></div><p class="sw__n">--vermilion</p><p class="sw__v">#A4031F</p></div><div class="sw"><div class="sw__c" style="background:var(--gold)"></div><p class="sw__n">--gold</p><p class="sw__v">#8a6419</p></div><div class="sw"><div class="sw__c" style="background:var(--gold-bright)"></div><p class="sw__n">--gold-bright</p><p class="sw__v">#F2DC5D</p></div><div class="sw"><div class="sw__c" style="background:var(--sandy)"></div><p class="sw__n">--sandy</p><p class="sw__v">#F2A359</p></div><div class="sw"><div class="sw__c" style="background:var(--almond)"></div><p class="sw__n">--almond</p><p class="sw__v">#DB9065</p></div><div class="sw"><div class="sw__c" style="background:var(--on-ink)"></div><p class="sw__n">--on-ink</p><p class="sw__v">#f6ead6</p></div></div>
+      <h3>Kontrast, sprawdzany przy każdym buildzie</h3>
+      <table><thead><tr><th>Tekst</th><th>Tło</th><th>Zastosowanie</th><th>WCAG</th></tr></thead>
+      <tbody><tr><td><code>--ink</code></td><td><code>--paper</code></td><td>tekst główny na papierze</td><td class="ok">16.36:1</td></tr><tr><td><code>--ink-muted</code></td><td><code>--paper</code></td><td>tekst drugorzędny na papierze</td><td class="ok">7.68:1</td></tr><tr><td><code>--vermilion</code></td><td><code>--paper</code></td><td>akcent i kickery na papierze</td><td class="ok">7.37:1</td></tr><tr><td><code>--gold</code></td><td><code>--paper</code></td><td>etykiety złote na papierze</td><td class="ok">4.91:1</td></tr><tr><td><code>--on-ink</code></td><td><code>--ink</code></td><td>tekst na atramencie</td><td class="ok">15.01:1</td></tr><tr><td><code>--gold-bright</code></td><td><code>--ink</code></td><td>akcent na atramencie</td><td class="ok">12.90:1</td></tr></tbody></table>
+      <p><b>Reguła:</b> złoto <code>--gold-bright</code> nigdy nie niesie tekstu na papierze — tylko na
+        atramencie albo jako element graficzny. Wermilion jest akcentem, nie kolorem tła dla dłuższych partii.</p>
+
+      <h2>Typografia</h2>
+      <p>Trzy kroje, każdy z jednym zadaniem. <b>&quot;Luxento&quot;</b> — tylko nagłówki
+        i nazwy. <b>&quot;EB Garamond&quot;</b> — cały tekst ciągły. <b>&quot;Plus Jakarta Sans&quot;</b>
+        — etykiety, kickery, przyciski, nawigacja. Czwarty krój pojawia się wyłącznie jako monospace w podglądzie plików.</p>
+      <table><thead><tr><th>Token</th><th>Rozmiar</th><th>Rola</th><th>Próbka</th></tr></thead>
+      <tbody><tr><td><code>--t-2xs</code></td><td>12 px</td><td>etykiety, meta, noty</td><td><span style="font-size:var(--t-2xs)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-xs</code></td><td>13 px</td><td>noty prawne, podpisy</td><td><span style="font-size:var(--t-xs)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-sm</code></td><td>14 px</td><td>etykiety UI, kickery</td><td><span style="font-size:var(--t-sm)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-base</code></td><td>15 px</td><td>tekst pomocniczy</td><td><span style="font-size:var(--t-base)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-md</code></td><td>16 px</td><td>tekst w komponentach</td><td><span style="font-size:var(--t-md)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-lg</code></td><td>17 px</td><td>tekst ciągły</td><td><span style="font-size:var(--t-lg)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-xl</code></td><td>20 px</td><td>lead sekcji</td><td><span style="font-size:var(--t-xl)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-2xl</code></td><td>28–38 px</td><td>nagłówek sekcji</td><td><span style="font-size:var(--t-2xl)">Jak w górze, tak i na dole</span></td></tr><tr><td><code>--t-3xl</code></td><td>42–86 px</td><td>nagłówek strony</td><td><span style="font-size:var(--t-3xl)">Jak w górze, tak i na dole</span></td></tr></tbody></table>
+      <p><b>Podłoga:</b> 12 px — nic mniejszego nie występuje w interfejsie.</p>
+
+      <h2>Odstęp i rytm</h2>
+      <table><thead><tr><th>Token</th><th>Wartość</th><th></th></tr></thead><tbody><tr><td><code>--sp1</code></td><td>4 px</td><td><span class="bar" style="width:var(--sp1)"></span></td></tr><tr><td><code>--sp2</code></td><td>8 px</td><td><span class="bar" style="width:var(--sp2)"></span></td></tr><tr><td><code>--sp3</code></td><td>12 px</td><td><span class="bar" style="width:var(--sp3)"></span></td></tr><tr><td><code>--sp4</code></td><td>16 px</td><td><span class="bar" style="width:var(--sp4)"></span></td></tr><tr><td><code>--sp5</code></td><td>24 px</td><td><span class="bar" style="width:var(--sp5)"></span></td></tr><tr><td><code>--sp6</code></td><td>32 px</td><td><span class="bar" style="width:var(--sp6)"></span></td></tr><tr><td><code>--sp7</code></td><td>48 px</td><td><span class="bar" style="width:var(--sp7)"></span></td></tr><tr><td><code>--sp8</code></td><td>72 px</td><td><span class="bar" style="width:var(--sp8)"></span></td></tr></tbody></table>
+      <p>Rytm pionowy sekcji ma dwie wartości: <code>--secA</code> (72–120 px) dla sekcji nośnych
+        i <code>--secB</code> (48–76 px) dla wtórnych. Zawsze symetrycznie, góra równa dołowi.
+        Rynna strony: <code>--gutter</code> (20–40 px) — ta sama lewa krawędź w każdej sekcji.</p>
+
+      <h2>Kontrolki</h2>
+      <p>Jedna wysokość: <code>--ctl</code> = 44 px dla wszystkiego, co się klika i wpisuje;
+        <code>--ctl-sm</code> = 36 px w nagłówku. Promień <code>--radius</code> = 2px —
+        jeden dla całego serwisu. Przejścia: <code>180ms</code> i <code>cubic-bezier(.22,.7,.3,1)</code>.</p>
+      <div class="demo">
+        <a class="btn" href="#">Przycisk główny</a>
+        <a class="hero__alt" href="#">Odnośnik w prozie &rarr;</a>
+        <input class="sub__input" type="email" placeholder="ty@praca.pl" aria-label="Przykładowe pole">
+      </div>
+      <div class="demo demo--ink">
+        <a class="btn" href="#" style="background:var(--gold-bright);color:var(--ink)">Przycisk na atramencie</a>
+        <span style="color:var(--on-ink);font-size:var(--t-base)">Tekst na atramencie</span>
+      </div>
+      <p><b>Cel dotykowy:</b> minimum 44 px w pionie dla każdego elementu interaktywnego poza odnośnikami
+        wewnątrz zdania. Focus: <code>2px solid var(--vermilion)</code> z odstępem 3 px, widoczny wszędzie.</p>
+
+      <h2>Głos</h2>
+      <div class="rule"><p class="rule__y">Piszemy jak ktoś, kto ma coś do sprawdzenia</p><p class="rule__n">nie jak ktoś, kto ma coś do sprzedania</p><p class="rule__d">Zdanie oznajmujące przed metaforą. Konkret przed obrazem. Jeśli twierdzenie da się sprawdzić, podajemy gdzie.</p></div><div class="rule"><p class="rule__y">Nazywamy granicę każdej obietnicy</p><p class="rule__n">nie obiecujemy wyniku</p><p class="rule__d">Każda praktyka mówi, czego nie załatwia. Każdy rozdział ma sekcję granic. To jest sygnał rygoru, nie asekuracja.</p></div><div class="rule"><p class="rule__y">Zero motywacji i zero guru</p><p class="rule__n">nie „dasz radę&quot;, nie „odblokuj potencjał&quot;</p><p class="rule__d">Nie oceniamy rozwoju czytelnika, nie mierzymy duchowości, nie prowadzimy do siebie. Tekst znaczy więcej niż twarz.</p></div><div class="rule"><p class="rule__y">Mówimy „nie wiemy&quot;, gdy nie wiemy</p><p class="rule__n">nie wypełniamy luk prawdopodobnym tekstem</p><p class="rule__d">Gdy badacze się różnią, nazywamy obie strony. Gdy twierdzenie jest sporne, oznaczamy je.</p></div><div class="rule"><p class="rule__y">Rozdzielamy język publiczny i systemowy</p><p class="rule__n">rygor schodzi warstwę niżej, nie znika</p><p class="rule__d">Nagłówki i proza po ludzku. Surowe artefakty — frontmatter, statusy, kontrakt — zostają w języku systemu.</p></div><div class="rule"><p class="rule__y">Tylko krótki łącznik</p><p class="rule__n">nigdy pauza w tekście użytkownika</p><p class="rule__d">W copy widocznym dla czytelnika stosujemy „-&quot;, nie „—&quot;.</p></div>
+
+      <h2>Czego nie robimy</h2>
+      <ul class="no"><li>przepowiedni, wróżb i „tajemnych praw&quot;</li><li>punktów, poziomów, serii i odznak</li><li>porównań między ludźmi i oceniania postępu</li><li>obietnic wyniku bez podanej granicy</li><li>zdjęć stockowych z ludźmi w pozach „duchowości&quot;</li><li>gradientów, cieni i zaokrągleń większych niż 2 px</li><li>wykrzykników i wielkich liter w prozie</li><li>liczb bez źródła</li></ul>
+
+      <h2>Sygnet</h2>
+      <p>Znak „H" występuje w trzech miejscach: w nagłówku przy znaku słownym, w stopce i jako awatar
+        odpowiedzi w asystencie. Zawsze w kolorze <code>currentColor</code> — atrament na papierze,
+        złoto na atramencie. Nie obraca się, nie zmienia proporcji i nie występuje w kolorze wermilionu.</p>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="container foot__row">
+    <a class="foot__brand" href="/"><svg class="foot__sigil" viewBox="0 0 545 554" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M544.781 165.192H475.492V390.54H544.781V553.071H0V390.54H66.4902V165.192H0V0H544.781V165.192ZM56.209 124.889H115.522V426.137H56.209V498.717H248.977V426.137H187.322V305.169H357.457V426.137H296.583V498.717H488.57V426.137H429.257V124.889H488.57V52.3076H296.583V124.889H357.457V232.589H187.322V124.889H248.977V52.3076H56.209V124.889Z" fill="currentColor"/></svg><span class="foot__mark"><em>the</em>Hermeticum</span></a>
+    <nav class="foot__nav" aria-label="Footer"><a href="/questions/">Questions</a><a href="/practice/today/">The Practice</a><a href="/book/00-the-opening/">The Book</a><a href="/path/">The Path</a><a href="/texts/">The Texts</a><a href="/figures/">The Figures</a><a href="/ideas/">The Ideas</a><a href="/letters/">Letters archive</a><a href="/about/method/">Method</a><a href="/privacy/">Privacy</a></nav>
+  </div>
+  <div class="container foot__row foot__row--fine">
+    <p class="foot__note"><b>A compilation.</b> Pages are assembled with AI research tools from published scholarship; sources sit on the page they belong to. <a href="/about/method/">Method and full bibliography</a></p>
+    <p class="foot__meta"><span>&copy; 2026 The Hermeticum</span><span class="foot__motto">As above, so below.</span></p>
+  </div>
+</footer>
+</body></html>

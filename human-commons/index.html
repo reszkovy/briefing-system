@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Post-AI Society — A place to be human in the age of intelligence</title>
+<meta name="description" content="The Post-AI Society is a prototype for a new way of living. Physical places where technology serves people instead of replacing human life.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://postaisociety.vercel.app/">
+<meta property="og:site_name" content="The Post-AI Society">
+<meta property="og:title" content="The machines will do the work. We intend to do the living.">
+<meta property="og:description" content="On a hill in Italy, we are assembling twenty people for an experiment: what does a good life look like once intelligence stops being scarce?">
+<meta property="og:image" content="https://postaisociety.vercel.app/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The machines will do the work. We intend to do the living.">
+<meta name="twitter:description" content="A village for the age of abundant intelligence. Italy, first.">
+<meta name="twitter:image" content="https://postaisociety.vercel.app/img/og-cover.jpg">
+<meta name="theme-color" content="#F4F0E8">
+<link rel="canonical" href="https://postaisociety.vercel.app/">
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=Plus+Jakarta+Sans:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+<style>
+/* ————————————————————————————————————————
+   HUMAN COMMONS — editorial monograph
+   linen · stone · charcoal · forest
+———————————————————————————————————————— */
+:root{
+  --linen:#F4F0E8;
+  --paper:#EDE8DD;
+  --plaster:#E6E0D2;
+  --stone:#A69D8B;
+  --stone-dim:#8C8371;
+  --ink:#211E19;
+  --ink-soft:#4A453C;
+  --forest:#2E4A3B;
+  --forest-deep:#22382D;
+  --hairline:rgba(33,30,25,.16);
+  --hairline-strong:rgba(33,30,25,.32);
+  --serif:'Newsreader', Georgia, serif;
+  --sans:'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --grot:'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --measure:34em;
+  --gutter:clamp(1.5rem, 5vw, 5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--linen);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(15px,1.1vw,17px);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* serif reserved for display type & italic accents */
+.hero h1,.chapter-head h2,.lede,.why blockquote,.creed .lines,
+.ledger-row .a,.ledger-row .b,.shift .close-line,
+.roster-row .t,.roster-row .g,.roster-after,.rhythm-note,
+.loc .name,.phase h3,.prin h3,.entry h3,.apply h2,
+.campus-cap,.loc-note,.apply .quiet,footer .fm{
+  font-family:var(--serif);
+}
+/* grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+::selection{background:var(--forest);color:var(--linen)}
+
+/* type helpers */
+.label{
+  font-family:var(--grot);
+  font-size:.66rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.chapter-no{
+  font-family:var(--grot);
+  font-size:.66rem;
+  font-weight:500;
+  letter-spacing:.22em;
+  color:var(--stone-dim);
+}
+em{font-style:italic;font-weight:400}
+p{max-width:var(--measure)}
+p + p{margin-top:1.2em}
+.lede{
+  font-size:clamp(1.35rem, 2.2vw, 1.8rem);
+  line-height:1.45;
+  font-weight:200;
+  max-width:26em;
+}
+.lede em{font-weight:300}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1.1s cubic-bezier(.19,1,.22,1), transform 1.1s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}.rv.d4{transition-delay:.48s}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
+html.static .rv{opacity:1;transform:none;transition:none}
+
+/* ————— nav ————— */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem var(--gutter);
+  transition:transform .5s cubic-bezier(.19,1,.22,1), background .4s, box-shadow .4s;
+}
+nav.scrolled{
+  background:var(--linen);
+  padding-top:1rem;padding-bottom:1rem;
+  box-shadow:0 1px 0 var(--hairline);
+}
+nav.hidden{transform:translateY(-100%)}
+nav .wordmark{
+  font-family:var(--grot);font-weight:600;font-size:.78rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;
+}
+nav .menu{display:flex;gap:2.2rem}
+nav .menu a{
+  font-family:var(--grot);font-size:.66rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;position:relative;
+}
+nav .menu a::after{
+  content:"";position:absolute;left:0;bottom:-4px;height:1px;width:0;background:var(--ink);transition:width .4s cubic-bezier(.19,1,.22,1);
+}
+nav .menu a:hover::after{width:100%}
+@media(max-width:760px){nav .menu{display:none}.hero{padding-top:6.5rem}}
+@media(max-width:1000px){.hero .est{display:none}}
+
+/* thin reading progress */
+.progress{position:fixed;top:0;left:0;height:2px;background:var(--forest);width:0;z-index:200}
+
+/* ————— hero ————— */
+.hero{
+  min-height:84svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:var(--gutter);
+  padding-bottom:clamp(3rem,8vh,6rem);
+  position:relative;
+}
+.hero .est{
+  position:absolute;top:44%;right:var(--gutter);transform:translateY(-50%) rotate(90deg);transform-origin:center;
+  font-family:var(--grot);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--stone-dim);
+  white-space:nowrap;
+  background:var(--linen);padding:0 1.2rem;z-index:1;
+}
+.hero h1{
+  font-weight:200;
+  font-size:clamp(2.6rem, 7.2vw, 6.8rem);
+  line-height:1.06;
+  letter-spacing:-.015em;
+  max-width:11.5em;
+}
+.hero h1 em{font-weight:300}
+.hero .sub{
+  margin-top:2.4rem;
+  display:flex;flex-wrap:wrap;gap:2.5rem;align-items:baseline;
+  border-top:1px solid var(--hairline);
+  padding-top:1.6rem;
+}
+.hero .sub p{font-size:1rem;color:var(--ink-soft);max-width:24em}
+.scroll-hint{
+  font-family:var(--grot);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--stone-dim);
+  display:inline-flex;align-items:center;gap:.8rem;
+}
+.scroll-hint::after{
+  content:"";display:block;width:1px;height:2.6rem;background:var(--hairline-strong);
+  animation:drip 2.6s ease-in-out infinite;
+  transform-origin:top;
+}
+@keyframes drip{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ————— generic section chrome ————— */
+section{padding:clamp(2.6rem,5.5vh,4.2rem) var(--gutter);position:relative}
+.rule{border:none;border-top:1px solid var(--hairline);margin:0 var(--gutter)}
+.chapter-head{
+  display:flex;align-items:baseline;gap:1.4rem;margin-bottom:clamp(1.3rem,2.8vh,2rem);
+}
+.chapter-head h2{
+  font-weight:200;font-size:clamp(1.9rem,3.6vw,3.2rem);letter-spacing:-.01em;line-height:1.12;
+}
+.two-col{
+  display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,6vw,6rem);
+  align-items:start;
+}
+.sticky-side{position:sticky;top:7rem}
+@media(max-width:860px){
+  .two-col{grid-template-columns:1fr}
+  .sticky-side{position:static}
+}
+
+/* ————— section 02: why ————— */
+.why blockquote{
+  font-size:clamp(1.6rem,3vw,2.5rem);
+  font-weight:200;line-height:1.35;
+  max-width:20em;
+  border-left:1px solid var(--forest);
+  padding-left:clamp(1.2rem,3vw,2.5rem);
+  margin:clamp(3rem,7vh,5rem) 0 0;
+}
+.why blockquote em{color:var(--forest);font-weight:300}
+
+/* ————— section 03: the shift (dark) ————— */
+.shift{
+  background:var(--ink);color:var(--paper);
+}
+.shift .label,.shift .chapter-no{color:var(--stone)}
+.shift .chapter-head h2{color:var(--linen)}
+.shift ::selection{background:var(--linen);color:var(--ink)}
+.ledger{
+  margin-top:clamp(3rem,7vh,5rem);
+  border-top:1px solid rgba(244,240,232,.22);
+}
+.ledger-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  padding:1.5rem 0;
+  border-bottom:1px solid rgba(244,240,232,.14);
+  align-items:baseline;
+}
+.ledger-row .a{font-weight:200;font-size:clamp(1.1rem,1.9vw,1.5rem);color:rgba(244,240,232,.45);text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(244,240,232,.3)}
+.ledger-row .b{font-weight:300;font-size:clamp(1.2rem,2.1vw,1.65rem);font-style:italic;color:var(--linen)}
+.ledger-cap{margin-top:1.6rem;display:flex;justify-content:space-between;gap:2rem}
+.ledger-cap span{font-family:var(--grot);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone)}
+.shift .close-line{
+  margin-top:clamp(4rem,9vh,6rem);
+  font-size:clamp(1.5rem,2.8vw,2.3rem);font-weight:200;line-height:1.4;max-width:21em;
+}
+.shift .close-line em{color:#9DB8A6}
+
+/* ————— section 04: a new way to live ————— */
+.creed p{margin-top:0}
+.creed .lines{
+  font-size:clamp(1.5rem,3vw,2.6rem);
+  font-weight:200;line-height:1.5;
+  max-width:22em;
+}
+.creed .lines span{display:block;padding:.35em 0;border-bottom:1px solid var(--hairline)}
+.creed .lines span:first-child{border-top:1px solid var(--hairline)}
+.creed .lines i{font-style:italic;font-weight:300;color:var(--forest)}
+
+.creed-lines{margin-top:2rem;max-width:24em}
+.creed-lines span{display:block;font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,2rem);font-weight:200;padding:.5em 0;border-bottom:1px solid rgba(244,240,232,.16)}
+.creed-lines i{font-style:italic;font-weight:300;color:#9DB8A6}
+
+/* ————— section 05: daily rhythm ————— */
+.rhythm{background:var(--paper)}
+.day-arc{width:100%;max-width:840px;margin:0 auto clamp(3rem,7vh,5rem);display:block}
+.rhythm-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,4vw,4rem);
+  max-width:1200px;margin:0 auto;
+}
+@media(max-width:860px){.rhythm-grid{grid-template-columns:1fr;max-width:34em}}
+.rhythm-col{border-top:1px solid var(--hairline-strong);padding-top:1.4rem}
+.rhythm-col h3{
+  font-family:var(--grot);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;
+  display:flex;justify-content:space-between;align-items:baseline;
+}
+.rhythm-col h3 small{font-weight:400;color:var(--stone-dim);letter-spacing:.18em}
+.rhythm-col ul{list-style:none;margin-top:1.4rem}
+.rhythm-col li{
+  font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;
+  padding:.55em 0;border-bottom:1px solid var(--hairline);
+}
+.rhythm-col li:last-child{border-bottom:none}
+.rhythm-note{
+  text-align:center;margin-top:clamp(3rem,6vh,4.5rem);
+  font-style:italic;font-size:clamp(1.2rem,1.9vw,1.5rem);color:var(--ink-soft);
+}
+
+/* ————— section 06: campus ————— */
+.campus-svg{width:100%;max-width:980px;display:block;margin:0 auto}
+.campus-legend{
+  display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:center;
+  margin-top:2.2rem;
+}
+.campus-legend span{
+  font-family:var(--grot);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+  display:inline-flex;align-items:center;gap:.55rem;
+}
+.campus-legend span::before{content:"";width:.5rem;height:.5rem;border:1px solid var(--stone-dim)}
+.campus-legend span.green::before{background:var(--forest);border-color:var(--forest)}
+.campus-cap{text-align:center;margin-top:2rem;font-style:italic;color:var(--ink-soft)}
+
+/* ————— section 07: community ————— */
+.roster{margin-top:clamp(2.5rem,6vh,4rem);border-top:1px solid var(--hairline-strong)}
+.roster-row{
+  display:grid;grid-template-columns:5rem 1fr auto;gap:1.5rem;align-items:baseline;
+  padding:1.1rem 0;border-bottom:1px solid var(--hairline);
+  transition:padding-left .5s cubic-bezier(.19,1,.22,1);
+}
+.roster-row:hover{padding-left:1rem}
+.roster-row .n{font-family:var(--grot);font-size:.62rem;letter-spacing:.2em;color:var(--stone-dim)}
+.roster-row .t{font-weight:200;font-size:clamp(1.3rem,2.4vw,2rem)}
+.roster-row .g{font-style:italic;color:var(--stone-dim);font-size:.95rem;text-align:right}
+@media(max-width:640px){.roster-row{grid-template-columns:3rem 1fr}.roster-row .g{display:none}}
+.roster-after{margin-top:2.4rem;font-style:italic;font-size:clamp(1.15rem,1.8vw,1.45rem);color:var(--ink-soft)}
+
+/* ————— section 08: principles (dark forest) ————— */
+.principles{background:var(--forest-deep);color:var(--paper)}
+.principles .chapter-no{color:#7E9787}
+.principles .label{color:#9DB8A6}
+.principles .chapter-head h2{color:var(--linen)}
+.principles ::selection{background:var(--linen);color:var(--forest-deep)}
+.principles .lede{color:rgba(244,240,232,.9)}
+.principles .roster-after{color:rgba(244,240,232,.7)}
+.prin-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0 clamp(1.5rem,4vw,3.5rem);
+  max-width:1200px;
+}
+@media(max-width:1000px){.prin-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){.prin-grid{grid-template-columns:1fr}}
+.prin{
+  padding:1.3rem 0;border-bottom:1px solid rgba(244,240,232,.16);
+}
+.prin .pn{font-family:var(--grot);font-size:.62rem;letter-spacing:.24em;color:#7E9787;display:block;margin-bottom:.7rem}
+.prin h3{font-weight:300;font-size:clamp(1.25rem,2vw,1.6rem);font-style:italic;margin-bottom:.5rem;color:var(--linen)}
+.prin p{font-size:.98rem;font-weight:300;color:rgba(244,240,232,.72);max-width:26em}
+
+/* ————— section 09: residency ————— */
+.phases{margin-top:clamp(2.5rem,6vh,4rem)}
+.phase{
+  display:grid;grid-template-columns:8rem 1fr;gap:clamp(1.5rem,4vw,4rem);
+  padding:2.2rem 0;border-top:1px solid var(--hairline-strong);
+}
+@media(max-width:640px){.phase{grid-template-columns:1fr;gap:.8rem}}
+.phase .ph-no{font-family:var(--grot);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--forest)}
+.phase h3{font-weight:200;font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:.5rem}
+.phase p{color:var(--ink-soft);font-size:1rem}
+
+/* ————— section 10: locations ————— */
+.locations{background:var(--plaster)}
+.loc-list{margin-top:clamp(2.5rem,6vh,4rem);border-top:1px solid var(--hairline-strong)}
+.loc{
+  display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:2rem;
+  padding:1.6rem 0;border-bottom:1px solid var(--hairline);
+  cursor:default;
+}
+.loc .name{
+  font-weight:200;font-size:clamp(2rem,5vw,4rem);letter-spacing:-.01em;
+  transition:font-style .2s, color .5s;
+}
+.loc:hover .name{font-style:italic;color:var(--forest)}
+.loc .meta{font-family:var(--grot);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-dim);text-align:right}
+.loc.first .meta{color:var(--forest)}
+.loc-note{margin-top:2.4rem;font-style:italic;color:var(--ink-soft);max-width:30em}
+
+/* ————— section 11: journal ————— */
+.journal-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3.5vw,3.5rem);
+  margin-top:clamp(2.5rem,6vh,4rem);
+}
+@media(max-width:860px){.journal-grid{grid-template-columns:1fr;max-width:34em}}
+.entry{border-top:1px solid var(--hairline-strong);padding-top:1.3rem}
+.entry .date{font-family:var(--grot);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-dim)}
+.entry h3{font-weight:300;font-size:clamp(1.25rem,1.9vw,1.55rem);line-height:1.3;margin:.9rem 0 .7rem;font-style:italic}
+.entry p{font-size:.95rem;color:var(--ink-soft)}
+.entry a{
+  display:inline-block;margin-top:1.1rem;
+  font-family:var(--grot);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hairline-strong);padding-bottom:2px;
+  transition:border-color .4s;
+}
+.entry a:hover{border-color:var(--forest);color:var(--forest)}
+
+/* ————— precedent aside ————— */
+.precedent{max-width:40em;margin-top:clamp(2.2rem,5vh,3.2rem);padding-left:clamp(1.2rem,3vw,2rem);
+  border-left:1px solid rgba(244,240,232,.35)}
+.precedent .pr-k{display:block;font-family:var(--grot);font-size:.62rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:#9DB8A6;margin-bottom:.9rem}
+.precedent p{font-size:.97rem;color:rgba(244,240,232,.72);max-width:38em}
+.precedent .pr-line{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.35rem);font-weight:300;
+  line-height:1.5;color:rgba(244,240,232,.92);margin-top:1.1rem}
+
+/* ————— field notes grid ————— */
+.fn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.9rem,2vw,1.6rem);max-width:1100px}
+@media(max-width:900px){.fn-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.fn-grid{grid-template-columns:1fr}}
+.fn{display:block;text-decoration:none;color:inherit}
+.fn img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border:1px solid var(--hairline);
+  filter:saturate(.92);transition:filter .5s ease,opacity .5s ease}
+.fn:hover img{filter:saturate(1)}
+.fn-cap{display:block;margin-top:.7rem;font-family:var(--grot);font-size:.62rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--stone-dim)}
+.fn:hover .fn-cap{color:var(--forest)}
+.fn-follow{margin-top:clamp(1.6rem,4vh,2.4rem);font-family:var(--serif);font-style:italic;
+  font-size:1.05rem;color:var(--stone-dim)}
+.fn-follow a{color:var(--forest);text-decoration:none;border-bottom:1px solid var(--hairline-strong)}
+
+/* ————— log ————— */
+.logbook{border-top:1px solid var(--hairline-strong);max-width:52em}
+.log-row{display:grid;grid-template-columns:9rem 1fr;gap:clamp(1rem,3vw,2.5rem);padding:1.2rem 0;border-bottom:1px solid var(--hairline);align-items:baseline}
+@media(max-width:640px){.log-row{grid-template-columns:1fr;gap:.3rem}}
+.log-date{font-family:var(--grot);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);white-space:nowrap}
+.log-what{font-size:1rem;color:var(--ink-soft)}
+.log-what a{color:var(--forest);text-decoration:none;border-bottom:1px solid var(--hairline-strong)}
+
+/* ————— signup form ————— */
+.signup{border:1px solid var(--hairline-strong);padding:clamp(1.6rem,4vw,2.6rem);max-width:40em;margin-top:clamp(2rem,5vh,3rem);background:rgba(255,255,255,.3)}
+.signup h3{font-family:var(--serif);font-weight:200;font-size:clamp(1.4rem,2.4vw,1.9rem);margin-bottom:.5rem}
+.signup .sub{font-size:.95rem;color:var(--ink-soft);margin-bottom:1.4rem}
+.signup label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-dim);margin-bottom:.4rem}
+.signup input[type=text],.signup input[type=email],.signup textarea{width:100%;font-family:var(--sans);font-size:1rem;font-weight:300;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--hairline-strong);padding:.55rem 0;margin-bottom:1.3rem;outline:none;border-radius:0}
+.signup textarea{resize:vertical;min-height:3.2em}
+.signup input:focus,.signup textarea:focus{border-bottom-color:var(--forest)}
+.signup .check{display:flex;gap:.8rem;align-items:flex-start;margin:.4rem 0 1.6rem;cursor:pointer}
+.signup .check input{margin-top:.25rem;width:1rem;height:1rem;accent-color:var(--forest);flex:none}
+.signup .check span{font-family:var(--serif);font-size:1.05rem;font-weight:300;line-height:1.4}
+.signup button{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--linen);background:var(--ink);border:none;padding:1.1rem 2.2rem;cursor:pointer;transition:background .4s}
+.signup button:hover{background:var(--forest)}
+.signup .fine{font-size:.8rem;color:var(--stone-dim);margin-top:1.1rem}
+.signup .fine a{color:var(--forest)}
+.seats{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--stone-dim);margin-top:1.2rem}
+
+/* mobile CTA */
+.m-cta{display:none}
+@media(max-width:760px){
+  .m-cta{display:inline-block;font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--linen);background:var(--ink);padding:.6rem 1rem;text-decoration:none}
+}
+
+/* ————— section 12: apply ————— */
+.apply{
+  background:var(--ink);color:var(--paper);
+  min-height:88svh;display:flex;flex-direction:column;justify-content:center;
+}
+.apply ::selection{background:var(--linen);color:var(--ink)}
+.apply .label{color:var(--stone)}
+.apply h2{
+  font-weight:200;font-size:clamp(2.2rem,5.4vw,4.6rem);line-height:1.15;letter-spacing:-.01em;
+  max-width:14em;margin-top:1.6rem;color:var(--linen);
+}
+.apply h2 em{font-weight:300}
+.apply .terms{
+  margin-top:3rem;display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;
+}
+.apply .terms span{font-family:var(--grot);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,240,232,.5)}
+.apply-cta{
+  margin-top:3.5rem;display:inline-flex;align-items:center;gap:1.2rem;
+  font-family:var(--grot);font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--linen);text-decoration:none;
+  border:1px solid rgba(244,240,232,.4);
+  padding:1.3rem 2.6rem;
+  transition:background .5s,color .5s,border-color .5s;
+  width:max-content;
+}
+.apply-cta:hover{background:var(--linen);color:var(--ink);border-color:var(--linen)}
+.apply-cta .arr{transition:transform .5s cubic-bezier(.19,1,.22,1)}
+.apply-cta:hover .arr{transform:translateX(6px)}
+.apply .quiet{margin-top:2rem;font-style:italic;font-size:.95rem;color:rgba(244,240,232,.55)}
+
+/* ————— footer ————— */
+footer{
+  background:var(--ink);color:rgba(244,240,232,.5);
+  padding:3rem var(--gutter) 2.5rem;
+  border-top:1px solid rgba(244,240,232,.14);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+footer span{font-family:var(--grot);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase}
+footer .fm{font-family:var(--serif);font-style:italic;font-size:.9rem;letter-spacing:0;text-transform:none}
+
+/* ————— photographic plates ————— */
+.plate{margin:0;position:relative;background:var(--plaster)}
+.plate img{display:block;width:100%;height:clamp(220px,38vh,430px);object-fit:cover;filter:saturate(.86) contrast(.97) brightness(.99)}
+.plate figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;gap:2rem;
+  padding:.9rem var(--gutter);
+  border-bottom:1px solid var(--hairline);
+}
+.plate figcaption .pl-no{font-family:var(--grot);font-size:.6rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--stone-dim)}
+.plate figcaption .pl-cap{font-family:var(--serif);font-style:italic;font-size:.95rem;color:var(--ink-soft);text-align:right}
+
+/* svg strokes */
+.draw path,.draw rect,.draw circle,.draw line,.draw polyline{vector-effect:non-scaling-stroke}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<nav id="nav">
+  <a class="wordmark" href="#top" style="display:inline-flex;align-items:center;gap:.6rem"><img src="img/logo.svg" alt="" style="width:22px;height:22px;border-radius:50%">The Post-AI&nbsp;Society</a>
+  <a class="m-cta" href="#signupa">Register interest</a>
+  <div class="menu">
+    <a href="#shift">The Shift</a>
+    <a href="#campus">The Campus</a>
+    <a href="#journal">Field Notes</a>
+    <a href="#residency">Residency</a>
+    <a href="#apply">Apply</a>
+  </div>
+</nav>
+
+<!-- 01 · HERO MANIFESTO -->
+<header class="hero" id="top">
+  <span class="est">A prototype for a new way of living · MMXXVI</span>
+  <div>
+    <p class="label rv">01 · Manifesto</p>
+    <h1 class="rv d1" style="margin-top:1.4rem">The machines will do<br>the work. <em>We intend<br>to do the living.</em></h1>
+    <div class="sub rv d3">
+      <span class="scroll-hint">Begin reading</span>
+      <p>A hill in Italy. Twenty people. Two weeks, spring 2028. One question, asked properly for once: what is a life worth living, now that intelligence is cheap? Not a startup, not a retreat, not a religion — stone, gardens, one long table, and technology kept firmly in its place. Everything below is detail.</p>
+    </div>
+  </div>
+</header>
+
+<figure class="plate">
+  <img src="img/plate-1.jpg" alt="An Italian hilltop village emerging from morning mist" loading="lazy">
+  <figcaption><span class="pl-no">Plate I</span><span class="pl-cap">The hill, at first light. Somewhere between Puglia and a decision.</span></figcaption>
+</figure>
+
+<!-- 02 · THE AI SHIFT (dark) -->
+<section class="shift" id="shift">
+  <div class="chapter-head rv">
+    <span class="chapter-no">02</span>
+    <h2>The shift</h2>
+  </div>
+  <p class="lede rv" style="color:rgba(244,240,232,.85)">Every age builds the rooms it needs. The monastery kept the flame, the academy above Florence asked what the flame was <em>for</em>, the university gave it order, the office — for one strange century — gave it a desk. <em>Nothing has yet been built for what comes after.</em></p>
+  <p class="rv d1" style="max-width:38em;margin-top:1.6rem;color:rgba(244,240,232,.78)">The spreadsheets will fill themselves. The emails will answer each other. Being productive becomes like being tall: pleasant, but no longer a plan for a life. What remains is the question the calendar never left room for — what was all that productivity <em>for?</em></p>
+
+  <div class="ledger rv d1">
+    <div class="ledger-cap" style="border:none;margin:0;padding:1.1rem 0">
+      <span>What becomes abundant</span><span>What becomes scarce</span>
+    </div>
+    <div class="ledger-row"><span class="a">Intelligence</span><span class="b">Attention</span></div>
+    <div class="ledger-row"><span class="a">Content</span><span class="b">Conversation</span></div>
+    <div class="ledger-row"><span class="a">Productivity</span><span class="b">Presence</span></div>
+    <div class="ledger-row"><span class="a">Answers</span><span class="b">Meaning</span></div>
+  </div>
+
+  <p class="close-line rv">Technology becomes infrastructure.<br><em>Human life becomes the point.</em></p>
+  <aside class="precedent rv d1">
+    <span class="pr-k">The precedent · Careggi, 1462</span>
+    <p>When Europe's tools last outran its self-understanding — printing, banking, double-entry books — the answer was not a policy. Cosimo de' Medici gave Marsilio Ficino a villa above Florence and asked him to translate the <em>Corpus Hermeticum</em>. An informal circle gathered there to read together and ask what a human being is for, while the city below got rich.</p>
+    <p class="pr-line">A villa, a table, a small group, and the oldest question, asked at exactly the wrong moment. It worked; they called it a rebirth. <em>We are not claiming the parallel. We are copying the method.</em></p>
+  </aside>
+
+  <div class="creed-lines rv d1">
+    <span>AI does the work. <i>Humans create culture.</i></span>
+    <span>No networking. <i>Just community.</i></span>
+  </div>
+</section>
+
+<figure class="plate">
+  <img src="img/plate-2.jpg" alt="A long candlelit dinner table set for twenty in a stone courtyard" loading="lazy">
+  <figcaption><span class="pl-no">Plate II</span><span class="pl-cap">The table, set for twenty. The only piece of infrastructure that matters.</span></figcaption>
+</figure>
+
+
+<!-- 03 · DAILY RHYTHM -->
+<section class="rhythm" id="rhythm">
+  <div class="chapter-head rv" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;gap:.8rem">
+    <span class="chapter-no">03</span>
+    <h2>One day, well shaped</h2>
+  </div>
+
+  <div class="rhythm-grid">
+    <div class="rhythm-col rv">
+      <h3>Morning <small>06—13</small></h3>
+      <ul>
+        <li>Deep work with AI</li>
+        <li>Research</li>
+        <li>Building companies</li>
+        <li>Writing</li>
+        <li>Creating</li>
+      </ul>
+    </div>
+    <div class="rhythm-col rv d1">
+      <h3>Afternoon <small>13—18</small></h3>
+      <ul>
+        <li>Sport</li>
+        <li>Gardening</li>
+        <li>Workshops</li>
+        <li>Making</li>
+        <li>Cooking · Walking</li>
+      </ul>
+    </div>
+    <div class="rhythm-col rv d2">
+      <h3>Evening <small>18—late</small></h3>
+      <ul>
+        <li>One long shared dinner</li>
+        <li>Lectures</li>
+        <li>Music</li>
+        <li>Conversations</li>
+        <li>Reading</li>
+      </ul>
+    </div>
+  </div>
+  <p class="rhythm-note rv d2">The mornings belong to the future. The rest of the day belongs to being human. Nobody checks. Everybody knows.</p>
+</section>
+
+<!-- 04 · THE CAMPUS -->
+<section id="campus">
+  <div class="chapter-head rv">
+    <span class="chapter-no">04</span>
+    <h2>The campus</h2>
+  </div>
+  <div class="two-col" style="margin-bottom:clamp(2.5rem,6vh,4rem)">
+    <p class="lede rv">A small Italian village, restored rather than invented. Stone that remembers six hundred years of dinner. Everything a life needs, ten minutes on foot. <em>The cars stay outside.</em></p>
+    <p class="rv d1" style="align-self:end;font-size:1rem;color:var(--ink-soft)">We did not draw this plan; we inherited it. A piazza at the heart, because conversation needs a stage. A long table beside it, because trust is built at dinner. We are walking these villages this autumn — counting the steps from the church to the bakery, asking who still lives there, and why they stayed.</p>
+  </div>
+
+  <figure class="rv" style="max-width:1100px;margin:0 auto">
+    <img src="img/campus-map.jpg" alt="Hand-drawn masterplan of the Post-AI Society campus, seen from above: piazza with the long table at the center, kitchen, library, cowork, workshop, studios, cafe, guest houses, gardens and orchard, all within a dotted ten-minute walking circle" style="width:100%;display:block" loading="lazy">
+  </figure>
+
+  <div class="campus-legend rv d1">
+    <span>Stone architecture</span>
+    <span>Walkable in ten minutes</span>
+    <span class="green">Gardens between everything</span>
+    <span>Car-free center</span>
+  </div>
+  <p class="campus-cap rv d2">Fig. 1 — First campus, working plan. The dotted circle is the whole world you need on foot.</p>
+</section>
+
+<!-- 05 · PRINCIPLES -->
+<section class="principles" id="principles">
+  <div class="chapter-head rv">
+    <span class="chapter-no">05</span>
+    <h2>Who lives here, and how</h2>
+  </div>
+  <p class="lede rv" style="margin-bottom:clamp(1.8rem,4vh,2.6rem)">Twenty people at first, chosen the old way: not for what they own, <em>but for what they bring to the table.</em></p>
+  <div class="prin-grid">
+    <div class="prin rv"><span class="pn">№ 1</span><h3>Humanity before throughput</h3><p>The measure of a week here is not output. It is depth — of work, of rest, of company.</p></div>
+    <div class="prin rv d1"><span class="pn">№ 2</span><h3>Contribution</h3><p>Every member gives something the commons needs — a skill, a course, a harvest, a hand.</p></div>
+    <div class="prin rv d1"><span class="pn">№ 3</span><h3>Nature as infrastructure</h3><p>Gardens are not decoration. Walking is not exercise. Both are how thinking happens.</p></div>
+  </div>
+  <p class="roster-after rv">A guild, not a club. An atelier, not an office. Neighbors, not a network.</p>
+</section>
+
+<!-- 06 · FIELD NOTES -->
+<section id="journal">
+  <div class="chapter-head rv">
+    <span class="chapter-no">06</span>
+    <h2>Field notes</h2>
+  </div>
+  <p class="lede rv" style="margin-bottom:clamp(2rem,5vh,3rem)">We are building this in public, one note at a time — <em>including the notes that say we were wrong.</em></p>
+
+  <div class="fn-grid">
+    <a class="fn rv" href="https://www.instagram.com/p/DcArcqTAmT-/" target="_blank" rel="noopener">
+      <img src="img/fn/fn12.jpg" alt="Field note 03 — they left because the work went away; we arrive for the same reason" loading="lazy">
+      <span class="fn-cap">03 · The same sentence, twice</span></a>
+    <a class="fn rv d1" href="https://www.instagram.com/p/DcAqqKegrpX/" target="_blank" rel="noopener">
+      <img src="img/fn/fn11.jpg" alt="Hands shaping bread dough on a floured wooden table" loading="lazy">
+      <span class="fn-cap">02 · Dinner number one</span></a>
+    <a class="fn rv d2" href="https://www.instagram.com/p/DcAo1a7Ahmk/" target="_blank" rel="noopener">
+      <img src="img/fn/fn10.jpg" alt="A restored village courtyard with a long table set for dinner" loading="lazy">
+      <span class="fn-cap">01 · The building</span></a>
+  </div>
+  <p class="fn-follow rv">The rest of the notes — and the ones still to come — live at <a href="https://instagram.com/postaisociety" target="_blank" rel="noopener">@postaisociety</a>.</p>
+
+  <div class="logbook" style="margin-top:clamp(3rem,7vh,4.5rem)">
+    <div class="log-row rv"><span class="log-date">Aug 2026</span><span class="log-what">The manifesto goes live, and the numbers with it: about €30–40,000 of capital at risk before the thesis is proven or disproven. Not millions. Every phase has to earn the next one.</span></div>
+    <div class="log-row rv"><span class="log-date">Oct 2026</span><span class="log-what">Ten days on the road: Tuscia, Abruzzo, Puglia. Counting the steps from the church to the bakery, standing in empty piazzas at seven in the evening to see whether the bar is still alive.</span></div>
+    <div class="log-row rv"><span class="log-date">Nov 2026</span><span class="log-what">One village named, one written rental offer, one exact price. Or an entry here explaining why not — those count too.</span></div>
+    <div class="log-row rv"><span class="log-date">Spring 2028</span><span class="log-what">The test residency: two weeks, twenty seats, one rented building. The first time this stops being a document.</span></div>
+  </div>
+</section>
+
+<!-- 07 · RESIDENCY -->
+<section id="residency">
+  <div class="chapter-head rv">
+    <span class="chapter-no">07</span>
+    <h2>How it unfolds</h2>
+  </div>
+  <p class="lede rv">We are not launching. <em>We are beginning.</em> Slowly, in the right order.</p>
+  <div class="phases">
+    <div class="phase rv"><span class="ph-no">Phase I</span><div><h3>The Residency</h3><p>Twenty people. One village. Two weeks that behave like a life — the daily rhythm, tested by living it.</p></div></div>
+    <div class="phase rv"><span class="ph-no">Phase II</span><div><h3>The First Campus</h3><p>Permanent buildings: cowork, workshop, library, kitchen, studios, guest houses. A place with an address.</p></div></div>
+    <div class="phase rv"><span class="ph-no">Phase III</span><div><h3>The Village</h3><p>The campus grows into a living settlement — families, seasons, festivals, a school of its own.</p></div></div>
+    <div class="phase rv"><span class="ph-no">Phase IV</span><div><h3>The Network</h3><p>Villages across the world, one culture among them. Members move freely between locations.</p></div></div>
+  </div>
+  <div class="signup rv" id="signupa">
+    <h3>The first twenty</h3>
+    <p class="sub">Two weeks in an Italian village, spring 2028. Twenty seats. If you want one, say so here — a person reads every entry.</p>
+    <form class="hc-form" novalidate>
+      <label for="na">Your name</label>
+      <input type="text" id="na" name="name" autocomplete="name" required>
+      <label for="ea">Email</label>
+      <input type="email" id="ea" name="email" autocomplete="email" required>
+      <label for="wa">What do you make?</label>
+      <textarea id="wa" name="work" rows="2" placeholder="One line is enough."></textarea>
+      <label class="check"><input type="checkbox" name="seat" value="yes"><span>I would consider one of the first twenty places — <em>not only following along.</em></span></label>
+      <button type="submit">Send it</button>
+      <p class="fine">Opens your mail app with the message ready. Prefer to write freely? <a href="mailto:p.reszkovy@gmail.com?subject=The%20first%20twenty">Write directly.</a></p>
+    </form>
+  </div>
+  <p class="seats rv">Twenty seats. None filled yet. We are in no hurry — but we are counting.</p>
+</section>
+
+<figure class="plate">
+  <img src="img/plate-6.jpg" alt="An old wooden door standing ajar in a stone wall, lamplight spilling out" loading="lazy">
+  <figcaption><span class="pl-no">Plate III</span><span class="pl-cap">The door is not locked. It never was.</span></figcaption>
+</figure>
+
+<!-- 12 · APPLY -->
+<section class="apply" id="apply">
+  <div>
+    <p class="label rv">08 · Apply</p>
+    <h2 class="rv d1">We are gathering the first twenty. <em>If you have been waiting for something like this to exist — stop waiting for it. Write.</em></h2>
+    <div class="terms rv d2">
+      <span>Founders</span><span>Designers</span><span>Scientists</span><span>Engineers</span><span>Artists</span><span>Educators</span><span>Writers</span><span>Craftspeople</span>
+    </div>
+    <div class="rv d3" style="margin-top:2.6rem;display:flex;flex-wrap:wrap;gap:2.5rem;border-top:1px solid rgba(244,240,232,.25);padding-top:1.6rem;max-width:44em">
+      <div><span class="label" style="color:var(--stone)">When</span><p style="font-family:var(--serif);font-size:1.25rem;color:var(--linen);margin-top:.3rem">Spring 2028 · two weeks</p></div>
+      <div><span class="label" style="color:var(--stone)">Where</span><p style="font-family:var(--serif);font-size:1.25rem;color:var(--linen);margin-top:.3rem">One Italian village · chosen this autumn</p></div>
+      <div><span class="label" style="color:var(--stone)">Cost</span><p style="font-family:var(--serif);font-size:1.25rem;color:var(--linen);margin-top:.3rem">Around €1,800, all in</p></div>
+    </div>
+    <p class="quiet rv d3" style="margin-top:1.2rem">The exact price is published in November, once we have stood in the building and know what the beds cost. Until then it is an estimate — written down early, so you can hold us to it.</p>
+    <a class="apply-cta rv d3" href="#signupa">Take one of the twenty seats <span class="arr">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <span>The Post-AI Society</span>
+  <span class="fm">Stone, gardens, one long table. A village for the age of abundant intelligence.</span>
+  <span><a href="https://instagram.com/postaisociety" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(244,240,232,.3)">@postaisociety</a></span>
+  <span>MMXXVI · Italy, first</span>
+</footer>
+
+<script>
+if(location.search.includes('static')) document.documentElement.classList.add('static');
+// scroll reveal
+const io = new IntersectionObserver((entries)=>{
+  for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }
+},{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+const rvs = [...document.querySelectorAll('.rv')];
+rvs.forEach(el=>io.observe(el));
+// fallback sweep: guarantees reveals even if IO is throttled or the page opens mid-scroll
+function sweep(){
+  for(const el of rvs){
+    if(el.classList.contains('in')) continue;
+    const r = el.getBoundingClientRect();
+    if(r.top < innerHeight*.94 && r.bottom > 0) el.classList.add('in');
+  }
+}
+addEventListener('scroll', sweep, {passive:true});
+addEventListener('pageshow', sweep);
+// cover anchor links / scroll restoration: sweep every frame for the first 3s
+const t0 = performance.now();
+(function tick(){ sweep(); if(performance.now() - t0 < 3000) requestAnimationFrame(tick); })();
+
+
+// signup -> prefilled mail
+document.querySelectorAll('.hc-form').forEach(function(f){
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var d=new FormData(f);
+    var name=(d.get('name')||'').trim(), email=(d.get('email')||'').trim();
+    if(!name||!email){ f.querySelector(!name?'input[name=name]':'input[name=email]').focus(); return; }
+    var seat=d.get('seat')==='yes';
+    var body='Name: '+name+'\nEmail: '+email+'\nWhat I make: '+((d.get('work')||'').trim()||'—')+'\n\n'+(seat?'I would consider one of the first twenty places.':'I would like to follow along for now.')+'\n';
+    var subj=seat?'One of the first twenty':'Following along';
+    window.location.href='mailto:p.reszkovy@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    var btn=f.querySelector('button'); btn.textContent='Your mail app should open'; btn.disabled=true;
+  });
+});
+
+// reading progress + nav hide/show
+const prog = document.getElementById('progress');
+const nav = document.getElementById('nav');
+let lastY = scrollY;
+addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  const y = h.scrollTop;
+  nav.classList.toggle('scrolled', y > 30);
+  // hide when scrolling down past the hero, reveal on any scroll up
+  if(y > lastY + 4 && y > innerHeight*.6) nav.classList.add('hidden');
+  else if(y < lastY - 4 || y <= innerHeight*.6) nav.classList.remove('hidden');
+  lastY = y;
+},{passive:true});
+</script>
+</body>
+</html>

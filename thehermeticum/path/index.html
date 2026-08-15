@@ -27,9 +27,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49">
-<script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
@@ -49,14 +48,14 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
     <nav class="hdr__links" aria-label="Primary">
       <span class="nav__grp">
         <a href="/start-here/">Start Here</a>
-        <a href="/path/">The Path</a>
-        <a href="/texts/">The Archive</a>
-        <a href="/letters/">The Letter</a>
+        <a href="/path/">Path</a>
+        <a href="/texts/">Archive</a>
+        <a href="/letters/">Letter</a>
       </span>
       <span class="nav__sep" aria-hidden="true"></span>
       <span class="nav__grp nav__grp--tools">
-        <a href="/practice/">The Practice</a>
-        <a href="/book/">The Book</a>
+        <a href="/practice/today/">Practice</a>
+        <a href="/book/00-the-opening/">Book</a>
       </span>
     </nav>
     <div class="hdr__cta">
@@ -80,7 +79,8 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
         <section class="cx cx--guide">
           <p class="cx__head">The Guide</p>
           <ul class="cx__list">
-            <li><a class="cx__item" href="/book/">The Book &mdash; read online</a></li>
+            <li><a class="cx__item" href="/practice/today/">The Practice &mdash; today's practice</a></li>
+            <li><a class="cx__item" href="/book/00-the-opening/">The Book &mdash; read online</a></li>
             <li><a class="cx__item" href="/guide/contents/">The Map &mdash; contents</a></li>
             <li><a class="cx__item" href="/guide/">The Modern Hermet</a></li>
             <li><a class="cx__item" href="/guide/instruction/">The Instruction &mdash; 15 practices</a></li>
@@ -155,27 +155,13 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
   </aside>
 </main>
 <footer class="foot">
-  <div class="container foot__in">
-    <div class="foot__brand">
-      <span class="foot__mark"><em>the</em>Hermeticum</span>
-      <p>A modern gateway to the Hermetic tradition.<br>Serious history, real sources, no fortune-telling.</p>
-    </div>
-    <nav class="foot__col" aria-label="Explore">
-      <p>Explore</p>
-      <a href="/practice/">The Practice</a>
-      <a href="/practice/">The Practice</a><a href="/start-here/">Start Here</a><a href="/guide/contents/">The Map</a><a href="/guide/">The Modern Hermet</a><a href="/guide/instruction/">The Instruction</a><a href="/guide/operational-alchemy/">Operational Alchemy</a><a href="/path/">The Path</a><a href="/texts/">The Texts</a><a href="/figures/">The Figures</a><a href="/ideas/">The Ideas</a>
-    </nav>
-    <nav class="foot__col" aria-label="About">
-      <p>The letter</p>
-      <a href="/letters/">Letters archive</a><a href="/subscribe/">Subscribe</a><a href="/about/method/">About &amp; Method</a><a href="/rss.xml">RSS</a><a href="/privacy/">Privacy</a>
-    </nav>
+  <div class="container foot__row">
+    <a class="foot__brand" href="/"><svg class="foot__sigil" viewBox="0 0 545 554" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M544.781 165.192H475.492V390.54H544.781V553.071H0V390.54H66.4902V165.192H0V0H544.781V165.192ZM56.209 124.889H115.522V426.137H56.209V498.717H248.977V426.137H187.322V305.169H357.457V426.137H296.583V498.717H488.57V426.137H429.257V124.889H488.57V52.3076H296.583V124.889H357.457V232.589H187.322V124.889H248.977V52.3076H56.209V124.889Z" fill="currentColor"/></svg><span class="foot__mark"><em>the</em>Hermeticum</span></a>
+    <nav class="foot__nav" aria-label="Footer"><a href="/questions/">Questions</a><a href="/practice/today/">The Practice</a><a href="/book/00-the-opening/">The Book</a><a href="/path/">The Path</a><a href="/texts/">The Texts</a><a href="/figures/">The Figures</a><a href="/ideas/">The Ideas</a><a href="/letters/">Letters archive</a><a href="/about/method/">Method</a><a href="/privacy/">Privacy</a></nav>
   </div>
-  <div class="container foot__note">
-    <p><b>How this site is made.</b> The Hermeticum is a compilation: its pages are assembled with AI research tools from published scholarship &mdash; the editions, monographs and papers named in the sources of every entry. Nothing here is original historical research, and nothing is presented as revelation. Where scholars disagree we say so; where a claim is contested we mark it. Errors are ours and worth reporting &mdash; see <a href="/about/method/">Method</a> for how we source, and how we correct.</p>
-  </div>
-  <div class="container foot__bar">
-    <span>&copy; 2026 The Hermeticum</span>
-    <span class="foot__motto">As above, so below.</span>
+  <div class="container foot__row foot__row--fine">
+    <p class="foot__note"><b>A compilation.</b> Pages are assembled with AI research tools from published scholarship; sources sit on the page they belong to. <a href="/about/method/">Method and full bibliography</a></p>
+    <p class="foot__meta"><span>&copy; 2026 The Hermeticum</span><span class="foot__motto">As above, so below.</span></p>
   </div>
 </footer>
 </body>

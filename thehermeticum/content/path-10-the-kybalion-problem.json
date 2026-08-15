@@ -1,0 +1,31 @@
+{
+  "path": "path/10-the-kybalion-problem",
+  "trail": [["The Path", "/path/"]],
+  "crumb": "10 · The Kybalion problem",
+  "kicker": "The Path — step 10",
+  "title": "The Kybalion problem — the most popular hermetic book is not hermetic",
+  "desc": "Chicago, 1908: an anonymous book claims seven ancient hermetic principles. Six of them have no ancient source. What the Kybalion actually is, what it borrowed, and how to read it honestly.",
+  "h1": "The Kybalion problem",
+  "tldr": "If someone has read one book about Hermeticism, it is this one — and it is not an ancient text. The Kybalion was published in Chicago in 1908 by 'Three Initiates', a pen name almost certainly covering William Walker Atkinson, a prolific New Thought author. Of its seven principles, one has a genuine ancient ancestor; the rest are New Thought in hermetic costume. That does not make the book worthless. It makes it a source about 1908.",
+  "img": "art-kybalion.jpg",
+  "body": "<p>This step is the reason this site exists. The Kybalion is the entry point for most people, it is confident, quotable and completely silent about where its claims come from — and separating it from the ancient material is the single most useful thing a newcomer can do.</p><h2>What the book is</h2><p>A short volume published in Chicago by the Yogi Publication Society in 1908, attributed to &ldquo;Three Initiates&rdquo;. It presents seven principles said to come from an ancient hermetic teaching preserved in a book called the Kybalion — a book that has never been found, cited by anyone before 1908, or referenced in any manuscript tradition. The overwhelming scholarly view is that no such prior text existed.</p><p>Authorship is attributed, with strong circumstantial evidence, to William Walker Atkinson, an American lawyer turned New Thought writer who published under many names and whose style, publisher and preoccupations match the book closely.</p><h2>The seven principles, checked</h2><p><b>Mentalism</b> — &ldquo;the All is mind&rdquo;. Has a genuine relative in the Hermetica's <a href=\"/ideas/nous/\">Nous</a>, though the ancient claim is subtler and less idealist than the Kybalion's.</p><p><b>Correspondence</b> — &ldquo;as above, so below&rdquo;. Real, but taken from <a href=\"/texts/emerald-tablet/\">the Emerald Tablet</a>, a medieval Latin translation of Arabic, and stripped of its purpose clause. This is the one principle with an actual pedigree, and the Kybalion misreports where it comes from.</p><p><b>Vibration, Polarity, Rhythm, Cause and Effect, Gender</b> — these five are the New Thought core, phrased in the idiom of turn-of-the-century American self-improvement literature. They have no ancient hermetic source. Some have distant relatives in Stoic or Neoplatonic material; none appear as principles in the Hermetica.</p><h2>Why it worked so well</h2><p>Because it is genuinely good at what it is. The prose is clear, the structure is memorable, the tone is confident without being hectoring, and the promise — that understanding a few laws gives you leverage over your life — was exactly what its audience wanted, and still is. The Kybalion is a well-made piece of popular philosophy. Its fault is not that it is useless. Its fault is the false provenance.</p><h2>How to read it honestly</h2><p>As a document of 1908, it is genuinely interesting: it shows how American New Thought absorbed and rebranded European esotericism, and it explains why so much contemporary spirituality talks about vibration and polarity. Read that way, it tells you the truth about something.</p><p>As a guide to ancient Hermeticism, it is unreliable in a specific way: not because everything in it is false, but because it presents a modern synthesis as an ancient inheritance, and a reader has no way to tell which is which. That is the harm — not the content, but the missing citation line.</p><p class=\"rule\">The Kybalion is a real book with a fake pedigree. Use it as evidence about 1908 and you will learn something. Use it as evidence about antiquity and you will repeat a hundred-year-old marketing claim.</p>",
+  "facts": [
+    ["Published", "Chicago, 1908, Yogi Publication Society"],
+    ["Author", "'Three Initiates'; attributed to William Walker Atkinson"],
+    ["The prior 'Kybalion'", "No trace before 1908 — no manuscript, no citation"],
+    ["Principles with ancient roots", "One and a half of seven"],
+    ["Genuine value", "As a primary source for New Thought, not for antiquity"]
+  ],
+  "faq": [
+    ["So should I throw it away?", "No — read it as what it is. It is a clear, well-written statement of early twentieth-century New Thought, and it explains a huge amount about contemporary spiritual vocabulary. Just do not cite it for anything before 1908."],
+    ["Is it wrong to find it useful?", "Not at all. A practice can help you without being ancient, and the Kybalion's chapters on attention and mental discipline are decent popular psychology of their era. The problem is provenance, not utility — those are separate questions and worth keeping separate."],
+    ["Why do so many sites still call it ancient?", "Because the claim is inside the book, it is repeated in every summary, and almost nobody checks. This is exactly the citation chain this site exists to interrupt: each repetition sounds like corroboration, and none of them went back to a source."]
+  ],
+  "sources": [
+    "Philip Deslippe (ed.), <i>The Kybalion: The Definitive Edition</i> (2011) — introduction on Atkinson and the New Thought context.",
+    "Wouter J. Hanegraaff, <i>Esotericism and the Academy</i> (Cambridge UP, 2012) — on modern esotericism's construction of ancient lineages.",
+    "Research dossier: modern-occult.md §2."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/11-hermeticism-today/\">Step 11: Hermeticism today</a>"
+}

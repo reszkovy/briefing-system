@@ -1,0 +1,231 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "briefing-system",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "wegobold",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/reszek/Desktop/inleadia_111/wegobold-site' && npx vite --port 5173 --strictPort"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "r352",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/reszek/Desktop/R352 WEBSITE' && npx vite --port 5273 --strictPort"
+      ],
+      "port": 5273
+    },
+    {
+      "name": "r352-prod",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/reszek/Desktop/R352 WEBSITE' && npx vite preview --port 5274 --strictPort"
+      ],
+      "port": 5274
+    },
+    {
+      "name": "dailyfruits",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8477 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/755c82b0-8ac6-4426-987a-38962ae6e27d/scratchpad/cms-upgrade'"
+      ],
+      "port": 8477
+    },
+    {
+      "name": "fruityyyy-repo",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/reszek/Fruityyyy' && python3 -m http.server 8556"
+      ],
+      "port": 8556
+    },
+    {
+      "name": "caterelo-dev",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/Users/reszek/Desktop/Aplikacja nieruchomosci/proptrend-deploy' && npx vite --port 5199 --strictPort"
+      ],
+      "port": 5199
+    },
+    {
+      "name": "broszura",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8132 --directory '/Users/reszek/Desktop/broszura testwoa'"
+      ],
+      "port": 8132
+    },
+    {
+      "name": "btc-cyclicality",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8611 --directory /private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/63959874-9bc7-402e-bf0e-386cbeb9e8d9/scratchpad/btc"
+      ],
+      "port": 8611
+    },
+    {
+      "name": "fotra-panel",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8642 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/0d81f0d2-abe7-4b31-894d-7964d903b982/scratchpad/fotra-preview'"
+      ],
+      "port": 8642
+    },
+    {
+      "name": "r352-framework-landing",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8733 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/b023c42f-bcd2-449b-bbfa-67b9e35a20c9/scratchpad/landing'"
+      ],
+      "port": 8733
+    },
+    {
+      "name": "malapalarnia-audyt",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8744 --directory '/Users/reszek/Klienci/pilot-nazwa/hub'"
+      ],
+      "port": 8744
+    },
+    {
+      "name": "malapalarnia-www",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8745 --directory '/Users/reszek/Klienci/pilot-nazwa/www'"
+      ],
+      "port": 8745
+    },
+    {
+      "name": "brand-centre",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8801 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/e7e95dfe-516d-4e04-9a71-3c5c73906f20/scratchpad'"
+      ],
+      "port": 8801
+    },
+    {
+      "name": "workflow-playbook",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8932 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/b5bdca59-db0f-43d1-b630-107d1c3f2806/scratchpad'"
+      ],
+      "port": 8932
+    },
+    {
+      "name": "campnou-3d",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8877 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/804e96fb-9fd1-4d96-be7b-05718029bdc5/scratchpad/campnou-serve'"
+      ],
+      "port": 8877
+    },
+    {
+      "name": "artoffnia",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8952 --directory '/Users/reszek/Desktop/ARToffNIA'"
+      ],
+      "port": 8952
+    },
+    {
+      "name": "artoffnia-widget",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8951 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/2a37787c-cc3a-4b3e-be88-2dd8304c77e7/scratchpad/artoffnia/demo'"
+      ],
+      "port": 8951
+    },
+    {
+      "name": "fitstyle",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8961 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/7ccf10ae-9367-4783-8c0c-0e9be4156bb0/scratchpad/dist'"
+      ],
+      "port": 8961
+    },
+    {
+      "name": "genome-os",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 9010 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/bab7e494-2d88-4244-9e57-4ae83736eaca/scratchpad/genome-os-serve'"
+      ],
+      "port": 9010
+    },
+    {
+      "name": "r352-kg",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8990 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/bab7e494-2d88-4244-9e57-4ae83736eaca/scratchpad'"
+      ],
+      "port": 8990
+    },
+    {
+      "name": "koszulka-generator",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8878 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/804e96fb-9fd1-4d96-be7b-05718029bdc5/scratchpad/koszulka-serve'"
+      ],
+      "port": 8878
+    },
+    {
+      "name": "malapalarnia-repo",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8746 --directory '/Users/reszek/Klienci/pilot-nazwa'"
+      ],
+      "port": 8746
+    },
+    {
+      "name": "fotra-szkice",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 8755 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/4d360621-fa51-404f-8ecc-79940c39d317/scratchpad/fotra'"
+      ],
+      "port": 8755
+    },
+    {
+      "name": "hermeticum",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd /tmp && python3 -m http.server 9033 --directory '/private/tmp/claude-501/-Users-reszek-Desktop-Claude-zadania-Narzedzie-do-briefowania/a21d4674-8ccf-47dc-b4f0-214e0778c964/scratchpad/hermeticum-serve'"
+      ],
+      "port": 9033
+    }
+  ]
+}

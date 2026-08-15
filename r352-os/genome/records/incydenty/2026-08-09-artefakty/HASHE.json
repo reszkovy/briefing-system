@@ -1,0 +1,9 @@
+{
+ "zachowano": "2026-08-09T14:09:47.124Z",
+ "uszkodzone": {
+  "archive": "61d3c8475ca88276a7a4c96f2ed5a15d5e26d32638eba1e456b260a33c84b15a",
+  "snapshot": "eb660c38c84e4561a23d8b5b94621a43d5419bdbf4d85e2992ff8b2b05652a5b",
+  "freeze": "b0c82c64ce3aa6a72b9b9edb75ac41d955cb894315486db75d9a6bf95ccf8cba"
+ },
+ "przywracane_archiwum": "4806dd3da1a8b4d3c54fa60d3b93e8785fb8f17c587e6973b55ab3f5295281c3"
+}

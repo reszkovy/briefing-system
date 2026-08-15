@@ -1,0 +1,20 @@
+--- a/r352-os/genome/build.js
++++ b/r352-os/genome/build.js
+@@ -32 +32 @@
+-const RELATION_KEYS = ['derives','implements','related','tests','uses','enforces','for','attached_to','supersedes','born_from','used_by'];
++const RELATION_KEYS = ['derives','implements','related','tests','uses','requires','enforces','for','attached_to','supersedes','born_from','used_by'];
+
+# JEDYNA zmiana w kompilatorze. Powód: relacja kierunkowa PLATE → SALT ("działa dopiero na
+# zatwierdzonym wyniku") nie ma reprezentacji w istniejącym słowniku.
+#   - `uses` = orkiestracja mechanizmów przez workflow (inna semantyka: PLATE nie "używa" SALT,
+#     tylko bez niego nie startuje),
+#   - `derives` = abstrakcja Principle → Axiom,
+#   - `related` = symetryczne, gubi kierunek i bramkę.
+#
+# Zgodnie z ontologią A.0 zmiana słownika relacji jest zmianą ontologii i wymaga zdarzenia
+# `ontology.changed` w Ledgerze przy wdrożeniu. Zdarzenie NIE zostało utworzone — Ledger nietknięty.
+#
+# Zweryfikowane na kopii Genome (GENOME_DIR w scratchpadzie, kopia usunięta po teście):
+#   bez tej zmiany:  ✗ workflows/plate-communication-plan.md: relacja spoza słownika: requires  → 1 błąd
+#   z tą zmianą:     199 obiektów · 0 błędów · 244 ostrzeżenia (tyle samo co kanon przed zmianą)
+#   graf: +2 węzły, +13 krawędzi, w tym wf:plate --requires--> wf:salt

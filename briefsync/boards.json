@@ -1,0 +1,50 @@
+[
+  {
+    "id": "664c4a37c17667a4c9907f7f",
+    "name": "Przemek NOWY",
+    "klient": "Benefit/Zdrofit",
+    "lists": ["w produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "67c1588026919fead9d9a887",
+    "name": "Geers / Sonova",
+    "klient": "Geers/Sonova",
+    "lists": ["w produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "6940da9bd78d664532d088fb",
+    "name": "Michalina + Reszek",
+    "klient": "Archicom",
+    "lists": ["w trakcie produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "69ba2da08d6d02309c4cfe8c",
+    "name": "betterworkplace",
+    "klient": "Daily Fruits",
+    "lists": ["w produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "694a1fcc3d65c9bc5aba20cc",
+    "name": "Hanoi 2026",
+    "klient": "Hanoi",
+    "lists": ["w produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "67cbdd859ac3d7aca26051fa",
+    "name": "Ada C tablica",
+    "klient": "Ada",
+    "lists": ["in production", "to do", "feedback"]
+  },
+  {
+    "id": "6a34bb8ade4b1d656c654ee5",
+    "name": "WALK ŁK",
+    "klient": "WALK",
+    "lists": ["w produkcji", "to do", "feedback"]
+  },
+  {
+    "id": "67c167c889ed0ce0533adcda",
+    "name": "Personal trello board",
+    "klient": "Personal",
+    "lists": ["w produkcji", "to do work", "to do personal", "feedback"]
+  }
+]

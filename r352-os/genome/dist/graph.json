@@ -1,0 +1,7532 @@
+{
+ "state": "2026-08-15T11:33:16+02:00",
+ "nodes": [
+  {
+   "id": "agent:r352-cko-daily",
+   "label": "Poranny przegląd CKO (~7:30)",
+   "type": "agent",
+   "status": "active"
+  },
+  {
+   "id": "ax:ai-decyzje-poznawcze",
+   "label": "AI automatyzuje decyzje o niskiej wartości poznawczej",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:dowod-przed-obietnica",
+   "label": "Dowód wyprzedza obietnicę",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:jedno-zrodlo-prawdy",
+   "label": "Prawda ma jedno źródło",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:lekcja-placona-raz",
+   "label": "Za każdą lekcję płacimy raz",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:mechanizm-ponad-artefakt",
+   "label": "Mechanizm jest ważniejszy niż artefakt",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:projekty-ujawniaja-mechanizmy",
+   "label": "Każdy projekt ujawnia mechanizmy",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:tempo-uczenia",
+   "label": "Największą przewagą jest tempo uczenia się",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "ax:uczenie-przez-decyzje",
+   "label": "Organizacje uczą się przez decyzje, nie dokumenty",
+   "type": "axiom",
+   "status": "accepted"
+  },
+  {
+   "id": "bench:brand-lock-85",
+   "label": "Brand Lock ≥85/100",
+   "type": "benchmark",
+   "status": "active"
+  },
+  {
+   "id": "bench:critic-750",
+   "label": "Strategy Critic ≥750/1000",
+   "type": "benchmark",
+   "status": "active"
+  },
+  {
+   "id": "bench:lighthouse-100",
+   "label": "Lighthouse 100/100/100/100",
+   "type": "benchmark",
+   "status": "active"
+  },
+  {
+   "id": "cap:dashboard-starter",
+   "label": "Skill dashboard-starter",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:genome-council",
+   "label": "Skill /genome-council",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:gmail-mcp",
+   "label": "Gmail MCP (read-only w automatyzacjach)",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:landing-craft",
+   "label": "Skill /landing-craft",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:mechanism-router",
+   "label": "Skill /mechanism-router",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:phantom-browser",
+   "label": "Phantom-Browser",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:project-postmortem",
+   "label": "Skill /project-postmortem — Learning Engine v2 (analityk, nie writer)",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:research-benchmark",
+   "label": "Skill /research-benchmark",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:slack-mcp",
+   "label": "Slack MCP (read-only w automatyzacjach)",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:trello-rest",
+   "label": "Trello REST (GET-only)",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:triage-signal",
+   "label": "Skill /triage-signal",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:ux-domain-audit",
+   "label": "Skill /ux-domain-audit",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:ux-reverse-wireframing",
+   "label": "Skill /ux-reverse-wireframing",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cap:ux-wireframing",
+   "label": "Skill /ux-wireframing",
+   "type": "capability",
+   "status": "available"
+  },
+  {
+   "id": "cli:archicom",
+   "label": "Archicom",
+   "type": "client",
+   "status": "active"
+  },
+  {
+   "id": "cli:benefit-zdrofit",
+   "label": "Benefit Systems / Zdrofit",
+   "type": "client",
+   "status": "active"
+  },
+  {
+   "id": "cli:betterworkplace",
+   "label": "BetterWorkplace / DailyFruits",
+   "type": "client",
+   "status": "active"
+  },
+  {
+   "id": "cli:osada-orle",
+   "label": "Osada Orle / Izera",
+   "type": "client",
+   "status": "active"
+  },
+  {
+   "id": "cli:wlasciciel-9campnou",
+   "label": "Właściciel 9campnou.com",
+   "type": "client",
+   "status": "active"
+  },
+  {
+   "id": "comp:cms-git-backend",
+   "label": "CMS git-as-backend",
+   "type": "component",
+   "status": "active"
+  },
+  {
+   "id": "comp:dashboard-starter",
+   "label": "Dashboard starter (FOTRA-style)",
+   "type": "component",
+   "status": "active"
+  },
+  {
+   "id": "comp:kg-canvas-graph",
+   "label": "Silnik grafu wiedzy (canvas force-layout)",
+   "type": "component",
+   "status": "active"
+  },
+  {
+   "id": "comp:site-header-megamenu",
+   "label": "Nagłówek z mega menu i ATF (sticky, wyśrodkowane, akordeon mobile)",
+   "type": "component",
+   "status": "extracted"
+  },
+  {
+   "id": "comp:svg-atlas-map",
+   "label": "Mapa SVG sterowana danymi (punkty, warstwy, opisy)",
+   "type": "component",
+   "status": "extracted"
+  },
+  {
+   "id": "dec:2026-08-08-artoffnia-send",
+   "label": "Wysyłka oferty ARToffNIA (demo + propozycja rozmowy)",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-08-benchmarking-seo-aeo",
+   "label": "Benchmarking i SEO/AEO jako stałe etapy procesu Genome",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-08-data-foundation",
+   "label": "Akceptacja ontologii Data Foundation (z 4 korektami) + downgrade proven",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-08-genome-fotra-integracja",
+   "label": "Integracja Genome×FOTRA: dane tak, interfejsy nie",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-08-plan-90-dni",
+   "label": "Plan 90 dni: dowody przed architekturą",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-09-program-walidacji",
+   "label": "Program walidacji Genome: min. 30 backtestów historycznych projektów",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-09-wdrozenie-salt-plate",
+   "label": "Wdrożenie warstwy strategicznej SALT/PLATE i kontraktów Research/Measurement",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-10-hipotezy-z-backtestow",
+   "label": "Rozstrzygniecie czterech hipotez zaproponowanych przez backtesty 08-09.08",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-14-council-proba",
+   "label": "Council wchodzi jako ręczna próba na 5 decyzjach, z warunkiem wyjścia",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "dec:2026-08-15-rozszerzalna-ontologia",
+   "label": "Zniesienie zakazu rozszerzania ontologii; rejestr typów jako jedno źródło; typ council",
+   "type": "decision",
+   "status": "decided"
+  },
+  {
+   "id": "exp:agent-as-runtime-test",
+   "label": "Test: Agent-as-Runtime",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:agent-facing-distribution-test",
+   "label": "Test: Agent-Facing Distribution",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:compounding-channel-test",
+   "label": "Test: Compounding Channel",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:dated-commitment-gates-test",
+   "label": "Test: Dated Commitment Gates",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:design-as-code-test",
+   "label": "Test: Design-as-Code",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:deterministic-spine-test",
+   "label": "Test: Deterministic Spine",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:format-dictionary-test",
+   "label": "Test: Format Dictionary",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:incident-to-guard-test",
+   "label": "Test: Incident-to-Guard Codification",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:location-as-data-funnels-test",
+   "label": "Test: Location-as-Data Funnels",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:location-as-data-test",
+   "label": "Test: Location-as-Data",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:machine-narrows-human-picks-test",
+   "label": "Test: Machine Narrows, Human Picks",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:negative-knowledge-ledger-test",
+   "label": "Test: Negative Knowledge Ledger",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:numeric-gates-test",
+   "label": "Test: Numeric Gates",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:open-tool-exchange-test",
+   "label": "Test: Open Tool Exchange",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:presale-demand-ledger-test",
+   "label": "Test: Presale Demand Ledger",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:proof-first-demo-pitch-test",
+   "label": "Test: Proof-First Demo Pitch",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:sandbox-promotion-test",
+   "label": "Test: Sandbox Promotion",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:session-to-sop-test",
+   "label": "Test: Session-to-SOP Compounding",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:single-source-compiler-test",
+   "label": "Test: Single-Source Compiler",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:split-url-architecture-test",
+   "label": "Test: Split URL Architecture",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:storefront-qr-bridge-test",
+   "label": "Test: Storefront QR Bridge",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "exp:working-artifact-extraction-test",
+   "label": "Test: Working-Artifact Extraction",
+   "type": "experiment",
+   "status": "proposed"
+  },
+  {
+   "id": "guard:build-check",
+   "label": "build.js --check jako bramka",
+   "type": "guard",
+   "status": "proposed"
+  },
+  {
+   "id": "mech:agent-as-runtime",
+   "label": "Agent-as-Runtime",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:agent-facing-distribution",
+   "label": "Agent-Facing Distribution",
+   "type": "mechanism",
+   "status": "hypothesis"
+  },
+  {
+   "id": "mech:competitive-benchmarking",
+   "label": "Benchmark Before Build",
+   "type": "mechanism",
+   "status": "hypothesis"
+  },
+  {
+   "id": "mech:compounding-channel",
+   "label": "Compounding Channel",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:dated-commitment-gates",
+   "label": "Dated Commitment Gates",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:design-as-code",
+   "label": "Design-as-Code",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:deterministic-spine",
+   "label": "Deterministic Spine",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:format-dictionary",
+   "label": "Format Dictionary",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:incident-to-guard",
+   "label": "Incident-to-Guard Codification",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:location-as-data",
+   "label": "Location-as-Data",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:location-as-data-funnels",
+   "label": "Location-as-Data Funnels",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:machine-narrows-human-picks",
+   "label": "Machine Narrows, Human Picks",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:negative-knowledge-ledger",
+   "label": "Negative Knowledge Ledger",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:numeric-gates",
+   "label": "Numeric Gates",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:open-tool-exchange",
+   "label": "Open Tool Exchange",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:presale-demand-ledger",
+   "label": "Presale Demand Ledger",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:price-anchor-before-proof",
+   "label": "Price Anchor Before Proof",
+   "type": "mechanism",
+   "status": "hypothesis"
+  },
+  {
+   "id": "mech:proof-first-demo-pitch",
+   "label": "Proof-First Demo Pitch",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:prototype-mode-guard",
+   "label": "Prototype Mode Guard",
+   "type": "mechanism",
+   "status": "hypothesis"
+  },
+  {
+   "id": "mech:sandbox-promotion",
+   "label": "Sandbox Promotion",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:seo-aeo-foundation",
+   "label": "SEO/AEO Foundation Layer",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:session-to-sop",
+   "label": "Session-to-SOP Compounding",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:single-source-compiler",
+   "label": "Single-Source Compiler",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:split-url-architecture",
+   "label": "Split URL Architecture",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:static-i18n-mirror",
+   "label": "Lustro językowe na statycznym generatorze",
+   "type": "mechanism",
+   "status": "hypothesis"
+  },
+  {
+   "id": "mech:storefront-qr-bridge",
+   "label": "Storefront QR Bridge",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:strategy-before-execution",
+   "label": "Strategy Before Execution — diagnoza przed produkcją",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "mech:working-artifact-extraction",
+   "label": "Working-Artifact Extraction",
+   "type": "mechanism",
+   "status": "emerging"
+  },
+  {
+   "id": "prin:design-for-machine-readers",
+   "label": "Design for Machine Readers",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:extract-never-invent",
+   "label": "Extract, Never Invent",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:pay-for-every-lesson-once",
+   "label": "Pay for Every Lesson Once",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:proof-before-promise",
+   "label": "Proof Before Promise",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:reduce-subjectivity",
+   "label": "Reduce Subjectivity",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:single-source-of-truth",
+   "label": "Single Source of Truth",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "prin:trust-through-boundaries",
+   "label": "Trust Through Boundaries",
+   "type": "principle",
+   "status": "active"
+  },
+  {
+   "id": "proj:ada-podwykonawca-ewidencja",
+   "label": "Współpraca z Adą (podwykonawca kreacji) + ewidencja czasu ze Slacka",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:archicom-prezenter-reymonta",
+   "label": "Prezenter inwestycji Przystań Reymonta",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:archicom-tokeny-rebrand-atrium",
+   "label": "System tokenów Archicom + rebrand folderu atrium NOWY SZCZEPIN",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:artoffnia-demo",
+   "label": "ARToffNIA — demo serwisu z katalogiem zajęć (oferta sprzedażowa)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:artoffnia-oferta",
+   "label": "Oferta ARToffNIA (Genome Trial #001)",
+   "type": "project",
+   "status": "active"
+  },
+  {
+   "id": "proj:bartech-animacje",
+   "label": "Bartech — animacje (3 warianty 1080p)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:beesknees-site",
+   "label": "bees-knees.pl — serwis + CMS + panel leadów (klient produkcyjny)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:betterguide-hub",
+   "label": "betterguide.pl — hub ekosystemu BetterWorkplace",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:briefsync",
+   "label": "briefsync — router feedbacku Trello↔Figma↔Dropbox + most do Obsidiana",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:btc-cyclicality",
+   "label": "Dashboard cykli halvingowych BTC",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:btc-sentiment-tracker",
+   "label": "Tracker sentymentu BTC/ETH",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:campnou-3d",
+   "label": "Camp Nou 3D — experience every seat",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:caterelo",
+   "label": "Caterelo — relocation engine + Deal Radar",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dailyfruits-cms-v6",
+   "label": "CMS v6 — panel /admin (git jako backend)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dailyfruits-consent-gtm",
+   "label": "Consent / GTM — architektura zgód i analityki",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dailyfruits-katalog-handlowy",
+   "label": "Katalog handlowy + kalkulatory programów (narzędzia sprzedażowe)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dailyfruits-relaunch",
+   "label": "Relaunch dailyfruits.pl (WordPress → statyczny + Vercel)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dailyfruits-seo-oferta",
+   "label": "Architektura SEO /oferta + archiwum blogowe + performance",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:dimedical-redesign",
+   "label": "DiMedical — redesign serwisu (case sprzedażowy)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:fitstyle-platform",
+   "label": "FitStyle — silnik LP przedsprzedażowych (Astro, tokens-first)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:fotra-panel",
+   "label": "FOTRA — osobisty panel operacyjny (CRM + przychody + mapa potencjału)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:geers-centrum-wiedzy",
+   "label": "Geers Campaign Hub — landingi + brand voice + aplikacja",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:human-commons",
+   "label": "The Post-AI Society (d. Human Commons) — wspólnota ery AI",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:kubota-stand-3d",
+   "label": "Stand KUBOTA×Baltona — wizualizacja 3D z dielinów",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:lemf-deck-figma",
+   "label": "LEMF 2027 — pitch deck (pipeline PPTX→Figma) + assety wizualne",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:lumo-brand",
+   "label": "Lumo — brand kawiarni + wizytówka opinii Google",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:marka-tlumacz",
+   "label": "Marka osobista tłumacza konferencyjnego (Genome Trial #002)",
+   "type": "project",
+   "status": "active"
+  },
+  {
+   "id": "proj:medium-publishing-pipeline",
+   "label": "Pipeline publikacji Medium (r352 Journal → Medium)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:meta-context-vault",
+   "label": "META: Context vault w Obsidianie (pakiet kontekstu dla AI)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:meta-verify-first",
+   "label": "META: Styl pracy \"verify-first\" (zasada operacyjna systemu)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:narzedzie-do-briefowania",
+   "label": "Narzędzie do briefowania (regional.fit / Club Manager Briefing System)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:osada-orle-brand-system-figma",
+   "label": "Brand system Osada Orle w Figmie (tryby Dzień/Noc)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:osada-orle-deck-morisson",
+   "label": "Deck sponsorski Osada Orle ('Morisson') — 3 wersje + obsługa feedbacku przez API Figmy",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:penya-saas",
+   "label": "Penya SaaS — onboarding penyi FC Barcelona",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:profichem24-rolka-rigips",
+   "label": "Profichem24 — rolka produktowa IG 15 s (Rigips Airless)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r352-brand-centre",
+   "label": "Brand centre r352 (r352.com/brand)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r352-case-studies-work",
+   "label": "Case studies r352.com/work",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r352-framework-brand-hub-os",
+   "label": "Framework produkcyjny r352 — Brand Hub OS",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r352-operating-strategy",
+   "label": "Strategia operacyjna r352 (living doc)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r352-website",
+   "label": "Strona r352.com",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:r3loop-app",
+   "label": "r3loop.app (Briefly) — automatyzacja strategia + proposal",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:stock-photo-sources",
+   "label": "Wiedza o źródłach stockowych (komponent infrastruktury researchu obrazów)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:stocki-miasta",
+   "label": "Harvester stocków — zdjęcia 33 polskich miast",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:teambudget",
+   "label": "TeamBudget — strategia GTM + MVP",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:thehermeticum",
+   "label": "The Hermeticum — serwis wiedzy hermetycznej (prywatny side-project, rynek EN)",
+   "type": "project",
+   "status": "routed"
+  },
+  {
+   "id": "proj:twojemenu-case-study",
+   "label": "Twoje Menu — case study portfolio (plan + boardy UI)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:umowy-podwykonawcy",
+   "label": "Pakiet umów podwykonawczych (NDA + ramowa + o dzieło) jako kod",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:wegobold-site",
+   "label": "wegobold.com — marka produktowa (repositioning + restyle)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:zdrofit-cwicz-w-zieleni",
+   "label": "Kampania „Ćwicz w zieleni\" — Pilates o zachodzie (Kopiec Krakusa)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:zdrofit-hourly-pipeline",
+   "label": "Hourly pipeline Trello→Figma (automatyzacja briefów Benefit/Zdrofit)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "proj:zdrofit-lodygowa-witryny",
+   "label": "Oklejenie witryn nowego klubu Zdrofit — CH Łodygowa (Warszawa Targówek)",
+   "type": "project",
+   "status": "archived"
+  },
+  {
+   "id": "rec:CONTRACT-TEMPLATE",
+   "label": "Project Contract — kontrakt danych i szablon",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:F0-SEED-FREEZE",
+   "label": "Granica seeda F0 — wersjonowana walidacja historii",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/ANALIZA-KONCOWA",
+   "label": "Program walidacji Genome — analiza końcowa (32/32 backtesty)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/LISTA",
+   "label": "Program walidacji — selekcja 32 projektów",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/PROTOKOL",
+   "label": "Protokół backtestu Genome (program walidacji)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/TRANSZA1-SYNTEZA",
+   "label": "Program walidacji — synteza transzy 1 (11 backtestów)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/archicom-prezenter-reymonta",
+   "label": "Backtest — archicom-prezenter-reymonta",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/archicom-tokeny-rebrand-atrium",
+   "label": "Backtest — archicom-tokeny-rebrand-atrium",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/artoffnia-demo",
+   "label": "Backtest — artoffnia-demo",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/beesknees-site",
+   "label": "Backtest — beesknees-site",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/betterguide-hub",
+   "label": "Backtest — betterguide-hub",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/betterworkplace-salt-plate",
+   "label": "Backtest — SALT/PLATE w BetterWorkplace (rekonstrukcja Fazy 1+2)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/briefsync",
+   "label": "Backtest #001 — briefsync (pilot)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/caterelo",
+   "label": "Backtest — caterelo",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dailyfruits-cms-v6",
+   "label": "Backtest — dailyfruits-cms-v6",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dailyfruits-consent-gtm",
+   "label": "Backtest — dailyfruits-consent-gtm",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dailyfruits-katalog-handlowy",
+   "label": "Backtest — dailyfruits-katalog-handlowy",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dailyfruits-relaunch",
+   "label": "Backtest — dailyfruits-relaunch",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dailyfruits-seo-oferta",
+   "label": "Backtest — dailyfruits-seo-oferta",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/dimedical-redesign",
+   "label": "Backtest — dimedical-redesign",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/fitstyle-platform",
+   "label": "Backtest — fitstyle-platform",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/fotra-panel",
+   "label": "Backtest — fotra-panel",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/geers-centrum-wiedzy",
+   "label": "Backtest — geers-centrum-wiedzy",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/kubota-stand-3d",
+   "label": "Backtest — kubota-stand-3d",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/lemf-deck-figma",
+   "label": "Backtest — lemf-deck-figma",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/lumo-brand",
+   "label": "Backtest — lumo-brand",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/marka-tlumacz-salt-gap",
+   "label": "Backtest — koszt pominięcia warstwy diagnostycznej (Trial #002)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/medium-publishing-pipeline",
+   "label": "Backtest — medium-publishing-pipeline",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/narzedzie-do-briefowania",
+   "label": "Backtest — narzedzie-do-briefowania",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/osada-orle-brand-system-figma",
+   "label": "Backtest — osada-orle-brand-system-figma",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/osada-orle-deck-morisson",
+   "label": "Backtest — osada-orle-deck-morisson",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/penya-saas",
+   "label": "Backtest — penya-saas",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/r352-brand-centre",
+   "label": "Backtest — r352-brand-centre",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/r352-case-studies-work",
+   "label": "Backtest — r352-case-studies-work",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/r352-website",
+   "label": "Backtest — r352-website",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/r3loop-app",
+   "label": "Backtest — r3loop-app",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/wegobold-site",
+   "label": "Backtest — wegobold-site",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/zdrofit-cwicz-w-zieleni",
+   "label": "Backtest — zdrofit-cwicz-w-zieleni",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/zdrofit-hourly-pipeline",
+   "label": "Backtest — zdrofit-hourly-pipeline",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:backtests/zdrofit-lodygowa-witryny",
+   "label": "Backtest — zdrofit-lodygowa-witryny",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:governance/2026-08-10-dlugi-po-recovery",
+   "label": "Trzy długi domknięte po recovery i wdrożeniu SALT/PLATE",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:incydenty/2026-08-09-test-zapisal-do-kanonu",
+   "label": "Incydent 2026-08-09 — warstwa testowa zapisała do kanonicznego Genome",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:plate/thehermeticum-plate-2026-08-14",
+   "label": "PLATE draft v1 + Project Contract — The Hermeticum",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:proces/router-spec-2026-08-09",
+   "label": "Specyfikacja procesu Routera — wersja z bramkami fazowymi (10 sekcji)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/AKSJOMATY",
+   "label": "Aksjomaty (dokument źródłowy, zastąpiony przez axioms/)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/COGNITIVE-OS-AUDIT",
+   "label": "Audyt Cognitive OS",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/GENOME-OS-V2",
+   "label": "Specyfikacja Genome OS v2",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/KATEGORIA",
+   "label": "Projekt kategorii Creative Governance",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/PANEL-6-PERSON",
+   "label": "Panel 6 person",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/PRINCIPLES",
+   "label": "Principles (dokument źródłowy, zastąpiony przez principles/)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/ROADMAP-10LAT",
+   "label": "Roadmapa 10 lat",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/SCOREBOARD",
+   "label": "Scoreboard pomysłu",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:reviews/skan-cko-2026-08-07",
+   "label": "Pełny skan ekosystemu (47 projektów)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:routing/artoffnia-oferta-2026-08-08",
+   "label": "Raport routera: oferta ARToffNIA (Genome Trial #001)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:routing/genome-os-interface-2026-08-07",
+   "label": "Raport routera: Genome OS Interface",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:routing/hermetica-serwis-2026-08-14",
+   "label": "Raport routera — The Hermeticum (serwis wiedzy hermetycznej)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:routing/marka-tlumacz-2026-08-08",
+   "label": "Raport routera: marka osobista tłumacza konferencyjnego (Genome Trial #002)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rec:salt/thehermeticum-salt-2026-08-14",
+   "label": "SALT — The Hermeticum (status PROPOSED, czeka na podpis fundamentu)",
+   "type": "record",
+   "status": "created"
+  },
+  {
+   "id": "rule:build-po-kazdej-zmianie",
+   "label": "Po każdej zmianie w genome/ ZAWSZE node build.js — widoki aktualizują się same",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:comms-read-only",
+   "label": "Claude NIGDY nie wysyła niczego samodzielnie",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:compression-over-documentation",
+   "label": "Kompresja ponad dokumentację — maks. 3 lekcje na projekt",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:knowledge-via-events",
+   "label": "Zmiana wiedzy wyłącznie przez zdarzenie",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:rozszerzanie-ontologii",
+   "label": "Ontologia jest rozszerzalna — przez bramkę, nie przez zakaz",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:trello-read-only",
+   "label": "Trello Benefit/Zdrofit wyłącznie do odczytu",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:wegobold-lowercase",
+   "label": "Marka wegobold zawsze małą literą",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "rule:zero-manual-admin",
+   "label": "Zero ręcznej administracji danymi — człowiek decyduje, maszyna zapisuje",
+   "type": "rule",
+   "status": "active"
+  },
+  {
+   "id": "wf:council",
+   "label": "Council — pięć konkurencyjnych modeli jednej decyzji",
+   "type": "workflow",
+   "status": "draft"
+  },
+  {
+   "id": "wf:plate",
+   "label": "PLATE — operacjonalizacja strategii (Ścieżka · Blokady · Cele · Tematy · Wykonanie)",
+   "type": "workflow",
+   "status": "draft"
+  },
+  {
+   "id": "wf:salt",
+   "label": "SALT — diagnoza strategiczna (Sytuacja · Odbiorcy · Przewaga · Zmiana)",
+   "type": "workflow",
+   "status": "draft"
+  }
+ ],
+ "edges": [
+  {
+   "source": "agent:r352-cko-daily",
+   "target": "cap:gmail-mcp",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "agent:r352-cko-daily#relations.uses"
+   ]
+  },
+  {
+   "source": "agent:r352-cko-daily",
+   "target": "cap:slack-mcp",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "agent:r352-cko-daily#relations.uses"
+   ]
+  },
+  {
+   "source": "agent:r352-cko-daily",
+   "target": "cap:trello-rest",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "agent:r352-cko-daily#relations.uses"
+   ]
+  },
+  {
+   "source": "cap:genome-council",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:genome-council#relations.implements"
+   ]
+  },
+  {
+   "source": "cap:genome-council",
+   "target": "wf:council",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:genome-council#relations.related"
+   ]
+  },
+  {
+   "source": "cap:landing-craft",
+   "target": "cap:mechanism-router",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:landing-craft#relations.related"
+   ]
+  },
+  {
+   "source": "cap:landing-craft",
+   "target": "cap:project-postmortem",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:landing-craft#relations.related"
+   ]
+  },
+  {
+   "source": "cap:landing-craft",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:landing-craft#relations.related"
+   ]
+  },
+  {
+   "source": "cap:landing-craft",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:landing-craft#relations.related"
+   ]
+  },
+  {
+   "source": "cap:project-postmortem",
+   "target": "cap:mechanism-router",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:project-postmortem#relations.related"
+   ]
+  },
+  {
+   "source": "cap:research-benchmark",
+   "target": "cap:mechanism-router",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:research-benchmark#relations.related"
+   ]
+  },
+  {
+   "source": "cap:triage-signal",
+   "target": "cap:mechanism-router",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:triage-signal#relations.related"
+   ]
+  },
+  {
+   "source": "cap:triage-signal",
+   "target": "rule:rozszerzanie-ontologii",
+   "relation": "enforces",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "cap:triage-signal#relations.enforces"
+   ]
+  },
+  {
+   "source": "comp:cms-git-backend",
+   "target": "proj:dailyfruits-cms-v6",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:cms-git-backend#relations.born_from"
+   ]
+  },
+  {
+   "source": "comp:cms-git-backend",
+   "target": "proj:dailyfruits-cms-v6",
+   "relation": "used_by",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:cms-git-backend#relations.used_by"
+   ]
+  },
+  {
+   "source": "comp:site-header-megamenu",
+   "target": "proj:fitstyle-platform",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:site-header-megamenu#relations.born_from"
+   ]
+  },
+  {
+   "source": "comp:site-header-megamenu",
+   "target": "proj:fitstyle-platform",
+   "relation": "used_by",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:site-header-megamenu#relations.used_by"
+   ]
+  },
+  {
+   "source": "comp:site-header-megamenu",
+   "target": "proj:thehermeticum",
+   "relation": "used_by",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:site-header-megamenu#relations.used_by"
+   ]
+  },
+  {
+   "source": "comp:svg-atlas-map",
+   "target": "proj:caterelo",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:svg-atlas-map#relations.born_from"
+   ]
+  },
+  {
+   "source": "comp:svg-atlas-map",
+   "target": "proj:caterelo",
+   "relation": "used_by",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:svg-atlas-map#relations.used_by"
+   ]
+  },
+  {
+   "source": "comp:svg-atlas-map",
+   "target": "proj:thehermeticum",
+   "relation": "used_by",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "comp:svg-atlas-map#relations.used_by"
+   ]
+  },
+  {
+   "source": "dec:2026-08-08-benchmarking-seo-aeo",
+   "target": "mech:competitive-benchmarking",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-08-benchmarking-seo-aeo#relations.related"
+   ]
+  },
+  {
+   "source": "dec:2026-08-08-benchmarking-seo-aeo",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-08-benchmarking-seo-aeo#relations.related"
+   ]
+  },
+  {
+   "source": "dec:2026-08-09-program-walidacji",
+   "target": "dec:2026-08-08-plan-90-dni",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-09-program-walidacji#relations.related"
+   ]
+  },
+  {
+   "source": "dec:2026-08-14-council-proba",
+   "target": "wf:council",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-14-council-proba#relations.related"
+   ]
+  },
+  {
+   "source": "dec:2026-08-15-rozszerzalna-ontologia",
+   "target": "rule:rozszerzanie-ontologii",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-15-rozszerzalna-ontologia#relations.related"
+   ]
+  },
+  {
+   "source": "dec:2026-08-15-rozszerzalna-ontologia",
+   "target": "wf:council",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "dec:2026-08-15-rozszerzalna-ontologia#relations.related"
+   ]
+  },
+  {
+   "source": "exp:agent-as-runtime-test",
+   "target": "mech:agent-as-runtime",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:agent-as-runtime-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:agent-facing-distribution-test",
+   "target": "mech:agent-facing-distribution",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:agent-facing-distribution-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:compounding-channel-test",
+   "target": "mech:compounding-channel",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:compounding-channel-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:dated-commitment-gates-test",
+   "target": "mech:dated-commitment-gates",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:dated-commitment-gates-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:design-as-code-test",
+   "target": "mech:design-as-code",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:design-as-code-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:deterministic-spine-test",
+   "target": "mech:deterministic-spine",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:deterministic-spine-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:format-dictionary-test",
+   "target": "mech:format-dictionary",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:format-dictionary-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:incident-to-guard-test",
+   "target": "mech:incident-to-guard",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:incident-to-guard-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:location-as-data-funnels-test",
+   "target": "mech:location-as-data-funnels",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:location-as-data-funnels-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:location-as-data-test",
+   "target": "mech:location-as-data",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:location-as-data-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:machine-narrows-human-picks-test",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:machine-narrows-human-picks-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:negative-knowledge-ledger-test",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:negative-knowledge-ledger-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:numeric-gates-test",
+   "target": "mech:numeric-gates",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:numeric-gates-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:open-tool-exchange-test",
+   "target": "mech:open-tool-exchange",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:open-tool-exchange-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:presale-demand-ledger-test",
+   "target": "mech:presale-demand-ledger",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:presale-demand-ledger-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:proof-first-demo-pitch-test",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:proof-first-demo-pitch-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:sandbox-promotion-test",
+   "target": "mech:sandbox-promotion",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:sandbox-promotion-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:session-to-sop-test",
+   "target": "mech:session-to-sop",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:session-to-sop-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:single-source-compiler-test",
+   "target": "mech:single-source-compiler",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:single-source-compiler-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:split-url-architecture-test",
+   "target": "mech:split-url-architecture",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:split-url-architecture-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:storefront-qr-bridge-test",
+   "target": "mech:storefront-qr-bridge",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:storefront-qr-bridge-test#relations.tests"
+   ]
+  },
+  {
+   "source": "exp:working-artifact-extraction-test",
+   "target": "mech:working-artifact-extraction",
+   "relation": "tests",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "exp:working-artifact-extraction-test#relations.tests"
+   ]
+  },
+  {
+   "source": "guard:build-check",
+   "target": "rule:knowledge-via-events",
+   "relation": "enforces",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "guard:build-check#relations.enforces"
+   ]
+  },
+  {
+   "source": "mech:agent-as-runtime",
+   "target": "mech:deterministic-spine",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-as-runtime#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-as-runtime",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-as-runtime#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-as-runtime",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-as-runtime#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-as-runtime",
+   "target": "mech:session-to-sop",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-as-runtime#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-as-runtime",
+   "target": "prin:trust-through-boundaries",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-as-runtime#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:agent-facing-distribution",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-facing-distribution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-facing-distribution",
+   "target": "mech:open-tool-exchange",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-facing-distribution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-facing-distribution",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-facing-distribution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-facing-distribution",
+   "target": "mech:split-url-architecture",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-facing-distribution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:agent-facing-distribution",
+   "target": "prin:design-for-machine-readers",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:agent-facing-distribution#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:competitive-benchmarking",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:competitive-benchmarking#relations.related"
+   ]
+  },
+  {
+   "source": "mech:competitive-benchmarking",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:competitive-benchmarking#relations.related"
+   ]
+  },
+  {
+   "source": "mech:competitive-benchmarking",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:competitive-benchmarking#relations.related"
+   ]
+  },
+  {
+   "source": "mech:competitive-benchmarking",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:competitive-benchmarking#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:compounding-channel",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:compounding-channel#relations.related"
+   ]
+  },
+  {
+   "source": "mech:compounding-channel",
+   "target": "mech:session-to-sop",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:compounding-channel#relations.related"
+   ]
+  },
+  {
+   "source": "mech:compounding-channel",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:compounding-channel#relations.related"
+   ]
+  },
+  {
+   "source": "mech:compounding-channel",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:compounding-channel#relations.related"
+   ]
+  },
+  {
+   "source": "mech:compounding-channel",
+   "target": "prin:pay-for-every-lesson-once",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:compounding-channel#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:dated-commitment-gates",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:dated-commitment-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:dated-commitment-gates",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:dated-commitment-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:dated-commitment-gates",
+   "target": "mech:presale-demand-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:dated-commitment-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:dated-commitment-gates",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:dated-commitment-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:dated-commitment-gates",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:dated-commitment-gates#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:design-as-code",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:design-as-code#relations.related"
+   ]
+  },
+  {
+   "source": "mech:design-as-code",
+   "target": "mech:location-as-data",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:design-as-code#relations.related"
+   ]
+  },
+  {
+   "source": "mech:design-as-code",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:design-as-code#relations.related"
+   ]
+  },
+  {
+   "source": "mech:design-as-code",
+   "target": "mech:storefront-qr-bridge",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:design-as-code#relations.related"
+   ]
+  },
+  {
+   "source": "mech:design-as-code",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:design-as-code#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:deterministic-spine",
+   "target": "mech:agent-as-runtime",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:deterministic-spine#relations.related"
+   ]
+  },
+  {
+   "source": "mech:deterministic-spine",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:deterministic-spine#relations.related"
+   ]
+  },
+  {
+   "source": "mech:deterministic-spine",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:deterministic-spine#relations.related"
+   ]
+  },
+  {
+   "source": "mech:deterministic-spine",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:deterministic-spine#relations.related"
+   ]
+  },
+  {
+   "source": "mech:deterministic-spine",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:deterministic-spine#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:format-dictionary",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:format-dictionary#relations.related"
+   ]
+  },
+  {
+   "source": "mech:format-dictionary",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:format-dictionary#relations.related"
+   ]
+  },
+  {
+   "source": "mech:format-dictionary",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:format-dictionary#relations.related"
+   ]
+  },
+  {
+   "source": "mech:format-dictionary",
+   "target": "prin:extract-never-invent",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:format-dictionary#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:incident-to-guard",
+   "target": "mech:design-as-code",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:incident-to-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:incident-to-guard",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:incident-to-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:incident-to-guard",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:incident-to-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:incident-to-guard",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:incident-to-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:incident-to-guard",
+   "target": "prin:pay-for-every-lesson-once",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:incident-to-guard#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:location-as-data",
+   "target": "mech:design-as-code",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data",
+   "target": "mech:format-dictionary",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data",
+   "target": "mech:location-as-data-funnels",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:location-as-data-funnels",
+   "target": "mech:location-as-data",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data-funnels#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data-funnels",
+   "target": "mech:presale-demand-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data-funnels#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data-funnels",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data-funnels#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data-funnels",
+   "target": "mech:split-url-architecture",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data-funnels#relations.related"
+   ]
+  },
+  {
+   "source": "mech:location-as-data-funnels",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:location-as-data-funnels#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:machine-narrows-human-picks",
+   "target": "mech:deterministic-spine",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:machine-narrows-human-picks#relations.related"
+   ]
+  },
+  {
+   "source": "mech:machine-narrows-human-picks",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:machine-narrows-human-picks#relations.related"
+   ]
+  },
+  {
+   "source": "mech:machine-narrows-human-picks",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:machine-narrows-human-picks#relations.related"
+   ]
+  },
+  {
+   "source": "mech:machine-narrows-human-picks",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:machine-narrows-human-picks#relations.related"
+   ]
+  },
+  {
+   "source": "mech:machine-narrows-human-picks",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:machine-narrows-human-picks#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:negative-knowledge-ledger",
+   "target": "mech:deterministic-spine",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:negative-knowledge-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:negative-knowledge-ledger",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:negative-knowledge-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:negative-knowledge-ledger",
+   "target": "mech:session-to-sop",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:negative-knowledge-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:negative-knowledge-ledger",
+   "target": "prin:pay-for-every-lesson-once",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:negative-knowledge-ledger#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:numeric-gates",
+   "target": "mech:deterministic-spine",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:numeric-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:numeric-gates",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:numeric-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:numeric-gates",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:numeric-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:numeric-gates",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:numeric-gates#relations.related"
+   ]
+  },
+  {
+   "source": "mech:numeric-gates",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:numeric-gates#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:open-tool-exchange",
+   "target": "mech:agent-facing-distribution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:open-tool-exchange#relations.related"
+   ]
+  },
+  {
+   "source": "mech:open-tool-exchange",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:open-tool-exchange#relations.related"
+   ]
+  },
+  {
+   "source": "mech:open-tool-exchange",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:open-tool-exchange#relations.related"
+   ]
+  },
+  {
+   "source": "mech:open-tool-exchange",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:open-tool-exchange#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:presale-demand-ledger",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:presale-demand-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:presale-demand-ledger",
+   "target": "mech:location-as-data-funnels",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:presale-demand-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:presale-demand-ledger",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:presale-demand-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:presale-demand-ledger",
+   "target": "mech:storefront-qr-bridge",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:presale-demand-ledger#relations.related"
+   ]
+  },
+  {
+   "source": "mech:presale-demand-ledger",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:presale-demand-ledger#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:price-anchor-before-proof",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:price-anchor-before-proof#relations.related"
+   ]
+  },
+  {
+   "source": "mech:price-anchor-before-proof",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:price-anchor-before-proof#relations.related"
+   ]
+  },
+  {
+   "source": "mech:price-anchor-before-proof",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:price-anchor-before-proof#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.related"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "mech:location-as-data-funnels",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.related"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "mech:price-anchor-before-proof",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.related"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.related"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.related"
+   ]
+  },
+  {
+   "source": "mech:proof-first-demo-pitch",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:proof-first-demo-pitch#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:prototype-mode-guard",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:prototype-mode-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:prototype-mode-guard",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:prototype-mode-guard#relations.related"
+   ]
+  },
+  {
+   "source": "mech:prototype-mode-guard",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:prototype-mode-guard#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:sandbox-promotion",
+   "target": "mech:agent-as-runtime",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:sandbox-promotion#relations.related"
+   ]
+  },
+  {
+   "source": "mech:sandbox-promotion",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:sandbox-promotion#relations.related"
+   ]
+  },
+  {
+   "source": "mech:sandbox-promotion",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:sandbox-promotion#relations.related"
+   ]
+  },
+  {
+   "source": "mech:sandbox-promotion",
+   "target": "mech:numeric-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:sandbox-promotion#relations.related"
+   ]
+  },
+  {
+   "source": "mech:sandbox-promotion",
+   "target": "prin:trust-through-boundaries",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:sandbox-promotion#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:seo-aeo-foundation",
+   "target": "mech:agent-facing-distribution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:seo-aeo-foundation#relations.related"
+   ]
+  },
+  {
+   "source": "mech:seo-aeo-foundation",
+   "target": "mech:competitive-benchmarking",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:seo-aeo-foundation#relations.related"
+   ]
+  },
+  {
+   "source": "mech:seo-aeo-foundation",
+   "target": "mech:split-url-architecture",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:seo-aeo-foundation#relations.related"
+   ]
+  },
+  {
+   "source": "mech:seo-aeo-foundation",
+   "target": "prin:design-for-machine-readers",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:seo-aeo-foundation#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:session-to-sop",
+   "target": "mech:agent-as-runtime",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:session-to-sop#relations.related"
+   ]
+  },
+  {
+   "source": "mech:session-to-sop",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:session-to-sop#relations.related"
+   ]
+  },
+  {
+   "source": "mech:session-to-sop",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:session-to-sop#relations.related"
+   ]
+  },
+  {
+   "source": "mech:session-to-sop",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:session-to-sop#relations.related"
+   ]
+  },
+  {
+   "source": "mech:session-to-sop",
+   "target": "prin:extract-never-invent",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:session-to-sop#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:single-source-compiler",
+   "target": "mech:design-as-code",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:single-source-compiler#relations.related"
+   ]
+  },
+  {
+   "source": "mech:single-source-compiler",
+   "target": "mech:format-dictionary",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:single-source-compiler#relations.related"
+   ]
+  },
+  {
+   "source": "mech:single-source-compiler",
+   "target": "mech:location-as-data",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:single-source-compiler#relations.related"
+   ]
+  },
+  {
+   "source": "mech:single-source-compiler",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:single-source-compiler#relations.related"
+   ]
+  },
+  {
+   "source": "mech:single-source-compiler",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:single-source-compiler#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:split-url-architecture",
+   "target": "mech:agent-facing-distribution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:split-url-architecture#relations.related"
+   ]
+  },
+  {
+   "source": "mech:split-url-architecture",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:split-url-architecture#relations.related"
+   ]
+  },
+  {
+   "source": "mech:split-url-architecture",
+   "target": "mech:location-as-data-funnels",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:split-url-architecture#relations.related"
+   ]
+  },
+  {
+   "source": "mech:split-url-architecture",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:split-url-architecture#relations.related"
+   ]
+  },
+  {
+   "source": "mech:split-url-architecture",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:split-url-architecture#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:static-i18n-mirror",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:static-i18n-mirror#relations.related"
+   ]
+  },
+  {
+   "source": "mech:static-i18n-mirror",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:static-i18n-mirror#relations.related"
+   ]
+  },
+  {
+   "source": "mech:static-i18n-mirror",
+   "target": "mech:split-url-architecture",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:static-i18n-mirror#relations.related"
+   ]
+  },
+  {
+   "source": "mech:static-i18n-mirror",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:static-i18n-mirror#relations.related"
+   ]
+  },
+  {
+   "source": "mech:static-i18n-mirror",
+   "target": "prin:single-source-of-truth",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:static-i18n-mirror#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:storefront-qr-bridge",
+   "target": "mech:design-as-code",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:storefront-qr-bridge#relations.related"
+   ]
+  },
+  {
+   "source": "mech:storefront-qr-bridge",
+   "target": "mech:incident-to-guard",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:storefront-qr-bridge#relations.related"
+   ]
+  },
+  {
+   "source": "mech:storefront-qr-bridge",
+   "target": "mech:location-as-data-funnels",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:storefront-qr-bridge#relations.related"
+   ]
+  },
+  {
+   "source": "mech:storefront-qr-bridge",
+   "target": "mech:presale-demand-ledger",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:storefront-qr-bridge#relations.related"
+   ]
+  },
+  {
+   "source": "mech:storefront-qr-bridge",
+   "target": "prin:proof-before-promise",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:storefront-qr-bridge#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:strategy-before-execution",
+   "target": "mech:competitive-benchmarking",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:strategy-before-execution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:strategy-before-execution",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:strategy-before-execution#relations.related"
+   ]
+  },
+  {
+   "source": "mech:strategy-before-execution",
+   "target": "prin:extract-never-invent",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:strategy-before-execution#relations.implements"
+   ]
+  },
+  {
+   "source": "mech:working-artifact-extraction",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:working-artifact-extraction#relations.related"
+   ]
+  },
+  {
+   "source": "mech:working-artifact-extraction",
+   "target": "mech:sandbox-promotion",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:working-artifact-extraction#relations.related"
+   ]
+  },
+  {
+   "source": "mech:working-artifact-extraction",
+   "target": "mech:session-to-sop",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:working-artifact-extraction#relations.related"
+   ]
+  },
+  {
+   "source": "mech:working-artifact-extraction",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:working-artifact-extraction#relations.related"
+   ]
+  },
+  {
+   "source": "mech:working-artifact-extraction",
+   "target": "prin:extract-never-invent",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "mech:working-artifact-extraction#relations.implements"
+   ]
+  },
+  {
+   "source": "prin:design-for-machine-readers",
+   "target": "ax:jedno-zrodlo-prawdy",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:design-for-machine-readers#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:extract-never-invent",
+   "target": "ax:mechanizm-ponad-artefakt",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:extract-never-invent#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:pay-for-every-lesson-once",
+   "target": "ax:lekcja-placona-raz",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:pay-for-every-lesson-once#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:proof-before-promise",
+   "target": "ax:dowod-przed-obietnica",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:proof-before-promise#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:reduce-subjectivity",
+   "target": "ax:ai-decyzje-poznawcze",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:reduce-subjectivity#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:single-source-of-truth",
+   "target": "ax:jedno-zrodlo-prawdy",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:single-source-of-truth#relations.derives"
+   ]
+  },
+  {
+   "source": "prin:trust-through-boundaries",
+   "target": "ax:ai-decyzje-poznawcze",
+   "relation": "derives",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "prin:trust-through-boundaries#relations.derives"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:price-anchor-before-proof",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:price-anchor-before-proof-artoffnia-demo-6e26aa"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:dated-commitment-gates",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:open-tool-exchange",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:compounding-channel",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:compounding-channel-bt-betterguide-hub"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterguide-hub"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-betterguide-hub"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterguide-hub"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:strategy-before-execution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:strategy-before-execution-bw"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-005"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-001"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-002"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:location-as-data",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:location-as-data-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:presale-demand-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:presale-demand-ledger-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-dimedical-redesign"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dimedical-redesign"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:static-i18n-mirror",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:dimedical-redesign#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dimedical-redesign"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dimedical-redesign"
+   ]
+  },
+  {
+   "source": "proj:fitstyle-platform",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-fitstyle-platform"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fitstyle-platform"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:agent-as-runtime",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-as-runtime-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:machine-narrows-human-picks-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:storefront-qr-bridge",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:storefront-qr-bridge-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:dated-commitment-gates",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:session-to-sop",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:strategy-before-execution",
+   "relation": "limited",
+   "evidence_ids": [
+    "ev:strategy-before-execution-tlumacz"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:strategy-before-execution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:strategy-before-execution-tlumacz"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:working-artifact-extraction",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:machine-narrows-human-picks-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:agent-facing-distribution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-facing-distribution-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "comp:site-header-megamenu",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "comp:svg-atlas-map",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:static-i18n-mirror",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:working-artifact-extraction",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-hourly-pipeline",
+   "target": "mech:agent-as-runtime",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-as-runtime-bt-zdrofit-hourly-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-hourly-pipeline"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-hourly-pipeline",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-zdrofit-hourly-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-hourly-pipeline"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-lodygowa-witryny",
+   "target": "mech:presale-demand-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:presale-demand-ledger-bt-zdrofit-lodygowa-witryny"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-lodygowa-witryny"
+   ]
+  },
+  {
+   "source": "rec:backtests/archicom-prezenter-reymonta",
+   "target": "proj:archicom-prezenter-reymonta",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/archicom-tokeny-rebrand-atrium",
+   "target": "proj:archicom-tokeny-rebrand-atrium",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/artoffnia-demo",
+   "target": "proj:artoffnia-demo",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/artoffnia-demo#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/beesknees-site",
+   "target": "proj:beesknees-site",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/beesknees-site#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/betterguide-hub",
+   "target": "proj:betterguide-hub",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/betterguide-hub#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/betterworkplace-salt-plate",
+   "target": "mech:strategy-before-execution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/betterworkplace-salt-plate",
+   "target": "proj:betterguide-hub",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/betterworkplace-salt-plate",
+   "target": "wf:plate",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/betterworkplace-salt-plate",
+   "target": "wf:salt",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/briefsync",
+   "target": "proj:briefsync",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/briefsync#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/caterelo",
+   "target": "proj:caterelo",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/caterelo#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dailyfruits-cms-v6",
+   "target": "proj:dailyfruits-cms-v6",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dailyfruits-consent-gtm",
+   "target": "proj:dailyfruits-consent-gtm",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dailyfruits-katalog-handlowy",
+   "target": "proj:dailyfruits-katalog-handlowy",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dailyfruits-relaunch",
+   "target": "proj:dailyfruits-relaunch",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dailyfruits-seo-oferta",
+   "target": "proj:dailyfruits-seo-oferta",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/dimedical-redesign",
+   "target": "proj:dimedical-redesign",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/dimedical-redesign#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/fitstyle-platform",
+   "target": "proj:fitstyle-platform",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/fitstyle-platform#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/fotra-panel",
+   "target": "proj:fotra-panel",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/fotra-panel#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/geers-centrum-wiedzy",
+   "target": "proj:geers-centrum-wiedzy",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/kubota-stand-3d",
+   "target": "proj:kubota-stand-3d",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/lemf-deck-figma",
+   "target": "proj:lemf-deck-figma",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/lumo-brand",
+   "target": "proj:lumo-brand",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/lumo-brand#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/marka-tlumacz-salt-gap",
+   "target": "mech:competitive-benchmarking",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/marka-tlumacz-salt-gap",
+   "target": "mech:strategy-before-execution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/marka-tlumacz-salt-gap",
+   "target": "proj:marka-tlumacz",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/marka-tlumacz-salt-gap",
+   "target": "wf:salt",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap#relations.related"
+   ]
+  },
+  {
+   "source": "rec:backtests/medium-publishing-pipeline",
+   "target": "proj:medium-publishing-pipeline",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/narzedzie-do-briefowania",
+   "target": "proj:narzedzie-do-briefowania",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/osada-orle-brand-system-figma",
+   "target": "proj:osada-orle-brand-system-figma",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/osada-orle-deck-morisson",
+   "target": "proj:osada-orle-deck-morisson",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/penya-saas",
+   "target": "proj:penya-saas",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/penya-saas#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/r352-brand-centre",
+   "target": "proj:r352-brand-centre",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/r352-brand-centre#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/r352-case-studies-work",
+   "target": "proj:r352-case-studies-work",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/r352-website",
+   "target": "proj:r352-website",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/r352-website#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/r3loop-app",
+   "target": "proj:r3loop-app",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/r3loop-app#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/wegobold-site",
+   "target": "proj:wegobold-site",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/wegobold-site#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/zdrofit-cwicz-w-zieleni",
+   "target": "proj:zdrofit-cwicz-w-zieleni",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/zdrofit-hourly-pipeline",
+   "target": "proj:zdrofit-hourly-pipeline",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/zdrofit-hourly-pipeline#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:backtests/zdrofit-lodygowa-witryny",
+   "target": "proj:zdrofit-lodygowa-witryny",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:backtests/zdrofit-lodygowa-witryny#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:incydenty/2026-08-09-test-zapisal-do-kanonu",
+   "target": "rec:F0-SEED-FREEZE",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:incydenty/2026-08-09-test-zapisal-do-kanonu#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:plate/thehermeticum-plate-2026-08-14",
+   "target": "proj:thehermeticum",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:plate/thehermeticum-plate-2026-08-14#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:routing/hermetica-serwis-2026-08-14",
+   "target": "proj:thehermeticum",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:routing/hermetica-serwis-2026-08-14#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rec:salt/thehermeticum-salt-2026-08-14",
+   "target": "proj:thehermeticum",
+   "relation": "attached_to",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rec:salt/thehermeticum-salt-2026-08-14#relations.attached_to"
+   ]
+  },
+  {
+   "source": "rule:build-po-kazdej-zmianie",
+   "target": "rule:knowledge-via-events",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:build-po-kazdej-zmianie#relations.related"
+   ]
+  },
+  {
+   "source": "rule:compression-over-documentation",
+   "target": "rule:zero-manual-admin",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:compression-over-documentation#relations.related"
+   ]
+  },
+  {
+   "source": "rule:rozszerzanie-ontologii",
+   "target": "ax:uczenie-przez-decyzje",
+   "relation": "enforces",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:rozszerzanie-ontologii#relations.enforces"
+   ]
+  },
+  {
+   "source": "rule:rozszerzanie-ontologii",
+   "target": "prin:reduce-subjectivity",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:rozszerzanie-ontologii#relations.related"
+   ]
+  },
+  {
+   "source": "rule:rozszerzanie-ontologii",
+   "target": "prin:single-source-of-truth",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:rozszerzanie-ontologii#relations.related"
+   ]
+  },
+  {
+   "source": "rule:zero-manual-admin",
+   "target": "rule:build-po-kazdej-zmianie",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:zero-manual-admin#relations.related"
+   ]
+  },
+  {
+   "source": "rule:zero-manual-admin",
+   "target": "rule:knowledge-via-events",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "rule:zero-manual-admin#relations.related"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "ax:uczenie-przez-decyzje",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.born_from"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.related"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "prin:proof-before-promise",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.related"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "prin:reduce-subjectivity",
+   "relation": "implements",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.implements"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "rule:rozszerzanie-ontologii",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.related"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "wf:plate",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.related"
+   ]
+  },
+  {
+   "source": "wf:council",
+   "target": "wf:salt",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:council#relations.related"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "cli:betterworkplace",
+   "relation": "for",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.for"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "mech:compounding-channel",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.uses"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "mech:dated-commitment-gates",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.related"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "mech:format-dictionary",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.uses"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "mech:single-source-compiler",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.related"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "mech:strategy-before-execution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.related"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "proj:r352-framework-brand-hub-os",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.born_from"
+   ]
+  },
+  {
+   "source": "wf:plate",
+   "target": "wf:salt",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:plate#relations.related"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "cli:betterworkplace",
+   "relation": "for",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.for"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "mech:competitive-benchmarking",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.uses"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "uses",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.uses"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.related"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "mech:strategy-before-execution",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.related"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "mech:working-artifact-extraction",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.related"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "proj:r352-framework-brand-hub-os",
+   "relation": "born_from",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.born_from"
+   ]
+  },
+  {
+   "source": "wf:salt",
+   "target": "wf:plate",
+   "relation": "related",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "wf:salt#relations.related"
+   ]
+  }
+ ],
+ "project_mechanism": [
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:open-tool-exchange",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-oferta",
+   "target": "mech:dated-commitment-gates",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:artoffnia-oferta#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:static-i18n-mirror",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:dimedical-redesign#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:working-artifact-extraction",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:dated-commitment-gates",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:session-to-sop",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:marka-tlumacz#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:working-artifact-extraction",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:single-source-compiler",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:thehermeticum",
+   "target": "mech:static-i18n-mirror",
+   "relation": "used",
+   "evidence_ids": [],
+   "evidence_count": 0,
+   "provenance": [
+    "proj:thehermeticum#relations.uses"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-hourly-pipeline",
+   "target": "mech:agent-as-runtime",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-as-runtime-bt-zdrofit-hourly-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-hourly-pipeline"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:agent-as-runtime",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-as-runtime-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:agent-facing-distribution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:agent-facing-distribution-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-bt-dimedical-redesign"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dimedical-redesign"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:competitive-benchmarking",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:competitive-benchmarking-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:compounding-channel",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:compounding-channel-bt-betterguide-hub"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterguide-hub"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-hourly-pipeline",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-zdrofit-hourly-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-hourly-pipeline"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:fitstyle-platform",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-fitstyle-platform"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fitstyle-platform"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:dated-commitment-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:dated-commitment-gates-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:design-as-code",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:design-as-code-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-005"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:deterministic-spine",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:deterministic-spine-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-001"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:format-dictionary",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:format-dictionary-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:briefsync",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-002"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/briefsync"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:incident-to-guard",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:incident-to-guard-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:location-as-data",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:location-as-data-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:machine-narrows-human-picks-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:machine-narrows-human-picks",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:machine-narrows-human-picks-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:negative-knowledge-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:negative-knowledge-ledger-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:numeric-gates",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:numeric-gates-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-lodygowa-witryny",
+   "target": "mech:presale-demand-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:presale-demand-ledger-bt-zdrofit-lodygowa-witryny"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-lodygowa-witryny"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:presale-demand-ledger",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:presale-demand-ledger-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:price-anchor-before-proof",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:price-anchor-before-proof-artoffnia-demo-6e26aa"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:proof-first-demo-pitch",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:proof-first-demo-pitch-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:narzedzie-do-briefowania",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-narzedzie-do-briefowania"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/narzedzie-do-briefowania"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:sandbox-promotion",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:sandbox-promotion-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:caterelo",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-caterelo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/caterelo"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:seo-aeo-foundation",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:seo-aeo-foundation-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  },
+  {
+   "source": "proj:r3loop-app",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-r3loop-app"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r3loop-app"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:session-to-sop",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:session-to-sop-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-cms-v6",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-cms-v6"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-cms-v6"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:beesknees-site",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-beesknees-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/beesknees-site"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-betterguide-hub"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterguide-hub"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-consent-gtm",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-dailyfruits-consent-gtm"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-consent-gtm"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-brand-system-figma",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-osada-orle-brand-system-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-brand-system-figma"
+   ]
+  },
+  {
+   "source": "proj:archicom-tokeny-rebrand-atrium",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-archicom-tokeny-rebrand-atrium"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-tokeny-rebrand-atrium"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:zdrofit-cwicz-w-zieleni",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-zdrofit-cwicz-w-zieleni"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/zdrofit-cwicz-w-zieleni"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:fotra-panel",
+   "target": "mech:single-source-compiler",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:single-source-compiler-fotra-panel"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/fotra-panel"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-seo-oferta",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-seo-oferta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-seo-oferta"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:medium-publishing-pipeline",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-medium-publishing-pipeline"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/medium-publishing-pipeline"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:split-url-architecture",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:split-url-architecture-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:lumo-brand",
+   "target": "mech:storefront-qr-bridge",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:storefront-qr-bridge-lumo-brand"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lumo-brand"
+   ]
+  },
+  {
+   "source": "proj:betterguide-hub",
+   "target": "mech:strategy-before-execution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:strategy-before-execution-bw"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/betterworkplace-salt-plate"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:strategy-before-execution",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:strategy-before-execution-tlumacz"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap"
+   ]
+  },
+  {
+   "source": "proj:marka-tlumacz",
+   "target": "mech:strategy-before-execution",
+   "relation": "limited",
+   "evidence_ids": [
+    "ev:strategy-before-execution-tlumacz"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/marka-tlumacz-salt-gap"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-relaunch",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dailyfruits-relaunch"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-relaunch"
+   ]
+  },
+  {
+   "source": "proj:r352-website",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-r352-website"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-website"
+   ]
+  },
+  {
+   "source": "proj:r352-case-studies-work",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-r352-case-studies-work"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-case-studies-work"
+   ]
+  },
+  {
+   "source": "proj:geers-centrum-wiedzy",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-geers-centrum-wiedzy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/geers-centrum-wiedzy"
+   ]
+  },
+  {
+   "source": "proj:dailyfruits-katalog-handlowy",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dailyfruits-katalog-handlowy"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dailyfruits-katalog-handlowy"
+   ]
+  },
+  {
+   "source": "proj:osada-orle-deck-morisson",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-osada-orle-deck-morisson"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/osada-orle-deck-morisson"
+   ]
+  },
+  {
+   "source": "proj:archicom-prezenter-reymonta",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-archicom-prezenter-reymonta"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/archicom-prezenter-reymonta"
+   ]
+  },
+  {
+   "source": "proj:lemf-deck-figma",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-lemf-deck-figma"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/lemf-deck-figma"
+   ]
+  },
+  {
+   "source": "proj:dimedical-redesign",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-bt-dimedical-redesign"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/dimedical-redesign"
+   ]
+  },
+  {
+   "source": "proj:artoffnia-demo",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-artoffnia-demo"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/artoffnia-demo"
+   ]
+  },
+  {
+   "source": "proj:r352-brand-centre",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-r352-brand-centre"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/r352-brand-centre"
+   ]
+  },
+  {
+   "source": "proj:wegobold-site",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-wegobold-site"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/wegobold-site"
+   ]
+  },
+  {
+   "source": "proj:kubota-stand-3d",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-kubota-stand-3d"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/kubota-stand-3d"
+   ]
+  },
+  {
+   "source": "proj:penya-saas",
+   "target": "mech:working-artifact-extraction",
+   "relation": "backtested",
+   "evidence_ids": [
+    "ev:working-artifact-extraction-penya-saas"
+   ],
+   "evidence_count": 1,
+   "provenance": [
+    "rec:backtests/penya-saas"
+   ]
+  }
+ ],
+ "unresolved_evidence": 88,
+ "stats": {
+  "projects": 51,
+  "mechanisms": 28,
+  "evidence_total": 226,
+  "evidence_with_project_field": 138,
+  "evidence_via_record": 0,
+  "evidence_via_source_project": 0,
+  "evidence_unresolved": 88,
+  "evidence_intention": 0,
+  "evidence_without_direction": 223,
+  "evidence_backtest": 135,
+  "unresolved_reasons": {
+   "Record bez relations.attached_to → proj:": 88
+  },
+  "unresolved_by_source": {
+   "rec:reviews": 88
+  },
+  "relations_by_type": {
+   "used": 13,
+   "backtested": 135,
+   "limited": 1
+  },
+  "pairs": 148
+ }
+}

@@ -1,0 +1,863 @@
+{
+ "source": "/Users/reszek/Downloads/ZDROFIT_nowe zajecia_KV1_all formats_kp2.psd",
+ "canvas": [
+  6339,
+  5795
+ ],
+ "artboards": [
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_master",
+   "size": [
+    1620,
+    2208
+   ],
+   "layers": [
+    {
+     "name": "Layer 1",
+     "kind": "solidcolorfill",
+     "visible": true,
+     "rect": [
+      0,
+      -2245,
+      6339,
+      5795
+     ]
+    },
+    {
+     "name": "Prostokąt 4",
+     "kind": "shape",
+     "visible": true,
+     "rect": [
+      -87,
+      -6,
+      2094,
+      2249
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -751,
+      -263,
+      2706,
+      2580
+     ]
+    },
+    {
+     "name": "Rectangle 2",
+     "kind": "shape",
+     "visible": true,
+     "rect": [
+      -361,
+      2116,
+      2500,
+      136
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": true,
+     "rect": [
+      992,
+      1872,
+      527,
+      170
+     ],
+     "type": {
+      "text": "Zbuduj siłę\ri pewność siebie",
+      "font_size": 83.33334,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "RTZKL_Zdrofit",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      97,
+      1795,
+      505,
+      374
+     ]
+    },
+    {
+     "name": "Vector Smart Object copy 20",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      78,
+      932,
+      1464,
+      704
+     ]
+    },
+    {
+     "name": "Zdrofit",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      1031,
+      124,
+      523,
+      201
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_some_1080x1440 IG",
+   "size": [
+    1080,
+    1440
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -645,
+      -792,
+      2023,
+      2948
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 21",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      63,
+      592,
+      733,
+      502
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": true,
+     "rect": [
+      567,
+      1225,
+      447,
+      145
+     ],
+     "type": {
+      "text": "Zbuduj siłę\ri pewność siebie",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "RTZKL_Zdrofit",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      55,
+      1160,
+      313,
+      233
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_some_1080x1440 IG 2",
+   "size": [
+    1080,
+    1440
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -645,
+      -792,
+      2023,
+      2948
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 21",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      63,
+      592,
+      733,
+      502
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": false,
+     "rect": [
+      567,
+      1225,
+      447,
+      145
+     ],
+     "type": {
+      "text": "Zbuduj siłę\ri pewność siebie",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "RTZKL_Zdrofit",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      55,
+      1160,
+      313,
+      233
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_some_1080x1350 FB",
+   "size": [
+    1080,
+    1350
+   ],
+   "layers": [
+    {
+     "name": "FB Post 1080x1350",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      0,
+      0,
+      1080,
+      1350
+     ]
+    },
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -596,
+      -696,
+      1912,
+      2786
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 21",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      73,
+      612,
+      693,
+      475
+     ]
+    },
+    {
+     "name": "Rectangle 4",
+     "kind": "shape",
+     "visible": true,
+     "rect": [
+      -1,
+      1297,
+      1082,
+      54
+     ]
+    },
+    {
+     "name": "RTZKL_Zdrofit copy 4",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      10,
+      1086,
+      330,
+      245
+     ]
+    },
+    {
+     "name": "Vector Smart Object",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      757,
+      46,
+      280,
+      108
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_some_1080x1920_IG Stories",
+   "size": [
+    1080,
+    1920
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -698,
+      -676,
+      2141,
+      3120
+     ]
+    },
+    {
+     "name": "margines 250 px",
+     "kind": "shape",
+     "visible": false,
+     "rect": [
+      -1,
+      -2,
+      1082,
+      1923
+     ]
+    },
+    {
+     "name": "Layer 5",
+     "kind": "type",
+     "visible": true,
+     "type": {
+      "text": "",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 0.01,
+      "font": "'Montserrat-Bold'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 21",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      52,
+      789,
+      775,
+      531
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": true,
+     "rect": [
+      542,
+      1447,
+      473,
+      154
+     ],
+     "type": {
+      "text": "Zbuduj siłę\ri pewność siebie",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "RTZKL_Zdrofit",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      41,
+      1385,
+      331,
+      246
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_some_1080x1920_IG Stories 2",
+   "size": [
+    1080,
+    1920
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -698,
+      -676,
+      2141,
+      3120
+     ]
+    },
+    {
+     "name": "margines 250 px",
+     "kind": "shape",
+     "visible": false,
+     "rect": [
+      -1,
+      -1,
+      1082,
+      1923
+     ]
+    },
+    {
+     "name": "Layer 5",
+     "kind": "type",
+     "visible": true,
+     "type": {
+      "text": "",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 0.01,
+      "font": "'Montserrat-Bold'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 21",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      52,
+      789,
+      775,
+      531
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": false,
+     "rect": [
+      542,
+      1447,
+      473,
+      154
+     ],
+     "type": {
+      "text": "Zbuduj siłę\ri pewność siebie",
+      "font_size": 85.87746,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "RTZKL_Zdrofit",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      41,
+      1385,
+      331,
+      246
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_www_360x360",
+   "size": [
+    360,
+    360
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -120,
+      -97,
+      556,
+      531
+     ]
+    },
+    {
+     "name": "Levels 1",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Rectangle 2 copy",
+     "kind": "shape",
+     "visible": false,
+     "rect": [
+      -180,
+      336,
+      679,
+      38
+     ]
+    },
+    {
+     "name": "Vector Smart Object copy 22",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      25,
+      140,
+      262,
+      180
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_wizytowka google_400x300",
+   "size": [
+    400,
+    300
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -47,
+      -106,
+      515,
+      491
+     ]
+    },
+    {
+     "name": "Levels 1",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Vector Smart Object copy 22",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      20,
+      81,
+      238,
+      178
+     ]
+    },
+    {
+     "name": "ZDROFIT_nowe zajecia_KV2_wizytowka google_400x300",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      0,
+      0,
+      400,
+      300
+     ]
+    },
+    {
+     "name": "RTZKL_Zdrofit copy 3",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      11,
+      215,
+      97,
+      73
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_mailing350x650",
+   "size": [
+    650,
+    350
+   ],
+   "layers": [
+    {
+     "name": "Rectangle 3",
+     "kind": "shape",
+     "visible": true,
+     "rect": [
+      -2,
+      -1,
+      653,
+      352
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -397,
+      -122,
+      1665,
+      594
+     ]
+    },
+    {
+     "name": "Levels 2",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": false,
+     "rect": [
+      309,
+      280,
+      321,
+      35
+     ],
+     "type": {
+      "text": "Zbuduj siłę i pewność siebie",
+      "font_size": 42.93873,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "Vector Smart Object copy 23",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      48,
+      57,
+      330,
+      227
+     ]
+    },
+    {
+     "name": "RTZKL_Zdrofit copy",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      36,
+      251,
+      118,
+      87
+     ]
+    }
+   ]
+  },
+  {
+   "name": "ZDROFIT_nowe zajecia_KV1_www_823x416",
+   "size": [
+    832,
+    416
+   ],
+   "layers": [
+    {
+     "name": "edited",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      -435,
+      -135,
+      1834,
+      655
+     ]
+    },
+    {
+     "name": "Levels 2 copy",
+     "kind": "levels",
+     "visible": true
+    },
+    {
+     "name": "Layer 4",
+     "kind": "pixel",
+     "visible": false,
+     "rect": [
+      0,
+      221,
+      832,
+      195
+     ]
+    },
+    {
+     "name": "Curves 1",
+     "kind": "curves",
+     "visible": true
+    },
+    {
+     "name": "Rectangle 2 copy",
+     "kind": "shape",
+     "visible": false,
+     "rect": [
+      -31,
+      378,
+      865,
+      39
+     ]
+    },
+    {
+     "name": "Zbuduj siłę i pewność siebie",
+     "kind": "type",
+     "visible": false,
+     "rect": [
+      415,
+      325,
+      407,
+      45
+     ],
+     "type": {
+      "text": "Zbuduj siłę i pewność siebie",
+      "font_size": 42.93873,
+      "tracking": 0.0,
+      "leading": 133.45383,
+      "font": "'Aptly-BoldItalic'",
+      "color": [
+       255,
+       255,
+       255
+      ]
+     }
+    },
+    {
+     "name": "Zdrofit",
+     "kind": "smartobject",
+     "visible": false,
+     "rect": [
+      649,
+      22,
+      160,
+      62
+     ]
+    },
+    {
+     "name": "RTZKL_Zdrofit copy 2",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      20,
+      290,
+      145,
+      108
+     ]
+    },
+    {
+     "name": "Vector Smart Object copy 24",
+     "kind": "smartobject",
+     "visible": true,
+     "rect": [
+      59,
+      58,
+      337,
+      232
+     ]
+    }
+   ]
+  }
+ ]
+}

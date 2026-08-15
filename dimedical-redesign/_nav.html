@@ -1,0 +1,118 @@
+<a class="skip" href="#tresc">{{skip}}</a>
+<div class="progress" id="progress"></div>
+
+<!-- atmosfera -->
+<div class="atmos">
+  <div class="blob blob-1" data-par="0.05"></div>
+  <div class="blob blob-2" data-par="-0.04"></div>
+  <div class="blob blob-3" data-par="0.03"></div>
+</div>
+<canvas class="pole" id="pole" aria-hidden="true"></canvas>
+<div class="grid-overlay"></div>
+<div class="grain"></div>
+
+<!-- ══════════ PASEK GÓRNY ══════════ -->
+<div class="topbar">
+  <div class="wrap">
+    <nav class="lang" aria-label="{{ariaLang}}">
+      <a href="{{plHref}}"{{plOn}} lang="pl" hreflang="pl">PL</a>
+      <a href="{{enHref}}"{{enOn}} lang="en" hreflang="en">EN</a>
+    </nav>
+    <div class="top-right">
+      <a href="mailto:kontakt@dimedical.pl" class="hide-sm">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m2.5 6.5 9.5 6.5 9.5-6.5"/></svg>
+        kontakt@dimedical.pl
+      </a>
+      <span class="sep hide-sm"></span>
+      <a href="tel:+48502660480">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+        +48 502 660 480
+      </a>
+      <span class="sep hide-sm"></span>
+      <a href="https://www.facebook.com/dimedicallodz" target="_blank" rel="noopener" class="soc hide-sm">Facebook</a>
+      <a href="https://www.linkedin.com/company/dimedical" target="_blank" rel="noopener" class="soc hide-sm">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NAWIGACJA ══════════ -->
+<div class="nav-shell" id="navShell">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="{{home}}" class="logo" aria-label="{{ariaLogo}}">
+        <img src="{{a}}assets/dimedical-logo-new.svg" alt="DiMedical — {{tagline}}" width="226" height="63">
+      </a>
+
+      <ul class="menu">
+        <li><a href="{{mtyper}}" data-nav="m-typer">M-Typer</a></li>
+        <li><a href="{{onas}}" data-nav="o-nas">{{nOnas}}</a></li>
+        <li><a href="{{news}}" data-nav="aktualnosci">{{nNews}}</a></li>
+        <li class="has-sub">
+          <button class="mtrig" data-nav-group="oferta" aria-expanded="false">
+            {{nOferta}}
+            <svg class="caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="submenu">
+            <li><a href="{{tbc}}" data-nav="gruzlica"><strong>{{nTbc}}</strong><span class="gat">{{oTbc}}</span></a></li>
+            <li><a href="{{mikro}}" data-nav="mikrobiologia"><strong>{{nMikro}}</strong><span class="gat">{{oMikro}}</span></a></li>
+            <li><a href="{{br}}" data-nav="badania-br"><strong>{{nBr}}</strong><span class="gat">{{oBr}}</span></a></li>
+          </ul>
+        </li>
+        <li><a href="{{cennik}}" data-nav="cennik">{{nCennik}}</a></li>
+        <li><a href="{{home}}#lokalizacja" data-nav="lokalizacja">{{nLok}}</a></li>
+        <li><a href="{{kontakt}}" data-nav="kontakt">{{nKontakt}}</a></li>
+      </ul>
+
+      <a href="{{kontakt}}" class="btn btn-primary btn-sm">
+        {{cta}}
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- menu mobilne -->
+<div class="mnav" id="mobileMenu" hidden>
+  <div class="mnav-top">
+    <a href="{{home}}" class="mnav-logo" aria-label="{{ariaLogo}}">
+      <img src="{{a}}assets/dimedical-logo-new.svg" alt="DiMedical" width="226" height="63">
+    </a>
+    <button class="mnav-x" aria-label="{{mZamknij}}">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <nav class="mnav-body" aria-label="{{mMenu}}">
+    <ul>
+      <li><a href="{{mtyper}}">M-Typer</a></li>
+      <li><a href="{{onas}}">{{nOnas}}</a></li>
+      <li><a href="{{news}}">{{nNews}}</a></li>
+    </ul>
+    <p class="mnav-group">{{nOferta}}</p>
+    <ul>
+      <li><a href="{{tbc}}"><span>{{nTbc}}</span><span class="mnav-op">{{oTbc}}</span></a></li>
+      <li><a href="{{mikro}}"><span>{{nMikro}}</span><span class="mnav-op">{{oMikro}}</span></a></li>
+      <li><a href="{{br}}"><span>{{nBr}}</span><span class="mnav-op">{{oBr}}</span></a></li>
+    </ul>
+    <ul>
+      <li><a href="{{cennik}}">{{nCennik}}</a></li>
+      <li><a href="{{home}}#lokalizacja">{{nLok}}</a></li>
+      <li><a href="{{kontakt}}">{{nKontakt}}</a></li>
+    </ul>
+  </nav>
+
+  <div class="mnav-stopka">
+    <a href="{{kontakt}}" class="btn btn-lav">
+      {{cta}}
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="mnav-kontakt">
+      <a href="tel:+48502660480">+48 502 660 480</a>
+      <span class="mnav-sep"></span>
+      <a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+{
+  "path": "path/08-the-renaissance-revival",
+  "trail": [
+    [
+      "The Path",
+      "/path/"
+    ]
+  ],
+  "crumb": "08 · The Renaissance revival",
+  "kicker": "The Path — step 08",
+  "title": "The Renaissance revival — the year Hermes jumped the queue",
+  "desc": "In 1463 Cosimo de' Medici told Ficino to set Plato aside and translate the Corpus Hermeticum first. Why it happened, what it produced, and how Casaubon undid the dating in 1614.",
+  "h1": "The Renaissance revival",
+  "tldr": "An old man in a hurry, a manuscript from Macedonia, and a translator who obeyed. Cosimo de' Medici had Ficino interrupt his Plato to render the Hermetica into Latin first — because he believed they were older. They were not, but the mistake ran Europe's intellectual life for a hundred and fifty years, until one philologist dated the Greek and the spell broke. What the error produced outlasted the error.",
+  "img": "art-ficino-study.jpg",
+  "body": "<p>Everything on this path so far has been ancient. Now the story jumps a thousand years and becomes a story about reading — about what happens when a culture decides a text is older than it is.</p><h2>1463: the interruption</h2><p>A manuscript of the Greek Corpus Hermeticum reaches Florence, brought from Macedonia by an agent buying books for the Medici. <a href=\"/figures/marsilio-ficino/\">Marsilio Ficino</a> is mid-project on the complete Plato — the work that will define his career. Cosimo de' Medici, old and unwell, instructs him to put Plato down and translate the Hermetica first. Ficino does — fourteen treatises, finished in 1463, a year before Cosimo's death. The Latin version, titled <i>Pimander</i>, is printed in 1471 and becomes one of the best-selling philosophical texts of the era, in dozens of editions by 1600.</p><p>One caution about the story itself, since this site is supposed to apply it to its own material: the deathbed-order account rests on <b>Ficino's own preface</b>. It may be a plain record of what happened or an elegant piece of self-mythologising, and historians still argue about which. The translation and its date are documented; the dramatic scene around them is a claim by an interested party.</p><p>The instruction sounds eccentric until you understand the assumption behind it. Ficino and his circle believed the Hermetica were written by an Egyptian sage contemporary with Moses — that they were the oldest theology available, older than Greek philosophy, a <b>prisca theologia</b> running from Hermes through Orpheus and Pythagoras to Plato. On that assumption, translating Hermes before Plato is not eccentric at all. It is going to the source.</p><h2>What the assumption produced</h2><p>A great deal, and most of it had nothing to do with Egypt. Once these texts were treated as ancient and authoritative, a generation of thinkers used them to argue positions that had been difficult to argue before.</p><p><a href=\"/figures/pico-della-mirandola/\">Pico della Mirandola</a> drew on them in his oration on human dignity, giving Europe one of its most quoted statements about human potential. <a href=\"/figures/lodovico-lazzarelli/\">Lodovico Lazzarelli</a> pushed further, writing about a human capacity to generate divine things. <a href=\"/figures/giordano-bruno/\">Giordano Bruno</a> took the cosmology and turned it into something far more dangerous, arguing for an infinite universe and an Egyptian religion superior to Christianity — a position that contributed to his burning in 1600.</p><p>Beyond individuals, the revival changed what a learned European could think about the human being. If the human is an image of the cosmos and capable of knowing it, then dignity, agency and enquiry all get a warrant. Frances Yates argued in 1964 that this shift was a condition for the scientific revolution itself. Her thesis has been heavily criticised since — most historians now regard it as overstated — but nobody disputes that the Hermetic revival mattered.</p><h2>1614: the correction</h2><p>Isaac Casaubon, working in England on Baronius's church history, applied philology to the Greek text and reached a conclusion that dismantled the whole edifice. The vocabulary, the style and the ideas of the Corpus Hermeticum belong to the early centuries of the common era, not to the age of Moses. The texts are late antique Greek writing, showing knowledge of Plato and of the Septuagint. There is no Egyptian sage.</p><p>The dating held. It is still, in essentials, the scholarly consensus: the philosophical Hermetica were composed roughly between the first and third centuries CE, in Roman Egypt, by Greek-speaking authors — with genuine Egyptian material inside them, which is a separate and much better-supported claim.</p><h2>What survives the correction</h2><p>Two things, and they are worth separating. The <b>historical claim</b> Ficino's circle made was false, and repeating it today is not romantic but simply wrong. The <b>intellectual consequences</b> were real: the texts entered European thought and stayed there, feeding natural philosophy, art, music and eventually the modern esoteric revival.</p><p>There is also a lesson in method here, which is why this step exists on a site like ours. A whole culture of intelligent people believed a dating that one careful reader overturned by attending to how the sentences were actually written. That is what philology does, and it is the same instinct this site tries to apply to claims that are still circulating.</p><p class=\"rule\">Ficino was wrong about the date and right that the texts were worth translating. Both halves are true, and keeping them apart is the whole discipline.</p>",
+  "facts": [
+    [
+      "The order",
+      "Cosimo de' Medici to Ficino, 1463 — as reported in Ficino's own preface"
+    ],
+    [
+      "Ficino's Latin",
+      "<i>Pimander</i>, fourteen treatises, completed 1463, printed 1471"
+    ],
+    [
+      "Circulation",
+      "Dozens of editions by 1600; a period bestseller"
+    ],
+    [
+      "The redating",
+      "Isaac Casaubon, 1614, on linguistic grounds"
+    ],
+    [
+      "Current consensus",
+      "Philosophical Hermetica composed c. 100–300 CE in Roman Egypt"
+    ]
+  ],
+  "faq": [
+    [
+      "Was Ficino dishonest?",
+      "No. He worked with the tools available and an inherited chronology nobody in his circle had reason to doubt. Note also that the famous deathbed order comes from Ficino's own preface — our page on him flags the same caveat. The error is normal for the period; repeating it five centuries after the correction is not."
+    ],
+    [
+      "Did the Yates thesis get discredited?",
+      "Overstated rather than discredited. Yates argued the Hermetic revival was a precondition of the scientific revolution; specialists have since shown the links are thinner and the causation weaker than she claimed. Her book remains worth reading, with that caveat attached."
+    ],
+    [
+      "If the texts are late, are they less valuable?",
+      "Less ancient, not less valuable. Roman Egypt in the first centuries CE is a serious intellectual setting, and the Hermetica are among its most interesting products. The value was never in the date; it was in what the texts say."
+    ]
+  ],
+  "sources": [
+    "Frances A. Yates, <i>Giordano Bruno and the Hermetic Tradition</i> (1964) — the thesis and its influence; read with later criticism.",
+    "Brian P. Copenhaver, <i>Hermetica</i> (1992) — introduction on Ficino, Casaubon and the redating.",
+    "Research dossiers: renaissance.md §1–§2."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/09-alchemy-and-the-great-work/\">Step 09: Alchemy and the Great Work</a> <em>(unlocks Sep 28)</em>"
+}

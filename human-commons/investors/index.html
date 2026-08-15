@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Post-AI Society — Concept briefing</title>
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=Plus+Jakarta+Sans:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#F4F0E8;--paper:#EDE8DD;--plaster:#E6E0D2;--stone:#A69D8B;--stone-dim:#8C8371;
+  --ink:#211E19;--ink-soft:#4A453C;--forest:#2E4A3B;--forest-deep:#22382D;
+  --hairline:rgba(33,30,25,.16);--hairline-strong:rgba(33,30,25,.32);
+  --serif:'Newsreader',Georgia,serif;--sans:'Plus Jakarta Sans','Helvetica Neue',sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-snap-type:y mandatory}
+body{background:var(--linen);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.1vw,17px);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+::selection{background:var(--forest);color:var(--linen)}
+em{font-style:italic;font-weight:400}
+.label{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-dim)}
+.slide{min-height:100svh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:clamp(4rem,10vh,7rem) var(--gutter);position:relative;border-bottom:1px solid var(--hairline)}
+.slide .no{position:absolute;top:2rem;left:var(--gutter);font-size:.66rem;letter-spacing:.22em;color:var(--stone-dim)}
+.slide .brand{position:absolute;top:2rem;right:var(--gutter);font-size:.66rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+h1,h2{font-family:var(--serif);font-weight:200;letter-spacing:-.01em}
+h1{font-size:clamp(2.6rem,6.5vw,5.8rem);line-height:1.06}
+h2{font-size:clamp(1.9rem,3.8vw,3.4rem);line-height:1.12;max-width:16em;margin-bottom:clamp(1.5rem,4vh,2.5rem)}
+.serif-lede{font-family:var(--serif);font-size:clamp(1.3rem,2.1vw,1.7rem);font-weight:200;line-height:1.45;max-width:28em}
+p{max-width:38em}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(1.2rem,3vw,3rem);margin-top:clamp(1.5rem,4vh,2.5rem)}
+.card{border-top:1px solid var(--hairline-strong);padding-top:1.1rem}
+.card h3{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.15rem,1.7vw,1.45rem);margin-bottom:.5rem}
+.card p{font-size:.95rem;color:var(--ink-soft)}
+.card .k{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);display:block;margin-bottom:.6rem}
+.dark{background:var(--ink);color:var(--paper)}
+.dark .label,.dark .no{color:var(--stone)}
+.dark .card{border-color:rgba(244,240,232,.2)}
+.dark .card p{color:rgba(244,240,232,.72)}
+.dark .brand{color:var(--linen)}
+.forest{background:var(--forest-deep);color:var(--paper)}
+.forest .label,.forest .no{color:#9DB8A6}
+.forest .card{border-color:rgba(244,240,232,.2)}
+.forest .card p{color:rgba(244,240,232,.75)}
+.forest .brand{color:var(--linen)}
+.img-slide{padding:0;justify-content:flex-end;border-bottom:none}
+.img-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.86) contrast(.97)}
+.img-slide .shade{position:absolute;inset:0;background:rgba(20,17,13,.38)}
+.img-slide .content{position:relative;padding:clamp(3rem,8vh,5rem) var(--gutter);color:#F4F0E8}
+.img-slide .content h1,.img-slide .content h2{color:#F4F0E8}
+.img-slide .no,.img-slide .brand{color:rgba(244,240,232,.8);z-index:2}
+.ledger{border-top:1px solid rgba(244,240,232,.25);margin-top:2rem;max-width:44em}
+.lrow{display:grid;grid-template-columns:1fr 1fr;gap:2rem;padding:.85rem 0;border-bottom:1px solid rgba(244,240,232,.14);align-items:baseline}
+.lrow .a{font-family:var(--serif);font-weight:200;color:rgba(244,240,232,.45);text-decoration:line-through;text-decoration-color:rgba(244,240,232,.3);font-size:clamp(1.05rem,1.6vw,1.35rem)}
+.lrow .b{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--linen);font-size:clamp(1.1rem,1.7vw,1.45rem)}
+.phases-line{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;counter-reset:ph}
+@media(max-width:760px){.phases-line{grid-template-columns:1fr 1fr}}
+.ph{border-top:1px solid var(--hairline-strong);padding-top:1rem}
+.ph b{display:block;font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);margin-bottom:.5rem}
+.ph span{font-family:var(--serif);font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:300}
+.ph p{font-size:.88rem;color:var(--ink-soft);margin-top:.4rem}
+.ask-list{margin-top:2rem;border-top:1px solid rgba(244,240,232,.25);max-width:46em}
+.ask-row{display:grid;grid-template-columns:minmax(9em,14em) 1fr;gap:1.5rem;padding:1.1rem 0;border-bottom:1px solid rgba(244,240,232,.14)}
+@media(max-width:640px){.ask-row{grid-template-columns:1fr;gap:.3rem}}
+.ask-row .who{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.6vw,1.3rem)}
+.ask-row p{font-size:.92rem;color:rgba(244,240,232,.75)}
+.cta{display:inline-flex;align-items:center;gap:1rem;margin-top:2.5rem;font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--linen);text-decoration:none;border:1px solid rgba(244,240,232,.4);padding:1.2rem 2.4rem;transition:background .4s,color .4s;width:max-content}
+.cta:hover{background:var(--linen);color:var(--ink)}
+.footnote{font-size:.78rem;color:var(--stone-dim);margin-top:2rem;max-width:44em}
+.dark .footnote,.forest .footnote{color:rgba(244,240,232,.45)}
+/* gate */
+#gate{position:fixed;inset:0;background:var(--linen);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;padding:var(--gutter)}
+#gate h1{font-size:clamp(1.8rem,4vw,3rem);text-align:center}
+#gate input{font-family:var(--sans);font-size:1rem;padding:.9rem 1.2rem;border:1px solid var(--hairline-strong);background:transparent;color:var(--ink);width:min(20rem,80vw);text-align:center;letter-spacing:.1em;outline:none}
+#gate input:focus{border-color:var(--forest)}
+#gate .hint{font-size:.78rem;color:var(--stone-dim)}
+body.locked{overflow:hidden}
+</style>
+</head>
+<body class="locked">
+
+<div id="gate">
+  <span class="label">Private — concept briefing</span>
+  <h1>The Post-AI&nbsp;Society</h1>
+  <input id="pw" type="password" placeholder="passphrase" autocomplete="off" autofocus>
+  <span class="hint">Shared personally. If you don't have the passphrase — write to p.reszkovy@gmail.com</span>
+</div>
+
+<!-- 01 cover -->
+<section class="slide img-slide" id="s1">
+  <img src="../img/plate-1.jpg" alt="">
+  <div class="shade"></div>
+  <span class="no" style="z-index:2">01 / 12</span>
+  <span class="brand">The Post-AI Society</span>
+  <div class="content">
+    <span class="label" style="color:rgba(244,240,232,.75)">Concept briefing · MMXXVI</span>
+    <h1 style="margin-top:1rem;max-width:12em">The machines will do the work.<br><em>We intend to do the living.</em></h1>
+    <p style="margin-top:1.5rem;max-width:30em;color:rgba(244,240,232,.85)">A network of physical places for the AI era — beginning with one Italian hill village. This is a concept, presented before the first stone, to the people we want beside us.</p>
+  </div>
+</section>
+
+<!-- 02 the shift -->
+<section class="slide dark">
+  <span class="no">02 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">The shift</span>
+  <h2 style="color:var(--linen)">AI is about to make productivity abundant. <em>Abundant things stop being valuable.</em></h2>
+  <div class="ledger">
+    <div class="lrow"><span class="a">Intelligence</span><span class="b">Attention</span></div>
+    <div class="lrow"><span class="a">Content</span><span class="b">Conversation</span></div>
+    <div class="lrow"><span class="a">Productivity</span><span class="b">Presence</span></div>
+    <div class="lrow"><span class="a">Connection, nominal</span><span class="b">Belonging, real</span></div>
+  </div>
+  <p class="footnote">Every prior platform shift created new scarcity and the fortunes went to whoever owned it: attention (media), distribution (internet), trust (brands). The next scarcity is embodied human experience.</p>
+</section>
+
+<!-- 03 thesis -->
+<section class="slide">
+  <span class="no">03 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">The thesis</span>
+  <h2>The future luxury is not AI.<br><em>It is a life lived mostly off-screen.</em></h2>
+  <p class="serif-lede">Technology becomes infrastructure. Human life becomes the point. We invest in the places where that sentence is physically true: piazzas, gardens, workshops, one long table.</p>
+  <p style="margin-top:1.5rem;color:var(--ink-soft)">Not a coworking brand. Not a retreat business. A prototype of a way of living — with the durability of real estate and the margins of a community brand.</p>
+</section>
+
+<!-- 04 what -->
+<section class="slide img-slide">
+  <img src="../img/plate-2.jpg" alt="">
+  <div class="shade"></div>
+  <span class="no" style="z-index:2">04 / 12</span><span class="brand">The Post-AI Society</span>
+  <div class="content">
+    <span class="label" style="color:rgba(244,240,232,.75)">What we are building</span>
+    <h2>A village where AI does the mornings<br><em>and humans own the rest of the day.</em></h2>
+    <p style="max-width:30em;color:rgba(244,240,232,.85)">Deep work until lunch. Craft, gardens and sport in the afternoon. One long dinner every evening — lectures, music, conversation. Twenty residents at first, chosen for what they contribute, not what they own.</p>
+  </div>
+</section>
+
+<!-- 05 why now -->
+<section class="slide">
+  <span class="no">05 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">Why now</span>
+  <h2>Two curves are crossing, <em>and they cross in Italy.</em></h2>
+  <div class="cols">
+    <div class="card"><span class="k">Curve one — demand</span><h3>The AI displacement of knowledge work</h3><p>The people with the most to gain from this thesis — founders, researchers, creators — are the first to feel their calendars emptying. They are actively searching for what comes next.</p></div>
+    <div class="card"><span class="k">Curve two — supply</span><h3>Empty, beautiful, subsidized Italy</h3><p>Thousands of depopulating borghi; municipalities running programs to attract new residents; entire restored hamlets renting for less than a city office floor. The land is asking for this project.</p></div>
+    <div class="card"><span class="k">The window</span><h3>Cheap before it is obvious</h3><p>Both curves are visible today and priced by almost no one. When "human-scale living" becomes a category, the honey-colored stone will not be cheap anymore.</p></div>
+  </div>
+</section>
+
+<!-- 06 phases -->
+<section class="slide" style="background:var(--paper)">
+  <span class="no">06 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">The path</span>
+  <h2>We are not launching a village. <em>We are compounding one.</em></h2>
+  <div class="phases-line">
+    <div class="ph"><b>Phase I · 2026</b><span>Test residency</span><p>2 weeks, ~15–20 paying participants, rented agriturismo. Proof of rhythm, proof of demand, first film and photography.</p></div>
+    <div class="ph"><b>Phase II</b><span>Seasonal campus</span><p>Long-term lease of a hamlet section. Recurring residencies, 20 beds, cowork, workshop, kitchen.</p></div>
+    <div class="ph"><b>Phase III</b><span>The village</span><p>Permanent community, families, school of craft. First acquisitions once the model proves itself.</p></div>
+    <div class="ph"><b>Phase IV</b><span>The network</span><p>One culture, one membership, many tables — beyond Italy, in time.</p></div>
+  </div>
+  <p class="footnote">Asset-light until the model is proven: phases I–II run on leases and partnerships, not acquisitions. The playbook — rhythm, admissions, governance, kitchen — is the asset that scales.</p>
+</section>
+
+<!-- 07 model -->
+<section class="slide dark">
+  <span class="no">07 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">Business model — concept</span>
+  <h2 style="color:var(--linen)">Three streams, <em>one long table.</em></h2>
+  <div class="cols">
+    <div class="card"><span class="k">01 · Residencies</span><h3 style="color:var(--linen)">Paid stays, 2–12 weeks</h3><p>The engine of the early years. Revenue from day one of Phase I; every residency also produces alumni, content and demand for the next one.</p></div>
+    <div class="card"><span class="k">02 · Membership</span><h3 style="color:var(--linen)">The network card</h3><p>Recurring membership across locations — closer to a guild than a gym. Admission by contribution. Retention driven by belonging, the one thing subscription businesses can't fake.</p></div>
+    <div class="card"><span class="k">03 · Media &amp; playbook</span><h3 style="color:var(--linen)">The journal, the method</h3><p>Essays, film, and the operating playbook itself — licensed to partner properties that want a Post-AI Society season without us owning their walls.</p></div>
+  </div>
+  <p class="footnote">Concept-stage: unit economics will be validated by the Phase I test residency, priced to break even at ~15 participants.</p>
+</section>
+
+<!-- 08 proof plan -->
+<section class="slide">
+  <span class="no">08 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">The proof plan</span>
+  <h2>Before asking anyone to fund walls, <em>we will prove the table.</em></h2>
+  <div class="cols">
+    <div class="card"><span class="k">Now</span><h3>Manifesto live</h3><p>postaisociety.vercel.app — the world, the philosophy, the daily rhythm. Built to make the right people feel found.</p></div>
+    <div class="card"><span class="k">Next 90 days</span><h3>The first twenty</h3><p>Waitlist opened, 300+ applications targeted, village scouting trip through Puglia and Lazio (October 2026).</p></div>
+    <div class="card"><span class="k">Then</span><h3>Test residency</h3><p>Two weeks, paying participants, full rhythm. We measure everything: willingness to pay, retention intent, what people say at the last dinner.</p></div>
+  </div>
+</section>
+
+<!-- 09 image break -->
+<section class="slide img-slide">
+  <img src="../img/plate-5.jpg" alt="">
+  <div class="shade"></div>
+  <span class="no" style="z-index:2">09 / 12</span><span class="brand">The Post-AI Society</span>
+  <div class="content">
+    <h2><em>Six hundred years of dinner,</em> and counting.</h2>
+    <p style="max-width:28em;color:rgba(244,240,232,.85)">The infrastructure we need was built centuries ago. Our work is to bring the people, the rhythm and the reason back to it.</p>
+  </div>
+</section>
+
+<!-- 10 team -->
+<section class="slide">
+  <span class="no">10 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">Who is behind this</span>
+  <h2>Built by a brand and product studio, <em>looking for its operating partners.</em></h2>
+  <div class="cols">
+    <div class="card"><span class="k">Founder</span><h3>Reszek — r352</h3><p>Brand, product and system design. Builds worlds and the playbooks that run them; The Post-AI Society is the thesis he has been circling for years, now in the open.</p></div>
+    <div class="card"><span class="k">Open seat</span><h3>Operations &amp; hospitality lead</h3><p>The person who makes twenty people feel at home and a kitchen run on time. We are actively looking.</p></div>
+    <div class="card"><span class="k">Open seat</span><h3>Italian partner</h3><p>Local roots, local language, local trust. The project will be built with the village, not next to it.</p></div>
+  </div>
+</section>
+
+<!-- 11 ask -->
+<section class="slide forest">
+  <span class="no">11 / 12</span><span class="brand">The Post-AI Society</span>
+  <span class="label">What we are looking for</span>
+  <h2 style="color:var(--linen)">Not a round. <em>A first circle.</em></h2>
+  <p style="color:rgba(244,240,232,.85);max-width:36em">At concept stage the scarce resource is not capital — it is the right partners. We are looking for four kinds of people:</p>
+  <div class="ask-list">
+    <div class="ask-row"><span class="who">Property partners</span><p>Owners of borghi, masserie, agriturismi — a season of the Post-AI Society on your property, our playbook and community, your walls brought back to life.</p></div>
+    <div class="ask-row"><span class="who">Municipal allies</span><p>Sindaci and regional programs fighting depopulation — we bring twenty residents who spend, teach and stay.</p></div>
+    <div class="ask-row"><span class="who">Operating partners</span><p>Hospitality operators and community builders who want to run the first residency with us.</p></div>
+    <div class="ask-row"><span class="who">First believers</span><p>Angels and family offices who invest in theses before spreadsheets — for access, first look at Phase II, and a seat at the long table.</p></div>
+  </div>
+</section>
+
+<!-- 12 close -->
+<section class="slide img-slide" id="s12">
+  <img src="../img/plate-6.jpg" alt="">
+  <div class="shade"></div>
+  <span class="no" style="z-index:2">12 / 12</span><span class="brand">The Post-AI Society</span>
+  <div class="content">
+    <h2>The door is not locked. <em>It never was.</em></h2>
+    <p style="max-width:26em;color:rgba(244,240,232,.85)">If this brief made you feel something older than curiosity — let's walk a village together in October.</p>
+    <a class="cta" href="mailto:p.reszkovy@gmail.com?subject=The%20Post-AI%20Society%20—%20concept%20briefing">Start the conversation <span>→</span></a>
+    <p class="footnote" style="color:rgba(244,240,232,.55)">p.reszkovy@gmail.com · postaisociety.vercel.app · Italy, first.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  const KEY='hc_inv', PASS='longtable';
+  const gate=document.getElementById('gate'), pw=document.getElementById('pw');
+  function unlock(){gate.style.display='none';document.body.classList.remove('locked')}
+  if(sessionStorage.getItem(KEY)===PASS) unlock();
+  pw.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      if(pw.value.trim().toLowerCase()===PASS){sessionStorage.setItem(KEY,PASS);unlock();}
+      else{pw.value='';pw.placeholder='try again';}
+    }
+  });
+})();
+</script>
+</body>
+</html>

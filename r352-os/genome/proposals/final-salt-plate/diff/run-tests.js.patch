@@ -1,0 +1,104 @@
+--- r352-os/genome/test/run-tests.js	2026-08-08 18:26:40
++++ r352-os/genome/proposals/final-salt-plate/test/run-tests.js	2026-08-09 14:15:45
+@@ -13,8 +13,9 @@
+ const { execFileSync } = require('child_process');
+ 
+ const HERE = __dirname;
+-const GENOME = path.resolve(HERE, '..');
+-const TEMPLATE = path.join(HERE, 'fixture-template');
++const GENOME = path.resolve(HERE, '..', '..', '..');          /* kanoniczny r352-os/genome */
++const PROPOSAL = path.resolve(HERE, '..');                    /* propozycja: patchowany ingest + lib */
++const TEMPLATE = path.resolve(__dirname, '..', '..', '..', 'test', 'fixture-template');
+ const TZ = 'Europe/Madrid';
+ 
+ let pass = 0, failCount = 0;
+@@ -31,8 +32,13 @@
+   };
+   cp(TEMPLATE, dir);
+   fs.copyFileSync(path.join(GENOME, 'build.js'), path.join(dir, 'build.js'));
+-  fs.copyFileSync(path.join(GENOME, 'ingest.js'), path.join(dir, 'ingest.js'));
++  fs.copyFileSync(path.join(PROPOSAL, 'genome', 'ingest.js'), path.join(dir, 'ingest.js'));
+   fs.cpSync(path.join(GENOME, 'lib'), path.join(dir, 'lib'), { recursive: true });   // wspólne prymitywy zapisu
++  /* moduły z propozycji: ingest v3 wymaga research-contract.js z pełnym pakietem zgody */
++  for (const m of ['research-contract.js', 'strategy-frameworks.js', 'approval.js', 'genome-txn.js', 'evidence-writer.js', 'genome-common.js'])
++    fs.copyFileSync(path.join(PROPOSAL, 'lib', m), path.join(dir, 'lib', m));
++
++  anchorSandbox(dir, TEST_PUB_PEM);
+   return dir;
+ }
+ function run(dir, pkg, extra = []) {
+@@ -53,13 +59,55 @@
+       { env: { ...process.env, GENOME_DIR: dir, GENOME_TZ: TZ }, encoding: 'utf8', stdio: 'pipe' });
+     return { code: 0, out };
+   } catch (e) { return { code: e.status ?? 1, out: (e.stdout || '') + (e.stderr || '') }; }
++}
++let APPROVE_SEQ = 0;
++/* Ed25519: podpisujemy PRÓBNYM kluczem prywatnym; piaskownica dostaje odpowiadający mu klucz
++   publiczny. Zaufanie produkcyjne (lib/approval-pubkey.pem) nietknięte, zero override ścieżek. */
++const { publicKey: TEST_PUB, privateKey: TEST_PRIV } = crypto.generateKeyPairSync('ed25519');
++const TEST_PUB_PEM = TEST_PUB.export({ type: 'spki', format: 'pem' });
++/* Kotwica zaufania leży POZA repo (~/.genome). Testy izolują HOME procesu potomnego —
++   izolacja środowiska, nie override w kodzie. */
++/* Kotwica w KOPII biblioteki wewnątrz piaskownicy — produkcyjny ingest.js nie ma już żadnej flagi
++   ani zmiennej, którą dałoby się podstawić zaufanie. */
++function anchorSandbox(dir, pubPem) {
++  const anchor = path.join(dir, '.test-anchor');
++  fs.mkdirSync(anchor, { recursive: true });
++  fs.writeFileSync(path.join(anchor, 'approval-pubkey.pem'), pubPem);
++  const ap = path.join(dir, 'lib', 'approval.js');
++  let src = fs.readFileSync(ap, 'utf8');
++  src = src.replace(/function trustDir\(\) \{[\s\S]*?\n\}/,
++    `function trustDir() { return ${JSON.stringify(anchor)}; }   /* KOPIA TESTOWA */`);
++  if (!src.includes('KOPIA TESTOWA')) throw new Error('nie udało się podmienić trustDir()');
++  fs.writeFileSync(ap, src);
+ }
++const TEST_CONTRACT = {
++  client: 'cli:test', business_problem: 'test warstwy zapisu', project_start: '2026-08-10',
++  scope: 'test', non_scope: 'produkcja', baseline: 'n/d', mechanisms: [], frameworks: [],
++  validation_plan: 'n/d — pakiet testowy', outcome_owner: 'test', measurement_date: '2026-12-01',
++  go_decision: 'GO', go_rationale: 'pakiet testowy warstwy zapisu',
++  prepared_by: 'session:test', decided_by: 'test', report_version: 'v1', contract_version: 'v1',
++};
+ const approve = pkg => {
+   const canonical = v => v === null || typeof v !== 'object' ? JSON.stringify(v)
+     : Array.isArray(v) ? '[' + v.map(canonical).join(',') + ']'
+     : '{' + Object.keys(v).sort().map(k => JSON.stringify(k) + ':' + canonical(v[k])).join(',') + '}';
+   const payload = { events: pkg.events || [], evidence: pkg.evidence || [], objects: pkg.objects || [] };
+-  return { ...pkg, approval: { status: 'approved', approved_by: 'test', approved_at: new Date().toISOString(), proposal_hash: crypto.createHash('sha256').update(canonical(payload)).digest('hex') } };
++  /* ingest v3 wymaga PODPISANEGO pakietu decyzyjnego — sam status "approved" to za mało. */
++  const AP = require(path.resolve(__dirname, '..', 'lib', 'approval.js'));
++  const nonce = 'writer-test-' + (++APPROVE_SEQ) + '-' + process.pid;
++  const approvalPkg = {
++    schema_version: AP.SCHEMA_VERSION, phase: 'contract',
++    claims: [], research: [], routing: null, recommended_mechanisms: [], recommended_frameworks: [],
++    metrics: [], project_contract: TEST_CONTRACT, predictions: [],
++    payload_hash: AP.payloadHash(pkg),
++    nonce, expires_at: '2030-01-01',
++  };
++  const signature = crypto.sign(null, AP.signingBytes(approvalPkg), TEST_PRIV).toString('hex');
++  return { ...pkg, approval: {
++    status: 'approved', approved_by: 'test', approved_at: new Date().toISOString(),
++    proposal_hash: crypto.createHash('sha256').update(canonical(payload)).digest('hex'),
++    package: approvalPkg, signature, nonce,
++  } };
+ };
+ const card = (dir, rel) => fs.readFileSync(path.join(dir, rel), 'utf8');
+ const fm = (dir, rel) => {
+@@ -283,7 +331,7 @@
+      Wyjście B do pliku — sync-poll nie blokuje wtedy zbierania outputu. */
+   /* marker EXITED w pliku zamiast pollingu PID — zablokowany event loop nie reapuje dzieci (zombie) */
+   const bOutFile = path.join(dir, 'b.out');
+-  const B = spawn('bash', ['-c', `node ${JSON.stringify(path.join(dir, 'ingest.js'))} ${JSON.stringify(fB)} > ${JSON.stringify(bOutFile)} 2>&1; echo "EXITED:$?" >> ${JSON.stringify(bOutFile)}`], {
++  const B = spawn('bash', ['-c', `node ${JSON.stringify(path.join(dir, 'ingest.js'))} ${JSON.stringify(fB)}  > ${JSON.stringify(bOutFile)} 2>&1; echo "EXITED:$?" >> ${JSON.stringify(bOutFile)}`], {
+     env: { ...process.env, GENOME_DIR: dir, GENOME_TZ: TZ, GENOME_TEST_PLAN_DELAY_MS: '1500' },
+     detached: true, stdio: 'ignore'
+   });
+@@ -316,7 +364,7 @@
+     relations: { attached_to: ['proj:test-one'] }, tags: ['postmortem'],
+     body: '## Lessons\n\nBrak — projekt nie dostarczył wystarczającego Evidence.\n\n## Proposed Genome delta\n\nNO_GENOME_DELTA' }] }));
+   assert(r.code === 0, 'postmortem bez lekcji odrzucony:\n' + r.out);
+-  const f = fm(dir, 'records/postmortems-test-one-2026-08-08.md');
++  const f = fm(dir, 'records/postmortems/test-one-2026-08-08.md');
+   assert(f.id === 'rec:postmortems/test-one-2026-08-08', 'record nie zapisany');
+   const mechs = fm(dir, 'mechanisms/m1.md');
+   assert(mechs.evidence.length === 0 && mechs.version === 1, 'karty zmienione mimo braku delty');

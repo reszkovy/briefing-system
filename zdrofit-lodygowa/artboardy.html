@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Zdrofit — CH Łodygowa · witryny (artboardy 1 cm = 10 px)</title>
+<style>
+/* ============================================================
+   ZDROFIT — WARSZAWA TARGÓWEK, CH ŁODYGOWA
+   Oklejenie witryn. Skala: 1 cm = 10 px.
+   A: 736,5 × 284,5 cm  → 7365 × 2845 px  (na lewo od rolety)
+   B: 370,5 × 284,5 cm  → 3705 × 2845 px  (na prawo od wejścia)
+   C: 123,0 × 284,5 cm  → 1230 × 2845 px  (za rogiem, 90°)
+   Tryb renderu: ?b=A | ?b=B | ?b=C  (+ &g=1 = linie cięcia na bryty)
+   ============================================================ */
+
+@font-face{font-family:Aptly;src:url(assets/Aptly-Black.woff2) format('woff2');font-weight:900;font-display:block}
+@font-face{font-family:Aptly;src:url(assets/Aptly-Bold.woff2) format('woff2');font-weight:700;font-display:block}
+@font-face{font-family:Aptly;src:url(assets/Aptly-Medium.woff2) format('woff2');font-weight:500;font-display:block}
+@font-face{font-family:Aptly;src:url(assets/Aptly-Regular.woff2) format('woff2');font-weight:400;font-display:block}
+
+:root{
+  --blue:#009CDE;         /* Pantone 2925 C */
+  --orange:#FF5B19;       /* Pantone 165 C  */
+  --steel:#3B3F42;        /* Pantone 432 C  */
+  --cobalt:#002169;       /* Pantone 280 C  */
+  --paper:#F2EEEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#8c8c8c;font-family:Aptly,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ---------- artboard ---------- */
+.board{
+  position:relative; overflow:hidden; background:var(--paper);
+  transform-origin:top left; flex:none;
+}
+.board.A{width:7365px;height:2845px}
+.board.B{width:3705px;height:2845px}
+.board.C{width:1230px;height:2845px}
+
+/* podłoże: ciepła poświata studyjna, spójna z fotografią marki */
+.bg{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(120% 90% at 22% 8%, #FFFFFF 0%, #FBF8F5 38%, #F0EBE6 72%, #E7E1DA 100%);
+}
+
+/* elastyczna linia (leitmotiv) — niebieska prowadzi, pomarańcz wychodzi spod niej */
+.ribbon{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+/* ---------- foto ---------- */
+.photo{position:absolute;top:0;bottom:0;z-index:2;overflow:hidden}
+.photo img{height:100%;width:100%;object-fit:cover;display:block}
+.photo.left img{-webkit-mask-image:linear-gradient(90deg,#000 38%,rgba(0,0,0,.52) 58%,rgba(0,0,0,.14) 82%,transparent 98%)}
+.photo.right img{-webkit-mask-image:linear-gradient(270deg,#000 38%,rgba(0,0,0,.52) 58%,rgba(0,0,0,.14) 82%,transparent 98%)}
+
+/* ---------- logo ---------- */
+.logo{position:absolute;z-index:5}
+.logo img{width:100%;display:block}
+
+/* ---------- typografia haseł ---------- */
+.claim{position:absolute;z-index:5;display:flex;flex-direction:column;align-items:flex-start}
+.bar{
+  display:inline-block; color:#fff; font-weight:900; text-transform:uppercase;
+  line-height:.94; white-space:nowrap;
+  transform:rotate(-4.2deg); transform-origin:left center;
+  box-shadow:0 .06em .18em rgba(59,63,66,.14);
+}
+.bar.blue{background:var(--blue)}
+.bar.orange{background:var(--orange)}
+
+.eyebrow{
+  color:var(--steel);font-weight:700;text-transform:uppercase;line-height:1;
+  letter-spacing:.06em;
+}
+.sub{color:var(--steel);font-weight:700;text-transform:uppercase;line-height:1.06}
+.sub em{font-style:normal;color:var(--blue)}
+
+/* ---------- blok adres + QR ---------- */
+.foot{position:absolute;z-index:5;display:flex;align-items:stretch;gap:0;
+  filter:drop-shadow(0 18px 42px rgba(59,63,66,.16))}
+.addr{
+  background:var(--blue);color:#fff;display:flex;align-items:center;
+  border-radius:.34em 0 0 .34em;
+}
+.addr .pin{flex:none}
+.addr .txt{display:flex;flex-direction:column;justify-content:center}
+.addr .txt .big{font-weight:900;text-transform:uppercase;line-height:1.02}
+.addr .txt .small{font-weight:700;text-transform:uppercase;line-height:1.12;opacity:.92}
+
+.qrbox{
+  background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-radius:0 .34em .34em 0;
+}
+.qrbox img{display:block;image-rendering:pixelated}
+.qrbox .cap{color:var(--steel);font-weight:900;text-transform:uppercase;text-align:center;line-height:1.05}
+
+/* ---------- linie cięcia na bryty (warstwa kontrolna) ---------- */
+.guides{position:absolute;inset:0;z-index:9;pointer-events:none;display:none}
+.guides.on{display:block}
+.guides .cut{position:absolute;top:0;bottom:0;width:4px;background:rgba(255,0,110,.85)}
+.guides .lbl{
+  position:absolute;top:24px;transform:translateX(-50%);
+  font:700 46px/1 Aptly,sans-serif;color:#fff;background:rgba(255,0,110,.9);
+  padding:14px 22px;border-radius:8px;white-space:nowrap;letter-spacing:.02em;
+}
+.guides .dim{
+  position:absolute;bottom:24px;transform:translateX(-50%);
+  font:700 40px/1 Aptly,sans-serif;color:#ff006e;background:rgba(255,255,255,.92);
+  padding:12px 20px;border-radius:8px;white-space:nowrap;
+}
+.guides .safe{position:absolute;border:3px dashed rgba(0,156,222,.75)}
+
+/* ---------- podgląd (bez ?b=) ---------- */
+.wrap{padding:60px;display:flex;flex-direction:column;gap:70px;align-items:flex-start}
+.cap-h{font:700 22px/1.5 system-ui,sans-serif;color:#fff;letter-spacing:.04em}
+.cap-h b{font-size:26px}
+.frame{overflow:hidden;background:#fff;box-shadow:0 18px 60px rgba(0,0,0,.35)}
+body.render{background:#fff}
+body.render .wrap{padding:0;gap:0}
+body.render .cap-h{display:none}
+body.render .frame{box-shadow:none}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap"></div>
+
+<script>
+/* ============================================================
+   PARAMETRY — wszystko w cm, przeliczane przez CM (1 cm = 10 px)
+   ============================================================ */
+const CM = 10;                       // 1 cm = 10 px  ← skala zamówiona przez klienta
+const URL_LEAD = 'https://zdrofit.pl/kluby-fitness/warszawa-targowek-ch-lodygowa/lead';
+
+const BOARDS = {
+  A: { w:736.5, h:284.5, panes:[122,123,123,123,123.5,122],
+       label:'A — na lewo od rolety wejściowej' },
+  B: { w:370.5, h:284.5, panes:[123,124,123.5],
+       label:'B — na prawo od wejścia' },
+  C: { w:123.0, h:284.5, panes:[123],
+       label:'C — za rogiem (90°)' },
+};
+
+/* treść — do podmiany w jednym miejscu */
+const COPY = {
+  eyebrow : 'Już wkrótce',
+  line1   : 'Tu powstaje',
+  line2   : 'nowy klub fitness',
+  city    : 'Warszawa Targówek',
+  place   : 'CH Łodygowa',
+  qrcap   : 'Dowiedz się<br>więcej',
+  addrBig : 'CH Łodygowa',
+  addrSm  : 'Warszawa Targówek',
+};
+
+const px = cm => Math.round(cm*CM);
+
+/* ---------- elastyczna linia (leitmotiv) ---------- */
+function ribbon(w,h,variant){
+  // Zasady z księgi: start zawsze od niebieskiego, spod niego wyłania się pomarańcz
+  // (max 50% grubości niebieskiego), 1–4 zagięcia, koniec zmierza ku górze,
+  // wstęga nie jest przycinana poza początkiem i końcem.
+  if(variant==='none') return '';
+  const t  = variant==='mid' ? h*0.040 : h*0.048;   // grubość niebieskiej
+  const to = t*0.44;             // pomarańczowa ≤ 50%
+  const off = t*0.62;            // pomarańcz wychodzi spod spodu
+  let dB, dO;
+  if(variant==='wide'){
+    // wchodzi zza lewej krawędzi, płynie środkiem dolnej strefy,
+    // na końcu zawija ku górze i kończy się w wolnym polu (nie jest przycięta)
+    dB = `M ${-w*0.03} ${h*0.905} C ${w*0.16} ${h*0.978}, ${w*0.34} ${h*0.856}, ${w*0.62} ${h*0.846}`
+       + ` C ${w*0.84} ${h*0.838}, ${w*0.94} ${h*0.832}, ${w*1.04} ${h*0.775}`;
+    dO = `M ${-w*0.03} ${h*0.905+off} C ${w*0.16} ${h*0.978+off}, ${w*0.34} ${h*0.856+off}, ${w*0.62} ${h*0.846+off}`
+       + ` C ${w*0.85} ${h*0.839+off}, ${w*0.95} ${h*0.834+off}, ${w*1.04} ${h*0.745}`;
+  } else { // 'mid' — niski pas pod treścią, wychodzi prawą krawędzią ku górze
+    dB = `M ${-w*0.06} ${h*0.930} C ${w*0.22} ${h*0.972}, ${w*0.46} ${h*0.888}, ${w*1.04} ${h*0.830}`;
+    dO = `M ${-w*0.06} ${h*0.930+off} C ${w*0.22} ${h*0.972+off}, ${w*0.47} ${h*0.890+off}, ${w*1.04} ${h*0.800}`;
+  }
+  return `<svg class="ribbon" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+    <path d="${dO}" fill="none" stroke="var(--orange)" stroke-width="${to}" stroke-linecap="round"/>
+    <path d="${dB}" fill="none" stroke="var(--blue)"   stroke-width="${t}"  stroke-linecap="round"/>
+  </svg>`;
+}
+
+const PIN = s => `<svg width="${s}" height="${s*1.28}" viewBox="0 0 40 51" fill="none">
+  <path d="M20 0C8.95 0 0 8.95 0 20c0 14.5 20 31 20 31s20-16.5 20-31C40 8.95 31.05 0 20 0z" fill="#fff"/>
+  <circle cx="20" cy="19.5" r="8.6" fill="#009CDE"/></svg>`;
+
+/* ---------- warstwa kontrolna: linie cięcia ---------- */
+function guides(b){
+  const W = px(b.w), H = px(b.h);
+  let out = '', acc = 0;
+  b.panes.forEach((p,i)=>{
+    const x0 = px(acc); acc += p; const x1 = px(acc);
+    out += `<div class="dim" style="left:${(x0+x1)/2}px">szyba ${i+1} · ${String(p).replace('.',',')} cm = ${x1-x0} px</div>`;
+    if(i < b.panes.length-1){
+      out += `<div class="cut" style="left:${x1-2}px"></div>`;
+      out += `<div class="lbl" style="left:${x1}px">cięcie ${x1} px = ${String(acc).replace('.',',')} cm</div>`;
+    }
+  });
+  out += `<div class="safe" style="left:${px(8)}px;top:${px(8)}px;right:${px(8)}px;bottom:${px(8)}px"></div>`;
+  return `<div class="guides on">${out}</div>`;
+}
+
+/* ============================================================
+   BOARD A — 7365 × 2845
+   ============================================================ */
+function boardA(){
+  const W=7365,H=2845;
+  return `
+  <div class="bg"></div>
+  ${ribbon(W,H,'wide')}
+  <div class="photo left" style="left:0;width:2200px"><img src="assets/foto-a.jpg" alt=""></div>
+
+  <!-- logo: w całości wewnątrz 6. szyby (6145–7365 px) -->
+  <div class="logo" style="right:130px;top:250px;width:1080px"><img src="assets/logo.png" alt="Zdrofit"></div>
+
+  <!-- hasło: szyby 3–4 (2450–4910 px), nie wchodzi na skrajne cięcia -->
+  <div class="claim" style="left:2520px;top:840px;gap:44px">
+    <div class="eyebrow" style="font-size:152px;margin-left:16px">${COPY.eyebrow}</div>
+    <div><span class="bar blue"   style="font-size:336px;padding:.13em .20em .19em">${COPY.line1}</span></div>
+    <div><span class="bar orange" style="font-size:336px;padding:.13em .20em .19em;margin-left:154px">${COPY.line2}</span></div>
+  </div>
+
+  <!-- adres + QR na wysokości skanowania; sam kwadrat kodu w całości w 6. szybie -->
+  <div class="foot" style="right:130px;top:1364px;height:710px">
+    <div class="addr" style="padding:0 92px 0 78px;gap:58px">
+      <span class="pin">${PIN(152)}</span>
+      <span class="txt">
+        <span class="big" style="font-size:136px">${COPY.addrBig}</span>
+        <span class="small" style="font-size:76px;margin-top:16px">${COPY.addrSm}</span>
+      </span>
+    </div>
+    <div class="qrbox" style="width:620px;padding:56px 0 0;gap:26px">
+      <img src="assets/qr.svg" width="470" height="470" alt="QR">
+      <div class="cap" style="font-size:58px;padding-bottom:34px">${COPY.qrcap}</div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   BOARD B — 3705 × 2845   (foto po prawej — lustrzane wobec A)
+   ============================================================ */
+function boardB(){
+  const W=3705,H=2845;
+  return `
+  <div class="bg"></div>
+  ${ribbon(W,H,'mid')}
+  <div class="photo right" style="right:0;width:1500px"><img src="assets/foto-b.jpg" alt=""></div>
+
+  <div class="logo" style="left:290px;top:200px;width:900px"><img src="assets/logo.png" alt="Zdrofit"></div>
+
+  <div class="claim" style="left:290px;top:640px;gap:34px">
+    <div class="eyebrow" style="font-size:112px;margin-left:12px">${COPY.eyebrow}</div>
+    <div><span class="bar blue"   style="font-size:230px;padding:.13em .20em .19em">${COPY.line1}</span></div>
+    <div><span class="bar orange" style="font-size:182px;padding:.14em .20em .20em;margin-left:70px">${COPY.line2}</span></div>
+  </div>
+
+  <div class="foot" style="left:290px;top:1420px;height:640px">
+    <div class="addr" style="padding:0 84px 0 70px;gap:52px">
+      <span class="pin">${PIN(146)}</span>
+      <span class="txt">
+        <span class="big" style="font-size:128px">${COPY.addrBig}</span>
+        <span class="small" style="font-size:72px;margin-top:14px">${COPY.addrSm}</span>
+      </span>
+    </div>
+    <div class="qrbox" style="width:620px;padding:52px 0 0;gap:26px">
+      <img src="assets/qr.svg" width="400" height="400" alt="QR">
+      <div class="cap" style="font-size:54px;padding-bottom:32px">${COPY.qrcap}</div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   BOARD C — 1230 × 2845   (za rogiem, pion)
+   ============================================================ */
+function boardC(){
+  const W=1230,H=2845;
+  return `
+  <div class="bg"></div>
+  ${ribbon(W,H,'none')}
+
+  <div class="logo" style="left:150px;top:190px;width:930px"><img src="assets/logo.png" alt="Zdrofit"></div>
+
+  <div class="claim" style="left:150px;top:580px;gap:22px">
+    <div class="eyebrow" style="font-size:74px;margin-left:8px">${COPY.eyebrow}</div>
+    <div><span class="bar blue"   style="font-size:140px;padding:.13em .18em .19em">${COPY.line1}</span></div>
+    <div><span class="bar orange" style="font-size:116px;padding:.13em .18em .19em;margin-left:32px">nowy klub</span></div>
+    <div><span class="bar orange" style="font-size:116px;padding:.13em .18em .19em;margin-left:72px">fitness</span></div>
+  </div>
+
+  <div class="foot" style="left:150px;top:1270px;height:auto;flex-direction:column;width:930px">
+    <div class="addr" style="border-radius:.34em .34em 0 0;padding:44px 56px;gap:34px">
+      <span class="pin">${PIN(92)}</span>
+      <span class="txt">
+        <span class="big" style="font-size:82px">${COPY.addrBig}</span>
+        <span class="small" style="font-size:46px;margin-top:10px">${COPY.addrSm}</span>
+      </span>
+    </div>
+    <div class="qrbox" style="border-radius:0 0 .34em .34em;padding:56px 0 0;gap:22px;width:930px">
+      <img src="assets/qr.svg" width="430" height="430" alt="QR">
+      <div class="cap" style="font-size:52px;padding-bottom:44px">${COPY.qrcap}</div>
+    </div>
+  </div>`;
+}
+
+const RENDER = {A:boardA, B:boardB, C:boardC};
+
+/* ---------- montaż strony ---------- */
+const q = new URLSearchParams(location.search);
+const only = (q.get('b')||'').toUpperCase();
+const showGuides = q.get('g')==='1';
+const wrap = document.getElementById('wrap');
+
+const keys = only && BOARDS[only] ? [only] : ['A','B','C'];
+if(only) document.body.classList.add('render');
+
+keys.forEach(k=>{
+  const b = BOARDS[k];
+  const W = px(b.w), H = px(b.h);
+  const scale = only ? 1 : Math.min(1, 1600/W);
+  const frame = document.createElement('div');
+  frame.className = 'frame';
+  frame.style.width  = Math.round(W*scale)+'px';
+  frame.style.height = Math.round(H*scale)+'px';
+  const board = document.createElement('div');
+  board.className = 'board '+k;
+  board.style.transform = `scale(${scale})`;
+  board.innerHTML = RENDER[k]() + (showGuides ? guides(b) : '');
+  frame.appendChild(board);
+  if(!only){
+    const cap = document.createElement('div');
+    cap.className='cap-h';
+    cap.innerHTML = `<b>${b.label}</b> &nbsp;·&nbsp; ${String(b.w).replace('.',',')} × ${String(b.h).replace('.',',')} cm &nbsp;·&nbsp; <b>${W} × ${H} px</b> &nbsp;·&nbsp; szyby: ${b.panes.map(p=>String(p).replace('.',',')).join(' / ')} cm`;
+    wrap.appendChild(cap);
+  }
+  wrap.appendChild(frame);
+});
+</script>
+</body>
+</html>

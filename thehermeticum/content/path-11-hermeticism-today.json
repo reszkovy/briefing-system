@@ -1,0 +1,31 @@
+{
+  "path": "path/11-hermeticism-today",
+  "trail": [["The Path", "/path/"]],
+  "crumb": "11 · Hermeticism today",
+  "kicker": "The Path — step 11",
+  "title": "Hermeticism today — what survives, what is costume",
+  "desc": "Where the tradition genuinely continues: academic study, working orders, alchemy's reassessment, and the modern operational reading. And where the name is only decoration.",
+  "h1": "Hermeticism today",
+  "tldr": "The tradition did not end with Casaubon and it did not survive as one thing. Four strands are alive: serious academic study, orders and practices that trace real lineages, the historical reassessment of alchemy, and a modern operational reading that takes the structure and drops the metaphysics. A fifth thing uses the name as decoration, and telling them apart is a skill worth having.",
+  "img": "art-today.jpg",
+  "body": "<p>People ask whether Hermeticism is a living tradition or a historical curiosity. The honest answer is that it is four living things and one costume.</p><h2>1. The academic strand</h2><p>The strongest and least visible. Western esotericism became a recognised academic field in the last forty years, with chairs at Amsterdam and Exeter, peer-reviewed journals and critical editions. This is where the real work happens: Copenhaver's translation, van Bladel on the Arabic transmission, Hanegraaff on how the field constructed its own history, Bull on the figure of Hermes.</p><p>If you want to know what the texts say, this strand is the one to follow, and it is more interesting than its reputation suggests. It is also where most popular claims go to die.</p><h2>2. Orders and initiatory practice</h2><p>Groups descending from the Hermetic Order of the Golden Dawn and its many successors continue to work rituals, grades and correspondences. Their material is largely nineteenth-century in construction — much of it assembled from Kabbalah, Egyptian revival, Freemasonry and the Hermetica together — which does not make it fake, but does make it modern.</p><p>The honest description is that these are living practices with a documented history of about a hundred and fifty years, drawing on older material. Practitioners who say that plainly are trustworthy; those who claim unbroken Egyptian transmission are not.</p><h2>3. Alchemy, reassessed</h2><p>Not a revival of gold-making but a rewriting of the history. Principe and Newman's demonstration that many alchemical texts describe performable operations changed how the whole field is read, and put alchemy back into the history of science rather than the history of delusion. Some contemporary practitioners work laboratory alchemy in that spirit — as historical reconstruction rather than as medicine.</p><h2>4. The operational reading</h2><p>The newest strand, and the one this site belongs to. It takes the Hermetic structure — attention, correspondence between inner state and outer system, transformation as a staged process — and applies it to contemporary life without asserting the metaphysics. The test is honesty: does the practitioner say plainly which parts are ancient, which are their own, and what the practice does not promise?</p><p>Our own <a href=\"/book/\">book</a> is an instance of this strand, and we say so rather than presenting it as recovered wisdom. That claim is checkable: every chapter names its limits and its sources.</p><h2>5. The costume</h2><p>Hermetic as an aesthetic: sacred geometry on a poster, &ldquo;alchemy&rdquo; in the name of a supplement, the seven principles as a slide in a coaching deck, an Emerald Tablet quote over a sunset. It is harmless as decoration and dishonest when it borrows authority — the specific move being to invoke antiquity for a claim that has no ancient source.</p><h2>How to tell them apart</h2><p>Three questions, and they work on any source including ours. Where does this claim come from, in a form I could check? What does the person say they do not know? And what does the practice explicitly not promise? A source that answers all three is worth your time whatever strand it belongs to. A source that answers none is selling a mood.</p><p class=\"rule\">The tradition is alive in four places and impersonated in a fifth. The difference is never the vocabulary — it is whether the claims come with an address you can visit.</p>",
+  "facts": [
+    ["Academic centres", "Amsterdam (chair since 1999), Exeter (EXESESO)"],
+    ["Key living scholarship", "Copenhaver, Hanegraaff, van Bladel, Bull, Principe"],
+    ["Orders", "Golden Dawn descendants — c. 150 years of documented history"],
+    ["Alchemy today", "Historical reconstruction, not metallurgy"],
+    ["The test", "Sources cited · uncertainty named · limits stated"]
+  ],
+  "faq": [
+    ["Is there an unbroken lineage from antiquity?", "No, and claims to the contrary do not survive contact with the documents. The transmission is real but broken and repeatedly reconstructed — Arabic, then Latin, then Renaissance, then nineteenth-century revival. Each stage added and lost material, and that history is more interesting than an invented continuity."],
+    ["Can I practise without believing the cosmology?", "Yes, and most modern readers do. The structure — observe, notice pattern, act, integrate — stands on its own; the metaphysics is a separate commitment. Say which one you are making and nothing dishonest happens."],
+    ["Is this site part of the tradition or writing about it?", "Both, and we try to keep the seam visible. The reference pages describe what the sources say; the book applies the structure to contemporary life and is labelled as our application, not as recovered doctrine."]
+  ],
+  "sources": [
+    "Wouter J. Hanegraaff, <i>Esotericism and the Academy</i> (Cambridge UP, 2012).",
+    "Christian H. Bull, <i>The Tradition of Hermes Trismegistus</i> (Brill, 2018).",
+    "Research dossiers: modern-occult.md §1–§2; scholarship.md §1–§2; great-work.md §1."
+  ],
+  "ld_type": "Article",
+  "next": "Next &rarr; <a href=\"/path/12-the-reading-map/\">Step 12: The reading map</a>"
+}

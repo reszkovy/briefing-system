@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M-Typer — szybka diagnostyka prątków metodą FIA-MS/MS | DiMedical</title>
+<meta name="description" content="M-Typer to innowacyjna technologia diagnostyczna DiMedical wykorzystująca tandemową spektrometrię mas (FIA-MS/MS) i analizę kwasów mikolowych do identyfikacji i różnicowania prątków z rodzaju Mycobacterium (MTBC i NTM).">
+<link rel="canonical" href="https://dimedical.vercel.app/m-typer">
+<link rel="alternate" hreflang="pl" href="https://dimedical.vercel.app/m-typer">
+<link rel="alternate" hreflang="en" href="https://dimedical.vercel.app/en/m-typer">
+<link rel="alternate" hreflang="x-default" href="https://dimedical.vercel.app/m-typer">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DiMedical">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:title" content="M-Typer — szybka diagnostyka prątków metodą FIA-MS/MS | DiMedical">
+<meta property="og:description" content="M-Typer to innowacyjna technologia diagnostyczna DiMedical wykorzystująca tandemową spektrometrię mas (FIA-MS/MS) i analizę kwasów mikolowych do identyfikacji i różnicowania prątków z rodzaju Mycobacterium (MTBC i NTM).">
+<meta property="og:url" content="https://dimedical.vercel.app/m-typer">
+<meta property="og:image" content="https://dimedical.vercel.app/assets/og-dimedical.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Laboratorium diagnostyczne DiMedical">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dimedical.vercel.app/assets/og-dimedical.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalOrganization","name":"Centrum Medycyny Klinicznej DiMedical Sp. z o.o.","url":"https://dimedical.vercel.app/","email":"kontakt@dimedical.pl","telephone":"+48502660480","foundingDate":"2016","address":{"@type":"PostalAddress","streetAddress":"ul. Żeromskiego 52","postalCode":"90-626","addressLocality":"Łódź","addressCountry":"PL"},"geo":{"@type":"GeoCoordinates","latitude":51.7663738,"longitude":19.4477804},"medicalSpecialty":["Microbiology","Pathology"]}</script>
+<link rel="icon" href="assets/cropped-favicon-dimedical-02-1-32x32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/cropped-favicon-dimedical-02-1-180x180.png">
+<link rel="preload" href="assets/fonts/dm-sans-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/dm-sans-400-800-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('assets/fonts/dm-sans-400-800-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'DM Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url('assets/fonts/dm-sans-400-800-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/ibm-plex-mono-400-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/ibm-plex-mono-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/ibm-plex-mono-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/ibm-plex-mono-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/ibm-plex-mono-600-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/ibm-plex-mono-600-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}:root{--paper:#FBFBFE;--paper-2:#F4F3FB;--paper-3:#EEEDF8;--white:#FFFFFF;--ink:#17225C;--ink-2:#2B3878;--body:#57628C;--mute:#646E8E;--faint:#A2AAC6;--lav:#A093DB;--lav-2:#7161BC;--lav-soft:#EBE7FA;--lav-mist:#F5F2FE;--mint:#2FCB9E;--mint-soft:#E2F8F1;--coral:#FF5A5F;--line:rgba(23,34,92,.09);--line-2:rgba(23,34,92,.16);--sh-xs:0 1px 2px rgba(23,34,92,.05);--sh-sm:0 2px 8px rgba(23,34,92,.06),0 1px 2px rgba(23,34,92,.04);--sh-md:0 8px 28px rgba(23,34,92,.08),0 2px 6px rgba(23,34,92,.04);--sh-lg:0 24px 64px rgba(23,34,92,.10),0 6px 16px rgba(23,34,92,.05);--sh-xl:0 48px 120px rgba(23,34,92,.14),0 12px 32px rgba(23,34,92,.06);--sh-lav:0 24px 60px rgba(136,120,206,.22);--display:'DM Sans',system-ui,sans-serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--gut:clamp(20px,4vw,48px);--max:1280px;--r-sm:12px;--r-md:20px;--r-lg:28px;--r-xl:40px;--r-pill:999px;--ease:cubic-bezier(.32,.72,0,1);--ease-out:cubic-bezier(.16,1,.3,1);--ease-spr:cubic-bezier(.34,1.56,.64,1)}*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:180px;-webkit-text-size-adjust:100%}body{margin:0;background:var(--paper);color:var(--body);font-family:var(--sans);font-size:16.5px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}img,svg{display:block;max-width:100%}img{height:auto}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}h1,h2,h3,h4{font-family:var(--display);color:var(--ink);font-weight:700;line-height:1.08;letter-spacing:-.025em;margin:0;text-wrap:balance}p{margin:0;text-wrap:pretty}::selection{background:var(--lav);color:#fff}.progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--lav),var(--mint));z-index:200;transition:width .1s linear}.atmos{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.72;will-change:transform}.blob-1{width:56vw;height:56vw;top:-22vw;right:-14vw;background:radial-gradient(circle at 40% 40%,rgba(160,147,219,.55),transparent 68%)}.blob-2{width:46vw;height:46vw;top:44vh;left:-18vw;background:radial-gradient(circle at 50% 50%,rgba(47,203,158,.34),transparent 68%)}.blob-3{width:40vw;height:40vw;top:130vh;right:-8vw;background:radial-gradient(circle at 50% 50%,rgba(136,120,206,.32),transparent 68%)}.grid-overlay{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(to right,rgba(23,34,92,.028) 1px,transparent 1px),linear-gradient(to bottom,rgba(23,34,92,.028) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 120% 80% at 50% 0%,#000 20%,transparent 75%)}.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.34;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E")}.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}.topbar{border-bottom:1px solid var(--line);background:rgba(251,251,254,.72);backdrop-filter:blur(14px);position:relative;z-index:60;font-size:12.5px}.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:44px}.lang{display:flex;align-items:center;gap:2px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em}.lang a{padding:4px 9px;border-radius:var(--r-pill);color:var(--mute);transition:.25s var(--ease)}.lang a.on{background:var(--ink);color:#fff}.lang a:not(.on):hover{color:var(--ink);background:var(--lav-soft)}.top-right{display:flex;align-items:center;gap:22px;color:var(--body)}.top-right a{display:inline-flex;align-items:center;gap:7px;transition:color .25s}.top-right a:hover{color:var(--lav-2)}.top-right .sep{width:1px;height:14px;background:var(--line-2)}.top-right .soc{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}.ico{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}.nav-shell{position:sticky;top:0;z-index:80;padding:14px 0;transition:padding .4s var(--ease)}.nav-shell.stuck{padding:8px 0}.nav{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:20px;background:rgba(255,255,255,.78);backdrop-filter:blur(20px) saturate(1.4);border:1px solid rgba(255,255,255,.9);box-shadow:var(--sh-md);border-radius:var(--r-pill);padding:10px 14px 10px 26px;transition:box-shadow .4s var(--ease),background .4s var(--ease)}.nav>.btn{justify-self:end}.nav>.burger{justify-self:end}.nav-shell.stuck .nav{box-shadow:var(--sh-lg);background:rgba(255,255,255,.92)}.logo{display:flex;align-items:center;flex:none}.logo img{height:40px;width:auto}.menu{display:flex;align-items:center;justify-content:center;gap:2px;margin:0;padding:0}.menu>li{position:relative;list-style:none}.menu a,.menu button.mtrig{display:flex;align-items:center;gap:5px;padding:9px 14px;border-radius:var(--r-pill);font-size:14px;font-weight:500;color:var(--ink-2);white-space:nowrap;transition:.28s var(--ease)}.menu a:hover,.menu button.mtrig:hover,.menu li.open button.mtrig{background:var(--lav-soft);color:var(--ink)}.menu a.active{color:var(--ink);font-weight:600}.menu a.active::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:16px;height:2px;border-radius:2px;background:var(--lav)}.caret{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.2;transition:transform .3s var(--ease)}.menu li.open .caret{transform:rotate(180deg)}.submenu{position:absolute;top:calc(100%+12px);left:50%;translate:-50% 0;min-width:256px;padding:8px;margin:0;list-style:none;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-lg);opacity:0;visibility:hidden;transform:translateY(-8px) scale(.97);transform-origin:top center;transition:.32s var(--ease)}.menu li.open .submenu{opacity:1;visibility:visible;transform:translateY(0) scale(1)}.submenu a{flex-direction:column;align-items:flex-start;gap:2px;padding:11px 14px;border-radius:var(--r-sm)}.submenu a strong{font-size:14.5px;font-weight:600;color:var(--ink)}.submenu a .opis{font-size:12px;color:var(--mute);line-height:1.4}.submenu a:hover{background:var(--lav-mist)}.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:var(--r-pill);font-size:14px;font-weight:600;font-family:var(--sans);transition:.32s var(--ease);white-space:nowrap;position:relative;overflow:hidden}.btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s var(--ease)}.btn:hover svg{transform:translateX(4px)}.btn-primary{background:var(--ink);color:#fff;box-shadow:0 6px 20px rgba(23,34,92,.22)}.btn-primary:hover{background:var(--ink-2);box-shadow:0 12px 32px rgba(23,34,92,.3);transform:translateY(-2px)}.btn-lav{background:linear-gradient(135deg,var(--lav-2),var(--lav));color:#fff;box-shadow:var(--sh-lav)}.btn-lav:hover{transform:translateY(-2px);box-shadow:0 30px 70px rgba(136,120,206,.32)}.btn-ghost{background:var(--white);color:var(--ink);border:1px solid var(--line-2);box-shadow:var(--sh-sm)}.btn-ghost:hover{border-color:var(--lav);color:var(--lav-2);transform:translateY(-2px);box-shadow:var(--sh-md)}.btn-sm{padding:9px 17px;font-size:13px}.burger{display:none;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;background:var(--lav-soft)}.burger svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round}.eu{padding-top:26px}.eu-inner{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding:18px 0 20px;border-bottom:1px solid var(--line)}.eu-strip{height:38px;width:auto;flex:none}.eu-txt{font-size:11.5px;line-height:1.55;color:var(--mute);max-width:600px}.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--lav-2);margin-bottom:20px}.eyebrow::before{content:'';width:26px;height:1px;background:currentColor;opacity:.55}.eyebrow.mint{color:var(--mint)}.hero{padding:38px 0 clamp(48px,7vw,86px);position:relative}.hero-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:clamp(30px,4.5vw,64px);align-items:center}.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 8px;border-radius:var(--r-pill);background:var(--white);border:1px solid var(--line);box-shadow:var(--sh-sm);font-size:12.5px;color:var(--ink-2);margin-bottom:26px}.hero-badge b{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;background:var(--mint-soft);color:#12876A;padding:4px 10px;border-radius:var(--r-pill);font-weight:600}@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(47,203,158,0)}100%{box-shadow:0 0 0 0 rgba(47,203,158,0)}}.hero h1{font-size:clamp(34px,4.7vw,61px);font-weight:800;letter-spacing:-.036em;line-height:1.04}.hero h1 .accent{position:relative;display:inline-block;background:linear-gradient(96deg,var(--lav-2) 0%,#1FB78C 62%,#0E9E76 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero-lead{font-size:17px;line-height:1.72;color:var(--body);max-width:52ch;margin-top:22px}.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin-top:30px}.hero-visual{position:relative}.hero-stage{position:relative;aspect-ratio:1/.94}.hero-orb{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;pointer-events:none}.hero-orb img{width:80%;height:auto;filter:drop-shadow(0 34px 46px rgba(23,34,92,.20)) drop-shadow(0 4px 12px rgba(47,203,158,.28));animation:orbit 9s ease-in-out infinite;transform-origin:center}@keyframes orbit{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}33%{transform:translateY(-15px) rotate(3.5deg) scale(1.015)}66%{transform:translateY(7px) rotate(-2.5deg) scale(.994)}}.hero-orb::before{content:'';position:absolute;width:62%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(47,203,158,.34),rgba(160,147,219,.18) 52%,transparent 72%);filter:blur(30px);animation:halo 9s ease-in-out infinite}@keyframes halo{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.13);opacity:1}}.float{position:absolute;z-index:3;background:rgba(255,255,255,.86);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.95);border-radius:var(--r-md);box-shadow:var(--sh-lg);padding:14px 18px;animation:float 7s ease-in-out infinite}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}.float .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}.float .v{font-family:var(--display);font-size:26px;font-weight:800;color:var(--ink);line-height:1.1;margin-top:3px;letter-spacing:-.02em}.float .v small{font-size:13px;font-weight:600;color:var(--mint)}.float-a{top:7%;left:-7%;animation-delay:-1s}.float-b{bottom:11%;right:-6%;animation-delay:-3.4s}.float-c{bottom:-3%;left:8%;animation-delay:-5.2s;padding:11px 16px}@keyframes slide{to{transform:translateX(-50%)}}@keyframes pin{0%{box-shadow:0 0 0 0 rgba(160,147,219,.55);opacity:.9}70%{box-shadow:0 0 0 20px rgba(160,147,219,0);opacity:.35}100%{box-shadow:0 0 0 0 rgba(160,147,219,0);opacity:.9}}.eu-note{display:flex;align-items:center;gap:12px}.rv{opacity:0;transform:translate3d(0,26px,0) scale(.985);filter:blur(6px);transition:opacity .9s var(--ease-out),transform 1s var(--ease-out),filter .8s var(--ease-out);transition-delay:var(--d,0s);will-change:transform,opacity}.rv.in{opacity:1;transform:none;filter:blur(0)}.rv.done{will-change:auto}.rv-d1{--d:.08s}.rv-d2{--d:.16s}.rv-d3{--d:.24s}.rv-d4{--d:.32s}.hero-enter>*{opacity:0;transform:translateY(24px);animation:enter .95s var(--ease-out) forwards}.hero-enter>*:nth-child(1){animation-delay:.05s}.hero-enter>*:nth-child(2){animation-delay:.2s}.hero-enter>*:nth-child(3){animation-delay:.3s}.hero-enter>*:nth-child(4){animation-delay:.4s}@keyframes enter{to{opacity:1;transform:none}}.hero-visual{opacity:0;animation:enter 1.2s var(--ease-out) .3s forwards}@media (max-width:1080px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:52px}.hero-visual{max-width:520px;margin-inline:auto;width:100%}.float-a{left:-3%}.float-b{right:-2%}.rzad-4{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(2){border-right:none;padding-right:0}.stat:nth-child(3){padding-left:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);padding-bottom:24px}.stat:nth-child(3),.stat:nth-child(4){padding-top:26px}.motto-grid{grid-template-columns:minmax(0,1fr)}.motto-visual{aspect-ratio:16/10}.foot-top{grid-template-columns:1fr 1fr;gap:34px}}@media (max-width:900px){.menu,.nav .btn{display:none}.burger{display:flex}.news-grid,.loc-grid,.partners-grid{grid-template-columns:minmax(0,1fr)}.top-right .hide-sm{display:none}}@media (max-width:640px){body{font-size:15.5px}.rzad-4{grid-template-columns:minmax(0,1fr)}.stats-inner{grid-template-columns:minmax(0,1fr)}.stat{border-right:none;border-bottom:1px solid var(--line);padding:22px 0 20px}.stat:last-child{border-bottom:none}.news-card{grid-template-columns:minmax(0,1fr)}.news-thumb{aspect-ratio:16/9;border-right:none;border-bottom:1px solid var(--line)}.foot-top{grid-template-columns:minmax(0,1fr)}.float-c{display:none}.sec-head{margin-bottom:32px}}@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}.rv{opacity:1;transform:none}.hero-enter>*,.hero-visual{opacity:1;transform:none}}.mnav{position:fixed;inset:0 0 auto 0;z-index:70;margin:8px var(--gut);padding:22px;background:rgba(255,255,255,.97);backdrop-filter:blur(22px);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-xl);top:96px;max-height:calc(100vh - 120px);overflow-y:auto;animation:mnavIn .32s var(--ease-out)}@keyframes mnavIn{from{opacity:0;transform:translateY(-10px)}}.subhero{padding:44px 0 clamp(34px,5vw,58px);position:relative}.crumbs{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--mute);margin-bottom:24px}.crumbs a{color:var(--lav-2);transition:color .3s}.crumbs a:hover{color:var(--ink)}.crumbs span{opacity:.42}.subhero h1{font-size:clamp(34px,5.2vw,62px);letter-spacing:-.036em;line-height:1.04}.subhero .lead{font-size:18px;line-height:1.7;color:var(--body);max-width:62ch;margin-top:22px}.subhero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,4.5vw,64px);align-items:center}.subhero-foto{margin:0;position:relative;overflow:hidden;border-radius:var(--r-xl);aspect-ratio:1/1.06;box-shadow:var(--sh-xl);background:var(--paper-2);animation:kadrIn 1.1s var(--ease-out) both}.subhero-foto img{width:100%;height:100%;object-fit:cover;display:block}.subhero-foto::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(23,34,92,.07);background:linear-gradient(200deg,rgba(113,97,188,.10),transparent 46%)}@keyframes kadrIn{from{opacity:0;transform:translateY(20px) scale(.985)}}@media (max-width:900px){.subhero-foto{aspect-ratio:4/3}}.subhero-visual{position:relative;aspect-ratio:1/.88;display:flex;align-items:center;justify-content:center}.subhero-visual img{width:74%;height:auto;filter:drop-shadow(0 26px 40px rgba(23,34,92,.18));animation:orbit 9s ease-in-out infinite}.price-tabs{position:sticky;top:88px;z-index:45;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:30px;background:var(--white);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-sm);overflow:hidden}@media (max-width:1080px){.subhero-grid{grid-template-columns:minmax(0,1fr);gap:44px}.subhero-visual{max-width:460px;margin-inline:auto;width:100%}.split{grid-template-columns:minmax(0,1fr)}.aside-card{position:static}.cta-shell{grid-template-columns:minmax(0,1fr)}.price-row{grid-template-columns:minmax(0,1fr) 120px 110px}.price-row>:nth-child(3){display:none}}.btn:focus-visible,.price-tab:focus-visible,.rail-btn:focus-visible{outline-offset:4px}.skip{position:absolute;left:-9999px;top:0;z-index:300;padding:12px 20px;border-radius:0 0 var(--r-md) 0;background:var(--ink);color:#fff;font-size:14px;font-weight:600}.skip:focus{left:0}.hero-badge b{white-space:nowrap}@media (max-width:560px){.hero-badge{flex-direction:column;align-items:flex-start;gap:8px;padding:12px 16px;border-radius:var(--r-md);line-height:1.45}}.subhero+.sec-sm{padding-top:0}.subhero:has(+.sec-sm){padding-bottom:clamp(24px,3vw,36px)}@media (max-width:640px){.topbar .wrap{height:auto;min-height:44px;padding-block:2px;flex-wrap:wrap}.lang a{padding:12px 14px}.top-right{gap:14px}.top-right a{padding-block:12px}.foot-col ul{gap:0}.foot-col a{padding-block:11px}.loc-meta{gap:0}.loc-meta a{padding-block:10px}.loc-meta>span{padding-block:6px}.link-arrow{padding-block:13px}.crumbs a{padding-block:10px}.price-note a{display:inline-block;padding-block:8px}.aside-card .row{padding-block:6px}.aside-card .row a{display:inline-block;padding-block:11px}}.subhero-cover{padding:26px 0 0}.subhero-cover .crumbs{margin-bottom:12px}.cover{position:relative;margin:0;overflow:hidden;isolation:isolate;border-radius:var(--r-xl);min-height:clamp(230px,25vw,320px);display:flex;align-items:flex-end;box-shadow:var(--sh-xl);background:#101B49}.cover>img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transform:scale(1.02);animation:coverIn 1.4s var(--ease-out) both}@keyframes coverIn{from{transform:scale(1.09);opacity:.4}}.cover::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,27,73,.34) 0%,rgba(16,27,73,.60) 40%,rgba(16,27,73,.90) 100%),linear-gradient(90deg,rgba(45,36,110,.55),transparent 68%)}.cover::after{content:'';position:absolute;inset:0;z-index:-1;opacity:.5;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 80% at 85% 15%,#000,transparent 70%)}.cover-body{position:relative;z-index:2;width:100%;padding:clamp(22px,2.6vw,34px) clamp(24px,3vw,38px);display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px}.cover-txt{max-width:62ch;min-width:0}.cover-body .eyebrow{color:rgba(255,255,255,.66);margin-bottom:14px}.cover-body h1{color:#fff;font-size:clamp(28px,3.5vw,44px);letter-spacing:-.032em;line-height:1.06}.cover-body h1 em{font-style:normal;color:var(--mint)}.cover-body .lead{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.62;margin-top:12px;max-width:58ch}.cover-body .lead .gat{color:rgba(255,255,255,.92)}.cover-body .metabar{margin-top:16px}.cover-body .meta-chip{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.2);backdrop-filter:blur(8px);box-shadow:none}.cover-body .meta-chip:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.34)}.cover-body .meta-chip b{color:rgba(255,255,255,.6)}.cover-body .meta-chip span{color:#fff}.cover-body .hero-cta{margin-top:0;flex-direction:column;align-items:stretch;flex:none}.cover-body .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.26);backdrop-filter:blur(8px)}.cover-body .btn-ghost:hover{background:#fff;color:var(--ink);border-color:#fff}.cover-note{position:absolute;right:18px;top:16px;z-index:2;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}@media (max-width:900px){.cover-body{grid-template-columns:minmax(0,1fr);align-items:start;gap:18px}.cover-body .hero-cta{flex-direction:row}}@media (max-width:640px){.cover{min-height:0}.cover-body{padding:22px 20px 24px}.cover-note{display:none}}.crumbs-wrap{padding-top:26px}.crumbs-wrap .crumbs{margin-bottom:0}.svc-tabs{position:sticky;top:88px;z-index:45;padding:0;margin-top:14px;pointer-events:none}.switch{pointer-events:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-md);overflow:hidden}.swi{position:relative;min-width:0;padding:14px 20px;text-align:center;border-right:1px solid var(--line);font-size:14.5px;font-weight:500;color:var(--ink-2);transition:background .3s var(--ease),color .3s var(--ease)}.swi:last-child{border-right:none}.swi:hover{background:var(--lav-mist);color:var(--ink)}.swi.on{background:var(--white);color:var(--ink);font-weight:600}.swi.on::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--lav-2),var(--mint))}.subhero-cover{padding:14px 0 0}.cover{position:relative;margin:0;overflow:hidden;isolation:isolate;border-radius:var(--r-xl);min-height:clamp(200px,21vw,268px);display:flex;align-items:flex-end;background:#101B49;box-shadow:var(--sh-xl)}.cover>img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;animation:coverIn 1.4s var(--ease-out) both}@keyframes ping{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(4.6);opacity:0}}.pole{position:fixed;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none;mask-image:radial-gradient(ellipse 110% 85% at 50% 25%,#000 20%,rgba(0,0,0,.55) 62%,transparent 95%)}@keyframes vtOut{to{opacity:0;transform:translateY(-8px)}}@keyframes vtIn{from{opacity:0;transform:translateY(12px)}}.btn{--bx:50%;--by:50%;isolation:isolate}.btn::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;opacity:0;transition:opacity .45s var(--ease);background:radial-gradient(120px circle at var(--bx) var(--by),rgba(255,255,255,.32),transparent 70%)}.btn:hover::before{opacity:1}.btn-primary{background-image:linear-gradient(120deg,var(--lav-2),var(--mint));background-size:100% 100%}.btn-primary{position:relative}.btn-primary::after{content:'';position:absolute;inset:0;z-index:-2;border-radius:inherit;background:var(--ink);transition:opacity .5s var(--ease)}.btn-primary:hover{transform:none;box-shadow:0 10px 30px rgba(113,97,188,.36)}.btn-primary:hover::after{opacity:0}.btn-primary:active{transform:scale(.975)}.btn-lav:hover{transform:none;box-shadow:0 16px 42px rgba(113,97,188,.34)}.btn-lav:active{transform:scale(.975)}.btn-ghost:hover{transform:none}.btn-white:hover{transform:none}.btn-white:active,.btn-ghost:active{transform:scale(.975)}.btn:active{transition-duration:.09s}em,i,cite,address,dfn,var,q,.gat,.opis{font-style:normal !important}.gat{color:var(--ink-2);font-weight:500}.cover-body .gat,.motto .gat{color:inherit;font-weight:500}.subhero-cover .crumbs{view-transition-name:okruszki}.svc-tabs{view-transition-name:zakladki}.hero-foto{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl);aspect-ratio:1/.94;box-shadow:var(--sh-xl);background:#0E1740}.hero-foto img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);animation:heroIn 1.6s var(--ease-out) both}@keyframes heroIn{from{transform:scale(1.1);opacity:.35}}.hero-foto::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(16,27,73,.18) 0%,transparent 32%,rgba(16,27,73,.78) 100%),linear-gradient(120deg,rgba(113,97,188,.20),transparent 55%)}.hero-foto figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:22px 24px}@media (max-width:640px){.hero-foto figcaption{padding:18px}.hf-metoda{font-size:12.5px;letter-spacing:.16em}}.mnav[hidden]{display:none}.mnav{position:fixed;inset:0;z-index:200;margin:0;padding:0;border:none;border-radius:0;max-height:none;display:flex;flex-direction:column;background:var(--white);box-shadow:none;backdrop-filter:none;animation:mnavIn .34s var(--ease-out);overscroll-behavior:contain}@keyframes mnavIn{from{opacity:0;transform:translateY(-8px)}}.mnav-top{flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px var(--gut);border-bottom:1px solid var(--line)}.mnav-logo img{height:38px;width:auto;display:block}.mnav-x{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--lav-mist);color:var(--ink);transition:background .3s var(--ease),transform .3s var(--ease)}.mnav-x:hover,.mnav-x:focus-visible{background:var(--lav-soft);transform:rotate(90deg)}.mnav-x svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round}.mnav-body{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:10px var(--gut) 22px}.mnav-body ul{list-style:none;margin:0;padding:0;display:block}.mnav-body ul+.mnav-group{margin-top:6px}.mnav-body ul:last-of-type{border-top:1px solid var(--line);margin-top:10px;padding-top:6px}.mnav-body a{display:flex;flex-direction:column;gap:2px;padding:14px 4px;border-radius:0;font-size:19px;font-weight:500;letter-spacing:-.012em;color:var(--ink);transition:color .25s var(--ease),padding-left .25s var(--ease)}.mnav-body a:hover,.mnav-body a:focus-visible{background:none;color:var(--lav-2);padding-left:10px}.mnav-op{font-size:13px;font-weight:400;line-height:1.4;color:var(--mute);letter-spacing:0}.mnav-group{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);padding:18px 4px 4px;margin:0}.mnav-stopka{flex:none;padding:18px var(--gut) calc(18px+env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--paper)}.mnav-stopka .btn{width:100%;justify-content:center;flex-wrap:nowrap;white-space:nowrap}.mnav-kontakt{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:nowrap;margin-top:14px;font-size:13px;color:var(--body)}.mnav-kontakt a{white-space:nowrap}@media (max-width:370px){.mnav-kontakt{flex-direction:column;gap:6px}.mnav-sep{display:none}}.mnav-kontakt a{color:var(--body);transition:color .3s}.mnav-kontakt a:hover{color:var(--lav-2)}.mnav-sep{width:1px;height:13px;background:var(--line)}body:has(.mnav:not([hidden])) .fab,body:has(.mnav:not([hidden])) .topbar,body:has(.mnav:not([hidden])) .nav-shell{opacity:0;pointer-events:none}.kotwice{position:sticky;top:88px;z-index:44;padding:0;margin-top:14px;pointer-events:none}.kot-pas{pointer-events:auto;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));background:var(--white);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:var(--sh-md);overflow:hidden}.kot{position:relative;min-width:0;padding:13px 8px;font-size:13.5px;font-weight:500;color:var(--ink-2);text-align:center;border-right:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background .3s var(--ease),color .3s var(--ease)}.kot:last-child{border-right:none}.kot:hover{background:var(--lav-mist);color:var(--ink)}.kot.on{color:var(--ink);font-weight:600;background:var(--white)}.kot.on::before{content:'';position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--lav-2),var(--mint))}.switch,.kot-pas,.price-tabs{--pas-h:44px;border-radius:var(--r-sm);min-height:var(--pas-h)}.swi,.kot,.price-tab{display:flex;align-items:center;justify-content:center;min-height:var(--pas-h);padding-block:0}.poz.in .why-ico svg>*,.rv.in .dl-ico svg>*,.in>.dl-ico svg>*{animation:rysujIko .85s var(--ease-out) both}.poz.in .why-ico svg>*:nth-child(2),.rv.in .dl-ico svg>*:nth-child(2){animation-delay:.13s}.poz.in .why-ico svg>*:nth-child(3),.rv.in .dl-ico svg>*:nth-child(3){animation-delay:.26s}.poz.in .why-ico svg>*:nth-child(4),.rv.in .dl-ico svg>*:nth-child(4){animation-delay:.36s}@keyframes rysujIko{from{stroke-dasharray:1;stroke-dashoffset:1}to{stroke-dasharray:1;stroke-dashoffset:0}}@keyframes rysujZnow{from{stroke-dasharray:1;stroke-dashoffset:1}to{stroke-dasharray:1;stroke-dashoffset:0}}@keyframes rysujTor{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes rozwin{from{opacity:0;transform:translateY(-5px)}}@keyframes zgodaIn{from{opacity:0;transform:translateY(18px)}}@media (max-width:620px){.zgoda{padding:18px;gap:14px}.zgoda-akcje{width:100%}.zgoda-akcje .btn{flex:1 1 0;justify-content:center}}body.zgoda-widoczna .fab{bottom:calc(var(--zgoda-h,0px)+34px+env(safe-area-inset-bottom,0px));transition:bottom .4s var(--ease-out)}@media (max-width:640px){.split>*,.subhero-grid>*,.hero-grid>*,.rzad>*,.news-grid>*,.foot-top>*{min-width:0}.loc-tel a{flex-direction:column;align-items:flex-start;gap:3px;padding:12px 0}.loc-tel-v{text-align:left}.loc-meta a,.loc-meta span{overflow-wrap:anywhere}.aside-card .row{flex-wrap:wrap;gap:2px 10px}.aside-card .row b{text-align:left}.card,.aside-card{overflow-wrap:anywhere}}</style>
+<link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles.css"></noscript>
+</head>
+<body class="page-m-typer">
+
+<a class="skip" href="#tresc">Przejdź do treści</a>
+<div class="progress" id="progress"></div>
+
+<!-- atmosfera -->
+<div class="atmos">
+  <div class="blob blob-1" data-par="0.05"></div>
+  <div class="blob blob-2" data-par="-0.04"></div>
+  <div class="blob blob-3" data-par="0.03"></div>
+</div>
+<canvas class="pole" id="pole" aria-hidden="true"></canvas>
+<div class="grid-overlay"></div>
+<div class="grain"></div>
+
+<!-- ══════════ PASEK GÓRNY ══════════ -->
+<div class="topbar">
+  <div class="wrap">
+    <nav class="lang" aria-label="Wybór języka">
+      <a href="index.html" class="on" lang="pl" hreflang="pl">PL</a>
+      <a href="en/m-typer.html" lang="en" hreflang="en">EN</a>
+    </nav>
+    <div class="top-right">
+      <a href="mailto:kontakt@dimedical.pl" class="hide-sm">
+        <svg class="ico" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="m2.5 6.5 9.5 6.5 9.5-6.5"/></svg>
+        kontakt@dimedical.pl
+      </a>
+      <span class="sep hide-sm"></span>
+      <a href="tel:+48502660480">
+        <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+        +48 502 660 480
+      </a>
+      <span class="sep hide-sm"></span>
+      <a href="https://www.facebook.com/dimedicallodz" target="_blank" rel="noopener" class="soc hide-sm">Facebook</a>
+      <a href="https://www.linkedin.com/company/dimedical" target="_blank" rel="noopener" class="soc hide-sm">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NAWIGACJA ══════════ -->
+<div class="nav-shell" id="navShell">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="index.html" class="logo" aria-label="DiMedical — strona główna">
+        <img src="assets/dimedical-logo-new.svg" alt="DiMedical — Centrum Medycyny Klinicznej" width="226" height="63" loading="lazy" decoding="async">
+      </a>
+
+      <ul class="menu">
+        <li><a href="m-typer.html" data-nav="m-typer" class="active">M-Typer</a></li>
+        <li><a href="o-nas.html" data-nav="o-nas">O nas</a></li>
+        <li><a href="aktualnosci.html" data-nav="aktualnosci">Aktualności</a></li>
+        <li class="has-sub">
+          <button class="mtrig" data-nav-group="oferta" aria-expanded="false">
+            Oferta
+            <svg class="caret" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <ul class="submenu">
+            <li><a href="gruzlica.html" data-nav="gruzlica"><strong>Gruźlica</strong><span class="gat">Diagnostyka prątka metodą FIA-MS/MS</span></a></li>
+            <li><a href="mikrobiologia.html" data-nav="mikrobiologia"><strong>Mikrobiologia</strong><span class="gat">Posiewy i diagnostyka zakażeń</span></a></li>
+            <li><a href="badania-br.html" data-nav="badania-br"><strong>Badania B+R</strong><span class="gat">Projekty rozwojowe i walidacje</span></a></li>
+          </ul>
+        </li>
+        <li><a href="cennik.html" data-nav="cennik">Cennik</a></li>
+        <li><a href="index.html#lokalizacja" data-nav="lokalizacja">Lokalizacja</a></li>
+        <li><a href="kontakt.html" data-nav="kontakt">Kontakt</a></li>
+      </ul>
+
+      <a href="kontakt.html" class="btn btn-primary btn-sm">
+        Umów badanie
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</div>
+
+<!-- menu mobilne -->
+<div class="mnav" id="mobileMenu" hidden>
+  <div class="mnav-top">
+    <a href="index.html" class="mnav-logo" aria-label="DiMedical — strona główna">
+      <img src="assets/dimedical-logo-new.svg" alt="DiMedical" width="226" height="63" loading="lazy" decoding="async">
+    </a>
+    <button class="mnav-x" aria-label="Zamknij menu">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <nav class="mnav-body" aria-label="Menu główne">
+    <ul>
+      <li><a href="m-typer.html">M-Typer</a></li>
+      <li><a href="o-nas.html">O nas</a></li>
+      <li><a href="aktualnosci.html">Aktualności</a></li>
+    </ul>
+    <p class="mnav-group">Oferta</p>
+    <ul>
+      <li><a href="gruzlica.html"><span>Gruźlica</span><span class="mnav-op">Diagnostyka prątka metodą FIA-MS/MS</span></a></li>
+      <li><a href="mikrobiologia.html"><span>Mikrobiologia</span><span class="mnav-op">Posiewy i diagnostyka zakażeń</span></a></li>
+      <li><a href="badania-br.html"><span>Badania B+R</span><span class="mnav-op">Projekty rozwojowe i walidacje</span></a></li>
+    </ul>
+    <ul>
+      <li><a href="cennik.html">Cennik</a></li>
+      <li><a href="index.html#lokalizacja">Lokalizacja</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="mnav-stopka">
+    <a href="kontakt.html" class="btn btn-lav">
+      Umów badanie
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="mnav-kontakt">
+      <a href="tel:+48502660480">+48 502 660 480</a>
+      <span class="mnav-sep"></span>
+      <a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a>
+    </div>
+  </div>
+</div>
+
+<main id="tresc">
+<!-- ══════════ HERO PODSTRONY ══════════ -->
+<section class="subhero">
+  <div class="wrap">
+    <div class="subhero-grid">
+      <div class="hero-enter">
+        <nav class="crumbs" aria-label="Ścieżka nawigacji">
+          <a href="index.html">Start</a><span>/</span><b>M-Typer</b>
+        </nav>
+        <h1>M-Typer</h1>
+        <p class="nadtytul">Szybka diagnostyka prątków metodą FIA-MS/MS</p>
+        <p class="lead">
+          Innowacyjna technologia
+          opracowana przez DiMedical, wykorzystująca tandemową spektrometrię mas do identyfikacji
+          bakterii z&nbsp;rodzaju <span class="gat">Mycobacterium</span> — w&nbsp;tym prątków należących do kompleksu
+          <span class="gat">M. tuberculosis</span> (MTBC) oraz prątków niegruźliczych (NTM).
+        </p>
+
+        <div class="metabar">
+          <div class="meta-chip"><b>Metoda</b><span>FIA-MS/MS</span></div>
+          <div class="meta-chip"><b>Marker</b><span>Kwasy mikolowe</span></div>
+          <div class="meta-chip"><b>Zakres</b><span>MTBC i&nbsp;NTM</span></div>
+          <div class="meta-chip"><b>Status</b><span>CE / IVD</span></div>
+          <div class="meta-chip"><b>Patent</b><span>EP3978617B1</span></div>
+        </div>
+
+        <div class="hero-cta">
+          <a href="kontakt.html" class="btn btn-lav">
+            Omów wdrożenie
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#dokumenty" class="btn btn-ghost">
+            Pobierz dokumentację
+            <svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-foto">
+        <img src="assets/mtyper-hero.webp" alt="Źródło jonów spektrometru mas — kapilary i strumień elektrosprayu" width="1200" height="1128" fetchpriority="high">
+        <figcaption>
+          <span class="hf-metoda">FIA-MS/MS</span>
+          <span class="hf-opis">Źródło jonów — moment rozpylenia próbki</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<nav class="kotwice" id="kotwice" aria-label="Sekcje strony">
+  <div class="wrap">
+    <div class="kot-pas">
+      <a href="#technologia" class="kot">Technologia</a>
+      <a href="#jak-dziala" class="kot">Jak działa</a>
+      <a href="#kompatybilnosc" class="kot">Sprzęt</a>
+      <a href="#reagent-kit" class="kot">Reagent Kit</a>
+      <a href="#dokumenty" class="kot">Dokumenty</a>
+      <a href="#wideo" class="kot">Film</a>
+      <a href="#publikacje" class="kot">Publikacje</a>
+          <a href="#certyfikacja" class="kot">Certyfikaty</a>
+      <a href="#wspolpraca" class="kot">Współpraca</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════ DOWÓD ══════════ -->
+<section class="dowod">
+  <div class="wrap">
+    <div class="dowod-siatka rv">
+      <div class="dowod-poz">
+        <span class="dowod-l">Czas oznaczenia</span>
+        <span class="dowod-v">2 <em>h</em></span>
+        <span class="dowod-o">zamiast 2–8 tygodni w&nbsp;metodach klasycznych</span>
+      </div>
+      <div class="dowod-poz">
+        <span class="dowod-l">Czułość</span>
+        <span class="dowod-v">92–95<em>%</em></span>
+        <span class="dowod-o">potwierdzona w&nbsp;badaniach walidacyjnych</span>
+      </div>
+      <div class="dowod-poz">
+        <span class="dowod-l">Swoistość</span>
+        <span class="dowod-v">100<em>%</em></span>
+        <span class="dowod-o">brak wyników fałszywie dodatnich</span>
+      </div>
+      <div class="dowod-poz">
+        <span class="dowod-l">Zakażenia mieszane</span>
+        <span class="dowod-v">tak</span>
+        <span class="dowod-o">wykrywane, czego nie dają techniki klasyczne</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CZYM JEST ══════════ -->
+<section class="sec" id="technologia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Technologia</span>
+        <h2>Czym jest technologia M-Typer?</h2>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="prose rv">
+        <p class="prose-lead">
+          M-Typer wykorzystuje kwasy mikolowe jako markery obecności i&nbsp;różnicowania
+          bakterii z&nbsp;rodzaju <span class="gat">Mycobacterium</span>.
+        </p>
+        <p>
+          Kwasy mikolowe to długołańcuchowe kwasy tłuszczowe stanowiące kluczowy składnik
+          strukturalny ściany komórkowej prątków. Ich profil różni się pomiędzy gatunkami
+          i&nbsp;grupami prątków, dlatego może zostać wykorzystany jako charakterystyczny marker
+          biochemiczny dla tej grupy drobnoustrojów.
+        </p>
+        <p>
+          Rozwiązanie zostało zaprojektowane jako narzędzie wspierające laboratoria
+          w&nbsp;identyfikacji i&nbsp;różnicowaniu prątków — również w&nbsp;kierunku zakażeń mieszanych,
+          których wykrycie pozostaje trudne dla technik klasycznych.
+        </p>
+        <figure class="prose-figure">
+          <img src="assets/mtyper-sciana-komorkowa.webp" alt="Ściana komórkowa prątka — warstwa kwasów mikolowych" width="1200" height="800" loading="lazy" decoding="async">
+          <figcaption>Ściana komórkowa prątka — warstwa kwasów mikolowych</figcaption>
+        </figure>
+
+        <p>
+          Technologia może wspierać wykrywanie zakażeń wywoływanych przez prątki z&nbsp;rodzaju
+          <span class="gat">Mycobacterium</span>, w&nbsp;tym <span class="gat">Mycobacterium
+          tuberculosis</span> complex oraz prątki niegruźlicze.
+        </p>
+                <div data-uzup="mtyper"></div>
+        <p>Technologia opiera się na analizie kwasów mikolowych – specyficznych lipidów ściany komórkowej, które stanowią unikalny marker biochemiczny dla tej grupy drobnoustrojów. Dzięki temu M-Typer umożliwia szybkie, precyzyjne i&nbsp;niezawodne wykrywanie zakażeń mykobakteryjnych, stanowiąc alternatywę dla tradycyjnych metod diagnostycznych, takich jak hodowla, testy PCR czy metody immunologiczne.</p>
+        <p>Kluczowym aspektem, który wyróżnia M-Typer na tle innych metod, jest jego wyjątkowa szybkość działania. Podczas gdy standardowe techniki, zwłaszcza hodowla mikrobiologiczna, mogą wymagać od dwóch do ośmiu tygodni na uzyskanie wyników, M-Typer pozwala na diagnostykę w&nbsp;ciągu zaledwie dwóch godzin. Tak znacząca redukcja czasu analizy ma ogromne znaczenie w&nbsp;przypadku chorób zakaźnych, zwłaszcza gruźlicy, gdzie szybkie wykrycie patogenu jest kluczowe dla skutecznego leczenia i&nbsp;ograniczenia transmisji.</p>
+        <p>Zastosowanie tandemowej spektrometrii mas sprawia, że technologia M-Typer charakteryzuje się wyjątkową czułością (92-95%) i&nbsp;swoistością (100%). Wysoka precyzja pomiaru pozwala na jednoznaczną identyfikację różnych gatunków <span class="gat">Mycobacterium</span>, w&nbsp;tym nie tylko <span class="gat">Mycobacterium tuberculosis</span>, ale także prątków atypowych, co ma istotne znaczenie w&nbsp;diagnostyce zakażeń oportunistycznych u&nbsp;pacjentów z&nbsp;obniżoną odpornością. Co więcej, metoda ta umożliwia detekcję infekcji mieszanych, co stanowi znaczącą przewagę nad innymi technikami diagnostycznymi, które często nie pozwalają na jednoczesne wykrycie więcej niż jednego patogenu.</p>
+
+        <h3>Trzy filary metody</h3>
+        <ul>
+          <li><strong>Izolacja kwasów mikolowych</strong> — wyodrębnienie charakterystycznych lipidów ściany komórkowej prątków z&nbsp;materiału badanego.</li>
+          <li><strong>Analiza FIA-MS/MS</strong> — wstrzykowa analiza przepływowa sprzężona z&nbsp;tandemową spektrometrią mas.</li>
+          <li><strong>Interpretacja profilu</strong> — analiza wyniku z&nbsp;użyciem dedykowanego oprogramowania M-Typer Software.</li>
+        </ul>
+      </div>
+
+      <aside class="card aside-card rv rv-d1">
+        <h4>Karta technologii</h4>
+        <div class="row"><span>Metoda</span><b>FIA-MS/MS</b></div>
+        <div class="row"><span>Marker</span><b>Kwasy mikolowe</b></div>
+        <div class="row"><span>Zakres</span><b>MTBC i&nbsp;NTM</b></div>
+        <div class="row"><span>Certyfikacja</span><b>CE / IVD</b></div>
+        <div class="row"><span>System jakości</span><b>ISO 13485</b></div>
+        <div class="row"><span>Patent</span><b>EP3978617B1</b></div>
+        <a href="kontakt.html" class="btn btn-primary btn-sm" style="margin-top:20px;width:100%;justify-content:center">
+          Zapytaj o&nbsp;wdrożenie
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ JAK DZIAŁA ══════════ -->
+<section class="sec sec-alt" id="jak-dziala">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow mint">Proces</span>
+        <h2>Jak działa M-Typer?</h2>
+        <p class="sec-lead">Proces obejmuje pięć kluczowych etapów — od przygotowania
+           materiału po interpretację wyniku.</p>
+      </div>
+    </div>
+
+    <div class="steps">
+      <article class="card step rv">
+        <div class="step-n"><img src="assets/mtyper-krok-1.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="step-i">01</span></div>
+        <div>
+          <h3>Przygotowanie materiału</h3>
+          <p>Materiał biologiczny lub pochodzący z&nbsp;hodowli jest przygotowywany do izolacji
+             kwasów mikolowych. W&nbsp;przypadku plwociny procedura obejmuje wcześniejsze
+             przygotowanie i&nbsp;upłynnienie próbki.</p>
+        </div>
+      </article>
+      <article class="card step rv rv-d1">
+        <div class="step-n"><img src="assets/mtyper-krok-2.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="step-i">02</span></div>
+        <div>
+          <h3>Izolacja kwasów mikolowych</h3>
+          <p>Z&nbsp;użyciem M-Typer Reagent Kit: płukanie, hydroliza zasadowa, neutralizacja,
+             ekstrakcja ciecz–ciecz oraz przygotowanie ekstraktu do analizy.</p>
+        </div>
+      </article>
+      <article class="card step rv rv-d2">
+        <div class="step-n"><img src="assets/mtyper-krok-3.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="step-i">03</span></div>
+        <div>
+          <h3>Analiza FIA-MS/MS</h3>
+          <p>Ekstrakt analizowany metodą wstrzykowej analizy przepływowej z&nbsp;tandemową
+             spektrometrią mas, z&nbsp;monitorowaniem wybranych przejść MRM charakterystycznych
+             dla kwasów mikolowych.</p>
+        </div>
+      </article>
+      <article class="card step rv rv-d3">
+        <div class="step-n"><img src="assets/mtyper-krok-4.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="step-i">04</span></div>
+        <div>
+          <h3>Profilowanie kwasów mikolowych</h3>
+          <p>System generuje profil analityczny kwasów mikolowych obecnych w&nbsp;badanej próbce.</p>
+        </div>
+      </article>
+      <article class="card step rv rv-d4">
+        <div class="step-n"><img src="assets/mtyper-krok-5.svg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="step-i">05</span></div>
+        <div>
+          <h3>Interpretacja wyniku</h3>
+          <p>Interpretacja profilu odbywa się z&nbsp;wykorzystaniem dedykowanego oprogramowania
+             M-Typer Software, które wspiera analizę uzyskanego wyniku.</p>
+        </div>
+      </article>
+    </div>
+
+    <figure class="pas rv">
+      <img src="assets/zespol-lab-b.webp" alt="Wprowadzanie próbek do podajnika spektrometru mas" width="1244" height="1400" loading="lazy" decoding="async">
+      <figcaption>Przygotowany ekstrakt trafia do podajnika spektrometru</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════ KORZYŚCI ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Korzyści</span>
+        <h2>Najważniejsze korzyści technologii</h2>
+        <p class="sec-lead">Nowoczesne rozwiązanie dla laboratoriów zajmujących się
+           diagnostyką prątków.</p>
+      </div>
+    </div>
+
+    <div class="rzad">
+      <article class="poz rv">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M3 20V4"/><path pathLength="1" d="M3 20h18"/><path pathLength="1" d="M6.5 20v-5M9.5 20V8.5M12.5 20v-8M15.5 20V6M18.5 20v-9.5"/></svg></div>
+        <h3>Szybka analiza profilu</h3>
+        <p>Wynik profilu kwasów mikolowych dostępny w&nbsp;ciągu godzin, a&nbsp;nie tygodni
+           oczekiwania na hodowlę.</p>
+      </article>
+      <article class="poz rv rv-d1">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M2.5 12h6"/><circle pathLength="1" cx="10.5" cy="12" r="2"/><path pathLength="1" d="M12.5 12h2.5l3-3.5h3"/><path pathLength="1" d="M12.5 12h2.5l3 3.5h3"/></svg></div>
+        <h3>Technologia FIA-MS/MS</h3>
+        <p>Wstrzykowa analiza przepływowa z&nbsp;tandemową spektrometrią mas — bez etapu
+           rozdziału chromatograficznego.</p>
+      </article>
+      <article class="poz rv rv-d2">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><circle pathLength="1" cx="12" cy="12" r="8.5"/><rect pathLength="1" x="8" y="10.6" width="8" height="2.8" rx="1.4" transform="rotate(-28 12 12)"/><path pathLength="1" d="M9.6 14.6 8 16.2M14.4 9.4 16 7.8"/></svg></div>
+        <h3>Wsparcie wykrywania prątków</h3>
+        <p>Identyfikacja bakterii z&nbsp;rodzaju <span class="gat">Mycobacterium</span>, w&nbsp;tym MTBC oraz
+           prątków niegruźliczych.</p>
+      </article>
+      <article class="poz rv rv-d3">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><circle pathLength="1" cx="5" cy="12" r="2"/><circle pathLength="1" cx="19" cy="6.5" r="2"/><circle pathLength="1" cx="19" cy="17.5" r="2"/><path pathLength="1" d="M7 12h4l6-5M7 12h4l6 5"/></svg></div>
+        <h3>Różnicowanie gatunków</h3>
+        <p>Profil kwasów mikolowych pozwala różnicować grupy prątków, w&nbsp;tym w&nbsp;zakażeniach
+           mieszanych.</p>
+      </article>
+      <article class="poz rv rv-d4">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M12 21.5s7.5-3.8 7.5-9.4V5.4L12 2.5 4.5 5.4v6.7c0 5.6 7.5 9.4 7.5 9.4Z"/><path pathLength="1" d="m8.8 11.8 2.2 2.2 4.2-4.4"/></svg></div>
+        <h3>Certyfikacja CE/IVD</h3>
+        <p>Zgodność z&nbsp;europejskimi wymaganiami dla wyrobów do diagnostyki in vitro.</p>
+      </article>
+      <article class="poz rv rv-d4">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><rect pathLength="1" x="2.5" y="4" width="19" height="15" rx="2.5"/><path pathLength="1" d="M2.5 8h19"/><path pathLength="1" d="M5 7h.01M7.5 7h.01"/><path pathLength="1" d="M6 15.5c2-4.5 3.4 1.6 5 .3s2.6-4.4 4.4-3.5S18 15 18 15"/></svg></div>
+        <h3>Dedykowane oprogramowanie</h3>
+        <p>M-Typer Software wspiera interpretację profilu i&nbsp;standaryzuje odczyt wyniku.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ KOMPATYBILNOŚĆ ══════════ -->
+<section class="sec sec-alt" id="kompatybilnosc">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Kompatybilność</span>
+        <h2>Czy M-Typer zadziała<br>w&nbsp;Twoim laboratorium?</h2>
+        <p class="sec-lead">
+          Metoda została opracowana dla laboratoriów wyposażonych w&nbsp;wysokoczułe tandemowe
+          spektrometry mas typu <strong>potrójny kwadrupol</strong>, pracujące w&nbsp;trybie
+          jonizacji ESI i&nbsp;umożliwiające analizę FIA-MS/MS.
+        </p>
+      </div>
+    </div>
+
+    <div class="prose rv" style="margin-bottom:34px">
+        <p>M-Typer został zaprojektowany z&nbsp;myślą o&nbsp;kompatybilności z&nbsp;istniejącą infrastrukturą laboratoryjną, oferując elastyczność w&nbsp;integracji z&nbsp;różnymi systemami spektrometrii mas. Oprogramowanie sterujące analizą jest dostępne w&nbsp;formie aplikacji webowej, co umożliwia zdalny dostęp i&nbsp;zarządzanie danymi z&nbsp;dowolnego miejsca, bez konieczności instalacji lokalnej. System wspiera pracę zarówno na spektrometrach marki Sciex, wymagając integracji z&nbsp;Analyst® Sciex, jak i&nbsp;na urządzeniach marki Shimadzu, co znacząco poszerza możliwości wdrożeniowe w&nbsp;laboratoriach diagnostycznych. Cała procedura diagnostyczna została zoptymalizowana pod kątem ergonomii pracy laboratoryjnej – zarówno izolacja kwasów mikolowych, jak i&nbsp;ich analiza w&nbsp;spektrometrze masowym przebiegają według ściśle określonych, zwalidowanych protokołów, zapewniając maksymalną powtarzalność wyników oraz wysoką jakość diagnostyki.</p>
+    </div>
+
+
+    <div class="komp rv">
+      <!-- wymagania -->
+      <div class="komp-wym">
+        <h3>Wymagania analityczne</h3>
+        <ul>
+          <li><b>Potrójny kwadrupol</b><span>tandemowy spektrometr mas (MS/MS)</span></li>
+          <li><b>Jonizacja ESI</b><span>elektrorozpylanie</span></li>
+          <li><b>Tryb FIA</b><span>wstrzykowa analiza przepływowa</span></li>
+          <li><b>Monitorowanie MRM</b><span>przejścia charakterystyczne dla kwasów mikolowych</span></li>
+        </ul>
+      </div>
+
+      <!-- systemy -->
+      <div class="komp-sys">
+        <h3>Systemy zwalidowane</h3>
+        <div class="sys">
+          <img src="assets/mtyper-sciex-qtrap-6500.jpg" alt="SCIEX QTRAP 6500" width="800" height="600" loading="lazy" decoding="async">
+          <div>
+            <b>SCIEX QTRAP® 6500</b>
+            <span>Potrójny kwadrupol z&nbsp;pułapką liniową</span>
+          </div>
+          <span class="sys-ok" aria-label="zwalidowany">
+            <svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>
+          </span>
+        </div>
+        <div class="sys">
+          <img src="assets/mtyper-shimadzu-lcms-8050.jpg" alt="Shimadzu LCMS-8050" width="800" height="600" loading="lazy" decoding="async">
+          <div>
+            <b>Shimadzu LCMS-8050</b>
+            <span>Wysokoczuły system LC-MS/MS</span>
+          </div>
+          <span class="sys-ok" aria-label="zwalidowany">
+            <svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>
+          </span>
+        </div>
+
+        <p class="komp-inne">
+          Metoda może pracować również na <strong>pozostałych systemach LC-MS/MS</strong>
+          spełniających powyższe wymagania.
+          <a href="kontakt.html" class="link-arrow">Sprawdzimy Twój system
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ REAGENT KIT ══════════ -->
+<section class="sec" id="reagent-kit">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow mint">Produkt</span>
+        <h2>M-Typer Reagent Kit</h2>
+        <p class="sec-lead">Wyrób medyczny do diagnostyki in vitro przeznaczony do izolacji kwasów mikolowych z&nbsp;materiału biologicznego lub pochodzącego z&nbsp;hodowli, w&nbsp;celu późniejszej analizy metodą FIA-MS/MS.</p>
+      </div>
+    </div>
+
+    <div class="kit rv">
+      <figure class="kit-foto">
+        <img src="assets/Reagent_KIT.webp" alt="M-Typer Reagent Kit — pudełko i pięć odczynników" width="1100" height="825" loading="lazy" decoding="async">
+        <figcaption>Set 1 + Set 2 — komplet odczynników na 100 izolacji</figcaption>
+      </figure>
+
+      <div class="kit-dane">
+        <p class="kit-opis">Zestaw zawiera wszystkie odczynniki niezbędne do izolacji kwasów mikolowych i&nbsp;stanowi element kompletnego workflow M-Typer.</p>
+
+        <dl class="kit-spec">
+          <div><dt>Nazwa produktu</dt><dd>M-Typer Reagent Kit</dd></div>
+          <div><dt>Nr referencyjny</dt><dd>MT-KIT-001</dd></div>
+          <div><dt>Status</dt><dd>Wyrób medyczny IVD</dd></div>
+          <div><dt>Zestaw</dt><dd>Set 1 + Set 2</dd></div>
+          <div><dt>Liczba analiz</dt><dd>100 izolacji</dd></div>
+          <div><dt>Producent</dt><dd>DiMedical Sp. z&nbsp;o.o.</dd></div>
+        </dl>
+
+        <a href="#dokumenty" class="btn btn-ghost btn-sm">
+          Instrukcja i&nbsp;karty charakterystyki
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="kit-flow rv">
+      <h3>Workflow odczynnikowy</h3>
+      <ol>
+        <li>
+          <span class="kro-n">1</span>
+          <span class="kro-t"><b>Płukanie</b><span>usunięcie zanieczyszczeń z&nbsp;materiału</span></span>
+        </li>
+        <li>
+          <span class="kro-n">2</span>
+          <span class="kro-t"><b>Hydroliza zasadowa</b><span>uwolnienie kwasów mikolowych ze ściany komórkowej</span></span>
+        </li>
+        <li>
+          <span class="kro-n">3</span>
+          <span class="kro-t"><b>Neutralizacja</b><span>doprowadzenie próbki do właściwego pH</span></span>
+        </li>
+        <li>
+          <span class="kro-n">4</span>
+          <span class="kro-t"><b>Ekstrakcja ciecz–ciecz</b><span>wyodrębnienie frakcji lipidowej</span></span>
+        </li>
+        <li>
+          <span class="kro-n">5</span>
+          <span class="kro-t"><b>Przygotowanie ekstraktu</b><span>doprowadzenie próbki do postaci gotowej do analizy</span></span>
+        </li>
+      </ol>
+      <p class="kit-uwaga">Zestaw powinien być stosowany przez wykwalifikowany personel laboratoryjny zgodnie z&nbsp;aktualną instrukcją używania.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DOKUMENTY ══════════ -->
+<section class="sec sec-alt" id="dokumenty">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Do pobrania</span>
+        <h2>Dokumenty i&nbsp;pliki</h2>
+        <p class="sec-lead">
+          Aktualna dokumentacja technologii M-Typer oraz zestawu M-Typer Reagent Kit —
+          instrukcja używania oraz karty charakterystyki SDS/MSDS.
+        </p>
+      </div>
+    </div>
+
+    <p class="sec-lead rv" style="margin-bottom:22px">
+      Przed rozpoczęciem pracy z&nbsp;zestawem należy zapoznać się z&nbsp;aktualną instrukcją używania
+      oraz kartami charakterystyki.
+    </p>
+
+    <div class="dl-list rv">
+      <a href="assets/docs/mtyper-ifu.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Instrukcja używania</b><span>PDF · IFU</span></span>
+      </a>
+      <a href="assets/docs/mtyper-kch-plukanie.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Odczynnik do płukania</b><span>PDF · Karta charakterystyki</span></span>
+      </a>
+      <a href="assets/docs/mtyper-kch-hydroliza.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Odczynnik do hydrolizy</b><span>PDF · Karta charakterystyki</span></span>
+      </a>
+      <a href="assets/docs/mtyper-kch-neutralizacja.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Odczynnik do neutralizacji</b><span>PDF · Karta charakterystyki</span></span>
+      </a>
+      <a href="assets/docs/mtyper-kch-ekstrakcja.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Odczynnik do ekstrakcji</b><span>PDF · Karta charakterystyki</span></span>
+      </a>
+      <a href="assets/docs/mtyper-kch-rozcienczenia.pdf" target="_blank" rel="noopener" class="dl">
+        <span class="dl-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M14 2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22h11a2.5 2.5 0 0 0 2.5-2.5V8Z"/><path pathLength="1" d="M14 2v6h6"/></svg></span>
+        <span><b>Odczynnik do rozcieńczeń</b><span>PDF · Karta charakterystyki</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WIDEO ══════════ -->
+<section class="sec" id="wideo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow mint">Materiał wideo</span>
+        <h2>Film instruktażowy — izolacja kwasów mikolowych</h2>
+        <p class="sec-lead">Główne etapy pracy z&nbsp;M-Typer Reagent Kit oraz przygotowania
+           próbki do analizy FIA-MS/MS.</p>
+      </div>
+    </div>
+
+    <div class="video rv" id="filmMTyper" data-yt="XQgOXPSztYo">
+      <img src="assets/mtyper-wideo-plakat.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
+      <button class="video-play" type="button" aria-label="Odtwórz film instruktażowy">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        <span>Odtwórz film</span>
+      </button>
+    </div>
+
+    <p class="price-note rv" style="margin-top:18px">
+      Materiał wideo ma charakter pomocniczy i&nbsp;szkoleniowy. Nie zastępuje aktualnej
+      instrukcji używania ani obowiązujących procedur laboratoryjnych.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ PUBLIKACJE ══════════ -->
+<section class="sec sec-alt" id="publikacje">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow">Nauka</span>
+        <h2>Publikacje naukowe</h2>
+        <p class="sec-lead">Technologia M-Typer została opracowana na podstawie prac
+           badawczo-rozwojowych dotyczących wykorzystania kwasów mikolowych jako markerów
+           diagnostycznych bakterii z&nbsp;rodzaju <span class="gat">Mycobacterium</span>.</p>
+      </div>
+    </div>
+
+    <h3 class="pub-grupa rv">Publikacje dotyczące M-Typer</h3>
+    <div class="pub-lista rv">
+      <a class="pub" href="https://www.nature.com/articles/s41598-025-numer" target="_blank" rel="noopener">
+        <span class="pub-rok">2025</span>
+        <span class="pub-txt">
+          <b>Detection and accurate identification of Mycobacterium species by flow injection tandem mass spectrometry (FIA-MS/MS) analysis of mycolic acids</b>
+          <span>Scientific Reports</span>
+        </span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="pub" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12699965" target="_blank" rel="noopener">
+        <span class="pub-rok">2025</span>
+        <span class="pub-txt">
+          <b>Rapid clinical detection of mycobacterial infections using M-Typer® technology and FIA-MS/MS profiling</b>
+          <span>IJTLD Open</span>
+        </span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+
+    <h3 class="pub-grupa rv">Publikacje wspierające podstawy naukowe metody</h3>
+    <div class="pub-lista rv">
+      <a class="pub" href="#">
+        <span class="pub-rok">2024</span>
+        <span class="pub-txt">
+          <b>Quantification of mycolic acids in different mycobacterial species by standard addition method through liquid chromatography mass spectrometry</b>
+          <span>Journal of Chromatography B</span>
+        </span>
+      </a>
+      <a class="pub" href="#">
+        <span class="pub-rok">2013</span>
+        <span class="pub-txt">
+          <b>Rapid method for Mycobacterium tuberculosis identification using electrospray ionization tandem mass spectrometry analysis of mycolic acids</b>
+          <span>Diagnostic Microbiology and Infectious Disease</span>
+        </span>
+      </a>
+      <a class="pub" href="https://www.nature.com/articles/s41598-023-37641-9" target="_blank" rel="noopener">
+        <span class="pub-rok">2025</span>
+        <span class="pub-txt">
+          <b>Ion mobility mass spectrometry for the study of mycobacterial mycolic acids</b>
+          <span>Scientific Reports</span>
+        </span><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="pub" href="#">
+        <span class="pub-rok">2026</span>
+        <span class="pub-txt">
+          <b>Untargeted and Targeted LC-MS–Based Lipidomic Profiling Revealed a&nbsp;Potential Biomarker Panel to Distinguish Clinical Isolates of M. tuberculosis From Nontuberculous M. kansasii</b>
+          <span>Pulmonary Medicine</span>
+        </span>
+      </a>
+    </div>
+
+    <p class="price-note rv" style="margin-top:20px">
+      Publikacje naukowe potwierdzają, że analiza kwasów mikolowych może stanowić
+      wartościowe podejście w&nbsp;identyfikacji i&nbsp;różnicowaniu prątków z&nbsp;rodzaju
+      <span class="gat">Mycobacterium</span>. M-Typer rozwija tę koncepcję w&nbsp;kierunku
+      rozwiązania gotowego do zastosowania w&nbsp;laboratorium.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ CERTYFIKACJA ══════════ -->
+<section class="sec" id="certyfikacja">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div>
+        <span class="eyebrow mint">Status</span>
+        <h2>Certyfikacja, patent i&nbsp;potencjał wdrożeniowy</h2>
+        <p class="sec-lead">
+          Technologia M-Typer została opracowana przez DiMedical jako innowacyjne rozwiązanie
+          w&nbsp;obszarze diagnostyki mykobakteriologicznej. Jest rozwijana z&nbsp;myślą o&nbsp;dalszej
+          walidacji, skalowaniu oraz wdrożeniach w&nbsp;laboratoriach diagnostycznych.
+          Rozwiązanie posiada certyfikację CE/IVD, jest rozwijane w&nbsp;ramach certyfikowanego
+          systemu zarządzania jakością zgodnego z&nbsp;ISO 13485, a&nbsp;jego unikalny charakter
+          został zabezpieczony patentem europejskim EP3978617B1.
+        </p>
+      </div>
+    </div>
+
+    <div class="prose rv" style="margin-bottom:34px">
+        <p>Innowacyjność technologii M-Typer została potwierdzona uzyskaniem certyfikacji CE/IVD, co oznacza, że spełnia ona rygorystyczne europejskie normy dla wyrobów medycznych do diagnostyki in vitro. Certyfikat ten potwierdza zarówno bezpieczeństwo, jak i&nbsp;skuteczność testu, umożliwiając jego wprowadzenie na rynek diagnostyczny w&nbsp;krajach Unii Europejskiej oraz innych regionach uznających normy CE. Dodatkowo, technologia posiada świadectwo wolnej sprzedaży wydane przez Urząd Rejestracji Produktów Leczniczych (URPL), co otwiera drogę do dystrybucji M-Typera na rynkach międzynarodowych poza Europą.</p>
+        <p>Unikalność i&nbsp;nowatorski charakter metody FIA-MS/MS w&nbsp;diagnostyce mykobakteryjnej zostały zabezpieczone międzynarodowym patentem EP3978617B1. Technologia ta zapewnia wyjątkową precyzję i&nbsp;czułość w&nbsp;identyfikacji <span class="gat">Mycobacterium</span>, co czyni ją jedną z&nbsp;najbardziej zaawansowanych metod dostępnych na rynku. Ochrona patentowa obejmuje kluczowe rynki światowe, gwarantując przewagę konkurencyjną i&nbsp;stanowiąc istotny atut w&nbsp;procesie komercjalizacji oraz wdrażania testu na szeroką skalę.</p>
+        <p>DiMedical, jako podmiot odpowiedzialny za rozwój i&nbsp;wdrażanie M-Typera, posiada w&nbsp;pełni wyposażone laboratorium badawczo-rozwojowe, umożliwiające dalszą optymalizację metody oraz prowadzenie badań walidacyjnych w&nbsp;różnych środowiskach klinicznych. Kluczowym elementem tych działań jest rozwój oprogramowania oraz implementacja nowych algorytmów przetwarzania danych. W&nbsp;tym celu planowane jest zatrudnienie specjalistów ds. oprogramowania oraz ekspertów z&nbsp;zakresu bioinformatyki, którzy będą pracować nad udoskonaleniem systemu, jego integracją z&nbsp;nowoczesnymi bazami danych oraz wprowadzeniem zaawansowanych metod analizy statystycznej i&nbsp;uczenia maszynowego.</p>
+        <p data-uzup="patent">M-Typer stanowi jedno z&nbsp;najbardziej zaawansowanych rozwiązań diagnostycznych w&nbsp;dziedzinie gruźlicy i&nbsp;innych chorób wywołanych przez <span class="gat">Mycobacterium</span>. Dzięki unikalnemu podejściu do analizy biochemicznej, certyfikacji CE, ochronie patentowej oraz wsparciu zaawansowanej infrastruktury badawczej, technologia ta ma potencjał, aby stać się nowym standardem w&nbsp;diagnostyce mykobakteryjnej na całym świecie.</p>
+    </div>
+
+
+    <div class="rzad">
+      <article class="poz rv">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M12 21.5s7.5-3.8 7.5-9.4V5.4L12 2.5 4.5 5.4v6.7c0 5.6 7.5 9.4 7.5 9.4Z"/><path pathLength="1" d="m8.8 11.8 2.2 2.2 4.2-4.4"/></svg></div>
+        <h3>CE / IVD</h3>
+        <p>Rozwiązanie posiada certyfikację CE/IVD potwierdzającą zgodność z&nbsp;europejskimi
+           normami dla wyrobów do diagnostyki in vitro.</p>
+      </article>
+      <article class="poz rv rv-d1">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M5.5 2.5h9l4 4v15h-13z"/><path pathLength="1" d="M14.5 2.5v4h4"/><path pathLength="1" d="M8 10h8M8 13h8M8 16h4"/><circle pathLength="1" cx="16.5" cy="17" r="2.6"/></svg></div>
+        <h3>ISO 13485</h3>
+        <p>Technologia rozwijana jest w&nbsp;ramach certyfikowanego systemu zarządzania jakością
+           dla wyrobów medycznych.</p>
+      </article>
+      <article class="poz rv rv-d2">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M6 21.5V6.5h12v15z"/><path pathLength="1" d="M9.5 13.5h5M9.5 17h5"/><path pathLength="1" d="M12 2.5 13 5h2.6l-2.1 1.6.8 2.6L12 7.6 9.7 9.2l.8-2.6L8.4 5H11z"/></svg></div>
+        <h3>Patent europejski</h3>
+        <p>Unikalny charakter rozwiązania zabezpieczono patentem europejskim
+           <strong>EP3978617B1</strong>.</p>
+      </article>
+      <article class="poz rv rv-d3">
+        <div class="why-ico"><svg viewBox="0 0 24 24"><path pathLength="1" d="M4.5 3.5h15v13h-15z"/><path pathLength="1" d="M7.5 7.5h9M7.5 10.5h6"/><path pathLength="1" d="M4.5 20.5c2.2-2.6 4-2.6 5.4 0 1.4-3.4 3.2-3.4 5.4-1 1-1.4 2.4-1.7 4.2-.9"/></svg></div>
+        <h3>Świadectwo wolnej sprzedaży</h3>
+        <p>Wydane przez Urząd Rejestracji Produktów Leczniczych, Wyrobów Medycznych
+           i&nbsp;Produktów Biobójczych.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WSPÓŁPRACA ══════════ -->
+<section class="sec sec-alt" id="wspolpraca">
+  <div class="wrap">
+    <div class="split">
+      <div class="prose rv">
+        <span class="eyebrow">Współpraca</span>
+        <h2 style="font-size:clamp(28px,3.8vw,42px);margin-bottom:20px">Zapraszamy do współpracy</h2>
+        <p>
+          DiMedical jest otwarte na współpracę z&nbsp;laboratoriami diagnostycznymi, ośrodkami
+          referencyjnymi, jednostkami naukowymi, partnerami klinicznymi, dystrybutorami
+          oraz podmiotami zainteresowanymi rozwojem diagnostyki mykobakteriologicznej.
+        </p>
+        <ul>
+          <li>Ocena technologii M-Typer w&nbsp;warunkach laboratoryjnych</li>
+          <li>Udział w&nbsp;projektach walidacyjnych i&nbsp;wieloośrodkowych</li>
+          <li>Wdrożenie metody w&nbsp;laboratoriach referencyjnych</li>
+          <li>Dystrybucja technologii na rynkach międzynarodowych</li>
+          <li>Współpraca naukowa i&nbsp;kliniczna w&nbsp;diagnostyce gruźlicy oraz mikobakterioz</li>
+          <li>Rozwój nowych zastosowań FIA-MS/MS w&nbsp;diagnostyce prątków</li>
+        </ul>
+        <p>
+          Wspieramy partnerów w&nbsp;zakresie organizacji procesu wdrożeniowego, przygotowania
+          workflow odczynnikowego, konfiguracji analitycznej, interpretacji wyników oraz
+          planowania dalszych badań walidacyjnych.
+        </p>
+      </div>
+
+      <div class="rv rv-d1">
+        <div class="card" style="padding:28px">
+          <h4 style="font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--mute);margin-bottom:16px">Dla kogo jest M-Typer?</h4>
+          <div class="row" style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px">Laboratoria referencyjne</div>
+          <div class="row" style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px">Laboratoria z&nbsp;aparaturą LC-MS/MS</div>
+          <div class="row" style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px">Ośrodki diagnostyki gruźlicy</div>
+          <div class="row" style="display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px">Jednostki naukowo-badawcze</div>
+          <div class="row" style="display:flex;justify-content:space-between;padding:11px 0;font-size:14.5px">Dystrybutorzy wyrobów IVD</div>
+        </div>
+
+        <div class="card" style="padding:26px;margin-top:14px;border-color:rgba(255,90,95,.28);background:linear-gradient(150deg,#fff,#FFF6F6)">
+          <h3 style="font-size:16px">Ważna informacja</h3>
+          <p style="font-size:13.5px;line-height:1.62;color:var(--body);margin-top:9px">
+            Wynik uzyskany z&nbsp;wykorzystaniem technologii M-Typer nie powinien stanowić
+            samodzielnej podstawy rozpoznania klinicznego. Powinien być interpretowany
+            łącznie z&nbsp;innymi wynikami badań laboratoryjnych i&nbsp;obrazem klinicznym pacjenta.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DLACZEGO ══════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="split">
+      <div class="prose rv">
+        <span class="eyebrow">Zaplecze</span>
+        <h2 style="font-size:clamp(28px,3.8vw,42px);margin-bottom:20px">Dlaczego DiMedical?</h2>
+        <p class="prose-lead">
+          Łączymy doświadczenie laboratoryjne, zaplecze badawczo-rozwojowe oraz praktyczną
+          wiedzę w&nbsp;zakresie diagnostyki mykobakteriologicznej.
+        </p>
+        <p>
+          M-Typer powstał jako odpowiedź na potrzebę szybszej i&nbsp;bardziej zaawansowanej
+          diagnostyki zakażeń wywoływanych przez prątki z&nbsp;rodzaju
+          <span class="gat">Mycobacterium</span>.
+        </p>
+      </div>
+      <figure class="kit-shot rv rv-d1">
+        <img src="assets/zespol-lab-a.webp" alt="Diagnosta laboratoryjny DiMedical" width="1050" height="1400" loading="lazy" decoding="async">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-shell rv">
+      <div>
+        <h2>Porozmawiajmy o&nbsp;wdrożeniu M-Typer</h2>
+        <p>Omówimy ocenę technologii, udział w&nbsp;projekcie walidacyjnym, dystrybucję
+           lub przekażemy dokumentację techniczną. Odpowiadamy zwykle w&nbsp;ciągu
+           1–2 dni roboczych.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="kontakt.html" class="btn btn-white">
+          Skontaktuj się
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="mailto:kontakt@dimedical.pl" class="btn btn-ghost">
+          kontakt@dimedical.pl
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ══════════ STOPKA ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">
+          <img src="assets/dimedical-logo-new.svg" alt="DiMedical" width="226" height="63" loading="lazy" decoding="async">
+        </div>
+        <p>Centrum Medycyny Klinicznej DiMedical — innowacyjna spółka biomedyczna działająca w obszarze diagnostyki laboratoryjnej i badań B+R.</p>
+        <p class="foot-motto">„Salus aegroti suprema lex"</p>
+      </div>
+
+      <div class="foot-col">
+        <h4>Serwis</h4>
+        <ul>
+          <li><a href="m-typer.html">M-Typer</a></li>
+          <li><a href="o-nas.html">O nas</a></li>
+          <li><a href="aktualnosci.html">Aktualności</a></li>
+          <li><a href="cennik.html">Cennik</a></li>
+          <li><a href="nagrody.html">Nagrody i certyfikaty</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Oferta</h4>
+        <ul>
+          <li><a href="gruzlica.html">Gruźlica</a></li>
+          <li><a href="mikrobiologia.html">Mikrobiologia</a></li>
+          <li><a href="badania-br.html">Badania B+R</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Dokumenty</h4>
+        <ul>
+          <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li><a href="polityka-jakosci.html">Deklaracja polityki jakości</a></li>
+          <li><a href="polityka-bezstronnosci.html">Deklaracja bezstronności i poufności</a></li>
+        </ul>
+      </div>
+
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a></li>
+          <li><a href="tel:+48502660480">(+48) 502 660 480 — laboratorium</a></li>
+          <li><a href="tel:+48607705607">(+48) 607 705 607 — siedziba</a></li>
+          <li><a href="index.html#lokalizacja">ul. Żeromskiego 52<br>90-626 Łódź</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div class="eu-note">
+        <span>Projekt dofinansowany ze środków Unii Europejskiej.</span>
+      </div>
+      <div>© 2026 DiMedical · projekt serwisu i wdrożenie <a href="https://r352.com" target="_blank" rel="noopener">r352.com</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ FAB ══════════ -->
+<div class="fab">
+  <a href="tel:+48502660480" aria-label="Zadzwoń">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2.1Z"/></svg>
+  </a>
+  <a href="kontakt.html" class="accent" aria-label="Napisz do nas">
+    <svg class="ico" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.8-.9L3 21l1.9-5.1A8.4 8.4 0 0 1 4 12a8.4 8.4 0 0 1 8.5-8.5 8.4 8.4 0 0 1 8.5 8Z"/></svg>
+  </a>
+</div>
+
+<!-- ══════════ ZGODA NA COOKIES ══════════ -->
+<div class="zgoda" id="zgodaCookies" role="dialog" aria-modal="false"
+     aria-labelledby="zgodaTytul" aria-describedby="zgodaOpis" hidden>
+  <div class="zgoda-tresc">
+    <p class="zgoda-tytul" id="zgodaTytul">Ta strona używa plików cookies</p>
+    <p class="zgoda-opis" id="zgodaOpis">
+      Niezbędne pliki zapewniają działanie serwisu. Pozostałe wykorzystujemy wyłącznie za Twoją zgodą — możesz ją w każdej chwili wycofać. Szczegóły opisuje <a href="polityka-prywatnosci.html">Polityka prywatności</a>.
+    </p>
+  </div>
+  <div class="zgoda-akcje">
+    <button type="button" class="btn btn-ghost btn-sm" data-zgoda="niezbedne">Tylko niezbędne</button>
+    <button type="button" class="btn btn-lav btn-sm" data-zgoda="wszystkie">Akceptuję wszystkie</button>
+  </div>
+</div>
+
+<script src="site.js" defer></script>
+</body>
+</html>

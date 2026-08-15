@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Twoje Menu — Key Screens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream-0:#FFFBF4; --cream-1:#FAF1E2; --cream-2:#F3E4CB;
+  --graphite:#26201A; --graphite-2:#4A4038; --muted:#8A7C6E;
+  --orange:#E85D26; --orange-deep:#C74A18; --basil:#3E7A45; --basil-soft:#E4EFE0;
+  --line:rgba(38,32,26,.1);
+  --r-lg:28px; --r-md:20px; --r-sm:14px;
+  --shadow-card:0 2px 4px rgba(38,32,26,.04),0 12px 32px rgba(38,32,26,.08);
+  --shadow-float:0 4px 8px rgba(38,32,26,.06),0 24px 56px rgba(38,32,26,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#141110;font-family:'Instrument Sans',sans-serif;color:var(--graphite);
+  display:flex;flex-wrap:wrap;gap:80px;padding:80px;align-items:flex-start}
+.board{display:flex;flex-direction:column;gap:14px}
+.board>.tag{font:500 13px/1 'Instrument Sans';color:#9b8f83;letter-spacing:.14em;text-transform:uppercase}
+
+/* ============ shared type ============ */
+.d{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+.script{font-family:'Caveat',cursive}
+.eyebrow{font:600 11px/1 'Instrument Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--orange)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;border:none;cursor:pointer;
+  background:var(--orange);color:#fff;font:600 16px/1 'Instrument Sans';border-radius:999px;
+  box-shadow:0 8px 24px rgba(232,93,38,.35)}
+.btn .arr{font-family:'Bricolage Grotesque'}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;
+  font:600 12px/1 'Instrument Sans';background:var(--cream-2);color:var(--graphite-2)}
+
+/* ============ phone frame ============ */
+.phone{width:390px;height:844px;background:var(--cream-0);border-radius:54px;overflow:hidden;
+  position:relative;outline:12px solid #1d1916;outline-offset:-2px;display:flex;flex-direction:column}
+.status{height:54px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 32px 6px;font:600 15px/1 'Instrument Sans'}
+.status .pins{display:flex;gap:5px;align-items:center}
+.pins i{display:block;background:var(--graphite);border-radius:2px}
+.pins .sg{width:17px;height:11px;clip-path:polygon(0 70%,25% 70%,25% 45%,50% 45%,50% 20%,75% 20%,75% 0,100% 0,100% 100%,0 100%)}
+.pins .wf{width:16px;height:11px;border-radius:50% 50% 0 0}
+.pins .bt{width:24px;height:12px;border-radius:3px;background:none;border:1.5px solid var(--graphite);position:relative}
+.pins .bt:after{content:'';position:absolute;inset:2px 7px 2px 2px;background:var(--graphite);border-radius:1px}
+.screen{flex:1;overflow:hidden;display:flex;flex-direction:column;position:relative}
+
+/* ============ 01 mobile home ============ */
+.mh-head{padding:14px 24px 0;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo .l1{font:800 21px 'Bricolage Grotesque';letter-spacing:.02em;color:var(--orange)}
+.logo .l2{font:600 24px 'Caveat';margin-top:-6px;margin-left:14px;color:var(--graphite)}
+.burger{width:44px;height:44px;border-radius:50%;background:var(--cream-1);display:flex;flex-direction:column;
+  gap:5px;align-items:center;justify-content:center}
+.burger i{width:16px;height:2px;background:var(--graphite);border-radius:2px;display:block}
+.burger i:last-child{width:10px;align-self:flex-start;margin-left:14px}
+.mh-hero{padding:26px 24px 0}
+.mh-hero h1{font:640 44px/1.02 'Bricolage Grotesque';letter-spacing:-.03em}
+.mh-hero h1 em{font:600 46px 'Caveat';color:var(--orange);letter-spacing:0}
+.mh-hero p{margin-top:14px;font:400 16px/1.5 'Instrument Sans';color:var(--graphite-2);max-width:300px}
+.mh-cta{margin:22px 24px 0;height:60px}
+.mh-sub{margin:12px 24px 0;display:flex;gap:8px}
+.mh-photo{margin:24px 0 0;flex:1;position:relative;background:var(--cream-2)}
+.mh-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.mh-price{position:absolute;left:20px;bottom:20px;background:rgba(255,251,244,.94);backdrop-filter:blur(8px);
+  border-radius:var(--r-md);padding:14px 18px;box-shadow:var(--shadow-float)}
+.mh-price .a{font:700 13px/1 'Instrument Sans';color:var(--muted)}
+.mh-price .b{font:700 22px/1.1 'Bricolage Grotesque';margin-top:4px}
+.mh-price .b span{font:500 13px 'Instrument Sans';color:var(--muted)}
+.mh-award{position:absolute;right:18px;top:-26px;background:var(--graphite);color:var(--cream-0);
+  border-radius:999px;padding:12px 18px;display:flex;gap:8px;align-items:center;transform:rotate(3deg);
+  font:600 13px/1.2 'Instrument Sans';box-shadow:var(--shadow-float)}
+.mh-award b{font:700 17px 'Bricolage Grotesque';color:#F5C065}
+
+/* ============ 02 configurator ============ */
+.cf-top{padding:14px 24px 0;display:flex;align-items:center;gap:14px}
+.backb{width:44px;height:44px;border-radius:50%;background:var(--cream-1);display:flex;align-items:center;
+  justify-content:center;font:600 18px 'Bricolage Grotesque'}
+.cf-steps{flex:1;display:flex;gap:6px}
+.cf-steps i{height:4px;border-radius:2px;flex:1;background:var(--cream-2);display:block}
+.cf-steps i.done{background:var(--orange)}
+.cf-skip{font:600 13px 'Instrument Sans';color:var(--muted)}
+.cf-body{padding:34px 24px 0;flex:1;display:flex;flex-direction:column}
+.cf-body .eyebrow{margin-bottom:10px}
+.cf-body h2{font:640 34px/1.08 'Bricolage Grotesque';letter-spacing:-.025em}
+.cf-body>p{margin-top:10px;font:400 15px/1.5 'Instrument Sans';color:var(--muted)}
+.cf-opts{margin-top:26px;display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;gap:16px;background:#fff;border:1.5px solid var(--line);
+  border-radius:var(--r-md);padding:18px;position:relative}
+.opt .ico{width:52px;height:52px;border-radius:16px;background:var(--cream-1);display:flex;align-items:center;
+  justify-content:center;font-size:24px;flex:none}
+.opt .t b{display:block;font:700 17px/1.2 'Instrument Sans'}
+.opt .t span{font:400 13.5px/1.35 'Instrument Sans';color:var(--muted);display:block;margin-top:3px}
+.opt .ring{margin-left:auto;width:24px;height:24px;border-radius:50%;border:2px solid var(--cream-2);flex:none}
+.opt.sel{border-color:var(--orange);background:#FFF4EC;box-shadow:0 8px 24px rgba(232,93,38,.12)}
+.opt.sel .ico{background:#FFE3D2}
+.opt.sel .ring{border:7px solid var(--orange)}
+.cf-foot{padding:16px 24px 28px}
+.cf-foot .btn{width:100%;height:60px}
+.cf-hint{margin-top:12px;text-align:center;font:400 13px 'Instrument Sans';color:var(--muted)}
+
+/* ============ 03 diet page ============ */
+.dp .screen{background:var(--cream-0)}
+.dp-photo{height:230px;flex:none;position:relative;background:var(--cream-2)}
+.dp-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.dp-photo .backb{position:absolute;top:14px;left:20px;background:rgba(255,251,244,.9)}
+.dp-photo .badge{position:absolute;left:20px;bottom:-18px;background:var(--basil);color:#fff;border-radius:12px;
+  padding:9px 14px;font:700 13px/1 'Instrument Sans';letter-spacing:.04em;box-shadow:var(--shadow-card)}
+.dp-body{flex:1;overflow:hidden;padding:34px 24px 0}
+.dp-body h2{font:640 32px/1.05 'Bricolage Grotesque';letter-spacing:-.025em}
+.dp-meta{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.dp-desc{margin-top:14px;font:400 14.5px/1.55 'Instrument Sans';color:var(--graphite-2)}
+.dp-week{margin-top:22px}
+.dp-week .hd{display:flex;align-items:baseline;justify-content:space-between}
+.dp-week .hd b{font:700 16px 'Instrument Sans'}
+.dp-week .hd span{font:600 13px 'Instrument Sans';color:var(--orange)}
+.days{display:flex;gap:6px;margin-top:12px}
+.day{flex:1;height:56px;border-radius:14px;background:#fff;border:1.5px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.day span{font:600 11px 'Instrument Sans';color:var(--muted)}
+.day b{font:700 16px 'Bricolage Grotesque'}
+.day.on{background:var(--graphite);border-color:var(--graphite);color:var(--cream-0)}
+.day.on span{color:#B8AC9E}
+.meals{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.meal{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:13px 16px;display:flex;gap:12px;align-items:center}
+.meal .dot{width:34px;height:34px;border-radius:10px;background:var(--cream-1);flex:none;display:flex;
+  align-items:center;justify-content:center;font-size:16px}
+.meal .tx b{font:600 11px/1 'Instrument Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block}
+.meal .tx span{font:500 13.5px/1.3 'Instrument Sans';display:block;margin-top:3px}
+.dp-cta{flex:none;padding:14px 24px 26px;background:linear-gradient(to top,var(--cream-0) 70%,transparent);
+  position:absolute;bottom:0;left:0;right:0}
+.dp-cta .btn{width:100%;height:62px;justify-content:space-between;padding:0 12px 0 24px}
+.dp-cta .price{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+.dp-cta .price b{font:700 17px 'Bricolage Grotesque'}
+.dp-cta .price span{font:500 11.5px 'Instrument Sans';opacity:.8}
+.dp-cta .go{background:#fff;color:var(--orange);width:46px;height:46px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font:700 20px 'Bricolage Grotesque'}
+
+/* ============ 04 panel ============ */
+.pn-head{padding:16px 24px 0;display:flex;justify-content:space-between;align-items:center}
+.pn-head .hi b{font:640 24px 'Bricolage Grotesque';display:block;letter-spacing:-.02em}
+.pn-head .hi span{font:400 14px 'Instrument Sans';color:var(--muted)}
+.avatar{width:46px;height:46px;border-radius:50%;background:var(--basil);color:#fff;display:flex;
+  align-items:center;justify-content:center;font:700 16px 'Bricolage Grotesque'}
+.pn-card{margin:20px 24px 0;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);
+  padding:20px;box-shadow:var(--shadow-card)}
+.pn-card .hd{display:flex;justify-content:space-between;align-items:center}
+.pn-card .hd b{font:700 16px 'Instrument Sans'}
+.pn-card .hd span{font:600 13px 'Instrument Sans';color:var(--orange)}
+.cal{margin-top:14px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal .wd{font:600 10.5px/1 'Instrument Sans';color:var(--muted);text-align:center;padding:4px 0;text-transform:uppercase;letter-spacing:.06em}
+.cal .c{aspect-ratio:1;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font:600 14px 'Instrument Sans';background:var(--cream-1);color:var(--graphite-2)}
+.cal .c.del{background:var(--basil-soft);color:var(--basil);font-weight:700}
+.cal .c.pau{background:repeating-linear-gradient(-45deg,var(--cream-2) 0 4px,var(--cream-1) 4px 8px);color:var(--muted)}
+.cal .c.tod{outline:2px solid var(--orange);outline-offset:-2px;background:#FFF4EC;color:var(--orange);font-weight:700}
+.pn-legend{display:flex;gap:14px;margin-top:14px}
+.pn-legend span{display:flex;gap:6px;align-items:center;font:500 12px 'Instrument Sans';color:var(--muted)}
+.pn-legend i{width:10px;height:10px;border-radius:3px;display:block}
+.pn-pause{margin:14px 24px 0;display:flex;gap:10px}
+.pill{flex:1;height:52px;border-radius:16px;border:1.5px solid var(--line);background:#fff;display:flex;
+  align-items:center;justify-content:center;gap:8px;font:600 14px 'Instrument Sans'}
+.pill.dark{background:var(--graphite);color:var(--cream-0);border-color:var(--graphite)}
+.pn-rate{margin:20px 24px 0;background:var(--graphite);border-radius:var(--r-lg);padding:20px;color:var(--cream-0)}
+.pn-rate .q{font:600 11px/1 'Instrument Sans';letter-spacing:.14em;text-transform:uppercase;color:#B8AC9E}
+.pn-rate .m{font:640 19px/1.25 'Bricolage Grotesque';margin-top:8px;letter-spacing:-.01em}
+.stars{display:flex;gap:8px;margin-top:14px}
+.stars i{width:40px;height:40px;border-radius:12px;background:rgba(255,251,244,.1);display:flex;align-items:center;
+  justify-content:center;font-size:18px;font-style:normal}
+.stars i.on{background:#F5C065;color:var(--graphite)}
+.tabbar{flex:none;margin-top:auto;display:flex;justify-content:space-around;padding:12px 18px 26px;
+  border-top:1.5px solid var(--line);background:var(--cream-0)}
+.tb{display:flex;flex-direction:column;align-items:center;gap:4px;font:600 11px 'Instrument Sans';color:var(--muted)}
+.tb i{font-size:20px;font-style:normal}
+.tb.on{color:var(--orange)}
+
+/* ============ desktop ============ */
+.desk{width:1440px;height:860px;background:var(--cream-0);border-radius:24px;overflow:hidden;
+  outline:10px solid #1d1916;display:flex;flex-direction:column;position:relative}
+.dk-nav{height:88px;flex:none;display:flex;align-items:center;padding:0 56px;gap:44px}
+.dk-nav .logo .l1{font-size:24px}.dk-nav .logo .l2{font-size:27px;margin-left:18px}
+.dk-nav nav{display:flex;gap:32px;margin-left:24px}
+.dk-nav nav a{font:500 15.5px 'Instrument Sans';color:var(--graphite-2);text-decoration:none}
+.dk-nav nav a.on{color:var(--graphite);font-weight:600;border-bottom:2px solid var(--orange);padding-bottom:4px}
+.dk-nav .right{margin-left:auto;display:flex;gap:14px;align-items:center}
+.dk-nav .ghost{font:600 15px 'Instrument Sans';color:var(--graphite);background:none;border:1.5px solid var(--line);
+  border-radius:999px;padding:13px 24px;cursor:pointer}
+.dk-nav .btn{padding:0 28px;height:50px;font-size:15px}
+.dk-hero{flex:1;display:grid;grid-template-columns:1.05fr 1fr;position:relative}
+.dk-copy{padding:64px 24px 0 56px;position:relative;z-index:2}
+.dk-copy .eyebrow{margin-bottom:18px;display:inline-flex;align-items:center;gap:8px}
+.dk-copy .eyebrow:before{content:'';width:22px;height:2px;background:var(--orange);display:block}
+.dk-copy h1{font:640 76px/1.0 'Bricolage Grotesque';letter-spacing:-.035em}
+.dk-copy h1 em{font:600 80px 'Caveat';color:var(--orange);letter-spacing:0}
+.dk-copy>p{margin-top:24px;font:400 19px/1.55 'Instrument Sans';color:var(--graphite-2);max-width:440px}
+.dk-actions{margin-top:36px;display:flex;gap:16px;align-items:center}
+.dk-actions .btn{height:64px;padding:0 34px;font-size:17px}
+.dk-actions .link{font:600 16px 'Instrument Sans';color:var(--graphite);display:flex;gap:10px;align-items:center}
+.dk-actions .link i{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);display:flex;
+  align-items:center;justify-content:center;font:600 16px 'Bricolage Grotesque';font-style:normal}
+.dk-proof{margin-top:52px;display:flex;gap:40px;align-items:center}
+.proof b{font:700 26px 'Bricolage Grotesque';display:block;letter-spacing:-.02em}
+.proof span{font:500 13.5px 'Instrument Sans';color:var(--muted)}
+.dk-photo{position:relative;background:var(--cream-2)}
+.dk-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.dk-photo:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--cream-0) 0%,transparent 18%);z-index:1}
+.dk-menu-card{position:absolute;left:-90px;bottom:44px;z-index:3;width:330px;background:rgba(255,251,244,.96);
+  backdrop-filter:blur(10px);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-float)}
+.dk-menu-card .hd{display:flex;justify-content:space-between;align-items:center}
+.dk-menu-card .hd b{font:700 15px 'Instrument Sans'}
+.dk-menu-card .hd span{font:600 12px 'Instrument Sans';color:var(--basil);background:var(--basil-soft);
+  padding:5px 10px;border-radius:999px}
+.dk-menu-card .row{display:flex;gap:11px;align-items:center;margin-top:13px}
+.dk-menu-card .row .dot{width:30px;height:30px;border-radius:9px;background:var(--cream-1);flex:none;
+  display:flex;align-items:center;justify-content:center;font-size:14px}
+.dk-menu-card .row b{font:600 10px/1 'Instrument Sans';letter-spacing:.09em;text-transform:uppercase;color:var(--muted);display:block}
+.dk-menu-card .row span{font:500 12.5px/1.25 'Instrument Sans';display:block;margin-top:2px}
+.dk-price-tag{position:absolute;right:44px;top:52px;z-index:3;background:var(--graphite);color:var(--cream-0);
+  border-radius:var(--r-md);padding:18px 22px;transform:rotate(2deg);box-shadow:var(--shadow-float)}
+.dk-price-tag .a{font:600 11px/1 'Instrument Sans';letter-spacing:.12em;text-transform:uppercase;color:#B8AC9E}
+.dk-price-tag .b{font:700 26px 'Bricolage Grotesque';margin-top:6px}
+.dk-price-tag .b span{font:500 13px 'Instrument Sans';color:#B8AC9E}
+.dk-diets{position:absolute;bottom:0;left:0;right:0;background:var(--cream-0);border-top:1.5px solid var(--line);
+  padding:18px 56px;display:flex;gap:10px;align-items:center;z-index:4}
+.dk-diets .lbl{font:600 12px/1.3 'Instrument Sans';letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:90px;flex:none}
+.dk-diets .dchip{flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;
+  padding:11px 8px 11px 14px;font:600 13.5px 'Instrument Sans';white-space:nowrap;justify-content:center}
+.dk-diets .dchip i{font-style:normal;font-size:15px}
+.dk-diets .dchip.hot{background:var(--graphite);color:var(--cream-0);border-color:var(--graphite)}
+</style>
+</head>
+<body>
+
+<!-- ================= 01 MOBILE HOME ================= -->
+<div class="board" id="b1"><div class="tag">01 · Mobile — Home</div>
+<div class="phone"><div class="status"><span>9:41</span><span class="pins"><i class="sg"></i><i class="wf"></i><i class="bt"></i></span></div>
+<div class="screen">
+  <div class="mh-head">
+    <div class="logo"><span class="l1">TWOJE</span><span class="l2 script">Menu</span></div>
+    <div class="burger"><i></i><i></i></div>
+  </div>
+  <div class="mh-hero">
+    <h1>Dobre jedzenie.<br><em>Codziennie</em> pod drzwi.</h1>
+    <p>Świeże, zbilansowane posiłki z dostawą w całej Polsce. Ty planujesz dzień — my planujemy Twoje menu.</p>
+  </div>
+  <button class="btn mh-cta">Dobierz dietę w 60 sekund <span class="arr">→</span></button>
+  <div class="mh-sub"><span class="chip">🥗 8 diet</span><span class="chip">🚚 Cała Polska</span><span class="chip">⏱ Zamów do 20:00</span></div>
+  <div class="mh-photo">
+    <div class="mh-award"><b>4,5</b> Dietly Awards<br>3 kategorie</div>
+    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" alt="">
+    <div class="mh-price"><div class="a">Pełny dzień od</div><div class="b">49 zł <span>· ok. 1 470 zł/mies.</span></div></div>
+  </div>
+</div></div></div>
+
+<!-- ================= 02 CONFIGURATOR ================= -->
+<div class="board" id="b2"><div class="tag">02 · Mobile — Konfigurator</div>
+<div class="phone"><div class="status"><span>9:41</span><span class="pins"><i class="sg"></i><i class="wf"></i><i class="bt"></i></span></div>
+<div class="screen">
+  <div class="cf-top"><div class="backb">←</div><div class="cf-steps"><i class="done"></i><i class="done"></i><i></i></div><span class="cf-skip">Pomiń</span></div>
+  <div class="cf-body">
+    <span class="eyebrow">Krok 2 z 3</span>
+    <h2>Jaki jest Twój cel?</h2>
+    <p>Dobierzemy dietę i kaloryczność. Zawsze możesz to zmienić.</p>
+    <div class="cf-opts">
+      <div class="opt"><div class="ico">🌿</div><div class="t"><b>Zdrowe odżywianie</b><span>Zbilansowane menu na co dzień</span></div><span class="ring"></span></div>
+      <div class="opt sel"><div class="ico">🎯</div><div class="t"><b>Redukcja wagi</b><span>Deficyt bez liczenia kalorii</span></div><span class="ring"></span></div>
+      <div class="opt"><div class="ico">🩺</div><div class="t"><b>Stabilny cukier</b><span>Niski indeks glikemiczny</span></div><span class="ring"></span></div>
+      <div class="opt"><div class="ico">🏋️</div><div class="t"><b>Forma i trening</b><span>Więcej białka i energii</span></div><span class="ring"></span></div>
+    </div>
+  </div>
+  <div class="cf-foot"><button class="btn">Dalej <span class="arr">→</span></button>
+  <div class="cf-hint">Bez zobowiązań — zamówisz dopiero na końcu</div></div>
+</div></div></div>
+
+<!-- ================= 03 DIET PAGE ================= -->
+<div class="board dp" id="b3"><div class="tag">03 · Mobile — Karta diety</div>
+<div class="phone"><div class="status"><span>9:41</span><span class="pins"><i class="sg"></i><i class="wf"></i><i class="bt"></i></span></div>
+<div class="screen">
+  <div class="dp-photo">
+    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop" alt="">
+    <div class="backb">←</div>
+    <div class="badge">DOPASOWANA DO CELU</div>
+  </div>
+  <div class="dp-body">
+    <h2>Dieta Niski IG</h2>
+    <div class="dp-meta"><span class="chip">1500–2500 kcal</span><span class="chip">5 posiłków</span><span class="chip">od 69 zł/dzień</span></div>
+    <p class="dp-desc">Dla osób z insulinoopornością i każdego, kto chce stabilnej energii bez skoków cukru.</p>
+    <div class="dp-week">
+      <div class="hd"><b>Jadłospis — ten tydzień</b><span>Pełne menu →</span></div>
+      <div class="days">
+        <div class="day on"><span>PON</span><b>28</b></div><div class="day"><span>WT</span><b>29</b></div>
+        <div class="day"><span>ŚR</span><b>30</b></div><div class="day"><span>CZW</span><b>31</b></div>
+        <div class="day"><span>PT</span><b>1</b></div><div class="day"><span>SOB</span><b>2</b></div>
+      </div>
+      <div class="meals">
+        <div class="meal"><div class="dot">☀️</div><div class="tx"><b>Śniadanie</b><span>Serek wiejski z polędwicą, ciemne pieczywo</span></div></div>
+        <div class="meal"><div class="dot">🫐</div><div class="tx"><b>II śniadanie</b><span>Jagodowy koktajl na mleczku kokosowym</span></div></div>
+        <div class="meal"><div class="dot">🍲</div><div class="tx"><b>Obiad</b><span>Pulpeciki drobiowe, brązowy ryż, surówka</span></div></div>
+        <div class="meal"><div class="dot">🥣</div><div class="tx"><b>Podwieczorek</b><span>Krem batatowo-marchewkowy</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="dp-cta"><button class="btn"><span class="price"><b>2 070 zł / miesiąc</b><span>69 zł dziennie · dostawa 0 zł</span></span><span class="go">→</span></button></div>
+</div></div></div>
+
+<!-- ================= 04 PANEL ================= -->
+<div class="board" id="b4"><div class="tag">04 · Mobile — Panel klienta</div>
+<div class="phone"><div class="status"><span>9:41</span><span class="pins"><i class="sg"></i><i class="wf"></i><i class="bt"></i></span></div>
+<div class="screen">
+  <div class="pn-head"><div class="hi"><b>Cześć, Marta 👋</b><span>Dieta Niski IG · 1800 kcal</span></div><div class="avatar">M</div></div>
+  <div class="pn-card">
+    <div class="hd"><b>Sierpień</b><span>Zmień dietę →</span></div>
+    <div class="cal">
+      <span class="wd">P</span><span class="wd">W</span><span class="wd">Ś</span><span class="wd">C</span><span class="wd">P</span><span class="wd">S</span><span class="wd">N</span>
+      <div class="c pau"></div><div class="c pau"></div><div class="c pau"></div><div class="c pau"></div><div class="c del">1</div><div class="c del">2</div><div class="c tod">3</div>
+      <div class="c del">4</div><div class="c del">5</div><div class="c del">6</div><div class="c del">7</div><div class="c del">8</div><div class="c del">9</div><div class="c">10</div>
+      <div class="c pau">11</div><div class="c pau">12</div><div class="c pau">13</div><div class="c pau">14</div><div class="c pau">15</div><div class="c pau">16</div><div class="c pau">17</div>
+      <div class="c del">18</div><div class="c del">19</div><div class="c del">20</div><div class="c del">21</div><div class="c del">22</div><div class="c del">23</div><div class="c">24</div>
+    </div>
+    <div class="pn-legend">
+      <span><i style="background:var(--basil-soft)"></i>Dostawa</span>
+      <span><i style="background:var(--cream-2)"></i>Pauza — urlop</span>
+      <span><i style="background:#FFF4EC;outline:1.5px solid var(--orange)"></i>Dziś</span>
+    </div>
+  </div>
+  <div class="pn-pause"><button class="pill">⏸ Wstrzymaj dostawy</button><button class="pill dark">📍 Zmień adres</button></div>
+  <div class="pn-rate">
+    <div class="q">Wczorajszy obiad</div>
+    <div class="m">Tagliatelle w sosie pomidorowym z ziołową wieprzowiną</div>
+    <div class="stars"><i class="on">★</i><i class="on">★</i><i class="on">★</i><i class="on">★</i><i>★</i></div>
+  </div>
+  <div class="tabbar">
+    <span class="tb on"><i>🏠</i>Dziś</span><span class="tb"><i>📅</i>Kalendarz</span>
+    <span class="tb"><i>🍽</i>Menu</span><span class="tb"><i>👤</i>Konto</span>
+  </div>
+</div></div></div>
+
+<!-- ================= 05 DESKTOP HOME ================= -->
+<div class="board" id="b5"><div class="tag">05 · Desktop — Home</div>
+<div class="desk">
+  <div class="dk-nav">
+    <div class="logo"><span class="l1">TWOJE</span><span class="l2 script">Menu</span></div>
+    <nav><a class="on" href="#">Diety</a><a href="#">Jadłospis</a><a href="#">Jak to działa</a><a href="#">Cennik</a></nav>
+    <div class="right"><button class="ghost">Panel klienta</button><button class="btn">Dobierz dietę <span class="arr">→</span></button></div>
+  </div>
+  <div class="dk-hero">
+    <div class="dk-copy">
+      <span class="eyebrow">Catering dietetyczny · dostawa w całej Polsce</span>
+      <h1>Dobre jedzenie.<br><em>Codziennie</em> pod drzwi.</h1>
+      <p>Każdy dzień to nowe menu, ułożone przez dietetyków i ugotowane ze świeżych składników. Ty wybierasz cel — my dowozimy resztę.</p>
+      <div class="dk-actions">
+        <button class="btn">Dobierz dietę w 60 sekund <span class="arr">→</span></button>
+        <span class="link"><i>▶</i> Zobacz, jak to działa</span>
+      </div>
+      <div class="dk-proof">
+        <div class="proof"><b>4,5 / 5</b><span>Dietly Awards · 3 kategorie</span></div>
+        <div class="proof"><b>92%</b><span>poleceń · 500+ opinii</span></div>
+        <div class="proof"><b>od 49 zł</b><span>za pełny dzień posiłków</span></div>
+      </div>
+    </div>
+    <div class="dk-photo">
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1400&auto=format&fit=crop" alt="">
+      <div class="dk-price-tag"><div class="a">Bez ukrytych kosztów</div><div class="b">1 470 zł <span>/ miesiąc · dostawa 0 zł</span></div></div>
+      <div class="dk-menu-card">
+        <div class="hd"><b>Dzisiejsze menu · Standard</b><span>na żywo</span></div>
+        <div class="row"><div class="dot">☀️</div><div><b>Śniadanie</b><span>Pomarańczowy chlebek z żurawiną i ricottą</span></div></div>
+        <div class="row"><div class="dot">🍲</div><div><b>Obiad</b><span>Tagliatelle w sosie pomidorowo-śmietanowym</span></div></div>
+        <div class="row"><div class="dot">🍎</div><div><b>Podwieczorek</b><span>Jabłka zapiekane pod migdałową kruszonką</span></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="dk-diets">
+    <span class="lbl">Wybierz dietę</span>
+    <span class="dchip hot"><i>⭐</i> Standard · 66 zł</span>
+    <span class="dchip"><i>🥦</i> Wege · 65 zł</span>
+    <span class="dchip"><i>🩺</i> Niski IG · 69 zł</span>
+    <span class="dchip"><i>🏋️</i> Sportowa · 93 zł</span>
+    <span class="dchip"><i>⚡</i> Active · 83 zł</span>
+    <span class="dchip"><i>🎯</i> Odchudzająca · 63 zł</span>
+    <span class="dchip"><i>🏠</i> Domowa · 60 zł</span>
+  </div>
+</div></div>
+
+<script>
+const only = new URLSearchParams(location.search).get('only');
+if (only) {
+  document.querySelectorAll('.board').forEach(b => { if (b.id !== only) b.remove(); });
+  document.querySelectorAll('.tag').forEach(t => t.remove());
+  document.body.style.padding = '30px';
+  document.body.style.gap = '0';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+--- r352-os/genome/migrate.js	2026-08-08 16:20:13
++++ r352-os/genome/proposals/final-salt-plate/genome/migrate.js	2026-08-09 14:30:19
+@@ -235,15 +235,16 @@
+   return diffs;
+ }
+ 
+-/* ── Weryfikacja zgody: podpis HMAC kluczem SPOZA repozytorium ──
+-   Sam JSON z nazwiskiem i hashem agent potrafi wygenerować, więc nie jest dowodem zgody.
+-   Klucz żyje poza katalogiem Genome (domyślnie ~/.genome/approval.key, zmienna GENOME_APPROVAL_KEY_FILE).
+-   Bez klucza podpis jest niemożliwy → --apply zawsze odmawia. Podpisywane jest:
+-   migration_id · plan_hash · nonce · approved_by · approved_at (kanoniczna kolejność). */
+-const APPROVAL_KEY_FILE = process.env.GENOME_APPROVAL_KEY_FILE || path.join(os.homedir(), '.genome', 'approval.key');
++/* ── Weryfikacja zgody: WSPÓLNY moduł `lib/approval.js` ──
++ * Migrator miał własną kopię weryfikacji i szukał klucza publicznego w `lib/approval-pubkey.pem`,
++ * czyli WEWNĄTRZ repo — a manifest wdrożeniowy świadomie tego pliku nie instaluje. Skutek byłby
++ * jeden z dwóch: migracja niedostępna po wdrożeniu albo ktoś dokłada klucz do repo i odtwarza
++ * lukę, którą właśnie zamknęliśmy. Teraz migrator używa tej samej kotwicy co reszta systemu:
++ * katalog domowy z bazy użytkowników, poza repo, bez override.
++ * Podpisywane jest: migration_id · plan_hash · nonce · approved_by · approved_at. */
++const APPROVAL = require('./lib/approval.js');
+ function approvalPayload(a) { return [a.migration_id, a.plan_hash, a.nonce, a.approved_by, a.approved_at].join('|'); }
+ function verifyApproval(approval, plan) {
+-  if (!fs.existsSync(APPROVAL_KEY_FILE)) return { ok: false, reason: `brak klucza podpisu (${APPROVAL_KEY_FILE}). Zgoda musi być PODPISANA — tworzy go człowiek poza repozytorium.` };
+   for (const k of ['migration_id', 'plan_hash', 'nonce', 'approved_by', 'approved_at', 'signature'])
+     if (!approval[k]) return { ok: false, reason: `zgoda niekompletna — brak pola "${k}"` };
+   if (approval.migration_id !== MIGRATION_ID) return { ok: false, reason: 'zgoda dotyczy innej migracji' };
+@@ -251,10 +252,12 @@
+   if (approval.nonce !== plan.nonce) return { ok: false, reason: 'nonce zgody ≠ nonce planu (zgoda z innego przebiegu — ochrona przed replay)' };
+   if (isNaN(Date.parse(approval.approved_at))) return { ok: false, reason: 'approved_at nie jest datą ISO 8601' };
+   if (plan.valid_until && Date.now() > Date.parse(plan.valid_until)) return { ok: false, reason: `plan wygasł (valid_until ${plan.valid_until})` };
+-  const key = fs.readFileSync(APPROVAL_KEY_FILE, 'utf8').trim();
+-  const expected = crypto.createHmac('sha256', key).update(approvalPayload(approval)).digest('hex');
+-  if (!crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(String(approval.signature))))
+-    return { ok: false, reason: 'PODPIS NIEPRAWIDŁOWY — zgoda sfabrykowana albo podpisana innym kluczem' };
++  const pk = APPROVAL.loadPublicKey();
++  if (!pk.ok) return { ok: false, reason: pk.why };
++  let okSig = false;
++  try { okSig = crypto.verify(null, Buffer.from(approvalPayload(approval), 'utf8'), pk.key, Buffer.from(String(approval.signature), 'hex')); }
++  catch (e) { return { ok: false, reason: 'podpis nie daje się zweryfikować: ' + e.message }; }
++  if (!okSig) return { ok: false, reason: 'PODPIS NIEPRAWIDŁOWY — zgoda sfabrykowana albo podpisana innym kluczem' };
+   return { ok: true };
+ }
+ 
+@@ -262,10 +265,54 @@
+    auth = { approval, approvedPlan }  → podpis HMAC weryfikowany TUTAJ, przed blokadą.
+    auth = { simulation: true }        → dozwolone WYŁĄCZNIE poza kanonicznym root.
+    Bez ważnego auth zapis jest niemożliwy także przy bezpośrednim wywołaniu z Node. */
++/* ═══ GUARD KANONU (incydenty 09.08 i audyt rundy 8) ═══
++ * Wersja poprzednia pytała „czy korzeń leży w os.tmpdir()". `TMPDIR` ustawia wywołujący, więc
++ * katalog obok kanonu dawał się przedstawić jako piaskownica i `simulation:true` zmieniał Ledger.
++ * Teraz pytanie jest odwrotne i niezależne od środowiska: **czy REALNA ścieżka celu dotyka
++ * kanonu**. Symlink też nie omija — sprawdzany jest realpath. */
++const CANON_GUARD = require('./lib/canon-guard.js');
++function assertSandbox(root, auth) {
++  if (!auth || auth.simulation !== true) return null;
++  const canonRoots = CANON_GUARD.canonRootsFor(CANONICAL_ROOT);
++  const chk = CANON_GUARD.checkTargetsAgainstCanon(
++    [root, path.join(root, 'ledger'), path.join(root, 'records'), path.join(root, 'dist')], canonRoots);
++  if (!chk.ok) return 'AUTORYZACJA ODRZUCONA (tryb symulacji): ' + CANON_GUARD.canonGuardError(chk.hits);
++  return null;
++}
++
++/* ═══ TWARDY NO-OP (przyczyna incydentu 09.08) ═══
++ * Migracja z ZEROWĄ deltą nie ma prawa nic zapisać. Wcześniej i tak dopisywała zdarzenie,
++ * nadpisywała archiwum Ledgera i snapshot Recordów oraz przesuwała granicę seeda —
++ * czyli niszczyła prowieniencję poprzedniej, prawdziwej migracji. Guard piaskownicy ograniczał
++ * jeden scenariusz wywołania; to usuwa przyczynę. */
++function planDelta(plan) {
++  const p = plan || {};
++  const L = p.ledger || {};
++  return {
++    id_renames: (L.id_renames || []).length,
++    events_reordered: L.events_reordered || 0,
++    records: (p.records || []).length,
++    mechanisms: (p.mechanisms || []).length,
++    evidence: ((p.evidence || {}).changed) || 0,
++  };
++}
++function isNoop(plan) {
++  const d = planDelta(plan);
++  return d.id_renames === 0 && d.events_reordered === 0 && d.records === 0 && d.mechanisms === 0 && d.evidence === 0;
++}
++
+ function applyPlan(root, plan, auth) {
++  /* NO-OP sprawdzany PRZED autoryzacją i PRZED blokadą: nie ma czego autoryzować ani blokować. */
++  if (isNoop(plan)) return { ok: true, noop: true, delta: planDelta(plan),
++    note: 'Zerowa delta — zero zdarzeń, zero zmian freeze, zero nadpisania archiwum, zero snapshotu, zero buildu produkcyjnego.' };
++  { const sb = assertSandbox(root, auth); if (sb) return { ok: false, error: sb }; }
+   const realRoot = fs.realpathSync(root);
+   if (auth && auth.simulation === true) {
+-    if (realRoot === CANONICAL_ROOT) return { ok: false, error: 'TRYB SYMULACJI NIE MOŻE PISAĆ DO KANONICZNEGO GENOME — podaj kopię', aborted_before_write: true };
++    /* Guard „nie pisz do własnego korzenia" ma sens tylko dla modułu zainstalowanego w kanonie.
++       Gdy migrate.js sam leży w piaskownicy (kopia testowa), __dirname NIE jest kanonem —
++       ochronę przejmuje assertSandbox, który patrzy na WŁAŚCIWOŚĆ celu, a nie na relację do siebie. */
++    /* assertSandbox wyżej sprawdził już REALNE ścieżki wobec kanonu — to jest jedyna kontrola.
++       Poprzednie porównanie z __dirname zależało od tego, skąd załadowano moduł, i nie chroniło. */
+   } else {
+     const v = verifyApproval((auth || {}).approval || {}, (auth || {}).approvedPlan || plan);
+     if (!v.ok) return { ok: false, error: 'AUTORYZACJA ODRZUCONA NA WARSTWIE ZAPISU: ' + v.reason, aborted_before_write: true };
+@@ -367,7 +414,7 @@
+     write(plan.ledger.file, all.join('\n') + '\n');
+ 
+     /* 6. bramka: build --check musi być zielony */
+-    execFileSync('node', [path.join(__dirname, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8' });
++    execFileSync('node', [path.join(__dirname, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8', stdio: 'pipe' });
+ 
+     /* 7. PEŁNY build: emisja dist/ + danych viewera — objęta tą samą transakcją.
+        Sukces migracji musi znaczyć, że interfejs pokazuje nowy graf, nie stary. */
+@@ -378,7 +425,7 @@
+     const viewerData = path.join(root, '..', '..', 'genome-os', 'js', 'genome-f0-data.js');
+     if (fs.existsSync(path.dirname(viewerData)) && !backups.has(viewerData))
+       backups.set(viewerData, fs.existsSync(viewerData) ? fs.readFileSync(viewerData, 'utf8') : null);
+-    execFileSync('node', [path.join(__dirname, 'build.js')], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8' });
++    execFileSync('node', [path.join(__dirname, 'build.js')], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8', stdio: 'pipe' });
+     const graph = JSON.parse(fs.readFileSync(path.join(root, 'dist/graph.json'), 'utf8'));
+     const pmCount = (graph.project_mechanism || []).length;
+     if (!pmCount) throw new Error('build wyemitował graf bez krawędzi Project–Mechanism — emisja uznana za nieudaną');
+@@ -501,4 +548,4 @@
+   }
+ }
+ 
+-module.exports = { buildPlan, applyPlan, planHash, renderPlanMd, verifyApproval, verifyInputsUnchanged, approvalPayload, APPROVAL_KEY_FILE, MIGRATION_ID };
++module.exports = { planDelta, isNoop, buildPlan, applyPlan, planHash, renderPlanMd, verifyApproval, verifyInputsUnchanged, approvalPayload, MIGRATION_ID };

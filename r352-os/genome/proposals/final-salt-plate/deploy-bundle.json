@@ -1,0 +1,474 @@
+{
+ "events": [
+  {
+   "kind": "decision.decided",
+   "on": "dec:2026-08-09-wdrozenie-salt-plate",
+   "actor": "przemek",
+   "note": "Zatwierdzenie wdrozenia warstwy strategicznej SALT/PLATE oraz kontraktow Research/Measurement. prepared_by: session, decided_by: przemek."
+  }
+ ],
+ "evidence": [
+  {
+   "mechanism": "mech:strategy-before-execution",
+   "id": "ev:strategy-before-execution-bw",
+   "type": "backtest",
+   "date": "2026-08-09",
+   "source": "rec:backtests/betterworkplace-salt-plate",
+   "direction": "neutral",
+   "project": "proj:betterguide-hub",
+   "observation": "BetterWorkplace Faza 1+2 (kwiecień-maj 2026): SALT wyprodukował 6 deliverables (architektura marek, karty ról, narracja, matryca komunikacji, mapa ścieżek, plan wdrożenia), PLATE dołożył plan komunikacji. REKONSTRUKCJA HISTORYCZNA, nie żywy pomiar — nie znamy delty wskaźników klienta ani tego, które odkrycia były hipotezami. Wartość dowodowa: pokazuje, że procedura jest wykonalna end-to-end, NIE że poprawia wynik. KIERUNEK: neutral — wobec claimu o poprawie wyniku ten backtest nie jest dowodem ani za, ani przeciw; dowodzi wyłącznie wykonalności.",
+   "actor": "przemek",
+   "cause": "dec:2026-08-09-wdrozenie-salt-plate"
+  },
+  {
+   "mechanism": "mech:strategy-before-execution",
+   "id": "ev:strategy-before-execution-tlumacz",
+   "type": "backtest",
+   "date": "2026-08-09",
+   "source": "rec:backtests/marka-tlumacz-salt-gap",
+   "direction": "limits",
+   "project": "proj:marka-tlumacz",
+   "observation": "Trial #002 (marka tłumacza): v1 strony powstało BEZ warstwy diagnostycznej — dopiero benchmark po fakcie ujawnił brak par językowych, liczb, akredytacji i referencji, czyli braki warstwy A (odbiorca) i L (przewaga) SALT. Koszt: pełna runda poprawek v1→v1.1. KIERUNEK: limits — nie potwierdza claimu, lecz wyznacza jego granicę: pokazuje koszt pominięcia warstwy w JEDNYM projekcie o małej skali, bez dowodu, że przy większej skali koszt rośnie.",
+   "actor": "przemek",
+   "cause": "dec:2026-08-09-wdrozenie-salt-plate"
+  }
+ ],
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "wf:salt",
+   "type": "workflow",
+   "title": "SALT — diagnoza strategiczna (Sytuacja · Odbiorcy · Przewaga · Zmiana)",
+   "status": "draft",
+   "owner": "przemek",
+   "category": "Strategy",
+   "relations": {
+    "uses": [
+     "mech:competitive-benchmarking",
+     "mech:machine-narrows-human-picks"
+    ],
+    "related": [
+     "wf:plate",
+     "mech:strategy-before-execution",
+     "mech:working-artifact-extraction",
+     "mech:proof-first-demo-pitch"
+    ],
+    "born_from": [
+     "proj:r352-framework-brand-hub-os"
+    ],
+    "for": [
+     "cli:betterworkplace"
+    ]
+   },
+   "trigger": "Klient prosi o markę, komunikację, stronę, kampanię albo „odświeżenie\", a NIE MA zapisanej odpowiedzi na pytanie: jaki problem realnie rozwiązujemy, czyją decyzję zmieniamy i czym się wyróżniamy. Albo mówi: „wzrost się zatrzymał\", „konkurenci wyglądają tak samo, zostaje cena\", „polecenia przestały wystarczać\", „mamy kilka marek i nikt nie widzi związku\". Sygnał ostrzegawczy: brief zaczyna się od artefaktu, nie od problemu.",
+   "context": "Projekty, w których wynik zależy od percepcji odbiorcy: pozycjonowanie, architektura marek, komunikacja, oferta, GTM, redesign zmieniający narrację, marki osobiste ekspertów. Także projekty własne r352, gdy zmienia się to, komu sprzedajemy.",
+   "anti_context": "NIE uruchamiać, gdy: (a) problem dominujący jest produktowy, cenowy lub dystrybucyjny — branding tego nie naprawi i SALT ma to POWIEDZIEĆ, nie obejść; (b) istnieje świeża (≤12 mies.), zatwierdzona strategia ze sprawdzalnym odniesieniem, której brief nie kwestionuje — wtedy wchodzi od razu wf:plate; (c) projekt jest czysto techniczny/infrastrukturalny bez odbiorcy zewnętrznego (migracja, refaktor, narzędzie wewnętrzne); (d) zlecenie jest jednorazowym artefaktem bez konsekwencji pozycjonujących i bez ciągłości (jeden baner, jedna poprawka, jeden format w istniejącym systemie marki).",
+   "inputs": [
+    "Research/Benchmark spełniający kontrakt (lib/research-contract.js) — SALT nie startuje na wrażeniach",
+    "Liczby klienta: przychód/konwersja/retencja/koszyk, choćby zgrubne, albo jawne „n/d”",
+    "Kto dziś kupuje i kto POWINIEN kupować (rola, budżet, LTV)",
+    "Inwentarz marek, domen i komunikatów w obiegu oraz ich wzajemne relacje",
+    "Obecna komunikacja marki na tle komunikacji kategorii",
+    "Dostęp do 2–3 osób po stronie klienta i do jego klientów końcowych — albo jawna deklaracja, że go nie ma"
+   ],
+   "outputs": [
+    "WNIOSEK S — jedno zdanie: co się dzieje i co nie działa",
+    "KLASYFIKACJA PROBLEMU: dominujący + wtórny (percepcyjny | produktowy | cenowy | dystrybucyjny)",
+    "WNIOSEK A — jedno zdanie: odbiorca dzisiejszy vs docelowy i różnica wartości kontraktu, z językiem każdego z nich",
+    "WNIOSEK L — jedno zdanie: przewaga strukturalna, areny konkurencji, wolna pozycja",
+    "WNIOSEK T — jedno zdanie: transformacja percepcji z X na Y + ZACHOWANIE będące dowodem",
+    "ODKRYCIA KLUCZOWE (2–4), każde falsyfikowalne, ze statusem ZWALIDOWANE|HIPOTEZA i planem walidacji z datą",
+    "Rejestr założeń (czego nie wiemy), alternatyw odrzuconych z powodem i ryzyk (co, jeśli odkrycie jest fałszywe)"
+   ],
+   "ai_tasks": [
+    "Zebranie i skontraktowanie researchu (rekordy przechodzą validateResearchRecord)",
+    "Rekonstrukcja pakietu wejściowego: co wiadomo, czego brakuje, co jest hipotezą podaną jako fakt",
+    "Zestawienie aren konkurencji i kandydatów na przewagi z materiału źródłowego",
+    "Prowadzenie warstw S/A/L/T z wymuszeniem jednozdaniowych wniosków — zawsze ≥2 alternatywne sformułowania na warstwę",
+    "Wyprowadzenie kandydatów na odkrycia z oznaczeniem, które są hipotezami",
+    "Zestawienie założeń i ryzyk"
+   ],
+   "human_tasks": [
+    "Przemek/klient: KLASYFIKACJA PROBLEMU — bramka uczciwości, nie formalność",
+    "Przemek: wybór jednego wniosku na warstwę spośród alternatyw",
+    "Klient: potwierdzenie odbiorcy docelowego i różnicy wartości kontraktu",
+    "Klient: dostęp do swoich klientów na wywiady albo świadoma zgoda, że odkrycia zostaną hipotezami",
+    "Przemek-decyzja: powiedzieć klientowi, gdy dominujący problem nie jest percepcyjny — nawet kosztem mniejszego zlecenia",
+    "Przemek: zatwierdzenie wyniku podpisanym pakietem (patrz guards G4)"
+   ],
+   "success_conditions": [
+    "Każda warstwa ma JEDEN wniosek, nie akapit",
+    "Klasyfikacja problemu wykonana i zakomunikowana klientowi PRZED wydaniem budżetu",
+    "Każde odkrycie ma status i, jeśli hipoteza, plan walidacji z datą",
+    "Co najmniej jedna decyzja zakresowa lub pozycjonująca zmienia się względem pierwotnego briefu",
+    "Każda późniejsza rekomendacja da się prześledzić do konkretnego odkrycia albo celu biznesowego",
+    "Alternatywy odrzucone są zapisane z powodem — nie znikają po cichu"
+   ],
+   "failure_conditions": [
+    "Wniosek warstwy dłuższy niż zdanie = warstwa nie została domknięta",
+    "Dominujący problem ≠ percepcyjny, a projekt i tak idzie w branding — SALT stał się listkiem figowym",
+    "Odkrycia bez statusu: hipoteza sprzedana jako ustalenie",
+    "Odbiorca docelowy wybrany bez różnicy wartości kontraktu — „HR Director” bez liczby to życzenie",
+    "SALT powstaje po deliverables, żeby je uzasadnić (odwrócona przyczynowość)",
+    "SALT kończy się dokumentem, ale żadna decyzja się nie zmienia — koszt bez zwrotu, nie „porządkowanie wiedzy”"
+   ],
+   "guards": [
+    "G1 — Research gate: researchGate() musi zwrócić can_proceed. UWAGA: to NIE jest contractGate — kontrakt startu wymaga metryk i predykcji, które powstają DOPIERO po diagnozie. Wymaganie go przed SALT było cyrkularne.",
+    "G2 — Bramka klasyfikacji: bez wypełnionego dominującego problemu SALT nie produkuje odkryć",
+    "G3 — Bramka uczciwości hipotez: odkrycie bez statusu blokuje przekazanie wyniku do wf:plate",
+    "G4 — Zgoda fazy foundation: wynik SALT staje się fundamentem dla wf:plate wyłącznie z podpisanym odciskiem pakietu fazy „foundation” (verifyHumanReview), nie z napisem „zaakceptowane”. To osobna, wcześniejsza zgoda niż podpis GO.",
+    "G5 — Bramka rozliczenia: assessFrameworkPayoff() w postmortemie; payoff NONE oznacza, że framework w tym projekcie nie zadziałał"
+   ],
+   "provenance": [
+    "FrameWorkProdukty/r352-framework/szablony/strategia/SALT.md — szablon operacyjny, F1 krok 3",
+    "FrameWorkProdukty/r352-framework/spec/STRATEGIA-WZORZEC.md — sekcja 2 METODOLOGIA i sekcja 3 ODKRYCIA KLUCZOWE",
+    "BetterWorkplace/BW_Strategia_Klient.html — pełne, wykonane SALT dla ekosystemu BW (kwiecień–maj 2026)",
+    "BetterWorkplace/r352-deploy/framework.html — publiczna prezentacja metody"
+   ],
+   "next_use": "Zatwierdzony (podpisany) wynik SALT jest JEDNYM z dwóch dopuszczalnych fundamentów dla wf:plate — drugim jest świeże, sprawdzalne odniesienie do istniejącej strategii klienta. SALT nie jest warunkiem koniecznym PLATE, jest jego producentem tam, gdzie fundamentu nie ma.",
+   "postmortem_accounting": [
+    "Czy klasyfikacja problemu z S okazała się trafna — czy w trakcie ujawnił się problem produktowy/cenowy, którego SALT nie nazwał?",
+    "Czy odkrycia-hipotezy zostały zwalidowane w zadeklarowanym terminie — czym i z jakim wynikiem?",
+    "Czy transformacja T jest widoczna w ZACHOWANIU (kto pisze zapytania, jakim budżetem), nie w deklaracji?",
+    "Ile decyzji zakresowych realnie zmieniła diagnoza (assessFrameworkPayoff)?",
+    "Czy któraś rekomendacja końcowa NIE dała się prześledzić do odkrycia — skąd się wzięła?",
+    "Które założenie okazało się fałszywe i co to kosztowało?"
+   ],
+   "tags": [
+    "strategia",
+    "salt",
+    "framework",
+    "bw-origin"
+   ],
+   "body": "\n\n## Problem\n\nGenome pamiętało, że strategia powstała, ale nie potrafiło jej **odtworzyć jako rozumowania**. Karta projektu mówi „zrobiliśmy strategię dla BW\"; nie mówi, jaką sekwencję pytań trzeba zadać, żeby dojść do wniosku „problem jest kategorialny, nie produktowy\". Wiedza operacyjna została w HTML-u dla klienta i w głowie właściciela.\n\n## Dlaczego Workflow, a nie Mechanism\n\nMechanism w tej ontologii to generator rezultatu „X powoduje Y, bo Z\" — jedna dźwignia z dowodami i confidence. SALT nie jest dźwignią; jest **nazwaną sekwencją kroków z bramkami**, która orkiestruje inne mechanizmy. To definicja obiektu Workflow z ontologii F0.\n\n**Ta karta nie ma pól `confidence` ani `evidence` — celowo.** Build ich dla typu `workflow` nie waliduje, więc byłyby drugim, niekontrolowanym stanem wiedzy. Falsyfikowalny claim („diagnoza przed produkcją zmienia decyzje\") żyje w `mech:strategy-before-execution` i tam nosi confidence oraz Evidence.\n\n## Sekwencja\n\nCztery warstwy, każda buduje na poprzedniej, każda kończy się **jednym zdaniem**:\n\n1. **S — Sytuacja.** Co klient sprzedaje, komu, za ile — i co *myśli*, że sprzedaje. Które liczby stoją. Jak brzmi na tle kategorii. Bramka: klasyfikacja problemu (dominujący + wtórny). Jeśli dominujący nie jest percepcyjny, mówimy to klientowi teraz, nie po fakturze.\n2. **A — Odbiorcy.** Kto decyduje dziś, a kto powinien. Jak każde z nich *swoimi słowami* nazywa problem. Różnica wartości kontraktu. Kto wpływa, choć nie kupuje.\n3. **L — Przewaga.** Co klient robi dobrze *potwierdzone przez jego klientów*, nie przez niego. Które przewagi są strukturalne, a które kopiowalne w pół roku. Na ilu arenach naprawdę konkurujemy. Jaka pozycja jest wolna.\n4. **T — Zmiana.** Percepcja dziś → percepcja docelowa, po jednym zdaniu. I **zachowanie**, które jest dowodem, że zmiana zaszła.\n\nZ czterech wniosków wychodzą 2–4 **odkrycia kluczowe**: jednozdaniowe, falsyfikowalne, każde ze statusem (zwalidowane czym / hipoteza do kiedy) i mapowaniem na deliverables.\n\n## Co SALT realnie zmienia\n\nNie produkuje dokumentu — produkuje **rozstrzygnięcia, które ucinają zakres**. Na BW: klasyfikacja „percepcyjny\" wykluczyła pracę produktową i cenową; zmiana decydenta OM→HR przepisała komunikację na inny budżet; nazwanie Owocowych Czwartków jako assetu kulturowego zmieniło strategię z „wymyśl przewagę\" na „przejmij istniejące skojarzenie\". Trzy decyzje zmieniające zakres i budżet — przed pierwszym projektem graficznym.\n\nJeśli przebieg SALT nie zmienia zakresu, odbiorcy ani przekazu, był zbędny — i to jest wynik do zapisania, nie do ukrycia.\n",
+   "actor": "przemek"
+  },
+  {
+   "op": "object.create",
+   "id": "wf:plate",
+   "type": "workflow",
+   "title": "PLATE — operacjonalizacja strategii (Ścieżka · Blokady · Cele · Tematy · Wykonanie)",
+   "status": "draft",
+   "owner": "przemek",
+   "category": "Strategy",
+   "relations": {
+    "uses": [
+     "mech:format-dictionary",
+     "mech:compounding-channel"
+    ],
+    "related": [
+     "wf:salt",
+     "mech:strategy-before-execution",
+     "mech:dated-commitment-gates",
+     "mech:single-source-compiler"
+    ],
+    "born_from": [
+     "proj:r352-framework-brand-hub-os"
+    ],
+    "for": [
+     "cli:betterworkplace"
+    ]
+   },
+   "requires_input": "ZATWIERDZONY FUNDAMENT STRATEGICZNY — alternatywa, nie jedno źródło: (a) podpisany wynik wf:salt albo (b) świeże (≤12 mies.), sprawdzalne odniesienie do istniejącej strategii. Bramka PLATE_REQUIRES_FOUNDATION w lib/strategy-frameworks.js. ŚWIADOMIE NIE jest to relacja grafu requires → wf:salt: taka krawędź twierdziłaby, że SALT jest jedynym możliwym fundamentem, co jest nieprawdą.",
+   "trigger": "Istnieje ZATWIERDZONA diagnoza strategiczna (wynik wf:salt albo świeże, sprawdzalne odniesienie do strategii ≤12 mies.), a projekt wymaga rozstrzygnięcia CO, GDZIE i JAK komunikujemy: kalendarz, kanały, tematy per odbiorca, materiały. Także wtedy, gdy brief tego nie nazywa, ale horyzont komunikacji sięga 90 dni.",
+   "context": "Faza wykonawcza po strategii: plan komunikacji, kalendarz 90 dni, matryca komunikacji, szablony treści, kampanie wielokanałowe, ścieżki cross-sell w ekosystemie marek.",
+   "anti_context": "NIE stosować, gdy: (a) nie ma zatwierdzonego fundamentu strategicznego — PLATE nie wymyśla strategii i uruchomiony bez niej produkuje kalendarz bez tezy; (b) projekt to pojedynczy artefakt bez ciągłości komunikacyjnej (jeden format, jeden layout, jedna wizytówka); (c) projekt techniczny — nie ma odbiorcy-człowieka do przeprowadzenia przez ścieżkę; (d) klient nie ma zdolności wykonawczej na deklarowany rytm — wtedy plan jest fikcją i trzeba zejść do quick winów.",
+   "inputs": [
+    "ZATWIERDZONY wynik wf:salt albo świeże, sprawdzalne odniesienie do strategii (ref w formacie Genome + źródło + data zatwierdzenia)",
+    "Inwentarz kanałów, do których klient ma realny dostęp i zdolność publikacji",
+    "Dane o obecnym ruchu/bazie, jeśli istnieją — albo jawne „n/d”",
+    "Ograniczenia wykonawcze: kto produkuje treści, ile godzin, jaki budżet mediowy",
+    "Metryki możliwe do zmierzenia (przechodzące assessMetric) — nie metryki wymarzone"
+   ],
+   "outputs": [
+    "P — ścieżka klienta: etapy × stan głowy odbiorcy × potrzebny komunikat × kanał",
+    "L — rejestr blokad: blokada × DOWÓD, że istnieje × przekaz, który ją usuwa",
+    "A — cele: działanie × cel jako ZACHOWANIE odbiorcy × metryka × wartość docelowa × horyzont",
+    "T — tematy per odbiorca: top 3 tematy × ton × argument koronny (szkielet HOOK → VALUE → CTA)",
+    "E — materiały: kalendarz 90 dni (tydzień × kanał × temat × format × cel) + lista szablonów powtarzalnych",
+    "Lista tego, czego świadomie NIE robimy w tym horyzoncie, z powodem"
+   ],
+   "ai_tasks": [
+    "Rozpisanie ścieżki i kandydatów na blokady z materiału wf:salt + researchu",
+    "Propozycja tematów per odbiorca zgodnych z warstwą A i T diagnozy",
+    "Wypełnienie szkieletu kalendarza 90 dni w rytmie realnym dla zdolności klienta",
+    "Kontrola spójności: czy każdy przekaz mapuje się na blokadę albo etap",
+    "Walidacja każdej metryki przez assessMetric przed wpisaniem do kolumny „metryka”"
+   ],
+   "human_tasks": [
+    "Przemek/klient: potwierdzenie, że blokady są REALNE — każda musi mieć dowód, nie domysł",
+    "Klient: potwierdzenie zdolności wykonawczej na zadeklarowany rytm",
+    "Przemek: rozstrzygnięcie, które działania wchodzą do 90 dni, a które wypadają",
+    "Przemek: podpisana zgoda na pakiet przed uruchomieniem produkcji materiałów"
+   ],
+   "success_conditions": [
+    "Każdy przekaz da się przypisać do blokady (L) albo etapu ścieżki (P) — jeśli nie, wypada",
+    "Każde działanie ma metrykę przechodzącą assessMetric, nie „zwiększymy świadomość”",
+    "Każda blokada ma dowód istnienia, nie przypuszczenie",
+    "Kalendarz mieści się w realnej zdolności wykonawczej klienta",
+    "Tematy nie mieszają poziomów marek (master = WHY, endorsed = WHAT, product = CONTROL)"
+   ],
+   "failure_conditions": [
+    "PLATE uruchomiony bez fundamentu — kalendarz istnieje, tezy nie ma",
+    "Cele opisane jako stany („większa rozpoznawalność”) zamiast zachowań odbiorcy",
+    "Blokady wymyślone przy stole zamiast wyprowadzone z danych albo rozmów",
+    "Kalendarz na 90 dni przy zdolności na 20 — plan umiera w tygodniu 3 i psuje zaufanie do całości",
+    "Materiały produkowane przed zatwierdzeniem sekcji A (cele) — praca do kosza przy pierwszej korekcie"
+   ],
+   "guards": [
+    "G1 — Bramka fundamentu (PLATE_REQUIRES_FOUNDATION w foundationGate): PLATE startuje wyłącznie na (a) podpisanym wyniku wf:salt albo (b) świeżym, sprawdzalnym odniesieniu do istniejącej strategii. Twarda bramka, nie zalecenie. Alternatywa jest realna — dlatego nie ma jej jako relacji grafu.",
+    "G2 — Bramka metryk: kolumna „metryka” w sekcji A przechodzi przez assessMetric; metryka BLOCKED nie wchodzi do planu",
+    "G3 — Bramka dowodu blokady: blokada bez dowodu jest hipotezą i musi być tak oznaczona",
+    "G4 — Bramka zdolności: kalendarz konfrontowany z liczbą dni produkcyjnych klienta przed zatwierdzeniem; < 30 dni w horyzoncie 90 = zejdź do quick winów",
+    "G5 — Zgoda: produkcja materiałów (E) startuje po podpisanym odcisku całego pakietu decyzyjnego"
+   ],
+   "provenance": [
+    "FrameWorkProdukty/r352-framework/szablony/brand/PLATE.md — szablon operacyjny, F2 krok 11",
+    "FrameWorkProdukty/r352-framework/spec/STRATEGIA-WZORZEC.md — D05 Journey Map wskazany jako wejście do PLATE (P + L)",
+    "BetterWorkplace/BW_Strategia_Klient.html — sekcja P.L.A.T.E. jako metoda Fazy 2 („Faza 1 = kim jesteśmy i do kogo mówimy · Faza 2 = co, gdzie i jak”)",
+    "BetterWorkplace/r352-deploy/framework.html"
+   ],
+   "next_use": "Wyjście PLATE zasila wykonanie: system/communication_matrix.json, system/messaging_templates.json, docs/kalendarz-90d.md oraz zakres produkcji formatów. Po 90 dniach wraca do postmortemu przez assessFrameworkPayoff().",
+   "postmortem_accounting": [
+    "Ile z kalendarza 90 dni zostało faktycznie opublikowane — i co zatrzymało resztę?",
+    "Które blokady okazały się realne, a które były domysłem zespołu?",
+    "Czy metryki z sekcji A dały się rozliczyć w zadeklarowanych źródłach, czy instrumentacja zawiodła?",
+    "Czy któryś przekaz nie mapował się na blokadę ani etap — jak przeszedł kontrolę spójności?",
+    "Czy zdolność wykonawcza klienta była oszacowana trafnie (błąd w którą stronę)?"
+   ],
+   "tags": [
+    "strategia",
+    "plate",
+    "framework",
+    "bw-origin",
+    "komunikacja"
+   ],
+   "body": "\n\n## Problem\n\nPlany komunikacji powstają jako kalendarze: siatka tygodni wypełniona tematami. Kalendarz bez tezy przeżywa trzy tygodnie, bo nikt nie umie rozstrzygnąć, co wypada przy pierwszym konflikcie priorytetów. PLATE odwraca kolejność: najpierw ścieżka i blokady, dopiero na końcu materiały.\n\n## Dlaczego osobno od SALT\n\nTa sama racja ontologiczna co przy SALT (sekwencja z bramkami, nie generator „X powoduje Y\"), a osobno — bo **działa na innym wejściu i bywa potrzebny bez nowej diagnozy**. Klient ze świeżą, zatwierdzoną strategią potrzebuje PLATE, a nie powtórki SALT. Odwrotnie nie działa: PLATE bez fundamentu produkuje kalendarz bez tezy.\n\n**Dlaczego w grafie NIE ma krawędzi `requires → wf:salt`.** Bo to byłaby nieprawda. PLATE wymaga *zatwierdzonego fundamentu*, a SALT jest jednym z dwóch jego źródeł — drugim jest świeża, sprawdzalna strategia klienta. Krawędź skierowana do SALT twierdziłaby, że jest jedynym. Zależność żyje tam, gdzie da się ją wyrazić uczciwie: w polu `requires_input` i w bramce `PLATE_REQUIRES_FOUNDATION`, która akceptuje obie drogi. Graf i router mówią to samo.\n\n**Ta karta nie ma pól `confidence` ani `evidence` — celowo.** Patrz `wf:salt`, ta sama racja: stan wiedzy żyje w `mech:strategy-before-execution`.\n\n## Sekwencja\n\n- **P — Przygotuj ścieżkę.** Droga od pierwszego kontaktu do zakupu i powrotu. Na każdym etapie: stan głowy odbiorcy, potrzebny komunikat, miejsce.\n- **L — Znajdź blokady.** Co powstrzymuje przed kolejnym krokiem (nie wiedzą o pełnej ofercie · nie ufają · nie widzą różnicy · boją się kosztu zmiany). **Każda blokada wymaga dowodu, że istnieje.** Każda zamienia się w konkretny przekaz, który ją usuwa.\n- **A — Ustal cele.** Każde działanie dostaje cel opisany jako **zachowanie odbiorcy**, metrykę, wartość docelową i horyzont. Zakaz ogólników.\n- **T — Dopasuj tematy.** Decydent chce zwrotu, użytkownik chce prostoty. Inne tematy, inny ton, inny argument koronny per grupa. Szkielet: HOOK → VALUE (funkcjonalna + emocjonalna + dowód) → CTA.\n- **E — Przygotuj materiały.** Kalendarz 90 dni i szablony powtarzalne — dopiero tutaj, po zatwierdzeniu celów.\n\n## Co PLATE realnie zmienia\n\nWycina. Kontrola spójności („każdy przekaz mapuje się na blokadę albo etap\") jest maszyną do usuwania tematów, które ktoś wymyślił, bo brzmiały dobrze. Bramka metryk usuwa działania, których nikt nie umie rozliczyć. Bramka zdolności urealnia kalendarz.\n\nNa BW widać to na quick winach: LinkedIn BW do HR Directorów nie jest „bądźmy na LinkedInie\" — jest odpowiedzią na odkrycie #3 (decyzja trafia do złej osoby), z baselinem pod KPI „35% zapytań od HR\". Ta sama teza, przełożona na kanał i liczbę.\n",
+   "actor": "przemek"
+  },
+  {
+   "op": "object.create",
+   "id": "mech:strategy-before-execution",
+   "type": "mechanism",
+   "title": "Strategy Before Execution — diagnoza przed produkcją",
+   "status": "emerging",
+   "owner": "przemek",
+   "confidence": {
+    "value": "emerging",
+    "evidence_strength": {
+     "n": 0,
+     "projects": 0,
+     "types": {},
+     "last_confirmed": null
+    },
+    "recommendation": "test-first"
+   },
+   "category": "Decision Quality",
+   "relations": {
+    "implements": [
+     "prin:extract-never-invent"
+    ],
+    "related": [
+     "mech:competitive-benchmarking",
+     "mech:working-artifact-extraction"
+    ]
+   },
+   "trigger": "Brief zamawia EGZEKUCJĘ (strona, kampania, materiały, rebranding), ale zespół nie potrafi jednym zdaniem odpowiedzieć: komu ta firma sprzedaje, czym wygrywa i co ma się zmienić w głowie odbiorcy. Sygnał ostrzegawczy: pierwszy artefakt powstaje, zanim ktokolwiek nazwał dominujący typ problemu.",
+   "context": "Projekty z konsekwencjami pozycjonującymi i ciągłością: rebrandingi, wejścia w nową kategorię, marki osobiste ekspertów, architektury wielu marek, kampanie o horyzoncie ≥90 dni. Klient ma odbiorcę zewnętrznego i realny problem rynkowy.",
+   "anti_context": "Nie stosować przy: projektach czysto technicznych i infrastrukturalnych bez odbiorcy zewnętrznego; pojedynczych artefaktach bez ciągłości (jeden baner, jedna poprawka); projektach ze świeżą, zaakceptowaną strategią (<12 mies.), której brief nie kwestionuje — tam diagnoza od zera to podatek, nie wartość. Nie stosować jako wymówki do opóźnienia egzekucji, gdy problem jest jawnie produktowy lub cenowy — wtedy uczciwą odpowiedzią jest 'branding tego nie naprawi', a nie kolejny warsztat.",
+   "inputs": [
+    "Brief klienta + to, czego brief NIE mówi (kto decyduje, co spada, kto realnie kupuje)",
+    "Dostęp do liczb (sprzedaż, konwersja, retencja) albo jawna deklaracja ich braku",
+    "Benchmark kategorii (mech:competitive-benchmarking) jako wejście do warstwy L"
+   ],
+   "ai_tasks": [
+    "Rekonstrukcja pakietu wejściowego: co wiadomo, czego brakuje, co jest hipotezą podaną jako fakt",
+    "Przeprowadzenie wf:salt warstwami z wymuszeniem jednozdaniowych wniosków",
+    "Klasyfikacja dominującego typu problemu i wyprowadzenie konsekwencji zakresowych",
+    "Po zatwierdzeniu SALT: przeprowadzenie wf:plate i konfrontacja kalendarza z pojemnością"
+   ],
+   "human_tasks": [
+    "Przemek/klient: zatwierdzenie wniosku każdej warstwy (SALT bez akceptacji nie jest fundamentem dla PLATE)",
+    "Klient: dostęp do swoich klientów na wywiady albo świadoma zgoda, że odkrycia zostaną hipotezami",
+    "Przemek-decyzja: powiedzieć klientowi, gdy dominujący problem nie jest percepcyjny — nawet kosztem mniejszego zlecenia"
+   ],
+   "expected_outcome": "Zakres projektu zostaje wyprowadzony z diagnozy, nie z zamówienia: mierzalnie — co najmniej jedna decyzja zakresowa/pozycjonująca zmienia się względem pierwotnego briefu, a odkrycia mają jawny status ZWALIDOWANE|HIPOTEZA. Kontr-test: jeśli po SALT/PLATE żadna decyzja się nie zmieniła, mechanizm w tym projekcie NIE zadziałał (koszt bez zwrotu).",
+   "tags": [
+    "strategia",
+    "bw-origin"
+   ],
+   "body": "\n\n## Problem\n\nEgzekucja zamówiona przez klienta jest odpowiedzią na problem, który klient SAM zdiagnozował — a to najsłabsze ogniwo. Firma prosi o stronę, gdy problemem jest niejasna oferta; prosi o kampanię, gdy problemem jest cena; prosi o rebranding, gdy problemem jest produkt. Bez warstwy diagnostycznej agencja realizuje zamówienie, nie rozwiązuje problemu — i obie strony dowiadują się o tym po fakcie.\n\n## Mechanizm działania\n\nMiędzy briefem a produkcją wchodzi para procedur o kierunkowej zależności: **Research/Benchmark → SALT → PLATE → egzekucja**. SALT (`wf:salt`) diagnozuje: sytuację, odbiorcę, przewagę i zmianę percepcji, kończąc się jawną klasyfikacją dominującego typu problemu. PLATE (`wf:plate`) — wyłącznie na zatwierdzonym fundamencie — zamienia to w ścieżkę klienta, blokady, cele z metrykami, tematy i kalendarz. Kluczowa nie jest produkcja dokumentów, lecz to, że **klasyfikacja problemu ma prawo zmienić zakres zlecenia albo je zakwestionować**.\n\n## Warunki sukcesu\n\n- Co najmniej jedna decyzja zakresowa/pozycjonująca zmienia się względem pierwotnego briefu\n- Odkrycia mają jawny status ZWALIDOWANE/HIPOTEZA i plan walidacji\n- PLATE startuje wyłącznie na zatwierdzonym fundamencie\n- Gdy problem nie jest percepcyjny — zostaje to powiedziane klientowi przed wydaniem budżetu\n\n## Warunki porażki\n\n- SALT/PLATE produkują dokumenty, ale żadna decyzja się nie zmienia — to koszt bez zwrotu, nie „porządkowanie wiedzy\"\n- Diagnoza dopasowana do zakupionego zakresu (racjonalizacja zamówienia zamiast diagnozy)\n- PLATE bez fundamentu — plan komunikacji dla niezatwierdzonego pozycjonowania\n- Odkrycia-hipotezy prezentowane jako ustalenia\n- Framework użyty przy problemie produktowym/cenowym jako sposób na utrzymanie zlecenia\n\n## Potencjał automatyzacji\n\nWysoki dla struktury i kompletności (sesja prowadzi warstwami, wymusza jednozdaniowe wnioski, sprawdza statusy odkryć), zerowy dla osądu: klasyfikacja dominującego problemu i decyzja „powiedzieć klientowi, że branding nie pomoże\" zostają u człowieka.\n\n## Transfer\n\nKażdy klient z konsekwencjami pozycjonującymi. Sprzężenie: `mech:competitive-benchmarking` zasila warstwę L, `mech:format-dictionary` przejmuje po warstwie E przy wolumenie.\n\n## Status dowodowy — uczciwie\n\nOba wpisy Evidence to **backtesty** (rekonstrukcja historyczna), nie żywe pomiary. Pokazują wykonalność procedury i koszt jej pominięcia — **nie** dowodzą, że projekty z SALT/PLATE wypadają lepiej. Do `validated` brakuje: ≥1 żywego measurement/postmortem z rozliczonymi predykcjami i deltą wskaźnika klienta, z ≥2 różnych projektów. Dlatego `emerging` / `test-first`.\n\n## Version\n- v1 · 2026-08-09 — karta-propozycja z ekstrakcji BetterWorkplace + r352-framework. NIE w kanonie.\n",
+   "actor": "przemek"
+  },
+  {
+   "op": "object.create",
+   "id": "rec:backtests/betterworkplace-salt-plate",
+   "type": "record",
+   "title": "Backtest — SALT/PLATE w BetterWorkplace (rekonstrukcja Fazy 1+2)",
+   "status": "created",
+   "owner": "przemek",
+   "relations": {
+    "attached_to": [
+     "proj:betterguide-hub"
+    ],
+    "related": [
+     "wf:salt",
+     "wf:plate",
+     "mech:strategy-before-execution"
+    ]
+   },
+   "tags": [
+    "walidacja",
+    "strategia",
+    "bw-origin"
+   ],
+   "body": "\n\n# Backtest — SALT/PLATE w BetterWorkplace\n\n**Typ dowodu: `backtest` (rekonstrukcja historyczna).** Nie jest to żywy pomiar ani rozliczony postmortem. Zgodnie z protokołem walidacji: nie liczy się do progu `validated` i nie wchodzi do metryki „zweryfikowane żywym dowodem\".\n\n## Co ustalono ze źródeł\n\nŹródło pierwotne: `~/Desktop/Claude_zadania/BetterWorkplace/BW_Strategia_Klient.html` (dokument klienta, Faza 1 i 2, kwiecień–maj 2026) oraz szablony operacyjne w `FrameWorkProdukty/r352-framework/szablony/{strategia/SALT.md, brand/PLATE.md}`.\n\n- Faza 1 prowadzona **metodologią SALT**, 6 deliverables: architektura marek, karty ról, narracja i przekaz, matryca komunikacji, mapa ścieżek, plan wdrożenia.\n- Faza 2 zawiera jawną sekcję **P.L.A.T.E. Framework** — plan komunikacji na zatwierdzonym fundamencie z Fazy 1.\n- Kolejność w dokumencie jest kierunkowa: diagnoza → deliverables strategiczne → dopiero komunikacja. Zgodne z bramką wejścia `wf:plate`.\n- Dokument formułuje tezę operacyjną: „strategia to nie plan, to sposób myślenia\" — czyli zestaw reguł decyzyjnych, nie artefakt na półkę.\n\n## Czego NIE da się z tego wywnioskować (ograniczenia)\n\n1. **Brak delty wskaźników klienta.** Dokument opisuje proces i deliverables, nie zawiera pomiaru przed/po. Nie wiemy, czy pozycja rynkowa BW się zmieniła.\n2. **Nie wiadomo, które odkrycia były hipotezami.** Szablon SALT wymaga statusu ZWALIDOWANE/HIPOTEZA — w materiale nie ma śladu, czy ta bramka była egzekwowana.\n3. **Nie wiadomo, ile decyzji zakresowych zmieniła diagnoza.** To jest właśnie `expected_outcome` mechanizmu — i jest nierozstrzygnięte.\n4. **Ryzyko potwierdzenia:** rekonstrukcję robi ta sama firma, która framework stosowała.\n\n## Wniosek dowodowy\n\nWykazana jest **wykonalność procedury end-to-end** na realnym kliencie — nie jej skuteczność. Kierunek dowodu: `supports` dla istnienia i kompletności procedury, `neutral` dla claimu o poprawie wyników.\n",
+   "actor": "przemek"
+  },
+  {
+   "op": "object.create",
+   "id": "rec:backtests/marka-tlumacz-salt-gap",
+   "type": "record",
+   "title": "Backtest — koszt pominięcia warstwy diagnostycznej (Trial #002)",
+   "status": "created",
+   "owner": "przemek",
+   "relations": {
+    "attached_to": [
+     "proj:marka-tlumacz"
+    ],
+    "related": [
+     "wf:salt",
+     "mech:strategy-before-execution",
+     "mech:competitive-benchmarking"
+    ]
+   },
+   "tags": [
+    "walidacja",
+    "strategia"
+   ],
+   "body": "\n\n# Backtest — koszt pominięcia warstwy diagnostycznej (Trial #002)\n\n**Typ dowodu: `backtest`.** Dowód NEGATYWNY: pokazuje koszt braku procedury, nie korzyść z jej użycia.\n\n## Co się wydarzyło\n\nW Trialu #002 (marka osobista tłumacza konferencyjnego) v1 strony powstało bezpośrednio z faktów mailowych i inspiracji klientki, **bez warstwy diagnostycznej**. Benchmark rynkowy wykonany dopiero PO v1 — na pytanie CEO — ujawnił braki, które są dokładnie zawartością warstw SALT:\n\n| Brak wykryty po fakcie | Warstwa SALT, która by go złapała |\n|---|---|\n| Pary językowe niepodane | A — odbiorcy (pierwsze pytanie klienta) |\n| Brak liczb doświadczenia | L — przewaga (potwierdzona, nie deklarowana) |\n| Brak akredytacji/stowarzyszeń | L — przewaga strukturalna vs kopiowalna |\n| Brak referencji | L — „potwierdzone przez jego klientów, nie przez niego\" |\n| Brak FAQ / ścieżki zakupu | T + wejście do PLATE |\n\n**Koszt:** pełna runda poprawek v1 → v1.1 (sekcja referencji, FAQ, nota o parach językowych, warstwa SEO/AEO).\n\n## Czego NIE da się z tego wywnioskować\n\n1. Nie wiemy, czy SALT **rzeczywiście** wychwyciłby te braki — to rekonstrukcja kontrfaktyczna, nie eksperyment.\n2. Braki wykrył benchmark (`mech:competitive-benchmarking`), nie SALT — możliwe, że sam benchmark wystarczy, a warstwa diagnostyczna jest nadmiarowa. **To jest realna alternatywna hipoteza i nie została odrzucona.**\n3. Projekt nie jest zamknięty — nie znamy wyniku sprzedażowego.\n\n## Wniosek dowodowy\n\nKierunek: `limits` — pokazuje granicę „egzekucji z briefu\" przy projektach pozycjonujących, ale nie rozstrzyga, czy lekarstwem jest SALT, czy sam benchmark. Ta niepewność ma zostać rozstrzygnięta pierwszym żywym użyciem.\n",
+   "actor": "przemek"
+  },
+  {
+   "op": "object.create",
+   "id": "dec:2026-08-09-wdrozenie-salt-plate",
+   "type": "decision",
+   "title": "Wdrożenie warstwy strategicznej SALT/PLATE i kontraktów Research/Measurement",
+   "status": "decided",
+   "owner": "przemek",
+   "relations": {},
+   "tags": [
+    "strategia",
+    "wdrozenie"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Decyzja GO dla wdrożenia warstwy strategicznej.",
+   "body": "\n## Kontekst\n\nGenome pamiętało, że strategia powstała, ale nie potrafiło odtworzyć rozumowania, które ją stworzyło. Katalog workflows/ był pusty — warstwa procesu nie miała reprezentacji.\n\n## Opcje\n\n1. **Nic nie robić** — wiedza operacyjna zostaje w HTML-u klienta i w głowie właściciela.\n2. **SALT/PLATE jako mechanizmy** — wymagałoby udawania pojedynczego expected_outcome i Evidence-per-użycie.\n3. **Trzy obiekty: 2 workflow + 1 mechanizm-claim** — procedury jako Workflow, falsyfikowalny claim z confidence jako Mechanism. ← WYBRANE\n\n## Uzasadnienie\n\nOntologia F0 definiuje Workflow jako nazwaną sekwencję kroków z bramkami orkiestrującą mechanizmy — to dosłownie SALT i PLATE. Confidence i Evidence żyją wyłącznie na mech:strategy-before-execution, bo build waliduje je tylko dla typu mechanism; na karcie workflow byłyby niekontrolowanym drugim stanem wiedzy.\n\nPróby na sucho na 5 projektach historycznych: 2 razy odmowa z zapisanym powodem, 3 razy realna zmiana decyzji zakresowej. 176 testów zielonych, kanon nietknięty.\n\n## Czego decyzja NIE obejmuje\n\n- awansu mechanizmu na validated (zostaje emerging, wyłącznie backtesty o kierunkach neutral i limits),\n- zmiany słownika RELATION_KEYS (krawędź requires → wf:salt fałszowałaby alternatywę fundamentu),\n- recovery incydentu 09.08 — osobna transakcja, wykonywana PRZED tym wdrożeniem.\n"
+  },
+  {
+   "op": "object.create",
+   "id": "rec:proces/router-spec-2026-08-09",
+   "type": "record",
+   "title": "Specyfikacja procesu Routera — wersja z bramkami fazowymi (10 sekcji)",
+   "status": "created",
+   "owner": "przemek",
+   "relations": {},
+   "tags": [
+    "proces",
+    "router",
+    "spec"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Record specyfikacji procesu Routera — właściwy target zmiany ROUTER.md.",
+   "body": "\n# Specyfikacja procesu Routera — 2026-08-09\n\nRecord istnieje, bo zmiana `ROUTER.md` musi mieć **własny** obiekt w Genome. Wcześniejsza wersja pakietu wdrożeniowego rejestrowała ją jako `object.updated` na `rec:F0-SEED-FREEZE` — karta granicy seeda nie ma nic wspólnego z procesem Routera i była fikcyjnym targetem.\n\n## Co ta wersja ustala\n\n- kolejność: Brief → Research → SALT → PLATE → mechanizmy → Doublecheck → Measurement → Project Contract → podpisane GO,\n- **bramki fazowe**: `researchGate()` przed SALT, `foundationGate()` przed PLATE, `contractGate()` dopiero przed GO — wymaganie kontraktu przed diagnozą było cyrkularne,\n- szablon raportu: 9 → **10 sekcji** (nowa sekcja 5 „Warstwa strategiczna\" z tabelą briefu strukturalnego, łącznie z polami `null`),\n- fundament dla PLATE to **alternatywa**: podpisany wynik `wf:salt` albo świeże (≤12 mies.) sprawdzalne odniesienie do istniejącej strategii — dlatego w grafie nie ma krawędzi `requires → wf:salt`,\n- zgoda = podpis Ed25519 obejmujący fazę, nonce, termin ważności, pełny Project Contract i `payload_hash`; weryfikuje ją warstwa zapisu pod blokadą.\n\n## Czego NIE ustala\n\nTreści domenowej frameworków (żyje w `workflows/salt.md` i `workflows/plate.md`) ani reguł routingu (żyją w `lib/strategy-frameworks.js`).\n"
+  }
+ ],
+ "approval": {
+  "status": "approved",
+  "approved_by": "przemek",
+  "approved_at": "2026-08-09T14:14:50.524Z",
+  "proposal_hash": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "SALT i PLATE sa procedurami wielokrotnego uzytku udokumentowanymi w r352-framework i wykonanymi na BetterWorkplace"
+    },
+    {
+     "kind": "recommendation",
+     "text": "wdrozyc warstwe strategiczna jako 2 workflow + 1 mechanizm-claim"
+    }
+   ],
+   "research": [],
+   "routing": {
+    "decision": "NONE",
+    "reasons": [
+     "wdrozenie wewnetrzne — odbiorca to system Genome, nie rynek"
+    ],
+    "gates": [],
+    "unresolved": []
+   },
+   "recommended_mechanisms": [
+    "mech:strategy-before-execution"
+   ],
+   "recommended_frameworks": [
+    "wf:salt",
+    "wf:plate"
+   ],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "Genome pamieta ze strategia powstala, ale nie potrafi odtworzyc rozumowania, ktore ja stworzylo",
+    "project_start": "2026-08-10",
+    "scope": "2 workflow (wf:salt, wf:plate), 1 mechanizm-claim, 2 Recordy backtestow, 2 biblioteki, 2 skille, ROUTER.md, patche ingest/migrate i 4 zestawy testow",
+    "non_scope": "zmiana slownika RELATION_KEYS; recovery incydentu (osobna transakcja); awans mechanizmu na validated",
+    "baseline": "workflows/ pusty; brak obiektu reprezentujacego warstwe strategiczna",
+    "mechanisms": [
+     "mech:strategy-before-execution"
+    ],
+    "frameworks": [
+     "wf:salt",
+     "wf:plate"
+    ],
+    "validation_plan": "pierwszy zywy przebieg przez Router rozliczany assessFrameworkPayoff(); status draft → active po nim",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-11-10",
+    "go_decision": "GO",
+    "go_rationale": "proby na sucho pokazuja realne zmiany decyzji i realne odmowy; 176 testow zielonych; kanon nietkniety",
+    "prepared_by": "session:router",
+    "decided_by": "przemek",
+    "report_version": "runda-4",
+    "contract_version": "v1"
+   },
+   "payload_hash": "6dbcdd8a09619e8e813d4f1f508ef1141fec7e64faff94e2a7b52d6856b34c03",
+   "nonce": "salt-plate-2026-08-09-001",
+   "expires_at": "2026-08-10",
+   "artifact_hashes": {
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-txn.js": "8ae53ce486c3aa8d6d828aacc52db66c4f268f071abdc83ca9fde2ec3e616a97",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/canon-guard.js": "75ef74b9c67a86dfba845f52d171c7129d731d7866f6638419ede06a7975f340",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/strategy-frameworks.js": "fec678834bb47b4d9740db67cbe46a4c094e85d9e90db76e5911acbdea72a519",
+    "genome/ingest.js": "b3ede513b01a67935508e64ff3fb509f929a78b5c3d077664f9183837ad6e904",
+    "genome/migrate.js": "1d148324fe2131a1032b752e46d92e03985ae9fa738225c4918722d2544f26b8",
+    "ROUTER.md": "79e6932204c6411db7b388b947c6369b4c25c1e9cdf88c33c206df9e3555005b",
+    "skills/mechanism-router/SKILL.md": "84c3da940df5af8d34ae5bc8a2812ebb2ffe2c1f659aa3b6e5d3faa2e93be336",
+    "skills/research-benchmark/SKILL.md": "f82cf560aaca34351ed48a6c0c5c16d9d6af1eebd34afe3b6dc2c602cf9482de",
+    "test/run-final-tests.js": "97ae083ca49adc9021053345bdb9516f195a7da10d0d5343fe75b823919c5656",
+    "test/run-e2e-tests.js": "8d89d1c4ab6d192c10d284fa4987263b689258558a32883b0be8c0b582436e16",
+    "test/run-migration-tests.js": "99e5c7832e785279779c3ea65678ca00b323b8592f74ab3cb2bcba70a5c1e1c5",
+    "test/run-gate-tests.js": "7715abdf2d1469e494b35a16691e8de45705e53e5632824584364641d1be93b3",
+    "test/run-tests.js": "5e832f71b9e701e72c3bc18d443a5caf46f93bb3c637f8447c7ee14b2b33d7ce",
+    "deploy.js": "e6a7eebc4a448c3c589e3ebac07b1c7f944be2bceb99e65e9d8a88e765fb27c4"
+   }
+  },
+  "signature": "381205fa396a17c11b129fd32feaa44b180d48c4246bbc2efbacf3a67fca1906f91b4c369cfc2a8fdeea2df780cf0f5f83226618245340a20725cb2d51577d0b",
+  "nonce": "salt-plate-2026-08-09-001",
+  "_instrukcja": "Uzupelnij nonce i expires_at w package, przelicz payload_hash oraz artifact_hashes, a nastepnie podpisz PODPISEM Ed25519: crypto.sign(null, approval.signingBytes(package), <klucz prywatny wlasciciela>).toString(\"hex\"). Klucz prywatny pochodzi z Keychaina albo z maszyny offline — NIGDY z ~/.genome ani z repo. Weryfikator uzywa wylacznie klucza publicznego z <homedir>/.genome/approval-pubkey.pem."
+ }
+}

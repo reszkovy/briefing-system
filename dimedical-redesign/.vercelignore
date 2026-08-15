@@ -1,0 +1,10 @@
+pages/
+_head.html
+_nav.html
+_foot.html
+_content_index.html
+_zrodla/
+build.py
+i18n.py
+*.py
+SPRINT.md

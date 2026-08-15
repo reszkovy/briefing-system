@@ -1,0 +1,62 @@
+{
+ "nazwa": "zf-przybyszewskiego-krakow-wyklejka-na-kontener",
+ "zestaw": "formats-szkic.json",
+ "zdjecie": "/Users/reszek/Desktop/Claude_zadania/Narzedzie do briefowania/benefit-automatyzacja/generator/jobs/zdjecia/zf-przybyszewskiego-krakow-wyklejka-na-kontener.webp",
+ "naglowek": "Przybyszewskiego\nKraków",
+ "payoff": "na",
+ "_rozpoznanie": {
+  "karta": "ZF Przybyszewskiego Kraków - wyklejka na kontener PILNE",
+  "link": "https://trello.com/c/17J3e5qx",
+  "typ": "otwarcie",
+  "wszystkie_typy": [
+   "otwarcie",
+   "bieg",
+   "promocja",
+   "nowe-zajecia"
+  ],
+  "marka": "zdrofit",
+  "miasto": "krakow",
+  "lokalizacja": null,
+  "aktywnosci": [
+   "pilates",
+   "sauna"
+  ],
+  "data": null,
+  "zdjecie": "z załącznika karty",
+  "pewnosc": 3,
+  "do_wyboru": [
+   {
+    "id": "6a72fcc4906a4390a5a32b9b",
+    "nazwa": "Image (3).jpg",
+    "miniatura": "https://trello.com/1/cards/6a70a0c2a1bd219b0289ea83/attachments/6a72fcc4906a4390a5a32b9b/previews/6a72fcc6906a4390a5a32ecb/download/Image_(3).webp",
+    "w": 1481,
+    "h": 2573,
+    "podejrzany": false
+   },
+   {
+    "id": "6a71ecdc2640805a721fbe11",
+    "nazwa": "Kontener Kraków_2.jpg",
+    "miniatura": "https://trello.com/1/cards/6a70a0c2a1bd219b0289ea83/attachments/6a71ecdc2640805a721fbe11/previews/6a71ecdc2640805a721fbe2d/download/Kontener_Krak%C3%B3w_2.webp",
+    "w": 1635,
+    "h": 919,
+    "podejrzany": false
+   },
+   {
+    "id": "6a71ecdbe795affdaf5a4963",
+    "nazwa": "Kontener Kraków_1.jpg",
+    "miniatura": "https://trello.com/1/cards/6a70a0c2a1bd219b0289ea83/attachments/6a71ecdbe795affdaf5a4963/previews/6a71ecdbe795affdaf5a496f/download/Kontener_Krak%C3%B3w_1.webp",
+    "w": 1632,
+    "h": 919,
+    "podejrzany": false
+   },
+   {
+    "id": "6a7b1df5ddf73cc3df7c2430",
+    "nazwa": "image.png",
+    "miniatura": "https://trello.com/1/cards/6a70a0c2a1bd219b0289ea83/attachments/6a7b1df5ddf73cc3df7c2430/previews/6a7b1df7ddf73cc3df7c246e/download/image.webp",
+    "w": 464,
+    "h": 423,
+    "podejrzany": false
+   }
+  ]
+ }
+}

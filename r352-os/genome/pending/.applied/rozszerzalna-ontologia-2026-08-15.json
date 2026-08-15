@@ -1,0 +1,103 @@
+{
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "rule:rozszerzanie-ontologii",
+   "type": "rule",
+   "title": "Ontologia jest rozszerzalna — przez bramkę, nie przez zakaz",
+   "status": "active",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "category": "Ontology",
+   "relations": {
+    "related": [
+     "prin:single-source-of-truth",
+     "prin:reduce-subjectivity"
+    ],
+    "enforces": [
+     "ax:uczenie-przez-decyzje"
+    ]
+   },
+   "tags": [
+    "genome",
+    "ontology"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Zastepuje zniesiony zakaz \"ontologii nie rozszerzasz\". Bramka = 4 pytania na pismie, bez zgody i bez czekania. Rejestr typow scalony do ontology/types.json.",
+   "body": "## Zasada\n\n**Ontologia jest rozszerzalna.** Blokowanie elementu, który jest zdecydowanym ulepszeniem,\njest błędem — system ma rosnąć mądrze, a nie stać w miejscu, bo tak jest bezpieczniej.\n\nPoprzednia reguła brzmiała „ontologii nie rozszerzasz\" i była zła z dwóch powodów.\nPo pierwsze, zamrażała listę wymyśloną w jeden dzień na podstawie tego, co wtedy było znane.\nPo drugie — i ważniejsze — **maskowała prawdziwy problem**, którym nie było rozszerzanie,\ntylko duplikacja: rejestr typów istniał w trzech ręcznie utrzymywanych kopiach\n(`build.js`, `ingest.js`, widok Grafu). To dlatego dodanie typu wyglądało na ryzykowne.\nRejestr jest teraz jeden (`ontology/types.json`) i dodanie typu to jeden wpis.\n\n## Bramka: cztery pytania, na piśmie\n\nNowy typ przechodzi, jeśli da się odpowiedzieć na wszystkie cztery. Odpowiedzi lądują\nw polu `added[]` w `ontology/types.json` i w Decision — żeby za rok dało się zrozumieć,\nczemu ten typ istnieje.\n\n**1. Który istniejący typ tego nie unosi i co konkretnie traci?**\nTrzeba wskazać typ po nazwie i nazwać stratę. „Byłoby czyściej\" nie jest stratą.\nPrzykład dobrej odpowiedzi: narada Councilu zapisana jako Record ma cykl\n`created → superseded`, więc nie ma stanu „rozstrzygnięta\" i track record Councilu\nstaje się niepoliczalny.\n\n**2. Czy ma własny cykl życia?**\nJeśli proponowane statusy są takie same jak statusy istniejącego typu, to nie jest nowy typ,\ntylko kategoria w starym. Wtedy odpowiedzią jest pole, nie typ.\n\n**3. Jakie pytanie o system będzie można zadać po dodaniu, którego dziś zadać się nie da?**\nPytanie musi być policzalne. Jeśli nie da się go zapisać jako zapytania do danych,\ntyp nie zarabia na swoje utrzymanie.\n\n**4. Kto tworzy obiekty tego typu i kto je zamyka?**\nTyp bez nazwanego zamykającego produkuje obiekty, które żyją wiecznie w stanie otwartym.\n\n## Prawo do cofnięcia\n\nPo **90 dniach** typ z zerem albo jednym obiektem wraca pod pytanie, czy nie był przedwczesny.\nWycofanie typu jest normalną operacją, nie porażką — rozszerzalność bez odwracalności\nto tylko wolniejsze zamrażanie.\n\n## Czego bramka NIE robi\n\nNie wymaga zgody, narady ani czekania. Jedna osoba odpowiada na cztery pytania i dodaje wpis.\nBramka istnieje po to, żeby po roku nie było czterdziestu typów, z czego połowa to synonimy —\nto jest udokumentowane ryzyko z historii tego systemu (nota CEO: „nie tworzymy dwóch nazw\nna to samo\"), nie hipotetyczne.\n\n## Jak dodać typ\n\n1. Wpis w `ontology/types.json`: `dir`, `prefix`, `statuses`, `graph`, `label`.\n2. Wpis w `added[]`: data, ID decyzji, odpowiedź na pytanie 1.\n3. Katalog `<dir>/`.\n4. Decision z odpowiedziami na cztery pytania.\n5. `node build.js --check` — zero błędów.\n6. `node test/run-canon-tests.js` — zero FAIL.\n\nKroki 5 i 6 nie są formalnością: rejestr czytają trzy różne miejsca i test jest jedynym\ndowodem, że nadal czytają to samo."
+  },
+  {
+   "op": "object.create",
+   "id": "dec:2026-08-15-rozszerzalna-ontologia",
+   "type": "decision",
+   "title": "Zniesienie zakazu rozszerzania ontologii; rejestr typów jako jedno źródło; typ council",
+   "status": "decided",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "rule:rozszerzanie-ontologii",
+     "wf:council"
+    ]
+   },
+   "tags": [
+    "genome",
+    "ontology",
+    "decision"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Decyzja wlasciciela z 15.08: zakaz byl bledny, system ma rosnac madrze. Zapisany takze prawdziwy powod, dla ktorego zakaz powstal — dług duplikacji rejestru, nie ostroznosc epistemiczna.",
+   "body": "## Decyzja\n\n**Zakaz rozszerzania ontologii zostaje zdjęty.** W jego miejsce wchodzi bramka wejścia\n(`rule:rozszerzanie-ontologii`): cztery pytania na piśmie, bez zgody i bez czekania.\n\nWraz z tym:\n\n- rejestr typów przeniesiony do `ontology/types.json` jako **jedyne źródło prawdy**;\n- dodany typ `council:` (katalog `council/`, cykl `analyzed → decided → resolved | void`);\n- `wf:council` przemapowany z Recordów na własny typ.\n\n## Dlaczego zakaz był błędny\n\nNie dlatego, że był zbyt ostrożny. Dlatego, że **leczył nie tę chorobę**.\n\nRyzykiem nie było rozszerzanie ontologii, tylko duplikacja rejestru: lista typów istniała\nw trzech ręcznie utrzymywanych kopiach — `TYPES` w `build.js`, `TYPE_DIR` i `PREFIX_DIR`\nw `ingest.js`, oraz zaszyty zbiór `SHOW` w widoku Grafu. Rozjazd między nimi nie dawał\nżadnego sygnału aż do błędu zapisu, a dodanie typu wymagało znalezienia wszystkich trzech.\nZakaz był obejściem tego długu, przebranym za zasadę epistemiczną.\n\nPo scaleniu rejestru koszt dodania typu spadł do jednego wpisu w JSON-ie, a widok Grafu\nuczy się typów z danych zamiast je znać. Wtedy zakaz przestaje mieć jakiekolwiek uzasadnienie.\n\n## Co zostaje z dawnej ostrożności\n\nJedna rzecz, warta zachowania: **nie tworzymy dwóch nazw na to samo**. To nie jest teoria,\ntylko nota z historii tego systemu. Dlatego pierwsze pytanie bramki brzmi „który istniejący\ntyp tego nie unosi i co konkretnie traci\" — i wymaga wskazania typu po nazwie.\n\nOraz prawo do cofnięcia: typ, który po 90 dniach ma zero albo jeden obiekt, wraca pod pytanie.\n\n## Odpowiedzi bramki dla typu `council`\n\n**1. Który typ tego nie unosi?** `record`. Cykl `created → superseded` nie ma stanu\n„rozstrzygnięta\", więc narada nie wie, czym się skończyła.\n\n**2. Własny cykl życia?** Tak: `analyzed → decided → resolved | void`. Trzy różne momenty,\ntrzech różnych właścicieli — analityk, właściciel decyzji, rozliczający predykcję.\n\n**3. Jakie pytanie stanie się możliwe?** „Ile narad doczekało się rozstrzygnięcia predykcji\ni jak wypadła kalibracja Councilu w podziale na role.\" Na Recordach niepoliczalne.\nTo jest jedyna rzecz odróżniająca Council od dobrego promptu.\n\n**4. Kto tworzy, kto zamyka?** Tworzy sesja prowadząca naradę (`/genome-council`).\nZamyka `resolution_owner` predykcji, wskazany z imienia przy rejestracji zakładu."
+  },
+  {
+   "op": "object.patch",
+   "id": "wf:council",
+   "actor": "przemek",
+   "cause": "dec:2026-08-15-rozszerzalna-ontologia",
+   "relations": {
+    "implements": [
+     "prin:reduce-subjectivity"
+    ],
+    "related": [
+     "wf:salt",
+     "wf:plate",
+     "mech:dated-commitment-gates",
+     "prin:proof-before-promise",
+     "rule:rozszerzanie-ontologii"
+    ],
+    "born_from": [
+     "ax:uczenie-przez-decyzje"
+    ]
+   },
+   "guards": [
+    "Bramka wejścia: bez progu kosztowego Council nie startuje",
+    "Predykcja obowiązkowa: Council bez prediction.registered nie jest zamknięty i nie liczy się do próby",
+    "Zakaz nadpisywania: rekomendacja Councilu i decyzja właściciela to dwa obiekty, nigdy jeden"
+   ],
+   "provenance": "Specyfikacja właściciela z 14.08.2026, przyjęta w całości co do mechaniki. Zmiany przy zapisie: (1) dołożony próg ilościowy do bramki wejścia, bo lista jakościowa przepuszcza wszystko; (2) dołożony warunek porażki o rozliczaniu predykcji, oparty na stanie faktycznym Ledgera. KOREKTA 15.08: pierwsza wersja mapowała naradę na Record, powołując się na zakaz rozszerzania ontologii; zakaz został zdjęty jako błędny (dec:2026-08-15-rozszerzalna-ontologia) i Council dostał własny typ council:, zgodnie z pierwotną specyfikacją właściciela.",
+   "ingest_note": "Przemapowanie na wlasny typ council: po zniesieniu zakazu rozszerzania ontologii. Powod policzalny: Record nie ma stanu \"rozstrzygnieta\", wiec track record Councilu byl niepoliczalny.",
+   "body": "## Po co to istnieje\n\nGenome ma jedną wadę wpisaną w konstrukcję: podpowiada jeden model świata. Router czyta karty,\nkarty niosą confidence, confidence pochodzi z dowodów, które sam system zebrał. To działa dopóki\ndecyzja mieści się w tym, co system już umie. Przy decyzji drogiej, nieodwracalnej albo\nstrategicznej ten sam mechanizm staje się pułapką: system potwierdza własny model, bo nie ma\nw sobie nikogo, kto by go atakował.\n\nCouncil jest tym kimś. Nie po to, żeby pięć razy ocenić pomysł, tylko żeby wygenerować\n**pięć konkurencyjnych modeli tej samej decyzji**, zapisać różnicę między nimi, rozstrzygnąć\ni po czasie sprawdzić, kto miał rację.\n\n## Sekwencja\n\n```\nDECYZJA → 5 NIEZALEŻNYCH MODELI → PEER CRITIQUE → SYNTEZA → SCORECARD\n        → PREDYKCJA → DECYZJA WŁAŚCICIELA → OUTCOME → KALIBRACJA COUNCILU\n```\n\nDwa ostatnie człony robią różnicę między Councilem a efektownym promptem. Bez nich to jest\npięć opinii bez konsekwencji.\n\n## Bramka wejścia\n\nCouncil NIE uruchamia się do każdej decyzji. Musi być spełniony co najmniej jeden warunek:\nwysoki koszt błędu, duża niepewność, trudna odwracalność, zmiana strategii, duże zaangażowanie\nczasu lub kapitału, albo realny konflikt między kilkoma sensownymi opcjami.\n\nDo tego warunek ilościowy, żeby bramka nie była deklaracją: decyzja kosztuje **co najmniej\ntydzień pracy albo 5 000 zł**, albo jej odwrócenie kosztuje więcej niż jej podjęcie.\nPoniżej tego progu tańszy jest test niż narada.\n\n## Context Pack — ten sam snapshot dla wszystkich\n\nAdvisorzy dostają identyczny, zamrożony pakiet i **nie widzą swoich odpowiedzi nawzajem**.\nSnapshot ma hash; jeśli w trakcie zmienia się stan faktyczny, Council leci od nowa albo notuje\nrozbieżność jawnie.\n\nDECISION · OPTIONS · OBJECTIVE · CONSTRAINTS · KNOWN FACTS (z prowieniencją) ·\nCURRENT BELIEFS (karty Genome + ich confidence) · UNKNOWNS · BASELINE (co się stanie,\njeśli nic nie zrobimy) · DEADLINE.\n\nSekcja UNKNOWNS jest obowiązkowa i nie może być pusta. Pusta znaczy, że pakiet jest\npropagandą decyzji, nie jej opisem.\n\n## Pięciu advisorów\n\n| | rola | pytanie kierujące |\n|---|---|---|\n| A | Contrarian | Dlaczego to zły pomysł? Co sprawi, że to nie zadziała? |\n| B | First Principles | Jaki problem naprawdę rozwiązujemy? Czy opcje są dobrze postawione? |\n| C | Expansionist | Jakiego maksymalnego upside'u nie widzimy? |\n| D | Outsider | Co zauważyłby ktoś mądry bez żadnego przywiązania do tego systemu? |\n| E | Executor | Czy to da się dowieźć i jaki jest najszybszy sposób, żeby się przekonać? |\n\nContrarian nie jest pesymistą — ma **próbować obalić decyzję**. First Principles ma prawo\npowiedzieć „ani A, ani B, problem jest źle postawiony\". Ulubioną odpowiedzią Executora powinno\nbyć „nie buduj tego, przetestuj najpierw jedną rzecz\".\n\nRola D istnieje, bo ten system jest intelektualnie atrakcyjny dla swojego autora. To jest\nudokumentowane ryzyko, nie hipoteza.\n\n## Scorecard: 10 kategorii, skala 1–100 000\n\nProblem Strength · Strategic Alignment · Evidence Strength · Expected Upside ·\nDownside Profile · Reversibility · Execution Feasibility · Leverage · Defensibility · Timing\n\nWszystkie skale idą w tę samą stronę: **więcej = lepiej**. Przy Downside Profile wysoki wynik\noznacza dobry profil ryzyka (mały downside, dobra asymetria), nie duże ryzyko.\n\nProgi: ≥90k wyjątkowo mocne · 80–90k bardzo mocne · 70–80k dobre · 60–70k umiarkowanie\npozytywne · 50–60k nierozstrzygnięte · 40–50k słabe · 30–40k poważne problemy · <30k brak podstaw.\n\nSkala jest wysokiej rozdzielczości, nie precyzyjna. Zapisujemy liczbę całkowitą, ale\n**pokazujemy zawsze pasmo i wartość zaokrągloną do 0,1k** (82,4k, nie 82 437). Rozdzielczość\njest po to, żeby dało się porównywać decyzje między sobą, nie żeby udawać pomiar.\n\n**Score bez uzasadnienia jest nieważny.** Każda ocena niesie `reason` i `confidence` autora.\nSama liczba wraca do advisora do poprawy.\n\n## Jak liczy się wynik Councilu\n\nWynik kategorii to **mediana** pięciu ocen, nie średnia. Expansionist dający 98k i Contrarian\ndający 25k wyprodukują średnią 61k, która nie opisuje niczyjego poglądu. Mediana mówi, gdzie\nleży centralny osąd.\n\nObok mediany zapisujemy **rozrzut** (`max − min`). Rozrzut bywa ciekawszy niż sam wynik:\nEvidence w paśmie 38–51k znaczy, że wszyscy widzą tę samą słabość; Defensibility w paśmie\n29–96k znaczy, że advisorzy mają sprzeczne modele świata i to jest właściwy temat rozmowy.\n\nWynik globalny liczony wagami: Problem Strength 15% · Strategic Alignment 15% ·\nEvidence Strength 15% · Expected Upside 10% · Downside Profile 10% · Execution Feasibility 10% ·\nLeverage 10% · Reversibility 5% · Defensibility 5% · Timing 5%.\n\nEvidence dostaje 15% świadomie — jest przeciwwagą dla znanego ryzyka tego systemu:\n**bardzo atrakcyjna teoria przy zbyt małej liczbie dowodów.**\n\n## Peer critique\n\nOdpowiedzi zostają zanonimizowane i rozdane wszystkim. Nikt **nie może zmienić swojej pierwszej\nodpowiedzi** — to jest cały sens, pierwsza opinia zostaje niezależna. Każdy odpowiada tylko na\npięć pytań: najmocniejszy argument kogoś innego, największy ślepy punkt w cudzych analizach,\nczego mogła nie zauważyć cała piątka, czyje rozumowanie jest najmocniejsze i dlaczego, oraz\njaka nowa informacja zmieniłaby jego rekomendację.\n\n## Chairman\n\nChairman nie głosuje większością — ma znaleźć **strukturę konfliktu**. Wynik:\nGDZIE COUNCIL JEST ZGODNY · GDZIE SIĘ ROZJEŻDŻA · ŚLEPE PUNKTY · ASYMETRIE ·\nREKOMENDACJA (GO / NO-GO / TEST / DEFER) · JEDNA RZECZ DO ZROBIENIA NAJPIERW.\n\n## Council nie podejmuje decyzji\n\nRekomendacja Councilu i decyzja właściciela to **dwa osobne zapisy** i nigdy nie wolno nadpisać\npierwszego drugim.\n\n```\nRekomendacja Councilu: TEST      wynik globalny 78,4k\nDecyzja właściciela:   GO        powód: wartość opcji strategicznej przewyższa słabość dowodów\n```\n\nRozjazd między tymi dwoma zapisami jest najcenniejszym materiałem, jaki ten mechanizm produkuje.\nPo roku pokaże, czy właściciel systematycznie wygrywa z Councilem, czy systematycznie przepłaca\nza własne przekonania. Jedno i drugie jest wiedzą.\n\n## Predykcja jest obowiązkowa\n\nCouncil bez zarejestrowanej predykcji **nie jest zamknięty** i nie liczy się do próby.\nRekomendacja musi odpowiedzieć na pytanie: jeśli mamy rację, co konkretnie powinno się wydarzyć?\n\nPredykcja idzie do Ledgera przez `prediction.registered` z kompletem siedmiu pól, w tym\n`measurement_source` i `resolution_owner`. Warunki HIT / MISS / VOID muszą być rozstrzygalne\nprzez kogoś, kto nie brał udziału w naradzie.\n\n## Gdzie to mieszka w ontologii\n\nCouncil ma **własny typ** `council:` (katalog `council/`, cykl życia\n`analyzed → decided → resolved | void`). Pierwsza wersja tej karty mapowała naradę na Record,\nbo obowiązywał zakaz rozszerzania ontologii. Zakaz został zdjęty 15.08 jako błędny\n(`dec:2026-08-15-rozszerzalna-ontologia`) i mapowanie poszło za tym.\n\nPowód jest policzalny, nie estetyczny. Narada zapisana jako Record ma cykl życia\n`created → superseded`, czyli **nie ma stanu „rozstrzygnięta\"**. Track record Councilu —\njedyna rzecz odróżniająca go od dobrego promptu — wymaga pytania „ile narad doczekało się\nrozstrzygnięcia predykcji\". Na Recordach tego pytania nie da się zadać, bo Record nie wie,\nczym się skończył. Na typie `council:` to jest jedno przejście statusu.\n\n- `council:<slug>` — narada: zamrożony Context Pack z hashem, pięć analiz, macierz 10×5,\n  rozrzuty, peer critique, synteza Chairmana, rekomendacja i wynik globalny.\n  `attached_to` wskazuje projekt, `related` wskazuje Decision.\n- `dec:<slug>` — Decision z decyzją właściciela, osobny obiekt o osobnym cyklu życia.\n- `prediction.registered` — zdarzenie w Ledgerze, `on` wskazuje Decision.\n\nRozdział z punktu „Council nie podejmuje decyzji\" nadal nie jest konwencją zapisu, tylko\nstrukturą danych: dwa obiekty, dwa cykle życia, dwóch właścicieli. Zmieniło się tylko to,\nże narada przestała udawać notatkę.\n\n## Track record Councilu\n\nKiedy rozliczonych predykcji będzie dość, da się policzyć kalibrację całości i poszczególnych\nról — czy Expansionist systematycznie przecenia timing, czy Executor najlepiej przewiduje\nwykonalność, przy jakich klasach decyzji Contrarian ma rację. Wtedy Council zaczyna uczyć się,\njak dobrze sam doradza.\n\n**To jest cel, nie stan.** Dziś jest niepoliczalny i będzie taki, dopóki predykcje nie zaczną\nbyć rozliczane — patrz warunki porażki.\n\n## Próba: 5 decyzji, ręcznie\n\nMechanizm wchodzi w statusie `draft` jako **ręczna próba na pięciu prawdziwych decyzjach**.\nZero automatyzacji, zero widoku w tablicy, dopóki nie istnieje pięć Recordów. Widok zbudowany\nprzed danymi pokazywałby pustą macierz i uczył, że Council to formularz.\n\nPo piątej decyzji rozstrzygnięcie: `active`, przerobienie, albo `deprecated`.\n"
+  }
+ ],
+ "events": [],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "rozszerzalna-ontologia-2026-08-15",
+  "signature": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "rozszerzalna-ontologia-2026-08-15",
+   "expires_at": "2026-09-15",
+   "claims": [
+    {
+     "kind": "scope",
+     "text": "Zniesienie zakazu rozszerzania ontologii: rule + decision + przemapowanie wf:council na typ council:."
+    }
+   ]
+  }
+ }
+}

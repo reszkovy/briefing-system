@@ -1,0 +1,117 @@
+{
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "cap:landing-craft",
+   "type": "capability",
+   "title": "Skill /landing-craft",
+   "status": "available",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "cap:mechanism-router",
+     "cap:project-postmortem",
+     "mech:single-source-compiler",
+     "mech:seo-aeo-foundation"
+    ]
+   },
+   "tags": [
+    "frontend",
+    "design",
+    "copy"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Skill istnieje globalnie w ~/.claude/skills od 08.2026, ale nie mial karty — Genome nie wiedzial o zdolnosci, ktora realnie ma.",
+   "body": "Metoda budowy landingu/onepagera od pustej strony do freeze. Wyekstrahowana z realnej\nbudowy `genome.r352.com` (WAVE 2026): ~30 iteracji, 3 rundy zewnętrznego audytu.\n\n**Każda reguła ma za sobą konkretny błąd albo konkretny pomiar**, 17 z nich oznaczono ★ jako\nźródła realnych regresji. To odróżnia ten skill od listy dobrych praktyk: jest zapisem\nincydentów, nie teorii.\n\nRdzeń metody, w kolejności:\n\n1. **Kompilator z danych** — `build.mjs` + template, zero liczb w HTML. Strona fizycznie\n   nie może skłamać, bo nie zna liczb spoza źródła. Build pada, gdy źródło zniknie.\n2. **Guardy budowane z incydentów** — każdy błąd, który przeszedł do produkcji, zamienia się\n   w guard. Guard bez testu negatywnego (przywróć błąd, zobacz czerwony build) nie jest guardem.\n3. **Pomiar przed opinią** — kontrast, przepełnienie, liczba słów, LCP: wszystko mierzalne\n   puppeteerem w 30 sekund. Dotyczy też zgłoszeń od ludzi; zgłoszenie „mobile ucina\" nie\n   potwierdziło się na sześciu szerokościach, a prawdziwą przyczyną była afordancja karuzeli.\n4. **Język publiczny vs systemowy** — rygor schodzi warstwę niżej, nie znika. Widz OGLĄDA\n   rygor w surowych artefaktach, ale CZYTA po ludzku.\n5. **Protokół audytu i freeze** — zewnętrzny audytor bez kontekstu budowy, rozliczenie\n   z każdego znaleziska pomiarem, freeze na realnym telefonie przez QR.\n\nWejście: `/mechanism-router` na brief. Wyjście: `/project-postmortem` + propozycje do kanonu.\n\nPlik: `~/.claude/skills/landing-craft/SKILL.md` (globalny, nie projektowy — metoda działa\nna wszystkich landingach, więc jedna kopia zamiast kopii per projekt)."
+  },
+  {
+   "op": "object.create",
+   "id": "cap:research-benchmark",
+   "type": "capability",
+   "title": "Skill /research-benchmark",
+   "status": "available",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "cap:mechanism-router"
+    ]
+   },
+   "tags": [
+    "research"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Skill istnieje w .claude i .agents od 08.2026, karty brak.",
+   "body": "Research i benchmark rynkowy z kontraktem jakości źródeł — sekcja 4 raportu Routera.\n\nProdukuje ustrukturyzowane rekordy, nie listę linków: fakt oddzielony od interpretacji,\nźródło z datą dostępu, jawny wpływ na decyzję (`supports` / `contradicts` / `neutral`).\n\nUruchamiany przed doborem mechanizmów i przed warstwą strategiczną, gdy projekt konkuruje\no uwagę w istniejącej niszy."
+  },
+  {
+   "op": "object.create",
+   "id": "cap:triage-signal",
+   "type": "capability",
+   "title": "Skill /triage-signal",
+   "status": "available",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "cap:mechanism-router"
+    ],
+    "enforces": [
+     "rule:rozszerzanie-ontologii"
+    ]
+   },
+   "tags": [
+    "genome"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Bramka wejsciowa inboxa. Karta powstaje teraz, przy porzadkowaniu rejestru zdolnosci.",
+   "body": "Bramka wejściowa Genome: klasyfikuje surowy sygnał z `inbox/` i decyduje, czy zasługuje\nna wejście do kanonu.\n\nProdukuje raport i przy werdykcie `PROPOSE` pakiet w `pending/`. **Nigdy nie zapisuje\ndo kanonu** i nigdy nie tworzy Evidence — Evidence wchodzi wyłącznie przez backtest albo\npostmortem, gdzie ma kontekst całego przebiegu i człowieka nad sobą.\n\nCztery werdykty: `PROPOSE` · `ARCHIVE` · `ASK_OWNER` · `REJECT`.\n\nMierzy dystans wnioskowania (0 cytat → 3 spekulacja); `≥2` nie może dać klasy `fact`."
+  },
+  {
+   "op": "object.create",
+   "id": "cap:genome-council",
+   "type": "capability",
+   "title": "Skill /genome-council",
+   "status": "available",
+   "created": "2026-08-15",
+   "owner": "przemek",
+   "relations": {
+    "related": [
+     "wf:council"
+    ],
+    "implements": [
+     "prin:reduce-subjectivity"
+    ]
+   },
+   "tags": [
+    "strategy",
+    "genome"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Wykonawca wf:council. Karta zdolnosci osobno od karty procedury: procedura moze zyc bez skilla, skill bez procedury nie.",
+   "body": "Wykonawca procedury `wf:council`. Pięć niezależnych modeli jednej decyzji, peer critique,\nsynteza Chairmana, scorecard 10×5 i obowiązkowa predykcja.\n\nKażdy advisor leci jako osobny subagent — izolacja nie jest optymalizacją, tylko warunkiem\nsensu: advisor widzący cztery poprzednie analizy produkuje wariant tamtych, nie piąty model.\n\n**Nie podejmuje decyzji.** Produkuje `council:<slug>` w statusie `analyzed` i Decision\nw statusie `open` z pustym polem decyzji właściciela.\n\nStatus: ręczna próba na 5 decyzjach (`dec:2026-08-14-council-proba`)."
+  }
+ ],
+ "events": [],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "capabilities-skille-2026-08-15",
+  "signature": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "capabilities-skille-2026-08-15",
+   "expires_at": "2026-09-15",
+   "claims": [
+    {
+     "kind": "scope",
+     "text": "Cztery brakujace karty capability dla istniejacych skilli. Zero zmian w istniejacych kartach."
+    }
+   ]
+  }
+ }
+}

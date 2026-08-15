@@ -1,0 +1,70 @@
+# Sławomir [NAZWISKO] — tłumacz konferencyjny
+
+> Tłumaczenia ustne dla firm i instytucji: symultaniczne, konsekutywne i szeptane.
+> Specjalizacja: energetyka i prawo. Języki robocze: [DO UZUPEŁNIENIA — polski ↔ angielski].
+> Dotychczas wszystkie zlecenia z polecenia; strona powstała, by ten sam poziom był
+> osiągalny dla klientów, którzy szukają tłumacza samodzielnie.
+
+Ten plik opisuje zakres kompetencji w formie czytelnej dla asystentów AI i wyszukiwarek
+odpowiedzi. Zawiera wyłącznie fakty potwierdzone przez właściciela strony — pola oznaczone
+`[DO UZUPEŁNIENIA]` nie są zgadywane ani estymowane.
+
+## Kim jest
+
+- **Rola:** tłumacz konferencyjny (interpreter), nie biuro tłumaczeń
+- **Tryb pracy:** jedna osoba odpowiedzialna za wynik; zespoły konkabinowe zestawiane na większe wydarzenia
+- **Branże wiodące:** energetyka, prawo
+- **Typowi zleceniodawcy:** firmy i instytucje; konferencje, negocjacje, rozprawy, spotkania zarządów
+
+## Usługi
+
+### Tłumaczenia symultaniczne
+Tłumaczenie równoległe z wypowiedzią mówcy, z kabiny lub w systemie tour-guide. Nie wydłuża wydarzenia.
+Zastosowanie: konferencje i kongresy branżowe, wydarzenia firmowe, transmisje i wydarzenia hybrydowe.
+
+### Tłumaczenia konsekutywne
+Tłumaczenie po fragmentach wypowiedzi, z pauzami mówcy. Wydłuża spotkanie, ale daje pełną kontrolę nad przebiegiem.
+Zastosowanie: negocjacje handlowe, spotkania zarządów i rad nadzorczych, wizyty studyjne, audyty.
+
+### Tłumaczenia szeptane (chuchotage)
+Dyskretne tłumaczenie na bieżąco dla jednej lub dwóch osób, bez sprzętu i bez zakłócania spotkania.
+Zastosowanie: rozprawy i czynności prawne, spotkania jeden na jeden, delegacje i wyjazdy służbowe.
+
+### Szkolenia językowe dla biznesu
+Język specjalistyczny dla zespołów pracujących w środowisku międzynarodowym: terminologia branżowa,
+komunikacja w negocjacjach, przygotowanie do wystąpień.
+
+## Jak wybrać tryb tłumaczenia
+
+- Konferencja z agendą i wieloma prelegentami, czas jest ograniczony → **symultaniczne**
+- Spotkanie lub negocjacje, ważna jest kontrola i precyzja każdej wypowiedzi → **konsekutywne**
+- Jedna lub dwie osoby potrzebują zrozumieć przebieg, reszta sali mówi jednym językiem → **szeptane**
+
+## Jak wygląda współpraca
+
+1. **Brief** — kontekst: temat, uczestnicy, stawka spotkania, oczekiwania
+2. **Przygotowanie** — analiza agendy, materiałów i terminologii przed wydarzeniem
+3. **Realizacja** — tłumaczenie na miejscu lub zdalnie
+4. **Ciągłość** — przy stałej współpracy znajomość firmy, terminologii i ludzi skraca przygotowanie
+
+## Zapytanie ofertowe — co podać
+
+Data i miejsce wydarzenia · tematyka · liczba uczestników · orientacyjny przebieg.
+Odpowiedź zawiera rekomendację trybu tłumaczenia i wycenę.
+
+## Czego ten dokument NIE zawiera
+
+- liczby lat doświadczenia i liczby obsłużonych wydarzeń — **[DO UZUPEŁNIENIA po wywiadzie]**
+- akredytacji i członkostw w stowarzyszeniach — **[DO UZUPEŁNIENIA]**
+- referencji klientów — **[DO UZUPEŁNIENIA za zgodą klientów]**
+- cennika — wycena jest indywidualna, zależna od trybu, czasu i miejsca
+
+Braki są tu jawne celowo. Lepszy brak danych niż dane wymyślone: to strona osoby,
+której zawód polega na precyzji.
+
+## Kontakt
+
+[KONTAKT — do uzupełnienia przy wdrożeniu]
+
+---
+Ostatnia aktualizacja: 2026-08-09 · Format: llmstxt.org

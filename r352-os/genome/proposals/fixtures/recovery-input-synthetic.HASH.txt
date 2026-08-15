@@ -1,0 +1,6 @@
+2cdef21dfcf00776255c66ad6c448b032db67b0fcd9551cf7b7bf0b256ee0fd4  drzewo syntetycznego fixture'u stanu wejściowego recovery
+dane sprzed recovery + KOD I KARTY W WERSJI DZISIEJSZEJ (to nie jest snapshot historyczny)
+206 zdarzeń · ostatnie evt:2026-08-09-0227
+archiwum 61d3c8475ca88276a7a4c96f2ed5a15d5e26d32638eba1e456b260a33c84b15a
+snapshot eb660c38c84e4561a23d8b5b94621a43d5419bdbf4d85e2992ff8b2b05652a5b
+freeze   b0c82c64ce3aa6a72b9b9edb75ac41d955cb894315486db75d9a6bf95ccf8cba

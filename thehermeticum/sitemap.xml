@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://thehermeticum.com/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/practice/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/practice/today/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/practice/archive/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/subscribe/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/questions/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/book/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/start-here/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/path/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/path/01-what-is-hermeticism/</loc><lastmod>2026-08-14</lastmod></url>
@@ -103,7 +107,11 @@
   <url><loc>https://thehermeticum.com/pl/texts/stobaean-fragments/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/pl/privacy/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/pl/practice/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/pl/practice/today/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/pl/practice/archive/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/pl/subscribe/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/pl/pytania/</loc><lastmod>2026-08-14</lastmod></url>
+  <url><loc>https://thehermeticum.com/pl/book/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/book/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/book/00-the-opening/</loc><lastmod>2026-08-14</lastmod></url>
   <url><loc>https://thehermeticum.com/book/01-attention/</loc><lastmod>2026-08-14</lastmod></url>

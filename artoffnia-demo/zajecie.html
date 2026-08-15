@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zajęcia — ARToffNIA</title>
+<link rel="icon" type="image/svg+xml" href="sygnet.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .crumb{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);padding-top:2.2rem}
+  .crumb a{color:var(--mid);text-decoration:none}
+  .crumb a:hover{color:var(--ink)}
+  .zhead{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start;padding:1.4rem 0 2.6rem}
+  @media (max-width:860px){.zhead{grid-template-columns:1fr;gap:1.6rem}}
+  .zhead .ph-media{aspect-ratio:3/4;--gcbg:var(--ph)}
+  .zhead h1{margin-top:.5rem}
+  .zmeta{display:flex;gap:.45rem;flex-wrap:wrap;margin:1.2rem 0 1.4rem}
+  .pillx{background:var(--ph);border-radius:999px;padding:.45rem 1rem;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+  .pillx.gc{color:var(--ink)}
+  .zopis{font-size:.98rem;color:var(--mid);line-height:1.75;max-width:36rem}
+  .zsek{margin-top:.4rem}
+  .trow{display:grid;grid-template-columns:1fr auto;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.95rem;font-weight:600}
+  .trow .l{color:var(--mid);font-weight:400}
+  .rez{border:1px solid var(--ink);padding:1.6rem 1.6rem 1.8rem;margin-top:2.6rem}
+  .rez h2{font-size:1.35rem;font-weight:800;letter-spacing:-.015em;margin-bottom:.3rem}
+  .rez .sub{font-size:.88rem;color:var(--mid);margin-bottom:1rem}
+  .rez form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;align-items:end}
+  .rez .full{grid-column:1/-1}
+  .prow-note{font-size:.82rem;color:var(--mid);margin-top:.8rem;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><img src="logo-artoffnia.svg" alt="ARToffNIA — Fundacja Tańca i Sztuki"></a>
+    <div class="nav-links">
+      <a href="index.html#zajecia" class="act">Zajęcia</a>
+      <a href="obozy.html">Obozy i ferie</a>
+      <a href="cennik.html">Cennik</a>
+      <a href="zapisy.html">Zapisy</a>
+      <a href="fundacja.html">Fundacja</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </nav>
+
+  <div class="crumb" id="z-crumb"><a href="index.html#zajecia">Zajęcia</a></div>
+
+  <div class="zhead">
+    <div>
+      <div class="kicker" id="z-kat"></div>
+      <h1 id="z-nazwa" style="font-weight:800"></h1>
+      <div class="zmeta" id="z-meta"></div>
+      <p class="zopis" id="z-opis"></p>
+    </div>
+    <div class="ph-media" id="z-foto"><div class="lbl" id="z-foto-lbl">Zdjęcie · z zajęć</div></div>
+  </div>
+
+  <section class="sec zsek">
+    <div class="sec-h">Terminy i miejsce</div>
+    <div id="z-terminy"></div>
+    <p class="prow-note" id="z-prow"></p>
+  </section>
+
+  <div class="rez" id="z-rez">
+    <h2>Zarezerwuj miejsce</h2>
+    <p class="sub" id="z-rez-sub">Zostaw kontakt — potwierdzimy dostępność miejsca w grupie i umówimy pierwsze zajęcia.</p>
+    <form id="z-form" novalidate>
+      <div><label class="f-label" for="r-imie">Imię i nazwisko uczestnika</label><input class="f-in" id="r-imie" type="text" autocomplete="name"></div>
+      <div><label class="f-label" for="r-wiek">Wiek</label><input class="f-in" id="r-wiek" type="number" min="3" max="104"></div>
+      <div><label class="f-label" for="r-tel">Telefon</label><input class="f-in" id="r-tel" type="tel" autocomplete="tel"></div>
+      <div><label class="f-label" for="r-mail">E-mail</label><input class="f-in" id="r-mail" type="email" autocomplete="email"></div>
+      <label class="f-check full"><input type="checkbox" id="r-rodo"><span>Akceptuję regulamin i przyjmuję do wiadomości, że administratorem danych jest Fundacja Tańca i Sztuki ARToffNIA (al. Sybiraków 2, Olsztyn). Dane posłużą wyłącznie do obsługi rezerwacji.</span></label>
+      <div class="full"><button class="btn" type="submit">Rezerwuję miejsce</button>&nbsp;&nbsp;<a class="txtlink" id="z-alt" href="zapisy.html">Wolisz pełny formularz zapisów?</a></div>
+      <p class="f-note full" id="z-status"></p>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <div class="col"><b>ARToffNIA Sybiraków</b>al. Sybiraków 2, Olsztyn (Zatorze)</div>
+    <div class="col"><b>ARToffNIA Smętka</b>ul. Smętka 28a, Olsztyn (Centrum)</div>
+    <div class="col"><b>Kontakt</b><a href="tel:+48604110894">604 110 894</a><br><a href="mailto:biuro@artoffnia.pl">biuro@artoffnia.pl</a></div>
+    <div class="col"><b>Na skróty</b><a href="wynajem.html">Wynajem sal</a><br><a href="obozy.html">Obozy i ferie</a><br><a href="galeria.html">Galeria</a><br><a href="aktualnosci.html">Aktualności</a><br><span>Olsztyński Teatr Tańca — ott.olsztyn.pl</span></div>
+    <div class="col"><b>Dokumenty</b><a href="statut.html">Statut</a><br><a href="regulamin-2025-26.pdf" target="_blank" rel="noopener">Regulamin 2025/26</a><br><a href="standardy.html">Standardy ochrony małoletnich</a><br><a href="wspieraj.html">Wspieraj kulturę</a></div>
+  </footer>
+</div>
+<script src="zajecia.js"></script>
+<script>
+(function(){
+"use strict";
+var id=new URLSearchParams(location.search).get("id");
+var z=id?window.AFF_BY_ID(id):null;
+if(!z){ location.replace("index.html#zajecia"); return; }
+var LOK=window.AFF_LOK, KATN=window.AFF_KATN;
+var GK={taniec:null,ruch:null,teatr:null};
+document.title=z.n+" — ARToffNIA";
+document.getElementById("z-crumb").innerHTML='<a href="index.html#zajecia">Zajęcia</a> · <a href="index.html?kat='+z.kat+'#zajecia">'+KATN[z.kat]+'</a> · '+z.n;
+document.getElementById("z-kat").textContent=KATN[z.kat]+(z.uw?" · "+z.uw:"");
+document.getElementById("z-nazwa").textContent=z.n;
+var wl=z.wiek[1]>=99?z.wiek[0]+"+":z.wiek[0]+"–"+z.wiek[1];
+var meta=document.getElementById("z-meta");
+function pill(t,extra){var s=document.createElement("span");s.className="pillx"+(extra||"");s.textContent=t;meta.appendChild(s);return s;}
+pill("wiek "+wl);
+z.lok.forEach(function(l){pill(LOK[l]);});
+var pc=pill(z.c); pc.style.background="var(--ink)"; pc.style.color="var(--bg)";
+if(z.kob)pill("dla kobiet");
+document.getElementById("z-opis").textContent=z.opis||"Zajęcia prowadzone w grupach dopasowanych do wieku i poziomu — także dla osób zaczynających od zera. Pełny opis uzupełnimy z materiałów fundacji.";
+document.getElementById("z-foto-lbl").textContent="Zdjęcie · "+z.n;
+var T=document.getElementById("z-terminy");
+z.t.forEach(function(t){var d=document.createElement("div");d.className="trow";d.innerHTML="<span>"+t+"</span><span class=\"l\">"+z.lok.map(function(l){return LOK[l];}).join(" / ")+"</span>";T.appendChild(d);});
+document.getElementById("z-prow").textContent="Prowadzenie: "+z.pr;
+document.getElementById("z-alt").href="zapisy.html?zajecia="+encodeURIComponent(z.n);
+/* rezerwacja: zajęcia u instruktora -> kontakt bezpośredni zamiast formularza */
+if(z.zap!=="fundacja"){
+  document.getElementById("z-rez-sub").innerHTML="Zapisy na te zajęcia przyjmuje bezpośrednio prowadzący: <b>"+z.pr+"</b> · "+z.zap.replace(/tel\.\s*([0-9 ]+)/,'tel. <a href="tel:+48$1" style="color:var(--ink);font-weight:700">$1</a>');
+  document.getElementById("z-form").style.display="none";
+}
+document.getElementById("z-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var st=document.getElementById("z-status");
+  if(!document.getElementById("r-rodo").checked){st.textContent="Zaznacz zgodę, żeby wysłać rezerwację.";return;}
+  st.textContent="DEMO: rezerwacja \""+z.n+"\" poleci do biura (docelowo wprost do grupy w ActiveNow).";
+  window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"generate_lead",zajecia:z.id,miejsce:"strona_zajec"});
+  if(typeof gtag==="function")gtag("event","generate_lead",{zajecia:z.id,miejsce:"strona_zajec"});
+});
+})();
+</script>
+<script defer src="menu.js"></script>
+</body>
+</html>

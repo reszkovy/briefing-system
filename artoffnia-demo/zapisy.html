@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zapisy — ARToffNIA</title>
+<link rel="icon" type="image/svg+xml" href="sygnet.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));border-top:1px solid var(--ink);border-left:1px solid var(--line);margin-top:2.4rem}
+  .step{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.6rem 1.4rem}
+  .step .no{font-size:.72rem;font-weight:700;letter-spacing:.2em;color:var(--mid)}
+  .step .t{font-size:1.15rem;font-weight:800;margin:.55rem 0 .45rem;letter-spacing:-.01em}
+  .step .d{font-size:.85rem;color:var(--mid);line-height:1.6}
+  .grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:3.5rem;margin-top:3rem;align-items:start}
+  @media (max-width:860px){.grid2{grid-template-columns:1fr;gap:2rem}}
+  .side{border:1px solid var(--line);padding:1.4rem 1.5rem}
+  .side b{font-weight:800}
+  .side .h{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.9rem}
+  .side ul{list-style:none}
+  .side li{font-size:.88rem;line-height:1.7;color:var(--mid);padding:.45rem 0;border-bottom:1px solid var(--line)}
+  .side li:last-child{border-bottom:none}
+  .side li a{color:var(--ink);font-weight:700;text-decoration:none;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><img src="logo-artoffnia.svg" alt="ARToffNIA — Fundacja Tańca i Sztuki"></a>
+    <div class="nav-links">
+      <a href="index.html#zajecia">Zajęcia</a>
+      <a href="obozy.html">Obozy i ferie</a>
+      <a href="cennik.html">Cennik</a>
+      <a href="zapisy.html" class="act">Zapisy</a>
+      <a href="fundacja.html">Fundacja</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </nav>
+
+  <header class="page-head">
+    <div class="kicker">Nabór na sezon 2026/27 · nowe osoby</div>
+    <h1>Zapisy.<br><b>Trzy proste kroki.</b></h1>
+    <p class="lead">Niezależnie od wieku i poziomu — znajdziesz u nas przestrzeń do wyrażania siebie przez ruch, taniec i sztukę. Wypełnij formularz — skontaktujemy się z Tobą i ustalimy szczegóły.</p>
+
+    <div class="steps">
+      <div class="step"><div class="no">01</div><div class="t">Znajdź zajęcia</div><div class="d">Przejrzyj <a class="txtlink" style="font-size:.78rem" href="index.html#zajecia">katalog zajęć</a> — filtry podpowiedzą, co pasuje do wieku i kalendarza.</div></div>
+      <div class="step"><div class="no">02</div><div class="t">Wypełnij formularz</div><div class="d">Podaj kontakt i wybrane zajęcia. Za osobę niepełnoletnią formularz wypełnia opiekun prawny.</div></div>
+      <div class="step"><div class="no">03</div><div class="t">Skontaktujemy się</div><div class="d">Odezwiemy się do Ciebie i wspólnie ustalimy szczegóły.</div></div>
+    </div>
+  </header>
+
+  <div class="grid2">
+    <form id="zform" novalidate>
+      <div class="sec-h" style="font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--mid);padding-bottom:1rem;border-bottom:1px solid var(--ink)">Formularz zgłoszeniowy</div>
+
+      <label class="f-label" for="f-zaj">Wybrane zajęcia</label>
+      <select class="f-in" id="f-zaj"><option value="">— wybierz z listy —</option></select>
+      <p class="f-note">Możesz też wpisać kilka zajęć w wiadomości niżej — przypominamy: drugie zajęcia −20%, trzecie i kolejne −50%.</p>
+
+      <label class="f-label" for="f-imie">Imię i nazwisko uczestnika</label>
+      <input class="f-in" id="f-imie" type="text" autocomplete="name">
+
+      <label class="f-label" for="f-wiek">Wiek uczestnika</label>
+      <input class="f-in" id="f-wiek" type="number" min="4" max="104" style="max-width:10rem">
+
+      <label class="f-label" for="f-tel">Telefon kontaktowy</label>
+      <input class="f-in" id="f-tel" type="tel" autocomplete="tel">
+
+      <label class="f-label" for="f-mail">E-mail</label>
+      <input class="f-in" id="f-mail" type="email" autocomplete="email">
+
+      <label class="f-label" for="f-msg">Wiadomość (opcjonalnie)</label>
+      <textarea class="f-in" id="f-msg" rows="4" placeholder="np. dodatkowe zajęcia, pytania o grupę, doświadczenie"></textarea>
+
+      <label class="f-check"><input type="checkbox" id="f-rodo"><span>Przyjmuję do wiadomości, że administratorem danych jest Fundacja Tańca i Sztuki ARToffNIA (al. Sybiraków 2, Olsztyn) i akceptuję regulamin. Dane posłużą wyłącznie do obsługi zgłoszenia. Pełna informacja RODO dostępna w biurze fundacji.</span></label>
+
+      <button class="btn" type="submit">Wyślij zgłoszenie</button>
+      <p class="f-note" id="f-status"></p>
+    </form>
+
+    <aside>
+      <div class="side">
+        <div class="h">Zapisy u prowadzących</div>
+        <p class="f-note" style="margin:0 0 .6rem">Część zajęć rozliczana jest bezpośrednio u instruktorów — tam zapisy przyjmują prowadzący:</p>
+        <ul>
+          <li>Flamenco · Magdalena Faszcza · <a href="tel:+48695819181">695 819 181</a></li>
+          <li>Popping · Damian „Bienio” Bieńkowski · <a href="tel:+48692212484">692 212 484</a></li>
+          <li>Joga · Joanna Łotysz · <a href="tel:+48607435608">607 435 608</a></li>
+          <li>Pilates i ZOGA · Anna Janczarek · <a href="tel:+48694397650">694 397 650</a></li>
+          <li>Improwizacja taneczna · formularz prowadzącej</li>
+        </ul>
+      </div>
+      <div class="side" style="border-top:none">
+        <div class="h">Wolisz porozmawiać?</div>
+        <p class="f-note" style="margin:0">Biuro fundacji: <a href="tel:+48604110894" style="color:var(--ink);font-weight:700">604 110 894</a> · <a href="mailto:biuro@artoffnia.pl" style="color:var(--ink);font-weight:700">biuro@artoffnia.pl</a><br>Doradzimy, które zajęcia będą najlepsze na start.</p>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="col"><b>ARToffNIA Sybiraków</b>al. Sybiraków 2, Olsztyn (Zatorze)</div>
+    <div class="col"><b>ARToffNIA Smętka</b>ul. Smętka 28a, Olsztyn (Centrum)</div>
+    <div class="col"><b>Kontakt</b><a href="tel:+48604110894">604 110 894</a><br><a href="mailto:biuro@artoffnia.pl">biuro@artoffnia.pl</a></div>
+    <div class="col"><b>Na skróty</b><a href="wynajem.html">Wynajem sal</a><br><a href="obozy.html">Obozy i ferie</a><br><a href="galeria.html">Galeria</a><br><a href="aktualnosci.html">Aktualności</a><br><span>Olsztyński Teatr Tańca — ott.olsztyn.pl</span></div>
+    <div class="col"><b>Dokumenty</b><a href="statut.html">Statut</a><br><a href="regulamin-2025-26.pdf" target="_blank" rel="noopener">Regulamin 2025/26</a><br><a href="standardy.html">Standardy ochrony małoletnich</a><br><a href="wspieraj.html">Wspieraj kulturę</a></div>
+
+  </footer>
+</div>
+<script src="zajecia.js"></script>
+<script>
+(function(){
+"use strict";
+/* lista zajęć do selecta — docelowo z tej samej bazy co katalog */
+var ZAJ=window.AFF_Z.map(function(x){return x.n;});
+var sel=document.getElementById("f-zaj");
+ZAJ.forEach(function(n){var o=document.createElement("option");o.value=n;o.textContent=n;sel.appendChild(o);});
+/* preselekcja z linku: zapisy.html?zajecia=Balet%20OPEN */
+var pre=new URLSearchParams(location.search).get("zajecia");
+if(pre){for(var i=0;i<sel.options.length;i++){if(sel.options[i].value===pre){sel.selectedIndex=i;break;}}}
+document.getElementById("zform").addEventListener("submit",function(e){
+  e.preventDefault();
+  var st=document.getElementById("f-status");
+  if(!document.getElementById("f-rodo").checked){st.textContent="Zaznacz zgodę RODO, żeby wysłać zgłoszenie.";return;}
+  st.textContent="DEMO: tu zgłoszenie poleci do biura (e-mail + kopia do arkusza) wraz z wybranymi zajęciami.";
+  window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:"generate_lead",zajecia:document.getElementById("f-zaj").value});
+  if(typeof gtag==="function")gtag("event","generate_lead",{zajecia:document.getElementById("f-zaj").value});
+});
+})();
+</script>
+<script defer src="menu.js"></script>
+</body>
+</html>

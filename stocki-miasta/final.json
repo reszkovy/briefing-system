@@ -1,0 +1,2444 @@
+[
+ {
+  "name": "Białystok",
+  "slug": "bialystok",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "bardzo dobre pokrycie; Adobe ma tylko 9 trafien lacznie (odrzucony zamek w Tykocinie), Freepik 4 premium ujecia Palacu Branickich i bazyliki",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "old town in bialystok",
+    "thumb": "https://t4.ftcdn.net/jpg/03/71/52/05/240_F_371520554_NlsKXLbnh7CPQ5JHS9TFvsTJrahtYWCm.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/71/52/05/240_F_371520554_NlsKXLbnh7CPQ5JHS9TFvsTJrahtYWCm.jpg",
+    "link": "https://stock.adobe.com/search?k=371520554",
+    "meta": "ID 371520554 · 4929×3282 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Old market, Basilica and sign #Bialystok in Bialystok city aerial view, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/05/57/47/58/240_F_557475882_Kq4e6vkhxryZth8GupUcpghpwM70xPjx.jpg",
+    "big": "https://t3.ftcdn.net/jpg/05/57/47/58/240_F_557475882_Kq4e6vkhxryZth8GupUcpghpwM70xPjx.jpg",
+    "link": "https://stock.adobe.com/search?k=557475882",
+    "meta": "ID 557475882 · 4532×3399 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Branicki Palace in Bialystok, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/01/69/32/21/240_F_169322188_hOubl8JKVRqQVvv1WsiMt14Vny4uDCXl.jpg",
+    "big": "https://t4.ftcdn.net/jpg/01/69/32/21/240_F_169322188_hOubl8JKVRqQVvv1WsiMt14Vny4uDCXl.jpg",
+    "link": "https://stock.adobe.com/search?k=169322188",
+    "meta": "ID 169322188 · 5346×2763 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Beautiful architecture of the Branicki Palace in Bialystok, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/02/26/82/26/240_F_226822613_VnRILipIcTaXaVB6JIyGWx9XMgkFyWnJ.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/26/82/26/240_F_226822613_VnRILipIcTaXaVB6JIyGWx9XMgkFyWnJ.jpg",
+    "link": "https://stock.adobe.com/search?k=226822613",
+    "meta": "ID 226822613 · 5690×3793 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Ełk",
+  "slug": "elk",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "slabe pokrycie; jedyne ujecie 'Foggy morning at the Elk Lake near Elk city' - prawdopodobnie Jezioro Elckie, ale tytul niejednoznaczny (moze byc Elk City w USA), do weryfikacji wzrokowej. Freepik na 'Elk Poland' zwraca wylacznie zwierzeta (los/wapiti) - zero trafien miejskich",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Elk, Poland - panoramio",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=52255922",
+    "meta": "aut. st17sz19",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Elk, Poland - panoramio (13)",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio_%2813%29.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio_%2813%29.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=53469059",
+    "meta": "aut. st17sz19",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Elk, Poland - panoramio (14)",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio_%2814%29.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Elk%2C_Poland_-_panoramio_%2814%29.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=53469067",
+    "meta": "aut. st17sz19",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Statue of Pope John Paul II in Elk, Poland",
+    "thumb": "https://api.openverse.org/v1/images/528fde48-2dad-49f5-846a-17a8bfad3612/thumb/",
+    "big": "https://live.staticflickr.com/3090/2679564885_e2f7b170ed_b.jpg",
+    "link": "https://www.flickr.com/photos/22786194@N04/2679564885",
+    "meta": "aut. Lee Fenner",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   }
+  ]
+ },
+ {
+  "name": "Kętrzyn",
+  "slug": "ketrzyn",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "brak zdjec samego miasta; jedyne trafienie to landmark Wilczy Szaniec (Gierloz pod Ketrzynem) - polski tytul z fraza 'wilczy szaniec'. Zapytania 'Ketrzyn', 'Ketrzyn' z diakrytykami i kontekstowe daly 0 trafnych",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ketrzyn zamek 3",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_zamek_3.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_zamek_3.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=27148968",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ketrzyn widok z wiezy bazyliki 3",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_widok_z_wiezy_bazyliki_3.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_widok_z_wiezy_bazyliki_3.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=27094883",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ketrzyn bazylika pan 10 v2",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_bazylika_pan_10_v2.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ketrzyn_bazylika_pan_10_v2.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=28476676",
+    "meta": "aut. Sajmonek51",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Arno Holz Ketrzyn",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Arno_Holz_Ketrzyn.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Arno_Holz_Ketrzyn.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=2492056",
+    "meta": "aut. Serdelll",
+    "license": "CC BY 2.5 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ]
+ },
+ {
+  "name": "Lidzbark Warmiński",
+  "slug": "lidzbark",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "brak trafien; 4 zapytania (Lidzbark Warminski, Lidzbark, z diakrytykami, zamek biskupow warminskich) - Adobe zwraca 0 lub inne zamki (Reszel, Kwidzyn, Malbork), Freepik same losowe miasta europejskie",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lidzbark Warminski - Ratusz neogotycki",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_-_Ratusz_neogotycki.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_-_Ratusz_neogotycki.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=20534864",
+    "meta": "aut. Ludwig Schneider",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lidzbark Warminski zamek poczet biskupow",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_zamek_poczet_biskupow.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_zamek_poczet_biskupow.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=20246151",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lidzbark Warminski Railbridge",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_Railbridge.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_Railbridge.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=1322109",
+    "meta": "aut. Jan Pešula User:Sapfan",
+    "license": "CC BY-SA 2.5 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lidzbark Warminski cerkiew 2",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_cerkiew_2.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lidzbark_Warminski_cerkiew_2.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=20246991",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 8
+   }
+  ]
+ },
+ {
+  "name": "Łomża",
+  "slug": "lomza",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "Slabe pokrycie. Adobe ma dokladnie 2 ujecia (ten sam autor, ta sama sesja: dolina Narwi o zachodzie slonca) - to krajobraz rzeczny, nie miasto. Freepik: ZERO trafien, zwracal Sibiu/Trakai/Prage. Zapytania kontekstowe i wersja z diakrytykami nie dodaly nic. Potrzeba 1 ujecia - spelnione, ale bez zapasu i bez ujecia miasta.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Lower Narew Valley, sunset on the Narew River, Łomża, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/04/53/49/27/240_F_453492716_RALLsEdBy2NWAO8iXwYQPvBQ15C5zxzH.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/53/49/27/240_F_453492716_RALLsEdBy2NWAO8iXwYQPvBQ15C5zxzH.jpg",
+    "link": "https://stock.adobe.com/search?k=453492716",
+    "meta": "ID 453492716 · 5953×3969 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Lower Narew Valley, sunset on the Narew River, Łomża, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/04/53/49/27/240_F_453492787_Cl6VmCBRB5JJtG9yo77UN8KhT7IIHroA.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/53/49/27/240_F_453492787_Cl6VmCBRB5JJtG9yo77UN8KhT7IIHroA.jpg",
+    "link": "https://stock.adobe.com/search?k=453492787",
+    "meta": "ID 453492787 · 5701×3801 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lomza katedra fc11",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lomza_katedra_fc11.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lomza_katedra_fc11.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=11367259",
+    "meta": "aut. Fczarnowski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Lomza katedra fc05",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Lomza_katedra_fc05.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Lomza_katedra_fc05.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=11364421",
+    "meta": "aut. Fczarnowski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Mrągowo",
+  "slug": "mragowo",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "Najslabsze pokrycie w grupie. ASCII 'Mragowo' dalo 0 trafien - dopiero wersja z diakrytykami 'Mragowo' zwrocila 1 ujecie ('Wieczor w Mragowie na Mazurach'). Freepik: ZERO. Odrzucono 'Ryn - miasto na Mazurach' i inne mazurskie miasteczka jako inne lokalizacje. Potrzeba 1 - spelnione dokladnie na styk, brak alternatyw.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Wieczór w Mrągowie na Mazurach",
+    "thumb": "https://t3.ftcdn.net/jpg/03/57/14/68/240_F_357146878_iQHvVhifrHT3Xlq6sRSBxtqyXkPPNIXw.jpg",
+    "big": "https://t3.ftcdn.net/jpg/03/57/14/68/240_F_357146878_iQHvVhifrHT3Xlq6sRSBxtqyXkPPNIXw.jpg",
+    "link": "https://stock.adobe.com/search?k=357146878",
+    "meta": "ID 357146878 · 9562×5379 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": false,
+    "pick": false,
+    "idx": 9
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Mragowo kościół2",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_ko%C5%9Bci%C3%B3%C5%822.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_ko%C5%9Bci%C3%B3%C5%822.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=1555343",
+    "meta": "aut. No machine-readable author provided. Bartek101 assumed (based on copyright claims).",
+    "license": "CC BY 2.5 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Mragowo Mrongowiusza",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_Mrongowiusza.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_Mrongowiusza.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=1644686",
+    "meta": "",
+    "license": "CC BY 2.5 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Mragowo blokiG",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_blokiG.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Mragowo_blokiG.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=1617313",
+    "meta": "aut. No machine-readable author provided. Bartek101 assumed (based on copyright claims).",
+    "license": "CC BY 2.5 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   }
+  ]
+ },
+ {
+  "name": "Olsztyn",
+  "slug": "olsztyn",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "Najlepsze pokrycie, 16 ujec. UWAGA na dwa rozne Olsztyny: 2 ujecia Adobe (625599366, 1833203890) to ruiny zamku w Olsztynie k. Czestochowy, NIE stolica Warmii - oznaczylem to dopiskiem w polu title. Pozostale 2 z Adobe i wszystkie 12 z Freepik to Olsztyn warminski (stare miasto, zamek biskupow warminskich, ratusz, pomnik Kopernika). Freepik 187268* to jedna spojna seria dronowa jednego autora. Odrzucono Frombork, Gietrzwald (wies obok, nie miasto) i Jure Krakowsko-Czestochowska.",
+  "wybor": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Olsztyn the old town the old town hall the cocathedral basilica of saint james tenement houses the",
+    "thumb": "https://img.magnific.com/premium-photo/olsztyn-old-town-old-town-hall-cocathedral-basilica-saint-james-tenement-houses_609103-2398.jpg",
+    "big": "https://img.magnific.com/premium-photo/olsztyn-old-town-old-town-hall-cocathedral-basilica-saint-james-tenement-houses_609103-2398.jpg",
+    "link": "https://www.magnific.com/premium-photo/olsztyn-old-town-old-town-hall-cocathedral-basilica-saint-james-tenement-houses_187267515.htm",
+    "meta": "ID 187267515",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Castle of warmian bishops in olsztyn northern poland built in the fourteenthcentury in gothic",
+    "thumb": "https://img.magnific.com/premium-photo/castle-warmian-bishops-olsztyn-northern-poland-built-fourteenthcentury-gothic_609103-2402.jpg",
+    "big": "https://img.magnific.com/premium-photo/castle-warmian-bishops-olsztyn-northern-poland-built-fourteenthcentury-gothic_609103-2402.jpg",
+    "link": "https://www.magnific.com/premium-photo/castle-warmian-bishops-olsztyn-northern-poland-built-fourteenthcentury-gothic_187267724.htm",
+    "meta": "ID 187267724",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Aerial cityscape of olsztyn poland old town on a cloudy day tiny colorful buildings in the center",
+    "thumb": "https://img.magnific.com/premium-photo/aerial-cityscape-olsztyn-poland-old-town-cloudy-day-tiny-colorful-buildings-center_609103-2406.jpg",
+    "big": "https://img.magnific.com/premium-photo/aerial-cityscape-olsztyn-poland-old-town-cloudy-day-tiny-colorful-buildings-center_609103-2406.jpg",
+    "link": "https://www.magnific.com/premium-photo/aerial-cityscape-olsztyn-poland-old-town-cloudy-day-tiny-colorful-buildings-center_187267943.htm",
+    "meta": "ID 187267943",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Drone to of old town of olsztyn on a cloudy day there is a wonderful view of olsztyn castle and the",
+    "thumb": "https://img.magnific.com/premium-photo/drone-old-town-olsztyn-cloudy-day-there-is-wonderful-view-olsztyn-castle_609103-2407.jpg",
+    "big": "https://img.magnific.com/premium-photo/drone-old-town-olsztyn-cloudy-day-there-is-wonderful-view-olsztyn-castle_609103-2407.jpg",
+    "link": "https://www.magnific.com/premium-photo/drone-old-town-olsztyn-cloudy-day-there-is-wonderful-view-olsztyn-castle_187267992.htm",
+    "meta": "ID 187267992",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   }
+  ]
+ },
+ {
+  "name": "Suwałki",
+  "slug": "suwalki",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "Slabe pokrycie, 3 ujecia. Adobe: panorama lotnicza centrum + cerkiew prawoslawna. Freepik: 1 ujecie, ale to panorama 360 rownoprostokatna (equirectangular VR) - do zwyklego layoutu wymaga przyciecia. ODRZUCONO swiadomie 461802377 'Kosciol Najswietszego Serca Pana Jezusa' - wyszedl tylko przy zapytaniu 'Suwalki' (2 trafienia lacznie), wiec prawdopodobnie jest z Suwalk, ale tytul nie zawiera nazwy miasta ani jednoznacznego landmarku. Do rozwazenia jako rezerwa, jesli 3 ujecia to za malo.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of center of the Suwalki city, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/03/82/25/73/240_F_382257388_6mWcdi0IBeaFD1mhys0XWgs45VGM9zN5.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/82/25/73/240_F_382257388_6mWcdi0IBeaFD1mhys0XWgs45VGM9zN5.jpg",
+    "link": "https://stock.adobe.com/search?k=382257388",
+    "meta": "ID 382257388 · 5371×3578 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Orthodox Church of All Saints in Suwałki, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/05/17/59/29/240_F_517592952_jhskWd4eAhs6fT1GqtjKHo4bWwuOcXyP.jpg",
+    "big": "https://t4.ftcdn.net/jpg/05/17/59/29/240_F_517592952_jhskWd4eAhs6fT1GqtjKHo4bWwuOcXyP.jpg",
+    "link": "https://stock.adobe.com/search?k=517592952",
+    "meta": "ID 517592952 · 4288×2848 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ratusz miejski suwalki",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ratusz_miejski_suwalki.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ratusz_miejski_suwalki.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=33546648",
+    "meta": "aut. Fotoeksplorer",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "SUWALKI POLAND MAY 2019 Full seamless panorama 360 degrees angle view in old city with beautiful decorative medieval style architecture church in equirectangular spherical projection vr content",
+    "thumb": "https://img.magnific.com/premium-photo/suwalki-poland-may-2019-full-seamless-panorama-360-degrees-angle-view-old-city-with-beautiful-decorative-medieval-style-architecture-church-equirectangular-spherical-projection-vr-content_97694-9409.jpg",
+    "big": "https://img.magnific.com/premium-photo/suwalki-poland-may-2019-full-seamless-panorama-360-degrees-angle-view-old-city-with-beautiful-decorative-medieval-style-architecture-church-equirectangular-spherical-projection-vr-content_97694-9409.jpg",
+    "link": "https://www.magnific.com/premium-photo/suwalki-poland-may-2019-full-seamless-panorama-360-degrees-angle-view-old-city-with-beautiful-decorative-medieval-style-architecture-church-equirectangular-spherical-projection-vr-content_28897130.htm",
+    "meta": "ID 28897130",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   }
+  ]
+ },
+ {
+  "name": "Ostrołęka",
+  "slug": "ostroleka",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "brak trafien na obu platformach; Adobe zwraca 0 dla 'Ostroleka', 'Ostrolek' i 'Ostrołęka' (ASCII i diakrytyki), zapytania kontekstowe (Poland old town aerial, Narew Mazovia) daja tylko inne miasta; Freepik zero pozycji z nazwa w tytule",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ostroleka-kosciol farny4",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-kosciol_farny4.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-kosciol_farny4.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=2256898",
+    "meta": "aut. Piotr Brichacek (Briho)",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ostroleka-kosciol farny1",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-kosciol_farny1.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-kosciol_farny1.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=2067299",
+    "meta": "aut. Piotr Brichacek (Briho)",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ostroleka-panorama",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-panorama.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-panorama.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=2255968",
+    "meta": "aut. Piotr Brichacek (Briho)",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ostroleka-most madalinskiego13",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-most_madalinskiego13.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ostroleka-most_madalinskiego13.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=4261797",
+    "meta": "aut. Piotr Brichacek (Briho)",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ]
+ },
+ {
+  "name": "Ciechanów",
+  "slug": "ciechanow",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "dobre pokrycie; Adobe: zamek ksiazat mazowieckich + ratusz. Freepik: 6 ujec zamku (brama, mury, wieze) z jednej serii — mala roznorodnosc kadrow, wszystkie premium",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Medival brick castle of the Masovian Dukes in Ciechanow in Poland.",
+    "thumb": "https://t4.ftcdn.net/jpg/04/84/83/35/240_F_484833561_jwKqFANleXQix5GoB3B8OTDTjA4zPkyv.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/84/83/35/240_F_484833561_jwKqFANleXQix5GoB3B8OTDTjA4zPkyv.jpg",
+    "link": "https://stock.adobe.com/search?k=484833561",
+    "meta": "ID 484833561 · 5087×3382 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Town hall in Ciechanów, Masovian Voivodeship, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/10/94/45/31/240_F_1094453197_bjo4KK4KmKsHMDIq2b1uHf74faVNAnEu.jpg",
+    "big": "https://t4.ftcdn.net/jpg/10/94/45/31/240_F_1094453197_bjo4KK4KmKsHMDIq2b1uHf74faVNAnEu.jpg",
+    "link": "https://stock.adobe.com/search?k=1094453197",
+    "meta": "ID 1094453197 · 4288×2848 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Entrance gate at Castle of the Masovian Dukes Ciechanow Poland",
+    "thumb": "https://img.magnific.com/premium-photo/entrance-gate-castle-masovian-dukes-ciechanow-poland_764664-42968.jpg",
+    "big": "https://img.magnific.com/premium-photo/entrance-gate-castle-masovian-dukes-ciechanow-poland_764664-42968.jpg",
+    "link": "https://www.magnific.com/premium-photo/entrance-gate-castle-masovian-dukes-ciechanow-poland_228457863.htm",
+    "meta": "ID 228457863",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Castle of the Masovian Dukes defensive walls and towers Ciechanow Poland",
+    "thumb": "https://img.magnific.com/premium-photo/castle-masovian-dukes-defensive-walls-towers-ciechanow-poland_764664-42983.jpg",
+    "big": "https://img.magnific.com/premium-photo/castle-masovian-dukes-defensive-walls-towers-ciechanow-poland_764664-42983.jpg",
+    "link": "https://www.magnific.com/premium-photo/castle-masovian-dukes-defensive-walls-towers-ciechanow-poland_228457978.htm",
+    "meta": "ID 228457978",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Augustów",
+  "slug": "augustow",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "slabe pokrycie; Adobe: panorama miasta (tylko po zapytaniu z diakrytykami 'Augustów') + amfiteatr nad Necko. Freepik: 1 ujecie portu rzecznego z lotu ptaka. Zapytania o Kanal Augustowski nic nie dodaly",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Augustów- miasto w północno-wschodniej Polsce w województwie podlaskim",
+    "thumb": "https://t4.ftcdn.net/jpg/05/28/68/05/240_F_528680502_rFkdoAvlTapJS0ZPYJekIko3ZhAspWLz.jpg",
+    "big": "https://t4.ftcdn.net/jpg/05/28/68/05/240_F_528680502_rFkdoAvlTapJS0ZPYJekIko3ZhAspWLz.jpg",
+    "link": "https://stock.adobe.com/search?k=528680502",
+    "meta": "ID 528680502 · 8600×4838 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "AUGUSTOW POLAND MAY 2018 aerial view of the river port in sunny summer day",
+    "thumb": "https://img.magnific.com/premium-photo/augustow-poland-may-2018-aerial-view-river-port-sunny-summer-day_97694-1155.jpg",
+    "big": "https://img.magnific.com/premium-photo/augustow-poland-may-2018-aerial-view-river-port-sunny-summer-day_97694-1155.jpg",
+    "link": "https://www.magnific.com/premium-photo/augustow-poland-may-2018-aerial-view-river-port-sunny-summer-day_28645871.htm",
+    "meta": "ID 28645871",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Open air amphitheater performance stage on shore of Necko lake in Masuria lake district resort town of Augustow in Podlaskie voivodship of Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/04/43/36/22/240_F_443362243_7W5TULuJGZYLPXpmi7sBl4NJzaiW20Bb.jpg",
+    "big": "https://t3.ftcdn.net/jpg/04/43/36/22/240_F_443362243_7W5TULuJGZYLPXpmi7sBl4NJzaiW20Bb.jpg",
+    "link": "https://stock.adobe.com/search?k=443362243",
+    "meta": "ID 443362243 · 6344×4184 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Augustow 03",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Augustow_03.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Augustow_03.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=569287",
+    "meta": "aut. Marek and Ewa Wojciechowscy",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Iława",
+  "slug": "ilawa",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "slabe pokrycie i ujecia okoliczne, nie samo miasto; Adobe (tylko po diakrytykach 'Iława'): marina/jachty w Siemianach nad Jeziorakiem oraz ruiny zamku w Szymbarku k. Ilawy. Freepik: brak trafien",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ilawa Kosciol Przemienienia Panskiego 2025 05 31 152908",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ilawa_Kosciol_Przemienienia_Panskiego_2025_05_31_152908.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ilawa_Kosciol_Przemienienia_Panskiego_2025_05_31_152908.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=166543121",
+    "meta": "aut. Pko",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "jezioro żaglówka marina łódź żaglowa motorowa jacht port przystań siemiany iława",
+    "thumb": "https://t4.ftcdn.net/jpg/04/62/92/51/240_F_462925169_UuZoZH18ILwS381DZywUqWJpSBp3GQ2M.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/62/92/51/240_F_462925169_UuZoZH18ILwS381DZywUqWJpSBp3GQ2M.jpg",
+    "link": "https://stock.adobe.com/search?k=462925169",
+    "meta": "ID 462925169 · 5472×3648 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Ilawa kosciol Przemienienia Panskiego witraz zach 2008 08 10 150102",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Ilawa_kosciol_Przemienienia_Panskiego_witraz_zach_2008_08_10_150102.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Ilawa_kosciol_Przemienienia_Panskiego_witraz_zach_2008_08_10_150102.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=166587098",
+    "meta": "aut. Pko",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Klub Sportowy Wir Ilawa",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Klub_Sportowy_Wir_Ilawa.png?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Klub_Sportowy_Wir_Ilawa.png?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=76362276",
+    "meta": "aut. AlbertDwa",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ]
+ },
+ {
+  "name": "Lublin",
+  "slug": "lublin",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "Adobe ma tylko 3 trafne ujecia (Zamek Lubelski + 2x Stare Miasto, wszystkie pricing=free); Freepik nadrabia - 15 pozycji z Lublinem w tytule (panoramy Starego Miasta, ratusz, koscioly, Boze Narodzenie). Zapotrzebowanie 2 ujec pokryte z duzym zapasem.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Castle in Lublin, Poland.",
+    "thumb": "https://t4.ftcdn.net/jpg/01/64/88/25/240_F_164882590_qboq2yl4w8sTRjxV61k945moR0HPtKBa.jpg",
+    "big": "https://t4.ftcdn.net/jpg/01/64/88/25/240_F_164882590_qboq2yl4w8sTRjxV61k945moR0HPtKBa.jpg",
+    "link": "https://stock.adobe.com/search?k=164882590",
+    "meta": "ID 164882590 · 5935×3338 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Lublin - stare miasto z lotu ptaka.",
+    "thumb": "https://t4.ftcdn.net/jpg/01/38/23/67/240_F_138236731_jAvvXfJrCcIuO26nvTRYrpTkpuk0GEbp.jpg",
+    "big": "https://t4.ftcdn.net/jpg/01/38/23/67/240_F_138236731_jAvvXfJrCcIuO26nvTRYrpTkpuk0GEbp.jpg",
+    "link": "https://stock.adobe.com/search?k=138236731",
+    "meta": "ID 138236731 · 3992×2992 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Lublin Stare Miasto",
+    "thumb": "https://t4.ftcdn.net/jpg/05/26/48/35/240_F_526483557_IIIqVHAlRGqsnYnG72isaX6rGNNDThse.jpg",
+    "big": "https://t4.ftcdn.net/jpg/05/26/48/35/240_F_526483557_IIIqVHAlRGqsnYnG72isaX6rGNNDThse.jpg",
+    "link": "https://stock.adobe.com/search?k=526483557",
+    "meta": "ID 526483557 · 5464×3640 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Lublin Poland Aerial view of Old Town at dusk",
+    "thumb": "https://img.magnific.com/premium-photo/lublin-poland-aerial-view-old-town-dusk_932556-248.jpg",
+    "big": "https://img.magnific.com/premium-photo/lublin-poland-aerial-view-old-town-dusk_932556-248.jpg",
+    "link": "https://www.magnific.com/premium-photo/lublin-poland-aerial-view-old-town-dusk_45287646.htm",
+    "meta": "ID 45287646",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Lublin old town panorama Poland",
+    "thumb": "https://img.magnific.com/premium-photo/lublin-old-town-panorama-poland_1077885-1738.jpg",
+    "big": "https://img.magnific.com/premium-photo/lublin-old-town-panorama-poland_1077885-1738.jpg",
+    "link": "https://www.magnific.com/premium-photo/lublin-old-town-panorama-poland_136521971.htm",
+    "meta": "ID 136521971",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ]
+ },
+ {
+  "name": "Radomsko",
+  "slug": "radomsko",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "BRAK TRAFIEN. Adobe zwrocilo 0 wynikow dla 3 zapytan (Radomsko / Radomsko Poland town / Radomsko rynek miasto). Freepik zwrocil wylacznie losowe zamki i cerkwie z Rumunii, Bialorusi i Czech - zero pozycji z Radomskiem w tytule. Miasto nie istnieje w tych katalogach; potrzebne inne zrodlo (np. zdjecia wlasne, Wikimedia, lokalny fotograf).",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Miasto Radomsko",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Miasto_Radomsko.png?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Miasto_Radomsko.png?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=3561298",
+    "meta": "aut. JaqbS",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "SM Radomsko Kościół św Lamberta (3) ID 614012",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/SM_Radomsko_Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw_Lamberta_%283%29_ID_614012.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/SM_Radomsko_Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw_Lamberta_%283%29_ID_614012.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=52617913",
+    "meta": "aut. Sławomir Milejski",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "File:SM Radomsko Kościół św Lamberta (1) ID 614012.jpg",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/SM_Radomsko_Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw_Lamberta_%281%29_ID_614012.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/SM_Radomsko_Ko%C5%9Bci%C3%B3%C5%82_%C5%9Bw_Lamberta_%281%29_ID_614012.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=45024999",
+    "meta": "aut. Sławomir Milejski",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "File:WK15 Radomsko (3) Travelarz.jpg",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/WK15_Radomsko_%283%29_Travelarz.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/WK15_Radomsko_%283%29_Travelarz.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=44535883",
+    "meta": "aut. Travelarz",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   }
+  ]
+ },
+ {
+  "name": "Warszawa",
+  "slug": "warszawa",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "Bardzo dobre pokrycie na obu platformach. Adobe: panoramy skyline, Palac Kultury z lotu ptaka, Plac Zamkowy, Stare Miasto, wszystkie pricing=free, duze rozdzielczosci (do 12167px). Freepik: skyline nocny, Palac Kultury, Barbakan, Syrenka. Zero AI-generated.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Warsaw, Poland panorama",
+    "thumb": "https://t4.ftcdn.net/jpg/04/59/42/21/240_F_459422109_nJM74m3eJNZEOJt2Ee0G0AOP2471MTsf.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/59/42/21/240_F_459422109_nJM74m3eJNZEOJt2Ee0G0AOP2471MTsf.jpg",
+    "link": "https://stock.adobe.com/search?k=459422109",
+    "meta": "ID 459422109 · 12167×4705 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Panorama of Warsaw at dawn",
+    "thumb": "https://t4.ftcdn.net/jpg/01/71/61/15/240_F_171611514_iIAf6Jn2QBYsGNsEJag2nNt9nZ2EelhD.jpg",
+    "big": "https://t4.ftcdn.net/jpg/01/71/61/15/240_F_171611514_iIAf6Jn2QBYsGNsEJag2nNt9nZ2EelhD.jpg",
+    "link": "https://stock.adobe.com/search?k=171611514",
+    "meta": "ID 171611514 · 4946×2781 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "warsaw skyline at night",
+    "thumb": "https://t3.ftcdn.net/jpg/04/05/26/52/240_F_405265287_9Wcl21gTCviiOBGsy7Klo27Js0486F15.jpg",
+    "big": "https://t3.ftcdn.net/jpg/04/05/26/52/240_F_405265287_9Wcl21gTCviiOBGsy7Klo27Js0486F15.jpg",
+    "link": "https://stock.adobe.com/search?k=405265287",
+    "meta": "ID 405265287 · 4038×3138 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of Palace of Culture and Science and downtown business skyscrapers in Warsaw, Poland.",
+    "thumb": "https://t4.ftcdn.net/jpg/05/57/90/77/240_F_557907720_vlxnhYwcyWKQ246xgMK2lZb8dN6eC2OD.jpg",
+    "big": "https://t4.ftcdn.net/jpg/05/57/90/77/240_F_557907720_vlxnhYwcyWKQ246xgMK2lZb8dN6eC2OD.jpg",
+    "link": "https://stock.adobe.com/search?k=557907720",
+    "meta": "ID 557907720 · 4000×2008 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Grodzisk Mazowiecki",
+  "slug": "grodzisk",
+  "need": 1,
+  "listy": [
+   "A"
+  ],
+  "note": "BRAK TRAFIEN. Adobe: 0 wynikow dla 'Grodzisk Mazowiecki' i 'Grodzisk'; szersze zapytanie z kontekstem zwrocilo tylko inne polskie miasta (Lodz, Wroclaw, Gdansk, Otwock). Freepik: same losowe miasta europejskie. Zadna pozycja nie zawiera 'Grodzisk' w tytule - odrzucone wszystkie. Potrzebne inne zrodlo.",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Grodzisk Mazowiecki deptak",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Grodzisk_Mazowiecki_deptak.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Grodzisk_Mazowiecki_deptak.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=3132393",
+    "meta": "aut. Jan Stradowski",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Grodzisk Mazowiecki 3",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Grodzisk_Mazowiecki_3.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Grodzisk_Mazowiecki_3.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=573550",
+    "meta": "aut. Marek and Ewa Wojciechowscy",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "WKD Grodzisk Mazowiecki Radonska",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/WKD_Grodzisk_Mazowiecki_Radonska.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/WKD_Grodzisk_Mazowiecki_Radonska.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=2805303",
+    "meta": "aut. Jan Stradowski",
+    "license": "CC BY 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Karsan Jest, #60031, PKS Grodzisk Mazowiecki",
+    "thumb": "https://api.openverse.org/v1/images/83d7ab79-0fb4-4927-9a95-93ffff6b6e1b/thumb/",
+    "big": "https://live.staticflickr.com/4220/34413286634_106b815635_b.jpg",
+    "link": "https://www.flickr.com/photos/129661548@N06/34413286634",
+    "meta": "aut. transport131",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ]
+ },
+ {
+  "name": "Kraków",
+  "slug": "krakow",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo dobre pokrycie na obu platformach; Rynek Glowny, Sukiennice, Bazylika Mariacka, Wawel, ujecia z lotu ptaka; odrzucono Olsztyn, Czorsztyn i niejednoznaczny 'Kosciol Sw.'",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "aerial view of krakow city center at sunset in summer in poland",
+    "thumb": "https://t3.ftcdn.net/jpg/08/39/70/40/240_F_839704084_b3YWbneMGWWojwNMx2aFNQU6rfz0XgA2.jpg",
+    "big": "https://t3.ftcdn.net/jpg/08/39/70/40/240_F_839704084_b3YWbneMGWWojwNMx2aFNQU6rfz0XgA2.jpg",
+    "link": "https://stock.adobe.com/search?k=839704084",
+    "meta": "ID 839704084 · 5333×3000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Main square (Rynek Glowny) panorama, colorful sunrise, Krakow, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/03/53/47/81/240_F_353478164_KpjXHcl7j7pxfzWQQ6gVFqQkonwW8MhJ.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/53/47/81/240_F_353478164_KpjXHcl7j7pxfzWQQ6gVFqQkonwW8MhJ.jpg",
+    "link": "https://stock.adobe.com/search?k=353478164",
+    "meta": "ID 353478164 · 13654×4694 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Main market square in old town of Krakow, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/01/91/84/46/240_F_191844694_bngKn2l1Xu0nYqXVtVkY6CWi3ZMyAPlb.jpg",
+    "big": "https://t3.ftcdn.net/jpg/01/91/84/46/240_F_191844694_bngKn2l1Xu0nYqXVtVkY6CWi3ZMyAPlb.jpg",
+    "link": "https://stock.adobe.com/search?k=191844694",
+    "meta": "ID 191844694 · 5472×3648 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Wawel Castle, Krakow",
+    "thumb": "https://t4.ftcdn.net/jpg/01/66/01/99/240_F_166019999_DymIe7nZQ2TJSiFalGtGEWDQoOEDlH7p.jpg",
+    "big": "https://t4.ftcdn.net/jpg/01/66/01/99/240_F_166019999_DymIe7nZQ2TJSiFalGtGEWDQoOEDlH7p.jpg",
+    "link": "https://stock.adobe.com/search?k=166019999",
+    "meta": "ID 166019999 · 10191×3679 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Royal Wawel castle in Krakow Malopolska region in Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/06/83/43/59/240_F_683435983_BQsm6efxewg0xyrS2bF2mT1coUMYW6Y5.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/83/43/59/240_F_683435983_BQsm6efxewg0xyrS2bF2mT1coUMYW6Y5.jpg",
+    "link": "https://stock.adobe.com/search?k=683435983",
+    "meta": "ID 683435983 · 5800×3869 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ]
+ },
+ {
+  "name": "Wrocław",
+  "slug": "wroclaw",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo dobre pokrycie; Rynek, Ratusz, Ostrow Tumski, Sky Tower, most Redzinski; odrzucono Olesnice, Trzebnice, mape miasta i kolaz graficzny",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "morning view of the sights of the city of wroclaw in poland",
+    "thumb": "https://t3.ftcdn.net/jpg/04/30/60/48/240_F_430604858_C1xuedfuFLTeUNFBKbRoOCWbmfrufl4i.jpg",
+    "big": "https://t3.ftcdn.net/jpg/04/30/60/48/240_F_430604858_C1xuedfuFLTeUNFBKbRoOCWbmfrufl4i.jpg",
+    "link": "https://stock.adobe.com/search?k=430604858",
+    "meta": "ID 430604858 · 3000×2000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of Wroclaw with the sky tower shopping mall, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/02/14/68/75/240_F_214687524_yfnNTs8VcfBBajxNcpknTWK76JeiUz1J.jpg",
+    "big": "https://t4.ftcdn.net/jpg/02/14/68/75/240_F_214687524_yfnNTs8VcfBBajxNcpknTWK76JeiUz1J.jpg",
+    "link": "https://stock.adobe.com/search?k=214687524",
+    "meta": "ID 214687524 · 5842×3895 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Fountain on the Market Square of Wroclaw - Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/01/24/36/20/240_F_124362035_C08u56eXks5cUa49puZ3vfaOTovX8W5A.jpg",
+    "big": "https://t3.ftcdn.net/jpg/01/24/36/20/240_F_124362035_C08u56eXks5cUa49puZ3vfaOTovX8W5A.jpg",
+    "link": "https://stock.adobe.com/search?k=124362035",
+    "meta": "ID 124362035 · 4733×3170 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Old Market Square in Wroclaw, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/02/50/09/87/240_F_250098743_qS8eerxPdERgnIvojS8b4TGT9Gw3Zk0F.jpg",
+    "big": "https://t4.ftcdn.net/jpg/02/50/09/87/240_F_250098743_qS8eerxPdERgnIvojS8b4TGT9Gw3Zk0F.jpg",
+    "link": "https://stock.adobe.com/search?k=250098743",
+    "meta": "ID 250098743 · 6016×4016 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Wroclaw, Poland- View of the old town Ostrow Tumski",
+    "thumb": "https://t3.ftcdn.net/jpg/01/97/37/88/240_F_197378834_FyOhGJYC0vszUk2VR2UZ4A90Fu2M1eV6.jpg",
+    "big": "https://t3.ftcdn.net/jpg/01/97/37/88/240_F_197378834_FyOhGJYC0vszUk2VR2UZ4A90Fu2M1eV6.jpg",
+    "link": "https://stock.adobe.com/search?k=197378834",
+    "meta": "ID 197378834 · 4338×2892 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ]
+ },
+ {
+  "name": "Łódź",
+  "slug": "lodz",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "dobre pokrycie ale weższe tematycznie: Piotrkowska, Manufaktura, Biala Fabryka, Dworzec Fabryczny, murale; Freepik glownie jeden autor (929087) plus 2 ujecia lotnicze; odfiltrowano Pabianice, Skierniewice, Leczyce i generyczne 'Passenger train'",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Piotrkowska 155 office and hotel complex at Mickiewicza street in historic city center of Lodz old town in Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/06/12/23/23/240_F_612232381_J6y8tDncG4DlNOO6gTvSgJBoO4tCckNr.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/12/23/23/240_F_612232381_J6y8tDncG4DlNOO6gTvSgJBoO4tCckNr.jpg",
+    "link": "https://stock.adobe.com/search?k=612232381",
+    "meta": "ID 612232381 · 5776×3672 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Murals in city centre of Lodz, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/03/44/53/58/240_F_344535844_3Oe3MQ0VQqaUrF3qdDubYEeT72qtu1nn.jpg",
+    "big": "https://t3.ftcdn.net/jpg/03/44/53/58/240_F_344535844_3Oe3MQ0VQqaUrF3qdDubYEeT72qtu1nn.jpg",
+    "link": "https://stock.adobe.com/search?k=344535844",
+    "meta": "ID 344535844 · 5346×3564 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Lodz City Sunset Aerial View in Poland Stunning Urban Landscape Photography",
+    "thumb": "https://img.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_1322553-1024.jpg",
+    "big": "https://img.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_1322553-1024.jpg",
+    "link": "https://www.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_297117798.htm",
+    "meta": "ID 297117798",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 11
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Lodz City Sunset Aerial View in Poland Stunning Urban Landscape Photography",
+    "thumb": "https://img.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_1322553-1034.jpg",
+    "big": "https://img.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_1322553-1034.jpg",
+    "link": "https://www.magnific.com/premium-photo/lodz-city-sunset-aerial-view-poland-stunning-urban-landscape-photography_297117958.htm",
+    "meta": "ID 297117958",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 12
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Buildings in the Polish city of Lodz Architectural panorama Street of Lodz",
+    "thumb": "https://img.magnific.com/premium-photo/buildings-polish-city-lodz-architectural-panorama-street-lodz_929087-13116.jpg",
+    "big": "https://img.magnific.com/premium-photo/buildings-polish-city-lodz-architectural-panorama-street-lodz_929087-13116.jpg",
+    "link": "https://www.magnific.com/premium-photo/buildings-polish-city-lodz-architectural-panorama-street-lodz_400356719.htm",
+    "meta": "ID 400356719",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 13
+   }
+  ]
+ },
+ {
+  "name": "Bydgoszcz",
+  "slug": "bydgoszcz",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "slabe pokrycie w Adobe (tylko 6 trafien w calym indeksie, 5 uzytecznych, drugie zapytanie kontekstowe nie dodalo nic nowego); Freepik nadrabia - Wyspa Mlynska, Brda, Stary Rynek, Opera Nova, katedra",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "building in the city of bydgoszcz poland old town europe architecture red brick wall",
+    "thumb": "https://t4.ftcdn.net/jpg/04/64/29/79/240_F_464297950_P3mRZRRrdjRe3EQGnnFROTus6upaNqT3.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/64/29/79/240_F_464297950_P3mRZRRrdjRe3EQGnnFROTus6upaNqT3.jpg",
+    "link": "https://stock.adobe.com/search?k=464297950",
+    "meta": "ID 464297950 · 3000×2000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Panorama of sunny Mill Island in Old town of Bydgoszcz Poland",
+    "thumb": "https://img.magnific.com/premium-photo/panorama-sunny-mill-island-old-town-bydgoszcz-poland_218319-7278.jpg",
+    "big": "https://img.magnific.com/premium-photo/panorama-sunny-mill-island-old-town-bydgoszcz-poland_218319-7278.jpg",
+    "link": "https://www.magnific.com/premium-photo/panorama-sunny-mill-island-old-town-bydgoszcz-poland_23258371.htm",
+    "meta": "ID 23258371",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "BYDGOSZCZ POLAND 08 MAY 2022 Old Town by the Brda River Bydgoszcz Poland Stary port embankment the architecture of the city of Bydgoszcz",
+    "thumb": "https://img.magnific.com/premium-photo/bydgoszcz-poland-08-may-2022-old-town-by-brda-river-bydgoszcz-poland-stary-port-embankment-architecture-city-bydgoszcz_99272-4956.jpg",
+    "big": "https://img.magnific.com/premium-photo/bydgoszcz-poland-08-may-2022-old-town-by-brda-river-bydgoszcz-poland-stary-port-embankment-architecture-city-bydgoszcz_99272-4956.jpg",
+    "link": "https://www.magnific.com/premium-photo/bydgoszcz-poland-08-may-2022-old-town-by-brda-river-bydgoszcz-poland-stary-port-embankment-architecture-city-bydgoszcz_29737232.htm",
+    "meta": "ID 29737232",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Old Town and Brda River at night in Bydgoszcz Poland",
+    "thumb": "https://img.magnific.com/premium-photo/old-town-brda-river-night-bydgoszcz-poland_218319-7275.jpg",
+    "big": "https://img.magnific.com/premium-photo/old-town-brda-river-night-bydgoszcz-poland_218319-7275.jpg",
+    "link": "https://www.magnific.com/premium-photo/old-town-brda-river-night-bydgoszcz-poland_23258348.htm",
+    "meta": "ID 23258348",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 8
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Panorama of Brick Gothic Bydgoszcz Cathedral with reflection in Brda River at night Bydgoszcz Poland",
+    "thumb": "https://img.magnific.com/premium-photo/panorama-brick-gothic-bydgoszcz-cathedral-with-reflection-brda-river-night-bydgoszcz-poland_218319-7273.jpg",
+    "big": "https://img.magnific.com/premium-photo/panorama-brick-gothic-bydgoszcz-cathedral-with-reflection-brda-river-night-bydgoszcz-poland_218319-7273.jpg",
+    "link": "https://www.magnific.com/premium-photo/panorama-brick-gothic-bydgoszcz-cathedral-with-reflection-brda-river-night-bydgoszcz-poland_23258339.htm",
+    "meta": "ID 23258339",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 9
+   }
+  ]
+ },
+ {
+  "name": "Katowice",
+  "slug": "katowice",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo dobre pokrycie; Spodek, Nikiszowiec, Muzeum Slaskie, panoramy centrum, Superjednostka; Adobe wszystko free, Freepik wszystko premium, zero AI",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial drone photo of Katowice centre with roundabout and modern office towers at evening.",
+    "thumb": "https://t4.ftcdn.net/jpg/06/03/34/93/240_F_603349343_7Q7EY0qJPD4N58sVsaC2Z8e8U3rquFYI.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/03/34/93/240_F_603349343_7Q7EY0qJPD4N58sVsaC2Z8e8U3rquFYI.jpg",
+    "link": "https://stock.adobe.com/search?k=603349343",
+    "meta": "ID 603349343 · 3500×2332 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial photo of modern city center of Katowice, Upper Silesia.",
+    "thumb": "https://t3.ftcdn.net/jpg/05/10/51/12/240_F_510511290_3ePgJEiH9ASXCOw8ryLmONO4jXlJjph5.jpg",
+    "big": "https://t3.ftcdn.net/jpg/05/10/51/12/240_F_510511290_3ePgJEiH9ASXCOw8ryLmONO4jXlJjph5.jpg",
+    "link": "https://stock.adobe.com/search?k=510511290",
+    "meta": "ID 510511290 · 5272×3948 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial drone photo of Katowice centre with roundabout and modern office towers at evening.",
+    "thumb": "https://t4.ftcdn.net/jpg/06/03/34/91/240_F_603349120_dVlbCa6xXC1fzrJNxbj2ltg0XrwDWQFR.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/03/34/91/240_F_603349120_dVlbCa6xXC1fzrJNxbj2ltg0XrwDWQFR.jpg",
+    "link": "https://stock.adobe.com/search?k=603349120",
+    "meta": "ID 603349120 · 3500×2331 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Katowice road with office building panorama Poland",
+    "thumb": "https://img.magnific.com/premium-photo/katowice-road-with-office-building-panorama-poland_603967-127.jpg",
+    "big": "https://img.magnific.com/premium-photo/katowice-road-with-office-building-panorama-poland_603967-127.jpg",
+    "link": "https://www.magnific.com/premium-photo/katowice-road-with-office-building-panorama-poland_213500141.htm",
+    "meta": "ID 213500141",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 11
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Historic brick church and baroque clock tower in Katowice Poland",
+    "thumb": "https://img.magnific.com/premium-photo/historic-brick-church-baroque-clock-tower-katowice-poland_1066306-24441.jpg",
+    "big": "https://img.magnific.com/premium-photo/historic-brick-church-baroque-clock-tower-katowice-poland_1066306-24441.jpg",
+    "link": "https://www.magnific.com/premium-photo/historic-brick-church-baroque-clock-tower-katowice-poland_425496680.htm",
+    "meta": "ID 425496680",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 12
+   }
+  ]
+ },
+ {
+  "name": "Gdynia",
+  "slug": "gdynia",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo dobre pokrycie; port, mariny, Skwer Kosciuszki, Dar Pomorza, klif Orlowo; Adobe free, Freepik premium, zero AI",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Gdynia Port Aerial View.",
+    "thumb": "https://t4.ftcdn.net/jpg/03/58/76/81/240_F_358768129_622rt6xZWUin8JJDG0fsWC0tPMsjFClB.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/58/76/81/240_F_358768129_622rt6xZWUin8JJDG0fsWC0tPMsjFClB.jpg",
+    "link": "https://stock.adobe.com/search?k=358768129",
+    "meta": "ID 358768129 · 5464×3640 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial landscape of the harbor in Gdynia with modern architecture at sunset.",
+    "thumb": "https://t4.ftcdn.net/jpg/08/47/23/71/240_F_847237124_3btuNC1sl3I1M7Q5bq8zoSO8YOdinwUk.jpg",
+    "big": "https://t4.ftcdn.net/jpg/08/47/23/71/240_F_847237124_3btuNC1sl3I1M7Q5bq8zoSO8YOdinwUk.jpg",
+    "link": "https://stock.adobe.com/search?k=847237124",
+    "meta": "ID 847237124 · 4000×2250 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Gdynia Port Aerial View.",
+    "thumb": "https://t4.ftcdn.net/jpg/03/58/76/81/240_F_358768184_pkunCn5lk3vFR3JFd6cXUIerfNM4I7ey.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/58/76/81/240_F_358768184_pkunCn5lk3vFR3JFd6cXUIerfNM4I7ey.jpg",
+    "link": "https://stock.adobe.com/search?k=358768184",
+    "meta": "ID 358768184 · 5444×3627 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Gdynia Poland August 13 2019 Cityscape and the Gdynia harbour with Gift of Pomerania Tall Ship and modern architecture buildings",
+    "thumb": "https://img.magnific.com/premium-photo/gdynia-poland-august-13-2019-cityscape-gdynia-harbour-with-gift-pomerania-tall-ship-modern-architecture-buildings_627281-769.jpg",
+    "big": "https://img.magnific.com/premium-photo/gdynia-poland-august-13-2019-cityscape-gdynia-harbour-with-gift-pomerania-tall-ship-modern-architecture-buildings_627281-769.jpg",
+    "link": "https://www.magnific.com/premium-photo/gdynia-poland-august-13-2019-cityscape-gdynia-harbour-with-gift-pomerania-tall-ship-modern-architecture-buildings_25174105.htm",
+    "meta": "ID 25174105",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 9
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "High angle view of buildings by sea against sky aerial view on the port in gdynia poland",
+    "thumb": "https://img.magnific.com/premium-photo/high-angle-view-buildings-by-sea-against-sky-aerial-view-port-gdynia-poland_1647810-203.jpg",
+    "big": "https://img.magnific.com/premium-photo/high-angle-view-buildings-by-sea-against-sky-aerial-view-port-gdynia-poland_1647810-203.jpg",
+    "link": "https://www.magnific.com/premium-photo/high-angle-view-buildings-by-sea-against-sky-aerial-view-port-gdynia-poland_109104753.htm",
+    "meta": "ID 109104753",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 11
+   }
+  ]
+ },
+ {
+  "name": "Częstochowa",
+  "slug": "czestochowa",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "slabe pokrycie w Adobe (tylko 3 ujecia, wszystkie Jasna Gora - jedno z tytulem po japonsku); Freepik ratuje temat, ale rowniez niemal wylacznie Jasna Gora, brak zwyklych ujec miasta; odrzucono MOP przy A1 'near Czestochowa'",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Jasna Góra, Częstochowa.",
+    "thumb": "https://t3.ftcdn.net/jpg/02/88/03/28/240_F_288032802_B30NysAuyJpJa2txW79RdMAtZ6jNHM8I.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/88/03/28/240_F_288032802_B30NysAuyJpJa2txW79RdMAtZ6jNHM8I.jpg",
+    "link": "https://stock.adobe.com/search?k=288032802",
+    "meta": "ID 288032802 · 4800×3204 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Czestochowa Poland 01 January 2023 View at the complex of the parish church of St Sigismund and a former Pauline monastery in Czestochowa",
+    "thumb": "https://img.magnific.com/premium-photo/czestochowa-poland-01-january-2023-view-complex-parish-church-st-sigismund-former-pauline-monastery-czestochowa_194646-5371.jpg",
+    "big": "https://img.magnific.com/premium-photo/czestochowa-poland-01-january-2023-view-complex-parish-church-st-sigismund-former-pauline-monastery-czestochowa_194646-5371.jpg",
+    "link": "https://www.magnific.com/premium-photo/czestochowa-poland-01-january-2023-view-complex-parish-church-st-sigismund-former-pauline-monastery-czestochowa_41263291.htm",
+    "meta": "ID 41263291",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 7
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "The Jasna Gora sanctuary in Czestochowa, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/02/88/77/28/240_F_288772850_PeIJ6N5ijWSmqLxvHbjt1sukytdnLiQb.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/88/77/28/240_F_288772850_PeIJ6N5ijWSmqLxvHbjt1sukytdnLiQb.jpg",
+    "link": "https://stock.adobe.com/search?k=288772850",
+    "meta": "ID 288772850 · 6016×4016 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Partial view Jasna Gora Monastery in Czestochowa Poland",
+    "thumb": "https://img.magnific.com/premium-photo/partial-view-jasna-gora-monastery-czestochowa-poland_477293-6363.jpg",
+    "big": "https://img.magnific.com/premium-photo/partial-view-jasna-gora-monastery-czestochowa-poland_477293-6363.jpg",
+    "link": "https://www.magnific.com/premium-photo/partial-view-jasna-gora-monastery-czestochowa-poland_16895808.htm",
+    "meta": "ID 16895808",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Czestochowa Poland 01 January 2023 The Jasna Gora monastery in Czestochowa city",
+    "thumb": "https://img.magnific.com/premium-photo/czestochowa-poland-01-january-2023-jasna-gora-monastery-czestochowa-city_194646-5266.jpg",
+    "big": "https://img.magnific.com/premium-photo/czestochowa-poland-01-january-2023-jasna-gora-monastery-czestochowa-city_194646-5266.jpg",
+    "link": "https://www.magnific.com/premium-photo/czestochowa-poland-01-january-2023-jasna-gora-monastery-czestochowa-city_38954921.htm",
+    "meta": "ID 38954921",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ]
+ },
+ {
+  "name": "Kielce",
+  "slug": "kielce",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "najslabsze pokrycie w grupie - lacznie 5 ujec; 3 zapytania w Adobe (trzecie dalo 0 trafien), Freepik zwraca glownie zamek Checiny 'near Kielce' i Sukow, ktore odrzucono jako inne miejscowosci; realnie miasto pokazuja tylko ratusz, Kadzielnia i park palacowy",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Pond in the palace park in Kielce, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/16/77/85/42/240_F_1677854295_ZmPf4pRWCUeVZztmbTP7f2RbAU6qbmZq.jpg",
+    "big": "https://t3.ftcdn.net/jpg/16/77/85/42/240_F_1677854295_ZmPf4pRWCUeVZztmbTP7f2RbAU6qbmZq.jpg",
+    "link": "https://stock.adobe.com/search?k=1677854295",
+    "meta": "ID 1677854295 · 5886×3929 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Kielce town hall",
+    "thumb": "https://img.magnific.com/premium-photo/kielce-town-hall_1599053-181.jpg",
+    "big": "https://img.magnific.com/premium-photo/kielce-town-hall_1599053-181.jpg",
+    "link": "https://www.magnific.com/premium-photo/kielce-town-hall_117748685.htm",
+    "meta": "ID 117748685",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Scenic view of the Geologists Rock formations in Kielce, Poland during sunset",
+    "thumb": "https://img.magnific.com/premium-photo/scenic-view-geologists-rock-formations-kielce-poland-sunset_665346-36669.jpg",
+    "big": "https://img.magnific.com/premium-photo/scenic-view-geologists-rock-formations-kielce-poland-sunset_665346-36669.jpg",
+    "link": "https://www.magnific.com/premium-photo/scenic-view-geologists-rock-formations-kielce-poland-sunset_59084704.htm",
+    "meta": "ID 59084704",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "A mini tower called 'The Gossip Room\" on the walls surrounding a complex of historic buildings in a public city park in Kielce",
+    "thumb": "https://t3.ftcdn.net/jpg/11/01/81/98/240_F_1101819873_5SLNqvhlKh9SlOi02Z0QNz9uI0ZEhb2O.jpg",
+    "big": "https://t3.ftcdn.net/jpg/11/01/81/98/240_F_1101819873_5SLNqvhlKh9SlOi02Z0QNz9uI0ZEhb2O.jpg",
+    "link": "https://stock.adobe.com/search?k=1101819873",
+    "meta": "ID 1101819873 · 5223×2697 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "20130421 Kielce Palac Biskupow Krakowskich 3127",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/20130421_Kielce_Palac_Biskupow_Krakowskich_3127.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/20130421_Kielce_Palac_Biskupow_Krakowskich_3127.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=25698975",
+    "meta": "aut. Jakub Hałun",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ]
+ },
+ {
+  "name": "Rzeszów",
+  "slug": "rzeszow",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo slabe pokrycie - Adobe ma dokladnie 1 trafienie (totalHits=1) dla 'Rzeszow', 'Rzeszów' i 'Rzeszow city'; Freepik zero trafien w tytulach (same Sibiu/Lviv/Praga/generyki). Potrzeba 2 ujec, jest 1.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial panorama of town square in Rzeszow, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/03/43/40/33/240_F_343403300_3KxC1J24U5QpoXpV1iLvxXay52ZzwUBq.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/43/40/33/240_F_343403300_3KxC1J24U5QpoXpV1iLvxXay52ZzwUBq.jpg",
+    "link": "https://stock.adobe.com/search?k=343403300",
+    "meta": "ID 343403300 · 3992×2242 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Church in Rzeszow",
+    "thumb": "https://api.openverse.org/v1/images/d33a5d80-1975-488a-88b7-5fa0ecb50bef/thumb/",
+    "big": "https://live.staticflickr.com/6057/5910327826_1fcec7c65f_b.jpg",
+    "link": "https://www.flickr.com/photos/9628176@N03/5910327826",
+    "meta": "aut. feradz",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 1
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "The main square in Rzeszow [Explored]",
+    "thumb": "https://api.openverse.org/v1/images/63d480c8-6430-47e4-91a4-02c652272d84/thumb/",
+    "big": "https://live.staticflickr.com/6004/5918119608_70e00a8d99_b.jpg",
+    "link": "https://www.flickr.com/photos/9628176@N03/5918119608",
+    "meta": "aut. feradz",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Postcard from Rzeszow",
+    "thumb": "https://api.openverse.org/v1/images/ebea86b2-4be3-4edb-baca-32ff62f3c682/thumb/",
+    "big": "https://live.staticflickr.com/5231/5882563962_b561efdc0e_b.jpg",
+    "link": "https://www.flickr.com/photos/9628176@N03/5882563962",
+    "meta": "aut. feradz",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 9
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "1 truck plus rzeszow",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/1_truck_plus_rzeszow.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/1_truck_plus_rzeszow.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=10185531",
+    "meta": "aut. Pitak",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 10
+   }
+  ]
+ },
+ {
+  "name": "Toruń",
+  "slug": "torun",
+  "need": 2,
+  "listy": [
+   "A",
+   "B"
+  ],
+  "note": "bardzo dobre pokrycie, jedyne miasto z zapasem; starowka, pomnik Kopernika, panoramy nad Wisla, Brama Mostowa, pierniki. Odrzucono 1 poz. Adobe bez nazwy miasta ('An apartment in an old tenement house').",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "streets of old town in Torun, Poland, retro toned",
+    "thumb": "https://t3.ftcdn.net/jpg/02/20/15/76/240_F_220157665_liqOWO5eYeept65TzpvjAn2eegwK094b.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/20/15/76/240_F_220157665_liqOWO5eYeept65TzpvjAn2eegwK094b.jpg",
+    "link": "https://stock.adobe.com/search?k=220157665",
+    "meta": "ID 220157665 · 2872×1996 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Panorama of Toruń - a Polish city on the Vistula, entered on the UNESCO list",
+    "thumb": "https://t4.ftcdn.net/jpg/04/33/62/85/240_F_433628551_im88gJTSkkksmGf4ShdUvPuVm5Bd5A1d.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/33/62/85/240_F_433628551_im88gJTSkkksmGf4ShdUvPuVm5Bd5A1d.jpg",
+    "link": "https://stock.adobe.com/search?k=433628551",
+    "meta": "ID 433628551 · 15138×3842 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Historic Mostowa city gate in the center of Torun, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/12/09/39/76/240_F_1209397631_K2dV5UIZslxlAyGZmQbdsPwUgqFjA83f.jpg",
+    "big": "https://t3.ftcdn.net/jpg/12/09/39/76/240_F_1209397631_K2dV5UIZslxlAyGZmQbdsPwUgqFjA83f.jpg",
+    "link": "https://stock.adobe.com/search?k=1209397631",
+    "meta": "ID 1209397631 · 4995×3218 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Toruń, zabytkowe miasto w Polsce, dawna siedziba Mikołaja Kopernika",
+    "thumb": "https://t4.ftcdn.net/jpg/04/11/90/63/240_F_411906397_jafaAMbfpIw5MpkyQG7h3amQeZlrggIF.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/11/90/63/240_F_411906397_jafaAMbfpIw5MpkyQG7h3amQeZlrggIF.jpg",
+    "link": "https://stock.adobe.com/search?k=411906397",
+    "meta": "ID 411906397 · 2592×3872 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   },
+   {
+    "src": "freepik",
+    "srcLabel": "Freepik / Magnific",
+    "title": "Historical buildings in the Old Town in Torun Poland",
+    "thumb": "https://img.magnific.com/premium-photo/historical-buildings-old-town-torun-poland_360074-47938.jpg",
+    "big": "https://img.magnific.com/premium-photo/historical-buildings-old-town-torun-poland_360074-47938.jpg",
+    "link": "https://www.magnific.com/premium-photo/historical-buildings-old-town-torun-poland_34082135.htm",
+    "meta": "ID 34082135",
+    "license": "Freepik — premium",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 17
+   }
+  ]
+ },
+ {
+  "name": "Bielsko-Biała",
+  "slug": "bielsko",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "wystarczajaco (need=1) - 2 ujecia lotnicze z Adobe; Freepik zero trafien w tytulach dla 'Bielsko-Biala' i 'Bielsko Biala'.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of Bielsko Biala.",
+    "thumb": "https://t4.ftcdn.net/jpg/06/39/21/71/240_F_639217194_5OvWHfgkeKDUIyHTUe3yrUYJbxNQjX38.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/39/21/71/240_F_639217194_5OvWHfgkeKDUIyHTUe3yrUYJbxNQjX38.jpg",
+    "link": "https://stock.adobe.com/search?k=639217194",
+    "meta": "ID 639217194 · 8064×6048 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial drone view on Bielsko-Biala.",
+    "thumb": "https://t4.ftcdn.net/jpg/03/20/15/69/240_F_320156950_OCjJtbtkcamMnCQITD8t2FP0nAHc7goL.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/20/15/69/240_F_320156950_OCjJtbtkcamMnCQITD8t2FP0nAHc7goL.jpg",
+    "link": "https://stock.adobe.com/search?k=320156950",
+    "meta": "ID 320156950 · 4300×2864 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Tauron MKS Dabrowa Gornicza vs. BKS Aluprof Bielsko-Biala",
+    "thumb": "https://api.openverse.org/v1/images/47cb2561-50b2-48d1-8ace-0d0a1cfe5005/thumb/",
+    "big": "https://live.staticflickr.com/8197/8180116202_19eb94bb50_b.jpg",
+    "link": "https://www.flickr.com/photos/62587005@N08/8180116202",
+    "meta": "aut. gajowy",
+    "license": "CC BY 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 8
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "02016-01 Teilnehmer einer KOD-Demonstration in Bielsko-Biala",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/02016-01_Teilnehmer_einer_KOD-Demonstration_in_Bielsko-Biala.JPG?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/02016-01_Teilnehmer_einer_KOD-Demonstration_in_Bielsko-Biala.JPG?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=46303407",
+    "meta": "aut. Silar",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 9
+   }
+  ]
+ },
+ {
+  "name": "Nowy Sącz",
+  "slug": "nowysacz",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "2 ujecia z Adobe, ale zadne nie pokazuje centrum miasta - most kolejowy na Dunajcu i skansen zima. Freepik zero trafien. Pokrycie ilosciowo OK, jakosciowo slabe.",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Nowy Sacz ratusz 3",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_ratusz_3.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_ratusz_3.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=28298437",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Nowy Sącz, most kolejowy na rzece Dunajec.",
+    "thumb": "https://t3.ftcdn.net/jpg/05/26/66/94/240_F_526669452_QnNQBFAE3umSGsVD1mr9uzS6d1OtJ8DT.jpg",
+    "big": "https://t3.ftcdn.net/jpg/05/26/66/94/240_F_526669452_QnNQBFAE3umSGsVD1mr9uzS6d1OtJ8DT.jpg",
+    "link": "https://stock.adobe.com/search?k=526669452",
+    "meta": "ID 526669452 · 5400×3598 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Nowy Sacz Helena kosciol",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_Helena_kosciol.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_Helena_kosciol.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=6629846",
+    "meta": "aut. Slopet",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Nowy Sacz 06",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_06.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Sacz_06.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=569250",
+    "meta": "aut. Marek and Ewa Wojciechowscy",
+    "license": "CC BY-SA 3.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 6
+   }
+  ]
+ },
+ {
+  "name": "Nowy Targ",
+  "slug": "nowytarg",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "Adobe ma w calym katalogu tylko 3 ujecia z 'Nowy Targ' w tytule i wszystkie sa krajobrazowe (las, panorama Tatr, mokradla k. miasta) - brak jakiegokolwiek ujecia rynku/miasta. Freepik: 0 trafien, zwracal Sibiu, Lviv, Prage. Slabe pokrycie.",
+  "wybor": [
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Nowy Targ ratusz 5",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Targ_ratusz_5.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Targ_ratusz_5.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=44236273",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Panorama Tatr z trasy rowerowej w Nowy Targ - Chochołów",
+    "thumb": "https://t4.ftcdn.net/jpg/06/05/05/33/240_F_605053363_myTsjxugBzKt2LFRIclIaORi62d8pCLC.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/05/05/33/240_F_605053363_myTsjxugBzKt2LFRIclIaORi62d8pCLC.jpg",
+    "link": "https://stock.adobe.com/search?k=605053363",
+    "meta": "ID 605053363 · 6016×4016 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "envato",
+    "srcLabel": "Envato Elements",
+    "title": "Panoramic view of the rooftops of Nowy Targ",
+    "thumb": "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/72/19/81/73/54/v1_E11/E1181AP5.jpg?w=400&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=94&format=jpeg&s=acb685bd76a9d603d88e4dbd804098c3b58dc4b85bf2b0f32e4ce0fab9808dcd",
+    "big": "https://elements-resized.envatousercontent.com/envato-dam-assets-production/EVA/TRX/72/19/81/73/54/v1_E11/E1181AP5.jpg?w=900&cf_fit=scale-down&mark-alpha=18&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark4.png&q=94&format=jpeg&s=acb685bd76a9d603d88e4dbd804098c3b58dc4b85bf2b0f32e4ce0fab9808dcd",
+    "link": "https://elements.envato.com/panoramic-view-of-the-rooftops-of-nowy-targ-8ZXTSS6",
+    "meta": "",
+    "license": "Envato Elements — subskrypcja",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Nowy Targ kosciol sw Anny 1",
+    "thumb": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Targ_kosciol_sw_Anny_1.jpg?width=500",
+    "big": "https://commons.wikimedia.org/wiki/Special:FilePath/Nowy_Targ_kosciol_sw_Anny_1.jpg?width=1400",
+    "link": "https://commons.wikimedia.org/w/index.php?curid=36367267",
+    "meta": "aut. Andrzej Otrębski",
+    "license": "CC BY-SA 4.0 — wikimedia",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 5
+   }
+  ]
+ },
+ {
+  "name": "Oświęcim",
+  "slug": "oswiecim",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "2 ujecia MIASTA (rynek 426808854, zamek 287160793) - te preferowac. Trzecie (260312690) to OBIEKT PAMIECI - ogrodzenie obozu Auschwitz-Birkenau, uzywac tylko swiadomie. Freepik: 0 trafien.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Oświęcim, rynek, zabytki, zwiedzanie, miasto w Małopolsce",
+    "thumb": "https://t3.ftcdn.net/jpg/04/26/80/88/240_F_426808854_SkHkdOMr0M1rX9MMZDZPtIkkePinZXws.jpg",
+    "big": "https://t3.ftcdn.net/jpg/04/26/80/88/240_F_426808854_SkHkdOMr0M1rX9MMZDZPtIkkePinZXws.jpg",
+    "link": "https://stock.adobe.com/search?k=426808854",
+    "meta": "ID 426808854 · 6000×4000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Poland, Malopolska, Oswiecim, the Castle",
+    "thumb": "https://t4.ftcdn.net/jpg/02/87/16/07/240_F_287160793_E0XoAycZzYHK3C8hgsOnRzU41mDDBJwG.jpg",
+    "big": "https://t4.ftcdn.net/jpg/02/87/16/07/240_F_287160793_E0XoAycZzYHK3C8hgsOnRzU41mDDBJwG.jpg",
+    "link": "https://stock.adobe.com/search?k=287160793",
+    "meta": "ID 287160793 · 5000×3333 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Electric fence with barbed wire in concentration camp Auschwitz-Birkenau in Oswiecim",
+    "thumb": "https://t3.ftcdn.net/jpg/02/60/31/26/240_F_260312690_1rAtas5IDgYQZNBKGCqIUFQaqXVcwCIo.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/60/31/26/240_F_260312690_1rAtas5IDgYQZNBKGCqIUFQaqXVcwCIo.jpg",
+    "link": "https://stock.adobe.com/search?k=260312690",
+    "meta": "ID 260312690 · 3930×5618 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "openverse",
+    "srcLabel": "Darmowe / CC",
+    "title": "Auschwitz II-Birkenau - Death Camp - Trees and Watchtower - Oswiecim, Poland",
+    "thumb": "https://api.openverse.org/v1/images/421f2b22-cebb-4f1b-930e-98d847bb8272/thumb/",
+    "big": "https://live.staticflickr.com/2529/4107298648_ba179b02a0_b.jpg",
+    "link": "https://www.flickr.com/photos/41000732@N04/4107298648",
+    "meta": "aut. Adam Jones, Ph.D. - Global Photo Archive",
+    "license": "CC BY-SA 2.0 — flickr",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Żywiec",
+  "slug": "zywiec",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "3 pewne (panorama z lotu ptaka, Zywiec slaskie, Jezioro Zywieckie) + 1 regionalne (Babia Gora w Beskidzie Zywieckim) - to gory, nie miasto, wiec tylko jako kontekst. Freepik: 0 trafien. Diakrytyki pomogly (dodatkowy hit 1721991521).",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of Zywiec.",
+    "thumb": "https://t4.ftcdn.net/jpg/06/39/18/31/240_F_639183145_PGzLfC8uba50SiqcrxMn3YomGAn2EDF8.jpg",
+    "big": "https://t4.ftcdn.net/jpg/06/39/18/31/240_F_639183145_PGzLfC8uba50SiqcrxMn3YomGAn2EDF8.jpg",
+    "link": "https://stock.adobe.com/search?k=639183145",
+    "meta": "ID 639183145 · 8064×6048 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "View of Lake Żywiec on a sunny afternoon",
+    "thumb": "https://t4.ftcdn.net/jpg/04/48/98/77/240_F_448987779_iRLdKhLfayKGUSKXKcyJIbceNnxxApdf.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/48/98/77/240_F_448987779_iRLdKhLfayKGUSKXKcyJIbceNnxxApdf.jpg",
+    "link": "https://stock.adobe.com/search?k=448987779",
+    "meta": "ID 448987779 · 5135×3467 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Babia Góra przed zachodem słońca w Beskidzie Żywieckim w Polsce, widok ze zbocza Pilska.",
+    "thumb": "https://t4.ftcdn.net/jpg/10/78/37/45/240_F_1078374501_kN6Utm7xChpjZb66ChwofVMhJhYFnesF.jpg",
+    "big": "https://t4.ftcdn.net/jpg/10/78/37/45/240_F_1078374501_kN6Utm7xChpjZb66ChwofVMhJhYFnesF.jpg",
+    "link": "https://stock.adobe.com/search?k=1078374501",
+    "meta": "ID 1078374501 · 6000×4000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Żywiec, śląskie, Poland",
+    "thumb": "https://t4.ftcdn.net/jpg/17/21/99/15/240_F_1721991521_AU16XNtSt1nZH8ycwWQsAJZL5EpPliV8.jpg",
+    "big": "https://t4.ftcdn.net/jpg/17/21/99/15/240_F_1721991521_AU16XNtSt1nZH8ycwWQsAJZL5EpPliV8.jpg",
+    "link": "https://stock.adobe.com/search?k=1721991521",
+    "meta": "ID 1721991521 · 6720×4480 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   }
+  ]
+ },
+ {
+  "name": "Zakopane",
+  "slug": "zakopane",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "Bardzo dobre pokrycie na obu platformach. Adobe: widoki miasta z Gubalowki, panoramy z drona, Krupowki brak ale jest zabudowa. Freepik: m.in. Krupowki (36180340) i cityscape z drona. Zadne nie AI.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Zakopane, Gubałówka, widok na góry i miasto.",
+    "thumb": "https://t3.ftcdn.net/jpg/05/40/02/88/240_F_540028883_3Epc8HXr2Buk6pquBUeLyerCBRGn0ujM.jpg",
+    "big": "https://t3.ftcdn.net/jpg/05/40/02/88/240_F_540028883_3Epc8HXr2Buk6pquBUeLyerCBRGn0ujM.jpg",
+    "link": "https://stock.adobe.com/search?k=540028883",
+    "meta": "ID 540028883 · 4240×2827 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial view of Zakopane town with Tatra mountains range in summer, Poland.",
+    "thumb": "https://t3.ftcdn.net/jpg/06/09/88/94/240_F_609889454_691kMwfRvnC2N5DgmVX7yJN9bNo8XoqL.jpg",
+    "big": "https://t3.ftcdn.net/jpg/06/09/88/94/240_F_609889454_691kMwfRvnC2N5DgmVX7yJN9bNo8XoqL.jpg",
+    "link": "https://stock.adobe.com/search?k=609889454",
+    "meta": "ID 609889454 · 5464×3640 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 1
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Tatra Mountains - view of Zakopane, Poland.",
+    "thumb": "https://t4.ftcdn.net/jpg/04/13/00/23/240_F_413002349_KxPJQf889gpFQfYbbwZJUj4jvpzoKnUV.jpg",
+    "big": "https://t4.ftcdn.net/jpg/04/13/00/23/240_F_413002349_KxPJQf889gpFQfYbbwZJUj4jvpzoKnUV.jpg",
+    "link": "https://stock.adobe.com/search?k=413002349",
+    "meta": "ID 413002349 · 6016×4016 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Zakopane and Tatra Mountains landscape, winter panorama from Gubałówka, Poland, Europe",
+    "thumb": "https://t4.ftcdn.net/jpg/05/65/34/13/240_F_565341387_bFnOoxzqpcdnmnQHxrWaZOKyD5YBiRhy.jpg",
+    "big": "https://t4.ftcdn.net/jpg/05/65/34/13/240_F_565341387_bFnOoxzqpcdnmnQHxrWaZOKyD5YBiRhy.jpg",
+    "link": "https://stock.adobe.com/search?k=565341387",
+    "meta": "ID 565341387 · 11950×3445 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   }
+  ]
+ },
+ {
+  "name": "Gdańsk",
+  "slug": "gdansk",
+  "need": 1,
+  "listy": [
+   "B"
+  ],
+  "note": "Najlepsze pokrycie w grupie. Sa wszystkie kluczowe landmarki: Zuraw, Dlugi Targ/ratusz, Mariacka, fontanna Neptuna, Motlawa, panoramy z drona. Freepik ma dodatkowo ujecie z tytulem Danzig. Zadne nie AI.",
+  "wybor": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Gdansk old town and famous crane at amazing sunrise.",
+    "thumb": "https://t3.ftcdn.net/jpg/02/22/75/80/240_F_222758049_MVQRx1BrdqyAsq3vxXA1kMrhrkS2DGUQ.jpg",
+    "big": "https://t3.ftcdn.net/jpg/02/22/75/80/240_F_222758049_MVQRx1BrdqyAsq3vxXA1kMrhrkS2DGUQ.jpg",
+    "link": "https://stock.adobe.com/search?k=222758049",
+    "meta": "ID 222758049 · 4752×3168 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": true,
+    "idx": 0
+   }
+  ],
+  "rezerwa": [
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Aerial scenery of the old town in Gdansk over Motlawa river at sunrise, Poland.",
+    "thumb": "https://t3.ftcdn.net/jpg/03/17/46/32/240_F_317463277_mYocp5TvWV2dwMA4BUxvnlmqzyFDKS5x.jpg",
+    "big": "https://t3.ftcdn.net/jpg/03/17/46/32/240_F_317463277_mYocp5TvWV2dwMA4BUxvnlmqzyFDKS5x.jpg",
+    "link": "https://stock.adobe.com/search?k=317463277",
+    "meta": "ID 317463277 · 3759×2506 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 2
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Architecture of Mariacka street in Gdansk is one of the most notable tourist attractions in Gdansk.",
+    "thumb": "https://t4.ftcdn.net/jpg/03/10/20/09/240_F_310200925_RxDUTBFotIWjpJ5jgA8FZGTVRknf7GzP.jpg",
+    "big": "https://t4.ftcdn.net/jpg/03/10/20/09/240_F_310200925_RxDUTBFotIWjpJ5jgA8FZGTVRknf7GzP.jpg",
+    "link": "https://stock.adobe.com/search?k=310200925",
+    "meta": "ID 310200925 · 6000×4000 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 3
+   },
+   {
+    "src": "adobe",
+    "srcLabel": "Adobe Stock",
+    "title": "Morning view on the central street with town hall in the center of the old town of Gdansk, Poland",
+    "thumb": "https://t3.ftcdn.net/jpg/01/29/94/36/240_F_129943609_eDweKDpd4W1espDtaHTFb73LdkMnlZeG.jpg",
+    "big": "https://t3.ftcdn.net/jpg/01/29/94/36/240_F_129943609_eDweKDpd4W1espDtaHTFb73LdkMnlZeG.jpg",
+    "link": "https://stock.adobe.com/search?k=129943609",
+    "meta": "ID 129943609 · 3680×2456 px",
+    "license": "Adobe Stock — pula darmowa",
+    "ai": false,
+    "nazwane": true,
+    "pick": false,
+    "idx": 4
+   }
+  ]
+ }
+]

@@ -1,0 +1,273 @@
+{
+  "_komentarz": "Specyfikacja formatów rodziny 'nowe zajęcia', odczytana z ZDROFIT_nowe zajecia_KV1_all formats_kp2.psd. photo.focusX/focusY = punkt zdjęcia (w %), który ma wylądować na środku kadru. photo.zoom = przybliżenie ponad 'cover' (1.0 = kadr wypełniony bez zapasu).",
+  "brand": {
+    "orange": "#FF5B19",
+    "blue": "#009CDE",
+    "font_display": "Aptly-BoldItalic",
+    "scrim_default": {
+      "h": 45,
+      "alpha": 0.55,
+      "rgb": "10,22,32"
+    },
+    "_scrim": "Cieniowanie od dołu. h = wysokość w % kadru, alpha = siła u samego dołu, rgb = barwa cienia (granatowa czerń, nie szarość — nie brudzi zdjęcia). Nadpisywalne per format w 'scrim' i per zlecenie w 'cieniowanie'. Wyłączenie: \"scrim\": {\"h\":0}"
+  },
+  "formats": [
+    {
+      "id": "master",
+      "label": "Master / druk",
+      "w": 1620,
+      "h": 2208,
+      "photo": {
+        "focusX": 57.7,
+        "focusY": 53.0,
+        "zoom": 1.0
+      },
+      "kv": {
+        "asset": "kv_artwork_master.png",
+        "x": 78,
+        "y": 932,
+        "w": 1464
+      },
+      "subline": {
+        "right": 101,
+        "bottom": 166,
+        "size": 83.3,
+        "maxw": 560
+      },
+      "rtzkl": {
+        "x": 97,
+        "y": 1795,
+        "w": 505
+      },
+      "logo": {
+        "asset": "logo_zdrofit.png",
+        "x": 1031,
+        "y": 124,
+        "w": 523
+      },
+      "bar": {
+        "y": 2116,
+        "h": 136
+      },
+      "scrim": {
+        "h": 38,
+        "alpha": 0.5
+      }
+    },
+    {
+      "id": "some_1080x1440_IG",
+      "label": "Instagram feed",
+      "w": 1080,
+      "h": 1440,
+      "photo": {
+        "focusX": 58.6,
+        "focusY": 51.3,
+        "zoom": 1.873
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 63,
+        "y": 592,
+        "w": 733
+      },
+      "subline": {
+        "right": 66,
+        "bottom": 70,
+        "size": 85.9,
+        "maxw": 480
+      },
+      "scrim": {
+        "h": 45,
+        "alpha": 0.55
+      }
+    },
+    {
+      "id": "some_1080x1440_IG_2",
+      "label": "Instagram feed — wariant bez podpisu",
+      "w": 1080,
+      "h": 1440,
+      "photo": {
+        "focusX": 58.6,
+        "focusY": 51.3,
+        "zoom": 1.873
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 63,
+        "y": 592,
+        "w": 733
+      },
+      "scrim": {
+        "h": 40,
+        "alpha": 0.42
+      }
+    },
+    {
+      "id": "some_1080x1350_FB",
+      "label": "Facebook",
+      "w": 1080,
+      "h": 1350,
+      "photo": {
+        "focusX": 59.4,
+        "focusY": 49.2,
+        "zoom": 1.77
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 73,
+        "y": 612,
+        "w": 693
+      },
+      "rtzkl": {
+        "x": 10,
+        "y": 1086,
+        "w": 330
+      },
+      "logo": {
+        "asset": "logo_zdrofit_small.png",
+        "x": 757,
+        "y": 46,
+        "w": 280
+      },
+      "bar": {
+        "y": 1297,
+        "h": 54
+      },
+      "scrim": {
+        "h": 42,
+        "alpha": 0.5
+      }
+    },
+    {
+      "id": "some_1080x1920_IG_Stories",
+      "label": "Instagram Stories",
+      "w": 1080,
+      "h": 1920,
+      "photo": {
+        "focusX": 57.8,
+        "focusY": 52.4,
+        "zoom": 1.625
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 52,
+        "y": 789,
+        "w": 775
+      },
+      "subline": {
+        "right": 65,
+        "bottom": 319,
+        "size": 85.9,
+        "maxw": 510
+      },
+      "scrim": {
+        "h": 42,
+        "alpha": 0.58
+      }
+    },
+    {
+      "id": "some_1080x1920_IG_Stories_2",
+      "label": "Instagram Stories — wariant bez podpisu",
+      "w": 1080,
+      "h": 1920,
+      "photo": {
+        "focusX": 57.8,
+        "focusY": 52.4,
+        "zoom": 1.625
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 52,
+        "y": 789,
+        "w": 775
+      },
+      "scrim": {
+        "h": 36,
+        "alpha": 0.42
+      }
+    },
+    {
+      "id": "www_360x360",
+      "label": "WWW kafel",
+      "w": 360,
+      "h": 360,
+      "photo": {
+        "focusX": 54.0,
+        "focusY": 52.2,
+        "zoom": 1.0
+      },
+      "scrim": {
+        "h": 40,
+        "alpha": 0.32
+      }
+    },
+    {
+      "id": "wizytowka_google_400x300",
+      "label": "Wizytówka Google",
+      "w": 400,
+      "h": 300,
+      "photo": {
+        "focusX": 48.0,
+        "focusY": 52.1,
+        "zoom": 1.0
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 20,
+        "y": 81,
+        "w": 238
+      },
+      "scrim": {
+        "h": 45,
+        "alpha": 0.32
+      }
+    },
+    {
+      "id": "mailing_650x350",
+      "label": "Mailing",
+      "w": 650,
+      "h": 350,
+      "photo": {
+        "focusX": 43.4,
+        "focusY": 50.0,
+        "zoom": 1.0
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 48,
+        "y": 57,
+        "w": 330
+      },
+      "scrim": {
+        "h": 60,
+        "alpha": 0.34
+      }
+    },
+    {
+      "id": "www_823x416",
+      "label": "WWW baner",
+      "w": 832,
+      "h": 416,
+      "photo": {
+        "focusX": 46.4,
+        "focusY": 52.4,
+        "zoom": 1.0
+      },
+      "kv": {
+        "asset": "kv_artwork.png",
+        "x": 59,
+        "y": 58,
+        "w": 337
+      },
+      "rtzkl": {
+        "x": 20,
+        "y": 290,
+        "w": 145
+      },
+      "scrim": {
+        "h": 60,
+        "alpha": 0.36
+      }
+    }
+  ]
+}

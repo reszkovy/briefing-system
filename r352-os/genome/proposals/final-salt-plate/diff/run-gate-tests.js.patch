@@ -1,0 +1,59 @@
+--- r352-os/genome/test/run-gate-tests.js	2026-08-08 18:29:07
++++ r352-os/genome/proposals/final-salt-plate/test/run-gate-tests.js	2026-08-09 08:25:15
+@@ -11,7 +11,7 @@
+ const crypto = require('crypto');
+ const { execFileSync } = require('child_process');
+ 
+-const G = path.resolve(__dirname, '..');
++const G = path.resolve(__dirname, '..', '..', '..');
+ const TZ = 'Europe/Madrid';
+ let pass = 0, fail = 0;
+ const results = [];
+@@ -58,7 +58,7 @@
+   card(root, 'projects', proj);
+   return root;
+ }
+-const check = root => { try { return { out: execFileSync('node', [path.join(G, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8' }), code: 0 }; } catch (e) { return { out: (e.stdout || '') + (e.stderr || ''), code: e.status }; } };
++const check = root => { try { return { out: execFileSync('node', [path.join(G, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: root }, encoding: 'utf8', stdio: 'pipe' }), code: 0 }; } catch (e) { return { out: (e.stdout || '') + (e.stderr || ''), code: e.status }; } };
+ const rm = r => fs.rmSync(r, { recursive: true, force: true });
+ const hasErr = (out, frag) => out.split('\n').some(l => l.startsWith('✗') && l.includes(frag));
+ 
+@@ -90,7 +90,7 @@
+   const r = seed();
+   const pkt = { events: [{ kind: 'prediction.registered', on: 'proj:alpha', prediction_id: 'pred:x', p: 0.6, claim: 'C', criterion: 'k' }] };
+   let out = '';
+-  try { out = execFileSync('node', [path.join(G, 'ingest.js'), '-', '--dry-run'], { input: JSON.stringify(pkt), env: { ...process.env, GENOME_DIR: r, GENOME_TZ: TZ }, encoding: 'utf8' }); }
++  try { out = execFileSync('node', [path.join(G, 'ingest.js'), '-', '--dry-run'], { input: JSON.stringify(pkt), env: { ...process.env, GENOME_DIR: r, GENOME_TZ: TZ }, encoding: 'utf8', stdio: 'pipe' }); }
+   catch (e) { out = (e.stdout || '') + (e.stderr || ''); }
+   ok('4. brak deadline/measurement_source/resolution_owner blokuje predykcję',
+     /deadline|measurement_source|resolution_owner/.test(out) && /brak wymaganego pola|✗/.test(out), out.slice(0, 200));
+@@ -158,7 +158,7 @@
+   const lf = path.join(r, 'ledger/events-2026-09.jsonl');
+   const e = { id: 'evt:2026-09-03-0001', ts: '2026-09-03T10:00:00+02:00', kind: 'prediction.registered', on: 'proj:alpha', actor: 'przemek', prediction_id: 'pred:orig', p: 0.7, claim: 'ORYGINALNY claim', deadline: '2026-10-01', criterion: 'oryginalne kryterium', measurement_source: 'mail klienta', resolution_owner: 'przemek', prev_hash: 'genesis' };
+   fs.writeFileSync(lf, JSON.stringify(e) + '\n');
+-  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8' });
++  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8', stdio: 'pipe' });
+   const s = fs.readFileSync(path.join(r, 'dist/genome-data.js'), 'utf8');
+   const d = JSON.parse(s.slice(s.indexOf('=') + 1).trim().replace(/;\s*$/, ''));
+   const p = (d.predictions || []).find(x => x.id === 'pred:orig');
+@@ -171,9 +171,9 @@
+ /* 11. idempotencja: dwa buildy = ten sam wynik */
+ {
+   const r = seed();
+-  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8' });
++  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8', stdio: 'pipe' });
+   const a = fs.readFileSync(path.join(r, 'dist/graph.json'), 'utf8');
+-  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8' });
++  execFileSync('node', [path.join(G, 'build.js')], { env: { ...process.env, GENOME_DIR: r }, encoding: 'utf8', stdio: 'pipe' });
+   const b = fs.readFileSync(path.join(r, 'dist/graph.json'), 'utf8');
+   ok('11. ponowne wykonanie jest idempotentne', a === b);
+   rm(r);
+@@ -188,7 +188,7 @@
+     objects: [{ op: 'object.patch', id: 'proj:alpha', status: 'active' }],
+   };
+   let out = '';
+-  try { out = execFileSync('node', [path.join(G, 'ingest.js'), '-'], { input: JSON.stringify(pkt), env: { ...process.env, GENOME_DIR: r, GENOME_TZ: TZ }, encoding: 'utf8' }); }
++  try { out = execFileSync('node', [path.join(G, 'ingest.js'), '-'], { input: JSON.stringify(pkt), env: { ...process.env, GENOME_DIR: r, GENOME_TZ: TZ }, encoding: 'utf8', stdio: 'pipe' }); }
+   catch (e) { out = (e.stdout || '') + (e.stderr || ''); }
+   const after = fs.readFileSync(path.join(r, 'projects/alpha.md'), 'utf8');
+   ok('12. awaria zapisu nie zostawia częściowo rozpoczętego projektu', before === after && /✗/.test(out), out.slice(0, 160));

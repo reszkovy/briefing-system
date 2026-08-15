@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galeria — ARToffNIA</title>
+<link rel="icon" type="image/svg+xml" href="sygnet.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:.5rem}
+  .gal a{display:block;background:var(--bg);text-decoration:none;color:var(--ink)}
+  .gal .ph-media{aspect-ratio:4/3}
+  .gal .t{font-size:.92rem;font-weight:700;padding:.8rem 1rem .15rem;letter-spacing:-.01em;line-height:1.35}
+  .gal .d{font-size:.74rem;color:var(--mid);padding:0 1rem .9rem}
+  .gal a:hover .t{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="nav-logo" href="index.html"><img src="logo-artoffnia.svg" alt="ARToffNIA — Fundacja Tańca i Sztuki"></a>
+    <div class="nav-links">
+      <a href="index.html#zajecia">Zajęcia</a>
+      <a href="obozy.html">Obozy i ferie</a>
+      <a href="cennik.html">Cennik</a>
+      <a href="zapisy.html">Zapisy</a>
+      <a href="fundacja.html">Fundacja</a>
+      <a href="kontakt.html">Kontakt</a>
+    </div>
+  </nav>
+
+  <header class="page-head">
+    <div class="kicker">Fotorelacje ze spektakli, turniejów i obozów</div>
+    <h1>Galeria.<br><b>Zobacz, jak u nas jest.</b></h1>
+    <p class="lead">Wybrane fotorelacje z ostatnich sezonów — miniatury podmienimy zdjęciami z archiwum fundacji. Każda karta prowadzi do pełnej relacji.</p>
+  </header>
+
+  <div class="gal">
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">„To nie ta bajka, Alicjo (chyba)"</div><div class="d">zakończenie roku 2026 · cz. 1–3</div></a>
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">Turniej Very Merry DANCEfloor 2024</div><div class="d">fot. Lidia Dzwolak · cz. I–II</div></a>
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">„Zróbmy sobie RAJ"</div><div class="d">zakończenie roku 2023/24 · obie obsady + za kulisami</div></a>
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">„Granice"</div><div class="d">zakończenie roku artystycznego 2023</div></a>
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">Obóz taneczny JANTAR 2022</div><div class="d">letni obóz wyjazdowy</div></a>
+    <a href="galeria.html#relacja"><div class="ph-media"><div class="lbl">Fotorelacja</div></div><div class="t">Nasze sale · Sybiraków i Smętka</div><div class="d">wnętrza obu pracowni</div></a>
+  </div>
+
+  <div class="callout">Pełne <b>archiwum fotorelacji od 2016 roku</b> — na <a href="galeria.html" style="color:var(--ink)">stronie galerii</a>.</div>
+
+  <footer class="footer">
+    <div class="col"><b>ARToffNIA Sybiraków</b>al. Sybiraków 2, Olsztyn (Zatorze)</div>
+    <div class="col"><b>ARToffNIA Smętka</b>ul. Smętka 28a, Olsztyn (Centrum)</div>
+    <div class="col"><b>Kontakt</b><a href="tel:+48604110894">604 110 894</a><br><a href="mailto:biuro@artoffnia.pl">biuro@artoffnia.pl</a></div>
+    <div class="col"><b>Na skróty</b><a href="wynajem.html">Wynajem sal</a><br><a href="obozy.html">Obozy i ferie</a><br><a href="galeria.html">Galeria</a><br><a href="aktualnosci.html">Aktualności</a><br><span>Olsztyński Teatr Tańca — ott.olsztyn.pl</span></div>
+    <div class="col"><b>Dokumenty</b><a href="statut.html">Statut</a><br><a href="regulamin-2025-26.pdf" target="_blank" rel="noopener">Regulamin 2025/26</a><br><a href="standardy.html">Standardy ochrony małoletnich</a><br><a href="wspieraj.html">Wspieraj kulturę</a></div>
+  </footer>
+</div>
+<script defer src="menu.js"></script>
+</body>
+</html>

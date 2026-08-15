@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "49"
+V = "86"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
@@ -83,7 +83,6 @@ def head(lang, title, desc, url, extra=''):
 <link rel="stylesheet" href="/assets/site.css?v={V}">
 <script src="/assets/site.js?v={V}" defer></script>
 <script src="/assets/practice.js?v={V}" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}

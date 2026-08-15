@@ -6,7 +6,7 @@ nawigacji w index automatycznie propaguje się na podstrony po ponownym uruchomi
 Treść stron: PAGES niżej — kondensacja dossier z research/ (INDEX.md mapuje pokrycie).
 Uruchomienie: python3 build.py  (nadpisuje katalogi podstron w miejscu)
 """
-import os, json, html as H
+import os, json, html as H, re
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
@@ -326,9 +326,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49">
-<script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
@@ -1014,12 +1013,29 @@ page("atlas",
   body=_atlas_body())
 
 
+# ── MATERIAŁ NIEOPUBLIKOWANY ────────────────────────────────────────────────
+#    Artykuły są napisane i leżą w content/, ale nie wychodzą na stronę: są
+#    materiałem na cotygodniowe listy. Publikacja = usunięcie slugu z tej listy
+#    (i wpisu z UPCOMING niżej), potem build. Nic więcej nie trzeba ruszać.
+HIDDEN = {
+    'path/05-the-key-ideas-in-one-map',
+    'path/06-as-above-so-below',
+    'path/07-the-emerald-tablet',
+    'path/08-the-renaissance-revival',
+    'path/09-alchemy-and-the-great-work',
+    'path/10-the-kybalion-problem',
+    'path/11-hermeticism-today',
+    'path/12-the-reading-map',
+}
+
 # ── strony z content/*.json (produkcja treści przez agentów; build tylko scala) ──
 import glob as _glob
 CDIR = os.path.join(ROOT, 'content')
 if os.path.isdir(CDIR):
     for _fp in sorted(_glob.glob(CDIR + '/*.json')):
         d = json.load(open(_fp))
+        if d.get('path') in HIDDEN:
+            continue
         lt = d.pop('ld_type', None); ln = d.pop('ld_name', None)
         ld = [ART(d['title'], d['desc'])]
         if lt == 'Person': ld.append(PERSON(ln or d['crumb']))
@@ -1096,6 +1112,21 @@ llms += "## Core\n- [Start Here](%s/start-here/): orientation for newcomers\n- [
 for p in sorted(PAGES, key=lambda x: x["url"]):
     if p["path"].count("/") >= 1 and not p["path"].startswith(("about", "privacy")):
         llms += f"- [{p['title']}]({SITE}{p['url']}): {p['desc']}\n"
+llms += ("\n## The book\n"
+    "- [Operational Hermeticism](%s/book/): twelve chapters on attention, energy, patterns, systems, "
+    "planning, relationships, technology, alignment, transmutation, agency and integration. "
+    "Chapters 00-02 are open in full; every chapter states its limits and its ethical question.\n"
+    "- [Questions and answers](%s/questions/): what this is, what the weekly letter contains, "
+    "where the data goes, what is free.\n"
+    "\n## Tools you can take away\n"
+    "- [Working file for your model](%s/assets/downloads/operational-hermeticism-working-file.md): "
+    "role contract, twelve modules, session modes. Paste into any model.\n"
+    "- [The Path, twelve weeks](%s/assets/downloads/the-modern-hermet-path.md): guided programme with a "
+    "state block the reader carries between sessions.\n"
+    "- [Pre-AI Orientation](%s/assets/downloads/pre-ai-orientation-en.md): five questions before you hand "
+    "a problem to a model.\n"
+    "- [The Practice](%s/practice/today/): five-minute daily tool; entries never leave the browser.\n") % (SITE, SITE, SITE, SITE, SITE, SITE)
+llms += "\n## How this is made\n- Compiled with AI research tools from published scholarship; every page names its sources. Anonymous author, visible sources, testable practice. Full bibliography: %s/about/method/\n" % SITE
 llms += "\n## Languages\n- Polish mirror of the whole site: %s/pl/\n" % SITE
 open(os.path.join(ROOT, "llms.txt"), "w").write(llms)
 print("llms.txt written")
@@ -1120,6 +1151,63 @@ if os.path.isdir(PL_DIR):
         q['_alt_url'] = p['url']
         p['_alt_url'] = q['url']
         PAGES_PL.append(q)
+
+
+# ── BIBLIOGRAFIA: składana z kanonicznego źródła (sources każdej strony) ──────
+#    Zero pozycji wpisanych ręcznie w HTML. Build pada, gdy zbiór jest pusty
+#    albo podejrzanie mały — strona nie może twierdzić „pełna bibliografia",
+#    jeśli dane tego nie pokrywają.
+def _biblio(pages, lang):
+    L = lang == 'pl'
+    groups, entries, dossiers = {}, set(), 0
+    for p in pages:
+        srcs = [x for x in (p.get('sources') or []) if isinstance(x, str) and x.strip()]
+        if not srcs:
+            continue
+        sec = (p['path'].split('/')[0] or 'other')
+        rows = []
+        for x in srcs:
+            if x.lower().startswith(('research dossier', 'dossier badawcze')):
+                dossiers += 1
+                continue
+            entries.add(re.sub(r'<[^>]+>', '', x).strip().lower())
+            rows.append(x)
+        if rows:
+            groups.setdefault(sec, []).append((p.get('h1') or p.get('crumb'), p['url'], rows))
+    if len(entries) < 20:
+        raise SystemExit('BUILD FAIL: bibliografia ma %d pozycji, oczekiwano >= 20' % len(entries))
+    names = {'texts': ('Teksty' if L else 'The Texts'), 'figures': ('Postaci' if L else 'The Figures'),
+             'ideas': ('Idee' if L else 'The Ideas'), 'path': ('Ścieżka' if L else 'The Path'),
+             'guide': ('Przewodnik' if L else 'The Guide'), 'about': ('O serwisie' if L else 'About'),
+             'atlas': ('Atlas' if L else 'The Atlas'), 'work': ('Prace' if L else 'Work'),
+             'start-here': ('Zacznij tutaj' if L else 'Start Here'), 'letters': ('List' if L else 'The Letter')}
+    out = ['<h2 id="bibliografia">%s</h2>' % ('Bibliografia serwisu' if L else 'Site bibliography')]
+    n_pages = sum(len(v) for v in groups.values())
+    out.append('<p>%s</p>' % (
+        ('Poniżej wszystkie źródła cytowane na tej stronie, zebrane z %d haseł: %d osobnych pozycji '
+         '(wydania, monografie, artykuły i skany domeny publicznej). Dodatkowo %d haseł odsyła do wewnętrznego '
+         'dossier badawczego, w którym każde twierdzenie ma przypis. Lista powstaje przy każdym buildzie '
+         'wprost ze źródeł przypisanych do haseł — nie jest przepisywana ręcznie, więc nie może się rozjechać '
+         'z tym, co stoi pod tekstami.') % (n_pages, len(entries), dossiers) if L else
+        ('Every source cited on this site, gathered from %d entries: %d distinct items '
+         '(editions, monographs, papers and public-domain scans). A further %d entries point to an internal '
+         'research dossier where each claim carries its footnote. The list is compiled at build time straight '
+         'from the sources attached to each entry — it is never retyped, so it cannot drift from what sits '
+         'under the texts.') % (n_pages, len(entries), dossiers)))
+    for sec in ('texts', 'figures', 'ideas', 'path', 'guide', 'atlas', 'start-here', 'letters', 'about', 'work'):
+        if sec not in groups:
+            continue
+        out.append('<h3>%s</h3><dl class="biblio">' % names.get(sec, sec))
+        for title, url, rows in sorted(groups[sec], key=lambda t: (t[0] or '')):
+            out.append('<dt><a href="%s">%s</a></dt>' % (url, H.escape(title or url)))
+            out.append('<dd>%s</dd>' % '</dd><dd>'.join(rows))
+        out.append('</dl>')
+    return '\n'.join(out)
+
+for _pages, _lang in ((PAGES, 'en'), (PAGES_PL, 'pl')):
+    for _p in _pages:
+        if _p['path'] == 'about/method':
+            _p['body'] = _p['body'] + _biblio(_pages, _lang)
 
 # ── zapis ──
 written = []
@@ -1204,8 +1292,8 @@ def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49">
-<script src="/assets/site.js?v=49" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
 </head>
 <body>
 {hdr_x}
@@ -1240,7 +1328,9 @@ print(f"OK zapowiedzi: {_n} stron (noindex, poza sitemapą)")
 
 # ── AEO/SEO: sitemap, robots, rss, 404 ──
 today = "2026-08-14"
-urls = ["/", "/practice/", "/subscribe/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else []) + (["/pl/practice/", "/pl/subscribe/"] if PAGES_PL else [])
+urls = ["/", "/practice/", "/practice/today/", "/practice/archive/", "/subscribe/",
+        "/questions/", "/book/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else []) + (["/pl/practice/", "/pl/practice/today/", "/pl/practice/archive/", "/pl/subscribe/",
+          "/pl/pytania/", "/pl/book/"] if PAGES_PL else [])
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for u in urls:
     sm += f"  <url><loc>{SITE}{u}</loc><lastmod>{today}</lastmod></url>\n"
@@ -1270,14 +1360,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=86"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=86" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}

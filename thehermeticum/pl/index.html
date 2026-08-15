@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="/assets/art-tablet-hero.webp?g=3" fetchpriority="high">
-<link rel="stylesheet" href="/assets/site.css?v=49">
+<link rel="stylesheet" href="/assets/site.css?v=86">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://thehermeticum.com/pl/#website","url":"https://thehermeticum.com/pl/","name":"The Hermeticum","description":"Wiedza hermetyczna, czytana porządnie — poważna historia, prawdziwe źródła, od zera do tekstów.","inLanguage":"pl"},{"@type":"Organization","@id":"https://thehermeticum.com/#org","name":"The Hermeticum","url":"https://thehermeticum.com/","logo":"https://thehermeticum.com/assets/og.png"}]}</script>
 </head>
 <body>
@@ -47,8 +47,8 @@
       </span>
       <span class="nav__sep" aria-hidden="true"></span>
       <span class="nav__grp nav__grp--tools">
-        <a href="/pl/practice/">The Practice</a>
-        <a href="/pl/book/">Książka</a>
+        <a href="/pl/practice/today/">Practice</a>
+        <a href="/pl/book/00-otwarcie/">Książka</a>
       </span>
     </nav>
     <div class="hdr__cta">
@@ -71,7 +71,8 @@
         <section class="cx cx--guide">
           <p class="cx__head">Przewodnik</p>
           <ul class="cx__list">
-            <li><a class="cx__item" href="/pl/book/">Książka &mdash; czytaj online</a></li>
+            <li><a class="cx__item" href="/pl/practice/today/">The Practice &mdash; dzisiejsza praktyka</a></li>
+            <li><a class="cx__item" href="/pl/book/00-otwarcie/">Książka &mdash; czytaj online</a></li>
             <li><a class="cx__item" href="/pl/guide/contents/">Mapa &mdash; spis treści</a></li>
             <li><a class="cx__item" href="/pl/guide/">Współczesny hermeta</a></li>
             <li><a class="cx__item" href="/pl/guide/instruction/">Instrukcja &mdash; 15 praktyk</a></li>
@@ -109,14 +110,16 @@
     <div class="container hero__stage">
       <div class="hero__top">
         <div class="hero__head">
-          <p class="hero__over reveal">Cotygodniowa praktyka hermetyzmu operacyjnego</p>
+          <p class="hero__over reveal">Hermetyzm operacyjny · cotygodniowa praktyka</p>
           <h1 class="hero__title">
-            <span class="hero__line reveal">Zanim odpowie AI,</span>
-            <span class="hero__line hero__line--foil reveal">wiedz, co myślisz.</span>
+            <span class="hero__line reveal">Jak w górze,</span>
+            <span class="hero__line hero__line--foil reveal">tak i na dole.</span>
           </h1>
-          <p class="hero__lead reveal">Jeden wzór, jedno źródło i jedna pięciominutowa praktyka co tydzień —
-            dla ludzi, którzy chcą używać technologii bez oddawania jej własnego osądu.</p>
-          <form class="sub__form hero__form reveal" data-sub-form>
+          <p class="hero__lead reveal"><b>Zanim odpowie AI, wiedz, co myślisz.</b>
+            Co tydzień dostajesz krótki list: jedną rzecz do zauważenia u siebie, jeden tekst źródłowy
+            z podanym wydaniem i jedno ćwiczenie na pięć minut. Do tego darmowe narzędzie, w którym
+            zapisujesz własne zdanie — zanim zapytasz model.</p>
+          <form class="sub__form hero__form reveal" data-sub-form data-list="letter">
             <label class="sub__label" for="hero-email">Twój e-mail</label>
             <div class="sub__row">
               <input class="sub__input" id="hero-email" type="email" required placeholder="ty@praca.pl">
@@ -125,7 +128,7 @@
             <p class="sub__note hero__micro">Za darmo · Ze źródłami · Bez hałasu · Wypisujesz się jednym kliknięciem</p>
             <p class="sub__ok" hidden>Jesteś na liście. Pierwszy list niesie Orientację przed AI — a możesz wziąć ją już poniżej.</p>
           </form>
-          <a class="hero__alt reveal" href="/pl/practice/">Wypróbuj The Practice &rarr;</a>
+          <a class="hero__alt reveal" href="/pl/practice/today/">Wypróbuj The Practice &rarr;</a>
         </div>
         <img class="hero__seal reveal" src="/assets/art-tablet-hero.webp?g=3" width="633" height="715" alt="" aria-hidden="true">
       </div>
@@ -134,11 +137,10 @@
 
   <section class="instant">
     <div class="container instant__in">
-      <p class="kicker">Od razu dla Ciebie</p>
-      <h2 class="h2">Orientacja przed AI</h2>
-      <p class="lead">Pięć pytań, zanim oddasz problem modelowi: o co naprawdę pytasz, co wiesz, a co zakładasz,
-        jaka jest Twoja odpowiedź przed zapytaniem, do czego użyjesz odpowiedzi —
-        i czego nie zamierzasz oddawać.</p>
+      <div class="instant__txt">
+        <p class="kicker">Od razu dla Ciebie</p>
+        <p class="instant__line">Pięć pytań, zanim oddasz problem modelowi.</p>
+      </div>
       <p class="instant__cta">
         <a class="btn" href="/assets/downloads/pre-ai-orientation-pl.md" download>Pobierz pięć pytań (.md)</a>
         <a class="hero__alt" href="/pl/practice/today/">albo zrób to w The Practice &rarr;</a>
@@ -146,25 +148,25 @@
     </div>
   </section>
 
+  <div class="duo">
   <section class="tension">
     <div class="container">
-      <p class="kicker">Sytuacja</p>
-      <h2 class="h2">Twoja uwaga.<br>Twoja energia. Twój osąd.</h2>
+      <p class="kicker">Dla kogo to jest</p>
+      <h2 class="h2">Znasz to?</h2>
       <ul class="tension__list">
-        <li>AI odpowiada, zanim zdążysz określić własne stanowisko.</li>
-        <li>Narzędzia wpływają na rytm i kierunek pracy.</li>
-        <li>Nadmiar możliwości osłabia decyzje.</li>
-        <li>Ciągła optymalizacja zużywa energię, którą miała chronić.</li>
+        <li>Pytasz AI, zanim sam sformułujesz zdanie — i bierzesz pierwszą sensowną odpowiedź.</li>
+        <li>Wieczorem nie umiesz powiedzieć, na co poszedł dzień.</li>
+        <li>Ten sam problem wraca trzeci raz, a Ty za każdym razem rozwiązujesz go od zera.</li>
+        <li>Masz dziesięć narzędzi do produktywności i mniej decyzji niż rok temu.</li>
       </ul>
-      <p class="lead">The Hermeticum pomaga zatrzymać się przed delegacją, rozpoznać wzór
-        i wybrać własny następny ruch.</p>
+      <p class="lead">Jeśli tak, to jest miejsce dla Ciebie. Nie uczymy odcinać się od technologii.
+        Uczymy zatrzymać się na chwilę przed oddaniem sprawy modelowi — i wiedzieć, co się właściwie oddaje.</p>
     </div>
   </section>
-
   <section class="proof">
     <div class="container proof__in">
-      <p class="kicker">The Practice · pięć minut</p>
-      <h2 class="h2">O co naprawdę pyta</h2>
+      <p class="kicker">Narzędzie · pięć minut dziennie</p>
+      <h2 class="h2">Pięć pytań, które<br>zadaje Ci narzędzie</h2>
       <ol class="proof__qs">
         <li>Jaki jest teraz Twój stan?</li>
         <li>Jakie są fakty — a co do nich dodajesz?</li>
@@ -175,19 +177,20 @@
       <p class="proof__note">Bez konta. Wpisy zostają w Twojej przeglądarce. Wyeksportuj je jako Markdown albo
         oddaj modelowi razem z instrukcją, która zostawia osąd przy Tobie.</p>
       <p class="instant__cta"><a class="btn" href="/pl/practice/today/">Zrób dzisiejszą praktykę</a>
-        <a class="hero__alt" href="/pl/practice/">Jak to działa &rarr;</a></p>
+        <a class="hero__alt" href="/pl/practice/today/">Jak to działa &rarr;</a></p>
     </div>
   </section>
+  </div>
 
   <section class="weekly">
     <div class="container">
-      <p class="kicker">Co tydzień</p>
-      <h2 class="h2">Jeden wzór. Jedno źródło.<br>Jedna praktyka.</h2>
+      <p class="kicker">List, w piątek</p>
+      <h2 class="h2">Co dostajesz w mailu</h2>
       <div class="weekly__grid">
-        <div><b>Wzór</b><span>Coś, co warto w tym tygodniu zauważyć — w pracy, uwadze albo energii.</span></div>
-        <div><b>Źródło</b><span>Tekst albo idea, które możesz sprawdzić sam, z datą i wydaniem.</span></div>
-        <div><b>Praktyka</b><span>Jedna rzecz do wypróbowania, dość mała, żeby zmieścić się w zwykłym tygodniu.</span></div>
-        <div><b>Zapis</b><span>Pytanie warte zachowania — do eksportu w Markdown, gotowe do pracy z Twoim AI.</span></div>
+        <div><b>Jedna obserwacja</b><span>Konkretna rzecz do zauważenia u siebie w tym tygodniu — w pracy, uwadze albo energii.</span></div>
+        <div><b>Jedno źródło</b><span>Tekst z podanym wydaniem i datą, żebyś mógł sprawdzić, skąd to wzięliśmy.</span></div>
+        <div><b>Jedno ćwiczenie</b><span>Pięć minut. Na tyle małe, żeby zmieściło się w zwykłym tygodniu.</span></div>
+        <div><b>Jedno pytanie</b><span>Do zapisania i zabrania ze sobą — możesz je wkleić swojemu modelowi.</span></div>
       </div>
       <pre class="weekly__md">---
 date: 2026-08-24
@@ -203,12 +206,19 @@ Dziś bez nowego wątku z klientem.</pre>
     </div>
   </section>
 
+
+  <section class="band">
+    <img src="/assets/band-axis.jpg" alt="" width="2200" height="859" loading="lazy" decoding="async">
+    <p class="band__cap">Czytaj wzór. Ustaw system. Działaj z energią. Przekształcaj wynik.</p>
+  </section>
+
   <section class="bridge">
     <div class="container bridge__in">
       <p class="kicker">Dlaczego hermetyzm</p>
-      <p class="lead">Hermetyzm zaczyna się od wymagającej myśli: przemiana wymaga zobaczenia relacji między
-        stanem wewnętrznym a systemem zewnętrznym. The Hermeticum przekłada tę tradycję na współczesną praktykę —
-        bez udawania, że starożytne teksty przewidziały AI.</p>
+      <p class="lead">Hermetyzm to dwa tysiące lat tekstów krążących wokół jednej myśli: to, co dzieje się w Tobie,
+        i to, jak działa Twoje otoczenie, są ze sobą powiązane — więc zmiana jednego zmienia drugie.
+        Bierzemy stąd sposób myślenia i zostawiamy przepowiednie. Nikt tu nie udaje, że starożytne teksty
+        przewidziały AI. Cztery zdania niżej to najstarszy zapis tej metody; reszta strony to jej dzisiejsze użycie.</p>
       <ol class="tenets tenets--compact">
         <li><i>I</i><b>Jedna rzecz</b><span>Wszystko powstaje z jednego, przez dostosowanie.</span></li>
         <li><i>II</i><b>Jak w górze, tak i na dole</b><span>Poziomy odbijają się nawzajem — dlatego dzieło jest możliwe.</span></li>
@@ -232,87 +242,53 @@ Dziś bez nowego wątku z klientem.</pre>
     </div>
   </section>
 
-  <section class="ways">
-    <div class="container ways__grid">
-      <a class="gate" href="/pl/practice/"><b>The Practice</b><span>Zastosuj metodę do dzisiaj.</span></a>
-      <a class="gate" href="/pl/path/"><b>Ścieżka</b><span>Poznaj sposób myślenia, dwanaście kroków.</span></a>
-      <a class="gate" href="/pl/texts/"><b>Archiwum</b><span>Sprawdź źródła, historię i teksty.</span></a>
-    </div>
-  </section>
 
-  <section class="sub" id="subscribe">
-    <div class="container sub__in">
-      <div class="sub__copy">
-        <p class="kicker kicker--light">List</p>
-        <h2 class="h2">Zatrzymaj własny osąd<br>w pętli.</h2>
-        <ul class="sub__points">
-          <li>Jeden wzór, jedno źródło i jedna praktyka co tydzień</li>
-          <li>Zaczyna się od Orientacji przed AI</li>
-          <li>Źródła podane. Zawsze.</li>
-        </ul>
+
+  <section class="sub sub--page" id="subscribe">
+    <div class="container sbp__stage">
+      <div class="sbp__left">
+        <p class="kicker">List</p>
+        <h2 class="sbp__h1">Zapisz się na list</h2>
+        <p class="sbp__lead">Trzy rzeczy, jedna lista. Zaznaczasz, o czym chcesz wiedzieć — reszty nie dostajesz.</p>
+        <ol class="sbp__rows">
+          <li><p class="sbp__rk">List</p><p class="sbp__rh">Co tydzień, w piątek</p><p class="sbp__rd">Jeden wzór, jedno źródło i jedna praktyka. Stały kształt. Zaczyna się od Orientacji przed AI.</p></li>
+          <li><p class="sbp__rk">Książka</p><p class="sbp__rh">Hermetyzm operacyjny</p><p class="sbp__rd">Dwanaście rozdziałów i otwarcie. Trzy teksty są otwarte od razu; PDF i EPUB w przygotowaniu.</p></li>
+          <li><p class="sbp__rk">Praktyka</p><p class="sbp__rh">Pięć minut dziennie</p><p class="sbp__rd">W przeglądarce, bez konta i bez adresu. Wpisy nie opuszczają Twojego urządzenia.</p></li>
+        </ol>
+        <p class="sbp__foot"><a href="/pl/practice/today/">Zobacz The Practice &rarr;</a> <span>·</span>
+          <a href="/pl/book/00-otwarcie/">Przeczytaj otwarcie książki &rarr;</a></p>
       </div>
-      <form class="sub__form" data-sub-form>
+      <form class="sub__form sbp__form" data-sub-form data-list="letter">
+        <p class="sbp__fh">Zapisz się</p>
         <label class="sub__label" for="sub-email">Twój e-mail</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sub-email" type="email" required placeholder="ty@praca.pl">
-          <button class="btn sub__btn" type="submit">Odbierz pierwszą praktykę</button>
+        <input class="sub__input" id="sub-email" type="email" required placeholder="ty@praca.pl">
+        <div class="sbp__opts">
+          <label><input type="checkbox" data-list-opt="letter" checked> Cotygodniowy list</label>
+          <label><input type="checkbox" data-list-opt="book"> Powiadomienie o wydaniu książki</label>
         </div>
-        <p class="sub__note">Za darmo. Bez spamu. Wypisujesz się jednym kliknięciem. <a href="/pl/privacy/">Prywatność</a></p>
+        <button class="btn sub__btn" type="submit">Odbierz pierwszą praktykę</button>
+        <p class="sub__note">Za darmo · Ze źródłami · Bez hałasu · Wypisujesz się jednym kliknięciem</p>
         <p class="sub__ok" hidden>Jesteś na liście. Wypatruj pierwszego listu — a Orientację przed AI weź już teraz.</p>
+        <p class="sbp__priv">Adres trzymamy u dostawcy poczty i nic poza tym. Wpisy z praktyki nigdy do nas nie trafiają.
+          <a href="/pl/privacy/">Prywatność &rarr;</a></p>
       </form>
-    </div>
-  </section>
-
-  <section class="faq">
-    <div class="container">
-      <p class="kicker">Uczciwe pytania</p>
-      <h2 class="h2">Zanim się zapiszesz</h2>
-      <div class="faq__list">
-        <details class="faq__item"><summary>Czy to kolejny system produktywności?</summary>
-          <p>Nie. Kilka wątków się pokrywa — systemy, energia, intencja — ale cel jest inny. Produktywność optymalizuje wynik; to optymalizuje obecność i osąd, i bywa gotowe zapłacić za nie wynikiem.</p></details>
-        <details class="faq__item"><summary>Czy muszę wierzyć w hermetyzm?</summary>
-          <p>Wcale. To język źródłowy metody, czytany jako historia idei. Możesz trzymać każde twierdzenie metafizyczne na dystans i nadal korzystać z praktyki.</p></details>
-        <details class="faq__item"><summary>Czy muszę używać AI?</summary>
-          <p>Nie. Praktyka działa na kartce. A jeśli używasz AI, daje Ci własne stanowisko, zanim model będzie miał je za Ciebie.</p></details>
-        <details class="faq__item"><summary>Gdzie są moje dane?</summary>
-          <p>W Twojej przeglądarce i nigdzie indziej. Nic nie trafia do nas ani do modelu, dopóki sam tego nie wyeksportujesz. Adres e-mail podany do listu trzyma nasz dostawca poczty — i nic poza tym.</p></details>
-        <details class="faq__item"><summary>Dlaczego The Hermeticum jest anonimowe?</summary>
-          <p>Żeby wyjąć ego ze środka. Tekst znaczy więcej niż twarz, źródła więcej niż persona — a każde twierdzenie da się tu sprawdzić bez wiedzy, kto je napisał.</p></details>
-        <details class="faq__item"><summary>Co jest darmowe, a co będzie płatne?</summary>
-          <p>Wiedza zostaje otwarta: źródła, archiwum, początek ścieżki, słownik, list i wybrane praktyki. Struktura, narzędzia i prowadzona praktyka mogą być z czasem płatne — nigdy dostęp do samych idei.</p></details>
-      </div>
     </div>
   </section>
 </main>
 
 <footer class="foot">
-  <div class="container foot__in">
-    <div class="foot__brand">
-      <span class="foot__mark"><em>the</em>Hermeticum</span>
-      <p>Nowoczesna brama do tradycji hermetycznej.<br>Poważna historia, prawdziwe źródła, bez wróżenia.</p>
-    </div>
-    <nav class="foot__col" aria-label="Eksploruj">
-      <p>Eksploruj</p>
-      <a href="/pl/practice/">The Practice</a>
-      <a href="/pl/practice/">The Practice</a><a href="/pl/start-here/">Zacznij tutaj</a><a href="/pl/guide/contents/">Mapa</a><a href="/pl/guide/">Współczesny hermeta</a><a href="/pl/guide/instruction/">Instrukcja</a><a href="/pl/guide/operational-alchemy/">Alchemia operacyjna</a><a href="/pl/path/">Ścieżka</a><a href="/pl/texts/">Teksty</a><a href="/pl/figures/">Postaci</a><a href="/pl/ideas/">Idee</a>
-    </nav>
-    <nav class="foot__col" aria-label="O serwisie">
-      <p>List</p>
-      <a href="/pl/letters/">Archiwum listów</a><a href="/pl/subscribe/">Zapisz się</a><a href="/pl/about/method/">O serwisie i metoda</a><a href="/rss.xml">RSS</a><a href="/pl/privacy/">Prywatność</a>
-    </nav>
+  <div class="container foot__row">
+    <a class="foot__brand" href="/pl/"><svg class="foot__sigil" viewBox="0 0 545 554" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M544.781 165.192H475.492V390.54H544.781V553.071H0V390.54H66.4902V165.192H0V0H544.781V165.192ZM56.209 124.889H115.522V426.137H56.209V498.717H248.977V426.137H187.322V305.169H357.457V426.137H296.583V498.717H488.57V426.137H429.257V124.889H488.57V52.3076H296.583V124.889H357.457V232.589H187.322V124.889H248.977V52.3076H56.209V124.889Z" fill="currentColor"/></svg><span class="foot__mark"><em>the</em>Hermeticum</span></a>
+    <nav class="foot__nav" aria-label="Stopka"><a href="/pl/pytania/">Pytania</a><a href="/pl/practice/today/">The Practice</a><a href="/pl/book/00-otwarcie/">Książka</a><a href="/pl/path/">Ścieżka</a><a href="/pl/texts/">Teksty</a><a href="/pl/figures/">Postaci</a><a href="/pl/ideas/">Idee</a><a href="/pl/letters/">Archiwum listów</a><a href="/pl/about/method/">Metodzie</a><a href="/pl/privacy/">Prywatność</a></nav>
   </div>
-  <div class="container foot__note">
-    <p><b>Jak powstaje ten serwis.</b> The Hermeticum jest kompilacją: strony powstają z pomocą narzędzi AI na podstawie opublikowanych badań &mdash; wydań, monografii i artykułów wymienionych w źródłach przy każdym haśle. Nie ma tu autorskich badań historycznych i nic nie jest podawane jako objawienie. Gdy badacze się różnią, mówimy o tym wprost; gdy twierdzenie jest sporne, oznaczamy je. Błędy są nasze i warto je zgłaszać &mdash; w <a href="/pl/about/method/">Metodzie</a> opisujemy, skąd bierzemy źródła i jak prostujemy.</p>
-  </div>
-  <div class="container foot__bar">
-    <span>&copy; 2026 The Hermeticum</span>
-    <span class="foot__motto">Jak w górze, tak i na dole.</span>
+  <div class="container foot__row foot__row--fine">
+    <p class="foot__note"><b>Kompilacja.</b> Strony powstają z pomocą narzędzi AI na podstawie opublikowanych badań; źródła stoją przy każdym haśle. <a href="/pl/about/method/">Metoda i pełna bibliografia</a></p>
+    <p class="foot__meta"><span>&copy; 2026 The Hermeticum</span><span class="foot__motto">Jak w górze, tak i na dole.</span></p>
   </div>
 </footer>
 
 
-<script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script src="/assets/site.js?v=86" defer></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}

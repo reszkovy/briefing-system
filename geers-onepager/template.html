@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<title>Geers — one pager dla lekarzy</title>
+<style>
+@font-face{font-family:'TWK Lausanne';src:url(data:font/ttf;base64,{{FONT_300}}) format('truetype');font-weight:300;font-style:normal;font-display:block}
+@font-face{font-family:'TWK Lausanne';src:url(data:font/otf;base64,{{FONT_350}}) format('opentype');font-weight:400;font-style:normal;font-display:block}
+@font-face{font-family:'TWK Lausanne';src:url(data:font/otf;base64,{{FONT_500}}) format('opentype');font-weight:500;font-style:normal;font-display:block}
+
+:root{
+  /* tokeny marki Geers (BRAND.md §6) */
+  --green:#2ADD53; --green-dark:#093E18; --green-corp:#008052; --green-pale-bg:#F0FEDF;
+  --warm:#FAF5EC; --text:#191919; --text-mute:rgba(0,0,0,.72); --grey-light:#E2E5E0;
+  /* paleta wykresu — zwalidowana scripts/validate_palette.js (0 FAIL) */
+  --c-geers:#0A6B3D; --c-amplifon:#E14D6E; --c-audika:#2F62B4; --c-audiofon:#3AAFA4; --c-marmed:#C07BE0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
+html,body{background:#8f9694}
+body{font-family:'TWK Lausanne',system-ui,sans-serif;font-weight:400;color:var(--text);letter-spacing:normal;
+  display:flex;justify-content:center;padding:24px 0}
+
+.page{
+  width:210mm;height:297mm;background:#fff;position:relative;overflow:hidden;
+  padding:14mm 15mm 0;display:flex;flex-direction:column;
+}
+@media print{body{padding:0;background:#fff}.page{box-shadow:none}}
+body:not(.static) .page{box-shadow:0 8px 40px rgba(0,0,0,.28)}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding-bottom:5mm;
+  border-bottom:1px solid var(--grey-light)}
+.logo{height:8.4mm;display:block}
+.eyebrow{font-size:7pt;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-mute);text-align:right;line-height:1.5}
+
+/* ---------- hero ---------- */
+.hero{padding:7mm 0 0}
+h1{font-size:25pt;font-weight:500;line-height:1.14;max-width:150mm;color:var(--green-dark)}
+h1 em{font-style:normal;color:var(--green-corp)}
+.lede{margin-top:3.5mm;font-size:9.5pt;font-weight:300;line-height:1.58;color:var(--text-mute);max-width:158mm}
+
+/* ---------- statystyki ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:6mm}
+.stat{background:var(--green-pale-bg);border-radius:4mm;padding:4mm 4.5mm}
+.stat .n{font-size:19pt;font-weight:500;line-height:1;color:var(--green-dark);display:block}
+.stat .n small{font-size:10pt;font-weight:400}
+.stat .l{margin-top:1.8mm;font-size:7.5pt;font-weight:400;line-height:1.4;color:var(--text-mute)}
+
+/* ---------- wykres ---------- */
+.chart{margin-top:6mm;background:var(--warm);border-radius:4mm;padding:5mm 5.5mm 4mm;flex:1;
+  display:flex;flex-direction:column}
+.chart-head{display:flex;align-items:baseline;justify-content:space-between;gap:6mm}
+.chart-title{font-size:9pt;font-weight:500;color:var(--green-dark)}
+.chart-unit{font-size:7pt;font-weight:300;color:var(--text-mute);white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:4mm;margin-top:2.5mm}
+.legend span{display:flex;align-items:center;gap:1.6mm;font-size:7.5pt;font-weight:400;color:var(--text-mute)}
+.legend i{width:2.6mm;height:2.6mm;border-radius:50%;display:block}
+.legend .lead{font-weight:500;color:var(--green-dark)}
+.legend .lead i{width:3.4mm;height:3.4mm}
+
+.plot{margin-top:2.5mm;flex:1}
+.plot svg{width:100%;height:auto;display:block;overflow:visible}
+.grid{stroke:rgba(0,0,0,.08);stroke-width:1}
+.axis-line{stroke:var(--grey-light);stroke-width:1}
+.ytick{font-size:7px;font-weight:300;fill:var(--text-mute)}
+.xtick{font-size:7.6px;font-weight:400;fill:var(--text)}
+.serie{fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-width:1.5;opacity:.9}
+.serie.lead{stroke-width:2.6;opacity:1}
+.mark{stroke:var(--warm);stroke-width:1.4}
+.mark.lead{stroke-width:1.8}
+.plabel{font-size:8px;font-weight:500;fill:var(--c-geers);text-anchor:middle}
+.note{margin-top:1.5mm;font-size:6.5pt;font-weight:300;line-height:1.45;color:var(--text-mute)}
+
+/* ---------- zaproszenie ---------- */
+.invite{margin-top:5mm;background:var(--green-dark);border-radius:4mm;padding:5.5mm 6mm;color:#fff;
+  display:grid;grid-template-columns:1fr 58mm;gap:7mm}
+.invite h2{font-size:11pt;font-weight:400;line-height:1.42;letter-spacing:normal}
+.badges{display:flex;flex-wrap:wrap;gap:2mm;margin-top:4mm}
+.badges span{border:1px solid rgba(255,255,255,.34);border-radius:20mm;padding:1.5mm 3.4mm;
+  font-size:6.8pt;font-weight:400;letter-spacing:.03em;color:rgba(255,255,255,.94)}
+.contact{border-left:1px solid rgba(255,255,255,.22);padding-left:6mm}
+.contact .h{font-size:6.8pt;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--green);margin-bottom:2.5mm}
+.contact p{font-size:8pt;font-weight:300;line-height:1.65;color:rgba(255,255,255,.9)}
+.contact p b{font-weight:500;color:#fff}
+
+/* ---------- stopka ---------- */
+.foot{display:flex;justify-content:space-between;gap:8mm;padding:3.5mm 0 0;margin-top:auto}
+.foot p{font-size:6pt;font-weight:300;line-height:1.5;color:rgba(0,0,0,.5)}
+.foot .r{white-space:nowrap;text-align:right}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <img class="logo" src="data:image/png;base64,{{LOGO}}" alt="Geers">
+    <div class="eyebrow">Badanie IPSOS · populacja 40+<br>Polska · marzec 2026</div>
+  </header>
+
+  <section class="hero">
+    <h1>Geers najlepiej ocenianą marką<br>na polskim rynku w&nbsp;2026 roku</h1>
+    <p class="lede">W niezależnym badaniu IPSOS na populacji osób 40+ Geers uzyskał najwyższy wynik
+      we&nbsp;wszystkich dwunastu badanych atrybutach marki. Najmocniejsze strony w&nbsp;ocenie
+      konsumentów to sprawdzona technologia, jakość obsługi i&nbsp;wykwalifikowany zespół audiologów.</p>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <span class="n">12<small>&thinsp;/&thinsp;12</small></span>
+      <p class="l">atrybutów, w&nbsp;których Geers zajął pierwsze miejsce</p>
+    </div>
+    <div class="stat">
+      <span class="n">1200</span>
+      <p class="l">osób w&nbsp;próbie badawczej, populacja 40+</p>
+    </div>
+    <div class="stat">
+      <span class="n">74<small>%</small></span>
+      <p class="l">wskazań dla Geers w&nbsp;kategorii „sprawdzona technologia”</p>
+    </div>
+  </section>
+
+  <section class="chart">
+    <div class="chart-head">
+      <h2 class="chart-title">Z którą siecią protetyki słuchu łączy Pan/Pani te atrybuty?</h2>
+      <span class="chart-unit">% wskazań · oś pionowa 30–80%</span>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="plot" id="plot"></div>
+    <p class="note">Odpowiedzi 373 osób ankietowanych, które kojarzyły wszystkie badane marki.</p>
+  </section>
+
+  <section class="invite">
+    <div>
+      <h2>W ramach wspólnej misji dbania o&nbsp;dobrostan osób powyżej 55.&nbsp;roku życia zapraszamy
+        do&nbsp;współpracy w&nbsp;zakresie edukacji pacjentów na&nbsp;temat utraty słuchu
+        i&nbsp;jej konsekwencji.</h2>
+      <div class="badges">
+        <span>Bez umów lojalnościowych</span>
+        <span>Wygodna współpraca oparta o cyfrowe narzędzia</span>
+        <span>Troska o najwyższy komfort pacjentów</span>
+      </div>
+    </div>
+    <div class="contact">
+      <p class="h">Dane kontaktowe</p>
+      <p><b>Imię i nazwisko</b><br>Stanowisko<br><br>
+      tel. +48 000 000 000<br>imie.nazwisko@geers.pl<br>geers.pl</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Źródło: IPSOS, badanie wizerunku marek protetyki słuchu, Polska, marzec 2026,
+      n&nbsp;=&nbsp;1200 (populacja 40+). Nazwy atrybutów zgodne z&nbsp;brzmieniem kwestionariusza.</p>
+    <p class="r">Geers Akustyka Słuchu<br>część grupy Sonova</p>
+  </footer>
+
+</div>
+
+<script>
+const BRANDS = [
+  {key:'geers',    name:'Geers',    color:'var(--c-geers)',    lead:true},
+  {key:'amplifon', name:'Amplifon', color:'var(--c-amplifon)'},
+  {key:'audika',   name:'Audika',   color:'var(--c-audika)'},
+  {key:'audiofon', name:'Audiofon', color:'var(--c-audiofon)'},
+  {key:'marmed',   name:'Marmed',   color:'var(--c-marmed)'},
+];
+// dane: dane one pager.xlsx (Trello, karta 5GQC7ys9) — % wskazań.
+// Kolejność kategorii rosnąco wg Geers — tak jak w oryginalnym załączniku klienta.
+const DATA = [
+  ['Zaufanie do marki',                         55,49,45,42,38],
+  ['Odpowiedni stosunek ceny do jakości',       55,49,53,47,46],
+  ['Dogodne lokalizacje',                       58,50,45,47,44],
+  ['Atrakcyjny wygląd salonu',                  59,51,52,48,44],
+  ['Bezpłatne testowanie aparatów w domu',      60,46,48,49,38],
+  ['Szybkie terminy wizyt',                     63,53,53,50,46],
+  ['Gwarancja i opieka posprzedażowa',          63,57,56,54,46],
+  ['Jakość obsługi',                            68,60,57,59,52],
+  ['Wykwalifikowani audiolodzy',                69,64,60,62,42],
+  ['Najwyższa jakość dźwięku',                  69,63,60,61,46],
+  ['Łatwe umawianie wizyt',                     71,62,55,57,50],
+  ['Sprawdzona technologia',                    74,63,64,66,60],
+];
+
+document.getElementById('legend').innerHTML = BRANDS.map(b =>
+  `<span class="${b.lead ? 'lead' : ''}"><i style="background:${b.color}"></i>${b.name}</span>`).join('');
+
+// ---- wykres liniowy (forma zgodna z oryginalnym załącznikiem) ----
+const W = 640, H = 330;
+const M = {top: 20, right: 6, bottom: 112, left: 30};
+const PW = W - M.left - M.right, PH = H - M.top - M.bottom;
+const YMIN = 30, YMAX = 80;
+const y = v => M.top + PH - ((v - YMIN) / (YMAX - YMIN)) * PH;
+const x = i => M.left + (PW / DATA.length) * (i + 0.5);
+
+let svg = `<svg viewBox="0 0 ${W} ${H}" role="img"
+  aria-label="Ocena atrybutów marki — procent wskazań, pięć sieci protetyki słuchu">`;
+
+// siatka pozioma + opisy osi Y
+for (let v = YMIN; v <= YMAX; v += 10) {
+  svg += `<line class="grid" x1="${M.left}" x2="${W - M.right}" y1="${y(v)}" y2="${y(v)}"/>`;
+  svg += `<text class="ytick" x="${M.left - 6}" y="${y(v) + 2.5}" text-anchor="end">${v}%</text>`;
+}
+svg += `<line class="axis-line" x1="${M.left}" x2="${M.left}" y1="${M.top}" y2="${M.top + PH}"/>`;
+
+// serie — konkurencja najpierw, Geers na wierzchu
+const drawOrder = BRANDS.map((b, i) => ({b, i})).sort((a) => a.b.lead ? 1 : -1);
+for (const {b, i} of drawOrder) {
+  const pts = DATA.map((row, j) => `${x(j)},${y(row[i + 1])}`).join(' ');
+  svg += `<polyline class="serie ${b.lead ? 'lead' : ''}" points="${pts}" stroke="${b.color}"/>`;
+}
+for (const {b, i} of drawOrder) {
+  svg += DATA.map((row, j) =>
+    `<circle class="mark ${b.lead ? 'lead' : ''}" cx="${x(j)}" cy="${y(row[i + 1])}"
+      r="${b.lead ? 3.6 : 2.6}" fill="${b.color}"><title>${b.name}: ${row[i + 1]}%</title></circle>`
+  ).join('');
+}
+// wartości tylko dla Geers — nie zaśmiecamy wykresu 60 liczbami
+svg += DATA.map((row, j) =>
+  `<text class="plabel" x="${x(j)}" y="${y(row[1]) - 8}">${row[1]}%</text>`).join('');
+
+// opisy kategorii pod osią, obrócone
+svg += DATA.map((row, j) =>
+  `<text class="xtick" transform="translate(${x(j) - 3},${M.top + PH + 9}) rotate(-45)"
+    text-anchor="end">${row[0]}</text>`).join('');
+
+svg += `</svg>`;
+document.getElementById('plot').innerHTML = svg;
+
+if (new URLSearchParams(location.search).has('static')) document.body.classList.add('static');
+</script>
+</body>
+</html>

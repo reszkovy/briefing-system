@@ -1,0 +1,102 @@
+{
+ "events": [
+  {
+   "kind": "knowledge.corrected",
+   "on": "rec:F0-SEED-FREEZE",
+   "actor": "przemek",
+   "from": "seed_event_count: 205, seed_tail_hash: 3eafbaef9cb6e223; archiwum Ledgera nadpisane stanem POmigracyjnym (205 linii); snapshot 32 Recordów wyzerowany",
+   "to": "seed_event_count: 179, seed_tail_hash: 4f96034058f4c5fa; archiwum przywrócone z zamrożonego fixture (sha256 4806dd3d…, 179 linii); snapshot odtworzony i oznaczony recovered:true",
+   "cause": "rec:incydenty/2026-08-09-test-zapisal-do-kanonu",
+   "provenance": "record",
+   "note": "INCYDENT 09.08: test migracji wywolal applyPlan(simulation) na kanonicznym korzeniu — publiczne API mialo wowczas uprzywilejowany tryb symulacji, a guard opieral sie na lokalizacji modulu. Skutek: 2 zdarzenia no-op (evt:2026-08-09-0226, -0227), nadpisane archiwum Ledgera, wyzerowany snapshot Recordow, przesunieta granica seeda. Zdarzenia 0226/0227 POZOSTAJA zgodnie z zasada append-only. PRZYCZYNA USUNIETA: publiczne applyPlan() zawsze wymaga podpisu Ed25519 wlasciciela, simulation:true jest odrzucane przed zapisem takze z podpisanym planem, CLI --simulate uzywa nieeksportowanego applyPlanUnchecked() na wlasnej prywatnej kopii, a migracja z zerowa delta jest twardym NO-OP. Guardy oparte na katalogu tymczasowym i na lokalizacji modulu zostaly usuniete jako obalone."
+  }
+ ],
+ "evidence": [],
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "rec:incydenty/2026-08-09-test-zapisal-do-kanonu",
+   "type": "record",
+   "title": "Incydent 2026-08-09 — warstwa testowa zapisała do kanonicznego Genome",
+   "status": "created",
+   "owner": "przemek",
+   "relations": {
+    "attached_to": [
+     "rec:F0-SEED-FREEZE"
+    ]
+   },
+   "tags": [
+    "incydent",
+    "recovery",
+    "walidacja"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Record incydentu — prowieniencja recovery.",
+   "body": "\n# Incydent 2026-08-09 — warstwa testowa zapisała do kanonicznego Genome\n\n## Co się stało\nTest migracji wywołał `applyPlan(root, plan, { simulation: true })` z korzeniem KANONICZNEGO Genome.\nGuard migracji opierał się na porównaniu korzenia z `__dirname` modułu; ponieważ moduł był ładowany\nz zamrożonego fixture, „kanonem\" stał się dla niego fixture, a realny kanon przestał być chroniony.\nUruchomiło się dwukrotnie: 06:17:00 i 06:17:13 UTC.\n\n## Szkoda (ustalona, nie oszacowana)\n- Ledger: 204 → 206 zdarzeń. Dopisane `evt:2026-08-09-0226` i `-0227` — obie migracje NO-OP.\n- `ledger/.archive/…pre-mig….jsonl`: prawdziwe archiwum sprzed migracji (179 linii) nadpisane stanem\n  POmigracyjnym (205 linii).\n- `records/.snapshots/mig-…-records.json`: 32 Recordy z `content_before` wyzerowane do `records: []`.\n- `rec:F0-SEED-FREEZE`: granica przesunięta na 205 / `3eafbaef9cb6e223`.\n\nIntegralność zachowana: hash-chain spójny, `build --check` 0 błędów, żadna karta wiedzy nie zmieniona.\n\n## Recovery\n- archiwum przywrócone z zamrożonego fixture, sha256 `4806dd3da1a8b4d3c54fa60d3b93e8785fb8f17c587e6973b55ab3f5295281c3`,\n- snapshot ODTWORZONY (nie bajtowa kopia oryginału) i oznaczony `recovered: true` ze wskazaniem źródeł,\n- granica seeda przywrócona do **179 / `4f96034058f4c5fa`**,\n- zdarzenia 0226/0227 POZOSTAJĄ — Ledger jest append-only, błędny fakt koryguje się nowym faktem.\n- artefakty uszkodzone zachowane w `proposals/recovery-incydent/artefakty-incydentu/` wraz z hashami.\n\n## Przyczyna usunięta\n1. **Publiczne `applyPlan()` zawsze wymaga prawidłowego podpisu Ed25519 właściciela.** Nie ma\n   trybu uprzywilejowanego: `simulation: true` jest odrzucane przed jakimkolwiek zapisem\n   (`aborted_before_write: true`) — także wtedy, gdy towarzyszy mu poprawnie podpisany plan.\n2. **CLI `--simulate` tworzy własną prywatną kopię** i wykonuje ją przez\n   `applyPlanUnchecked()`, funkcję **nieeksportowaną** z modułu. Z zewnątrz jest nieosiągalna.\n3. **Migracja z zerową deltą jest twardym NO-OP**: zero zdarzeń, zero zmian freeze, zero\n   nadpisania archiwum, zero snapshotu, zero buildu produkcyjnego, wynik `noop: true`.\n   Test bajtowy potwierdza identyczność całego drzewa.\n4. **Wykonawca odłączony od kanonu nie zmienia niczego.** Odtworzona próba: `migrate.js` + `lib/`\n   skopiowane do katalogu bez `ledger/` i `records/`, jako cel osobna kompletna instalacja Genome,\n   bez podpisu → `ok: false`, `aborted_before_write: true`, Ledger, Recordy i `dist` bez zmian.\n5. Żaden test nie wskazuje realnego korzenia; każdy zestaw porównuje pełny hash drzewa kanonu\n   przed i po.\n\n**Czego tu NIE MA — świadomie.** Naprawa NIE polega na rozpoznawaniu „bezpiecznej kopii\": ani po\nkatalogu tymczasowym (`os.tmpdir()` zależy od `TMPDIR`), ani po lokalizacji modułu (`__dirname`\nkopii nie wskazuje kanonu). Obie te reguły były w międzyczasie wdrożone i obie zostały obalone\nniezależnymi próbami. Zostały usunięte z kodu.\n\n## Lekcja\nGuard, który próbuje odgadnąć, czy cel jest „bezpieczny\", zawsze da się przekręcić — bo pyta\no cechę ustawianą przez wywołującego. Jedyna reguła, która się obroniła, jest inna:\n**każde publiczne wywołanie funkcji zapisującej wymaga autoryzacji właściciela, bez wyjątku\ntestowego w produkcyjnym API.**\n"
+  },
+  {
+   "op": "object.patch",
+   "id": "rec:F0-SEED-FREEZE",
+   "seed_event_count": 179,
+   "seed_tail_hash": "4f96034058f4c5fa",
+   "actor": "przemek",
+   "cause": "rec:incydenty/2026-08-09-test-zapisal-do-kanonu",
+   "ingest_note": "Przywrocenie granicy seeda do stanu sprzed incydentu (179 zdarzen)."
+  }
+ ],
+ "approval": {
+  "status": "approved",
+  "approved_by": "przemek",
+  "approved_at": "2026-08-09T14:07:59.857Z",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "test zapisal 2 zdarzenia no-op do kanonicznego Ledgera i zniszczyl prowieniencje migracji"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "incydent: warstwa testowa zapisala do kanonu i zniszczyla prowieniencje migracji",
+    "project_start": "2026-08-09",
+    "scope": "przywrocenie archiwum Ledgera, snapshotu Recordow i granicy seeda; jedno zdarzenie korygujace",
+    "non_scope": "usuwanie zdarzen 0226/0227; wdrozenie SALT/PLATE; jakakolwiek zmiana kart wiedzy",
+    "baseline": "ledger 206 zdarzen, archiwum 205 linii (uszkodzone), snapshot pusty, freeze 205/3eafbaef9cb6e223",
+    "mechanisms": [],
+    "frameworks": [],
+    "validation_plan": "build --check 0 bledow; hash archiwum == 4806dd3d…; snapshot 32 Recordy; freeze 179/4f96034058f4c5fa",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-08-10",
+    "go_decision": "GO",
+    "go_rationale": "prowieniencja migracji jest warunkiem audytowalnosci; odzyskiwalna wylacznie z zamrozonego fixture",
+    "prepared_by": "session:recovery",
+    "decided_by": "przemek",
+    "report_version": "RECOVERY-v1",
+    "contract_version": "v1"
+   },
+   "predictions": [],
+   "payload_hash": "91d2651db6f90d8da07a9333da7edc48cf702aaafa8c841d516706b1f4960aaa",
+   "nonce": "recovery-2026-08-09-001",
+   "expires_at": "2026-08-10",
+   "artifact_hashes": {
+    "recover.js": "419f5569e12ec2fa8fc3fc065345237841bab9aea0fb6c884cb1f66ca3b0a364",
+    "../final-salt-plate/lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "../final-salt-plate/lib/genome-txn.js": "8ae53ce486c3aa8d6d828aacc52db66c4f268f071abdc83ca9fde2ec3e616a97",
+    "../final-salt-plate/lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "../final-salt-plate/lib/canon-guard.js": "75ef74b9c67a86dfba845f52d171c7129d731d7866f6638419ede06a7975f340",
+    "przywracane/events-2026-08.pre-mig-2026-08-evidence-contract-v1.jsonl": "4806dd3da1a8b4d3c54fa60d3b93e8785fb8f17c587e6973b55ab3f5295281c3",
+    "przywracane/mig-2026-08-evidence-contract-v1-records.json": "3ae31e669984fc8746a7498ff770cdc0d382ff615a69e7d495d1053fcb146a91"
+   }
+  },
+  "nonce": "recovery-2026-08-09-001",
+  "signature": "93d9dee1451c4b24faf1576cc6d7851ee57265898958e25a516238d2e0262d0bffb5a55fef6b217d6e5aa1017ba0311e5ac7d642400f3c37b842b66158dc2b05",
+  "_instrukcja": "Uzupelnij nonce i expires_at w package, przelicz payload_hash oraz artifact_hashes, a nastepnie podpisz PODPISEM Ed25519: crypto.sign(null, approval.signingBytes(package), <klucz prywatny wlasciciela>).toString(\"hex\"). Klucz prywatny pochodzi z Keychaina albo z maszyny offline — NIGDY z ~/.genome ani z repo. Weryfikator uzywa wylacznie klucza publicznego z <homedir>/.genome/approval-pubkey.pem."
+ }
+}

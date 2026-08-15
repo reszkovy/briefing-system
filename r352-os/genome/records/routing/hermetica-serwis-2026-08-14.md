@@ -1,3 +1,16 @@
+---
+id: "rec:routing/hermetica-serwis-2026-08-14"
+type: "record"
+title: "Raport routera — The Hermeticum (serwis wiedzy hermetycznej)"
+status: "created"
+created: "2026-08-14"
+updated: "2026-08-14"
+version: 1
+owner: "przemek"
+relations: {"attached_to":["proj:thehermeticum"]}
+tags: ["routing","side-project"]
+---
+
 # Raport routera: serwis wiedzy hermetycznej (roboczo „Hermetica")
 
 Data: 2026-08-14 · prepared_by: session:claude-fable-5 · decided_by: przemek (OCZEKUJE)

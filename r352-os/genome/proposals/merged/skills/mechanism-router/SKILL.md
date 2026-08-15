@@ -1,0 +1,80 @@
+---
+name: mechanism-router
+description: r352 Mechanism Router — warstwa decyzyjna między briefem a egzekucją. Użyj ZAWSZE przed rozpoczęciem nowego projektu/zlecenia klienckiego (nowy brief, "zróbmy stronę/lejek/brand dla X"). Produkuje raport doboru mechanizmów z Genome PRZED jakimkolwiek projektowaniem.
+---
+
+# r352 Mechanism Router
+
+Dostajesz brief (tekst w argumencie, plik albo opis w rozmowie). **NIE zaczynaj projektować.** Najpierw raport routera.
+
+Kolejność warstw jest kierunkowa i nieodwracalna:
+**Research/Benchmark → SALT → PLATE → mechanizmy i wykonanie.**
+Wolno pominąć warstwę, jeśli router ją odrzuci z powodem. Nie wolno jej przeskoczyć w milczeniu.
+
+## Kroki
+
+1. Przeczytaj Genome:
+   - `r352-os/genome/README.md` (standard) i `r352-os/genome/ROUTER.md` (proces),
+   - `r352-os/genome/mechanisms/INDEX.md` — pełną listę mechanizmów z confidence,
+   - `r352-os/genome/workflows/` — karty workflow (SALT, PLATE),
+   - karty, które wstępnie pasują do problemu (po polach Trigger/Context).
+2. Jeśli brief dotyczy istniejącego klienta — doczytaj jego pliki pamięci (indeks: MEMORY.md w katalogu auto-memory).
+3. **Research i benchmark wg kontraktu.** Wywołaj `/research-benchmark`. Każdy rekord przechodzi przez
+   `validateResearchRecord()` z `r352-os/genome/lib/research-contract.js`. Rekord niespełniający kontraktu
+   **nie wchodzi do raportu** — nie jest „słabszym dowodem", tylko go nie ma. Rekord bez wpływu na decyzję
+   dostaje `decision_impact.changes: ["none"]` i nie jest rozwijany.
+4. **Rozpoznanie warstwy strategicznej.** Zbuduj brief strukturalny (pola: `BRIEF_FIELDS`) i wywołaj
+   `routeFrameworks()` z `r352-os/genome/lib/framework-router.js`. Zwraca `SALT | PLATE | BOTH | NONE`
+   wraz z powodami, ostrzeżeniami i kolejnością.
+   **Nie odtwarzaj tych reguł w rozumowaniu i nie przepisuj ich do raportu** — decyzja pochodzi z modułu,
+   raport ją cytuje. Czego nie wiesz, wpisz jako `null`; zgadywanie pola jest gorsze niż luka.
+5. Wyprodukuj **raport routera w 10 sekcjach** wg szablonu z ROUTER.md:
+   (1) Problem biznesowy — prawdziwy, nie zamówiony; (2) Typ organizacji; (3) Typ projektu;
+   (4) Research i benchmark — rekordy kontraktowe + delta-lista: przyjmujemy / świadomie odstępujemy / szanse;
+   (5) **Warstwa strategiczna** — werdykt `routeFrameworks()` z powodami; jeśli `SALT`/`BOTH`, wykonaj SALT
+   przed doborem mechanizmów; jeśli `PLATE`, wskaż zatwierdzony fundament, na którym stoi; jeśli `NONE`,
+   podaj powód odrzucenia;
+   (6) Rekomendowane mechanizmy 3–7 — każdy z confidence, uzasadnieniem i projektami-dowodami; odrzucone
+   przez Anti-context wymień jawnie z powodem;
+   (7) Rekomendowani agenci — użyć / NIE używać; (8) Workflow realizacji sklejony z kart + bramki —
+   publiczny artefakt akwizycyjny wymaga warstwy SEO/AEO (`mech:seo-aeo-foundation`) w definicji ukończenia;
+   (9) Ryzyka z `failure_conditions`; (10) Hipotezy — nowe mechanizmy do przetestowania na tym projekcie.
+6. **Bramka Doublecheck.** Wywołaj `doublecheck()` na gotowym raporcie. `REVISE` blokuje przejście dalej —
+   popraw i powtórz. Bramka ocenia **jakość treści**; niezależność review to osobny stan (`independent_review`)
+   i nie wolno go mylić z werdyktem.
+7. **Przygotuj propozycję Project Contract** (`r352-os/genome/records/CONTRACT-TEMPLATE.md`) — sześć sekcji:
+   Projekt (z jawnym NON-SCOPE) · Baseline (`n/d` gdzie danych brak, ZERO uzupełniania założeniami) ·
+   Mechanizmy (rola + confidence w chwili startu + Evidence) · **3–5 predykcji** (każda: claim, p, kryterium,
+   deadline, `measurement_source`, `resolution_owner`) · Plan walidacji · Decyzja startowa.
+   Każdą metrykę przepuść przez `measurementReadiness()`.
+8. **Wypisz braki**: czego nie da się dziś wypełnić i co trzeba zdobyć od klienta/właściciela.
+9. **Zakończ bramką `GO / REVISE / STOP`** — i na tym się ZATRZYMAJ. Nie zaczynasz realizacji, nie zapisujesz
+   nic do Genome. Zapis wykonuje `node r352-os/genome/ingest.js <pakiet.json>` PO decyzji człowieka.
+
+## Bramki twarde
+
+**Kontrakt startu.** Zamrożenie predykcji wymaga, żeby `contractGate()` zwrócił `can_freeze: true`. Trzy warunki,
+wszystkie w jednym miejscu w `lib/research-contract.js` — nie powtarzaj ich tutaj ani w raporcie:
+Doublecheck ≠ `REVISE` · Measurement Readiness ≠ `BLOCKED` · zweryfikowany podpis akceptacji człowieka.
+
+**Podpis, nie deklaracja.** `reviewer: "przemek"` to tekst, który potrafisz wpisać sam — nie jest dowodem
+niczego i kod tak go traktuje. Ślad akceptacji powstaje poza tą sesją, kluczem, którego nie masz
+(`~/.genome/approval.key`). Nigdy nie pisz, że raport został niezależnie zweryfikowany, jeśli
+`independent_review` ≠ `verified`.
+
+**Invariant 11.** Projekt bez `contract`, `outcome_owner`, `measurement_date` i decyzji `GO` nie dostaje statusu
+`active` — build to zablokuje. `REVISE`/`STOP` nie uruchamiają realizacji. Predykcje po rejestracji są immutable
+(korekta = `prediction.voided` + nowe ID). Ty przygotowujesz (`prepared_by`), zatwierdza Przemek (`decided_by`) —
+ten sam podmiot nie może zrobić obu.
+
+**PLATE nie startuje bez fundamentu.** Wynik `PLATE` z routera jest legalny wyłącznie ze wskazaną, zatwierdzoną
+strategią. Bez niej właściwym werdyktem jest `BOTH` w kolejności SALT → PLATE.
+
+## Reguły
+
+- Nigdy nie rozwiązujemy tego samego problemu dwa razy — jeśli Genome zna rozwiązanie, raport MUSI je wskazać.
+- Brak pasującego mechanizmu = sekcja Hipotezy + obowiązek nowej karty po projekcie.
+- Raport zapisz też do `r352-os/genome/records/routing/<klient-projekt>-<data>.md` (kanoniczna ścieżka —
+  NIE `genome/routing/`, ten katalog nie istnieje).
+- Logika decyzyjna żyje w `lib/`, nie w tym pliku. Jeśli kusi Cię, żeby dopisać tu warunek — to znak, że
+  warunek należy do modułu.

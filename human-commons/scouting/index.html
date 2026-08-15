@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>The Post-AI Society — Scouting dossier</title>
+<link rel="icon" type="image/svg+xml" href="/img/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=Plus+Jakarta+Sans:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --linen:#F4F0E8;--paper:#EDE8DD;--plaster:#E6E0D2;--stone:#A69D8B;--stone-dim:#8C8371;
+  --ink:#211E19;--ink-soft:#4A453C;--forest:#2E4A3B;--forest-deep:#22382D;
+  --hairline:rgba(33,30,25,.16);--hairline-strong:rgba(33,30,25,.32);
+  --serif:'Newsreader',Georgia,serif;--sans:'Plus Jakarta Sans','Helvetica Neue',sans-serif;
+  --gutter:clamp(1.5rem,5vw,5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--linen);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+::selection{background:var(--forest);color:var(--linen)}
+em{font-style:italic;font-weight:400}
+.label{font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone-dim)}
+header.top{padding:clamp(3rem,8vh,5rem) var(--gutter) clamp(2rem,5vh,3rem);border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem}
+header.top .wordmark{font-size:.78rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:200;font-size:clamp(2.4rem,5.5vw,4.6rem);line-height:1.08;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:200;font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1.15;margin-bottom:1.4rem}
+h3{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(1.2rem,1.8vw,1.5rem)}
+section{padding:clamp(3.5rem,8vh,6rem) var(--gutter);border-bottom:1px solid var(--hairline)}
+.sec-head{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:clamp(1.8rem,4vh,2.8rem)}
+.sec-head .no{font-size:.66rem;letter-spacing:.22em;color:var(--stone-dim)}
+p{max-width:40em}
+.lede{font-family:var(--serif);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:200;line-height:1.45;max-width:30em}
+.route-grid{display:grid;grid-template-columns:minmax(280px,2fr) 3fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:900px){.route-grid{grid-template-columns:1fr}}
+.route-grid img{width:100%;display:block;border:1px solid var(--hairline)}
+.leg{border-top:1px solid var(--hairline-strong);padding:1.3rem 0;display:grid;grid-template-columns:6.5rem 1fr;gap:1.2rem}
+@media(max-width:560px){.leg{grid-template-columns:1fr;gap:.3rem}}
+.leg .day{font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--forest)}
+.leg h3{margin-bottom:.3rem}
+.leg p{font-size:.93rem;color:var(--ink-soft)}
+.region{border:1px solid var(--hairline-strong);padding:clamp(1.4rem,3vw,2.2rem);margin-bottom:1.5rem;background:rgba(255,255,255,.25)}
+.region .rk{font-size:.62rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--forest)}
+.region h3{font-size:clamp(1.4rem,2.4vw,1.9rem);margin:.4rem 0 .9rem}
+.region .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem 2rem;margin:1.1rem 0;border-top:1px solid var(--hairline);padding-top:1.1rem}
+.region .facts div b{display:block;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-dim);margin-bottom:.25rem}
+.region .facts div span{font-family:var(--serif);font-size:1.05rem;font-weight:300}
+.region p{font-size:.95rem;color:var(--ink-soft)}
+.region .risk{font-style:italic}
+table{width:100%;border-collapse:collapse;font-size:.9rem;max-width:56em}
+th{text-align:left;font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--stone-dim);padding:.6rem .8rem .6rem 0;border-bottom:1px solid var(--hairline-strong)}
+td{padding:.7rem .8rem .7rem 0;border-bottom:1px solid var(--hairline);vertical-align:top}
+td:first-child{font-family:var(--serif);font-size:1rem}
+.check{max-width:44em}
+.check-item{display:grid;grid-template-columns:2rem 1fr;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--hairline)}
+.check-item .cn{font-size:.66rem;letter-spacing:.15em;color:var(--forest);font-weight:600;padding-top:.2rem}
+.check-item h3{font-size:1.1rem;margin-bottom:.2rem}
+.check-item p{font-size:.9rem;color:var(--ink-soft)}
+.money{background:var(--forest-deep);color:var(--paper)}
+.money .label,.money .sec-head .no{color:#9DB8A6}
+.money h2{color:var(--linen)}
+.money .grant{border-top:1px solid rgba(244,240,232,.2);padding:1.2rem 0;display:grid;grid-template-columns:minmax(8em,11em) 1fr;gap:1.5rem}
+@media(max-width:560px){.money .grant{grid-template-columns:1fr;gap:.3rem}}
+.money .grant .amt{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:300;color:var(--linen)}
+.money .grant p{font-size:.92rem;color:rgba(244,240,232,.75)}
+.money .grant b{display:block;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#9DB8A6;margin-bottom:.2rem}
+footer{padding:2.5rem var(--gutter);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer span{font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--stone-dim)}
+.objective{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:200;line-height:1.4;max-width:26em;border-left:1px solid var(--forest);padding-left:clamp(1.2rem,3vw,2rem);margin-top:2rem}
+#gate{position:fixed;inset:0;background:var(--linen);z-index:10000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;padding:var(--gutter)}
+#gate h1{font-size:clamp(1.8rem,4vw,3rem);text-align:center}
+#gate input{font-family:var(--sans);font-size:1rem;padding:.9rem 1.2rem;border:1px solid var(--hairline-strong);background:transparent;color:var(--ink);width:min(20rem,80vw);text-align:center;letter-spacing:.1em;outline:none}
+#gate input:focus{border-color:var(--forest)}
+#gate .hint{font-size:.78rem;color:var(--stone-dim)}
+body.locked{overflow:hidden}
+</style>
+</head>
+<body class="locked">
+
+<div id="gate">
+  <span class="label">Private — field dossier</span>
+  <h1>The Post-AI&nbsp;Society</h1>
+  <input id="pw" type="password" placeholder="passphrase" autocomplete="off" autofocus>
+  <span class="hint">Shared personally.</span>
+</div>
+
+<header class="top">
+  <div>
+    <span class="label">Scouting dossier · October MMXXVI</span>
+    <h1 style="margin-top:.8rem">Walking the villages,<br><em>before choosing one.</em></h1>
+  </div>
+  <span class="wordmark">The Post-AI&nbsp;Society</span>
+</header>
+
+<section>
+  <div class="sec-head"><span class="no">I</span><h2>The route</h2></div>
+  <div class="route-grid">
+    <img src="../img/scouting-map.jpg" alt="Hand-drawn map of Italy with the October scouting route: Torino, then Tuscia, Abruzzo and Puglia">
+    <div>
+      <p class="lede" style="margin-bottom:1.5rem">One arc, three regions, ten days. Anchored to Wave in Torino; ending where the first residency is most likely to happen.</p>
+      <div class="leg"><span class="day">Days 1–2</span><div><h3>Torino</h3><p>Wave. The reason the flight is already booked. From here, the rental car heads south.</p></div></div>
+      <div class="leg"><span class="day">Days 3–4</span><div><h3>Tuscia — Montefiascone &amp; Lake Bolsena</h3><p>Two or three borghi around the lake. Test the "accessible from the world" thesis: Fiumicino is 90 minutes away. Anchor visit: the town houses at ~700 €/m².</p></div></div>
+      <div class="leg"><span class="day">Days 5–6</span><div><h3>Abruzzo — Penne &amp; Sulmona</h3><p>The best substance-to-price ratio in Italy, and a comune (Penne) that is openly courting co-living projects. One meeting with the town hall if it can be arranged.</p></div></div>
+      <div class="leg"><span class="day">Days 7–10</span><div><h3>Puglia — Ceglie Messapica, Oria, Itria valley</h3><p>The favourite. Walk the known towns again with new eyes, and visit two or three masserie available for seasonal rental — the venue of the 2028 test residency.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">II</span><h2>The candidates</h2></div>
+
+  <div class="region">
+    <span class="rk">Rank 1 · The favourite</span>
+    <h3>Puglia — Valle d'Itria &amp; alto Salento</h3>
+    <div class="facts">
+      <div><b>Anchor towns</b><span>Ceglie Messapica · Oria · Cisternino</span></div>
+      <div><b>Price anchors</b><span>town houses from ~16 k€ · masserie (ruins) from ~27 k€ · Salento towns ~470–490 €/m²</span></div>
+      <div><b>Airports</b><span>Brindisi 40 min · Bari 1 h</span></div>
+      <div><b>Phase I venue</b><span>rented masseria, 15–20 beds</span></div>
+    </div>
+    <p>The scenography already exists: white stone, working piazzas, a live expat and premium-tourism scene that validates willingness to pay. A masseria is the natural first campus — kitchen, courtyard, rooms, land, one gate.</p>
+    <p class="risk">Risk: the window is closing here first; Itria valley prices climb fastest in the region.</p>
+  </div>
+
+  <div class="region">
+    <span class="rk">Rank 2 · The value play</span>
+    <h3>Abruzzo — Penne &amp; the Sulmona valley</h3>
+    <div class="facts">
+      <div><b>Anchor towns</b><span>Penne · Sulmona · Pratola Peligna</span></div>
+      <div><b>Price anchors</b><span>village houses under 50 k€ · 1 € programmes in Penne &amp; Pratola</span></div>
+      <div><b>Airports</b><span>Pescara 40 min · Rome ~2 h</span></div>
+      <div><b>Note</b><span>comune openly promotes co-living</span></div>
+    </div>
+    <p>"Most beautiful villages" network member with a municipal revival plan that names social cohousing as a goal — the strongest potential municipal ally on the list. Mountains and sea within half an hour.</p>
+    <p class="risk">Risk: seismic zone — structural due diligence is non-negotiable; weaker winter access.</p>
+  </div>
+
+  <div class="region">
+    <span class="rk">Rank 3 · The accessible one</span>
+    <h3>Tuscia — Montefiascone &amp; Lake Bolsena</h3>
+    <div class="facts">
+      <div><b>Anchor towns</b><span>Montefiascone · Bolsena · Marta</span></div>
+      <div><b>Price anchors</b><span>361 listings from 8 k€ · centro storico ~700 €/m² · Borgorose (Rieti) ~472 €/m²</span></div>
+      <div><b>Airports</b><span>Rome Fiumicino ~1.5 h</span></div>
+      <div><b>Note</b><span>lake + Rome proximity</span></div>
+    </div>
+    <p>The best option if global accessibility decides: investors and members land in Rome and arrive before dinner. Lazio prestige without Tuscany prices, and a lake that makes summer effortless.</p>
+    <p class="risk">Risk: less international buzz than Puglia — the story must do more of the work.</p>
+  </div>
+
+  <div class="region">
+    <span class="rk">Watchlist · Phase III–IV</span>
+    <h3>Sicily interior &amp; whole hamlets</h3>
+    <div class="facts">
+      <div><b>Anchor towns</b><span>Mussomeli ~363 €/m² · Grammichele ~382 €/m²</span></div>
+      <div><b>Whole borghi</b><span>Villageio · Romolini listings (Tuscany, Umbria, Lunigiana)</span></div>
+    </div>
+    <p>The cheapest supply in the country and mature 1 € machinery — but distance from hubs makes it a second-location candidate for the network, not the prototype. Entire hamlets for sale are the literal Phase III map; watch, don't buy.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">III</span><h2>The field test</h2></div>
+  <p class="lede" style="margin-bottom:2rem">Score every village 1–5 on eight questions. Ask them standing in the piazza, not at a desk.</p>
+  <div class="check">
+    <div class="check-item"><span class="cn">01</span><div><h3>The 19:00 test</h3><p>Stand in the piazza at seven in the evening, midweek. Empty square but a living bar — that is the profile: partly emptied, still breathing.</p></div></div>
+    <div class="check-item"><span class="cn">02</span><div><h3>Ten minutes on foot</h3><p>Walk from the piazza to the edge of town. Does everything a life needs fit inside the circle?</p></div></div>
+    <div class="check-item"><span class="cn">03</span><div><h3>The long-table room</h3><p>Is there one space — courtyard, cloister, sala — where twenty people can eat at one table tonight, not after renovation?</p></div></div>
+    <div class="check-item"><span class="cn">04</span><div><h3>Fibre or nothing</h3><p>Run a speed test in the centro storico. Mornings belong to deep work with AI; 10 Mbit is a dealbreaker.</p></div></div>
+    <div class="check-item"><span class="cn">05</span><div><h3>The sindaco's face</h3><p>Mention twenty residents, workshops, a restored building. Watch the reaction: is the town hall an ally or a queue?</p></div></div>
+    <div class="check-item"><span class="cn">06</span><div><h3>Who stayed, and why</h3><p>Talk to three people under forty who never left. If nobody under forty stayed, the village can host a retreat — not a life.</p></div></div>
+    <div class="check-item"><span class="cn">07</span><div><h3>Supply within reach</h3><p>Count listable houses within the walking circle: is there room for phase II and III without bidding wars?</p></div></div>
+    <div class="check-item"><span class="cn">08</span><div><h3>The feeling</h3><p>The unfair question: does it make you want to stay tonight? The brief's test — "I've been looking for this my whole life" — applies to the founder first.</p></div></div>
+  </div>
+</section>
+
+<section class="money">
+  <div class="sec-head"><span class="no">IV</span><h2>Money that isn't on the price tag</h2></div>
+  <div style="max-width:52em">
+    <div class="grant"><div><b>PNRR · Borghi</b><span class="amt">up to €75,000</span></div><p>Non-repayable grant for tourism, artisan and cultural projects in Ministry of Culture–designated borghi. The Post-AI Society fits the call almost literally — residencies, workshops, cultural programme.</p></div>
+    <div class="grant"><div><b>Calabria residency</b><span class="amt">~€28,000</span></div><p>For under-40s moving to villages below 2,000 residents and starting a business. Not the target region for phase I, but a template for what regions will pay for repopulation.</p></div>
+    <div class="grant"><div><b>Trentino restore</b><span class="amt">up to €100,000</span></div><p>Purchase-and-renovation grants with residency obligations — again a template; several regions copy the mechanism year by year.</p></div>
+    <div class="grant"><div><b>1 € programmes</b><span class="amt">Penne · Pratola · Mussomeli</span></div><p>Symbolic price, real renovation obligations. Useful less for the euro and more for what it signals: a comune that wants exactly this kind of project.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">V</span><h2>Objectives</h2></div>
+  <p class="lede">Ten days, two deliverables. Everything else is a bonus.</p>
+  <p class="objective">One masseria or agriturismo with a written rental offer for two weeks in 2028 — the venue of the test residency. And one conversation with one sindaco who smiled at the idea.</p>
+</section>
+
+<section>
+  <div class="sec-head"><span class="no">VI</span><h2>Inspiration — the standard</h2></div>
+  <p class="lede" style="margin-bottom:2rem">Not a promise — an inspiration. What our renovation could mean on a real candidate building. <em>Drag the line.</em></p>
+  <div id="ba" style="position:relative;max-width:900px;user-select:none;border:1px solid var(--hairline-strong)">
+    <img src="../img/renovation-before.jpg" alt="Original state of a village courtyard house" style="display:block;width:100%">
+    <div id="ba-top" style="position:absolute;inset:0;overflow:hidden;width:50%">
+      <img src="../img/renovation-after.jpg" alt="The same courtyard after renovation in The Post-AI Society standard: lime plaster, sage shutters, long table with linen" style="display:block;width:900px;max-width:none;height:100%;object-fit:cover">
+    </div>
+    <div id="ba-line" style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:var(--linen);box-shadow:0 0 0 1px rgba(33,30,25,.35)"></div>
+    <input id="ba-range" type="range" min="0" max="100" value="50" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0">
+    <span style="position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;background:rgba(33,30,25,.65);color:var(--linen);padding:.35rem .7rem">After</span>
+    <span style="position:absolute;top:12px;right:12px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;background:rgba(244,240,232,.8);color:var(--ink);padding:.35rem .7rem">Before</span>
+  </div>
+  <p style="margin-top:1.5rem;font-size:.95rem;color:var(--ink-soft);max-width:42em">Lime-washed plaster, restored frescoed frieze, shutters in muted sage, ironwork renewed, blocked windows reopened — and one long table with linen and candles in the courtyard, because that is the point of the whole exercise. Restraint over spectacle: nothing added that the building did not already ask for.</p>
+  <p class="lede" style="margin-top:1.5rem;font-size:.8rem;color:var(--stone-dim);font-family:var(--sans)">Inspiration study — concept visualisation on a listed property (Monferrato candidate). Internal moodboard, not a design.</p>
+</section>
+
+<footer>
+  <span>The Post-AI Society — internal</span>
+  <span>Tuscia · Abruzzo · Puglia</span>
+  <span>October MMXXVI</span>
+</footer>
+
+<script>
+(function(){
+  const KEY='hc_inv', PASS='longtable';
+  const gate=document.getElementById('gate'), pw=document.getElementById('pw');
+  function unlock(){gate.style.display='none';document.body.classList.remove('locked')}
+  if(sessionStorage.getItem(KEY)===PASS) unlock();
+  pw.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      if(pw.value.trim().toLowerCase()===PASS){sessionStorage.setItem(KEY,PASS);unlock();}
+      else{pw.value='';pw.placeholder='try again';}
+    }
+  });
+})();
+</script>
+<script>
+(function(){var r=document.getElementById('ba-range'),t=document.getElementById('ba-top'),l=document.getElementById('ba-line');
+if(r){r.addEventListener('input',function(){t.style.width=r.value+'%';l.style.left=r.value+'%';});}})();
+</script>
+</body>
+</html>

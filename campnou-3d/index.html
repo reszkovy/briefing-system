@@ -1,0 +1,1317 @@
+<!--
+  CAMP NOU 3D — a fan-made procedural stadium seat-view concept.
+  Concept inspired by StadiView (thebuggeddev). Original code, written from scratch.
+  Not affiliated with FC Barcelona. Visual style inspired by 9campnou.com.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CAMP NOU 3D — Experience every seat</title>
+<meta name="description" content="Explore a procedural 3D Camp Nou and preview the pitch from thousands of individual seats. Fan-made concept." />
+<meta name="theme-color" content="#070b16" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500;700&family=Archivo:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#070b16;
+    --navy-2:#0c1226;
+    --grana:#a50044;
+    --blau:#004d98;
+    --blau-2:#1a5fb4;
+    --gold:#edbb00;
+    --gold-2:#ffd23f;
+    --paper:#f5f0e6;
+    --ink:#0a0a0a;
+    --dim:#8b93ab;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --head:'Anton',Impact,sans-serif;
+    --body:'Archivo',-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--navy);font-family:var(--body);color:#fff;-webkit-font-smoothing:antialiased}
+  #c{position:fixed;inset:0;display:block;touch-action:none;cursor:grab}
+  #c.grabbing{cursor:grabbing}
+  #c.pointing{cursor:pointer}
+
+  /* ---------- loader ---------- */
+  #loader{position:fixed;inset:0;z-index:60;background:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;transition:opacity .6s ease}
+  #loader.done{opacity:0;pointer-events:none}
+  .crest{width:74px;height:74px;border-radius:16px;background:linear-gradient(135deg,var(--blau) 0 50%,var(--grana) 50% 100%);box-shadow:0 0 0 3px #fff2,0 18px 60px -10px #000;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .crest::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,#ffffff2e 45%,transparent 60%);animation:shine 1.8s linear infinite}
+  @keyframes shine{to{transform:translateX(100%)}}
+  .crest span{font-family:var(--head);font-size:30px;color:var(--gold)}
+  #loadmsg{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+  #loadbar{width:min(320px,70vw);height:4px;background:#ffffff14;border-radius:2px;overflow:hidden}
+  #loadbar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--grana),var(--gold));transition:width .15s linear}
+  #loadsub{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+
+  /* ---------- hero ---------- */
+  #hero{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:flex-end;padding:min(7vh,64px) min(6vw,72px);background:linear-gradient(180deg,#070b16d9 0%,#070b164d 40%,#070b16e8 100%);opacity:0;pointer-events:none;transition:opacity .8s ease}
+  #hero.show{opacity:1;pointer-events:auto}
+  #hero.leaving{opacity:0;pointer-events:none}
+  .chips{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:9px 14px;color:#fff;display:inline-flex;align-items:center;gap:8px}
+  .chip.grana{background:var(--grana)}
+  .chip.blau{background:var(--blau)}
+  .chip b{color:var(--gold-2)}
+  #hero h1{font-family:var(--head);font-weight:400;text-transform:uppercase;font-size:clamp(52px,9.5vw,128px);line-height:.92;letter-spacing:.01em;color:#fff;max-width:14ch}
+  #hero h1 em{font-style:normal;color:var(--gold)}
+  #hero p{margin-top:20px;max-width:52ch;font-size:clamp(15px,1.6vw,19px);font-weight:500;color:#d7dcea;line-height:1.5}
+  #enter{margin-top:30px;align-self:flex-start;appearance:none;border:0;cursor:pointer;background:var(--gold);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.22em;text-transform:uppercase;padding:19px 30px;display:inline-flex;align-items:center;gap:14px;box-shadow:6px 6px 0 #000;transition:transform .15s ease,box-shadow .15s ease}
+  #enter:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #000}
+  #enter:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #000}
+  #hero .credit{margin-top:34px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:#5d6478;text-transform:uppercase}
+  #hero .credit a{color:#8b93ab;text-decoration:none;border-bottom:1px solid #8b93ab55}
+
+  /* ---------- HUD ---------- */
+  .hud{position:fixed;z-index:40;opacity:0;transition:opacity .6s ease .1s;pointer-events:none}
+  body.playing .hud{opacity:1}
+  #brand{top:22px;left:24px;display:flex;align-items:center;gap:12px;pointer-events:auto}
+  #brand .mark{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,var(--blau) 0 50%,var(--grana) 50% 100%);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:17px;color:var(--gold);box-shadow:0 0 0 2px #ffffff1c}
+  #brand .word{font-family:var(--head);font-size:21px;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+  #brand .word em{font-style:normal;color:var(--gold)}
+  #brand .tag{font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-top:2px}
+
+  #actions{top:22px;right:24px;display:flex;gap:10px;pointer-events:auto}
+
+  /* label toggles — pills (jak na standzie Kubota) */
+  #pills{top:86px;left:24px;display:flex;gap:8px;pointer-events:auto}
+  .pill{appearance:none;cursor:pointer;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:8px 16px;border-radius:999px;background:#0c1226cc;color:#fff;border:1.5px solid #ffffff36;backdrop-filter:blur(8px);transition:.18s}
+  .pill:hover{border-color:#fff;background:#141c36cc}
+  .pill.on{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+  .btn{appearance:none;cursor:pointer;white-space:nowrap;text-decoration:none;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:12px 16px;display:inline-flex;align-items:center;gap:9px;border:0;transition:transform .12s ease,box-shadow .12s ease}
+  .btn.gold{background:var(--gold);color:var(--ink);box-shadow:4px 4px 0 #000}
+  .btn.gold:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #000}
+  .btn.ghost{background:#0c1226cc;color:#fff;box-shadow:inset 0 0 0 1.5px #ffffff2e;backdrop-filter:blur(8px)}
+  .btn.ghost:hover{box-shadow:inset 0 0 0 1.5px #ffffff55}
+  .btn.grana{background:var(--grana);color:#fff;box-shadow:4px 4px 0 #000}
+
+  #hint{bottom:20px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.26em;color:#aab2c8;text-transform:uppercase;background:#070b16b8;padding:10px 18px;backdrop-filter:blur(8px);white-space:nowrap}
+  #hint b{color:var(--gold-2)}
+
+  #coords{bottom:20px;right:24px;font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:#4c5570;text-transform:uppercase;text-align:right;line-height:1.8}
+
+  /* ---------- seat panel ---------- */
+  #panel{bottom:20px;left:24px;width:300px;background:#0c1226f2;box-shadow:inset 0 0 0 1.5px #ffffff24,10px 10px 0 #00000080;backdrop-filter:blur(12px);padding:18px;transform:translateY(16px);opacity:0;transition:all .25s ease;pointer-events:none}
+  #panel.show{transform:none;opacity:1;pointer-events:auto}
+  #panel .stand{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.26em;color:var(--gold);text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+  #panel .stand .score{color:#fff;background:var(--grana);padding:3px 8px;font-size:9px}
+  #panel h3{font-family:var(--head);font-weight:400;font-size:26px;letter-spacing:.03em;margin:10px 0 4px;text-transform:uppercase}
+  #panel .meta{font-family:var(--mono);font-size:11px;color:#aab2c8;letter-spacing:.08em;line-height:1.9}
+  #panel .meta b{color:#fff}
+  #panel .price{display:flex;align-items:baseline;gap:8px;margin:12px 0 14px}
+  #panel .price .eur{font-family:var(--head);font-size:34px;color:var(--gold-2)}
+  #panel .price .per{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+  #panel .row-btns{display:flex;gap:8px}
+  #panel .row-btns .btn{flex:1;justify-content:center}
+
+  #panel .booklink{display:block;margin-top:12px;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.22em;color:var(--gold-2);text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid var(--gold-2);padding-bottom:3px;width:fit-content}
+  #panel .booklink:hover{color:#fff;border-color:#fff}
+
+  /* ticket form */
+  #ticketform{top:76px;right:24px;width:250px;background:#0c1226f2;box-shadow:inset 0 0 0 1.5px #ffffff24,10px 10px 0 #00000080;backdrop-filter:blur(12px);padding:16px;transform:translateY(-8px);opacity:0;transition:all .22s ease}
+  body.playing #ticketform{opacity:0;pointer-events:none}
+  body.playing #ticketform.show{transform:none;opacity:1;pointer-events:auto}
+  .tf-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.26em;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+  .tf-row{display:flex;gap:8px;margin-bottom:8px}
+  .tf-row input{width:100%;min-width:0;background:#070b16;border:1.5px solid #ffffff2e;color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em;padding:10px 8px;outline:none;-moz-appearance:textfield}
+  .tf-row input::-webkit-outer-spin-button,.tf-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .tf-row input:focus{border-color:var(--gold)}
+  .tf-row input::placeholder{color:#4c5570}
+  .tf-hint{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dim);margin-bottom:12px}
+  #tf-go{width:100%;justify-content:center}
+
+  /* seat-mode chip */
+  #seatchip{bottom:20px;left:50%;transform:translate(-50%,16px);display:flex;gap:10px;align-items:center;opacity:0;transition:all .3s ease;pointer-events:none}
+  #seatchip.show{transform:translate(-50%,0);opacity:1;pointer-events:auto}
+  #seatchip .info{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.2em;text-transform:uppercase;background:#070b16d9;box-shadow:inset 0 0 0 1.5px var(--gold);color:var(--gold-2);padding:13px 18px;backdrop-filter:blur(8px)}
+
+  /* tooltip */
+  #tip{position:fixed;z-index:45;pointer-events:none;background:#070b16f0;box-shadow:inset 0 0 0 1px #ffffff30,4px 4px 0 #000000a0;padding:9px 12px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.14em;color:#fff;text-transform:uppercase;opacity:0;transition:opacity .12s;white-space:nowrap}
+  #tip b{color:var(--gold-2)}
+  #tip .t2{color:var(--dim);font-size:9px;margin-top:3px}
+
+  /* toast */
+  #toast{position:fixed;z-index:55;top:24px;left:50%;transform:translate(-50%,-8px);background:var(--gold);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:12px 18px;box-shadow:5px 5px 0 #000;opacity:0;transition:all .25s ease;pointer-events:none}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  #fallback{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;background:var(--navy);color:#fff;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-align:center;padding:40px}
+
+  @media (max-width:640px){
+    #panel{left:12px;right:12px;width:auto;bottom:16px}
+    #ticketform{right:12px;left:auto;width:auto;max-width:min(280px,calc(100vw - 24px))}
+    #hint{display:none}
+    #coords{display:none}
+    #hero{padding:5vh 6vw}
+    #actions .label{display:none}
+    /* logo + top-right controls collided — drop the tagline, trim the mark */
+    #brand .tag{display:none}
+    #brand .logo9{height:26px !important}
+    #actions{gap:8px}
+    .btn{padding:11px 13px}
+    /* seat-view bar: seat info on its own row on top, the two buttons side-by-side below */
+    #seatchip,#seatchip.show{left:12px;right:12px;transform:none}
+    #seatchip{flex-flow:row wrap;align-items:stretch;gap:10px;bottom:16px}
+    #seatchip .info{flex:1 0 100%;text-align:center}
+    #seatchip .btn{flex:1 1 0;justify-content:center;padding:14px 10px}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="loader">
+  <img class="logo9" alt="9CAMPNOU" style="height:46px">
+  <div id="loadmsg">PLACING 0 SEATS…</div>
+  <div id="loadbar"><i></i></div>
+  <div id="loadsub">SPOTIFY CAMP NOU · BARCELONA · 41.3809°N 2.1228°E</div>
+</div>
+
+<div id="hero">
+  <div class="chips">
+    <span class="chip grana">◉ <b id="chip-seats">—</b>&nbsp;SEATS PLACED</span>
+    <span class="chip blau">★ 105,000 FINAL CAPACITY</span>
+    <span class="chip grana">3A GRADERIA EN OBRES → 2027</span>
+  </div>
+  <img class="logo9" alt="9CAMPNOU" style="height:clamp(30px,4.5vw,48px);align-self:flex-start;margin-bottom:16px">
+  <h1>CAMP NOU<br><em>EXPERIENCE EVERY SEAT</em></h1>
+  <p>A procedural 3D Spotify Camp Nou with the real sector layout — rings 0xx–3xx on sale, the grey 3a graderia still under construction. Click any seat or type its number to preview your matchday view. Més que un club.</p>
+  <button id="enter">ENTER THE STADIUM <span>→</span></button>
+  <div class="credit">FAN-MADE CONCEPT · NOT AFFILIATED WITH FC BARCELONA · INSPIRED BY STADIVIEW (THEBUGGEDDEV) · STYLE: 9CAMPNOU</div>
+</div>
+
+<div class="hud" id="brand">
+  <div>
+    <img class="logo9" alt="9CAMPNOU" style="height:32px;display:block">
+    <div class="tag">3D · EXPERIENCE EVERY SEAT</div>
+  </div>
+</div>
+
+<div class="hud" id="actions">
+  <button class="btn gold" id="btn-ticket"><span>⌕</span><span class="label">CHECK MY SEAT</span></button>
+  <button class="btn grana" id="btn-random"><span>◉</span><span class="label">RANDOM SEAT</span></button>
+  <button class="btn ghost" id="btn-reset"><span>⟲</span><span class="label">RESET VIEW</span></button>
+</div>
+
+<div class="hud" id="pills">
+  <button class="pill" id="pill-sectors">◫ SECTORS</button>
+  <button class="pill" id="pill-gates">⌂ GATES</button>
+</div>
+
+<div class="hud" id="hint"><b>DRAG</b> ORBIT &nbsp;·&nbsp; <b>SCROLL</b> ZOOM &nbsp;·&nbsp; <b>CLICK A SEAT</b> TO PREVIEW THE VIEW</div>
+
+<div class="hud" id="coords">SPOTIFY CAMP NOU<br>LAT 41.3809 · LON 2.1228<br>MÉS QUE UN CLUB</div>
+
+<div class="hud" id="panel">
+  <div class="stand"><span id="p-stand">TRIBUNA</span><span class="score" id="p-score">ELITE VIEW</span></div>
+  <h3 id="p-title">SEC 214 · ROW 7</h3>
+  <div class="meta" id="p-meta">SEAT <b>23</b> · TIER <b>2</b> · DIST TO CENTRE <b>84 M</b></div>
+  <div class="price"><span class="eur" id="p-price">€129</span><span class="per">/ MATCHDAY<br>CONCEPT PRICE</span></div>
+  <div class="row-btns">
+    <button class="btn gold" id="btn-sit">SIT HERE →</button>
+    <button class="btn ghost" id="btn-close">✕</button>
+  </div>
+  <a class="booklink" id="p-book" href="#" target="_blank" rel="noopener sponsored">BOOK REAL TICKETS ↗</a>
+</div>
+
+<div class="hud" id="seatchip">
+  <span class="info" id="seatchip-label">TRIBUNA · SEC 214 · ROW 7 · SEAT 23</span>
+  <a class="btn grana" id="btn-book" href="#" target="_blank" rel="noopener sponsored">BOOK TICKETS ↗</a>
+  <button class="btn gold" id="btn-exit">EXIT SEAT VIEW ✕</button>
+</div>
+
+<div class="hud" id="ticketform">
+  <div class="tf-title">CHECK YOUR SEAT</div>
+  <div class="tf-row">
+    <input id="tf-sec" type="number" inputmode="numeric" placeholder="SEC">
+    <input id="tf-row" type="number" inputmode="numeric" placeholder="ROW">
+    <input id="tf-seat" type="number" inputmode="numeric" placeholder="SEAT">
+  </div>
+  <div class="tf-hint">SEC 001–050 · 100–154 · 200–251 · 300–358<br>4XX/5XX = EN OBRES (PREVIEW)</div>
+  <button class="btn gold" id="tf-go">SHOW MY VIEW →</button>
+</div>
+
+<div id="tip"><span id="tip-1">SEC 214 · ROW 7 · SEAT 23</span><div class="t2" id="tip-2">TRIBUNA · €129</div></div>
+<div id="toast"></div>
+<div id="fallback">WEBGL IS NOT AVAILABLE IN THIS BROWSER.<br>CAMP NOU 3D NEEDS A GPU TO PLACE 50,000 SEATS.</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+"use strict";
+/* ====== CONFIG ====== */
+/* Link do bookowania biletów — podmień na swój link afiliacyjny: */
+const BOOKING_URL = "https://www.fcbarcelona.com/en/tickets/football";
+/* Logo 9CAMPNOU (base64, injected at build) */
+const LOGO_B64 = "data:image/png;base64,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";
+document.querySelectorAll(".logo9").forEach(el=>{el.src=LOGO_B64;});
+document.querySelectorAll("#btn-book,#p-book").forEach(a=>{a.href=BOOKING_URL;});
+
+const TAU = Math.PI*2;
+/* superellipse bowl profile |x/a|^N + |z/b|^N = 1 — rounded-rectangle footprint */
+const SE_N = 3, SE_P = 2/SE_N;
+function seC(t){const c=Math.cos(t);return Math.sign(c)*Math.pow(Math.abs(c),SE_P);}
+function seS(t){const s=Math.sin(t);return Math.sign(s)*Math.pow(Math.abs(s),SE_P);}
+const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const D = t => REDUCED ? 0.01 : t;
+
+/* ============================== renderer ============================== */
+const canvas = document.getElementById("c");
+let renderer;
+try{
+  renderer = new THREE.WebGLRenderer({canvas, antialias:true, powerPreference:"high-performance"});
+}catch(e){
+  document.getElementById("fallback").style.display="flex";
+  document.getElementById("loader").classList.add("done");
+  return;
+}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.75));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x070b16, 300, 700);
+
+const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.1, 1400);
+
+/* ============================== helpers ============================== */
+function canvasTex(w,h,draw,repX,repY){
+  const cv=document.createElement("canvas"); cv.width=w; cv.height=h;
+  draw(cv.getContext("2d"),w,h);
+  const t=new THREE.CanvasTexture(cv);
+  t.encoding=THREE.sRGBEncoding;
+  if(repX||repY){t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(repX||1,repY||1);}
+  t.anisotropy=4;
+  return t;
+}
+
+/* strip between two ellipse loops (partial or full) */
+function ellipseStrip(rx1,rz1,y1,rx2,rz2,y2,seg,thetaStart,thetaEnd,closed){
+  const full = (thetaEnd-thetaStart) >= TAU-1e-4;
+  const n = seg+1;
+  const pos=new Float32Array(n*2*3), uv=new Float32Array(n*2*2), idx=[];
+  for(let i=0;i<n;i++){
+    const t=thetaStart+(i/seg)*(thetaEnd-thetaStart);
+    const c=seC(t), s=seS(t);
+    pos[i*6+0]=rx1*c; pos[i*6+1]=y1; pos[i*6+2]=rz1*s;
+    pos[i*6+3]=rx2*c; pos[i*6+4]=y2; pos[i*6+5]=rz2*s;
+    uv[i*4+0]=i/seg; uv[i*4+1]=0; uv[i*4+2]=i/seg; uv[i*4+3]=1;
+    if(i<seg){const a=i*2;idx.push(a,a+1,a+2, a+1,a+3,a+2);}
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute("position",new THREE.BufferAttribute(pos,3));
+  g.setAttribute("uv",new THREE.BufferAttribute(uv,2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+function mergeBoxGeos(list){
+  /* list: [{w,h,d, x,y,z, rx}] simple merged boxes */
+  let P=[],N=[],U=[],I=[],off=0;
+  list.forEach(b=>{
+    const g=new THREE.BoxGeometry(b.w,b.h,b.d);
+    if(b.rx) g.rotateX(b.rx);
+    g.translate(b.x||0,b.y||0,b.z||0);
+    P.push(...g.attributes.position.array);
+    N.push(...g.attributes.normal.array);
+    U.push(...g.attributes.uv.array);
+    const ia=g.index.array;
+    for(let i=0;i<ia.length;i++) I.push(ia[i]+off);
+    off += g.attributes.position.count;
+  });
+  const g=new THREE.BufferGeometry();
+  g.setAttribute("position",new THREE.BufferAttribute(new Float32Array(P),3));
+  g.setAttribute("normal",new THREE.BufferAttribute(new Float32Array(N),3));
+  g.setAttribute("uv",new THREE.BufferAttribute(new Float32Array(U),2));
+  g.setIndex(I);
+  return g;
+}
+
+/* arc-length lookup for even seat spacing on an ellipse */
+function arcTable(rx,rz){
+  const N=1600, s=new Float32Array(N+1), a=new Float32Array(N+1);
+  let L=0,px=rx,pz=0;
+  for(let i=1;i<=N;i++){
+    const t=(i/N)*TAU, x=rx*seC(t), z=rz*seS(t);
+    L+=Math.hypot(x-px,z-pz); px=x; pz=z; s[i]=L; a[i]=t;
+  }
+  return {L,s,a,N};
+}
+function thetaAt(tb,d){
+  let lo=0,hi=tb.N;
+  while(lo<hi){const m=(lo+hi)>>1; if(tb.s[m]<d)lo=m+1;else hi=m;}
+  const i=Math.max(1,lo), f=(d-tb.s[i-1])/Math.max(1e-6,tb.s[i]-tb.s[i-1]);
+  return tb.a[i-1]+f*(tb.a[i]-tb.a[i-1]);
+}
+
+/* ============================== sky & ground ============================== */
+{
+  const sky = new THREE.Mesh(
+    new THREE.SphereGeometry(650,24,16),
+    new THREE.MeshBasicMaterial({side:THREE.BackSide, map: canvasTex(64,256,(x,w,h)=>{
+      const g=x.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,"#02040a"); g.addColorStop(.45,"#0a1024");
+      g.addColorStop(.8,"#101a38"); g.addColorStop(1,"#1a2547");
+      x.fillStyle=g; x.fillRect(0,0,w,h);
+    })})
+  );
+  scene.add(sky);
+
+  const starGeo=new THREE.BufferGeometry(); const sp=[];
+  for(let i=0;i<420;i++){
+    const t=Math.random()*TAU, p=Math.acos(1-Math.random()*0.62), r=600;
+    sp.push(r*Math.sin(p)*Math.cos(t), r*Math.cos(p), r*Math.sin(p)*Math.sin(t));
+  }
+  starGeo.setAttribute("position",new THREE.BufferAttribute(new Float32Array(sp),3));
+  scene.add(new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xbfd0ff,size:1.6,sizeAttenuation:false,transparent:true,opacity:.7})));
+
+  const ground=new THREE.Mesh(new THREE.CircleGeometry(640,64),
+    new THREE.MeshLambertMaterial({color:0x060911}));
+  ground.rotation.x=-Math.PI/2; ground.position.y=-0.05; scene.add(ground);
+
+  /* concourse apron around stadium */
+  const apron=new THREE.Mesh(new THREE.RingGeometry(1,1.24,96),
+    new THREE.MeshLambertMaterial({color:0x080d19}));
+  apron.scale.set(124,108,1);
+  apron.rotation.x=-Math.PI/2; apron.position.y=0.02; scene.add(apron);
+}
+
+/* ============================== lights ============================== */
+scene.add(new THREE.HemisphereLight(0x2a3560,0x05070d,0.62));
+scene.add(new THREE.AmbientLight(0x28304a,0.5));
+const key=new THREE.DirectionalLight(0xcfe0ff,0.85); key.position.set(120,220,80); scene.add(key);
+[[150,120],[-150,120],[150,-120],[-150,-120]].forEach(([x,z])=>{
+  const sp=new THREE.SpotLight(0xfff2d0,0.55,700,0.5,0.6);
+  sp.position.set(x,150,z); sp.target.position.set(0,0,0);
+  scene.add(sp,sp.target);
+});
+
+/* glow sprite texture */
+const glowTex=canvasTex(128,128,(x)=>{
+  const g=x.createRadialGradient(64,64,2,64,64,62);
+  g.addColorStop(0,"rgba(255,244,200,0.9)"); g.addColorStop(.35,"rgba(255,230,150,0.25)"); g.addColorStop(1,"rgba(255,230,150,0)");
+  x.fillStyle=g; x.fillRect(0,0,128,128);
+});
+
+/* ---------- toggleable labels (sectors / gates) ---------- */
+const sectorLabels=new THREE.Group(), gateLabels=new THREE.Group();
+sectorLabels.visible=false; gateLabels.visible=false;
+scene.add(sectorLabels,gateLabels);
+function labelSprite(text,o){
+  const w=o.w||128, h=64, r=26;
+  const tex=canvasTex(w,h,(x)=>{
+    x.clearRect(0,0,w,h);
+    x.fillStyle=o.bg; x.strokeStyle=o.border; x.lineWidth=4;
+    x.beginPath();
+    if(x.roundRect) x.roundRect(3,3,w-6,h-6,r);
+    else x.rect(3,3,w-6,h-6);
+    x.fill(); x.stroke();
+    x.font="700 "+(o.fs||30)+"px 'IBM Plex Mono',Menlo,monospace";
+    x.textAlign="center"; x.textBaseline="middle"; x.fillStyle=o.color;
+    x.fillText(text,w/2,h/2+1);
+  });
+  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false}));
+  s.scale.set(o.sx,o.sx*h/w,1);
+  return s;
+}
+
+/* ============================== pitch ============================== */
+const FIELD={L:105,W:68};
+{
+  const tex=canvasTex(1050,680,(x,w,h)=>{
+    /* striped turf */
+    for(let i=0;i<14;i++){
+      x.fillStyle = i%2 ? "#1c6b34" : "#175c2c";
+      x.fillRect(i*(w/14),0,w/14+1,h);
+    }
+    /* vignette */
+    const vg=x.createRadialGradient(w/2,h/2,h*0.3,w/2,h/2,w*0.72);
+    vg.addColorStop(0,"rgba(0,0,0,0)"); vg.addColorStop(1,"rgba(0,20,10,0.35)");
+    x.fillStyle=vg; x.fillRect(0,0,w,h);
+    /* lines: 10 px per metre */
+    x.strokeStyle="#eef5ee"; x.lineWidth=3; x.globalAlpha=.92;
+    const M=10, cx=w/2, cy=h/2;
+    x.strokeRect(1.5,1.5,w-3,h-3);
+    x.beginPath(); x.moveTo(cx,0); x.lineTo(cx,h); x.stroke();
+    x.beginPath(); x.arc(cx,cy,9.15*M,0,TAU); x.stroke();
+    x.fillStyle="#eef5ee";
+    x.beginPath(); x.arc(cx,cy,4,0,TAU); x.fill();
+    [0,1].forEach(side=>{
+      const dir = side? -1 : 1, gx = side? w : 0;
+      /* penalty box 16.5m deep, 40.32m wide */
+      x.strokeRect(side? w-16.5*M-1.5 : 1.5, cy-20.16*M, 16.5*M, 40.32*M);
+      x.strokeRect(side? w-5.5*M-1.5 : 1.5, cy-9.16*M, 5.5*M, 18.32*M);
+      x.beginPath(); x.arc(gx+dir*11*M, cy, 4,0,TAU); x.fill();
+      x.beginPath();
+      x.arc(gx+dir*11*M, cy, 9.15*M, side? Math.PI-0.93 : -0.93, side? Math.PI+0.93 : 0.93, !!side===false ? false : false);
+      x.stroke();
+    });
+    /* corner arcs */
+    [[0,0,0],[w,0,Math.PI/2],[w,h,Math.PI],[0,h,-Math.PI/2]].forEach(([ax,ay,rot])=>{
+      x.beginPath(); x.arc(ax,ay,1*M, rot, rot+Math.PI/2); x.stroke();
+    });
+  });
+  const pitch=new THREE.Mesh(new THREE.PlaneGeometry(FIELD.L,FIELD.W),
+    new THREE.MeshLambertMaterial({map:tex,polygonOffset:true,polygonOffsetFactor:-2,polygonOffsetUnits:-2}));
+  pitch.rotation.x=-Math.PI/2; pitch.position.y=0.12; scene.add(pitch);
+
+  /* bowl floor apron (dark green, superellipse fan filling the whole bowl) */
+  {
+    const SEG=120, arx=64.2, arz=48.2;
+    const pos=[0,0.004,0], idx=[];
+    for(let i=0;i<=SEG;i++){
+      const t=(i/SEG)*TAU;
+      pos.push(arx*seC(t),0.004,arz*seS(t));
+      if(i<SEG) idx.push(0,i+2,i+1);
+    }
+    const g=new THREE.BufferGeometry();
+    g.setAttribute("position",new THREE.BufferAttribute(new Float32Array(pos),3));
+    g.setIndex(idx); g.computeVertexNormals();
+    scene.add(new THREE.Mesh(g,new THREE.MeshLambertMaterial({color:0x0a2a15})));
+  }
+
+  /* goals */
+  [1,-1].forEach(s=>{
+    const mat=new THREE.MeshBasicMaterial({color:0xffffff});
+    const post=new THREE.CylinderGeometry(0.07,0.07,2.44,6);
+    const bar=new THREE.CylinderGeometry(0.07,0.07,7.32,6);
+    [-3.66,3.66].forEach(z=>{
+      const p=new THREE.Mesh(post,mat); p.position.set(s*FIELD.L/2,1.22,z); scene.add(p);
+    });
+    const b=new THREE.Mesh(bar,mat); b.rotation.x=Math.PI/2;
+    b.position.set(s*FIELD.L/2,2.44,0); scene.add(b);
+  });
+
+  /* LED ad boards */
+  const adTex=canvasTex(2048,64,(x,w,h)=>{
+    x.fillStyle="#0a1230"; x.fillRect(0,0,w,h);
+    x.font="700 34px 'IBM Plex Mono', monospace";
+    x.fillStyle="#edbb00"; x.textBaseline="middle";
+    const msg="MÉS QUE UN CLUB   ●   CAMPNOU·3D   ●   FORÇA BARÇA   ●   ";
+    let px=10; for(let k=0;k<4;k++){ x.fillText(msg,px,h/2); px+=x.measureText(msg).width; }
+  },3,1);
+  const ad=new THREE.Mesh(ellipseStrip(63.2,47.2,0.14,63.2,47.2,1.15,140,0,TAU),
+    new THREE.MeshBasicMaterial({map:adTex,side:THREE.DoubleSide}));
+  scene.add(ad);
+  window.__adTex=adTex;
+}
+
+/* ============================== bowl structure ============================== */
+const TIERS=[
+  {id:1,name:"1A GRADERIA",rows:22,rx:66,rz:50,y:1.7,dr:0.82,dy:0.46},
+  {id:2,name:"2A GRADERIA",rows:20,rx:85.5,rz:69.5,y:13.1,dr:0.78,dy:0.60},
+  {id:3,name:"3A GRADERIA",rows:24,rx:103,rz:86,y:26.6,dr:0.72,dy:0.82},
+];
+
+/* ===== REAL Spotify Camp Nou sector rings (per official 2026 seating chart) =====
+   Numbering runs Tribuna → Gol Sud → Lateral → Gol Nord (decreasing theta from 7π/4).
+   Rings 4xx/5xx = 3a graderia, closed during the Espai Barça works (reopens ~2027).
+   5xx does not exist over Tribuna (roof side). */
+const STAND_SPAN=Math.PI/2, LOOP_START=Math.PI*1.75;
+const STAND_SEQ=["TRIBUNA","GOL SUD","LATERAL","GOL NORD"];
+const RINGS=[
+  {ring:0,tier:0,r0:0, r1:9, closed:false,pad:3,base:180,counts:{"TRIBUNA":[1,11],  "GOL SUD":[12,26], "LATERAL":[27,41], "GOL NORD":[42,50]}},
+  {ring:1,tier:0,r0:10,r1:21,closed:false,pad:3,base:150,counts:{"TRIBUNA":[100,112],"GOL SUD":[113,125],"LATERAL":[126,140],"GOL NORD":[141,154]}},
+  {ring:2,tier:1,r0:0, r1:7, closed:false,pad:0,base:115,counts:{"TRIBUNA":[200,211],"GOL SUD":[212,221],"LATERAL":[222,238],"GOL NORD":[239,251]}},
+  {ring:3,tier:1,r0:8, r1:19,closed:false,pad:0,base:80, counts:{"TRIBUNA":[300,311],"GOL SUD":[312,323],"LATERAL":[324,346],"GOL NORD":[347,358]}},
+  {ring:4,tier:2,r0:0, r1:11,closed:true, pad:0,base:0,  counts:{"TRIBUNA":[400,413],"GOL SUD":[414,427],"LATERAL":[428,440],"GOL NORD":[441,457]}},
+  {ring:5,tier:2,r0:12,r1:23,closed:true, pad:0,base:0,  counts:{"GOL SUD":[521,526],"LATERAL":[527,541],"GOL NORD":[542,549]}},
+];
+function ringOf(ti,row){ return RINGS.find(g=>g.tier===ti&&row>=g.r0&&row<=g.r1); }
+function ringOfSec(n){ return RINGS.find(g=>Object.values(g.counts).some(([a,b])=>n>=a&&n<=b)); }
+function fmtSec(g,n){ return g.pad?String(n).padStart(g.pad,"0"):String(n); }
+/* stand index + loop coordinate (rad along numbering direction) */
+function standIdxOf(theta){
+  const lam=(((LOOP_START-theta)%TAU)+TAU)%TAU;
+  return {idx:Math.min(3,Math.floor(lam/STAND_SPAN)), lam};
+}
+TIERS.forEach(t=>{
+  t.rxTop=t.rx+t.rows*t.dr; t.rzTop=t.rz+t.rows*t.dr; t.yTop=t.y+t.rows*t.dy;
+});
+
+const concrete=new THREE.MeshLambertMaterial({color:0x1c2338});
+const concreteDark=new THREE.MeshLambertMaterial({color:0x131a2c});
+{
+  const SEG=140;
+  TIERS.forEach((t,i)=>{
+    /* rake slab under seats */
+    scene.add(new THREE.Mesh(
+      ellipseStrip(t.rx-1.6,t.rz-1.6,t.y-0.55, t.rxTop+0.8,t.rzTop+0.8,t.yTop-0.15,SEG,0,TAU), concrete));
+    /* front parapet wall */
+    scene.add(new THREE.Mesh(
+      ellipseStrip(t.rx-1.6,t.rz-1.6,t.y-0.55, t.rx-1.6,t.rz-1.6,t.y+0.55,SEG,0,TAU), concreteDark));
+    /* walkway + riser to next tier */
+    const nx=TIERS[i+1];
+    if(nx){
+      scene.add(new THREE.Mesh(
+        ellipseStrip(t.rxTop+0.8,t.rzTop+0.8,t.yTop-0.15, nx.rx-1.6,nx.rz-1.6,nx.y-0.55,SEG,0,TAU), concreteDark));
+    }
+  });
+  const top=TIERS[2];
+  /* rim walkway */
+  scene.add(new THREE.Mesh(
+    ellipseStrip(top.rxTop+0.8,top.rzTop+0.8,top.yTop-0.15, top.rxTop+4,top.rzTop+4,top.yTop+1.2,SEG,0,TAU), concrete));
+
+  /* facade light band (9campnou gold) */
+  scene.add(new THREE.Mesh(
+    ellipseStrip(top.rxTop+4.15,top.rzTop+4.15,top.yTop+0.55, top.rxTop+4.15,top.rzTop+4.15,top.yTop+0.95,SEG,0,TAU),
+    new THREE.MeshBasicMaterial({color:0x8a6f00})));
+
+  /* ---------- exterior shell — layered facade, wider at the base ---------- */
+  {
+    const RX=top.rxTop, RZ=top.rzTop, YT=top.yTop+1.2;
+    /* panelled wall texture (vertical mullions + seams) */
+    const wallTex=canvasTex(256,256,(x,w,h)=>{
+      const g=x.createLinearGradient(0,0,0,h);
+      g.addColorStop(0,"#1c2547"); g.addColorStop(.75,"#232e57"); g.addColorStop(1,"#31406f");
+      x.fillStyle=g; x.fillRect(0,0,w,h);
+      x.fillStyle="#0d1326";
+      for(let i=0;i<w;i+=32) x.fillRect(i,0,3,h);
+      x.fillStyle="#3a4a80";
+      for(let i=16;i<w;i+=32) x.fillRect(i,0,1,h);
+      x.fillStyle="#0d1326"; x.fillRect(0,0,w,4); x.fillRect(0,h-4,w,4);
+    });
+    wallTex.wrapS=wallTex.wrapT=THREE.RepeatWrapping; wallTex.repeat.set(64,1);
+    const wallMat=new THREE.MeshLambertMaterial({map:wallTex,side:THREE.DoubleSide});
+    const trayMat=new THREE.MeshLambertMaterial({color:0x0d1322,side:THREE.DoubleSide});
+    const glowMat=new THREE.MeshBasicMaterial({color:0xc08a38,side:THREE.DoubleSide});
+    const wall =(o,y1,y2)=>scene.add(new THREE.Mesh(ellipseStrip(RX+o,RZ+o,y1, RX+o,RZ+o,y2,SEG,0,TAU),wallMat));
+    const tray =(o1,o2,y1,y2)=>{
+      const m=new THREE.Mesh(ellipseStrip(RX+o1,RZ+o1,y1, RX+o2,RZ+o2,y2,SEG,0,TAU),trayMat);
+      m.material.side=THREE.DoubleSide; scene.add(m);
+      /* tray top plate */
+      const t=new THREE.Mesh(ellipseStrip(RX+o1,RZ+o1,y1, RX+o2,RZ+o2,y1,SEG,0,TAU),trayMat);
+      t.material.side=THREE.DoubleSide; scene.add(t);
+    };
+    const glow =(o,y1,y2)=>scene.add(new THREE.Mesh(ellipseStrip(RX+o,RZ+o,y1, RX+o,RZ+o,y2,SEG,0,TAU),glowMat));
+
+    wall(4.0, YT, 27);            /* level 3 */
+    tray(4.0, 6.3, 27, 26.2);
+    glow(5.6, 26.2, 25.0);
+    wall(6.3, 25.0, 17);          /* level 2 */
+    tray(6.3, 8.3, 17, 16.2);
+    glow(7.6, 16.2, 15.0);
+    wall(8.3, 15.0, 8);           /* level 1 */
+    tray(8.3, 10.0, 8, 7.2);
+    glow(9.3, 7.2, 6.0);
+    wall(10.0, 6.0, 0);           /* plinth */
+
+    /* entrance gates — warm glowing portals in the plinth */
+    const gateGeo=new THREE.BoxGeometry(5,3.6,0.6);
+    const gateMat=new THREE.MeshBasicMaterial({color:0xdca355});
+    const gates=new THREE.InstancedMesh(gateGeo,gateMat,16);
+    const gd=new THREE.Object3D();
+    for(let i=0;i<16;i++){
+      const th=(i/16)*TAU + 0.19;
+      const gx=(RX+9.95)*seC(th), gz=(RZ+9.95)*seS(th);
+      gd.position.set(gx,1.85,gz);
+      gd.rotation.set(0,Math.atan2(gx,gz),0);
+      gd.updateMatrix();
+      gates.setMatrixAt(i,gd.matrix);
+      /* gate label above the portal — real accesses are numbered 1–105 around the loop */
+      const accN=1+Math.round((((LOOP_START-th)%TAU+TAU)%TAU)/TAU*104);
+      const gl=labelSprite("ACCÉS "+accN,{w:224,bg:"rgba(165,0,68,0.92)",border:"#ffffff",color:"#ffffff",sx:10,fs:34});
+      gl.position.set((RX+11.6)*seC(th), 6.2, (RZ+11.6)*seS(th));
+      gateLabels.add(gl);
+    }
+    scene.add(gates);
+  }
+
+  /* sector number labels — real ring/sector layout; closed rings get grey pills */
+  RINGS.forEach(g=>{
+    const t=TIERS[g.tier];
+    const rMid=(g.r0+g.r1)/2;
+    const rx=t.rx+rMid*t.dr, rz=t.rz+rMid*t.dr, y=t.y+rMid*t.dy+2.6;
+    const tb=arcTable(rx,rz);
+    STAND_SEQ.forEach((standName,idx)=>{
+      const range=g.counts[standName];
+      if(!range) return;
+      const thFrom=LOOP_START-idx*STAND_SPAN, thTo=thFrom-STAND_SPAN;
+      const aFrom=arcOf(tb,thFrom), aTo=arcOf(tb,thTo);
+      const Dst=(((aFrom-aTo)%tb.L)+tb.L)%tb.L;
+      const count=range[1]-range[0]+1, w=Dst/count;
+      for(let k=0;k<count;k++){
+        const aC=(((aFrom-(k+0.5)*w)%tb.L)+tb.L)%tb.L;
+        const th=thetaAt(tb,aC);
+        const s=g.closed
+          ? labelSprite(fmtSec(g,range[0]+k),{bg:"rgba(30,34,44,0.9)",border:"#8b93ab",color:"#aab2c8",sx:5.6,fs:32})
+          : labelSprite(fmtSec(g,range[0]+k),{bg:"rgba(7,11,22,0.9)",border:"#edbb00",color:"#ffd23f",sx:5.6,fs:32});
+        s.position.set(rx*seC(th),y,rz*seS(th));
+        sectorLabels.add(s);
+      }
+    });
+  });
+}
+
+/* ---------- cantilever roof over Tribuna (z<0 side) ---------- */
+{
+  const t3=TIERS[2];
+  const a0=Math.PI+0.55, a1=TAU-0.55; /* z<0 arc */
+  const SEG=64;
+  const roofTop=new THREE.Mesh(
+    ellipseStrip(t3.rx+2,t3.rz+2,t3.yTop+7.5, t3.rxTop+7,t3.rzTop+7,t3.yTop+4.6,SEG,a0,a1),
+    new THREE.MeshLambertMaterial({color:0x0e1322,side:THREE.DoubleSide}));
+  scene.add(roofTop);
+  const roofUnder=new THREE.Mesh(
+    ellipseStrip(t3.rx+2,t3.rz+2,t3.yTop+7.1, t3.rxTop+7,t3.rzTop+7,t3.yTop+4.2,SEG,a0,a1),
+    new THREE.MeshLambertMaterial({color:0x2a3352,side:THREE.DoubleSide}));
+  scene.add(roofUnder);
+  /* floodlight bar along roof leading edge */
+  const bar=new THREE.Mesh(
+    ellipseStrip(t3.rx+2,t3.rz+2,t3.yTop+7.0, t3.rx+2,t3.rz+2,t3.yTop+7.45,SEG,a0,a1),
+    new THREE.MeshBasicMaterial({color:0xfff3c4,side:THREE.DoubleSide}));
+  scene.add(bar);
+  /* glow sprites along the bar */
+  for(let i=0;i<=10;i++){
+    const th=a0+(i/10)*(a1-a0);
+    const s=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:0xffedb0,transparent:true,opacity:.85,blending:THREE.AdditiveBlending,depthWrite:false}));
+    s.position.set((t3.rx+2)*seC(th), t3.yTop+7.2, (t3.rz+2)*seS(th));
+    s.scale.set(14,14,1); scene.add(s);
+  }
+  /* roof support masts */
+  const mastMat=new THREE.MeshLambertMaterial({color:0x0c1120});
+  for(let i=0;i<=6;i++){
+    const th=a0+(i/6)*(a1-a0);
+    const m=new THREE.Mesh(new THREE.BoxGeometry(1.4,10,1.4),mastMat);
+    m.position.set((t3.rxTop+6.4)*seC(th), t3.yTop-4, (t3.rzTop+6.4)*seS(th));
+    scene.add(m);
+  }
+}
+
+/* corner floodlight glows (open bowl corners, z>0) */
+[[0.45],[Math.PI-0.45]].forEach(([th])=>{
+  const t3=TIERS[2];
+  const s=new THREE.Sprite(new THREE.SpriteMaterial({map:glowTex,color:0xfff0b8,transparent:true,opacity:.75,blending:THREE.AdditiveBlending,depthWrite:false}));
+  s.position.set((t3.rxTop)*seC(th)*0.98, t3.yTop+6, (t3.rzTop)*seS(th)*0.98);
+  s.scale.set(26,26,1); scene.add(s);
+});
+
+/* ============================== seats ============================== */
+const SPACING=0.55, AISLE_EVERY=null;
+const GRANA=new THREE.Color(0x7e0c36), BLAU=new THREE.Color(0x0d3f7d),
+      GOLD=new THREE.Color(0xedbb00), WHITE=new THREE.Color(0xffffff);
+
+/* mosaic text sampler — canvas aspect matches the on-stand patch so glyphs
+   keep true proportions; font auto-fits both dimensions (no clipping) */
+function textSampler(text,aspect){
+  const W=2048, H=Math.max(96,Math.min(512,Math.round(W/aspect)));
+  const cv=document.createElement("canvas");
+  cv.width=W; cv.height=H;
+  const x=cv.getContext("2d");
+  x.clearRect(0,0,W,H);
+  x.textAlign="center"; x.textBaseline="middle"; x.fillStyle="#fff";
+  let fs=Math.round(H*0.86);
+  const family="900 __PX__px 'Arial Black','Archivo',sans-serif";
+  x.font=family.replace("__PX__",fs);
+  while(fs>10 && x.measureText(text).width > W*0.96){
+    fs-=4; x.font=family.replace("__PX__",fs);
+  }
+  x.fillText(text,W/2,H*0.54);
+  const d=x.getImageData(0,0,W,H).data;
+  return (u,v)=>{
+    const px=Math.max(0,Math.min(W-1,Math.round(u*(W-1))));
+    const py=Math.max(0,Math.min(H-1,Math.round((1-v)*(H-1))));
+    return d[(py*W+px)*4+3] > 100;
+  };
+}
+/* halfWm = half width in metres along the stand; rows = [first,last] row band.
+   Band heights: segona rows 2–10 ≈ 6.2 m, tercera rows 4–20 ≈ 11.5 m. */
+const MOSAIC = [
+  /* Segona, Lateral (z>0) — seen from Tribuna/TV side */
+  {tier:1, thetaC:Math.PI/2, halfWm:42, flip:false, sample:textSampler("MÉS QUE UN CLUB",84/10.9), rows:[3,17]},
+  /* Segona, Tribuna (z<0) — seen from Lateral */
+  {tier:1, thetaC:Math.PI*1.5, halfWm:31, flip:false, sample:textSampler("FORÇA BARÇA",62/10.9), rows:[3,17]},
+];
+/* arc length at angle theta on a row's table */
+function arcOf(tb,theta){
+  const f=(((theta%TAU)+TAU)%TAU)/TAU*tb.N;
+  const i=Math.min(tb.N-1,Math.floor(f));
+  return tb.s[i]+(tb.s[i+1]-tb.s[i])*(f-i);
+}
+
+const seatGeo=mergeBoxGeos([
+  {w:0.46,h:0.10,d:0.42,x:0,y:0.16,z:0.05},               /* pan */
+  {w:0.46,h:0.44,d:0.09,x:0,y:0.38,z:-0.16,rx:-0.12},     /* backrest */
+]);
+const seatMat=new THREE.MeshLambertMaterial({color:0xffffff});
+
+/* seat data */
+let SEATS={count:0,pos:null,theta:null,tier:null,row:null,sec:null,num:null,col:null,meshes:[],offsets:[]};
+
+function standOf(theta){ return STAND_SEQ[standIdxOf(theta).idx]; }
+/* real sector for a seat: ring + number + distance to nearest sector boundary */
+function sectorInfoAt(tb,theta,ti,row){
+  const g=ringOf(ti,row); if(!g) return null;
+  const {idx}=standIdxOf(theta);
+  const standName=STAND_SEQ[idx];
+  const range=g.counts[standName];
+  if(!range) return null; /* e.g. 5xx over Tribuna — no seats there */
+  const thFrom=LOOP_START-idx*STAND_SPAN, thTo=thFrom-STAND_SPAN;
+  const aFrom=arcOf(tb,thFrom), aTo=arcOf(tb,thTo), a=arcOf(tb,theta);
+  const D=(((aFrom-aTo)%tb.L)+tb.L)%tb.L;
+  const d=Math.min(D-1e-6,(((aFrom-a)%tb.L)+tb.L)%tb.L);
+  const count=range[1]-range[0]+1, w=D/count;
+  const k=Math.floor(d/w);
+  const inSec=d-k*w;
+  return {g,secNum:range[0]+k,standName,bDist:Math.min(inSec,w-inSec)};
+}
+
+function buildSeatPlan(){
+  const plan=[];
+  TIERS.forEach((t,ti)=>{
+    for(let r=0;r<t.rows;r++){
+      const rx=t.rx+r*t.dr, rz=t.rz+r*t.dr, y=t.y+r*t.dy;
+      const tb=arcTable(rx,rz);
+      const n=Math.floor(tb.L/SPACING);
+      plan.push({ti,r,rx,rz,y,tb,n});
+    }
+  });
+  return plan;
+}
+
+function tierMosaics(ti){ return MOSAIC.filter(m=>m.tier===ti); }
+
+function seatColor(ti,t,theta,r,rowsTotal,tb,dist,secNum){
+  /* mosaic first — sampled by arc length (metres) so letters are uniform */
+  for(const m of tierMosaics(ti)){
+    const rEnd=Math.min(m.rows[1],rowsTotal-2);
+    if(r<m.rows[0]||r>rEnd) continue;
+    let d=dist-arcOf(tb,m.thetaC);
+    if(d>tb.L/2)d-=tb.L; if(d<-tb.L/2)d+=tb.L;
+    if(Math.abs(d)<=m.halfWm){
+      let u=(d+m.halfWm)/(2*m.halfWm);
+      if(m.flip) u=1-u;
+      const v=(r-m.rows[0])/(rEnd-m.rows[0]);
+      if(m.sample(u,v)) return GOLD.clone().offsetHSL(0,0,(Math.random()-0.5)*0.03);
+    }
+  }
+  /* closed 3a graderia: bare concrete grey (mid-renovation, per real 2026 state) */
+  if(ti===2){
+    const c=new THREE.Color(0x6f7481);
+    c.offsetHSL(0,0,((r%4)-1.5)*0.01+(Math.random()-0.5)*0.02);
+    return c;
+  }
+  /* blaugrana alternating by real sector number */
+  const c=(secNum%2===0?BLAU:GRANA).clone();
+  c.offsetHSL(((secNum%5)-2)*0.004, 0, ((r%4)-1.5)*0.008 + (Math.random()-0.5)*0.012);
+  return c;
+}
+
+function placeSeats(onProgress,onDone){
+  const plan=buildSeatPlan();
+  let total=0; plan.forEach(p=>total+=p.n);
+  /* allocate */
+  const pos=new Float32Array(total*3), theta=new Float32Array(total),
+        tier=new Uint8Array(total), row=new Uint16Array(total),
+        sec=new Uint16Array(total), num=new Uint16Array(total),
+        rng=new Uint8Array(total),
+        col=new Float32Array(total*3);
+  const perTier=[0,0,0];
+  plan.forEach(p=>perTier[p.ti]+=p.n);
+  const meshes=TIERS.map((t,i)=>{
+    const m=new THREE.InstancedMesh(seatGeo,seatMat,perTier[i]);
+    m.userData.tier=i;
+    m.frustumCulled=false;
+    return m;
+  });
+  const offsets=[0,perTier[0],perTier[0]+perTier[1]];
+  const cursor=[0,0,0];
+  const dummy=new THREE.Object3D(), cTmp=new THREE.Color();
+  let gi=0, pi=0, inRow=0;
+  const secCounters={};
+
+  function step(){
+    const t0=performance.now();
+    while(pi<plan.length && performance.now()-t0<24){
+      const p=plan[pi], t=TIERS[p.ti];
+      for(;inRow<p.n;inRow++){
+        const dist=inRow*SPACING + SPACING/2;
+        const th=thetaAt(p.tb,dist);
+        /* real ring/sector; null = no stand here (5xx over Tribuna) */
+        const si=sectorInfoAt(p.tb,th,p.ti,p.r);
+        if(!si) continue;
+        /* aisle gap at real sector boundaries */
+        if(si.bDist<0.45) continue;
+        const x=p.rx*seC(th), z=p.rz*seS(th);
+        const li=offsets[p.ti]+cursor[p.ti];
+        dummy.position.set(x,p.y,z);
+        dummy.rotation.set(0,Math.atan2(x,z)+Math.PI,0);
+        dummy.updateMatrix();
+        meshes[p.ti].setMatrixAt(cursor[p.ti],dummy.matrix);
+        const c=seatColor(p.ti,t,th,p.r,t.rows,p.tb,dist,si.secNum);
+        meshes[p.ti].setColorAt(cursor[p.ti],c);
+        pos[li*3]=x; pos[li*3+1]=p.y; pos[li*3+2]=z;
+        theta[li]=th; tier[li]=p.ti; row[li]=p.r;
+        sec[li]=si.secNum; rng[li]=si.g.ring;
+        const key=si.g.ring+"-"+si.secNum+"-"+p.r;
+        secCounters[key]=(secCounters[key]||0)+1;
+        num[li]=secCounters[key];
+        col[li*3]=c.r; col[li*3+1]=c.g; col[li*3+2]=c.b;
+        cursor[p.ti]++; gi++;
+      }
+      if(inRow>=p.n){pi++;inRow=0;}
+    }
+    onProgress(gi,total);
+    /* setTimeout, not rAF — placement must progress in background tabs too */
+    if(pi<plan.length){ setTimeout(step,0); }
+    else{
+      meshes.forEach((m,i)=>{
+        m.count=cursor[i];
+        m.instanceMatrix.needsUpdate=true;
+        if(m.instanceColor) m.instanceColor.needsUpdate=true;
+        scene.add(m);
+      });
+      SEATS={count:gi,pos,theta,tier,row,sec,num,rng,col,meshes,offsets,
+             counts:[cursor[0],cursor[1],cursor[2]]};
+      onDone(gi);
+    }
+  }
+  setTimeout(step,0);
+}
+
+/* ============================== seat meta ============================== */
+function seatWorld(i){
+  return new THREE.Vector3(SEATS.pos[i*3],SEATS.pos[i*3+1],SEATS.pos[i*3+2]);
+}
+function seatInfo(i){
+  const ti=SEATS.tier[i], th=SEATS.theta[i];
+  const stand=standOf(th);
+  const g=RINGS.find(x=>x.ring===SEATS.rng[i]) || RINGS[0];
+  const secNum=SEATS.sec[i], secStr=fmtSec(g,secNum);
+  const r=SEATS.row[i]-g.r0+1, n=SEATS.num[i];
+  const p=seatWorld(i);
+  const dist=Math.hypot(p.x,p.z,p.y);
+  const lateralness=Math.abs(Math.sin(th));
+  let score=100 - (dist-46)*0.45 + lateralness*10 - SEATS.row[i]*0.3;
+  score=Math.max(35,Math.min(99,Math.round(score)));
+  const tierName=g.ring<2?"1A GRADERIA":g.ring<4?"2A GRADERIA":"3A GRADERIA · EN OBRES";
+  let price=0;
+  if(!g.closed){
+    const ringRows=g.r1-g.r0+1;
+    price=g.base*(0.75+lateralness*0.5)*(1-(SEATS.row[i]-g.r0)/(ringRows*2.6));
+    if(stand==="TRIBUNA") price*=1.3;
+    price=Math.max(29,Math.round(price/5)*5);
+  }
+  const label=g.closed?"OPENS 2027":score>=88?"ELITE VIEW":score>=74?"GREAT VIEW":score>=58?"SOLID VIEW":"EAGLE'S NEST";
+  return {i,ti,ring:g.ring,closed:g.closed,tierName,stand,sec:secNum,secStr,row:r,num:n,price,score,label,dist:Math.round(dist)};
+}
+
+/* ============================== camera control ============================== */
+const HOME={theta:2.35,phi:1.04,radius:270,ty:10};
+const orbit={theta:HOME.theta,phi:HOME.phi,radius:HOME.radius,
+             gTheta:HOME.theta,gPhi:HOME.phi,gRadius:HOME.radius};
+const target=new THREE.Vector3(0,HOME.ty,0);
+let mode="intro"; /* intro | orbit | fly | seat */
+/* debug hook (harmless in prod) */
+Object.defineProperty(window,"__cnMode",{get:()=>mode});
+let seatLook={yaw:0,pitch:0,gYaw:0,gPitch:0,base:new THREE.Vector3(),eye:new THREE.Vector3()};
+let autoRotate=true;
+
+function applyOrbit(){
+  orbit.theta+=(orbit.gTheta-orbit.theta)*0.09;
+  orbit.phi+=(orbit.gPhi-orbit.phi)*0.09;
+  orbit.radius+=(orbit.gRadius-orbit.radius)*0.09;
+  const sp=Math.sin(orbit.phi);
+  camera.position.set(
+    target.x+orbit.radius*sp*Math.cos(orbit.theta),
+    target.y+orbit.radius*Math.cos(orbit.phi),
+    target.z+orbit.radius*sp*Math.sin(orbit.theta));
+  camera.lookAt(target);
+}
+
+/* ============================== picking ============================== */
+const ray=new THREE.Raycaster();
+const mouse=new THREE.Vector2();
+let hovered=-1, selected=-1;
+
+function globalIndex(mesh,instanceId){ return SEATS.offsets[mesh.userData.tier]+instanceId; }
+function meshOf(i){
+  const ti=SEATS.tier[i];
+  return {mesh:SEATS.meshes[ti], local:i-SEATS.offsets[ti]};
+}
+function paintSeat(i,color){
+  const {mesh,local}=meshOf(i);
+  mesh.setColorAt(local,color);
+  mesh.instanceColor.needsUpdate=true;
+}
+function restoreSeat(i){
+  const {mesh,local}=meshOf(i);
+  mesh.setColorAt(local,new THREE.Color(SEATS.col[i*3],SEATS.col[i*3+1],SEATS.col[i*3+2]));
+  mesh.instanceColor.needsUpdate=true;
+}
+function pickAt(cx,cy){
+  if(!SEATS.count) return -1;
+  mouse.set((cx/innerWidth)*2-1,-(cy/innerHeight)*2+1);
+  ray.setFromCamera(mouse,camera);
+  ray.far=800;
+  const hits=ray.intersectObjects(SEATS.meshes,false);
+  if(hits.length && hits[0].instanceId!==undefined){
+    return globalIndex(hits[0].object,hits[0].instanceId);
+  }
+  return -1;
+}
+
+/* ============================== UI refs ============================== */
+const $=id=>document.getElementById(id);
+const tip=$("tip"), panel=$("panel"), seatchip=$("seatchip"), toastEl=$("toast");
+let toastT=null;
+function toast(msg,ms){
+  toastEl.textContent=msg; toastEl.classList.add("show");
+  clearTimeout(toastT); toastT=setTimeout(()=>toastEl.classList.remove("show"),ms||2200);
+}
+function showTip(x,y,info){
+  $("tip-1").innerHTML=`SEC ${info.secStr} · ROW ${info.row} · SEAT <b>${info.num}</b>`;
+  $("tip-2").textContent=info.closed?`${info.stand} · CLOSED · ${info.label}`:`${info.stand} · €${info.price} · ${info.label}`;
+  tip.style.left=Math.min(innerWidth-220,x+16)+"px";
+  tip.style.top=Math.max(10,y-14)+"px";
+  tip.style.opacity=1;
+}
+function hideTip(){tip.style.opacity=0;}
+function updatePanel(info){
+  $("p-stand").textContent=info.stand+" · "+info.tierName;
+  $("p-score").textContent=info.closed?info.label:(info.label+" · "+info.score);
+  $("p-title").textContent=`SEC ${info.secStr} · ROW ${info.row}`;
+  $("p-meta").innerHTML=`SEAT <b>${info.num}</b> · RING <b>${info.ring}XX</b> · DIST TO CENTRE <b>${info.dist} M</b>`;
+  $("p-price").textContent=info.closed?"—":"€"+info.price;
+  $("p-book").style.display=info.closed?"none":"block";
+  panel.classList.add("show");
+}
+
+/* ============================== selection ============================== */
+const SELCOL=new THREE.Color(0xffffff), HOVCOL=new THREE.Color(0xffd23f);
+function select(i){
+  if(selected>=0 && selected!==i) restoreSeat(selected);
+  selected=i;
+  if(i>=0){
+    paintSeat(i,SELCOL);
+    updatePanel(seatInfo(i));
+  }else{
+    panel.classList.remove("show");
+  }
+}
+function setHover(i){
+  if(hovered===i) return;
+  if(hovered>=0 && hovered!==selected) restoreSeat(hovered);
+  hovered=i;
+  if(i>=0 && i!==selected) paintSeat(i,HOVCOL);
+  canvas.classList.toggle("pointing",i>=0);
+  if(i<0) hideTip();
+}
+
+/* ============================== seat mode ============================== */
+let camTween=null;
+/* rAF pauses in hidden tabs — force-finish the camera tween so `mode`
+   never strands at "fly" (setTimeout still fires when throttled) */
+function ensureTweenEnds(tw,ms){
+  /* progress()<1 (not isActive()) — a tween in a hidden tab never starts at all */
+  setTimeout(()=>{ if(camTween===tw && tw.progress()<1) tw.progress(1); },ms);
+}
+function flyToSeat(i){
+  if(camTween) camTween.kill();
+  const info=seatInfo(i);
+  select(i);
+  panel.classList.remove("show");
+  hideTip(); setHover(-1);
+  const wasSeat=(mode==="seat");
+  mode="fly";
+  seatchip.classList.remove("show");
+  refreshLabels(); /* hide sector/gate badges — they'd block the pitch view */
+  const p=seatWorld(i);
+  const dir=new THREE.Vector3(-p.x,0,-p.z).normalize();
+  const eye=p.clone().add(new THREE.Vector3(0,1.15,0)).add(dir.clone().multiplyScalar(0.35));
+  seatLook.eye.copy(eye);
+  seatLook.base.set(0,1.2,0); /* pitch centre */
+  seatLook.yaw=seatLook.gYaw=0; seatLook.pitch=seatLook.gPitch=0;
+  /* start the look-lerp from where the camera actually points now (no snap) */
+  const startPos=camera.position.clone();
+  const startLook=new THREE.Vector3();
+  camera.getWorldDirection(startLook).multiplyScalar(60).add(startPos);
+  const endLook=new THREE.Vector3(0,1.2,0);
+  /* seat→seat hops arc over the bowl instead of cutting through it */
+  const lift=wasSeat?Math.min(30,8+startPos.distanceTo(eye)*0.16):0;
+  const dur=D(wasSeat?1.15:1.6);
+  const st={t:0,fov:camera.fov};
+  camTween=gsap.to(st,{t:1,fov:64,duration:dur,ease:"power3.inOut",
+    onUpdate(){
+      const pos=startPos.clone().lerp(eye,st.t);
+      pos.y+=Math.sin(st.t*Math.PI)*lift;
+      camera.position.copy(pos);
+      camera.fov=st.fov; camera.updateProjectionMatrix();
+      camera.lookAt(startLook.clone().lerp(endLook,st.t));
+    },
+    onComplete(){
+      mode="seat";
+      $("seatchip-label").textContent=`${info.stand} · SEC ${info.secStr} · ROW ${info.row} · SEAT ${info.num}`+(info.closed?" · EN OBRES":" · €"+info.price);
+      $("btn-book").style.display=info.closed?"none":"inline-flex";
+      seatchip.classList.add("show");
+      toast(info.closed?"3A GRADERIA — OPENS 2027":info.label+" — "+info.score+"/100",2600);
+    }});
+  ensureTweenEnds(camTween,dur*1000+500);
+}
+function exitSeat(){
+  if(mode!=="seat"&&mode!=="fly") return;
+  if(camTween) camTween.kill();
+  mode="fly";
+  seatchip.classList.remove("show");
+  const from={x:camera.position.x,y:camera.position.y,z:camera.position.z,fov:camera.fov,
+              tx:0,ty:1.2,tz:0};
+  camTween=gsap.to(from,{duration:D(1.4),ease:"power3.inOut",
+    x:target.x+orbit.gRadius*Math.sin(orbit.gPhi)*Math.cos(orbit.gTheta),
+    y:target.y+orbit.gRadius*Math.cos(orbit.gPhi),
+    z:target.z+orbit.gRadius*Math.sin(orbit.gPhi)*Math.sin(orbit.gTheta),
+    tx:target.x,ty:target.y,tz:target.z, fov:50,
+    onUpdate(){
+      camera.position.set(from.x,from.y,from.z);
+      camera.fov=from.fov; camera.updateProjectionMatrix();
+      camera.lookAt(from.tx,from.ty,from.tz);
+    },
+    onComplete(){
+      orbit.theta=orbit.gTheta; orbit.phi=orbit.gPhi; orbit.radius=orbit.gRadius;
+      mode="orbit";
+      refreshLabels(); /* restore badges per pill state */
+      if(selected>=0){restoreSeat(selected);selected=-1;}
+    }});
+  ensureTweenEnds(camTween,D(1.4)*1000+500);
+}
+/* random FILLED seat from the open tiers only — arrays have unfilled gap slots
+   at (0,0,0) between tier ranges (aisle/5xx skips), never index into those */
+function randomOpenIndex(){
+  const c0=SEATS.counts[0], c1=SEATS.counts[1];
+  const r=Math.floor(Math.random()*(c0+c1));
+  return r<c0 ? r : SEATS.offsets[1]+(r-c0);
+}
+function randomSeat(){
+  if(!SEATS.count||mode==="fly"||mode==="intro") return;
+  let best=-1,bestScore=-1;
+  for(let k=0;k<24;k++){
+    const i=randomOpenIndex();
+    const s=seatInfo(i).score + Math.random()*18;
+    if(s>bestScore){bestScore=s;best=i;}
+  }
+  if(best>=0) flyToSeat(best);
+}
+
+/* ============================== pointer input ============================== */
+let dragging=false, moved=false, px=0, py=0, downX=0, downY=0;
+let pinchD=-1;
+/* track pointers so a 2nd finger (pinch) can't feed the drag math — that was
+   the mobile "camera whips back and forth while zooming" bug */
+const activePointers=new Set(); let primaryId=null;
+canvas.addEventListener("pointerdown",e=>{
+  if(mode!=="orbit"&&mode!=="seat") return;
+  activePointers.add(e.pointerId);
+  if(activePointers.size>1){ dragging=false; canvas.classList.remove("grabbing"); return; }
+  primaryId=e.pointerId;
+  dragging=true; moved=false;
+  px=downX=e.clientX; py=downY=e.clientY;
+  autoRotate=false;
+  canvas.classList.add("grabbing");
+  try{canvas.setPointerCapture(e.pointerId);}catch(_){}
+});
+canvas.addEventListener("pointermove",e=>{
+  /* only the single primary pointer drives orbit/look; ignore pinch fingers */
+  if(dragging && e.pointerId===primaryId && activePointers.size===1){
+    const dx=e.clientX-px, dy=e.clientY-py;
+    px=e.clientX; py=e.clientY;
+    if(Math.abs(e.clientX-downX)+Math.abs(e.clientY-downY)>6) moved=true;
+    if(mode==="orbit"){
+      orbit.gTheta+=dx*0.0042;
+      orbit.gPhi=Math.max(0.22,Math.min(1.42,orbit.gPhi+dy*0.0035));
+    }else if(mode==="seat"){
+      seatLook.gYaw=Math.max(-1.2,Math.min(1.2,seatLook.gYaw-dx*0.0035));
+      seatLook.gPitch=Math.max(-0.5,Math.min(0.6,seatLook.gPitch+dy*0.0028));
+    }
+  }else if(!dragging && mode==="orbit" && e.pointerType==="mouse"){
+    /* hover throttled in animate() — mouse only, never touch */
+    hoverX=e.clientX; hoverY=e.clientY; hoverDirty=true;
+  }
+});
+function endPointer(e){
+  activePointers.delete(e.pointerId);
+  if(e.pointerId!==primaryId){ if(activePointers.size===0) pinchD=-1; return; }
+  primaryId=null; pinchD=-1;
+  if(!dragging) return;
+  dragging=false;
+  canvas.classList.remove("grabbing");
+  if(!moved && mode==="orbit"){
+    const i=pickAt(e.clientX,e.clientY);
+    if(i>=0){ select(i); toast("SEAT LOCKED — PRESS SIT HERE",1600); }
+    else select(-1);
+  }
+}
+canvas.addEventListener("pointerup",endPointer);
+canvas.addEventListener("pointercancel",endPointer);
+canvas.addEventListener("wheel",e=>{
+  e.preventDefault();
+  if(mode==="orbit"){
+    orbit.gRadius=Math.max(95,Math.min(540,orbit.gRadius*(1+Math.sign(e.deltaY)*0.07)));
+    autoRotate=false;
+  }
+},{passive:false});
+/* touch pinch */
+canvas.addEventListener("touchmove",e=>{
+  if(e.touches.length===2&&mode==="orbit"){
+    const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+    if(pinchD>0) orbit.gRadius=Math.max(95,Math.min(540,orbit.gRadius*(pinchD/d)));
+    pinchD=d;
+  }
+},{passive:true});
+canvas.addEventListener("touchend",()=>{pinchD=-1;},{passive:true});
+
+let hoverX=0,hoverY=0,hoverDirty=false,lastHover=0;
+
+/* keyboard */
+addEventListener("keydown",e=>{
+  if(e.target && e.target.tagName==="INPUT") return;
+  if(e.key==="Escape") exitSeat();
+  if(e.key==="r"||e.key==="R") randomSeat();
+});
+
+/* buttons */
+$("btn-random").onclick=()=>{
+  if(mode==="fly") return;
+  randomSeat(); /* hops straight seat→seat; no detour via orbit */
+};
+$("btn-reset").onclick=()=>{
+  if(mode==="seat"||mode==="fly"){exitSeat();return;}
+  autoRotate=true;
+  gsap.to(orbit,{duration:D(1.2),ease:"power2.inOut",gTheta:HOME.theta,gPhi:HOME.phi,gRadius:HOME.radius});
+  select(-1);
+};
+/* sector/gate badges only show in orbit — in seat view they'd block the pitch */
+function refreshLabels(){
+  const orbitish=(mode==="orbit"||mode==="intro");
+  sectorLabels.visible=orbitish && $("pill-sectors").classList.contains("on");
+  gateLabels.visible=orbitish && $("pill-gates").classList.contains("on");
+}
+$("pill-sectors").onclick=()=>{ $("pill-sectors").classList.toggle("on"); refreshLabels(); };
+$("pill-gates").onclick=()=>{ $("pill-gates").classList.toggle("on"); refreshLabels(); };
+$("btn-sit").onclick=()=>{ if(selected>=0) flyToSeat(selected); };
+$("btn-close").onclick=()=>select(-1);
+$("btn-exit").onclick=exitSeat;
+
+/* ---------- check-your-ticket ---------- */
+const tform=$("ticketform");
+$("btn-ticket").onclick=()=>{
+  tform.classList.toggle("show");
+  if(tform.classList.contains("show")) $("tf-sec").focus();
+};
+function findTicketSeat(){
+  const secN=parseInt($("tf-sec").value,10),
+        rowN=parseInt($("tf-row").value,10),
+        numN=parseInt($("tf-seat").value,10);
+  if(!secN&&secN!==0||!rowN||!numN){ toast("FILL SEC · ROW · SEAT"); return; }
+  const g=ringOfSec(secN);
+  if(!g){ toast("SECTORS: 001–050 · 100–154 · 200–251 · 300–358"); return; }
+  let best=-1,bestCost=Infinity;
+  const ti=g.tier;
+  const from=SEATS.offsets[ti], to=ti<2?SEATS.offsets[ti+1]:SEATS.count;
+  for(let i=from;i<to;i++){
+    if(SEATS.sec[i]!==secN||SEATS.rng[i]!==g.ring) continue;
+    const cost=Math.abs((SEATS.row[i]-g.r0)-(rowN-1))*1000+Math.abs(SEATS.num[i]-numN);
+    if(cost<bestCost){bestCost=cost;best=i;}
+  }
+  if(best<0){ toast("SECTOR NOT FOUND"); return; }
+  tform.classList.remove("show");
+  if(g.closed) toast("3A GRADERIA EN OBRES — OPENS 2027 · PREVIEW ONLY",3000);
+  else if(bestCost>0) toast(`CLOSEST SEAT: ROW ${SEATS.row[best]-g.r0+1} · SEAT ${SEATS.num[best]}`,2600);
+  flyToSeat(best); /* direct hop, also seat→seat */
+}
+$("tf-go").onclick=findTicketSeat;
+["tf-sec","tf-row","tf-seat"].forEach(id=>{
+  $(id).addEventListener("keydown",e=>{ if(e.key==="Enter") findTicketSeat(); });
+});
+
+/* ============================== loading & intro ============================== */
+const loadmsg=$("loadmsg"), loadbarI=document.querySelector("#loadbar i");
+placeSeats(
+  (done,total)=>{
+    loadmsg.textContent="PLACING "+done.toLocaleString("en-US")+" SEATS…";
+    loadbarI.style.width=(done/total*100)+"%";
+  },
+  (total)=>{
+    loadmsg.textContent=total.toLocaleString("en-US")+" SEATS PLACED";
+    loadbarI.style.width="100%";
+    $("chip-seats").textContent=total.toLocaleString("en-US");
+    setTimeout(()=>{
+      $("loader").classList.add("done");
+      $("hero").classList.add("show");
+    },400);
+  });
+
+/* intro camera drift while hero is up */
+orbit.theta=2.0; orbit.gTheta=2.0; orbit.radius=orbit.gRadius=360; orbit.phi=orbit.gPhi=1.18;
+
+$("enter").onclick=()=>{
+  const hero=$("hero");
+  hero.classList.add("leaving");
+  setTimeout(()=>hero.style.display="none",900);
+  document.body.classList.add("playing");
+  mode="orbit";
+  gsap.to(orbit,{duration:D(2.4),ease:"power3.out",
+    gTheta:HOME.theta,gPhi:HOME.phi,gRadius:HOME.radius});
+  toast("BENVINGUTS AL CAMP NOU",2400);
+};
+
+/* ============================== animate ============================== */
+const clock=new THREE.Clock();
+let frames=0,accum=0;
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=Math.min(0.05,clock.getDelta());
+  const now=performance.now();
+
+  if(mode==="intro"||mode==="orbit"){
+    if(autoRotate) orbit.gTheta+=dt*0.03;
+    applyOrbit();
+  }else if(mode==="seat"){
+    seatLook.yaw+=(seatLook.gYaw-seatLook.yaw)*0.12;
+    seatLook.pitch+=(seatLook.gPitch-seatLook.pitch)*0.12;
+    camera.position.copy(seatLook.eye);
+    const base=seatLook.base.clone().sub(seatLook.eye).normalize();
+    const sph=new THREE.Spherical().setFromVector3(base);
+    sph.theta-=seatLook.yaw; sph.phi=Math.max(0.3,Math.min(2.6,sph.phi+seatLook.pitch));
+    const dir=new THREE.Vector3().setFromSpherical(sph);
+    camera.lookAt(seatLook.eye.clone().add(dir));
+  }
+  /* mode==="fly": gsap drives camera */
+
+  /* hover pick, throttled */
+  if(mode==="orbit"&&hoverDirty&&now-lastHover>90&&!dragging){
+    lastHover=now; hoverDirty=false;
+    const i=pickAt(hoverX,hoverY);
+    setHover(i);
+    if(i>=0) showTip(hoverX,hoverY,seatInfo(i));
+  }
+
+  /* ad board scroll */
+  if(window.__adTex){window.__adTex.offset.x=(now*0.00001)%1;}
+
+  /* quality adapt */
+  accum+=dt;frames++;
+  if(accum>2){
+    const fps=frames/accum;
+    if(fps<26&&renderer.getPixelRatio()>1){renderer.setPixelRatio(1);}
+    accum=0;frames=0;
+  }
+
+  renderer.render(scene,camera);
+}
+animate();
+
+addEventListener("resize",()=>{
+  camera.aspect=innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);
+});
+})();
+</script>
+</body>
+</html>

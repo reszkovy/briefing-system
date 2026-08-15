@@ -1,0 +1,194 @@
+--- r352-os/genome/ingest.js	2026-08-08 18:26:07
++++ r352-os/genome/proposals/final-salt-plate/genome/ingest.js	2026-08-09 14:09:24
+@@ -21,6 +21,7 @@
+  */
+ 'use strict';
+ const fs = require('fs');
++const os = require('os');
+ const path = require('path');
+ const crypto = require('crypto');
+ const { execFileSync } = require('child_process');
+@@ -29,6 +30,12 @@
+ const TZ = process.env.GENOME_TZ || 'Europe/Madrid';
+ const LEDGER_DIR = path.join(G, 'ledger');
+ const { withGenomeWriteLock } = require('./lib/genome-common.js');
++const RC = require('./lib/research-contract.js');
++const APPROVAL = require('./lib/approval.js');
++const EW = require('./lib/evidence-writer.js');
++/* Rejestr zużytych nonce — POZA katalogiem ledger/, bo build.js czyta stamtąd każdy .jsonl
++   jako strumień zdarzeń. To rejestr approval, nie Ledger. */
++const NONCE_REGISTRY = path.join(G, '.approval-nonces.jsonl');
+ 
+ /* ── ZAMKNIĘTY słownik zdarzeń + wymagany payload ── */
+ const EVENT_SCHEMA = {
+@@ -111,6 +118,7 @@
+ const args = process.argv.slice(2);
+ const DRY = args.includes('--dry-run');
+ const src = args.find(a => !a.startsWith('--'));
++/* ZERO override zaufania — klucz publiczny wyłącznie z kotwicy (lib/approval.js). */
+ if (!src) { console.error('użycie: node ingest.js <pakiet.json|-> [--dry-run]'); process.exit(2); }
+ let input;
+ try { input = JSON.parse(src === '-' ? fs.readFileSync(0, 'utf8') : fs.readFileSync(src, 'utf8')); }
+@@ -118,6 +126,9 @@
+ 
+ /* ═══ 1. BRAMKA APPROVAL ═══ */
+ const proposalHash = sha(canonical({ events: input.events || [], evidence: input.evidence || [], objects: input.objects || [] }));
++/* Odcisk RZECZYWISTEGO payloadu zapisu, liczony tą samą funkcją co u wystawiającego zgodę.
++   To on jest podpisany — `proposal_hash` powyżej zostaje wyłącznie jako czytelna metadana. */
++const PAYLOAD_HASH = APPROVAL.payloadHash(input);
+ const APPROVED = !!(input.approval && input.approval.status === 'approved');
+ if (!DRY) {
+   const a = input.approval;
+@@ -127,6 +138,19 @@
+     if (!a.approved_at || isNaN(Date.parse(a.approved_at))) fail('approval.approved_at musi być poprawną datą ISO 8601');
+     if (!a.proposal_hash) fail('approval.proposal_hash wymagane');
+     else if (a.proposal_hash !== proposalHash) fail(`approval.proposal_hash NIEZGODNY z treścią pakietu — zatwierdzono inną propozycję\n      oczekiwano: ${proposalHash}\n      otrzymano:  ${a.proposal_hash}`);
++    /* ── ZGODA CZŁOWIEKA: status+approved_by+proposal_hash to POLA, które agent umie wpisać sam.
++       Wiążący jest podpis HMAC pełnego pakietu decyzyjnego kluczem spoza repo. ── */
++    if (a.package && a.package.payload_hash !== PAYLOAD_HASH)
++      fail(`approval.package.payload_hash NIE ZGADZA SIĘ z rzeczywistym payloadem {events, evidence, objects}\n      podpisano:  ${a.package.payload_hash}\n      w pakiecie: ${PAYLOAD_HASH}`);
++    if (a.package && !a.package.payload_hash)
++      fail('approval.package.payload_hash wymagane — bez niego podpis nie obejmuje tego, co zostanie zapisane');
++    if (!a.package) fail('approval.package wymagane — pełny pakiet decyzyjny podlegający podpisowi (patrz lib/research-contract.js: buildApprovalPackage)');
++    if (!a.signature) fail('approval.signature wymagane — podpis HMAC pakietu; sam status "approved" nie jest zgodą człowieka');
++    if (!a.nonce) fail('approval.nonce wymagane — bez jednorazowego nonce ten sam podpis dałoby się użyć ponownie');
++    if (a.package && a.package.project_contract) {
++      const v = APPROVAL.validateProjectContract(a.package.project_contract);
++      if (!v.ok) fail(`Project Contract niekompletny: ${v.errors.join(' · ')}`);
++    }
+   }
+ }
+ 
+@@ -161,47 +185,20 @@
+ const autoEvents = [];
+ const dedupeReport = [];
+ for (const ev of (input.evidence || [])) {
+-  const target = ev.mechanism || ev.on;
+-  if (!target) { fail('evidence bez pola mechanism'); continue; }
+-  if (!ev.project) { fail(`evidence dla ${target}: brak pola project (niezależność liczy się po project ID)`); continue; }
+-  if (!EVIDENCE_TYPES.includes(ev.type)) { fail(`evidence dla ${target}: type "${ev.type}" spoza słownika [${EVIDENCE_TYPES}]`); continue; }
+-  if (!ev.source) { fail(`evidence dla ${target}: brak source (invariant 8)`); continue; }
+-  if (ev.direction && !DIRECTIONS.includes(ev.direction)) { fail(`evidence dla ${target}: direction "${ev.direction}" spoza słownika`); continue; }
++  /* JEDNA implementacja writera Evidence — lib/evidence-writer.js. Wcześniej ta logika istniała
++     tutaj i (uproszczona) w deploy.js: dwie semantyki zapisu tego samego obiektu. */
++  const v = EW.validateEvidenceInput(ev);
++  if (!v.ok) { for (const e of v.errors) fail(e); continue; }
++  const target = v.target;
+   const file = findCard(target);
+   if (!file) { fail(`evidence: karta ${target} nie istnieje`); continue; }
+-
+   const { fm, body } = parseFM(currentRaw(file));
+-  const entries = Array.isArray(fm.evidence) ? fm.evidence.slice() : [];
+-  const conf = fm.confidence || {};
+-  const observation = ev.observation || ev.note || '';
+-  const fingerprint = ev.fingerprint || hash16(canonical({ m: target, p: ev.project, o: observation.slice(0, 200) }));
+-  const independence_key = ev.independence_key || `${ev.project}::${ev.source}`;
+-  const id = ev.id || `ev:${target.split(':')[1]}-${String(ev.project).replace(/^proj:/, '')}-${fingerprint.slice(0, 6)}`;
+-
+-  const dup = entries.find(e => e.id === id) ? 'ten sam Evidence ID'
+-    : entries.find(e => e.fingerprint && e.fingerprint === fingerprint) ? 'ten sam fingerprint (ten sam fakt)'
+-    : entries.find(e => e.independence_key && e.independence_key === independence_key) ? 'ten sam independence_key (to samo źródło+projekt)'
+-    : null;
+-  if (dup) { dedupeReport.push(`${target}: POMINIĘTO — ${dup} (${id})`); continue; }
+-  if (entries.some(e => e.project === ev.project)) dedupeReport.push(`${target}: zapisane, ale ${ev.project} już liczony — nie zwiększa liczby niezależnych projektów`);
+-
+-  entries.push({
+-    id, mechanism: target, project: ev.project, type: ev.type, date: ev.date || localParts().date,
+-    source: ev.source, observation, direction: ev.direction || 'neutral', independence_key, fingerprint,
+-    ...(ev.limitations ? { limitations: ev.limitations } : {}),
+-    ...(ev.note && ev.note !== observation ? { note: ev.note } : {}),
+-  });
+-  const types = {};
+-  for (const e of entries) types[e.type] = (types[e.type] || 0) + 1;
+-  conf.evidence_strength = {
+-    n: entries.length,
+-    projects: new Set(entries.map(e => e.project).filter(Boolean)).size,
+-    independent_sources: new Set(entries.map(e => e.independence_key).filter(Boolean)).size,
+-    types, last_confirmed: localParts().date,
+-  };
+-  const nfm = { ...fm, evidence: entries, confidence: conf, updated: localParts().date, version: (fm.version || 1) + 1 };
+-  stage(file, renderCard(nfm, body));
+-  autoEvents.push({ kind: 'evidence.added', on: target, evidence_id: id, project: ev.project, evidence_type: ev.type, source: ev.source, direction: ev.direction || 'neutral', cause: ev.cause, actor: ev.actor || 'session:ingest', provenance: ev.source, version_to: nfm.version, note: observation.slice(0, 300) });
++  const r = EW.applyEvidence(fm, ev, { today: localParts().date, actor: 'session:ingest' });
++  if (r.status === 'error') { for (const e of r.errors) fail(e); continue; }
++  if (r.status === 'skipped') { dedupeReport.push(`${target}: POMINIĘTO — ${r.reason} (${r.id})`); continue; }
++  if (r.note) dedupeReport.push(r.note);
++  stage(file, renderCard(r.fm, body));
++  autoEvents.push(r.event);
+ }
+ 
+ /* ═══ 4. OBIEKTY: create / patch / replace ═══ */
+@@ -219,7 +216,13 @@
+     const fm = { ...o }; delete fm.op; delete fm.body; delete fm.ingest_note; delete fm.cause; delete fm.actor;
+     fm.created = fm.created || d; fm.updated = d; fm.version = 1;
+     fm.relations = fm.relations || {}; fm.tags = fm.tags || [];
+-    stage(path.join(G, TYPE_DIR[o.type], o.id.split(':')[1].replace(/\//g, '-') + '.md'), renderCard(fm, o.body || ''));
++    /* DEFEKT ZNALEZIONY 09.08: ingest spłaszczał "rec:backtests/x" do "records/backtests-x.md",
++       podczas gdy CAŁE repo trzyma je w podkatalogach ("records/backtests/briefsync.md" = rec:backtests/briefsync).
++       Wdrożenie rozsypałoby Recordy po dwóch konwencjach. Zachowujemy podkatalogi; segmenty są sanitowane. */
++    const slug = o.id.split(':').slice(1).join(':');
++    const segs = slug.split('/').map(s => s.replace(/[^a-zA-Z0-9._-]/g, '-')).filter(s => s && s !== '.' && s !== '..');
++    if (!segs.length) { fail(`object.create ${o.id}: identyfikator nie daje bezpiecznej ścieżki pliku`); continue; }
++    stage(path.join(G, TYPE_DIR[o.type], ...segs.slice(0, -1), segs[segs.length - 1] + '.md'), renderCard(fm, o.body || ''));
+     autoEvents.push({ kind: 'object.created', on: o.id, actor: o.actor || 'session:ingest', provenance: 'record', cause: o.cause, version_to: 1, note: o.ingest_note || `Utworzono ${o.type} ${o.id}.` });
+     continue;
+   }
+@@ -316,7 +319,46 @@
+ /* hak testowy: wymusza okno wyścigu plan→blokada (dwa realne procesy w testach) */
+ if (process.env.GENOME_TEST_PLAN_DELAY_MS) execFileSync('sleep', [String((+process.env.GENOME_TEST_PLAN_DELAY_MS) / 1000)]);
+ 
++let NONCE_TO_CONSUME = null;
+ const lockRes = withGenomeWriteLock(G, () => {
++/* ══ ZGODA CZŁOWIEKA — WERYFIKACJA POD BLOKADĄ, PRZED PIERWSZYM ZAPISEM ══
++   Świadomie TUTAJ, nie w sekcji 1: między planowaniem a zapisem nie może być okna, w którym
++   podpis jest zweryfikowany, a nonce jeszcze wolny. Blokada serializuje sprawdzenie i zużycie. */
++if (!DRY) {
++  const a = input.approval || {};
++
++  /* 1. PONOWNE policzenie odcisku payloadu POD BLOKADĄ i porównanie z podpisanym.
++     Kolejność jest istotna: najpierw wiążemy podpis z tym, co realnie zapiszemy. */
++  const payloadNow = APPROVAL.payloadHash(input);
++  if (!a.package || a.package.payload_hash !== payloadNow) {
++    console.error(`\n✗ PAYLOAD NIE ODPOWIADA ZGODZIE — podpisano ${(a.package || {}).payload_hash}, do zapisu idzie ${payloadNow}`);
++    console.error('   Podpisany pakiet obejmuje {events, evidence, objects}. Podmiana payloadu unieważnia zgodę,');
++    console.error('   nawet jeśli zewnętrzny proposal_hash został przeliczony.');
++    return { ok: false, approval_rejected: true, payload_mismatch: true };
++  }
++
++  /* 2. WERYFIKACJA PODPISU Ed25519 całego pakietu (payload_hash jest jego częścią) */
++  const rev = APPROVAL.verifyApproval(a, input, {});
++  if (rev.state !== 'verified') {
++    console.error(`\n✗ APPROVAL / ZGODA WŁAŚCICIELA ODRZUCONA (${rev.state}): ${rev.why}`);
++    console.error('   Sam blok approval.status/approved_by/proposal_hash NIE jest zgodą — wymagany podpis Ed25519');
++    console.error(`   kluczem prywatnym właściciela (${APPROVAL.PRIVKEY_HINT}); writer ma wyłącznie klucz publiczny.`);
++    return { ok: false, approval_rejected: true };
++  }
++  /* 3. REPLAY: nonce zużywany atomowo pod tą samą blokadą */
++  let used = [];
++  if (fs.existsSync(NONCE_REGISTRY))
++    used = fs.readFileSync(NONCE_REGISTRY, 'utf8').split('\n').filter(Boolean).map(l => { try { return JSON.parse(l); } catch { return {}; } });
++  const clash = used.find(u => u.nonce === a.nonce);
++  if (clash) {
++    console.error(`\n✗ REPLAY ODRZUCONY — nonce "${a.nonce}" został już zużyty ${clash.consumed_at} przez ${clash.approved_by}`);
++    console.error(`   odcisk poprzedniego pakietu: ${clash.fingerprint}`);
++    return { ok: false, replay_rejected: true };
++  }
++  NONCE_TO_CONSUME = { nonce: a.nonce, fingerprint: rev.fingerprint, approved_by: a.approved_by,
++    consumed_at: new Date().toISOString(), phase: (a.package || {}).phase || null };
++}
++
+ /* ── RE-WERYFIKACJA POD BLOKADĄ: plan powstał PRZED blokadą, więc zanim cokolwiek
+    zapiszemy, każde wejście musi być bajtowo identyczne ze stanem z chwili planowania.
+    Różnica = ABORT przed pierwszym zapisem (nie rollback do starego backupu). ── */
+@@ -365,6 +407,11 @@
+     const prev = ledgerBackup.get(file);
+     atomicWrite(file, (prev ? prev.replace(/\n*$/, '\n') : '') + lines.join('\n') + '\n');
+   }
++  if (NONCE_TO_CONSUME) {
++    if (!ledgerBackup.has(NONCE_REGISTRY)) ledgerBackup.set(NONCE_REGISTRY, fs.existsSync(NONCE_REGISTRY) ? fs.readFileSync(NONCE_REGISTRY, 'utf8') : null);
++    const prevN = ledgerBackup.get(NONCE_REGISTRY);
++    atomicWrite(NONCE_REGISTRY, (prevN ? prevN.replace(/\n*$/, '\n') : '') + JSON.stringify(NONCE_TO_CONSUME) + '\n');
++  }
+   execFileSync('node', [path.join(G, 'build.js'), '--check'], { env: { ...process.env, GENOME_DIR: G }, stdio: 'pipe' });
+ } catch (e) {
+   const out = ((e.stdout || '') + (e.stderr || '')).toString() || e.message;

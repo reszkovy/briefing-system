@@ -1,0 +1,50 @@
+{
+  "_komentarz": "Zestaw SZKICOWY — cztery formaty wystarczające, żeby ocenić pomysł. Nagłówek jest składany na żywo (headline), bo artworku kampanii jeszcze nie ma. To nie są pliki produkcyjne: łuk jest przybliżony obrotem, a w finale wchodzi ręcznie zrobiony lockup.",
+  "brand": {
+    "orange": "#FF5B19",
+    "blue": "#009CDE",
+    "font_display": "Aptly-BoldItalic",
+    "scrim_default": { "h": 48, "alpha": 0.5, "rgb": "10,22,32" }
+  },
+  "formats": [
+    {
+      "id": "szkic_1080x1350",
+      "label": "Feed 4:5",
+      "w": 1080, "h": 1350,
+      "photo": { "focusX": 55, "focusY": 45, "zoom": 1.0 },
+      "scrim": { "h": 52, "alpha": 0.52 },
+      "headline": { "x": 74, "y": 700, "w": 900, "lead": 96, "payoff": 104 },
+      "logo": { "asset": "logo_zdrofit_small.png", "x": 757, "y": 46, "w": 280 },
+      "rtzkl": { "x": 24, "y": 1090, "w": 300 },
+      "bar": { "y": 1297, "h": 54 }
+    },
+    {
+      "id": "szkic_1080x1080",
+      "label": "Kwadrat 1:1",
+      "w": 1080, "h": 1080,
+      "photo": { "focusX": 55, "focusY": 42, "zoom": 1.0 },
+      "scrim": { "h": 55, "alpha": 0.5 },
+      "headline": { "x": 74, "y": 500, "w": 900, "lead": 90, "payoff": 98 },
+      "logo": { "asset": "logo_zdrofit_small.png", "x": 757, "y": 46, "w": 280 },
+      "bar": { "y": 1030, "h": 50 }
+    },
+    {
+      "id": "szkic_1080x1920",
+      "label": "Stories 9:16",
+      "w": 1080, "h": 1920,
+      "photo": { "focusX": 55, "focusY": 48, "zoom": 1.0 },
+      "scrim": { "h": 46, "alpha": 0.55 },
+      "headline": { "x": 70, "y": 980, "w": 940, "lead": 100, "payoff": 108 },
+      "logo": { "asset": "logo_zdrofit_small.png", "x": 740, "y": 120, "w": 280 }
+    },
+    {
+      "id": "szkic_832x416",
+      "label": "Baner WWW",
+      "w": 832, "h": 416,
+      "photo": { "focusX": 62, "focusY": 45, "zoom": 1.0 },
+      "scrim": { "h": 100, "alpha": 0.42 },
+      "headline": { "x": 44, "y": 118, "w": 560, "lead": 54, "payoff": 58 },
+      "rtzkl": { "x": 660, "y": 285, "w": 140 }
+    }
+  ]
+}

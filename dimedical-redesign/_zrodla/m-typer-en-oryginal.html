@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M-Typer – rapid mycobacterial diagnostics using FIA-MS/MS | DiMedical</title>
+<meta name="description" content="M-Typer is an innovative DiMedical diagnostic technology using tandem mass spectrometry (FIA-MS/MS) and mycolic acid analysis to identify and differentiate mycobacteria of the genus Mycobacterium (MTBC and NTM).">
+<link rel="icon" href="https://dimedical.pl/wp-content/uploads/2022/04/cropped-favicon-dimedical-02-1-270x270.png">
+<link rel="canonical" href="https://dimedical.pl/en/m-typer/">
+<link rel="alternate" hreflang="pl" href="https://dimedical.pl/m-typer/">
+<link rel="alternate" hreflang="en" href="https://dimedical.pl/en/m-typer/">
+<link rel="alternate" hreflang="x-default" href="https://dimedical.pl/m-typer/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DiMedical">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="M-Typer – rapid mycobacterial diagnostics using FIA-MS/MS | DiMedical">
+<meta property="og:description" content="M-Typer is an innovative DiMedical technology (FIA-MS/MS, mycolic acids) to identify and differentiate Mycobacterium (MTBC and NTM).">
+<meta property="og:url" content="https://dimedical.pl/en/m-typer/">
+<meta property="og:image" content="https://dimedical.pl/wp-content/uploads/2022/04/cropped-favicon-dimedical-02-1-270x270.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","name":"M-Typer – rapid mycobacterial diagnostics using FIA-MS/MS","inLanguage":"en","url":"https://dimedical.pl/en/m-typer/","about":{"@type":"MedicalDevice","name":"M-Typer Reagent Kit","alternateName":"MT-KIT-001","manufacturer":{"@type":"Organization","name":"Centrum Medycyny Klinicznej DiMedical Sp. z o.o.","url":"https://dimedical.pl/"}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#293670;        /* nagłówki */
+  --navy-deep:#132A5F;   /* tekst podstawowy */
+  --blue:#0D6EFD;        /* akcent / linki */
+  --blue-dk:#0b5ed7;
+  --lilac:#AAA2D2;
+  --bg:#F0F0F0;          /* tło strony */
+  --white:#ffffff;
+  --line:rgba(41,54,112,.16);
+  --line-soft:rgba(41,54,112,.10);
+  --muted:#5b658a;
+  --pill:999px;
+  --rcard:20px;
+  --maxw:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  margin:0;font-family:'Sen',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--navy-deep);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased;
+  position:relative;overflow-x:hidden;
+}
+/* molekularny watermark w tle (oryginalny asset) */
+body::before{
+  content:"";position:fixed;top:0;right:0;width:780px;height:100vh;z-index:0;pointer-events:none;
+  background:url('https://dimedical.pl/wp-content/themes/dimedical/public/images/bg-dna-chain.3e68eb.webp') no-repeat right top;
+  background-size:contain;opacity:.5;
+}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 40px;position:relative;z-index:1}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue-dk)}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{color:var(--navy);font-weight:700;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,4.2vw,3.4rem);font-weight:800}
+h2{font-size:clamp(1.7rem,3vw,2.4rem)}
+h3{font-size:1.25rem}
+p{margin:0 0 1rem}
+/*hardenwrap*/ .lead,.card p,.step p,.pill-row,.dl .meta strong,.pub .title,.stat .v,.platform span,.chip,.facts li{overflow-wrap:anywhere}
+em{font-style:italic}
+.eyebrow{display:inline-block;font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.lead{font-size:1.15rem;color:var(--navy-deep)}
+.muted{color:var(--muted)}
+
+/* ---------- Przyciski DiMedical 1:1 (biały pill + strzałka w kółku) ---------- */
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-weight:400;font-size:.95rem;letter-spacing:normal;text-transform:none;line-height:1;
+  padding:.4rem .5rem .4rem 1.5rem;border-radius:var(--pill);border:none;color:var(--navy);background:#fff;cursor:pointer;transition:.16s;white-space:nowrap}
+.btn .dmarrow{flex:0 0 auto;width:36px;height:36px;display:block}
+.btn .dmarrow .bgc{fill:var(--bg);transition:.16s}
+.btn .dmarrow .arr{fill:var(--navy);transition:.16s}
+.btn:hover{color:var(--blue)}
+.btn:hover .dmarrow .bgc{fill:#fff}
+.btn:hover .dmarrow .arr{fill:var(--blue)}
+.btn-outline{background:transparent}
+.btn-outline .dmarrow .bgc{fill:none;stroke:var(--navy);stroke-width:1.4}
+.btn-outline:hover .dmarrow .bgc{fill:none;stroke:var(--blue)}
+
+/* ---------- Top bar ---------- */
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:16px;padding-bottom:8px;flex-wrap:wrap;font-size:.82rem}
+.topbar a{color:var(--navy-deep);text-transform:none;font-weight:500;font-size:.78rem;letter-spacing:.03em}
+.topbar a:hover{color:var(--blue)}
+.topbar a.uc{text-transform:uppercase;font-weight:700;letter-spacing:.08em}
+.topbar .tb-right{display:flex;gap:1.8rem;align-items:center;flex-wrap:wrap}
+.topbar .lang{display:inline-flex;gap:.7rem}
+.topbar .lang a{color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.topbar .lang a.active{color:var(--navy-deep)}
+
+/* ---------- Header (biały pasek-pigułka, NIE pływający, 1:1) ---------- */
+.header-wrap{position:relative;z-index:10;padding-top:12px}
+.site-header{background:#fff;border-radius:54px;box-shadow:none;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:0 60px;min-height:108px}
+.logo img{height:44px}
+.mainnav{display:flex;gap:2rem;align-items:center}
+.mainnav>a,.mainnav .has-drop>a{color:var(--navy-deep);font-weight:400;font-size:.79rem;letter-spacing:.03em;text-transform:uppercase;position:relative;display:inline-flex;align-items:center;gap:.35rem}
+.mainnav a:hover,.mainnav a.active{color:var(--blue)}
+.mainnav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
+.has-drop{position:relative}
+.has-drop>a .caret{font-size:.6rem}
+.dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(6px);background:#fff;border-radius:18px;box-shadow:0 16px 40px rgba(19,42,95,.14);padding:10px;min-width:210px;opacity:0;visibility:hidden;transition:.18s;z-index:30}
+.has-drop:hover .dropdown,.has-drop.open .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown a{display:block;padding:.6rem 1rem;border-radius:12px;color:var(--navy);font-weight:700;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.dropdown a:hover{background:var(--bg);color:var(--blue)}
+.menu-toggle{display:none;background:var(--navy);border:none;color:#fff;width:46px;height:46px;border-radius:50%;font-size:1.1rem;cursor:pointer}
+
+/* ---------- EU strip ---------- */
+.eu-strip .container{display:flex;align-items:center;gap:1rem;padding:18px 40px 6px;font-size:.78rem;color:var(--muted)}
+.eu-strip img{height:30px}
+
+/* ---------- Hero (jasne, lekkie) ---------- */
+.hero{padding:60px 0 30px}
+.hero .container{max-width:1180px}
+.hero h1{margin-bottom:.3em}
+.hero .sub{font-size:1.05rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:1.4rem}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:3rem;align-items:start;margin-top:1.5rem}
+.hero-lead{font-size:1.18rem;color:var(--navy-deep)}
+.hero .actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.8rem}
+.facts{background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:1.8rem}
+.facts h4{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);margin-bottom:1.1rem}
+.facts ul{list-style:none;margin:0;padding:0}
+.facts li{display:flex;justify-content:space-between;gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--line-soft);font-size:.95rem}
+.facts li:last-child{border-bottom:none}
+.facts li span:first-child{color:var(--muted)}
+.facts li span:last-child{font-weight:700;color:var(--navy);text-align:right}
+
+/* ---------- Placeholdery graficzne ---------- */
+.imgph{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;background:#fff;border:2px dashed rgba(41,54,112,.32);border-radius:var(--rcard);color:var(--navy);padding:2rem;overflow:hidden}
+.imgph::before{content:"";position:absolute;inset:0;background:url('https://dimedical.pl/wp-content/themes/dimedical/public/images/bg-dna-chain.3e68eb.webp') no-repeat center/cover;opacity:.05}
+.imgph .inner{position:relative;z-index:1;max-width:460px}
+.imgph .ph-ico{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.imgph .ph-ico svg{width:26px;height:26px}
+.imgph .ph-label{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.45rem}
+.imgph .ph-hint{font-size:.95rem;color:var(--muted);margin-bottom:.85rem;line-height:1.5}
+.imgph .ph-dim{display:inline-block;font-size:.7rem;font-weight:700;color:var(--navy);background:var(--bg);border-radius:999px;padding:.3rem .9rem;letter-spacing:.05em}
+.imgph.r43{aspect-ratio:4/3}.imgph.r169{aspect-ratio:16/9}.imgph.r11{aspect-ratio:1/1}.imgph.r34{aspect-ratio:3/4}
+.imgph.band{min-height:240px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.6rem;align-items:center}
+.media3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1rem;margin-top:2.4rem}
+.stat{background:#fff;border:1px solid var(--line-soft);border-radius:18px;padding:1.1rem .8rem;text-align:center}
+.stat .k{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.4rem}
+.stat .v{font-size:1rem;font-weight:700;color:var(--navy)}
+.cap{font-size:.82rem;color:var(--muted);text-align:center;margin-top:.9rem}
+
+/* ---------- Grafiki kontekstowe (SVG, paleta DiMedical) ---------- */
+.viz{position:relative;border-radius:var(--rcard);overflow:hidden;border:1px solid var(--line-soft);background:#fff;display:block}
+.viz>svg{display:block;width:100%;height:100%}
+.viz>img{display:block;width:100%;height:100%;object-fit:cover}
+.viz.r34{aspect-ratio:3/4}
+.viz.r169{aspect-ratio:16/9}
+.viz.r43{aspect-ratio:4/3}
+.viz.band{height:300px}
+.viz .vcap{position:absolute;left:16px;bottom:14px;background:rgba(255,255,255,.86);border:1px solid var(--line-soft);border-radius:999px;padding:.34rem .9rem;font-size:.68rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em}
+.viz3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem}
+
+/* ---------- Spis sekcji (kotwice, nie-sticky) ---------- */
+.section-nav{position:sticky;top:0;z-index:40;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.section-nav .container{display:flex;flex-wrap:nowrap;gap:.45rem;padding-top:12px;padding-bottom:12px;overflow-x:auto;scrollbar-width:none}
+.section-nav .container::-webkit-scrollbar{display:none}
+.section-nav a{flex:0 0 auto;white-space:nowrap;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--navy);border:1px solid var(--line);border-radius:999px;padding:.38rem .85rem;transition:.16s}
+.section-nav a:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---------- Formularz lead-gen ---------- */
+.contact-split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:2.4rem;align-items:start;margin-top:1.4rem;text-align:left}
+.lead-form{background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:2rem}
+.lead-form .fg{margin-bottom:1.1rem}
+.lead-form .row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.1rem}
+.lead-form label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:.4rem}
+.lead-form input,.lead-form select,.lead-form textarea{width:100%;font-family:inherit;font-size:.95rem;color:var(--navy-deep);background:var(--bg);border:1px solid var(--line-soft);border-radius:12px;padding:.75rem .9rem;transition:.16s}
+.lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:none;border-color:var(--blue);background:#fff}
+.lead-form textarea{min-height:120px;resize:vertical}
+.lead-form .consent{display:flex;gap:.6rem;align-items:flex-start;font-size:.82rem;color:var(--muted);line-height:1.5}
+.lead-form .consent input{width:auto;margin-top:.25rem;flex:0 0 auto}
+.lead-form button{margin-top:.6rem}
+.contact-info{text-align:left}
+.contact-info .ci-block{margin-bottom:1.7rem}
+.contact-info h4{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-bottom:.7rem}
+.contact-info .big-contact a{display:block;font-size:1.12rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+.contact-info .actions{display:flex;flex-direction:column;align-items:stretch;gap:.6rem}
+.contact-info .btn{justify-content:space-between;border:1px solid var(--line)}
+.contact-info address{font-style:normal;color:var(--navy-deep);font-size:.95rem;line-height:1.8}
+.form-msg{margin-top:1rem;font-size:.9rem;font-weight:700;color:var(--blue);display:none}
+
+/* ---------- Sections ---------- */
+section.block{padding:56px 0}
+.section-head{max-width:820px;margin-bottom:2.4rem}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+
+/* grids */
+.grid{display:grid;gap:1.4rem}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:1.9rem;box-shadow:none}
+.card h3{font-size:1.12rem;margin-bottom:.5rem}
+.card p{margin:0;color:var(--navy-deep);font-size:.97rem}
+.card .ico{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--navy);color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1.1rem;font-weight:800}
+
+/* steps */
+.steps{display:grid;gap:1rem}
+.step{display:flex;gap:1.3rem;background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:1.5rem 1.7rem;box-shadow:none}
+.step .num{flex:0 0 48px;height:48px;border-radius:50%;border:1.5px solid var(--navy);color:var(--navy);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.step h3{font-size:1.08rem;margin-bottom:.25rem}
+.step p{margin:0;font-size:.96rem;color:var(--navy-deep)}
+
+/* feature pill rows (offer-button) */
+.pill-list{display:grid;gap:.7rem}
+.pill-list.cols{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pill-row{display:flex;align-items:center;gap:1rem;background:#fff;border:1px solid var(--navy);border-radius:var(--pill);
+  padding:1rem 1.6rem;color:var(--navy);font-weight:700;font-size:.92rem;line-height:1.4;transition:.16s;text-transform:uppercase;letter-spacing:.04em}
+.pill-row .dot{width:9px;height:9px;border-radius:50%;background:var(--blue);flex:0 0 auto}
+.pill-row.lc{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--navy-deep);font-size:.98rem}
+.pill-row.lc strong{color:var(--navy);font-weight:700}
+
+/* spec table */
+.spec{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--rcard);overflow:hidden;border:1px solid var(--line-soft);box-shadow:none}
+.spec td{padding:1rem 1.3rem;border-bottom:1px solid var(--line-soft);font-size:.97rem;vertical-align:top}
+.spec tr:last-child td{border-bottom:none}
+.spec td:first-child{font-weight:700;color:var(--navy);width:42%;text-transform:uppercase;letter-spacing:.04em;font-size:.82rem}
+
+/* platforms */
+.platforms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.2rem;margin-top:1.6rem}
+.platform{background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:1.5rem;box-shadow:none}
+.platform strong{display:block;color:var(--navy);font-size:1.08rem;margin-bottom:.3rem}
+.platform span{font-size:.88rem;color:var(--muted)}
+
+/* downloads — pill rows z tagiem PDF */
+.downloads{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.dl{display:flex;align-items:center;gap:1.1rem;background:#fff;border:1px solid var(--navy);border-radius:var(--pill);padding:.85rem 1.4rem;transition:.16s}
+.dl:hover{background:var(--navy)}
+.dl:hover .meta strong,.dl:hover .meta span,.dl:hover .arrow{color:#fff}
+.dl .tagpdf{flex:0 0 auto;font-size:.66rem;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--blue);padding:.45rem .6rem;border-radius:8px}
+.dl .tagpdf.sds{background:var(--navy)}
+.dl:hover .tagpdf.sds{background:#fff;color:var(--navy)}
+.dl .meta{flex:1;min-width:0}
+.dl .meta strong{display:block;color:var(--navy);font-size:.95rem;line-height:1.3;text-transform:uppercase;letter-spacing:.03em}
+.dl .meta span{font-size:.8rem;color:var(--muted);text-transform:none;letter-spacing:normal;font-weight:400}
+.dl .arrow{color:var(--navy);font-size:1.2rem;flex:0 0 auto}
+.placeholder-note{display:inline-block;font-size:.72rem;font-weight:700;color:#b9772a;background:#fdf3e3;border:1px solid #f3dcb4;padding:.2rem .6rem;border-radius:8px}
+
+/* video */
+.video-wrap{position:relative;background:#fff;border:1px solid var(--navy);border-radius:var(--rcard);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--navy-deep);overflow:hidden}
+.video-wrap .play{width:84px;height:84px;border-radius:50%;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
+.video-wrap .play::after{content:"";border-left:24px solid var(--navy);border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px}
+.video-inner{padding:2rem;max-width:540px}
+.video-note{font-size:.84rem;color:var(--muted);margin-top:1.1rem;max-width:840px}
+
+/* publications */
+.pub{background:#fff;border:1px solid var(--line-soft);border-left:4px solid var(--blue);border-radius:0 var(--rcard) var(--rcard) 0;padding:1.3rem 1.6rem;margin-bottom:.9rem;box-shadow:none}
+.pub .title{font-weight:700;color:var(--navy);font-size:1.02rem;margin-bottom:.25rem;line-height:1.4}
+.pub .src{font-size:.85rem;color:var(--muted);margin-bottom:.4rem}
+.pub a.link{font-size:.84rem;font-weight:700;word-break:break-word}
+
+/* certification */
+.cert{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem;margin-top:1.6rem}
+.cert .pill{background:#fff;border:1px solid var(--line-soft);border-radius:var(--rcard);padding:1.8rem;text-align:center;box-shadow:none}
+.cert .pill .big{font-size:1.35rem;font-weight:800;color:var(--blue);display:block;margin-bottom:.4rem;letter-spacing:.02em}
+.cert .pill span.lbl{font-size:.92rem;color:var(--navy-deep)}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:.7rem}
+.chip{background:#fff;border:1px solid var(--navy);border-radius:var(--pill);padding:.7rem 1.4rem;font-size:.86rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.04em}
+
+/* CTA band */
+.cta-band{background:transparent;text-align:center;padding:10px 0}
+.cta-band h2{color:var(--navy)}
+.cta-band p{color:var(--muted);max-width:680px;margin:0 auto 1.8rem}
+.cta-band .actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.cta-band .contact-line{margin-top:1.9rem;font-size:1.18rem}
+.cta-band .contact-line a{color:var(--navy);font-weight:700;letter-spacing:.02em}
+
+/* disclaimer */
+.disclaimer{background:#fff;border:1px solid var(--line-soft);border-left:5px solid var(--lilac);border-radius:0 var(--rcard) var(--rcard) 0;padding:1.8rem 2rem;box-shadow:none}
+.disclaimer h3{color:var(--navy)}
+.disclaimer p{margin-bottom:.5rem;color:var(--navy-deep)}
+
+/* motto */
+.motto{text-align:center;padding:30px 0 10px}
+.motto .lat{font-size:1.5rem;font-weight:800;color:var(--navy);font-style:italic}
+.motto .pl{font-size:.95rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- Footer (1:1 z serwisem) ---------- */
+.site-footer{position:relative;z-index:1;padding-top:30px}
+.partners{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-bottom:40px;border-bottom:1px solid var(--line-soft)}
+.partners .col:first-child{border-right:1px solid var(--line-soft);padding-right:48px}
+.partners .col:last-child{padding-left:48px}
+.partners h4{font-size:.92rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--navy);margin-bottom:1.6rem}
+.plogos{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem 2.2rem}
+.plogos img{height:52px;width:auto;filter:grayscale(1);opacity:.65;transition:.18s}
+.plogos img:hover{filter:none;opacity:1}
+.locations{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:44px 0}
+.locations .loc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:1.4rem;align-items:center}
+.locations .loc:first-child{border-right:1px solid var(--line-soft);padding-right:48px}
+.locations .loc:last-child{padding-left:48px}
+.loc .lbl{display:inline-block;border:1px solid var(--navy);border-radius:var(--pill);padding:.3rem 1.1rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);margin-bottom:.9rem}
+.loc address{font-style:normal;color:var(--navy-deep);font-size:.92rem;line-height:1.85}
+.loc h3{font-size:1.45rem;margin:.2rem 0 .5rem}
+.loc .maplink{display:inline-flex;align-items:center;gap:.8rem;margin-top:1.1rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--navy)}
+.loc .maplink .dmarrow{width:34px;height:34px;flex:0 0 auto}
+.loc .maplink .dmarrow .bgc{fill:none;stroke:var(--navy);stroke-width:1.3}
+.loc .maplink .dmarrow .arr{fill:var(--navy)}
+.loc .maplink:hover{color:var(--blue)}
+.loc .maplink:hover .dmarrow .bgc{stroke:var(--blue)}
+.loc .maplink:hover .dmarrow .arr{fill:var(--blue)}
+.loc .mapimg img{border-radius:18px;width:100%}
+.foot-links{display:flex;flex-wrap:wrap;gap:1.4rem 2.6rem;padding:30px 0 36px}
+.foot-links a{color:var(--navy);font-weight:400;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}
+.foot-links a:hover{color:var(--blue)}
+.foot-wave{display:block;width:100%;height:auto;margin-top:6px}
+.foot-credit{background:#fff;padding:6px 0 34px}
+.foot-credit .container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;font-size:.72rem;color:var(--navy-deep);text-transform:uppercase;letter-spacing:.04em}
+
+section[id]{scroll-margin-top:110px}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .grid-3,.grid-2,.downloads,.cert,.platforms,.pill-list.cols,.hero-grid,.locations,.locations .loc,.partners,.split,.media3,.contact-split,.lead-form .row2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .partners .col:first-child,.locations .loc:first-child{border-right:none;padding-right:0;border-bottom:1px solid var(--line-soft);padding-bottom:32px;margin-bottom:32px}
+  .partners .col:last-child,.locations .loc:last-child{padding-left:0}
+  .mainnav{display:none}
+  .menu-toggle{display:flex;align-items:center;justify-content:center}
+  .site-header{min-height:84px;padding:0 24px}
+  body::before{opacity:.25}
+  .container{padding:0 22px}
+  .eu-strip .container{padding:18px 22px 6px}
+}
+@media(max-width:560px){
+  .cta-band{padding:40px 24px}
+  .topbar .tb-left{display:none}
+  .site-header{border-radius:30px;padding:12px 16px 12px 20px}
+  .logo img{height:38px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="container">
+    <div class="tb-left"><span class="lang"><a href="m-typer.html">PL</a> <a href="m-typer-en.html" class="active">EN</a></span></div>
+    <div class="tb-right">
+      <a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a>
+      <a href="tel:+48502660480">+48 502 660 480</a>
+      <a class="uc" href="https://www.facebook.com/DiMedical.Lodz" target="_blank" rel="noopener">Facebook</a>
+      <a class="uc" href="https://www.linkedin.com/company/dimedical/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<div class="header-wrap">
+  <div class="container">
+    <header class="site-header">
+      <a class="logo" href="https://dimedical.pl/" aria-label="DiMedical — home">
+        <img src="https://dimedical.pl/wp-content/themes/dimedical/public/images/dimedical-logo-new.svg" alt="DiMedical">
+      </a>
+      <nav class="mainnav">
+        <a href="https://dimedical.pl/m-typer/" class="active">M-Typer</a>
+        <a href="https://dimedical.pl/o-nas/">About</a>
+        <a href="https://dimedical.pl/aktualnosci/">News</a>
+        <span class="has-drop">
+          <a href="#">Offer <span class="caret">▾</span></a>
+          <span class="dropdown">
+            <a href="https://dimedical.pl/gruzlica/">Tuberculosis</a>
+            <a href="https://dimedical.pl/mikrobiologia/">Microbiology</a>
+            <a href="https://dimedical.pl/badania-br/">R&amp;D</a>
+          </span>
+        </span>
+        <a href="https://dimedical.pl/cennik/">Pricing</a>
+        <a href="https://dimedical.pl/kontakt/">Location</a>
+        <a href="https://dimedical.pl/kontakt/">Contact</a>
+      </nav>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+    </header>
+  </div>
+</div>
+
+<!-- ===== EU FUNDS ===== -->
+<div class="eu-strip">
+  <div class="container">
+    <img src="https://dimedical.pl/wp-content/themes/dimedical/public/images/eu-funds-logo.svg" alt="Fundusze Europejskie">
+    <span>Research and development project POIR.01.01.01-00-0798/16 “Research and development work on an innovative method for the diagnosis of tuberculosis and other mycobacterioses”.</span>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <h1>M-Typer</h1>
+    <p class="sub">Rapid mycobacterial diagnostics using FIA-MS/MS</p>
+    <div class="hero-grid">
+      <div>
+        <p class="hero-lead">An innovative diagnostic technology developed by DiMedical, using tandem mass spectrometry to identify bacteria of the genus <em>Mycobacterium</em> — including mycobacteria of the <em>Mycobacterium tuberculosis complex</em> and non-tuberculous mycobacteria (NTM).</p>
+        <p class="muted">The technology is based on the analysis of mycolic acids — specific lipids of the mycobacterial cell wall that serve as a characteristic biochemical marker for this group of microorganisms. The solution was created for diagnostic laboratories, reference centres, scientific institutions and implementation partners.</p>
+        <div class="actions">
+          <a href="#kontakt" class="btn">Contact us <svg class="dmarrow" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="15"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+          <a href="#dokumenty" class="btn btn-outline">Download documentation <svg class="dmarrow" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="15"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+        </div>
+      </div>
+      <figure class="viz r34" data-midjourney="Premium biotech hero visual for a tuberculosis diagnostics technology, a triple-quadrupole tandem mass spectrometer abstracted with glowing mass-spectrum peaks, hexagonal mycobacterium cell and DNA helix, deep navy #132A5F and #293670 with electric blue #0D6EFD accents on a subtle gradient, clean minimalist medical-tech, soft studio lighting, scientific, high detail, vertical composition --ar 3:4 --style raw"><img src="https://cdn.midjourney.com/a7008b7b-f801-4bd4-9008-39ff9214cf64/0_3_640_N.webp?method=shortest" alt="M-Typer · FIA-MS/MS" loading="lazy"><figcaption class="vcap">M-Typer · FIA-MS/MS</figcaption></figure>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">Method</div><div class="v">FIA-MS/MS</div></div>
+      <div class="stat"><div class="k">Marker</div><div class="v">Mycolic acids</div></div>
+      <div class="stat"><div class="k">Scope</div><div class="v">MTBC &amp; NTM</div></div>
+      <div class="stat"><div class="k">Status</div><div class="v">CE / IVD</div></div>
+      <div class="stat"><div class="k">Patent</div><div class="v">EP3978617B1</div></div>
+      <div class="stat"><div class="k">Manufacturer</div><div class="v">DiMedical</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SPIS SEKCJI (kotwice) ===== -->
+<nav class="section-nav" aria-label="Section index">
+  <div class="container">
+    <a href="#technologia">Technology</a>
+    <a href="#jak-dziala">How it works</a>
+    <a href="#korzysci">Benefits</a>
+    <a href="#kompatybilnosc">Compatibility</a>
+    <a href="#reagent-kit">Reagent Kit</a>
+    <a href="#dokumenty">Documents</a>
+    <a href="#publikacje">Publications</a>
+    <a href="#kontakt">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== CZYM JEST ===== -->
+<section class="block" id="technologia">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Technology</span>
+      <h2>What is M-Typer technology?</h2>
+      <p class="lead">M-Typer uses mycolic acids as markers for the presence and differentiation of bacteria of the genus <em>Mycobacterium</em>.</p>
+      <p class="muted">Mycolic acids are long-chain fatty acids that constitute a key structural component of the mycobacterial cell wall. Their profile differs between species and groups of mycobacteria, which is why it can be used for the identification and differentiation of mycobacteria.</p>
+    </div>
+    <figure class="viz band" data-midjourney="Scientific cross-section infographic of a mycobacterium cell wall, clearly highlighting the mycolic acid layer with lipid tails, labeled layers (capsule, mycolic acids, arabinogalactan, peptidoglycan, membrane), clean flat medical illustration, navy #293670 line work with #0D6EFD accents on light #F6F8FC, panoramic banner --ar 16:5" style="margin-bottom:2rem"><img src="https://cdn.midjourney.com/224943ac-1543-4f8b-9ae0-8ae45876ac55/0_2_640_N.webp?method=shortest" alt="Cell wall · mycolic acids" loading="lazy"><figcaption class="vcap">Cell wall · mycolic acids</figcaption></figure>
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="ico">01</div>
+        <h3>Isolation of mycolic acids</h3>
+        <p>Extraction of the characteristic cell-wall lipids of mycobacteria from the tested material.</p>
+      </div>
+      <div class="card">
+        <div class="ico">02</div>
+        <h3>FIA-MS/MS analysis</h3>
+        <p>Flow injection analysis coupled with tandem mass spectrometry.</p>
+      </div>
+      <div class="card">
+        <div class="ico">03</div>
+        <h3>Profile interpretation</h3>
+        <p>Analysis of the result using dedicated M-Typer Software.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:1.6rem">The technology can support the detection of infections caused by mycobacteria of the genus <em>Mycobacterium</em>, including the <em>Mycobacterium tuberculosis complex</em> and non-tuberculous mycobacteria.</p>
+  </div>
+</section>
+
+<!-- ===== JAK DZIAŁA ===== -->
+<section class="block" id="jak-dziala">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Process</span>
+      <h2>How does M-Typer work?</h2>
+      <p class="muted">The process consists of five key stages — from sample preparation to result interpretation.</p>
+    </div>
+    <div class="workflow-full" style="margin:.5rem 0 2rem"><svg style="width:100%;height:auto;display:block" viewBox="0 122 1200 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FIA-MS/MS process diagram">
+<rect width="1200" height="540" fill="none"/>
+<g fill="#293670" opacity=".05"><circle cx="555.6" cy="201.6" r="1.3"/><circle cx="1039.9" cy="3.5" r="2.0"/><circle cx="1078.0" cy="43.6" r="2.1"/><circle cx="740.0" cy="22.1" r="1.8"/><circle cx="844.2" cy="244.1" r="2.5"/><circle cx="188.6" cy="128.5" r="1.2"/><circle cx="607.5" cy="498.9" r="2.2"/><circle cx="929.1" cy="207.2" r="2.5"/><circle cx="122.0" cy="157.2" r="2.3"/><circle cx="870.8" cy="227.7" r="1.2"/><circle cx="320.1" cy="113.3" r="1.6"/><circle cx="971.4" cy="107.7" r="2.8"/><circle cx="1055.2" cy="29.6" r="1.8"/><circle cx="590.1" cy="12.7" r="1.8"/><circle cx="1087.7" cy="60.5" r="2.2"/><circle cx="145.5" cy="312.5" r="2.8"/><circle cx="243.7" cy="4.5" r="1.2"/><circle cx="647.7" cy="9.4" r="1.2"/><circle cx="596.1" cy="497.3" r="1.8"/><circle cx="477.8" cy="344.9" r="1.2"/><circle cx="695.8" cy="93.2" r="2.2"/><circle cx="1150.0" cy="29.3" r="2.1"/><circle cx="727.7" cy="80.6" r="1.5"/><circle cx="1193.9" cy="538.9" r="1.2"/><circle cx="846.6" cy="513.5" r="1.5"/><circle cx="733.4" cy="23.2" r="1.7"/></g>
+<text x="160" y="150" font-family="Sen,sans-serif" font-size="20" font-weight="700" fill="#0D6EFD" letter-spacing="2">WORKFLOW FIA-MS/MS</text>
+<line x1="218.0" y1="300" x2="308.0" y2="300" stroke="#7fb0ff" stroke-width="3"/><path d="M306.0,293 L320.0,300 L306.0,307 Z" fill="#0D6EFD"/><g transform="translate(160.0,300)"><circle r="52" fill="#293670"/><circle r="52" fill="none" stroke="#0D6EFD" stroke-width="2"/><g transform="translate(0,-2) scale(1.05)"><path d="M0,-20 C12,-2 12,18 0,18 C-12,18 -12,-2 0,-20 Z" fill="none" stroke="#fff" stroke-width="2.4"/></g><circle cx="40" cy="-40" r="15" fill="#0D6EFD"/><text x="40" y="-34" text-anchor="middle" font-family="Sen,sans-serif" font-size="16" font-weight="800" fill="#fff">1</text></g><text x="160.0" y="392" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">Sample</text><text x="160.0" y="414" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">preparation</text><line x1="438.0" y1="300" x2="528.0" y2="300" stroke="#7fb0ff" stroke-width="3"/><path d="M526.0,293 L540.0,300 L526.0,307 Z" fill="#0D6EFD"/><g transform="translate(380.0,300)"><circle r="52" fill="#293670"/><circle r="52" fill="none" stroke="#0D6EFD" stroke-width="2"/><g transform="translate(0,-2) scale(1.05)"><path d="M-7,-18 h14 v8 l10,22 a4,4 0 0 1 -3.6,5.6 h-26.8 a4,4 0 0 1 -3.6,-5.6 l10,-22 Z" fill="none" stroke="#fff" stroke-width="2.4"/></g><circle cx="40" cy="-40" r="15" fill="#0D6EFD"/><text x="40" y="-34" text-anchor="middle" font-family="Sen,sans-serif" font-size="16" font-weight="800" fill="#fff">2</text></g><text x="380.0" y="392" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">Isolation of</text><text x="380.0" y="414" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">mycolic acids</text><line x1="658.0" y1="300" x2="748.0" y2="300" stroke="#7fb0ff" stroke-width="3"/><path d="M746.0,293 L760.0,300 L746.0,307 Z" fill="#0D6EFD"/><g transform="translate(600.0,300)"><circle r="52" fill="#293670"/><circle r="52" fill="none" stroke="#0D6EFD" stroke-width="2"/><g transform="translate(0,-2) scale(1.05)"><rect x="-20" y="-14" width="40" height="28" rx="4" fill="none" stroke="#fff" stroke-width="2.4"/><line x1="-20" y1="2" x2="20" y2="2" stroke="#fff" stroke-width="2.4"/><circle cx="-12" cy="-6" r="2.6" fill="#fff"/></g><circle cx="40" cy="-40" r="15" fill="#0D6EFD"/><text x="40" y="-34" text-anchor="middle" font-family="Sen,sans-serif" font-size="16" font-weight="800" fill="#fff">3</text></g><text x="600.0" y="392" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">FIA-MS/MS</text><text x="600.0" y="414" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">analysis</text><line x1="878.0" y1="300" x2="968.0" y2="300" stroke="#7fb0ff" stroke-width="3"/><path d="M966.0,293 L980.0,300 L966.0,307 Z" fill="#0D6EFD"/><g transform="translate(820.0,300)"><circle r="52" fill="#293670"/><circle r="52" fill="none" stroke="#0D6EFD" stroke-width="2"/><g transform="translate(0,-2) scale(1.05)"><polyline points="-20,12 -12,-6 -4,8 4,-16 12,4 20,-10" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="40" cy="-40" r="15" fill="#0D6EFD"/><text x="40" y="-34" text-anchor="middle" font-family="Sen,sans-serif" font-size="16" font-weight="800" fill="#fff">4</text></g><text x="820.0" y="392" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">Mycolic acid</text><text x="820.0" y="414" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">profiling</text><g transform="translate(1040.0,300)"><circle r="52" fill="#293670"/><circle r="52" fill="none" stroke="#0D6EFD" stroke-width="2"/><g transform="translate(0,-2) scale(1.05)"><rect x="-16" y="-20" width="32" height="40" rx="3" fill="none" stroke="#fff" stroke-width="2.4"/><polyline points="-8,-6 -3,0 8,-11" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="40" cy="-40" r="15" fill="#0D6EFD"/><text x="40" y="-34" text-anchor="middle" font-family="Sen,sans-serif" font-size="16" font-weight="800" fill="#fff">5</text></g><text x="1040.0" y="392" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">Result</text><text x="1040.0" y="414" text-anchor="middle" font-family="Sen,sans-serif" font-size="18" font-weight="700" fill="#293670">interpretation</text>
+</svg></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><h3>Sample preparation</h3><p>Biological or culture-derived material is prepared for mycolic acid isolation. In the case of sputum, the procedure includes prior preparation and liquefaction of the sample.</p></div></div>
+      <div class="step"><div class="num">2</div><div><h3>Isolation of mycolic acids</h3><p>Using the M-Typer Reagent Kit: washing, alkaline hydrolysis, neutralisation, liquid–liquid extraction and preparation of the extract for analysis.</p></div></div>
+      <div class="step"><div class="num">3</div><div><h3>FIA-MS/MS analysis</h3><p>The extract is analysed by flow injection analysis with tandem mass spectrometry, monitoring selected MRM transitions characteristic of mycolic acids.</p></div></div>
+      <div class="step"><div class="num">4</div><div><h3>Mycolic acid profiling</h3><p>The system generates an analytical profile of the mycolic acids present in the tested sample.</p></div></div>
+      <div class="step"><div class="num">5</div><div><h3>Result interpretation</h3><p>The profile is interpreted using dedicated M-Typer Software, which supports the analysis of the obtained result.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KORZYŚCI ===== -->
+<section class="block" id="korzysci">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Benefits</span>
+      <h2>Key benefits of the technology</h2>
+      <p class="muted">A modern solution for laboratories involved in mycobacterial diagnostics.</p>
+    </div>
+    <div class="pill-list cols">
+      <div class="pill-row"><span class="dot"></span>Rapid mycolic acid profile analysis with FIA-MS/MS</div>
+      <div class="pill-row"><span class="dot"></span>Support for detecting mycobacteria of the genus <em>Mycobacterium</em></div>
+      <div class="pill-row"><span class="dot"></span>Ability to differentiate MTBC and NTM</div>
+      <div class="pill-row"><span class="dot"></span>Stable markers of the mycobacterial cell wall</div>
+      <div class="pill-row"><span class="dot"></span>Workflow for reference laboratories</div>
+      <div class="pill-row"><span class="dot"></span>Compatibility with LC-MS/MS infrastructure</div>
+      <div class="pill-row"><span class="dot"></span>Suitability for high-throughput workflows</div>
+      <div class="pill-row"><span class="dot"></span>A dedicated reagent kit</div>
+      <div class="pill-row"><span class="dot"></span>Interpretation supported by M-Typer Software</div>
+      <div class="pill-row"><span class="dot"></span>Technology developed by DiMedical</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KOMPATYBILNOŚĆ ===== -->
+<section class="block" id="kompatybilnosc">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Infrastructure</span>
+      <h2>Instrument compatibility</h2>
+      <p class="muted">M-Typer has been developed for laboratories equipped with high-sensitivity triple quadrupole tandem mass spectrometers operating in ESI ionisation mode and enabling FIA-MS/MS analysis with MRM transition monitoring.</p>
+    </div>
+    <div class="platforms">
+      <div class="platform"><strong>SCIEX QTRAP® 6500</strong><span>Triple quadrupole tandem mass spectrometer</span></div>
+      <div class="platform"><strong>Shimadzu LCMS-8050</strong><span>Triple quadrupole tandem mass spectrometer</span></div>
+      <div class="platform"><strong>Equivalent systems</strong><span>Other LC-MS/MS systems meeting the analytical requirements of the method</span></div>
+    </div>
+    <div class="viz3" style="margin-top:1.6rem"><figure class="viz r43" data-midjourney="Product photograph of a SCIEX QTRAP 6500 triple quadrupole tandem mass spectrometer in a modern laboratory, clean navy and blue tones, soft studio lighting, light background, premium analytical instrument --ar 4:3 --style raw"><img src="https://cdn.midjourney.com/c88997fa-8d89-4219-8509-1008c4eff5fa/0_0_640_N.webp?method=shortest" alt="SCIEX QTRAP® 6500" loading="lazy"><figcaption class="vcap">SCIEX QTRAP® 6500</figcaption></figure><figure class="viz r43" data-midjourney="Product photograph of a Shimadzu LCMS-8050 triple quadrupole LC-MS/MS system in a modern laboratory, clean navy tones with blue accents, soft studio lighting, light background, premium analytical instrument --ar 4:3 --style raw"><img src="https://cdn.midjourney.com/da274fbc-3d4a-4309-89c3-21369f3aa499/0_0_640_N.webp?method=shortest" alt="Shimadzu LCMS-8050" loading="lazy"><figcaption class="vcap">Shimadzu LCMS-8050</figcaption></figure><figure class="viz r43" data-midjourney="Modern molecular diagnostics laboratory with LC-MS/MS instrumentation and a scientist preparing samples, clean navy and blue palette, bright and airy, shallow depth of field, premium medical photography --ar 4:3 --style raw"><img src="https://cdn.midjourney.com/23f0e113-01fe-46e3-a938-cedbcbe9f8a0/0_0_640_N.webp?method=shortest" alt="Laboratory" loading="lazy"><figcaption class="vcap">Laboratory</figcaption></figure></div>
+    <p class="muted" style="margin-top:1.6rem">If a laboratory has a triple quadrupole LC-MS/MS system, M-Typer may provide an opportunity to extend its diagnostic portfolio with mycolic acid profile analysis for bacteria of the genus <em>Mycobacterium</em>.</p>
+  </div>
+</section>
+
+<!-- ===== REAGENT KIT ===== -->
+<section class="block" id="reagent-kit">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Product</span>
+      <h2>M-Typer Reagent Kit</h2>
+      <p class="muted">An in vitro diagnostic medical device intended for the isolation of mycolic acids from biological or culture-derived material for subsequent FIA-MS/MS analysis. The kit supports the sample preparation stage and enables the generation of an extract containing mycolic acids.</p>
+    </div>
+    <div class="split" style="margin-bottom:2.4rem">
+      <figure class="viz r43" data-midjourney="Studio product photograph of an in-vitro diagnostic reagent kit, white box with navy lid and blue accent stripe labeled M-Typer Reagent Kit MT-KIT-001, two clear reagent vials with navy caps, soft shadows on light grey #F0F0F0 seamless background, premium pharma packaging --ar 4:3 --style raw"><img src="https://cdn.midjourney.com/6bb769d7-6a84-43a9-9608-f4a7dde154c5/0_3_640_N.webp?method=shortest" alt="M-Typer Reagent Kit" loading="lazy"><figcaption class="vcap">M-Typer Reagent Kit</figcaption></figure>
+      <div>
+        <h3 style="text-transform:uppercase;letter-spacing:.06em">Complete reagent kit</h3>
+        <p class="muted">The M-Typer Reagent Kit contains all reagents required for the isolation of mycolic acids from biological or culture-derived material. It enables 100 isolations and is an integral part of the M-Typer workflow before FIA-MS/MS analysis.</p>
+        <p class="muted">Used by qualified laboratory personnel in accordance with the current Instructions for Use.</p>
+      </div>
+    </div>
+    <div class="grid grid-2" style="align-items:start">
+      <div>
+        <h3 style="font-size:1.05rem;margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.06em">Product information</h3>
+        <table class="spec">
+          <tr><td>Product name</td><td>M-Typer Reagent Kit</td></tr>
+          <tr><td>Reference number</td><td>MT-KIT-001</td></tr>
+          <tr><td>Status</td><td>In vitro diagnostic medical device</td></tr>
+          <tr><td>Kit composition</td><td>Set 1 + Set 2</td></tr>
+          <tr><td>Intended use</td><td>Isolation of mycolic acids before FIA-MS/MS analysis</td></tr>
+          <tr><td>Number of analyses</td><td>100 mycolic acid isolations</td></tr>
+          <tr><td>Manufacturer</td><td>Centrum Medycyny Klinicznej DiMedical Sp. z o.o.</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3 style="font-size:1.05rem;margin-bottom:.9rem;text-transform:uppercase;letter-spacing:.06em">Reagent workflow</h3>
+        <div class="pill-list">
+          <div class="pill-row lc"><span class="dot"></span><span><strong>1.</strong> Washing of the material</span></div>
+          <div class="pill-row lc"><span class="dot"></span><span><strong>2.</strong> Alkaline hydrolysis</span></div>
+          <div class="pill-row lc"><span class="dot"></span><span><strong>3.</strong> Neutralisation</span></div>
+          <div class="pill-row lc"><span class="dot"></span><span><strong>4.</strong> Liquid–liquid extraction</span></div>
+          <div class="pill-row lc"><span class="dot"></span><span><strong>5.</strong> Preparation of the extract for FIA-MS/MS analysis</span></div>
+        </div>
+        <p class="muted" style="margin-top:1rem;font-size:.9rem">The kit is part of the complete M-Typer workflow and should be used by qualified laboratory personnel in accordance with the current Instructions for Use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOKUMENTY ===== -->
+<section class="block" id="dokumenty">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Downloads</span>
+      <h2>Documents and downloads</h2>
+      <p class="muted">Current documentation for M-Typer technology and the M-Typer Reagent Kit — Instructions for Use and SDS/MSDS safety data sheets. Before starting work with the kit, read the current Instructions for Use and the safety data sheets. All laboratory activities should be performed by qualified personnel.</p>
+    </div>
+    <div class="downloads">
+      <a class="dl" href="#" data-file="m-typer-ifu.pdf">
+        <div class="tagpdf">PDF</div>
+        <div class="meta"><strong>Instructions for Use / IFU</strong><span>M-Typer Reagent Kit — Instructions for Use</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="sds-mt-001.pdf">
+        <div class="tagpdf sds">SDS</div>
+        <div class="meta"><strong>SDS/MSDS — MT-001</strong><span>Safety data sheet</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="sds-mt-002.pdf">
+        <div class="tagpdf sds">SDS</div>
+        <div class="meta"><strong>SDS/MSDS — MT-002</strong><span>Safety data sheet</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="sds-mt-003.pdf">
+        <div class="tagpdf sds">SDS</div>
+        <div class="meta"><strong>SDS/MSDS — MT-003</strong><span>Safety data sheet</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="sds-mt-004.pdf">
+        <div class="tagpdf sds">SDS</div>
+        <div class="meta"><strong>SDS/MSDS — MT-004</strong><span>Safety data sheet</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="sds-mt-005.pdf">
+        <div class="tagpdf sds">SDS</div>
+        <div class="meta"><strong>SDS/MSDS — MT-005</strong><span>Safety data sheet</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="m-typer-broszura.pdf">
+        <div class="tagpdf">PDF</div>
+        <div class="meta"><strong>M-Typer product brochure</strong><span>Information material</span></div>
+        <div class="arrow">↓</div>
+      </a>
+      <a class="dl" href="#" data-file="dokumenty-produktowe.pdf">
+        <div class="tagpdf">PDF</div>
+        <div class="meta"><strong>Other documents</strong><span>Supplementary materials</span></div>
+        <div class="arrow">↓</div>
+      </a>
+    </div>
+    <p style="margin-top:1rem"><span class="placeholder-note">TO BE LINKED</span> &nbsp;Links point to <code>#</code> — after uploading the PDF files, replace the <code>href</code> attributes with the media library URLs.</p>
+  </div>
+</section>
+
+<!-- ===== FILM ===== -->
+<section class="block" id="film">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Video</span>
+      <h2>Instructional video — mycolic acid isolation</h2>
+      <p class="muted">Watch the video presenting the main stages of working with the M-Typer Reagent Kit and preparing the sample for FIA-MS/MS analysis.</p>
+    </div>
+    <div class="video-wrap" id="yt-placeholder">
+      <div class="video-inner">
+        <div class="play" aria-hidden="true"></div>
+        <h3>The video will be embedded after publication</h3>
+        <p class="muted">Space reserved for the embedded YouTube material. The link will be provided after publication.</p>
+      </div>
+    </div>
+    <!--
+    ▼ Po publikacji podmień powyższy blok .video-wrap na osadzenie:
+    <div style="position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden">
+      <iframe style="position:absolute;inset:0;width:100%;height:100%;border:0"
+        src="https://www.youtube.com/embed/ID_FILMU"
+        title="M-Typer — izolacja kwasów mikolowych"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    -->
+    <p class="video-note">The video material is for auxiliary and training purposes. It does not replace the current Instructions for Use or applicable laboratory procedures. Before using the kit, read the full product documentation and the SDS/MSDS safety data sheets.</p>
+  </div>
+</section>
+
+<!-- ===== PUBLIKACJE ===== -->
+<section class="block" id="publikacje">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Science</span>
+      <h2>Scientific publications</h2>
+      <p class="muted">M-Typer technology was developed based on research and development work on the use of mycolic acids as diagnostic markers for bacteria of the genus <em>Mycobacterium</em>.</p>
+    </div>
+
+    <h3 style="font-size:1.1rem;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.06em">Publications on M-Typer</h3>
+    <div class="pub">
+      <div class="title">Detection and accurate identification of <em>Mycobacterium</em> species by flow injection tandem mass spectrometry (FIA-MS/MS) analysis of mycolic acids</div>
+      <div class="src">Scientific Reports, 2025</div>
+      <a class="link" href="https://www.nature.com/articles/s41598-025-96867-x" target="_blank" rel="noopener">nature.com/articles/s41598-025-96867-x →</a>
+    </div>
+    <div class="pub">
+      <div class="title">Rapid clinical detection of mycobacterial infections using M-Typer® technology and FIA-MS/MS profiling</div>
+      <div class="src">IJTLD Open, 2025</div>
+      <a class="link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12699965/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC12699965 →</a>
+    </div>
+
+    <h3 style="font-size:1.1rem;margin:2rem 0 1rem;text-transform:uppercase;letter-spacing:.06em">Publications supporting the scientific basis of the method</h3>
+    <div class="pub">
+      <div class="title">Quantification of mycolic acids in different mycobacterial species by standard addition method through liquid chromatography mass spectrometry</div>
+      <div class="src">Journal of Chromatography B, 2024</div>
+      <a class="link" href="https://www.sciencedirect.com/science/article/abs/pii/S1570023224003064?via%3Dihub" target="_blank" rel="noopener">sciencedirect.com — S1570023224003064 →</a>
+    </div>
+    <div class="pub">
+      <div class="title">Rapid method for <em>Mycobacterium tuberculosis</em> identification using electrospray ionization tandem mass spectrometry analysis of mycolic acids</div>
+      <div class="src">Diagnostic Microbiology and Infectious Disease, 2013</div>
+      <a class="link" href="https://www.sciencedirect.com/science/article/abs/pii/S073288931300196X?via%3Dihub" target="_blank" rel="noopener">sciencedirect.com — S073288931300196X →</a>
+    </div>
+    <div class="pub">
+      <div class="title">Ion mobility mass spectrometry for the study of mycobacterial mycolic acids</div>
+      <div class="src">Scientific Reports, 2025</div>
+      <a class="link" href="https://www.nature.com/articles/s41598-023-37641-9" target="_blank" rel="noopener">nature.com/articles/s41598-023-37641-9 →</a>
+    </div>
+    <div class="pub">
+      <div class="title">Untargeted and Targeted LC-MS–Based Lipidomic Profiling Revealed a Potential Biomarker Panel to Distinguish Clinical Isolates of <em>M. tuberculosis</em> From Nontuberculous <em>M. kansasii</em></div>
+      <div class="src">Pulmonary Medicine, 2026</div>
+      <a class="link" href="https://onlinelibrary.wiley.com/doi/10.1155/pm/5535650" target="_blank" rel="noopener">onlinelibrary.wiley.com — 10.1155/pm/5535650 →</a>
+    </div>
+    <p class="muted" style="margin-top:1.4rem">Scientific publications confirm that mycolic acid analysis can be a valuable approach for the identification and differentiation of mycobacteria of the genus <em>Mycobacterium</em>. M-Typer develops this concept into a rapid, scalable workflow based on FIA-MS/MS, a reagent kit and dedicated interpretative software.</p>
+  </div>
+</section>
+
+<!-- ===== CERTYFIKACJA ===== -->
+<section class="block" id="certyfikacja">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Regulatory status</span>
+      <h2>Certification, patent protection and implementation potential</h2>
+      <p class="muted">M-Typer technology was developed by DiMedical as an innovative solution in the field of mycobacteriology diagnostics. It is being further developed with a view to validation, scale-up and implementation in reference and diagnostic laboratories.</p>
+    </div>
+    <div class="cert">
+      <div class="pill"><span class="big">CE / IVD</span><span class="lbl">In vitro diagnostic device certification</span></div>
+      <div class="pill"><span class="big">ISO 13485</span><span class="lbl">Certified quality management system</span></div>
+      <div class="pill"><span class="big">EP3978617B1</span><span class="lbl">European patent protecting the unique character of the solution</span></div>
+      <div class="pill"><span class="big">B+R</span><span class="lbl">Development, validation and international cooperation</span></div>
+    </div>
+    <p class="muted" style="margin-top:1.6rem">The solution is CE/IVD certified, is developed within a certified quality management system compliant with ISO 13485, and its unique character is protected by European patent EP3978617B1. DiMedical is actively working to develop the technology, expand international cooperation and build partnerships with laboratories, scientific institutions and distributors.</p>
+  </div>
+</section>
+
+<!-- ===== WSPÓŁPRACA ===== -->
+<section class="block" id="wspolpraca">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Partnership</span>
+      <h2>Partner with us</h2>
+      <p class="muted">DiMedical is open to collaboration with diagnostic laboratories, reference centres, scientific institutions, clinical partners, distributors and organisations interested in implementing or validating M-Typer technology.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card"><p>Evaluation of M-Typer technology under laboratory conditions</p></div>
+      <div class="card"><p>Participation in validation and multicentre projects</p></div>
+      <div class="card"><p>Implementation of the method in reference laboratories</p></div>
+      <div class="card"><p>Distribution of the technology in international markets</p></div>
+      <div class="card"><p>Scientific and clinical collaboration in tuberculosis and mycobacteriosis diagnostics</p></div>
+      <div class="card"><p>Development of new FIA-MS/MS applications in mycobacterial diagnostics</p></div>
+    </div>
+    <p class="muted" style="margin-top:1.6rem">We support partners in organising the implementation process, preparing the reagent workflow, setting up the analytical configuration, interpreting results and planning further validation studies.</p>
+  </div>
+</section>
+
+<!-- ===== DLA KOGO ===== -->
+<section class="block" id="dla-kogo">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Audience</span>
+      <h2>Who is M-Typer for?</h2>
+    </div>
+    <div class="chips">
+      <span class="chip">Reference laboratories</span>
+      <span class="chip">Laboratories with LC-MS/MS instrumentation</span>
+      <span class="chip">Tuberculosis diagnostic centres</span>
+      <span class="chip">Institutions investigating NTM</span>
+      <span class="chip">Scientific institutes</span>
+      <span class="chip">Clinical partners</span>
+      <span class="chip">Distributors of diagnostic products</span>
+      <span class="chip">Markets with a high tuberculosis burden</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DLACZEGO DIMEDICAL ===== -->
+<section class="block" id="dlaczego">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">DiMedical</span>
+      <h2>Why DiMedical?</h2>
+      <p class="muted">We combine laboratory experience, research and development capabilities and practical expertise in mycobacteriological diagnostics. M-Typer was developed in response to the need for faster and more advanced diagnostics of infections caused by mycobacteria of the genus <em>Mycobacterium</em>.</p>
+    </div>
+    <div class="pill-list cols">
+      <div class="pill-row"><span class="dot"></span>Proprietary technology developed by DiMedical</div>
+      <div class="pill-row"><span class="dot"></span>Experience in diagnostics and R&amp;D</div>
+      <div class="pill-row"><span class="dot"></span>Specialisation in mycobacterial diagnostics</div>
+      <div class="pill-row"><span class="dot"></span>Workflow: reagents, LC-MS/MS and software</div>
+      <div class="pill-row"><span class="dot"></span>Readiness for international collaboration</div>
+      <div class="pill-row"><span class="dot"></span>Openness to validation and implementation projects</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAŻNA INFORMACJA ===== -->
+<section class="block" id="wazna-informacja">
+  <div class="container">
+    <div class="disclaimer">
+      <h3>Important information</h3>
+      <p>A result obtained using M-Typer technology should not constitute the sole basis for a clinical diagnosis. It should be interpreted together with other laboratory test results and the patient’s clinical presentation.</p>
+      <p>The technology is intended for use by qualified laboratory personnel in accordance with the current Instructions for Use and applicable safety procedures.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KONTAKT ===== -->
+<section class="block" id="kontakt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Contact</span>
+      <h2>Contact us</h2>
+      <p class="muted">Fill in the form to discuss technology evaluation, implementation, participation in a validation project, distribution or to obtain M-Typer technical documentation. We usually respond within 1–2 business days.</p>
+    </div>
+
+    <div class="contact-split">
+      <!-- UWAGA DEV: podłącz akcję formularza do swojego handlera (np. Contact Form 7 / WPForms / endpoint). Obecnie submit otwiera mailto jako tymczasowy fallback. -->
+      <form class="lead-form" id="mtyperForm" novalidate>
+        <div class="row2">
+          <div class="fg"><label for="f-name">Full name *</label><input id="f-name" name="name" type="text" required placeholder="Jan Kowalski"></div>
+          <div class="fg"><label for="f-org">Institution / laboratory</label><input id="f-org" name="org" type="text" placeholder="Nazwa podmiotu"></div>
+        </div>
+        <div class="row2">
+          <div class="fg"><label for="f-email">E-mail *</label><input id="f-email" name="email" type="email" required placeholder="jan.kowalski@lab.pl"></div>
+          <div class="fg"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" placeholder="+48 600 000 000"></div>
+        </div>
+        <div class="fg">
+          <label for="f-topic">Area of interest</label>
+          <select id="f-topic" name="topic">
+            <option>Technology evaluation / validation</option>
+            <option>Implementation in a laboratory</option>
+            <option>Distribution (international markets)</option>
+            <option>Scientific and clinical collaboration</option>
+            <option>Technical documentation</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg"><label for="f-msg">Message</label><textarea id="f-msg" name="message" placeholder="Briefly describe your need or question about M-Typer…"></textarea></div>
+        <div class="fg consent">
+          <input id="f-consent" name="consent" type="checkbox" required>
+          <label for="f-consent" style="text-transform:none;letter-spacing:normal;font-weight:400;color:var(--muted);margin:0">I consent to the processing of my data for the purpose of handling this enquiry, in accordance with the <a href="https://dimedical.pl/polityka-prywatnosci/" target="_blank" rel="noopener">privacy policy</a>. *</label>
+        </div>
+        <button type="submit" class="btn">Send enquiry <svg class="dmarrow" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="15"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></button>
+        <div class="form-msg" id="formMsg">Thank you — opening your email client with a prepared message.</div>
+      </form>
+
+      <div class="contact-info">
+        <div class="ci-block big-contact">
+          <h4>Direct contact</h4>
+          <a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a>
+          <a href="tel:+48502660480">+48 502 660 480</a>
+        </div>
+        <div class="ci-block">
+          <h4>Materials</h4>
+          <div class="actions">
+            <a href="#dokumenty" class="btn btn-outline">Download documentation <svg class="dmarrow" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="15"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+            <a href="mailto:kontakt@dimedical.pl?subject=M-Typer%20%E2%80%93%20wdro%C5%BCenie" class="btn btn-outline">Discuss implementation <svg class="dmarrow" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="15"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+          </div>
+        </div>
+        <div class="ci-block">
+          <h4>Address</h4>
+          <address>Centrum Medycyny Klinicznej DiMedical<br>ul. Żeromskiego 52, 90-626 Łódź, Poland</address>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOTTO ===== -->
+<div class="motto">
+  <div class="lat">„Salus aegroti suprema lex”</div>
+  <div class="pl">The health of the patient is the supreme law</div>
+</div>
+
+<!-- ===== FOOTER (1:1) ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="partners">
+      <div class="col">
+        <h4>We work with</h4>
+        <div class="plogos">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/wsrm.webp" alt="WSRM">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/profimedic.webp" alt="Profimedic">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/googlab.webp" alt="Googlab">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/tkbiotech.webp" alt="TKBiotech">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/genoplast.webp" alt="Genoplast">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/epro.webp" alt="ePro Science">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/dasmed.webp" alt="Dasmed">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/08/argenta.webp" alt="Argenta">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/05/letsgobold-new-logo.png" alt="letsgobold">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/05/hanoi-logo.png" alt="Hanoi">
+        </div>
+      </div>
+      <div class="col">
+        <h4>We support</h4>
+        <div class="plogos">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/04/widzew-logo-black-footer.png" alt="Widzew Łódź">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/04/widzew-futsal-logo-footer.png" alt="Widzew Futsal">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/07/wosp.webp" alt="WOŚP">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/06/logo-2-2.png" alt="Fundacja FND">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/06/blaszki.png" alt="Błaszki">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/06/piast.png" alt="LKS Piast Błaszki">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/06/ospblaszki.png" alt="OSP Błaszki">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/06/bbp-1.png" alt="Biznes Boxing Polska">
+        </div>
+      </div>
+    </div>
+
+    <div class="locations">
+      <div class="loc">
+        <div>
+          <span class="lbl">Laboratory</span>
+          <h3>ul. Żeromskiego 52</h3>
+          <address>90-626 Łódź<br>(+48) 502 660 480<br><a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a></address>
+          <a class="maplink" href="https://www.google.pl/maps/place/DiMedical+Centrum+Badawczo-Rozwojowe/@51.7664299,19.4455307,17z" target="_blank" rel="noopener">Show on Google Maps <svg class="dmarrow ol" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="14.3"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+        </div>
+        <a class="mapimg" href="https://www.google.pl/maps/place/DiMedical+Centrum+Badawczo-Rozwojowe/@51.7664299,19.4455307,17z" target="_blank" rel="noopener">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/04/mapa-zeromskiego.png" alt="Mapa — ul. Żeromskiego 52, Łódź">
+        </a>
+      </div>
+      <div class="loc">
+        <div>
+          <span class="lbl">Registered office</span>
+          <h3>ul. Żeromskiego 52</h3>
+          <address>90-626 Łódź<br>(+48) 607 705 607<br><a href="mailto:kontakt@dimedical.pl">kontakt@dimedical.pl</a></address>
+          <a class="maplink" href="https://www.google.pl/maps/place/DiMedical+Centrum+Badawczo-Rozwojowe/@51.7664299,19.4455307,17z" target="_blank" rel="noopener">Show on Google Maps <svg class="dmarrow ol" viewBox="0 0 30 30" aria-hidden="true"><circle class="bgc" cx="15" cy="15" r="14.3"/><path class="arr" transform="translate(0 -3)" d="M16.653,12.163a.589.589,0,0,0-.812.853L20.359,17.3H8.589a.589.589,0,0,0,0,1.178H20.34l-4.5,4.286a.589.589,0,1,0,.812.853l5.139-4.895a1.177,1.177,0,0,0-.01-1.676Z"/></svg></a>
+        </div>
+        <a class="mapimg" href="https://www.google.pl/maps/place/DiMedical+Centrum+Badawczo-Rozwojowe/@51.7664299,19.4455307,17z" target="_blank" rel="noopener">
+          <img src="https://dimedical.pl/wp-content/uploads/2022/04/mapa-zeromskiego.png" alt="Mapa — siedziba spółki, Łódź">
+        </a>
+      </div>
+    </div>
+
+    <nav class="foot-links">
+      <a href="https://dimedical.pl/o-nas/">About</a>
+      <a href="https://dimedical.pl/cennik/">Pricing</a>
+      <a href="https://dimedical.pl/kontakt/">Contact</a>
+      <a href="https://dimedical.pl/polityka-prywatnosci/">Privacy policy</a>
+      <a href="https://dimedical.pl/deklaracja-polityki-jakosci/">Quality policy declaration</a>
+      <a href="https://dimedical.pl/deklaracja-polityki-bezstronnosci-i-poufnosci/">Impartiality and confidentiality policy</a>
+    </nav>
+  </div>
+
+  <svg class="foot-wave" viewBox="0 0 1920 120" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#ffffff" d="M0,120 L0,52 C 380,14 720,6 980,22 C 1280,40 1580,72 1920,28 L1920,120 Z"></path>
+  </svg>
+  <div class="foot-credit">
+    <div class="container">
+      <span>Project co-financed by the European Union. © <span id="year"></span> CMK DiMedical Sp. z o.o.</span>
+      <span>website design &amp; development letsgobold.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelector('.menu-toggle')?.addEventListener('click',function(){
+    var n=document.querySelector('.mainnav');
+    if(n){var v=getComputedStyle(n).display==='none';
+      if(v){n.style.cssText='display:flex;flex-direction:column;align-items:flex-start;gap:1rem;width:100%;padding-top:1rem';}
+      else{n.style.display='none';}}
+  });
+  document.querySelectorAll('.dl[href="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();alert('Plik do podpięcia: '+(a.dataset.file||'PDF')+'\nPodmień atrybut href na adres pliku w bibliotece mediów.');});
+  });
+  // Dropdown \"Oferta\" — obsługa dotyku (tap)\n  document.querySelectorAll('.has-drop>a[href=\"#\"]').forEach(function(t){t.addEventListener('click',function(e){e.preventDefault();t.parentElement.classList.toggle('open');});});\n  // Formularz lead-gen — walidacja + tymczasowy fallback mailto (do podmiany na realny handler)
+  var form=document.getElementById('mtyperForm');
+  if(form){form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=form.name.value.trim(), email=form.email.value.trim(), consent=form.consent.checked;
+    if(!name||!email||!consent){alert('Please provide your full name, e-mail and consent to data processing.');return;}
+    var body='Imię i nazwisko: '+name+'\nInstytucja: '+form.org.value+'\nE-mail: '+email+'\nPhone: '+form.phone.value+'\nObszar: '+form.topic.value+'\n\nWiadomość:\n'+form.message.value;
+    var msg=document.getElementById('formMsg'); if(msg) msg.style.display='block';
+    window.location.href='mailto:kontakt@dimedical.pl?subject='+encodeURIComponent('Zapytanie M-Typer — '+form.topic.value)+'&body='+encodeURIComponent(body);
+  });}
+</script>
+</body>
+</html>

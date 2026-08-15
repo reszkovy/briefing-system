@@ -104,6 +104,26 @@ def _fig(c):
                     f'width="1400" height="700" loading="eager"></figure>')
     return ''
 
+def _early(lang):
+    """Pływająca belka early bird — zapis na wydanie w cenie założycielskiej."""
+    L = lang == 'pl'
+    return f'''
+<aside class="eb" data-eb hidden>
+  <div class="eb__in">
+    <div class="eb__txt">
+      <p class="eb__lbl">{'Early bird' if L else 'Early bird'}</p>
+      <p class="eb__line">{'Zapisz się przed wydaniem — dostaniesz pełną książkę w cenie założycielskiej, niższej niż premierowa.' if L else 'Join before publication — you get the complete book at the founding price, below the launch price.'}</p>
+    </div>
+    <form class="eb__form" data-sub-form data-list="book-waitlist">
+      <label class="sr-only" for="eb-mail">{'Twój e-mail' if L else 'Your e-mail'}</label>
+      <input class="sub__input" id="eb-mail" type="email" required placeholder="{'ty@praca.pl' if L else 'you@work.com'}">
+      <button class="btn" type="submit">{'Rezerwuję cenę' if L else 'Hold my price'}</button>
+      <p class="sub__ok" hidden>{'Cena założycielska zarezerwowana. Napiszemy, gdy wydanie będzie gotowe.' if L else 'Founding price reserved. We’ll write when the edition is ready.'}</p>
+    </form>
+    <button class="eb__x" type="button" data-eb-close aria-label="{'Zamknij' if L else 'Dismiss'}">&times;</button>
+  </div>
+</aside>'''
+
 def build_from_chapters(chs, lang, t, pre):
     """Czytnik z prawdziwych rozdziałów książki (book-pl/*.json)."""
     L = lang == 'pl'
@@ -153,7 +173,8 @@ def build_from_chapters(chs, lang, t, pre):
                     f'<h2>{lbl}</h2><p>{desc}</p></header><ol class="bx__list">{rws}</ol></section>')
         return out
 
-    head = lambda title, desc, url: f'''<!doctype html>
+    def head(title, desc, url, extra=''):
+        return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{H.escape(title)} — {t["book"]}</title>
@@ -162,12 +183,31 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49"><script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
+<link rel="stylesheet" href="/assets/site.css?v=86"><script src="/assets/site.js?v=86" defer></script>
+{extra}
+</head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
     os.makedirs(outdir, exist_ok=True)
-    cover = head(t['book'], t['sub'], f'{pre}/book/') + HDR[lang] + f'''
+    book_ld = ('<meta property="og:type" content="book">'
+    f'<meta property="og:title" content="{H.escape(t["book"])}">'
+    f'<meta property="og:description" content="{H.escape(t["sub"])}">'
+    f'<meta property="og:url" content="{SITE}{pre}/book/">'
+    f'<meta property="og:image" content="{SITE}/assets/book/01.jpg">'
+    '<meta name="twitter:card" content="summary_large_image">'
+    '<script type="application/ld+json">' + json.dumps({
+        "@context": "https://schema.org", "@type": "Book",
+        "name": t['book'], "alternativeHeadline": t['sub'],
+        "url": f"{SITE}{pre}/book/", "inLanguage": lang,
+        "author": {"@type": "Organization", "name": "The Hermeticum"},
+        "publisher": {"@type": "Organization", "name": "The Hermeticum", "url": SITE},
+        "numberOfPages": 146 if not L else 142,
+        "bookFormat": "https://schema.org/EBook",
+        "image": f"{SITE}/assets/book/01.jpg",
+        "hasPart": [{"@type": "Chapter", "name": c['title'],
+                     "position": c['pos'], "url": f"{SITE}{pre}/book/{c['slug']}/"} for c in seq],
+    }, ensure_ascii=False) + '</script>')
+    cover = head(t['book'], t['sub'], f'{pre}/book/', book_ld) + HDR[lang] + f'''
 <main class="bookcover"><div class="container bookcover__in">
   <p class="kicker">{t['home']}</p>
   <h1 class="bookcover__h1">{t['book']}</h1>
@@ -204,6 +244,26 @@ def build_from_chapters(chs, lang, t, pre):
           <p class="sub__ok" hidden>{'Jesteś na liście. Odezwiemy się, gdy wydanie będzie gotowe.' if L else 'You’re on the list. We’ll write when the edition is ready.'}</p>
         </form>
       </div>
+    </div>
+  </section>
+  <section class="llmf">
+    <div class="llmf__in">
+      <p class="kicker">{'Narzędzie' if L else 'Tool'}</p>
+      <h2 class="h2">{'Pliki dla Twojego modelu' if L else 'Files for your model'}</h2>
+      <p class="llmf__d">{'Dwa pliki Markdown, które wklejasz swojemu modelowi. Nie streszczenia — narzędzia: mówią modelowi, jak ma pracować, czego nie wolno mu robić i kiedy ma przerwać. Bez konta i bez wysyłania czegokolwiek do nas.' if L else 'Two Markdown files you paste into your own model. Not summaries — tools: they tell the model how to work, what it must not do, and when to stop. No account, and nothing is sent to us.'}</p>
+      <div class="llmf__grid">
+        <div class="llmf__card">
+          <p class="llmf__ck">{'Partner roboczy' if L else 'Working partner'}</p>
+          <p class="llmf__cd">{'Kontrakt roli, dwanaście modułów i tryby sesji (/decyzja, /wzór, /tydzień, /przed-ai). Do pojedynczych rozmów, gdy masz konkretną sprawę na stole.' if L else 'The role contract, twelve modules and session modes (/decision, /pattern, /week, /before-ai). For single sessions, when you have something concrete on the table.'}</p>
+          <a class="btn" href="/assets/downloads/{'hermetyzm-operacyjny-plik-roboczy.md' if L else 'operational-hermeticism-working-file.md'}" download>{'Pobierz plik roboczy' if L else 'Download the working file'}</a>
+        </div>
+        <div class="llmf__card">
+          <p class="llmf__ck">{'Droga, dwanaście tygodni' if L else 'The Path, twelve weeks'}</p>
+          <p class="llmf__cd">{'Program z przewodnikiem: jeden moduł na tydzień, obserwacja, pięciominutowa praktyka i Blok Stanu, który nosisz Ty, nie model. Trzy pierwsze tygodnie są diagnostyczne.' if L else 'A guided programme: one module a week, an observation, a five-minute practice and a State Block carried by you, not the model. The first three weeks are diagnostic.'}</p>
+          <a class="btn" href="/assets/downloads/{'droga-modern-hermety.md' if L else 'the-modern-hermet-path.md'}" download>{'Pobierz Drogę' if L else 'Download the Path'}</a>
+        </div>
+      </div>
+      <p class="llmf__meta">{'Za darmo · bez zapisu · bez konta · działa w ChatGPT, Claude, Gemini i modelach lokalnych' if L else 'Free · no sign-up · no account · works in ChatGPT, Claude, Gemini and local models'}</p>
     </div>
   </section>
   <p class="bookcover__note">{t['note']}</p>
@@ -259,7 +319,34 @@ def build_from_chapters(chs, lang, t, pre):
         pct = round(c['pos']/total*100)
         num_lbl = t['book'] if c['n'] == 0 else f"{t['chapter']} {c['n']:02d} {t['of']} {len(body_ch)}"
         d = os.path.join(outdir, c['slug']); os.makedirs(d, exist_ok=True)
-        page = head(c['title'], c.get('subtitle',''), f'{pre}/book/{c["slug"]}/') + HDR[lang] + f'''
+        art = (f"{SITE}/assets/book/{c['n']:02d}.jpg"
+               if os.path.exists(os.path.join(ROOT, 'assets', 'book', f"{c['n']:02d}.jpg"))
+               else f"{SITE}/assets/og.png")
+        ch_ld = ('<meta property="og:type" content="article">'
+            f'<meta property="og:title" content="{H.escape(c["title"])}">'
+            f'<meta property="og:description" content="{H.escape((c.get("subtitle") or "")[:180])}">'
+            f'<meta property="og:url" content="{SITE}{pre}/book/{c["slug"]}/">'
+            f'<meta property="og:image" content="{art}">'
+            '<meta name="twitter:card" content="summary_large_image">'
+            '<script type="application/ld+json">' + json.dumps({
+                "@context": "https://schema.org", "@type": "Chapter",
+                "name": c['title'], "headline": c['title'],
+                "description": (c.get('subtitle') or '')[:300],
+                "position": c['pos'], "inLanguage": lang,
+                "url": f"{SITE}{pre}/book/{c['slug']}/", "image": art,
+                "isPartOf": {"@type": "Book", "name": t['book'], "url": f"{SITE}{pre}/book/"},
+                "author": {"@type": "Organization", "name": "The Hermeticum"},
+                "publisher": {"@type": "Organization", "name": "The Hermeticum", "url": SITE},
+                "isAccessibleForFree": c['n'] in OPEN_CHAPTERS,
+            }, ensure_ascii=False) + '</script>'
+            '<script type="application/ld+json">' + json.dumps({
+                "@context": "https://schema.org", "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "The Hermeticum", "item": f"{SITE}{pre}/"},
+                    {"@type": "ListItem", "position": 2, "name": t['book'], "item": f"{SITE}{pre}/book/"},
+                    {"@type": "ListItem", "position": 3, "name": c['title'],
+                     "item": f"{SITE}{pre}/book/{c['slug']}/"}]}, ensure_ascii=False) + '</script>')
+        page = head(c['title'], c.get('subtitle',''), f'{pre}/book/{c["slug"]}/', ch_ld) + HDR[lang] + f'''
 <div class="bprogress" aria-hidden="true"><span style="width:{pct}%"></span></div>
 <main class="book" data-book-chapter="{c['pos']}" data-book-url="{pre}/book/{c['slug']}/">
   <div class="container book__grid">
@@ -275,7 +362,7 @@ def build_from_chapters(chs, lang, t, pre):
       <nav class="bnav">{nav}</nav>
     </article>
   </div>
-</main>''' + FTR[lang] + '</body></html>'
+</main>''' + _early(lang) + FTR[lang] + '</body></html>'
         open(os.path.join(d, 'index.html'), 'w').write(page)
     print(f'książka {lang}: {total} pozycji (rozdziałów: {len(body_ch)}) → {pre}/book/')
     return [f"{pre}/book/"] + [f"{pre}/book/{c['slug']}/" for c in seq]
@@ -347,9 +434,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=49">
-<script src="/assets/site.js?v=49" defer></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<link rel="stylesheet" href="/assets/site.css?v=86">
+<script src="/assets/site.js?v=86" defer></script>
 {extra}
 </head>
 <body class="is-book">'''
@@ -409,7 +495,7 @@ def build_lang(lang):
       <nav class="bnav">{nav}</nav>
     </article>
   </div>
-</main>''' + FTR[lang] + '</body></html>'
+</main>''' + _early(lang) + FTR[lang] + '</body></html>'
         open(os.path.join(d, 'index.html'), 'w').write(page)
     print(f'książka {lang}: {total} rozdziałów → {pre}/book/')
     return [f"{pre}/book/"] + [f"{pre}/book/{c['slug']}/" for c in chapters]
