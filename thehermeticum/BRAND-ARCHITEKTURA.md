@@ -61,16 +61,20 @@ pergaminowego cosplayu · glassmorphizmu · wypolerowanej estetyki ikon aplikacj
 | **The Hermeticum** | całość: projekt, serwis, szkoła |
 | **Operational Hermeticism** | metoda i filozofia książki |
 | **Modern Hermet** | archetyp czytelnika, możliwa tożsamość programu/społeczności |
-| **The Path** | książka / główna droga uczenia się |
+| **The Path** | onboarding historyczny: 12 kroków w tradycję („skąd to jest") |
+| **The Book** | hermetyzm operacyjny: narzędzie praktyczne („co z tym zrobić") |
 | **The Letter** | newsletter |
 | **The Archive** | biblioteka, słownik, teksty źródłowe |
 | **The Practice** | członkostwo, rytuały, systemy stosowane |
 | **Field Notes** | eseje, obserwacje, eksperymenty, fragmenty |
 
-> **KOLIZJA DO ROZSTRZYGNIĘCIA:** dziś „The Path" to 12-krokowy serial lektur (tradycja),
-> a książka stoi pod „The Book". Wg tego dokumentu The Path = książka. Możliwości:
-> (a) książka przejmuje nazwę The Path, serial staje się częścią Archiwum jako „Reading Path";
-> (b) książka zostaje The Book, a The Path pozostaje ścieżką lektur. Decyzja: Reszek.
+> **ROZSTRZYGNIĘTE (Reszek, 15.08.2026):** to są dwa różne narzędzia i tak zostają.
+> **The Path** = onboarding historyczny — dwunastokrokowe wprowadzenie w tradycję (kto, kiedy, co czytać,
+> co jest mitem). Odpowiada na pytanie „skąd to jest".
+> **The Book / Hermetyzm operacyjny** = narzędzie praktyczne — dwanaście rozdziałów o uwadze, energii,
+> systemach, technologii i sprawczości. Odpowiada na pytanie „co z tym zrobić dziś".
+> Nazwa „The Path" NIE przechodzi na książkę. W tabeli wyżej: The Path = onboarding historyczny,
+> The Book = główne narzędzie metody.
 
 ## Monetyzacja
 **Free knowledge, paid transformation.**
