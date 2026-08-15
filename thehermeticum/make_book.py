@@ -1,0 +1,172 @@
+#!/usr/bin/env python3
+"""Czytnik książki „Hermetyzm operacyjny" wewnątrz serwisu.
+
+Składa rozdziały z istniejących sekcji Instrukcji i Alchemii operacyjnej
+(źródło prawdy pozostaje w content/ i content-pl/), i generuje:
+  /book/            — okładka + spis treści
+  /book/<nn-slug>/  — rozdział z bocznym spisem, paskiem postępu i nawigacją
+oraz lustro PL pod /pl/book/. Uruchamiać po build.py.
+"""
+import json, re, os, html as H
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+SITE = "https://thehermeticum.com"
+
+def _slice(s, a, b):
+    i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
+
+IDX = {'en': open(os.path.join(ROOT,'index.html')).read(),
+       'pl': open(os.path.join(ROOT,'index-pl.html')).read()}
+HDR = {k: _slice(v, '<header class="hdr" data-hdr>', '</header>') for k, v in IDX.items()}
+FTR = {k: _slice(v, '<footer class="foot">', '</footer>') for k, v in IDX.items()}
+
+def slugify(t):
+    t = re.sub(r'<[^>]+>', '', H.unescape(t)).lower()
+    for a,b in (('ą','a'),('ć','c'),('ę','e'),('ł','l'),('ń','n'),('ó','o'),('ś','s'),('ź','z'),('ż','z')):
+        t = t.replace(a,b)
+    return re.sub(r'[^a-z0-9]+','-',t).strip('-')
+
+def split_sections(path):
+    d = json.load(open(os.path.join(ROOT, path)))
+    parts = re.split(r'<h2>(.*?)</h2>', d['body'])
+    out = []
+    for i in range(1, len(parts), 2):
+        title = re.sub(r'<[^>]+>','', H.unescape(parts[i]))
+        m = re.match(r'^(\d+)\.\s*(.*)$', title)
+        if not m: continue
+        out.append({'n': int(m.group(1)), 'title': m.group(2), 'html': parts[i+1]})
+    return out
+
+# przypisanie do filarów: (klucz, [numery Instrukcji], [numery Alchemii])
+PILLARS = [('read',[1,5,6],[4]), ('align',[4,8,9,12,13],[1,3]),
+           ('build',[2,14],[2,7,8,9,10,11]), ('transmute',[3,7,10,11,15],[5,6,12])]
+
+L10N = {
+ 'en': dict(book='Operational Hermeticism', sub='A modern school of attention, energy and agency',
+   parts={'read':'Read','align':'Align','build':'Build','transmute':'Transmute'},
+   partdesc={'read':'Read yourself, people, systems and symbols.','align':'Align action with values, energy and body.',
+             'build':'Turn recurring chaos into systems.','transmute':'Turn knowledge into practice and result.'},
+   contents='Contents', chapter='Chapter', prev='Previous', nxt='Next', start='Start reading',
+   resume='Resume where you left off', src_i='The Instruction', src_a='Operational Alchemy',
+   home='The Hermeticum', of='of', intro='The whole school, arranged as a book: four parts, twenty-seven short chapters. Read it in order or open any chapter — your place is remembered on this device.',
+   note='This book is a compilation of the site’s own formulations, assembled with AI research tools from published scholarship. Nothing here is presented as revelation; sources sit on every page they belong to.'),
+ 'pl': dict(book='Hermetyzm operacyjny', sub='Współczesna szkoła uwagi, energii i sprawczości',
+   parts={'read':'Czytaj','align':'Ustaw','build':'Buduj','transmute':'Przekształcaj'},
+   partdesc={'read':'Czytaj siebie, ludzi, systemy i symbole.','align':'Dopasuj działanie do wartości, energii i ciała.',
+             'build':'Zamień powtarzalny chaos w systemy.','transmute':'Zamień wiedzę w praktykę i wynik.'},
+   contents='Spis treści', chapter='Rozdział', prev='Poprzedni', nxt='Następny', start='Zacznij czytać',
+   resume='Wróć tam, gdzie skończyłeś', src_i='Instrukcja', src_a='Alchemia operacyjna',
+   home='The Hermeticum', of='z', intro='Cała szkoła ułożona jak książka: cztery części, dwadzieścia siedem krótkich rozdziałów. Czytaj po kolei albo otwórz dowolny rozdział — miejsce zapamiętuje się na tym urządzeniu.',
+   note='Ta książka jest kompilacją własnych sformułowań serwisu, składaną z pomocą narzędzi AI na podstawie opublikowanych badań. Nic nie jest tu podawane jako objawienie; źródła stoją przy stronach, do których należą.'),
+}
+
+def build_lang(lang):
+    L = lang == 'pl'
+    t = L10N[lang]
+    pre = '/pl' if L else ''
+    ins = {s['n']: s for s in split_sections('content-pl/guide__instruction.json' if L else 'content/guide-instruction.json')}
+    alc = {s['n']: s for s in split_sections('content-pl/guide__operational-alchemy.json' if L else 'content/guide-operational-alchemy.json')}
+
+    chapters = []
+    for key, iidx, aidx in PILLARS:
+        for n in iidx:
+            if n in ins: chapters.append(dict(part=key, src='i', **ins[n]))
+        for n in aidx:
+            if n in alc: chapters.append(dict(part=key, src='a', **alc[n]))
+    for i, c in enumerate(chapters, 1):
+        c['num'] = i
+        c['slug'] = f"{i:02d}-{slugify(c['title'])}"
+
+    def toc_html(active=None):
+        out = ''
+        for key, _, _ in PILLARS:
+            out += f'<p class="btoc__part">{t["parts"][key]}</p><ol class="btoc__list">'
+            for c in chapters:
+                if c['part'] != key: continue
+                cls = ' class="is-active"' if active == c['num'] else ''
+                out += f'<li><a href="{pre}/book/{c["slug"]}/"{cls}><i>{c["num"]:02d}</i>{H.escape(c["title"])}</a></li>'
+            out += '</ol>'
+        return out
+
+    head = lambda title, desc, url, extra='': f'''<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{H.escape(title)} — {t["book"]}</title>
+<meta name="description" content="{H.escape(desc)}">
+<link rel="canonical" href="{SITE}{url}">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=27">
+<script src="/assets/site.js?v=27" defer></script>
+<script defer src="/_vercel/insights/script.js"></script>
+{extra}
+</head>
+<body class="is-book">'''
+
+    outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
+    os.makedirs(outdir, exist_ok=True)
+
+    # ── okładka ──
+    cover = head(t['book'], t['sub'], f'{pre}/book/') + HDR[lang] + f'''
+<main class="bookcover">
+  <div class="container bookcover__in">
+    <p class="kicker">{t['home']}</p>
+    <h1 class="bookcover__h1">{t['book']}</h1>
+    <p class="bookcover__sub">{t['sub']}</p>
+    <p class="bookcover__intro">{t['intro']}</p>
+    <div class="hero__cta">
+      <a class="btn" href="{pre}/book/{chapters[0]['slug']}/">{t['start']}</a>
+      <a class="hero__alt" href="#contents" data-book-resume hidden>{t['resume']}</a>
+    </div>
+    <nav class="btoc btoc--cover" id="contents" aria-label="{t['contents']}">{toc_html()}</nav>
+    <p class="bookcover__note">{t['note']}</p>
+  </div>
+</main>''' + FTR[lang] + '</body></html>'
+    open(os.path.join(outdir, 'index.html'), 'w').write(cover)
+
+    # ── rozdziały ──
+    total = len(chapters)
+    for i, c in enumerate(chapters):
+        prev_c = chapters[i-1] if i else None
+        next_c = chapters[i+1] if i < total-1 else None
+        src = t['src_i'] if c['src'] == 'i' else t['src_a']
+        srcurl = f"{pre}/guide/instruction/" if c['src']=='i' else f"{pre}/guide/operational-alchemy/"
+        pct = round(c['num']/total*100)
+        nav = ''
+        if prev_c:
+            nav += f'<a class="bnav__prev" href="{pre}/book/{prev_c["slug"]}/"><span>{t["prev"]}</span><b>{H.escape(prev_c["title"])}</b></a>'
+        else:
+            nav += '<span></span>'
+        if next_c:
+            nav += f'<a class="bnav__next" href="{pre}/book/{next_c["slug"]}/"><span>{t["nxt"]}</span><b>{H.escape(next_c["title"])}</b></a>'
+        d = os.path.join(outdir, c['slug']); os.makedirs(d, exist_ok=True)
+        page = head(c['title'], re.sub(r'<[^>]+>','', c['html'])[:180], f'{pre}/book/{c["slug"]}/',
+                    f'<meta name="book-chapter" content="{c["num"]}">') + HDR[lang] + f'''
+<div class="bprogress" aria-hidden="true"><span style="width:{pct}%"></span></div>
+<main class="book" data-book-chapter="{c['num']}" data-book-url="{pre}/book/{c['slug']}/">
+  <div class="container book__grid">
+    <aside class="book__side">
+      <p class="btoc__head">{t['contents']}</p>
+      <nav class="btoc" aria-label="{t['contents']}">{toc_html(c['num'])}</nav>
+    </aside>
+    <article class="book__body">
+      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {t['parts'][c['part']]} &middot; {t['chapter']} {c['num']:02d} {t['of']} {total}</p>
+      <h1 class="book__h1">{H.escape(c['title'])}</h1>
+      {c['html']}
+      <p class="book__src">{"Źródło" if L else "Source"}: <a href="{srcurl}">{src}</a></p>
+      <nav class="bnav">{nav}</nav>
+    </article>
+  </div>
+</main>''' + FTR[lang] + '</body></html>'
+        open(os.path.join(d, 'index.html'), 'w').write(page)
+    print(f'książka {lang}: {total} rozdziałów → {pre}/book/')
+    return [f"{pre}/book/"] + [f"{pre}/book/{c['slug']}/" for c in chapters]
+
+urls = build_lang('en') + build_lang('pl')
+open(os.path.join(ROOT, '.book-urls'), 'w').write("\n".join(urls))
+print('adresy zapisane do .book-urls (do sitemapy)')

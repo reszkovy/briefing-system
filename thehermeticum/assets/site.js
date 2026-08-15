@@ -77,3 +77,17 @@
     f.addEventListener('click',go,{once:true});
     f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}},{once:true});
   });
+
+/* czytnik: zapamiętanie miejsca + nawigacja klawiaturą */
+(function(){
+  var m=document.querySelector('[data-book-chapter]');
+  if(m){try{localStorage.setItem('hermeticum-book',JSON.stringify({n:+m.dataset.bookChapter,u:m.dataset.bookUrl}));}catch(e){}}
+  var r=document.querySelector('[data-book-resume]');
+  if(r){try{var s=JSON.parse(localStorage.getItem('hermeticum-book')||'null');
+    if(s&&s.u){r.href=s.u;r.hidden=false;r.textContent=r.textContent+' \u2192 '+String(s.n).padStart(2,'0');}}catch(e){}}
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey||/input|textarea/i.test((e.target.tagName||'')))return;
+    var sel=e.key==='ArrowRight'?'.bnav__next':e.key==='ArrowLeft'?'.bnav__prev':null;
+    if(!sel)return; var a=document.querySelector(sel); if(a)location.href=a.href;
+  });
+})();
