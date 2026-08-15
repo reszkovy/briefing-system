@@ -30,11 +30,11 @@ UI = {
   'en': dict(home='Home', locale='en_US', tldr='TL;DR', facts='Key facts',
              faq='Fair questions', src='Sources &amp; further reading',
              media='Listen &amp; watch', portrait='An imagined likeness, after the historical sources',
-             portrait_alt='Portrait'),
+             portrait_alt='Portrait', toc='On this page'),
   'pl': dict(home='Start', locale='pl_PL', tldr='TL;DR', facts='Najważniejsze fakty',
              faq='Uczciwe pytania', src='Źródła i dalsza lektura',
              media='Słuchaj i oglądaj', portrait='Wyobrażony wizerunek, za źródłami historycznymi',
-             portrait_alt='Portret'),
+             portrait_alt='Portret', toc='Na tej stronie'),
 }
 
 CTA_PL = '''
@@ -169,6 +169,29 @@ def render(p, lang='en'):
                 f'width="400" height="400" loading="lazy"><figcaption>{ui["portrait"]}</figcaption></figure>') if port else ""
     fig = f'<figure class="art__fig"><img src="/assets/{img}" alt="" width="1600" height="800" loading="eager" fetchpriority="high"></figure>' if img else ""
     tldr = f'<div class="tldr"><span>TL;DR</span><p>{p["tldr"]}</p></div>' if p.get("tldr") else ""
+    # spis treści z <h2> (tylko gdy realnie jest co spisywać)
+    import re as _r
+    body_html = p["body"]
+    heads = _r.findall(r'<h2>(.*?)</h2>', body_html)
+    toc = ""
+    if len(heads) >= 3:
+        def _slugify(t):
+            t = _r.sub(r'<[^>]+>', '', t)
+            t = H.unescape(t).lower()
+            for a, bl in (('ą','a'),('ć','c'),('ę','e'),('ł','l'),('ń','n'),('ó','o'),('ś','s'),('ź','z'),('ż','z')):
+                t = t.replace(a, bl)
+            t = _r.sub(r'[^a-z0-9]+', '-', t).strip('-')
+            return t or 'sekcja'
+        used, items = set(), []
+        def _anchor(m):
+            raw = m.group(1); s = _slugify(raw); i = 2
+            while s in used:
+                s = f"{_slugify(raw)}-{i}"; i += 1
+            used.add(s); items.append((s, raw))
+            return f'<h2 id="{s}">{raw}</h2>'
+        body_html = _r.sub(r'<h2>(.*?)</h2>', _anchor, body_html)
+        li = "".join(f'<li><a href="#{s}">{_r.sub(r"<[^>]+>", "", t)}</a></li>' for s, t in items)
+        toc = f'<nav class="toc" aria-label="{ui["toc"]}"><b>{ui["toc"]}</b><ol>{li}</ol></nav>'
     facts = ""
     if p.get("facts"):
         rows = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in p["facts"])
@@ -241,8 +264,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=12">
-<script src="/assets/site.js?v=12" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=13">
+<script src="/assets/site.js?v=13" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -263,7 +286,8 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
       {fig}
       {tldr}
       {portrait}
-      {p["body"]}
+      {toc}
+      {body_html}
       {facts}
       {faq_html}
       {media}
@@ -1075,13 +1099,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=12"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=13"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=12" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=13" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
