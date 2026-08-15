@@ -162,7 +162,7 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=44"><script src="/assets/site.js?v=44" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=45"><script src="/assets/site.js?v=45" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
@@ -339,8 +339,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=44">
-<script src="/assets/site.js?v=44" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=45">
+<script src="/assets/site.js?v=45" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>

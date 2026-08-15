@@ -824,3 +824,10 @@
   .hdr__sub{display:inline-flex;align-items:center;line-height:1}
   .hdr__lang{display:inline-flex;align-items:center}
   @media (max-width:1180px){.hdr__codexBtn{padding:.79em .85em}}
+
+  /* ── Po rozwinięciu indeksu: górny pasek na tym samym tle co panel ── */
+  .hdr.is-rozwiniete{background:var(--panel);box-shadow:none}
+  .hdr.is-rozwiniete .hdr__in{background:transparent}
+  .hdr.is-rozwiniete .foil{opacity:0}
+  .hdr.is-rozwiniete .hdr__codexBtn{border-color:var(--gold-bright);background:var(--paper)}
+  .codex{border-top:1px solid var(--line-soft);box-shadow:0 26px 70px -30px rgb(36 11 54 / .28)}
