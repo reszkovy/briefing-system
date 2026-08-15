@@ -115,7 +115,7 @@ def build(lang):
     src = os.path.join(ROOT, f'_print-{lang}.html')
     open(src, 'w').write(html)
 
-    outdir = os.path.join(ROOT, 'assets', 'pdf')
+    outdir = os.path.join(ROOT, 'assets', 'pdf', 'private-7f3a91')
     os.makedirs(outdir, exist_ok=True)
     out = os.path.join(outdir, m['out'])
     subprocess.run([CHROME, '--headless', '--disable-gpu', '--no-pdf-header-footer',

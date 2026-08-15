@@ -62,6 +62,36 @@ L10N = {
 
 
 
+
+# ── Trzy poziomy dostępu ──
+OPEN_CHAPTERS = {0, 1, 2}          # otwarte bez konta i bez e-maila
+PROTOCOL = {                        # rozdział → protokół w The Practice
+ 1: ('attention-reset', 'Attention Reset', 'Reset uwagi'),
+ 2: ('attention-reset', 'Energy Check', 'Sprawdzenie energii'),
+ 4: ('attention-reset', 'Pattern Recognition', 'Rozpoznanie wzoru'),
+ 8: ('pre-ai', 'Pre-AI Orientation', 'Orientacja przed AI'),
+ 12: ('attention-reset', 'Result Review', 'Przegląd wyniku'),
+}
+TIER = {
+ 'en': dict(open_lbl='Open chapter', prev_lbl='Preview',
+   prev_note='This chapter is part of the complete edition. What follows is its opening signal, its source and the shape of the practice — enough to judge whether it is for you.',
+   in_full='In the complete edition', parts_lbl='What the full chapter contains',
+   cta='Continue in the complete edition', next_lbl='Your next move',
+   next_txt='Run the matching protocol in The Practice — five minutes, in your browser, nothing sent anywhere.',
+   q_lbl='One question to carry'),
+ 'pl': dict(open_lbl='Rozdział otwarty', prev_lbl='Podgląd',
+   prev_note='Ten rozdział należy do pełnego wydania. Poniżej jest jego sygnał otwarcia, źródło i kształt praktyki — tyle, żeby ocenić, czy jest dla Ciebie.',
+   in_full='W pełnym wydaniu', parts_lbl='Co zawiera pełny rozdział',
+   cta='Czytaj dalej w pełnym wydaniu', next_lbl='Twój następny ruch',
+   next_txt='Uruchom odpowiadający protokół w The Practice — pięć minut, w przeglądarce, nic nie wychodzi na zewnątrz.',
+   q_lbl='Jedno pytanie do zabrania'),
+}
+
+def _first_p(html):
+    import re as _r
+    m = _r.search(r'<p[^>]*>.*?</p>', html, _r.S)
+    return m.group(0) if m else ''
+
 def _fig(c):
     """Ilustracja rozdziału: najpierw po numerze (wspólna dla języków), potem po slugu."""
     for name in (f"{c['n']:02d}.jpg", c['slug'] + '.jpg'):
@@ -107,7 +137,8 @@ def build_from_chapters(chs, lang, t, pre):
             num = '—' if c['n'] == 0 else f"{c['n']:02d}"
             sub = H.escape(c.get('subtitle', '') or '')
             rows += (f'<li><a href="{pre}/book/{c["slug"]}/"><i>{num}</i><b>{H.escape(c["title"])}</b>'
-                     f'<span class="bx__dots" aria-hidden="true"></span><em>{sub[:58]}</em></a></li>')
+                     f'<span class="bx__dots" aria-hidden="true"></span>'
+                     f'<em>{(TIER[lang]["open_lbl"] if c["n"] in OPEN_CHAPTERS else TIER[lang]["prev_lbl"])}</em></a></li>')
         order.append((cur_part, rows))
         rom = ['I','II','III','IV','V']
         for i, (pk, rws) in enumerate(order):
@@ -127,7 +158,7 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=40"><script src="/assets/site.js?v=40" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=41"><script src="/assets/site.js?v=41" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
@@ -143,17 +174,64 @@ def build_from_chapters(chs, lang, t, pre):
     <a class="hero__alt" href="#contents" data-book-resume hidden>{t['resume']}</a>
   </div>
   <div class="bx" id="contents">{index_html()}</div>
+  <section class="tiers">
+    <div class="tiers__grid">
+      <div class="tier">
+        <p class="tier__lbl">{'Otwarte' if L else 'Open'}</p>
+        <p class="tier__d">{'Bez konta i bez e-maila: otwarcie, rozdział o uwadze, rozdział o energii, streszczenia wszystkich rozdziałów, bibliografia, słownik i wybrane praktyki.' if L else 'No account, no e-mail: the opening, the chapter on attention, the chapter on energy, summaries of every chapter, the bibliography, the glossary and selected practices.'}</p>
+        <p><a class="hero__alt" href="{pre}/book/{seq[1]['slug'] if len(seq)>1 else seq[0]['slug']}/">{'Zacznij od rozdziału Uwaga' if L else 'Start with Attention'} &rarr;</a></p>
+      </div>
+      <div class="tier">
+        <p class="tier__lbl">{'Za zapis' if L else 'For your e-mail'}</p>
+        <p class="tier__d">{'Pakiet <b>Jasność przed delegacją</b>: esej wprowadzający, fragment rozdziału o technologii, Orientacja przed AI, siedmiodniowy eksperyment — w Markdownie i w wersji do druku.' if L else 'The <b>Clarity Before Delegation</b> pack: an introductory essay, an excerpt from the technology chapter, Pre-AI Orientation and a seven-day experiment — in Markdown and print-ready.'}</p>
+        <p><a class="hero__alt" href="{pre}/#subscribe">{'Odbierz pakiet' if L else 'Get the pack'} &rarr;</a></p>
+      </div>
+      <div class="tier tier--full">
+        <p class="tier__lbl">{'Pełne wydanie' if L else 'Complete edition'}</p>
+        <p class="tier__d">{'Wszystkie dwanaście rozdziałów, pełne praktyki, granice i etyka każdej zasady, pytania integracyjne, powiązania między rozdziałami oraz Personal Operating Standard. PDF i EPUB, z przyszłymi aktualizacjami wydania.' if L else 'All twelve chapters, the full practices, the limits and ethics of every principle, integration questions, the links between chapters and the Personal Operating Standard. PDF and EPUB, including future updates of the edition.'}</p>
+        <p class="tier__meta">{'Około 30 000 słów · 142 strony w składzie A5' if L else 'About 37,000 words · 146 pages set in A5'}</p>
+        <p><a class="hero__alt" href="{pre}/#subscribe">{'Powiadom mnie, gdy wydanie będzie dostępne' if L else 'Tell me when the edition opens'} &rarr;</a></p>
+      </div>
+    </div>
+  </section>
   <p class="bookcover__note">{t['note']}</p>
 </div></main>''' + FTR[lang] + '</body></html>'
     open(os.path.join(outdir, 'index.html'), 'w').write(cover)
 
     for i, c in enumerate(seq):
         prev_c, next_c = (seq[i-1] if i else None), (seq[i+1] if i < total-1 else None)
+        tr = TIER[lang]
+        is_open = c['n'] in OPEN_CHAPTERS
         secs = ''
-        for s in c['sections']:
-            lab = s.get('label', '')
-            secs += (f'<section class="bsec"><p class="bsec__lbl">{H.escape(lab)}</p>{s["html"]}</section>'
-                     if lab and s.get('key') != 'essay' else s['html'])
+        if is_open:
+            for s in c['sections']:
+                lab = s.get('label', '')
+                secs += (f'<section class="bsec"><p class="bsec__lbl">{H.escape(lab)}</p>{s["html"]}</section>'
+                         if lab and s.get('key') != 'essay' else s['html'])
+            pr = PROTOCOL.get(c['n'])
+            if pr:
+                pname = pr[2] if L else pr[1]
+                purl = f"{pre}/practice/today/"
+                secs += (f'<section class="bnext"><p class="bnext__lbl">{tr["next_lbl"]}</p>'
+                         f'<p class="bnext__t"><a href="{purl}">{H.escape(pname)}</a></p>'
+                         f'<p class="bnext__s">{tr["next_txt"]}</p></section>')
+        else:
+            by = {x.get('key'): x for x in c['sections']}
+            for k in ('signal', 'source', 'interpretation'):
+                if k in by:
+                    lab = by[k].get('label', '')
+                    frag = by[k]['html'] if k == 'signal' else _first_p(by[k]['html'])
+                    secs += f'<section class="bsec"><p class="bsec__lbl">{H.escape(lab)}</p>{frag}</section>'
+            q = ''
+            if 'ethics' in by:
+                q = _first_p(by['ethics']['html'])
+            if q:
+                secs += f'<section class="bsec"><p class="bsec__lbl">{tr["q_lbl"]}</p>{q}</section>'
+            parts = ''.join(f'<li>{H.escape(x.get("label",""))}</li>' for x in c['sections'] if x.get('label'))
+            secs += (f'<section class="bgate"><p class="bgate__lbl">{tr["in_full"]}</p>'
+                     f'<p class="bgate__note">{tr["prev_note"]}</p>'
+                     f'<p class="bgate__parts">{tr["parts_lbl"]}</p><ul class="bgate__list">{parts}</ul>'
+                     f'<p><a class="btn" href="{pre}/book/">{tr["cta"]}</a></p></section>')
         closing = f'<p class="bclose">{H.escape(c["closing_line"])}</p>' if c.get('closing_line') else ''
         nav = ''
         nav += (f'<a class="bnav__prev" href="{pre}/book/{prev_c["slug"]}/"><span>{t["prev"]}</span><b>{H.escape(prev_c["title"])}</b></a>'
@@ -170,7 +248,7 @@ def build_from_chapters(chs, lang, t, pre):
     <aside class="book__side"><p class="btoc__head">{t['contents']}</p>
       <nav class="btoc">{toc(c['pos'])}</nav></aside>
     <article class="book__body">
-      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl}</p>
+      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl} &middot; <em class="book__tier">{TIER[lang]['open_lbl'] if c['n'] in OPEN_CHAPTERS else TIER[lang]['prev_lbl']}</em></p>
       <h1 class="book__h1">{H.escape(c['title'])}</h1>
       {_fig(c)}
       {f'<p class="book__sub">{H.escape(c["subtitle"])}</p>' if c.get('subtitle') else ''}
@@ -251,8 +329,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=40">
-<script src="/assets/site.js?v=40" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=41">
+<script src="/assets/site.js?v=41" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>

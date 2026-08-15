@@ -768,3 +768,26 @@
   .ways__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp6);border-top:2px solid var(--ink);padding-top:var(--sp5)}
   @media (max-width:900px){.weekly__grid{grid-template-columns:1fr 1fr}.ways__grid{grid-template-columns:1fr}}
   @media (max-width:560px){.weekly__grid{grid-template-columns:1fr}}
+
+  /* ── POZIOMY DOSTĘPU ── */
+  .book__tier{font-style:normal;color:var(--gold)}
+  .bgate{margin-top:var(--sp6);padding:var(--sp5);background:var(--panel);border-top:2px solid var(--ink)}
+  .bgate__lbl{margin:0 0 var(--sp3);font-family:var(--font-ui);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .bgate__note{margin:0 0 var(--sp4);font-size:.98rem;line-height:1.65;color:var(--ink-muted)}
+  .bgate__parts{margin:0 0 .5em;font-family:var(--font-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted)}
+  .bgate__list{list-style:none;margin:0 0 var(--sp5);padding:0;display:flex;flex-wrap:wrap;gap:.35em}
+  .bgate__list li{font-family:var(--font-ui);font-size:.7rem;padding:.3em .65em;border:1px solid var(--line-soft);border-radius:2px;color:var(--ink-muted)}
+  .bnext{margin-top:var(--sp6);padding-top:var(--sp4);border-top:2px solid var(--ink)}
+  .bnext__lbl{margin:0 0 .4em;font-family:var(--font-ui);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .bnext__t{margin:0 0 .3em;font-family:var(--font-display);font-size:1.5rem}
+  .bnext__t a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold-bright)}
+  .bnext__t a:hover{color:var(--vermilion)}
+  .bnext__s{margin:0;font-size:.92rem;color:var(--ink-muted)}
+  .tiers{margin-top:var(--sp8);padding-top:var(--sp5);border-top:2px solid var(--ink)}
+  .tiers__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp6)}
+  .tier{padding-left:var(--sp4);border-left:1px solid var(--line-soft)}
+  .tier--full{border-left-color:var(--gold-bright)}
+  .tier__lbl{margin:0 0 .5em;font-family:var(--font-ui);font-size:.66rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+  .tier__d{margin:0 0 var(--sp4);font-size:.94rem;line-height:1.6;color:var(--ink-muted)}
+  .tier__meta{margin:0 0 var(--sp4);font-family:var(--font-ui);font-size:.68rem;letter-spacing:.08em;color:var(--gold)}
+  @media (max-width:900px){.tiers__grid{grid-template-columns:1fr}}
