@@ -699,3 +699,22 @@
   .nav__grp--tools a::before{content:"";display:inline-block;width:.38em;height:.38em;margin-right:.5em;background:var(--gold);vertical-align:.14em}
   .nav__sep{width:1px;height:1.1em;background:var(--line);opacity:.7;margin-inline:var(--sp2)}
   @media (max-width:1080px){.nav__sep{display:none}.hdr__links{gap:var(--sp2)}}
+
+  /* ── NAGŁÓWEK W JEDNEJ LINII ── */
+  .hdr__in{gap:var(--sp4);flex-wrap:nowrap}
+  .hdr__links{flex:1;justify-content:center;gap:var(--sp2);white-space:nowrap;min-width:0}
+  .hdr__links a{font-size:.72rem;padding:.3em .35em}
+  .nav__grp{gap:var(--sp2)}
+  .nav__sep{margin-inline:.35rem}
+  .hdr__cta{gap:var(--sp2);flex:none}
+  .hdr__codexTxt{margin-left:.45em}
+  @media (max-width:1180px){
+    .hdr__codexTxt{display:none}
+    .hdr__codexBtn{padding:.5em .6em}
+    .hdr__links a{font-size:.68rem}
+  }
+  @media (max-width:1000px){
+    .hdr__lang{display:none}
+    .nav__sep{margin-inline:.2rem}
+    .hdr__links a{font-size:.64rem;padding:.3em .25em}
+  }
