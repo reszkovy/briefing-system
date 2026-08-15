@@ -184,27 +184,16 @@
   .cx__item.is-planned::after{content:'\B7';color:var(--gold);margin-left:.35em}
   .cx__foot{margin:var(--sp3) 0 0}
 
-  /* ── CODEX: cztery różne rytmy, nie cztery te same listy ── */
-  .codex__grid{grid-template-columns:1.05fr 1.1fr 1.25fr 1fr;gap:var(--sp6)}
-  /* I. Ścieżka = trasa */
-  .cx--path .cx__list{position:relative;padding-left:1.15rem}
-  .cx--path .cx__list::before{content:'';position:absolute;left:.34rem;top:.9em;bottom:.9em;width:1px;background:var(--line)}
-  .cx--path .cx__item{position:relative;gap:.55em}
-  .cx--path .cx__item::before{content:'';position:absolute;left:-1.15rem;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--gold-bright)}
-  .cx--path .cx__item.is-planned::before{background:var(--line)}
-  /* II. Teksty = katalog: tytuł szeryfowy + epoka na prawej */
-  .cx--texts .cx__item{font-family:var(--font-body);font-size:.98rem;font-weight:500;justify-content:space-between}
-  .cx__era{font-family:var(--font-ui);font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);opacity:.75;padding-left:1em;white-space:nowrap}
-  .cx--texts .cx__item:hover .cx__era{color:var(--vermilion);opacity:1}
-  /* III. Postaci = indeks osób w dwóch kolumnach, z datami */
-  .cx--figures .cx__list{display:grid;grid-template-columns:1fr 1fr;gap:.1em var(--sp4)}
-  .cx--figures .cx__item{display:block;font-family:var(--font-body);font-size:.96rem;line-height:1.25}
-  .cx__yrs{display:block;font-family:var(--font-ui);font-size:.56rem;letter-spacing:.1em;color:var(--ink-muted);opacity:.7;margin-top:.15em}
-  /* IV. Idee = chmura pojęć */
-  .cx--ideas .cx__list{display:flex;flex-wrap:wrap;gap:.4em}
-  .cx--ideas .cx__item{margin:0;padding:.32em .7em;font-size:.78rem;border:1px solid var(--line-soft);border-radius:2px}
-  .cx--ideas .cx__item:hover{border-color:var(--gold-bright);background:transparent}
-  @media (max-width:1080px){.codex__grid{grid-template-columns:1fr 1fr}.cx--figures .cx__list{grid-template-columns:1fr 1fr}}
+  /* ── CODEX: jeden układ, cztery głosy typograficzne ── */
+  .codex__grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sp6)}
+  /* I. Ścieżka — interfejsowa, z numeracją tabelaryczną */
+  .cx--path .cx__item{font-family:var(--font-ui);font-size:.82rem;font-weight:500;letter-spacing:.005em}
+  /* II. Teksty — szeryfowe tytuły, jak w katalogu biblioteki */
+  .cx--texts .cx__item{font-family:var(--font-body);font-size:1rem;font-weight:500}
+  /* III. Postaci — szeryfowa kursywa, jak indeks osób */
+  .cx--figures .cx__item{font-family:var(--font-body);font-size:1rem;font-style:italic;font-weight:400}
+  /* IV. Idee — wersaliki interfejsowe, jak hasła słownika */
+  .cx--ideas .cx__item{font-family:var(--font-ui);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
   @media (max-width:1080px){.codex__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media (max-width:860px){.hdr__links{display:none}}
   @media (max-width:640px){.codex__grid{grid-template-columns:1fr}.hdr__sub{display:none}}
@@ -331,6 +320,8 @@
   .art h2{margin:var(--sp6) 0 var(--sp3);font-family:var(--font-body);font-weight:600;font-size:1.4rem}
   .art blockquote{margin:var(--sp5) 0;padding:var(--sp3) var(--sp5);border-left:2px solid var(--gold-bright);font-style:italic;color:var(--ink-muted)}
   .art a{color:var(--vermilion)}
+  .art .btn{color:var(--paper)}
+  .art .btn:hover{color:var(--paper)}
   .facts{width:100%;border-collapse:collapse;margin:var(--sp6) 0;font-size:.95rem}
   .facts caption{text-align:left;font-family:var(--font-ui);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);padding-bottom:.7em}
   .facts th{text-align:left;font-family:var(--font-ui);font-weight:500;font-size:.78rem;color:var(--ink-muted);padding:.55em .8em .55em 0;vertical-align:top;white-space:nowrap;border-bottom:1px solid var(--line-soft);width:11rem}

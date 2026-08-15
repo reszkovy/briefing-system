@@ -265,8 +265,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=15">
-<script src="/assets/site.js?v=15" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=17">
+<script src="/assets/site.js?v=17" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -1076,6 +1076,103 @@ if os.path.exists(_idx_pl_path):
     open(os.path.join(ROOT, 'pl', 'index.html'), 'w').write(idx_pl)
     print("OK PL home")
 
+# ── ZAPOWIEDZI: kroki jeszcze nieopublikowane (zamiast 404) ──
+UPCOMING = [
+  ("05-the-key-ideas-in-one-map", "Aug 31", "31 sierpnia",
+   "The key ideas in one map", "Kluczowe idee na jednej mapie",
+   "Eleven concepts carry the whole tradition — and they form one machine. Learn the map once and every text on this site snaps into place.",
+   "Kilkanaście pojęć niesie całą tradycję — i składa się w jedną maszynę. Naucz się tej mapy raz, a każdy tekst w serwisie wskoczy na swoje miejsce."),
+  ("06-as-above-so-below", "Sep 7", "7 września",
+   "As above, so below — what it actually means", "Jak w górze, tak i na dole — co to naprawdę znaczy",
+   "The most quoted line in esotericism, put on the table word by word: medieval Latin, translating Arabic, compressed by Victorians.",
+   "Najczęściej cytowane zdanie ezoteryki, rozłożone słowo po słowie: średniowieczna łacina, tłumacząca arabski, skrócona przez wiktorian."),
+  ("07-the-emerald-tablet", "Sep 14", "14 września",
+   "The Emerald Tablet", "Tablica Szmaragdowa",
+   "The find that never was: no emerald, no Egypt, no Greek original — and a text that shaped alchemy for a thousand years anyway.",
+   "Znalezisko, którego nie było: bez szmaragdu, bez Egiptu, bez greckiego oryginału — a mimo to tekst, który przez tysiąc lat kształtował alchemię."),
+  ("08-the-renaissance-revival", "Sep 21", "21 września",
+   "The Renaissance revival", "Renesansowe odrodzenie",
+   "Hermes jumps the queue: in 1463 a Medici prince told his translator to set Plato aside. What followed changed European thought.",
+   "Hermes wchodzi bez kolejki: w 1463 roku książę Medyceuszy kazał tłumaczowi odłożyć Platona. To, co nastąpiło, zmieniło myśl europejską."),
+  ("09-alchemy-and-the-great-work", "Sep 28", "28 września",
+   "Alchemy and the Great Work", "Alchemia i Wielkie Dzieło",
+   "What alchemists actually did in the laboratory, what they meant by it, and why the debate about that is still open.",
+   "Co alchemicy naprawdę robili w laboratorium, co przez to rozumieli i dlaczego spór o to wciąż jest otwarty."),
+  ("10-the-kybalion-problem", "Oct 5", "5 października",
+   "The Kybalion problem", "Problem z Kybalionem",
+   "The most popular hermetic book is a 1908 Chicago production. We read it honestly — what it gets right, and where it invents.",
+   "Najpopularniejsza księga hermetyczna to produkt Chicago z 1908 roku. Czytamy ją uczciwie: co trafia celnie, a gdzie zmyśla."),
+  ("11-hermeticism-today", "Oct 12", "12 października",
+   "Hermeticism today", "Hermetyzm dzisiaj",
+   "From university chairs to the For You page: where the tradition actually lives now, and who is doing serious work on it.",
+   "Od katedr uniwersyteckich po ekran „Dla Ciebie”: gdzie ta tradycja naprawdę dziś żyje i kto zajmuje się nią poważnie."),
+  ("12-the-reading-map", "Oct 19", "19 października",
+   "The reading map", "Mapa lektur",
+   "Where to go next, in order, with editions worth trusting — the closing step that hands you the whole library.",
+   "Dokąd dalej i w jakiej kolejności, z wydaniami wartymi zaufania — krok zamykający, który oddaje Ci całą bibliotekę."),
+]
+
+def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
+    L = lang == 'pl'
+    pre = '/pl' if L else ''
+    title = t_pl if L else t_en
+    desc = d_pl if L else d_en
+    date = date_pl if L else date_en
+    hdr_x = HEADER_PL if L else HEADER
+    ftr_x = FOOTER_PL if L else FOOTER
+    kicker = ('Ścieżka — krok ' if L else 'The Path — step ') + slug[:2]
+    lead = (f'Ten krok ukazuje się <b>{date}</b>.' if L else f'This step unlocks on <b>{date}</b>.')
+    cta_t = 'Dostawaj kroki listem' if L else 'Get the steps by letter'
+    back = 'Wróć do Ścieżki' if L else 'Back to the Path'
+    note = ('Kroki odblokowują się co niedzielę, razem z listem. Do tego czasu '
+            'możesz czytać kroki wcześniejsze.' if L else
+            'Steps unlock every Sunday, with the letter. Until then, the earlier steps are waiting.')
+    return f'''<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{H.escape(title)} — {'wkrótce' if L else 'coming soon'} — The Hermeticum</title>
+<meta name="description" content="{H.escape(desc)}">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{SITE}{pre}/path/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=17">
+<script src="/assets/site.js?v=17" defer></script>
+</head>
+<body>
+{hdr_x}
+<main>
+  <article class="art">
+    <div class="container art__in">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="{pre}/">{'Start' if L else 'Home'}</a> <span>/</span> <a href="{pre}/path/">{'Ścieżka' if L else 'The Path'}</a> <span>/</span> <em>{slug[:2]}</em></nav>
+      <p class="kicker">{kicker}</p>
+      <h1 class="art__h1">{H.escape(title)}</h1>
+      <div class="tldr"><span>{'Wkrótce' if L else 'Coming'}</span><p>{lead} {H.escape(desc)}</p></div>
+      <p>{note}</p>
+      <div class="hero__cta" style="margin-top:2rem">
+        <a class="btn" href="{pre}/#subscribe">{cta_t}</a>
+        <a class="hero__alt" href="{pre}/path/">{back} &rarr;</a>
+      </div>
+    </div>
+  </article>
+</main>
+{ftr_x}
+</body>
+</html>'''
+
+_n = 0
+for slug, d_en, d_pl, t_en, t_pl, s_en, s_pl in UPCOMING:
+    for lang in ('en', 'pl'):
+        d = os.path.join(ROOT, ('pl/' if lang == 'pl' else '') + 'path', slug)
+        os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, 'index.html'), 'w').write(_soon(slug, d_en, d_pl, t_en, t_pl, s_en, s_pl, lang))
+        _n += 1
+print(f"OK zapowiedzi: {_n} stron (noindex, poza sitemapą)")
+
 # ── AEO/SEO: sitemap, robots, rss, 404 ──
 today = "2026-08-14"
 urls = ["/"] + [p["url"] for p in PAGES] + (["/pl/"] + [q["url"] for q in PAGES_PL] if PAGES_PL else [])
@@ -1104,13 +1201,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=15"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=17"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=15" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=17" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
