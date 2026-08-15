@@ -30,11 +30,11 @@ UI = {
   'en': dict(home='Home', locale='en_US', tldr='TL;DR', facts='Key facts',
              faq='Fair questions', src='Sources &amp; further reading',
              media='Listen &amp; watch', portrait='An imagined likeness, after the historical sources',
-             portrait_alt='Portrait', toc='On this page'),
+             portrait_alt='Portrait', toc='On this page', nextlbl='Next step'),
   'pl': dict(home='Start', locale='pl_PL', tldr='TL;DR', facts='Najważniejsze fakty',
              faq='Uczciwe pytania', src='Źródła i dalsza lektura',
              media='Słuchaj i oglądaj', portrait='Wyobrażony wizerunek, za źródłami historycznymi',
-             portrait_alt='Portret', toc='Na tej stronie'),
+             portrait_alt='Portret', toc='Na tej stronie', nextlbl='Następny krok'),
 }
 
 CTA_PL = '''
@@ -104,6 +104,7 @@ EXTRA_SOURCES = {
 
 IMGS = {
     "start-here": "art-doorway.jpg",
+    "guide": "art-guide.jpg",
     "path/01-what-is-hermeticism": "art-four-masks.jpg",
     "path/02-who-was-hermes-trismegistus": "art-ibis-scribe.jpg",
     "path/03-alexandria": "art-lighthouse.jpg",
@@ -225,7 +226,14 @@ def render(p, lang='en'):
         li_html = f'<ul>{"".join(links)}</ul>' if links else ""
         note = f'<p class="media__note">{p["media_note"]}</p>' if p.get("media_note") else ""
         media = f'<section class="art__media"><h2>{ui["media"]}</h2>{emb_html}{li_html}{note}</section>'
-    nxt = f'<p class="art__next">{p["next"]}</p>' if p.get("next") else ""
+    nxt = ""
+    if p.get("next"):
+        import re as _r3
+        raw = p["next"]
+        m = _r3.match(r'^\s*(.*?)\s*&rarr;\s*', raw)
+        lbl = (m.group(1).strip() if (m and m.group(1).strip()) else ui["nextlbl"])
+        rest = raw[m.end():] if m else raw
+        nxt = f'<nav class="nextcard" aria-label="{ui["nextlbl"]}"><span>{lbl}</span><p>{rest}</p></nav>' 
     alt_links = ""
     if p.get("_alt_url"):
         en_u, pl_u = (p["url"], p["_alt_url"]) if lang == 'en' else (p["_alt_url"], p["url"])
@@ -265,8 +273,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20">
-<script src="/assets/site.js?v=20" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=22">
+<script src="/assets/site.js?v=22" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -1140,8 +1148,8 @@ def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20">
-<script src="/assets/site.js?v=20" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=22">
+<script src="/assets/site.js?v=22" defer></script>
 </head>
 <body>
 {hdr_x}
@@ -1201,13 +1209,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=22"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=20" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=22" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>

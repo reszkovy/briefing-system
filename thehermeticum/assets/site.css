@@ -329,6 +329,14 @@
   .art__faq h2,.art__src h2{font-family:var(--font-body)}
   .art__src ul{padding-left:1.2em}
   .art__src li{margin-bottom:.5em;font-size:.95rem;color:var(--ink-muted)}
+  .nextcard{margin-top:var(--sp7);padding-top:var(--sp4);border-top:2px solid var(--ink)}
+  .nextcard span{display:block;font-family:var(--font-ui);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.55em}
+  .nextcard p{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(1.35rem,2.7vw,1.9rem);line-height:1.24;color:var(--ink)}
+  .nextcard a{color:var(--ink);text-decoration:none;background-image:linear-gradient(var(--gold-bright),var(--gold-bright));background-size:100% 1px;background-repeat:no-repeat;background-position:0 100%;padding-bottom:.06em;transition:color var(--dur) var(--ease),background-size var(--dur) var(--ease)}
+  .nextcard a:hover{color:var(--vermilion)}
+  .nextcard a::after{content:" \2192";display:inline-block;transition:translate var(--dur) var(--ease);color:var(--gold)}
+  .nextcard a:hover::after{translate:.22em 0}
+  .nextcard em{display:block;margin-top:.5em;font-family:var(--font-ui);font-style:normal;font-size:.72rem;letter-spacing:.08em;color:var(--ink-muted)}
   .art__next{margin-top:var(--sp6);padding-top:var(--sp5);border-top:1px solid var(--line-soft);font-size:1.02rem}
   .band{background:var(--ink);color:#f6ead6;padding-block:var(--sp5)}
   .band__in{display:flex;align-items:center;justify-content:space-between;gap:var(--sp5);flex-wrap:wrap}
