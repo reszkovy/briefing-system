@@ -100,3 +100,31 @@ zero AI-gradientu, zero „mystic Canva".
 
 **Produkt = miejsce, nie strona:** eseje · reading paths · core texts · praktyki uwagi ·
 słownik symboli · tygodniowy rytuał czytania · społeczność bez social-mediowego ścieku.
+
+---
+
+# Hermetyzm operacyjny — synteza (15.08.2026)
+
+**Kategoria własna:** *Operational Hermeticism / hermetyzm operacyjny* — nie ezoteryka,
+nie productivity porn, nie coaching. Filozofia życia + systemy działania + praktyka uwagi.
+
+**Definicja serwisu:** The Hermeticum to współczesna szkoła hermetyzmu operacyjnego:
+system pracy z uwagą, energią, samoświadomością i sprawczym działaniem w epoce hałasu.
+
+**Formuła osiowa:** Czytaj wzór. Ustaw system. Działaj z energią. Przekształcaj wynik.
+(*Read the pattern. Align the system. Act with energy. Transmute the result.*)
+
+**Cztery filary:** READ (czytaj siebie, ludzi, systemy, symbole) · ALIGN (dopasuj działania
+do wartości, energii, ciała, relacji, horyzontu) · BUILD (zamień chaos w system, rytuał,
+narzędzie, aktywo) · TRANSMUTE (napięcie → decyzja, wiedza → praktyka, energia → działanie).
+
+**Pary poziomów, na których to stoi:**
+klasyczne — wnętrze↔zewnętrze · symbol↔praktyka · mikro↔makro · chaos↔forma · wiedza↔przemiana · duch↔materia · uwaga↔działanie;
+współczesne — energia↔praca · relacje↔pozycja · diagnoza↔decyzja · system↔wolność ·
+dźwignia↔wynik · granice↔suwerenność · AI↔sprawczość.
+
+**Docelowa architektura serwisu:** The Modern Hermet · Operational Hermeticism ·
+Reading Paths · Practices · Systems · The Library · Field Notes.
+Serwis ma być **szkołą widzenia i działania**, nie biblioteką.
+
+**Książka:** plan w KSIAZKA-PLAN.md (4 części = 4 filary, 22 rozdziały, PL+EN, treść otwarta).

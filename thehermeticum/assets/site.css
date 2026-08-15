@@ -318,6 +318,7 @@
   .tldr p{margin:0;font-size:1.04rem}
   .art p{font-size:1.06rem;line-height:1.78}
   .art h2{margin:var(--sp6) 0 var(--sp3);font-family:var(--font-body);font-weight:600;font-size:1.4rem}
+  .art .rule{margin:var(--sp3) 0 var(--sp5);padding-left:var(--sp4);border-left:2px solid var(--gold-bright);font-family:var(--font-ui);font-size:.9rem;line-height:1.6;color:var(--ink)}
   .art blockquote{margin:var(--sp5) 0;padding:var(--sp3) var(--sp5);border-left:2px solid var(--gold-bright);font-style:italic;color:var(--ink-muted)}
   .art a{color:var(--vermilion)}
   .art .btn{color:var(--paper)}

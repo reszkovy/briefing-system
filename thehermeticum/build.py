@@ -105,6 +105,8 @@ EXTRA_SOURCES = {
 IMGS = {
     "start-here": "art-doorway.jpg",
     "guide": "art-guide.jpg",
+    "guide/instruction": "art-instruction.jpg",
+    "guide/operational-alchemy": "art-alchemy-ops.jpg",
     "path/01-what-is-hermeticism": "art-four-masks.jpg",
     "path/02-who-was-hermes-trismegistus": "art-ibis-scribe.jpg",
     "path/03-alexandria": "art-lighthouse.jpg",
@@ -273,8 +275,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=22">
-<script src="/assets/site.js?v=22" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=24">
+<script src="/assets/site.js?v=24" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -1148,8 +1150,8 @@ def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=22">
-<script src="/assets/site.js?v=22" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=24">
+<script src="/assets/site.js?v=24" defer></script>
 </head>
 <body>
 {hdr_x}
@@ -1209,13 +1211,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=22"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=24"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=22" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=24" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
