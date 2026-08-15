@@ -9,7 +9,9 @@ module.exports = async (req, res) => {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
     res.statusCode = 400; return res.end(JSON.stringify({ ok: false, error: 'invalid_email' }));
   }
-  const key = process.env.RESEND_API_KEY, aud = process.env.RESEND_AUDIENCE_ID;
+  const lang = String((body && body.lang) || 'en').toLowerCase().slice(0, 2);
+  const key = process.env.RESEND_API_KEY;
+  const aud = (lang === 'pl' && process.env.RESEND_AUDIENCE_ID_PL) || process.env.RESEND_AUDIENCE_ID;
   if (!key || !aud) { res.statusCode = 503; return res.end(JSON.stringify({ ok: false, error: 'not_configured' })); }
   const r = await fetch(`https://api.resend.com/audiences/${aud}/contacts`, {
     method: 'POST',
