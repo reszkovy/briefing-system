@@ -815,3 +815,12 @@
 
   .bgate--locked{margin-top:0;border-top:0;border-left:3px solid var(--gold-bright)}
   .bgate--locked .bgate__lbl{color:var(--vermilion)}
+
+  /* ── Indeks: ten sam kontener wysokościowo co Zapisz się ── */
+  .hdr__cta{align-items:stretch}
+  .hdr__codexBtn{display:inline-flex;align-items:center;gap:.55em;padding:.79em 1.05em;line-height:1;
+    border:1px solid var(--line);border-radius:2px;background:transparent}
+  .hdr__codexBtn:hover{border-color:var(--gold-bright)}
+  .hdr__sub{display:inline-flex;align-items:center;line-height:1}
+  .hdr__lang{display:inline-flex;align-items:center}
+  @media (max-width:1180px){.hdr__codexBtn{padding:.79em .85em}}
