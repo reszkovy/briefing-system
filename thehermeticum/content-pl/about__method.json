@@ -1,31 +1,31 @@
 {
- "path": "about/method",
- "url": "/about/method/",
- "trail": [
-  [
-   "O serwisie",
-   "/pl/about/method/"
-  ]
- ],
- "crumb": "Metoda",
- "kicker": "O serwisie",
- "title": "O serwisie i metodzie — jak działa The Hermeticum",
- "desc": "Nasza metoda: trzy warstwy — fakt, debata badaczy, recepcja i mit — źródła z nazwiskami i datami, uczciwe luki, korekty na widoku.",
- "h1": "Jak działa ten serwis",
- "tldr": "Trzy warstwy, zawsze osobno: ustalony fakt (ze źródłem), debata badaczy (obie strony z nazwiska) oraz recepcja i mit (nazwane po imieniu). Źródła pod każdą stroną. Korekty na widoku. Bez inicjacji, bez sprzedawania przeznaczenia.",
- "body": "\n<p>The Hermeticum istnieje, bo jedna z najbardziej fascynujących tradycji Zachodu ma w internecie najgorszy stosunek sygnału do szumu. Naszą odpowiedzią nie jest strzeżenie bram — jest metoda.</p>\n<h2>Trzy warstwy</h2>\n<p><strong>Fakt:</strong> to, co ustalają rękopisy, dokumenty i recenzowana nauka — zawsze ze źródłem, które można sprawdzić. <strong>Debata badaczy:</strong> tam, gdzie poważni badacze się spierają, nazywamy stanowiska i ludzi (Festugière kontra Fowden o egipskie korzenie; datowanie Sirr al-khaliqa; teza Yates i jej krytycy). <strong>Recepcja i mit:</strong> to, co powtarza popkultura — cytowane jako recepcja, nigdy nie przemycane jako fakt.</p>\n<h2>Źródła</h2>\n<p>Naszym roboczym standardem są współczesne przekłady krytyczne (Copenhaver 1992, Litwa 2018) i kanon nauki w tej dziedzinie (Fowden, Hanegraaff, Bull, van Bladel i inni — cytowani przy każdej stronie). Przekłady z domeny publicznej (Everard 1650, Mead 1906) linkujemy jako dokumenty historyczne, z jasno opisanymi ograniczeniami. Nigdy nie linkujemy pirackich kopii książek dostępnych w druku.</p>\n<h2>Jak powstają te strony</h2><p>Wprost: to jest <strong>kompilacja tworzona z pomocą narzędzi AI</strong> i wolimy powiedzieć to na pierwszej stronie, na którą zajrzysz, niż pozwolić Ci odkryć to później. Każde hasło powstaje z opublikowanych badań &mdash; wydań krytycznych, monografii i artykułów wymienionych w jego źródłach &mdash; a potem jest z nimi zestawiane. Co to dla Ciebie znaczy: nie rościmy sobie tu prawa do autorskich badań historycznych, nie odczytaliśmy żadnego rękopisu jako pierwsi i nic z tego serwisu nie powinno być cytowane tak, jakby było recenzowanym studium. Cytuj to, co my cytujemy.</p><p>Narzędzia są dobre w zasięgu i konsekwencji: utrzymują sto stron przy tej samej regule trzech warstw, pilnują stałego słownictwa, wychwytują moment, w którym ulubione twierdzenie okazuje się stać na dziewiętnastowiecznej parafrazie. Są za to fatalne w rozpoznawaniu własnych pomyłek. Dlatego reguły powyżej &mdash; źródła z nazwiskiem i datą, obie strony żywego sporu, jawne „nie wiemy\" &mdash; nie są ozdobą. To ta część, która sprawia, że kompilację możesz sprawdzić samodzielnie, a to jedyne zabezpieczenie, które wytrzymuje zetknięcie z maszyną.</p><p>Tam, gdzie sami znaleźliśmy błędy, poprawiliśmy je i powiedzieliśmy o tym. Jeśli Ty znajdziesz &mdash; źle datowany tekst, przekręcony cytat, zbyt grubo streszczone stanowisko badacza &mdash; warto dać znać; poprawimy to jawnie.</p><h2>Cytaty</h2>\n<p>Kluczowe zdania źródeł podajemy we własnych przekładach roboczych, zawsze tak oznaczonych\n(„przekład roboczy”) i sprawdzonych ze współczesnymi wydaniami krytycznymi. Do pełnych tekstów linkujemy\nprzekłady z domeny publicznej (Everard 1650, Mead 1906), z prostą notą o ich wieku i ograniczeniach.\nPrzekłady naukowe dostępne w druku (Copenhaver, Litwa) cytujemy tylko krótko, w granicach dozwolonego użytku — kupcie te książki;\nna nich stoi cała dziedzina.</p>\n<h2>Zasady uczciwości</h2>\n<p>Tam, gdzie kończą się dowody, mówimy „nie wiemy”. Tam, gdzie upraszczamy, pełniejsza historia jest o jeden link stąd. Tam, gdzie się mylimy, poprawiamy na widoku — korekty to treść, nie powód do wstydu.</p>\n<h2>Kto to pisze</h2>\n<p>The Hermeticum to projekt redakcyjny — jeden głos i publiczna metoda. Nie sprzedaje wróżb, inicjacji ani przeznaczenia. Jeśli kiedykolwiek poleci książkę, powód będzie wydrukowany tuż obok.</p>",
- "faq": [
-  [
-   "Dlaczego nie ma nazwisk autorów?",
-   "Projekt mówi głosem redakcji; metoda i źródła są publiczne — i to uważamy za mocniejszą formę odpowiedzialności."
+  "path": "about/method",
+  "url": "/about/method/",
+  "trail": [
+    [
+      "O serwisie",
+      "/pl/about/method/"
+    ]
   ],
-  [
-   "Mogę zgłosić poprawkę?",
-   "Bardzo prosimy — adres zwrotny każdego listu trafia do redakcji, a korekty publikujemy jawnie."
-  ],
-  [
-   "Zarabiacie na tym?",
-   "Obecnie nie. List i baza wiedzy są bezpłatne. Jeśli to się zmieni, powiemy o tym wprost."
+  "crumb": "Metoda",
+  "kicker": "O serwisie",
+  "title": "O serwisie i metodzie — jak działa The Hermeticum",
+  "desc": "Nasza metoda: trzy warstwy — fakt, debata badaczy, recepcja i mit — źródła z nazwiskami i datami, uczciwe luki, korekty na widoku.",
+  "h1": "Jak działa ten serwis",
+  "tldr": "Trzy warstwy, zawsze osobno: ustalony fakt (ze źródłem), debata badaczy (obie strony z nazwiska) oraz recepcja i mit (nazwane po imieniu). Źródła pod każdą stroną. Korekty na widoku. Bez inicjacji, bez sprzedawania przeznaczenia.",
+  "body": "\n<p>The Hermeticum istnieje, bo jedna z najbardziej fascynujących tradycji Zachodu ma w internecie najgorszy stosunek sygnału do szumu. Naszą odpowiedzią nie jest strzeżenie bram — jest metoda.</p>\n<h2>Trzy warstwy</h2>\n<p><strong>Fakt:</strong> to, co ustalają rękopisy, dokumenty i recenzowana nauka — zawsze ze źródłem, które można sprawdzić. <strong>Debata badaczy:</strong> tam, gdzie poważni badacze się spierają, nazywamy stanowiska i ludzi (Festugière kontra Fowden o egipskie korzenie; datowanie Sirr al-khaliqa; teza Yates i jej krytycy). <strong>Recepcja i mit:</strong> to, co powtarza popkultura — cytowane jako recepcja, nigdy nie przemycane jako fakt.</p>\n<h2>Źródła</h2>\n<p>Naszym roboczym standardem są współczesne przekłady krytyczne (Copenhaver 1992, Litwa 2018) i kanon nauki w tej dziedzinie (Fowden, Hanegraaff, Bull, van Bladel i inni — cytowani przy każdej stronie). Przekłady z domeny publicznej (Everard 1650, Mead 1906) linkujemy jako dokumenty historyczne, z jasno opisanymi ograniczeniami. Nigdy nie linkujemy pirackich kopii książek dostępnych w druku.</p>\n<h2>Dlaczego nie ma tu nazwiska</h2><p>The Hermeticum jest anonimowe z założenia. To nie jest brak odpowiedzialności &mdash; każde twierdzenie ma tu swoje źródło, a źródła może sprawdzić każdy. To usunięcie ego ze środka. W dziedzinie zatłoczonej nauczycielami, którzy sprzedają dostęp do samych siebie, wolimy, żeby tekst znaczył więcej niż twarz, system więcej niż persona, a praktyka więcej niż występ. Oceniaj te strony po tym, co cytują.</p><h2>Jak powstają te strony</h2><p>Wprost: to jest <strong>kompilacja tworzona z pomocą narzędzi AI</strong> i wolimy powiedzieć to na pierwszej stronie, na którą zajrzysz, niż pozwolić Ci odkryć to później. Każde hasło powstaje z opublikowanych badań &mdash; wydań krytycznych, monografii i artykułów wymienionych w jego źródłach &mdash; a potem jest z nimi zestawiane. Co to dla Ciebie znaczy: nie rościmy sobie tu prawa do autorskich badań historycznych, nie odczytaliśmy żadnego rękopisu jako pierwsi i nic z tego serwisu nie powinno być cytowane tak, jakby było recenzowanym studium. Cytuj to, co my cytujemy.</p><p>Narzędzia są dobre w zasięgu i konsekwencji: utrzymują sto stron przy tej samej regule trzech warstw, pilnują stałego słownictwa, wychwytują moment, w którym ulubione twierdzenie okazuje się stać na dziewiętnastowiecznej parafrazie. Są za to fatalne w rozpoznawaniu własnych pomyłek. Dlatego reguły powyżej &mdash; źródła z nazwiskiem i datą, obie strony żywego sporu, jawne „nie wiemy\" &mdash; nie są ozdobą. To ta część, która sprawia, że kompilację możesz sprawdzić samodzielnie, a to jedyne zabezpieczenie, które wytrzymuje zetknięcie z maszyną.</p><p>Tam, gdzie sami znaleźliśmy błędy, poprawiliśmy je i powiedzieliśmy o tym. Jeśli Ty znajdziesz &mdash; źle datowany tekst, przekręcony cytat, zbyt grubo streszczone stanowisko badacza &mdash; warto dać znać; poprawimy to jawnie.</p><h2>Cytaty</h2>\n<p>Kluczowe zdania źródeł podajemy we własnych przekładach roboczych, zawsze tak oznaczonych\n(„przekład roboczy”) i sprawdzonych ze współczesnymi wydaniami krytycznymi. Do pełnych tekstów linkujemy\nprzekłady z domeny publicznej (Everard 1650, Mead 1906), z prostą notą o ich wieku i ograniczeniach.\nPrzekłady naukowe dostępne w druku (Copenhaver, Litwa) cytujemy tylko krótko, w granicach dozwolonego użytku — kupcie te książki;\nna nich stoi cała dziedzina.</p>\n<h2>Zasady uczciwości</h2>\n<p>Tam, gdzie kończą się dowody, mówimy „nie wiemy”. Tam, gdzie upraszczamy, pełniejsza historia jest o jeden link stąd. Tam, gdzie się mylimy, poprawiamy na widoku — korekty to treść, nie powód do wstydu.</p>\n<h2>Kto to pisze</h2>\n<p>The Hermeticum to projekt redakcyjny — jeden głos i publiczna metoda. Nie sprzedaje wróżb, inicjacji ani przeznaczenia. Jeśli kiedykolwiek poleci książkę, powód będzie wydrukowany tuż obok.</p>",
+  "faq": [
+    [
+      "Dlaczego nie ma nazwisk autorów?",
+      "Projekt mówi głosem redakcji; metoda i źródła są publiczne — i to uważamy za mocniejszą formę odpowiedzialności."
+    ],
+    [
+      "Mogę zgłosić poprawkę?",
+      "Bardzo prosimy — adres zwrotny każdego listu trafia do redakcji, a korekty publikujemy jawnie."
+    ],
+    [
+      "Zarabiacie na tym?",
+      "Obecnie nie. List i baza wiedzy są bezpłatne. Jeśli to się zmieni, powiemy o tym wprost."
+    ]
   ]
- ]
 }
