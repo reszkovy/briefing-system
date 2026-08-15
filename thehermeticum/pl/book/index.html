@@ -7,7 +7,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=45"><script src="/assets/site.js?v=45" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=46"><script src="/assets/site.js?v=46" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book"><header class="hdr" data-hdr>
   <div class="hdr__zaslona" aria-hidden="true"></div>
   <div class="container hdr__in">
@@ -84,7 +84,7 @@
   <p class="kicker">The Hermeticum</p>
   <h1 class="bookcover__h1">Hermetyzm operacyjny</h1>
   <p class="bookcover__sub">Współczesna szkoła uwagi, energii i sprawczości</p>
-  <p class="bookcover__intro">Cała szkoła ułożona jak książka: cztery części, dwadzieścia siedem krótkich rozdziałów. Czytaj po kolei albo otwórz dowolny rozdział — miejsce zapamiętuje się na tym urządzeniu.</p>
+  <p class="bookcover__intro">Cała szkoła ułożona jak książka: cztery części, dwanaście rozdziałów i otwarcie. Trzy pierwsze teksty są otwarte — resztę niesie pełne wydanie.</p>
   <div class="hero__cta">
     <a class="btn" href="/pl/book/00-otwarcie/">Zacznij czytać</a>
     <a class="hero__alt" href="#contents" data-book-resume hidden>Wróć tam, gdzie skończyłeś</a>
@@ -105,8 +105,16 @@
       <div class="tier tier--full">
         <p class="tier__lbl">Pełne wydanie</p>
         <p class="tier__d">Wszystkie dwanaście rozdziałów, pełne praktyki, granice i etyka każdej zasady, pytania integracyjne, powiązania między rozdziałami oraz Personal Operating Standard. PDF i EPUB, z przyszłymi aktualizacjami wydania.</p>
-        <p class="tier__meta">Około 30 000 słów · 142 strony w składzie A5</p>
-        <p><a class="hero__alt" href="/pl/#subscribe">Powiadom mnie, gdy wydanie będzie dostępne &rarr;</a></p>
+        <p class="tier__meta">Około 30 000 słów · 142 strony w składzie A5 · PDF i EPUB</p>
+        <form class="sub__form tier__form" data-sub-form data-list="book-waitlist">
+          <label class="sub__label" for="book-wait">Zapisz się na wydanie</label>
+          <div class="sub__row">
+            <input class="sub__input" id="book-wait" type="email" required placeholder="ty@praca.pl">
+            <button class="btn sub__btn" type="submit">Zapisz mnie</button>
+          </div>
+          <p class="sub__note">Wydanie jest w przygotowaniu. Piszemy raz — gdy będzie gotowe, i z ceną założycielską dla zapisanych.</p>
+          <p class="sub__ok" hidden>Jesteś na liście. Odezwiemy się, gdy wydanie będzie gotowe.</p>
+        </form>
       </div>
     </div>
   </section>

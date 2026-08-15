@@ -36,7 +36,7 @@
       if(btn){btn.disabled=true;btn.textContent=TXT.wait;}
       try{
         var r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({email:email, lang: PL_?'pl':'en'})});
+              body:JSON.stringify({email:email, lang: PL_?'pl':'en', list: form.getAttribute('data-list')||''})});
         var d=await r.json().catch(function(){return {};});
         if(r.ok&&d.ok){
           var row=form.querySelector('.sub__row'); if(row)row.hidden=true;

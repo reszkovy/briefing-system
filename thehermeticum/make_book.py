@@ -48,7 +48,7 @@ L10N = {
              'build':'Turn recurring chaos into systems.','transmute':'Turn knowledge into practice and result.'},
    contents='Contents', chapter='Chapter', prev='Previous', nxt='Next', start='Start reading',
    resume='Resume where you left off', src_i='The Instruction', src_a='Operational Alchemy',
-   home='The Hermeticum', of='of', intro='The whole school, arranged as a book: four parts, twenty-seven short chapters. Read it in order or open any chapter — your place is remembered on this device.',
+   home='The Hermeticum', of='of', intro='The whole school, arranged as a book: four parts, twelve chapters and an opening. The first three texts are open — the rest travels with the complete edition.',
    note='This book is a compilation of the site’s own formulations, assembled with AI research tools from published scholarship. Nothing here is presented as revelation; sources sit on every page they belong to.'),
  'pl': dict(book='Hermetyzm operacyjny', sub='Współczesna szkoła uwagi, energii i sprawczości',
    parts={'read':'Czytaj','align':'Ustaw','build':'Buduj','transmute':'Przekształcaj'},
@@ -56,7 +56,7 @@ L10N = {
              'build':'Zamień powtarzalny chaos w systemy.','transmute':'Zamień wiedzę w praktykę i wynik.'},
    contents='Spis treści', chapter='Rozdział', prev='Poprzedni', nxt='Następny', start='Zacznij czytać',
    resume='Wróć tam, gdzie skończyłeś', src_i='Instrukcja', src_a='Alchemia operacyjna',
-   home='The Hermeticum', of='z', intro='Cała szkoła ułożona jak książka: cztery części, dwadzieścia siedem krótkich rozdziałów. Czytaj po kolei albo otwórz dowolny rozdział — miejsce zapamiętuje się na tym urządzeniu.',
+   home='The Hermeticum', of='z', intro='Cała szkoła ułożona jak książka: cztery części, dwanaście rozdziałów i otwarcie. Trzy pierwsze teksty są otwarte — resztę niesie pełne wydanie.',
    note='Ta książka jest kompilacją własnych sformułowań serwisu, składaną z pomocą narzędzi AI na podstawie opublikowanych badań. Nic nie jest tu podawane jako objawienie; źródła stoją przy stronach, do których należą.'),
 }
 
@@ -162,7 +162,7 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=45"><script src="/assets/site.js?v=45" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=46"><script src="/assets/site.js?v=46" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
@@ -193,8 +193,16 @@ def build_from_chapters(chs, lang, t, pre):
       <div class="tier tier--full">
         <p class="tier__lbl">{'Pełne wydanie' if L else 'Complete edition'}</p>
         <p class="tier__d">{'Wszystkie dwanaście rozdziałów, pełne praktyki, granice i etyka każdej zasady, pytania integracyjne, powiązania między rozdziałami oraz Personal Operating Standard. PDF i EPUB, z przyszłymi aktualizacjami wydania.' if L else 'All twelve chapters, the full practices, the limits and ethics of every principle, integration questions, the links between chapters and the Personal Operating Standard. PDF and EPUB, including future updates of the edition.'}</p>
-        <p class="tier__meta">{'Około 30 000 słów · 142 strony w składzie A5' if L else 'About 37,000 words · 146 pages set in A5'}</p>
-        <p><a class="hero__alt" href="{pre}/#subscribe">{'Powiadom mnie, gdy wydanie będzie dostępne' if L else 'Tell me when the edition opens'} &rarr;</a></p>
+        <p class="tier__meta">{'Około 30 000 słów · 142 strony w składzie A5 · PDF i EPUB' if L else 'About 37,000 words · 146 pages set in A5 · PDF and EPUB'}</p>
+        <form class="sub__form tier__form" data-sub-form data-list="book-waitlist">
+          <label class="sub__label" for="book-wait">{'Zapisz się na wydanie' if L else 'Join the edition list'}</label>
+          <div class="sub__row">
+            <input class="sub__input" id="book-wait" type="email" required placeholder="{'ty@praca.pl' if L else 'you@work.com'}">
+            <button class="btn sub__btn" type="submit">{'Zapisz mnie' if L else 'Notify me'}</button>
+          </div>
+          <p class="sub__note">{'Wydanie jest w przygotowaniu. Piszemy raz — gdy będzie gotowe, i z ceną założycielską dla zapisanych.' if L else 'The edition is in preparation. We write once — when it is ready, with a founding price for the list.'}</p>
+          <p class="sub__ok" hidden>{'Jesteś na liście. Odezwiemy się, gdy wydanie będzie gotowe.' if L else 'You’re on the list. We’ll write when the edition is ready.'}</p>
+        </form>
       </div>
     </div>
   </section>
@@ -224,7 +232,7 @@ def build_from_chapters(chs, lang, t, pre):
             secs = (f'<section class="bgate bgate--locked"><p class="bgate__lbl">{tr["locked_lbl"]}</p>'
                     f'<p class="bgate__note">{tr["locked_note"]}</p>'
                     f'<p class="bgate__parts">{tr["parts_lbl"]}</p><ul class="bgate__list">{parts}</ul>'
-                    f'<p><a class="btn" href="{pre}/book/">{tr["cta"]}</a></p></section>')
+                    f'<p><a class="btn" href="{pre}/book/#contents">{tr["cta"]}</a></p></section>')
         else:
             by = {x.get('key'): x for x in c['sections']}
             for k in ('signal', 'source', 'interpretation'):
@@ -339,8 +347,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=45">
-<script src="/assets/site.js?v=45" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=46">
+<script src="/assets/site.js?v=46" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>
