@@ -94,3 +94,31 @@
 
 (function(){var t=document.querySelector('[data-stepper-track]');if(!t)return;var c=t.querySelector('.is-current');if(!c)return;
  t.scrollLeft=Math.max(0,c.offsetLeft-t.clientWidth/2+c.clientWidth/2);})();
+
+/* ── Zgoda na pomiar: domyślnie odmowa, jedno pytanie, decyzja zapamiętana ── */
+(function(){
+  var KEY='hermeticum-consent';
+  function grant(){try{gtag('consent','update',{analytics_storage:'granted'});gtag('event','page_view');}catch(e){}}
+  var saved=null; try{saved=localStorage.getItem(KEY);}catch(e){}
+  if(saved==='granted'){grant();return;}
+  if(saved==='denied'){return;}
+  var pl=(document.documentElement.lang||'en').indexOf('pl')===0;
+  var t=pl?{h:'Pomiar odwiedzin',
+      p:'Chcemy wiedzieć, ile osób czyta i które teksty — nic więcej. Bez reklam, bez profilowania, bez sprzedaży danych. Możesz odmówić i serwis będzie działał tak samo.',
+      y:'Zgadzam się',n:'Tylko niezbędne',more:'Prywatność'}
+    :{h:'Measuring visits',
+      p:'We would like to know how many people read, and which texts — nothing else. No advertising, no profiling, no data sold. Decline and the site works exactly the same.',
+      y:'Allow',n:'Essential only',more:'Privacy'};
+  var priv=pl?'/pl/privacy/':'/privacy/';
+  var el=document.createElement('aside');
+  el.className='cnst'; el.setAttribute('role','dialog'); el.setAttribute('aria-label',t.h);
+  el.innerHTML='<p class="cnst__h">'+t.h+'</p><p class="cnst__p">'+t.p+' <a href="'+priv+'">'+t.more+' &rarr;</a></p>'+
+    '<div class="cnst__row"><button class="btn cnst__yes" type="button">'+t.y+'</button>'+
+    '<button class="cnst__no" type="button">'+t.n+'</button></div>';
+  function close(v){try{localStorage.setItem(KEY,v);}catch(e){} el.remove(); if(v==='granted')grant();}
+  el.querySelector('.cnst__yes').addEventListener('click',function(){close('granted');});
+  el.querySelector('.cnst__no').addEventListener('click',function(){close('denied');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.contains(el))close('denied');});
+  function show(){document.body.appendChild(el);setTimeout(function(){el.classList.add('is-in');},60);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show);else show();
+})();
