@@ -124,6 +124,23 @@ def _early(lang):
   </div>
 </aside>'''
 
+
+# ── mapa slugów: ten sam rozdział ma inny adres w PL i EN, więc hreflang
+#    musi go wyliczyć, a nie doklejać prefiks. Budowana raz, z plików książki.
+def _mapa_slugow():
+    import glob as _g
+    m = {}
+    for jezyk, katalog in (('pl', 'book-pl'), ('en', 'book-en')):
+        for f in sorted(_g.glob(os.path.join(ROOT, katalog, '*.json'))):
+            try:
+                c = json.load(open(f))
+                m.setdefault(c['n'], {})[jezyk] = c['slug']
+            except Exception:
+                pass
+    return m
+
+SLUGI = _mapa_slugow()
+
 def build_from_chapters(chs, lang, t, pre):
     """Czytnik z prawdziwych rozdziałów książki (book-pl/*.json)."""
     L = lang == 'pl'
@@ -174,16 +191,28 @@ def build_from_chapters(chs, lang, t, pre):
         return out
 
     def head(title, desc, url, extra=''):
+        alt_lang = 'pl' if lang == 'en' else 'en'
+        # okładka: prosty prefiks. Rozdział: slug z mapy dla tego samego numeru.
+        _m = re.match(r'^(?:/pl)?/book/(.+)/$', url)
+        _slug = _m.group(1) if _m else ''
+        _nr = next((n for n, d in SLUGI.items() if d.get(lang) == _slug), None)
+        if _nr is not None and alt_lang in SLUGI.get(_nr, {}):
+            _alt_slug = SLUGI[_nr][alt_lang]
+            alt_url = ('/pl' if alt_lang == 'pl' else '') + '/book/' + _alt_slug + '/'
+            en_url = '/book/' + SLUGI[_nr].get('en', _slug) + '/'
+        else:
+            alt_url = ('/pl' + url) if lang == 'en' else url[3:]
+            en_url = url if lang == 'en' else url[3:]
         return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{H.escape(title)} — {t["book"]}</title>
 <meta name="description" content="{H.escape(desc)[:180]}">
-<link rel="canonical" href="{SITE}{url}"><meta name="robots" content="index, follow">
+<link rel="canonical" href="{SITE}{url}"><link rel="alternate" hreflang="{lang}" href="{SITE}{url}"><link rel="alternate" hreflang="{alt_lang}" href="{SITE}{alt_url}"><link rel="alternate" hreflang="x-default" href="{SITE}{en_url}"><meta name="robots" content="index, follow">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=86"><script src="/assets/site.js?v=86" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=102"><script src="/assets/site.js?v=102" defer></script>
 {extra}
 </head><body class="is-book">'''
 
@@ -434,8 +463,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=86">
-<script src="/assets/site.js?v=86" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=102">
+<script src="/assets/site.js?v=102" defer></script>
 {extra}
 </head>
 <body class="is-book">'''

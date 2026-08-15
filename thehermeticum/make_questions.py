@@ -10,7 +10,7 @@ import os, re, json, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "86"
+V = "102"
 JS = open(os.path.join(ROOT, 'assets', 'site.js')).read()
 IDX = open(os.path.join(ROOT, 'index.html')).read()
 IDXPL = open(os.path.join(ROOT, 'index-pl.html')).read()

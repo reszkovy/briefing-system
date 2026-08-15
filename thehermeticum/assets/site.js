@@ -81,11 +81,45 @@
     '<div class="cnst__row"><button class="btn cnst__yes" type="button">'+t.y+'</button>'+
     '<button class="cnst__no" type="button">'+t.n+'</button></div>';
   function close(v){try{localStorage.setItem(KEY,v);}catch(e){} el.remove(); if(v==='granted')grant();}
+  // pokazujemy dopiero po pierwszym ruchu użytkownika: przy wejściu ma być
+  // widoczna strona, nie prośba o zgodę
   el.querySelector('.cnst__yes').addEventListener('click',function(){close('granted');});
   el.querySelector('.cnst__no').addEventListener('click',function(){close('denied');});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.contains(el))close('denied');});
-  function show(){document.body.appendChild(el);setTimeout(function(){el.classList.add('is-in');},60);}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',show);else show();
+  // Baner nie wchodzi nad pierwszy ekran. Pomiar 390x844: przy natychmiastowym
+  // pokazaniu zasłaniał formularz hero (533-712) i link do praktyki (724-768).
+  // Żaden cookie i tak nie jest zapisywany przed zgodą (consent = denied),
+  // więc opóźnienie do pierwszego ruchu nie zmienia stanu prawnego, a ratuje
+  // pierwsze wrażenie i główną konwersję.
+  function show(){
+    if(document.body.contains(el))return;
+    document.body.appendChild(el);
+    setTimeout(function(){el.classList.add('is-in');},60);
+  }
+  function czekaj(){
+    // Wyzwalacz: OPUSZCZENIE hero, nie dowolny ruch i nie licznik czasu.
+    // Powód: przy progu 60 px albo timerze baner potrafił wyskoczyć dokładnie
+    // w trakcie wpisywania adresu — a na telefonie z otwartą klawiaturą
+    // zdarzenie scroll odpala się samo, bez udziału użytkownika.
+    var odpalone = false;
+    var hero = document.querySelector('.hero') || document.querySelector('.hero__form');
+    function prog(){
+      var h = _wysokoscOkna();
+      if (!hero) return h * 0.75;
+      var r = hero.getBoundingClientRect();
+      // dolna krawędź hero minus 25% ekranu: baner wchodzi, gdy hero wyjeżdża
+      return scrollY + r.bottom - h * 0.25;
+    }
+    function odpal(){
+      if (odpalone) return; odpalone = true;
+      removeEventListener('scroll', naScroll);
+      show();
+    }
+    function naScroll(){ if (scrollY >= prog()) odpal(); }
+    addEventListener('scroll', naScroll, {passive:true});
+    if (scrollY >= prog()) odpal();     // wejście z kotwicą albo powrót
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',czekaj);else czekaj();
 })();
 
 /* early bird — pokaż po wejściu w treść, zapamiętaj zamknięcie */
@@ -221,15 +255,89 @@
   dock.insertBefore(a, dock.firstChild);
   var sub = document.querySelector('#subscribe, .sbp');
   function tick(){
-    var poFoldzie = window.scrollY > window.innerHeight * 0.7;
+    var poFoldzie = window.scrollY > _wysokoscOkna() * 0.7;
     var przySekcji = false;
     if (sub){
       var r = sub.getBoundingClientRect();
-      przySekcji = r.top < window.innerHeight && r.bottom > 0;
+      przySekcji = r.top < _wysokoscOkna() && r.bottom > 0;
     }
     a.classList.toggle('is-on', poFoldzie && !przySekcji);
   }
   window.addEventListener('scroll', tick, {passive:true});
   window.addEventListener('resize', tick, {passive:true});
   tick();
+})();
+
+/* ── pierwszy ekran ma prowadzić do JEDNEJ rzeczy ─────────────────────────
+   Pomiar 2026-08-15: 15 elementów klikalnych i 3 przyciski w pierwszym
+   ekranie. CTA w nagłówku i CTA w hero proszą o to samo. Nagłówkowy chowa
+   się, dopóki formularz hero jest widoczny; asystent czeka za pierwszym
+   ekranem, żeby nie był wyjściem awaryjnym na wejściu.                     */
+function _wysokoscOkna(){
+  return window.innerHeight || document.documentElement.clientHeight || screen.height || 800;
+}
+
+(function(){
+  var cta = document.querySelector('.hdr__sub');
+  var form = document.querySelector('.hero__form');
+  if (!cta || !form) return;
+  // Nie chowamy: chowany przycisk zostawiał 103 px dziury w nagłówku i wyskakiwał
+  // przy przewijaniu. Zamiast tego przygasza się, dopóki hero ma swoje CTA —
+  // jeden przycisk główny w pierwszym ekranie, zero skoków układu.
+  function tick(){
+    var r = form.getBoundingClientRect();
+    var widac = r.top < _wysokoscOkna() * 0.9 && r.bottom > 0;
+    cta.classList.toggle('is-quiet', widac);
+  }
+  addEventListener('scroll', tick, {passive:true});
+  addEventListener('resize', tick, {passive:true});
+  tick();
+})();
+
+/* asystent pojawia się dopiero za pierwszym ekranem */
+(function(){
+  var btn = document.querySelector('.ask__btn');
+  if (!btn) return;
+  var dock = btn.closest('.dock') || btn;
+  dock.style.transition = 'opacity .3s var(--ease)';
+  function tick(){
+    var poza = scrollY > _wysokoscOkna() * 0.6;
+    dock.style.opacity = poza ? '1' : '0';
+    dock.style.pointerEvents = poza ? '' : 'none';
+  }
+  addEventListener('scroll', tick, {passive:true});
+  tick();
+})();
+
+/* ── baner zgody nie może przykrywać treści ───────────────────────────────
+   Pomiar 390×844: baner zasłaniał formularz hero i link do praktyki.
+   Dokładamy dół strony równy jego wysokości i zdejmujemy po decyzji.      */
+(function(){
+  var baner = document.querySelector('.cnst');
+  if (!baner) return;
+  function dopasuj(){
+    if (!document.body.contains(baner) || baner.hidden ||
+        getComputedStyle(baner).display === 'none') {
+      document.body.classList.remove('ma-zgode-baner');
+      document.body.style.removeProperty('--wys-baneru');
+      return;
+    }
+    document.body.classList.add('ma-zgode-baner');
+    document.body.style.setProperty('--wys-baneru', baner.offsetHeight + 'px');
+  }
+  dopasuj();
+  addEventListener('resize', dopasuj, {passive:true});
+  new MutationObserver(dopasuj).observe(baner, {attributes:true, attributeFilter:['hidden','style','class']});
+  baner.addEventListener('click', function(e){
+    if (e.target.closest('button,a')) setTimeout(dopasuj, 60);
+  });
+})();
+
+/* na home wystarczy jeden pływający element: asystent.
+   Czerwone CTA zostaje na stronach treściowych, gdzie nie ma formularza. */
+(function(){
+  var home = location.pathname === '/' || location.pathname === '/pl/';
+  if (!home) return;
+  var cta = document.querySelector('.cta-float');
+  if (cta) cta.remove();
 })();

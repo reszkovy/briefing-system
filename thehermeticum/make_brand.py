@@ -8,7 +8,7 @@ przy najbliższym buildzie; jeśli token zniknie — build padnie.
 import os, re, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-V = "86"
+V = "102"
 CSS = open(os.path.join(ROOT, 'assets', 'site.css')).read()
 IDX = open(os.path.join(ROOT, 'index.html')).read()
 

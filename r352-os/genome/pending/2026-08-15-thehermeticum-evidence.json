@@ -1,0 +1,88 @@
+{
+  "_uwaga": "Propozycja do zatwierdzenia. Nic nie wchodzi do kanonu bez decyzji człowieka i ingest.js. Dwie karty, które zaczęły powstawać jako nowe (guard-from-tokens, calendar-gated-publishing), zostały wycofane — Genome zna już te mechanizmy. Zamiast nich: dowody do kart istniejących.",
+  "objects": [
+    {
+      "op": "object.create",
+      "id": "proj:thehermeticum",
+      "type": "project",
+      "title": "The Hermeticum — serwis wiedzy hermetycznej + książka + narzędzie praktyki (PL/EN)",
+      "status": "active",
+      "created": "2026-08-14",
+      "owner": "przemek",
+      "client_note": "Side-project własny. 155 stron, dwie wersje językowe, statyczny build (Python), Vercel.",
+      "domain": "own-products",
+      "relations": {},
+      "tags": ["side-project", "content", "seo-aeo", "bilingual"]
+    },
+    {
+      "op": "evidence.append",
+      "mechanism": "mech:single-source-compiler",
+      "evidence": {
+        "id": "ev:single-source-compiler-hermeticum-brand",
+        "type": "narrative",
+        "date": "2026-08-15",
+        "source": "proj:thehermeticum",
+        "note": "Nowa domena zastosowania: DESIGN SYSTEM jako widok generowany, nie dokument. make_brand.py parsuje 45 tokenów z assets/site.css i renderuje stronę /brand/ wprost z nich — próbki kolorów, skala pisma, komponenty na żywo. Dokumentacja fizycznie nie może rozjechać się z serwisem, bo nie zna wartości spoza arkusza. Dotąd karta miała dowody z brandbooków i materiałów produkcyjnych; to pierwszy dowód z dokumentacji technicznej.",
+        "mechanism": "mech:single-source-compiler",
+        "project": "proj:thehermeticum",
+        "independence_key": "proj:thehermeticum::brand-page-2026-08-15"
+      }
+    },
+    {
+      "op": "evidence.append",
+      "mechanism": "mech:numeric-gates",
+      "evidence": {
+        "id": "ev:numeric-gates-hermeticum-kontrast",
+        "type": "narrative",
+        "date": "2026-08-15",
+        "source": "proj:thehermeticum",
+        "note": "Wariant bez człowieka w pętli: próg liczbowy egzekwowany przez BUILD, nie przez recenzenta. Guard liczy kontrast WCAG wszystkich zadeklarowanych par tekst/tło i przerywa build poniżej 4.5:1. Przy pierwszym uruchomieniu wykrył realny defekt: --gold (#a87f22) na --paper dawał 3.36:1 i był używany w etykietach na kilkudziesięciu stronach. Po korekcie na #8a6419 — 4.91:1. Defektu nie wychwycił ani przegląd wizualny, ani wcześniejszy pomiar kontrastu na home (kickery używają wermilionu, nie złota). Wniosek dla karty: tam gdzie kryterium ma jednostkę (kontrast, waga pliku, liczba znaków), bramka nie potrzebuje kalibracji na przypadkach — próg jest zewnętrzny (norma WCAG).",
+        "mechanism": "mech:numeric-gates",
+        "project": "proj:thehermeticum",
+        "independence_key": "proj:thehermeticum::kontrast-guard-2026-08-15"
+      }
+    },
+    {
+      "op": "evidence.append",
+      "mechanism": "mech:dated-commitment-gates",
+      "evidence": {
+        "id": "ev:dated-commitment-gates-hermeticum-kalendarz",
+        "type": "narrative",
+        "date": "2026-08-15",
+        "source": "proj:thehermeticum",
+        "note": "Dowód POZYTYWNY dla warunku z anti_context karty ('nie stosować, gdy konsekwencja bramki wymaga aktu woli w dniu deadline'u'). Tu konsekwencja jest w pełni zautomatyzowana: słownik KALENDARZ w build.py trzyma osiem par adres→data; bramka porównuje z datą bieżącą i sama przełącza stronę z zapowiedzi w pełny artykuł, wpina do sitemapy, zdejmuje noindex, aktualizuje hub i indeks — w obu wersjach językowych. Zadanie cykliczne w poniedziałki uruchamia build i WERYFIKUJE wynik na produkcji (200 + index, follow). Materiał (8 artykułów × 2 języki) napisany z wyprzedzeniem i ukryty. Symulacja z datą 2026-08-31 potwierdziła przełączenie. Granica zapisana w instrukcji zadania: automat publikuje stronę, NIE wysyła maila — publikacja jest odwracalna buildem, wysyłka nie jest odwracalna wcale.",
+        "mechanism": "mech:dated-commitment-gates",
+        "project": "proj:thehermeticum",
+        "independence_key": "proj:thehermeticum::kalendarz-publikacji-2026-08-15"
+      }
+    },
+    {
+      "op": "evidence.append",
+      "mechanism": "mech:seo-aeo-foundation",
+      "evidence": {
+        "id": "ev:seo-aeo-foundation-hermeticum-js-only",
+        "type": "narrative",
+        "date": "2026-08-15",
+        "source": "proj:thehermeticum",
+        "note": "Wzorzec do dopisania: treść żyjąca wyłącznie w JavaScripcie jest niewidoczna dla wyszukiwarki i dla silników odpowiedzi. Asystent Q&A (osiem par pytanie/odpowiedź) istniał tylko w site.js. Rozwiązanie: generator make_questions.py czyta te same pary Z site.js i renderuje strony /questions/ i /pl/pytania/ w HTML ze schematem FAQPage — jedno źródło prawdy, zero ryzyka rozjazdu, build pada gdy par jest mniej niż sześć. Przy okazji audyt wykrył 30 stron książki bez hreflang (para PL/EN konkurowała ze sobą) i cztery strony bez og:image i danych strukturalnych.",
+        "mechanism": "mech:seo-aeo-foundation",
+        "project": "proj:thehermeticum",
+        "independence_key": "proj:thehermeticum::aeo-2026-08-15"
+      }
+    },
+    {
+      "op": "evidence.append",
+      "mechanism": "mech:negative-knowledge-ledger",
+      "evidence": {
+        "id": "ev:negative-knowledge-hermeticum-dead-css",
+        "type": "narrative",
+        "date": "2026-08-15",
+        "source": "proj:thehermeticum",
+        "note": "Wiedza negatywna: automatyczne usuwanie 'martwego' CSS przez zestawienie selektorów z HTML jest NIEBEZPIECZNE w projektach, gdzie JavaScript dokłada klasy w locie. Skrypt wskazał 292 reguły (25 KB) bez odpowiednika w HTML, ale wśród nich .ask, .ask__q i .chat__q — komponenty tworzone przez JS. Usunięcie zabiłoby asystenta. Bezpieczna alternatywa zastosowana zamiast tego: minifikacja wyłącznie na kopii wdrożeniowej (175 → 159 KB, 66 → 59 KB po kompresji), z guardem porównującym liczbę bloków przed i po — guard zadziałał i wykrył błąd w samym pomiarze (nawiasy w komentarzach liczone po jednej stronie).",
+        "mechanism": "mech:negative-knowledge-ledger",
+        "project": "proj:thehermeticum",
+        "independence_key": "proj:thehermeticum::dead-css-2026-08-15"
+      }
+    }
+  ]
+}

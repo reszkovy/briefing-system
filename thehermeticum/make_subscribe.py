@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "86"
+V = "102"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
@@ -106,6 +106,13 @@ def build(lang):
 <link rel="alternate" hreflang="pl" href="{SITE}/pl/subscribe/">
 <link rel="alternate" hreflang="x-default" href="{SITE}/subscribe/">
 <meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{H.escape(t['title'])}">
+<meta property="og:description" content="{H.escape(t['desc'])}">
+<meta property="og:url" content="{SITE}{pre}/subscribe/">
+<meta property="og:image" content="{SITE}/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebPage","name":"{H.escape(t['title'])}","description":"{H.escape(t['desc'])}","url":"{SITE}{pre}/subscribe/","inLanguage":"{lang}","isPartOf":{{"@type":"WebSite","name":"The Hermeticum","url":"{SITE}"}}}}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">

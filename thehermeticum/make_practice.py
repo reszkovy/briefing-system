@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "86"
+V = "102"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
@@ -16,7 +16,7 @@ FTR = {k: _slice(v, '<footer class="foot">', '</footer>') for k, v in IDX.items(
 
 L = {
  'en': dict(
-   name='The Practice', pre='',
+   name='The Practice', pageTitle='The Practice — five minutes a day, private by design', pre='',
    promise='Five minutes of reflection. One clear record. Yours to keep, or to use with the AI of your choice.',
    diff='<b>The Path</b> carries the method. <b>The Archive</b> holds the sources. <b>The Practice</b> applies it to one concrete day.',
    privacy='Your entries remain in this browser. Nothing is sent to The Hermeticum or to any AI unless you export it yourself.',
@@ -42,7 +42,7 @@ L = {
    pat_exportPrinciples='Export integrated principles',
    backTitle='The Practice'),
  'pl': dict(
-   name='The Practice', pre='/pl',
+   name='The Practice', pageTitle='The Practice — pięć minut dziennie, wpisy zostają u Ciebie', pre='/pl',
    promise='Pięć minut refleksji. Jeden czytelny zapis. Twój — do zachowania albo do pracy z wybranym AI.',
    diff='<b>Ścieżka</b> niesie metodę. <b>Archiwum</b> trzyma źródła. <b>The Practice</b> stosuje ją do jednego konkretnego dnia.',
    privacy='Twoje wpisy pozostają w tej przeglądarce. Nic nie jest wysyłane do The Hermeticum ani do AI, dopóki sam tego nie wyeksportujesz.',
@@ -76,7 +76,8 @@ def head(lang, title, desc, url, extra=''):
 <title>{H.escape(title)} — The Hermeticum</title>
 <meta name="description" content="{H.escape(desc)}">
 <link rel="canonical" href="{SITE}{url}">
-<meta name="robots" content="{extra or 'index, follow'}">
+<meta name="robots" content="{extra or 'index, follow'}">\n<meta property="og:type" content="website">\n<meta property="og:url" content="{SITE}{url}">\n<meta property="og:image" content="{SITE}/assets/og.png">\n<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{{"@context":"https://schema.org","@type":"WebApplication","name":"The Practice","applicationCategory":"LifestyleApplication","operatingSystem":"Any browser","url":"{SITE}{url}","inLanguage":"{lang}","isAccessibleForFree":true,"offers":{{"@type":"Offer","price":"0","priceCurrency":"PLN"}},"publisher":{{"@type":"Organization","name":"The Hermeticum","url":"{SITE}"}}}}</script>
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -100,7 +101,7 @@ def build(lang):
     out = []
 
     # ── /practice ──
-    p = head(lang, t['name'], t['promise'], f'{pre}/practice/') + HDR[lang] + f'''
+    p = head(lang, t.get('pageTitle', t['name']), t['promise'], f'{pre}/practice/') + HDR[lang] + f'''
 <main class="pr pr--landing">
   <div class="container pr__in">
     <p class="kicker">{t['name']}</p>
