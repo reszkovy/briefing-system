@@ -88,6 +88,23 @@ def build_lang(lang):
             out += '</ol>'
         return out
 
+    def index_html():
+        out = ''
+        for pi, (key, _, _) in enumerate(PILLARS, 1):
+            rows = ''
+            for c in chapters:
+                if c['part'] != key: continue
+                tag = t['src_i'] if c['src'] == 'i' else t['src_a']
+                rows += (f'<li><a href="{pre}/book/{c["slug"]}/">'
+                         f'<i>{c["num"]:02d}</i><b>{H.escape(c["title"])}</b>'
+                         f'<span class="bx__dots" aria-hidden="true"></span>'
+                         f'<em>{tag}</em></a></li>')
+            out += (f'<section class="bx__part"><header class="bx__head">'
+                    f'<span class="bx__roman">{"I II III IV".split()[pi-1]}</span>'
+                    f'<h2>{t["parts"][key]}</h2><p>{t["partdesc"][key]}</p></header>'
+                    f'<ol class="bx__list">{rows}</ol></section>')
+        return out
+
     head = lambda title, desc, url, extra='': f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -101,8 +118,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=28">
-<script src="/assets/site.js?v=28" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=29">
+<script src="/assets/site.js?v=29" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>
@@ -123,7 +140,7 @@ def build_lang(lang):
       <a class="btn" href="{pre}/book/{chapters[0]['slug']}/">{t['start']}</a>
       <a class="hero__alt" href="#contents" data-book-resume hidden>{t['resume']}</a>
     </div>
-    <nav class="btoc btoc--cover" id="contents" aria-label="{t['contents']}">{toc_html()}</nav>
+    <div class="bx" id="contents" aria-label="{t['contents']}">{index_html()}</div>
     <p class="bookcover__note">{t['note']}</p>
   </div>
 </main>''' + FTR[lang] + '</body></html>'

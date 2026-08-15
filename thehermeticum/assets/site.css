@@ -560,3 +560,27 @@
     .book__side{position:static;max-height:none;order:2;margin-top:var(--sp7);padding-top:var(--sp5);border-top:1px solid var(--line-soft)}
     .btoc--cover{columns:1}
   }
+
+  /* ── KSIĄŻKA JAKO INDEKS ── */
+  .bx{margin-top:var(--sp8)}
+  .bx__part{margin-bottom:var(--sp7)}
+  .bx__head{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:var(--sp4);align-items:baseline;padding-bottom:var(--sp3);border-bottom:2px solid var(--ink)}
+  .bx__roman{font-family:var(--font-ui);font-size:.72rem;font-weight:600;letter-spacing:.24em;color:var(--gold);padding-top:.5em}
+  .bx__head h2{margin:0;font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,3vw,2.1rem);line-height:1.1;letter-spacing:.01em}
+  .bx__head p{grid-column:2;margin:.3em 0 0;font-size:.95rem;color:var(--ink-muted)}
+  .bx__list{list-style:none;margin:0;padding:0}
+  .bx__list a{display:grid;grid-template-columns:3.2rem auto 1fr auto;gap:var(--sp4);align-items:baseline;padding:.62em 0;border-bottom:1px solid var(--line-soft);text-decoration:none;color:var(--ink)}
+  .bx__list li:last-child a{border-bottom:0}
+  .bx__list a:hover{color:var(--vermilion)}
+  .bx__list i{font-style:normal;font-family:var(--font-ui);font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--gold);font-variant-numeric:tabular-nums}
+  .bx__list b{font-family:var(--font-body);font-weight:500;font-size:1.08rem;line-height:1.3}
+  .bx__dots{border-bottom:1px dotted var(--line);transform:translateY(-.28em);opacity:.8}
+  .bx__list em{font-style:normal;font-family:var(--font-ui);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);opacity:.75;white-space:nowrap}
+  @media (max-width:640px){
+    .bx__list a{grid-template-columns:2.6rem 1fr;row-gap:.15em}
+    .bx__dots{display:none}
+    .bx__list em{grid-column:2}
+  }
+  /* wyróżnienie Książki w nawigacji: pieczęć zamiast zwykłego linku */
+  .hdr__links a[href$="/book/"]{position:relative;font-weight:600}
+  .hdr__links a[href$="/book/"]::before{content:"";display:inline-block;width:.42em;height:.42em;margin-right:.5em;background:var(--gold);vertical-align:.12em}
