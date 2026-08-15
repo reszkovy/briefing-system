@@ -180,9 +180,9 @@ def build_lang(lang):
     t = L10N[lang]
     pre = '/pl' if L else ''
     import glob
-    book_dir = os.path.join(ROOT, 'book-pl')
+    book_dir = os.path.join(ROOT, 'book-pl' if L else 'book-en')
     real = []
-    if L and os.path.isdir(book_dir):
+    if os.path.isdir(book_dir):
         for f in sorted(glob.glob(os.path.join(book_dir, '*.json'))):
             try: real.append(json.load(open(f)))
             except Exception as e: print('POMINIĘTE (JSON):', f, e)
