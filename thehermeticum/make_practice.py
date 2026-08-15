@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "47"
+V = "49"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]

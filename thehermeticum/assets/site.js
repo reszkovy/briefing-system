@@ -36,7 +36,8 @@
       if(btn){btn.disabled=true;btn.textContent=TXT.wait;}
       try{
         var r=await fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({email:email, lang: PL_?'pl':'en', list: form.getAttribute('data-list')||''})});
+              body:JSON.stringify({email:email, lang: PL_?'pl':'en', list: (function(){var o=[].slice.call(form.querySelectorAll('[data-list-opt]:checked')).map(function(x){return x.getAttribute('data-list-opt');});
+                 return o.length? (o.length>1?'letter-book':(o[0]==='book'?'book-waitlist':'letter')) : (form.getAttribute('data-list')||'');})()})});
         var d=await r.json().catch(function(){return {};});
         if(r.ok&&d.ok){
           var row=form.querySelector('.sub__row'); if(row)row.hidden=true;

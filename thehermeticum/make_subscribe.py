@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "47"
+V = "49"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
@@ -81,10 +81,21 @@ T = {
 
 def build(lang):
     t = T[lang]; pre = '/pl' if lang == 'pl' else ''
-    ph = 'ty@praca.pl' if lang == 'pl' else 'you@work.com'
-    pts = ''.join(f'<li>{x}</li>' for x in t['l_pts'])
-    prs = ''.join(f'<li>{x}</li>' for x in t['pr'])
-    stages = ''.join(f'<li><i>{n}</i><b>{h}</b><span>{d}</span></li>' for n, h, d in t['stages'])
+    L = lang == 'pl'
+    ph = 'ty@praca.pl' if L else 'you@work.com'
+    rows = [
+      (t['l_k'], t['l_h'], ('Co tydzień jeden krótki list o stałym kształcie. Zaczyna się od Orientacji przed AI.' if L
+        else 'One short letter a week, always the same shape. It begins with Pre-AI Orientation.')),
+      (t['b_k'], t['b_h'], ('Dwanaście rozdziałów i otwarcie. Trzy teksty są otwarte od razu; PDF i EPUB w przygotowaniu.' if L
+        else 'Twelve chapters and an opening. Three texts are open now; PDF and EPUB in preparation.')),
+      (t['p_k'], t['p_h'], ('Pięć minut dziennie w przeglądarce. Bez konta, bez adresu, bez serwera.' if L
+        else 'Five minutes a day in your browser. No account, no address, no server.')),
+    ]
+    rows_html = ''.join(
+      f'<li><p class="sbp__rk">{k}</p><p class="sbp__rh">{h}</p><p class="sbp__rd">{d}</p></li>'
+      for k, h, d in rows)
+    opts = (('Cotygodniowy list', 'Powiadomienie o wydaniu książki') if L
+            else ('The weekly letter', 'Notice when the book edition is ready'))
     html = f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,89 +121,37 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
 </head><body>
 {HDR[lang]}
 <main class="sbp">
-  <div class="container sbp__in">
-    <p class="kicker">{t['kicker']}</p>
-    <h1 class="sbp__h1">{t['h1']}</h1>
-    <p class="lead">{t['lead']}</p>
+  <div class="container sbp__stage">
+    <div class="sbp__left">
+      <p class="kicker">{t['kicker']}</p>
+      <h1 class="sbp__h1">{t['h1']}</h1>
+      <p class="sbp__lead">{t['lead']}</p>
+      <ol class="sbp__rows">{rows_html}</ol>
+      <p class="sbp__foot"><a href="{pre}/practice/">{t['p_link']} &rarr;</a> <span>·</span>
+        <a href="{pre}/book/">{t['b_link']} &rarr;</a></p>
+    </div>
+    <form class="sub__form sbp__form" data-sub-form data-list="letter">
+      <p class="sbp__fh">{'Zapisz się' if L else 'Subscribe'}</p>
+      <label class="sub__label" for="sbp-mail">{t['l_lab']}</label>
+      <input class="sub__input" id="sbp-mail" type="email" required placeholder="{ph}">
+      <div class="sbp__opts">
+        <label><input type="checkbox" data-list-opt="letter" checked> {opts[0]}</label>
+        <label><input type="checkbox" data-list-opt="book"> {opts[1]}</label>
+      </div>
+      <button class="btn sub__btn" type="submit">{t['l_btn']}</button>
+      <p class="sub__note">{'Za darmo · Ze źródłami · Bez hałasu · Wypisujesz się jednym kliknięciem' if L else 'Free · Cited · No noise · Unsubscribe in one click'}</p>
+      <p class="sub__ok" hidden>{t['l_ok']}</p>
+      <p class="sbp__priv">{'Adres trzymamy u dostawcy poczty i nic poza tym. Wpisy z praktyki nigdy do nas nie trafiają.' if L else 'We keep the address with our mail provider and nothing else. Your practice entries never reach us.'}
+        <a href="{pre}/privacy/">{t['pr_link']} &rarr;</a></p>
+    </form>
   </div>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">{t['l_k']}</p>
-        <h2 class="h2">{t['l_h']}</h2>
-        <p>{t['l_d']}</p>
-        <ul class="sbp__pts">{pts}</ul>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="letter">
-        <label class="sub__label" for="sbp-letter">{t['l_lab']}</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-letter" type="email" required placeholder="{ph}">
-          <button class="btn sub__btn" type="submit">{t['l_btn']}</button>
-        </div>
-        <p class="sub__note">{'Za darmo · Ze źródłami · Bez hałasu' if lang=='pl' else 'Free · Cited · No noise'}</p>
-        <p class="sub__ok" hidden>{t['l_ok']}</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">{t['b_k']}</p>
-        <h2 class="h2">{t['b_h']}</h2>
-        <p>{t['b_d']}</p>
-        <p class="sbp__open">{t['b_open']}</p>
-        <p class="sbp__meta">{t['b_meta']}</p>
-        <p><a class="hero__alt" href="{pre}/book/">{t['b_link']} &rarr;</a></p>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="book-waitlist">
-        <label class="sub__label" for="sbp-book">{t['b_lab']}</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-book" type="email" required placeholder="{ph}">
-          <button class="btn sub__btn" type="submit">{t['b_btn']}</button>
-        </div>
-        <p class="sub__note">{t['b_note']}</p>
-        <p class="sub__ok" hidden>{t['b_ok']}</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">{t['p_k']}</p>
-        <h2 class="h2">{t['p_h']}</h2>
-        <p>{t['p_d']}</p>
-        <p><a class="btn" href="{pre}/practice/">{t['p_link']}</a></p>
-      </div>
-      <div></div>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container">
-      <p class="kicker">{t['s_k']}</p>
-      <h2 class="h2">{t['s_h']}</h2>
-      <ol class="sbp__stages">{stages}</ol>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__privacy">
-      <p class="kicker">{t['pr_k']}</p>
-      <h2 class="h2">{t['pr_h']}</h2>
-      <ul class="sbp__pts">{prs}</ul>
-      <p><a class="hero__alt" href="{pre}/privacy/">{t['pr_link']} &rarr;</a></p>
-    </div>
-  </section>
 </main>
 {FTR[lang]}
 </body></html>'''
     d = os.path.join(ROOT, 'pl' if lang == 'pl' else '', 'subscribe')
     os.makedirs(d, exist_ok=True)
     open(os.path.join(d, 'index.html'), 'w').write(html)
-    print(f'{lang}: {pre}/subscribe/')
+    print(f'{lang}: {pre}/subscribe/ (jeden widok)')
 
 for l in ('en', 'pl'):
     build(l)

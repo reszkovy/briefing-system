@@ -11,8 +11,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=47">
-<script src="/assets/site.js?v=47" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=49">
+<script src="/assets/site.js?v=49" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -95,82 +95,30 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
   </div>
 </header>
 <main class="sbp">
-  <div class="container sbp__in">
-    <p class="kicker">Subscribe</p>
-    <h1 class="sbp__h1">One letter.<br>One book. One practice.</h1>
-    <p class="lead">Three separate things, and you can take any of them without the others. Nothing here requires an account, and nothing sends your writing anywhere.</p>
+  <div class="container sbp__stage">
+    <div class="sbp__left">
+      <p class="kicker">Subscribe</p>
+      <h1 class="sbp__h1">One letter.<br>One book. One practice.</h1>
+      <p class="sbp__lead">Three separate things, and you can take any of them without the others. Nothing here requires an account, and nothing sends your writing anywhere.</p>
+      <ol class="sbp__rows"><li><p class="sbp__rk">The Letter · weekly</p><p class="sbp__rh">One pattern, one source, one practice</p><p class="sbp__rd">One short letter a week, always the same shape. It begins with Pre-AI Orientation.</p></li><li><p class="sbp__rk">The Book</p><p class="sbp__rh">Operational Hermeticism</p><p class="sbp__rd">Twelve chapters and an opening. Three texts are open now; PDF and EPUB in preparation.</p></li><li><p class="sbp__rk">The Practice · free</p><p class="sbp__rh">Five minutes, in your browser</p><p class="sbp__rd">Five minutes a day in your browser. No account, no address, no server.</p></li></ol>
+      <p class="sbp__foot"><a href="/practice/">Open The Practice &rarr;</a> <span>·</span>
+        <a href="/book/">Read the open chapters &rarr;</a></p>
+    </div>
+    <form class="sub__form sbp__form" data-sub-form data-list="letter">
+      <p class="sbp__fh">Subscribe</p>
+      <label class="sub__label" for="sbp-mail">Your e-mail</label>
+      <input class="sub__input" id="sbp-mail" type="email" required placeholder="you@work.com">
+      <div class="sbp__opts">
+        <label><input type="checkbox" data-list-opt="letter" checked> The weekly letter</label>
+        <label><input type="checkbox" data-list-opt="book"> Notice when the book edition is ready</label>
+      </div>
+      <button class="btn sub__btn" type="submit">Get the first practice</button>
+      <p class="sub__note">Free · Cited · No noise · Unsubscribe in one click</p>
+      <p class="sub__ok" hidden>You’re in. The first letter carries Pre-AI Orientation.</p>
+      <p class="sbp__priv">We keep the address with our mail provider and nothing else. Your practice entries never reach us.
+        <a href="/privacy/">Privacy in full &rarr;</a></p>
+    </form>
   </div>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">The Letter · weekly</p>
-        <h2 class="h2">One pattern, one source, one practice</h2>
-        <p>Every Sunday, one short letter with a fixed shape: a pattern worth noticing, a source you can check yourself, a practice small enough for an ordinary week, and a record worth keeping. It begins with Pre-AI Orientation — five questions before you delegate a problem to a model.</p>
-        <ul class="sbp__pts"><li>Fixed structure, no filler</li><li>Sources named with dates and editions</li><li>Fifteen minutes, once a week</li><li>Unsubscribe in one click</li></ul>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="letter">
-        <label class="sub__label" for="sbp-letter">Your e-mail</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-letter" type="email" required placeholder="you@work.com">
-          <button class="btn sub__btn" type="submit">Get the first practice</button>
-        </div>
-        <p class="sub__note">Free · Cited · No noise</p>
-        <p class="sub__ok" hidden>You’re in. The first letter carries Pre-AI Orientation.</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">The Book</p>
-        <h2 class="h2">Operational Hermeticism</h2>
-        <p>Twelve chapters and an opening: attention, energy, self-knowledge, pattern, systems, planning, relationships, technology, alignment, transmutation, agency, integration. Each chapter separates what the source says from how we read it, translates it into decisions, checks it against the body, gives a seven-day practice, and names its own limits and ethical cost.</p>
-        <p class="sbp__open">Open to read now: the opening, Attention, Energy — plus every chapter’s shape and its opening signal.</p>
-        <p class="sbp__meta">About 37,000 words · 146 pages set in A5 · PDF and EPUB in preparation</p>
-        <p><a class="hero__alt" href="/book/">Read the open chapters &rarr;</a></p>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="book-waitlist">
-        <label class="sub__label" for="sbp-book">Send me the edition</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-book" type="email" required placeholder="you@work.com">
-          <button class="btn sub__btn" type="submit">Notify me</button>
-        </div>
-        <p class="sub__note">We write once, when the edition is ready — with a founding price for the list.</p>
-        <p class="sub__ok" hidden>You’re on the list. We’ll write when the files are ready.</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">The Practice · free</p>
-        <h2 class="h2">Five minutes, in your browser</h2>
-        <p>A daily practice with three moments: a short orientation in the morning, optional resets during the day, a close in the evening. Entries stay in your browser — no account, no server. Export as Markdown, or hand it to a model with instructions that keep the judgement yours.</p>
-        <p><a class="btn" href="/practice/">Open The Practice</a></p>
-      </div>
-      <div></div>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container">
-      <p class="kicker">How the parts fit</p>
-      <h2 class="h2">Where to start, and what comes after</h2>
-      <ol class="sbp__stages"><li><i>01</i><b>Read something open</b><span>Any open chapter, or the sources in the Archive. Cost: nothing, not even an address.</span></li><li><i>02</i><b>Run one practice</b><span>Five minutes in The Practice. This is where reading becomes something you can check.</span></li><li><i>03</i><b>Take the letter</b><span>One pattern, one source, one practice each week — the rhythm that makes it a habit rather than an afternoon.</span></li><li><i>04</i><b>Keep the book</b><span>The whole method in one file, when the edition is ready.</span></li><li><i>05</i><b>Guided practice</b><span>Later: workbook, cohorts, practice with feedback. Structure and presence are what we will charge for — never access to the ideas.</span></li></ol>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__privacy">
-      <p class="kicker">What we do with your address</p>
-      <h2 class="h2">Very little</h2>
-      <ul class="sbp__pts"><li>We keep it with our mail provider to send the letter, and nothing else.</li><li>No profiling, no advertising, no selling or sharing.</li><li>Your practice entries never reach us — they stay in your browser.</li><li>One click to leave, and no “are you sure” sequence.</li></ul>
-      <p><a class="hero__alt" href="/privacy/">Privacy in full &rarr;</a></p>
-    </div>
-  </section>
 </main>
 <footer class="foot">
   <div class="container foot__in">

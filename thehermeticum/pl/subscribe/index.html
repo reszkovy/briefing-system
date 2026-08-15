@@ -11,8 +11,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=47">
-<script src="/assets/site.js?v=47" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=49">
+<script src="/assets/site.js?v=49" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -94,82 +94,30 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
   </div>
 </header>
 <main class="sbp">
-  <div class="container sbp__in">
-    <p class="kicker">Zapis</p>
-    <h1 class="sbp__h1">Jeden list.<br>Jedna książka. Jedna praktyka.</h1>
-    <p class="lead">Trzy osobne rzeczy — możesz wziąć każdą z nich bez pozostałych. Nic tu nie wymaga konta i nic nie wysyła Twoich zapisów na zewnątrz.</p>
+  <div class="container sbp__stage">
+    <div class="sbp__left">
+      <p class="kicker">Zapis</p>
+      <h1 class="sbp__h1">Jeden list.<br>Jedna książka. Jedna praktyka.</h1>
+      <p class="sbp__lead">Trzy osobne rzeczy — możesz wziąć każdą z nich bez pozostałych. Nic tu nie wymaga konta i nic nie wysyła Twoich zapisów na zewnątrz.</p>
+      <ol class="sbp__rows"><li><p class="sbp__rk">List · co tydzień</p><p class="sbp__rh">Jeden wzór, jedno źródło, jedna praktyka</p><p class="sbp__rd">Co tydzień jeden krótki list o stałym kształcie. Zaczyna się od Orientacji przed AI.</p></li><li><p class="sbp__rk">Książka</p><p class="sbp__rh">Hermetyzm operacyjny</p><p class="sbp__rd">Dwanaście rozdziałów i otwarcie. Trzy teksty są otwarte od razu; PDF i EPUB w przygotowaniu.</p></li><li><p class="sbp__rk">The Practice · za darmo</p><p class="sbp__rh">Pięć minut, w przeglądarce</p><p class="sbp__rd">Pięć minut dziennie w przeglądarce. Bez konta, bez adresu, bez serwera.</p></li></ol>
+      <p class="sbp__foot"><a href="/pl/practice/">Otwórz The Practice &rarr;</a> <span>·</span>
+        <a href="/pl/book/">Czytaj otwarte rozdziały &rarr;</a></p>
+    </div>
+    <form class="sub__form sbp__form" data-sub-form data-list="letter">
+      <p class="sbp__fh">Zapisz się</p>
+      <label class="sub__label" for="sbp-mail">Twój e-mail</label>
+      <input class="sub__input" id="sbp-mail" type="email" required placeholder="ty@praca.pl">
+      <div class="sbp__opts">
+        <label><input type="checkbox" data-list-opt="letter" checked> Cotygodniowy list</label>
+        <label><input type="checkbox" data-list-opt="book"> Powiadomienie o wydaniu książki</label>
+      </div>
+      <button class="btn sub__btn" type="submit">Odbierz pierwszą praktykę</button>
+      <p class="sub__note">Za darmo · Ze źródłami · Bez hałasu · Wypisujesz się jednym kliknięciem</p>
+      <p class="sub__ok" hidden>Jesteś na liście. Pierwszy list niesie Orientację przed AI.</p>
+      <p class="sbp__priv">Adres trzymamy u dostawcy poczty i nic poza tym. Wpisy z praktyki nigdy do nas nie trafiają.
+        <a href="/pl/privacy/">Pełna polityka prywatności &rarr;</a></p>
+    </form>
   </div>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">List · co tydzień</p>
-        <h2 class="h2">Jeden wzór, jedno źródło, jedna praktyka</h2>
-        <p>W każdą niedzielę krótki list o stałym kształcie: wzór wart zauważenia, źródło, które możesz sprawdzić sam, praktyka dość mała, żeby zmieścić się w zwykłym tygodniu, i zapis wart zachowania. Zaczyna się od Orientacji przed AI — pięciu pytań, zanim oddasz problem modelowi.</p>
-        <ul class="sbp__pts"><li>Stała struktura, bez zapychaczy</li><li>Źródła z datą i wydaniem</li><li>Kwadrans, raz w tygodniu</li><li>Wypisujesz się jednym kliknięciem</li></ul>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="letter">
-        <label class="sub__label" for="sbp-letter">Twój e-mail</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-letter" type="email" required placeholder="ty@praca.pl">
-          <button class="btn sub__btn" type="submit">Odbierz pierwszą praktykę</button>
-        </div>
-        <p class="sub__note">Za darmo · Ze źródłami · Bez hałasu</p>
-        <p class="sub__ok" hidden>Jesteś na liście. Pierwszy list niesie Orientację przed AI.</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">Książka</p>
-        <h2 class="h2">Hermetyzm operacyjny</h2>
-        <p>Dwanaście rozdziałów i otwarcie: uwaga, energia, samoświadomość, wzór, systemy, planowanie, relacje, technologia, zgodność, transmutacja, sprawczość, integracja. Każdy rozdział oddziela to, co mówi źródło, od tego, jak my je czytamy, przekłada to na decyzje, sprawdza w ciele, daje siedmiodniową praktykę i nazywa własne granice oraz koszt etyczny.</p>
-        <p class="sbp__open">Otwarte od razu: otwarcie, Uwaga, Energia — a przy każdym rozdziale jego kształt i sygnał otwarcia.</p>
-        <p class="sbp__meta">Około 30 000 słów · 142 strony w składzie A5 · PDF i EPUB w przygotowaniu</p>
-        <p><a class="hero__alt" href="/pl/book/">Czytaj otwarte rozdziały &rarr;</a></p>
-      </div>
-      <form class="sub__form sbp__form" data-sub-form data-list="book-waitlist">
-        <label class="sub__label" for="sbp-book">Wyślijcie mi wydanie</label>
-        <div class="sub__row">
-          <input class="sub__input" id="sbp-book" type="email" required placeholder="ty@praca.pl">
-          <button class="btn sub__btn" type="submit">Zapisz mnie</button>
-        </div>
-        <p class="sub__note">Piszemy raz, gdy wydanie będzie gotowe — z ceną założycielską dla zapisanych.</p>
-        <p class="sub__ok" hidden>Jesteś na liście. Napiszemy, gdy pliki będą gotowe.</p>
-      </form>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__grid">
-      <div class="sbp__txt">
-        <p class="kicker">The Practice · za darmo</p>
-        <h2 class="h2">Pięć minut, w przeglądarce</h2>
-        <p>Codzienna praktyka w trzech momentach: krótka orientacja rano, opcjonalne resety w ciągu dnia, zamknięcie wieczorem. Wpisy zostają w Twojej przeglądarce — bez konta, bez serwera. Eksportuj do Markdown albo oddaj modelowi razem z instrukcją, która zostawia osąd przy Tobie.</p>
-        <p><a class="btn" href="/pl/practice/">Otwórz The Practice</a></p>
-      </div>
-      <div></div>
-    </div>
-  </section>
-
-  <section class="sbp__block sbp__block--alt">
-    <div class="container">
-      <p class="kicker">Jak to się składa</p>
-      <h2 class="h2">Od czego zacząć i co jest dalej</h2>
-      <ol class="sbp__stages"><li><i>01</i><b>Przeczytaj coś otwartego</b><span>Dowolny otwarty rozdział albo źródła w Archiwum. Koszt: żaden, nawet nie adres.</span></li><li><i>02</i><b>Zrób jedną praktykę</b><span>Pięć minut w The Practice. Tu lektura staje się czymś, co da się sprawdzić.</span></li><li><i>03</i><b>Weź list</b><span>Jeden wzór, jedno źródło, jedna praktyka co tydzień — rytm, który robi z tego nawyk, a nie popołudnie.</span></li><li><i>04</i><b>Zatrzymaj książkę</b><span>Cała metoda w jednym pliku, gdy wydanie będzie gotowe.</span></li><li><i>05</i><b>Prowadzona praktyka</b><span>Później: workbook, kohorty, praktyka z informacją zwrotną. Płatne będą struktura i obecność — nigdy dostęp do samych idei.</span></li></ol>
-    </div>
-  </section>
-
-  <section class="sbp__block">
-    <div class="container sbp__privacy">
-      <p class="kicker">Co robimy z Twoim adresem</p>
-      <h2 class="h2">Bardzo niewiele</h2>
-      <ul class="sbp__pts"><li>Trzymamy go u dostawcy poczty, żeby wysłać list — i nic poza tym.</li><li>Bez profilowania, bez reklamy, bez sprzedaży i udostępniania.</li><li>Twoje wpisy z praktyki nigdy do nas nie trafiają — zostają w przeglądarce.</li><li>Wyjście jednym kliknięciem, bez sekwencji „czy na pewno”.</li></ul>
-      <p><a class="hero__alt" href="/pl/privacy/">Pełna polityka prywatności &rarr;</a></p>
-    </div>
-  </section>
 </main>
 <footer class="foot">
   <div class="container foot__in">
