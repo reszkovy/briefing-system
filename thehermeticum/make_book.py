@@ -65,6 +65,8 @@ L10N = {
 
 # ── Trzy poziomy dostępu ──
 OPEN_CHAPTERS = {0, 1, 2}          # otwarte bez konta i bez e-maila
+PREVIEW_CHAPTERS = {4, 8}          # podgląd: sygnał, źródło, nasze odczytanie, pytanie
+# reszta (3, 5, 6, 7, 9, 10, 11, 12) — zamknięta: tytuł, teza i spis części
 PROTOCOL = {                        # rozdział → protokół w The Practice
  1: ('attention-reset', 'Attention Reset', 'Reset uwagi'),
  2: ('attention-reset', 'Energy Check', 'Sprawdzenie energii'),
@@ -76,13 +78,15 @@ TIER = {
  'en': dict(open_lbl='Open chapter', prev_lbl='Preview',
    prev_note='This chapter is part of the complete edition. What follows is its opening signal, its source and the shape of the practice — enough to judge whether it is for you.',
    in_full='In the complete edition', parts_lbl='What the full chapter contains',
-   cta='Continue in the complete edition', next_lbl='Your next move',
+   locked_lbl='Complete edition', cta='Continue in the complete edition', next_lbl='Your next move',
+   locked_note='This chapter is part of the complete edition. Below is what it covers — the argument itself travels with the book.',
    next_txt='Run the matching protocol in The Practice — five minutes, in your browser, nothing sent anywhere.',
    q_lbl='One question to carry'),
  'pl': dict(open_lbl='Rozdział otwarty', prev_lbl='Podgląd',
    prev_note='Ten rozdział należy do pełnego wydania. Poniżej jest jego sygnał otwarcia, źródło i kształt praktyki — tyle, żeby ocenić, czy jest dla Ciebie.',
    in_full='W pełnym wydaniu', parts_lbl='Co zawiera pełny rozdział',
-   cta='Czytaj dalej w pełnym wydaniu', next_lbl='Twój następny ruch',
+   locked_lbl='Pełne wydanie', cta='Czytaj dalej w pełnym wydaniu', next_lbl='Twój następny ruch',
+   locked_note='Ten rozdział należy do pełnego wydania. Poniżej jest to, co obejmuje — sam wywód podróżuje razem z książką.',
    next_txt='Uruchom odpowiadający protokół w The Practice — pięć minut, w przeglądarce, nic nie wychodzi na zewnątrz.',
    q_lbl='Jedno pytanie do zabrania'),
 }
@@ -138,7 +142,7 @@ def build_from_chapters(chs, lang, t, pre):
             sub = H.escape(c.get('subtitle', '') or '')
             rows += (f'<li><a href="{pre}/book/{c["slug"]}/"><i>{num}</i><b>{H.escape(c["title"])}</b>'
                      f'<span class="bx__dots" aria-hidden="true"></span>'
-                     f'<em>{(TIER[lang]["open_lbl"] if c["n"] in OPEN_CHAPTERS else TIER[lang]["prev_lbl"])}</em></a></li>')
+                     f'<em>{(TIER[lang]["open_lbl"] if c["n"] in OPEN_CHAPTERS else (TIER[lang]["prev_lbl"] if c["n"] in PREVIEW_CHAPTERS else TIER[lang]["locked_lbl"]))}</em></a></li>')
         order.append((cur_part, rows))
         rom = ['I','II','III','IV','V']
         for i, (pk, rws) in enumerate(order):
@@ -158,7 +162,7 @@ def build_from_chapters(chs, lang, t, pre):
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=41"><script src="/assets/site.js?v=41" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=43"><script src="/assets/site.js?v=43" defer></script>
 <script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
 
     outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
@@ -215,6 +219,12 @@ def build_from_chapters(chs, lang, t, pre):
                 secs += (f'<section class="bnext"><p class="bnext__lbl">{tr["next_lbl"]}</p>'
                          f'<p class="bnext__t"><a href="{purl}">{H.escape(pname)}</a></p>'
                          f'<p class="bnext__s">{tr["next_txt"]}</p></section>')
+        elif c['n'] not in PREVIEW_CHAPTERS:
+            parts = ''.join(f'<li>{H.escape(x.get("label",""))}</li>' for x in c['sections'] if x.get('label'))
+            secs = (f'<section class="bgate bgate--locked"><p class="bgate__lbl">{tr["locked_lbl"]}</p>'
+                    f'<p class="bgate__note">{tr["locked_note"]}</p>'
+                    f'<p class="bgate__parts">{tr["parts_lbl"]}</p><ul class="bgate__list">{parts}</ul>'
+                    f'<p><a class="btn" href="{pre}/book/">{tr["cta"]}</a></p></section>')
         else:
             by = {x.get('key'): x for x in c['sections']}
             for k in ('signal', 'source', 'interpretation'):
@@ -248,7 +258,7 @@ def build_from_chapters(chs, lang, t, pre):
     <aside class="book__side"><p class="btoc__head">{t['contents']}</p>
       <nav class="btoc">{toc(c['pos'])}</nav></aside>
     <article class="book__body">
-      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl} &middot; <em class="book__tier">{TIER[lang]['open_lbl'] if c['n'] in OPEN_CHAPTERS else TIER[lang]['prev_lbl']}</em></p>
+      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl} &middot; <em class="book__tier">{TIER[lang]['open_lbl'] if c['n'] in OPEN_CHAPTERS else (TIER[lang]['prev_lbl'] if c['n'] in PREVIEW_CHAPTERS else TIER[lang]['locked_lbl'])}</em></p>
       <h1 class="book__h1">{H.escape(c['title'])}</h1>
       {_fig(c)}
       {f'<p class="book__sub">{H.escape(c["subtitle"])}</p>' if c.get('subtitle') else ''}
@@ -329,8 +339,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=41">
-<script src="/assets/site.js?v=41" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=43">
+<script src="/assets/site.js?v=43" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>

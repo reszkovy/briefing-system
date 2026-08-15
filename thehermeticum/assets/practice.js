@@ -4,6 +4,8 @@
   'use strict';
   var PL = (document.documentElement.lang || 'en').indexOf('pl') === 0;
   var DB = 'hermeticum-practice', STORE = 'days', LS = 'hermeticum-practice-days';
+  var PSTORE = 'patterns', PLS = 'hermeticum-practice-patterns';
+  var DBV = 2;
   var SCHEMA = 1;
 
   var T = PL ? {
@@ -33,7 +35,37 @@
     started: 'rozpoczęty', completed: 'zamknięty', resets: 'resetów',
     begin_cta: 'Zacznij dzisiejszą praktykę', cont_cta: 'Kontynuuj dzisiejszą praktykę',
     review_cta: 'Przejrzyj dzisiejszą praktykę', yesterday: 'Wróć do wczorajszego zapisu',
-    today: 'Dzisiaj', backToday: 'Wróć do dzisiaj', editing: 'Edytujesz zapis z dnia'
+    today: 'Dzisiaj', backToday: 'Wróć do dzisiaj', editing: 'Edytujesz zapis z dnia',
+
+    /* ── wzory ── */
+    pat_save: 'Zapisz jako zauważony wzór',
+    pat_saved: 'Zapisano wzór. Znajdziesz go w archiwum.',
+    pat_needText: 'Najpierw opisz wzór w polu powyżej.',
+    pat_h: 'Wzory',
+    pat_s: 'Wzory zapisujesz sam. Status zmieniasz sam. Nic nie dzieje się automatycznie.',
+    pat_empty: 'Nie ma jeszcze zapisanych wzorów. Zapisujesz je przy wieczornym zamknięciu.',
+    pat_g_observed: 'Zauważone wzory', pat_g_tested: 'Sprawdzone praktyki', pat_g_integrated: 'Zintegrowane zasady',
+    pat_count_1: 'pozycja', pat_count_2: 'pozycje', pat_count_5: 'pozycji',
+    pat_from: 'z wpisu', pat_since: 'zapisany',
+    pat_test: 'Sprawdź inną reakcję', pat_testH: 'Sprawdzenie praktyki',
+    pat_practice: 'Co chcę zrobić inaczej?', pat_trigger: 'W jakiej sytuacji?',
+    pat_marker: 'Po czym poznam rezultat?', pat_when: 'Kiedy wrócę do tego?',
+    pat_nonaction: 'Czego świadomie nie zrobię? (opcjonalnie)',
+    pat_returnH: 'Powrót do sprawdzenia',
+    pat_result: 'Co się wydarzyło?', pat_observation: 'Co się zmieniło?',
+    pat_learning: 'Czego się nauczyłem?', pat_continue: 'Czy kontynuuję?',
+    pat_markTested: 'Oznacz jako sprawdzone',
+    pat_intH: 'Integracja zasady',
+    pat_intQ: 'Czy ten wynik zmienia sposób, w jaki chcesz działać w przyszłości?',
+    pat_principle: 'Zasada, którą chcesz zapisać własnymi słowami',
+    pat_integrate: 'Dodaj do mojego standardu działania',
+    pat_edit: 'Otwórz', pat_close: 'Zwiń',
+    pat_confirmDel: 'Usunąć ten wzór? Tej operacji nie da się cofnąć.',
+    pat_exportOne: '.md', pat_exportPrinciples: 'Eksportuj zintegrowane zasady',
+    pat_st_observed: 'zauważony', pat_st_tested: 'sprawdzony', pat_st_integrated: 'zintegrowany',
+    pat_needPractice: 'Opisz najpierw, co chcesz zrobić inaczej.',
+    pat_needPrinciple: 'Zapisz najpierw zasadę własnymi słowami.',
+    pat_noPrinciples: 'Nie ma jeszcze zintegrowanych zasad.'
   } : {
     saved: 'Saved', saving: 'Saving…', failed: 'Could not save locally',
     beginH: 'Begin', beginS: 'Two or three minutes. Any question can be skipped.',
@@ -61,7 +93,37 @@
     started: 'started', completed: 'closed', resets: 'resets',
     begin_cta: 'Begin today’s practice', cont_cta: 'Continue today’s practice',
     review_cta: 'Review today’s practice', yesterday: 'Review yesterday',
-    today: 'Today', backToday: 'Back to today', editing: 'Editing the record for'
+    today: 'Today', backToday: 'Back to today', editing: 'Editing the record for',
+
+    /* ── patterns ── */
+    pat_save: 'Save as observed pattern',
+    pat_saved: 'Pattern saved. You will find it in the archive.',
+    pat_needText: 'Describe the pattern in the field above first.',
+    pat_h: 'Patterns',
+    pat_s: 'You save the patterns. You change the status. Nothing happens automatically.',
+    pat_empty: 'No patterns saved yet. You save them at the evening close.',
+    pat_g_observed: 'Observed patterns', pat_g_tested: 'Tested practices', pat_g_integrated: 'Integrated principles',
+    pat_count_1: 'item', pat_count_2: 'items', pat_count_5: 'items',
+    pat_from: 'from the entry of', pat_since: 'saved',
+    pat_test: 'Test a different response', pat_testH: 'Practice test',
+    pat_practice: 'What do I want to do differently?', pat_trigger: 'In what situation?',
+    pat_marker: 'How will I recognise the result?', pat_when: 'When will I come back to it?',
+    pat_nonaction: 'What will I deliberately not do? (optional)',
+    pat_returnH: 'Coming back to the test',
+    pat_result: 'What happened?', pat_observation: 'What changed?',
+    pat_learning: 'What did I learn?', pat_continue: 'Do I continue?',
+    pat_markTested: 'Mark as tested',
+    pat_intH: 'Integrating a principle',
+    pat_intQ: 'Does this result change how you want to act in the future?',
+    pat_principle: 'The principle, in your own words',
+    pat_integrate: 'Add to my operating standard',
+    pat_edit: 'Open', pat_close: 'Collapse',
+    pat_confirmDel: 'Delete this pattern? This cannot be undone.',
+    pat_exportOne: '.md', pat_exportPrinciples: 'Export integrated principles',
+    pat_st_observed: 'observed', pat_st_tested: 'tested', pat_st_integrated: 'integrated',
+    pat_needPractice: 'First describe what you want to do differently.',
+    pat_needPrinciple: 'First write the principle in your own words.',
+    pat_noPrinciples: 'No integrated principles yet.'
   };
 
   /* ── zdarzenia funkcjonalne: bez treści, bez identyfikatorów ── */
@@ -75,78 +137,96 @@
   function tz() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) { return ''; } }
   function hhmm() { var d = new Date(); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
 
-  /* ── magazyn: IndexedDB, awaryjnie localStorage ── */
-  var store = (function () {
-    var idb = null, ready = null;
-    function open() {
-      if (ready) return ready;
-      ready = new Promise(function (res) {
-        if (!window.indexedDB) return res(null);
-        var r;
-        try { r = indexedDB.open(DB, 1); } catch (e) { return res(null); }
-        r.onupgradeneeded = function () { r.result.createObjectStore(STORE, { keyPath: 'date' }); };
-        r.onsuccess = function () { idb = r.result; res(idb); };
-        r.onerror = function () { res(null); };
-      });
-      return ready;
-    }
-    function lsAll() { try { return JSON.parse(localStorage.getItem(LS) || '{}'); } catch (e) { return {}; } }
-    function lsSave(o) { try { localStorage.setItem(LS, JSON.stringify(o)); return true; } catch (e) { return false; } }
+  /* ── magazyn: IndexedDB, awaryjnie localStorage ──
+     Jedna baza, dwa magazyny: `days` (klucz: date) i `patterns` (klucz: id). */
+  var idb = null, ready = null;
+  function open() {
+    if (ready) return ready;
+    ready = new Promise(function (res) {
+      if (!window.indexedDB) return res(null);
+      var r;
+      try { r = indexedDB.open(DB, DBV); } catch (e) { return res(null); }
+      r.onupgradeneeded = function () {
+        var db = r.result;
+        if (!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE, { keyPath: 'date' });
+        if (!db.objectStoreNames.contains(PSTORE)) db.createObjectStore(PSTORE, { keyPath: 'id' });
+      };
+      r.onsuccess = function () { idb = r.result; res(idb); };
+      r.onerror = function () { res(null); };
+      r.onblocked = function () { res(null); };
+    });
+    return ready;
+  }
+  function makeStore(NAME, LSKEY, KEY) {
+    function lsAll() { try { return JSON.parse(localStorage.getItem(LSKEY) || '{}'); } catch (e) { return {}; } }
+    function lsSave(o) { try { localStorage.setItem(LSKEY, JSON.stringify(o)); return true; } catch (e) { return false; } }
+    function lsPut(rec) { var o = lsAll(); o[rec[KEY]] = rec; return lsSave(o); }
     return {
-      get: function (date) {
+      get: function (id) {
         return open().then(function (db) {
-          if (!db) return lsAll()[date] || null;
+          if (!db) return lsAll()[id] || null;
           return new Promise(function (res) {
-            var q = db.transaction(STORE).objectStore(STORE).get(date);
-            q.onsuccess = function () { res(q.result || null); };
-            q.onerror = function () { res(lsAll()[date] || null); };
+            try {
+              var q = db.transaction(NAME).objectStore(NAME).get(id);
+              q.onsuccess = function () { res(q.result || null); };
+              q.onerror = function () { res(lsAll()[id] || null); };
+            } catch (e) { res(lsAll()[id] || null); }
           });
         });
       },
       all: function () {
         return open().then(function (db) {
-          if (!db) { var o = lsAll(); return Object.keys(o).map(function (k) { return o[k]; }); }
+          function fromLs() { var o = lsAll(); return Object.keys(o).map(function (k) { return o[k]; }); }
+          if (!db) return fromLs();
           return new Promise(function (res) {
-            var q = db.transaction(STORE).objectStore(STORE).getAll();
-            q.onsuccess = function () { res(q.result || []); };
-            q.onerror = function () { var o = lsAll(); res(Object.keys(o).map(function (k) { return o[k]; })); };
+            try {
+              var q = db.transaction(NAME).objectStore(NAME).getAll();
+              q.onsuccess = function () { res(q.result || []); };
+              q.onerror = function () { res(fromLs()); };
+            } catch (e) { res(fromLs()); }
           });
         });
       },
       put: function (rec) {
         return open().then(function (db) {
-          if (!db) { var o = lsAll(); o[rec.date] = rec; return lsSave(o); }
+          if (!db) return lsPut(rec);
           return new Promise(function (res) {
             try {
-              var t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).put(rec);
+              var t = db.transaction(NAME, 'readwrite'); t.objectStore(NAME).put(rec);
               t.oncomplete = function () { res(true); };
-              t.onerror = function () { var o = lsAll(); o[rec.date] = rec; res(lsSave(o)); };
-            } catch (e) { var o2 = lsAll(); o2[rec.date] = rec; res(lsSave(o2)); }
+              t.onerror = function () { res(lsPut(rec)); };
+            } catch (e) { res(lsPut(rec)); }
           });
         });
       },
-      del: function (date) {
+      del: function (id) {
         return open().then(function (db) {
-          var o = lsAll(); delete o[date]; lsSave(o);
+          var o = lsAll(); delete o[id]; lsSave(o);
           if (!db) return true;
           return new Promise(function (res) {
-            var t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).delete(date);
-            t.oncomplete = function () { res(true); }; t.onerror = function () { res(true); };
+            try {
+              var t = db.transaction(NAME, 'readwrite'); t.objectStore(NAME).delete(id);
+              t.oncomplete = function () { res(true); }; t.onerror = function () { res(true); };
+            } catch (e) { res(true); }
           });
         });
       },
       clear: function () {
         return open().then(function (db) {
-          try { localStorage.removeItem(LS); } catch (e) {}
+          try { localStorage.removeItem(LSKEY); } catch (e) {}
           if (!db) return true;
           return new Promise(function (res) {
-            var t = db.transaction(STORE, 'readwrite'); t.objectStore(STORE).clear();
-            t.oncomplete = function () { res(true); }; t.onerror = function () { res(true); };
+            try {
+              var t = db.transaction(NAME, 'readwrite'); t.objectStore(NAME).clear();
+              t.oncomplete = function () { res(true); }; t.onerror = function () { res(true); };
+            } catch (e) { res(true); }
           });
         });
       }
     };
-  })();
+  }
+  var store = makeStore(STORE, LS, 'date');
+  var pstore = makeStore(PSTORE, PLS, 'id');
 
   function blank(date) {
     return {
@@ -157,6 +237,44 @@
       protocols: [],
       close: { happened: '', energy: '', pattern: '', change: '', unsolved: '', next: '' }
     };
+  }
+
+  /* ── model wzoru ──
+     Status zmienia wyłącznie użytkownik: observed → tested → integrated. */
+  function pid() {
+    return 'p-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8);
+  }
+  function blankPattern(text, sourceEntry) {
+    var now = new Date().toISOString();
+    return {
+      schema: SCHEMA, id: pid(), created: now, updated: now,
+      language: PL ? 'pl' : 'en', status: 'observed',
+      pattern: text || '',
+      trigger: '',
+      practice: '',
+      planned_move: '',
+      deliberate_non_action: '',
+      review_on: '',
+      result: '',
+      observation: '',
+      learning: '',
+      continue_decision: '',
+      principle: '',
+      source_entry: sourceEntry || '',
+      source_letter: '',
+      history: [{ status: 'observed', date: now }]
+    };
+  }
+  function statusDate(p, status) {
+    var h = (p.history || []).filter(function (x) { return x.status === status; });
+    return h.length ? String(h[h.length - 1].date).slice(0, 10) : '';
+  }
+  function setStatus(p, status) {
+    if (p.status === status) return false;
+    p.status = status;
+    p.history = p.history || [];
+    p.history.push({ status: status, date: new Date().toISOString() });
+    return true;
   }
 
   /* ── Markdown ── */
@@ -254,6 +372,61 @@
     return o.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
   }
 
+  /* ── Markdown: pojedynczy wzór ── */
+  var DIA = { 'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z' };
+  function slug(s) {
+    var x = (s || '').toLowerCase().replace(/[ąćęłńóśźż]/g, function (c) { return DIA[c] || c; });
+    try { x = x.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) {}
+    x = x.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    x = x.split('-').filter(Boolean).slice(0, 6).join('-').slice(0, 48).replace(/-+$/, '');
+    return x || 'pattern';
+  }
+  var PLAB = PL ? {
+    title: 'Wzór', pattern: 'Zauważony wzór', practice: 'Praktyka', result: 'Wynik', principle: 'Zintegrowana zasada',
+    l_trigger: 'Sytuacja', l_practice: 'Co robię inaczej', l_marker: 'Po czym poznam rezultat',
+    l_non: 'Świadome niedziałanie', l_when: 'Kiedy wracam',
+    l_result: 'Co się wydarzyło', l_observation: 'Co się zmieniło', l_learning: 'Czego się nauczyłem', l_continue: 'Czy kontynuuję',
+    principlesTitle: 'Mój standard działania'
+  } : {
+    title: 'Pattern', pattern: 'Observed Pattern', practice: 'Practice', result: 'Result', principle: 'Integrated Principle',
+    l_trigger: 'Situation', l_practice: 'What I do differently', l_marker: 'How I recognise the result',
+    l_non: 'Deliberate non-action', l_when: 'When I come back',
+    l_result: 'What happened', l_observation: 'What changed', l_learning: 'What I learned', l_continue: 'Do I continue',
+    principlesTitle: 'My operating standard'
+  };
+  function bullet(label, val, out) { if (esc(val)) out.push('- **' + label + ':** ' + esc(val).replace(/\n+/g, ' ')); }
+  function patternMd(p) {
+    var o = [];
+    o.push('---', 'type: pattern', 'status: ' + p.status,
+      'created: ' + String(p.created || '').slice(0, 10),
+      'tested: ' + statusDate(p, 'tested'),
+      'integrated: ' + statusDate(p, 'integrated'),
+      'source_entry: ' + (p.source_entry || ''),
+      'language: ' + (p.language || (PL ? 'pl' : 'en')),
+      'method: operational-hermeticism', '---', '');
+    var head = esc(p.pattern).split('\n')[0].slice(0, 80);
+    o.push('# ' + (head || PLAB.title), '');
+    o.push('## ' + PLAB.pattern, '', esc(p.pattern) || '—', '');
+    var pr = [];
+    bullet(PLAB.l_trigger, p.trigger, pr);
+    bullet(PLAB.l_practice, p.practice, pr);
+    bullet(PLAB.l_marker, p.planned_move, pr);
+    bullet(PLAB.l_non, p.deliberate_non_action, pr);
+    bullet(PLAB.l_when, p.review_on, pr);
+    if (pr.length) o.push('## ' + PLAB.practice, '', pr.join('\n'), '');
+    var rs = [];
+    bullet(PLAB.l_result, p.result, rs);
+    bullet(PLAB.l_observation, p.observation, rs);
+    bullet(PLAB.l_learning, p.learning, rs);
+    bullet(PLAB.l_continue, p.continue_decision, rs);
+    if (rs.length) o.push('## ' + PLAB.result, '', rs.join('\n'), '');
+    if (esc(p.principle)) o.push('## ' + PLAB.principle, '', esc(p.principle), '');
+    return o.join('\n').replace(/\n{3,}/g, '\n\n') + '\n';
+  }
+  function patternFile(p) {
+    return 'pattern-' + String(p.created || '').slice(0, 10) + '-' + slug(p.pattern) + '.md';
+  }
+
   var AI_EN = '# Instructions for AI\n\nTreat this document as a record of observations, not an objective\ndescription of reality.\n\nDo not motivate me or make decisions for me.\n\nHelp me:\n- identify repeated patterns,\n- separate facts from interpretations,\n- notice contradictions between values and actions,\n- identify energy costs,\n- ask useful questions before proposing solutions.\n\nDo not diagnose medical or psychological conditions.\nShow uncertainty where evidence is insufficient.\n';
   var AI_PL = '# Instrukcja dla AI\n\nTraktuj ten dokument jako zapis obserwacji, nie jako obiektywny\nopis rzeczywistości.\n\nNie motywuj mnie i nie podejmuj za mnie decyzji.\n\nPomóż mi:\n- rozpoznać powtarzające się wzory,\n- oddzielić fakty od interpretacji,\n- zauważyć sprzeczności między wartościami a działaniem,\n- nazwać koszty energetyczne,\n- zadać użyteczne pytania, zanim zaproponujesz rozwiązania.\n\nNie diagnozuj stanów medycznych ani psychologicznych.\nPokazuj niepewność tam, gdzie dowody są niewystarczające.\n';
 
@@ -314,6 +487,20 @@
         var el = root.querySelector('#c-' + k);
         if (el) bind(el, function () { return rec.close[k]; }, function (v) { rec.close[k] = v; });
       });
+      /* Zapis wzoru — opcjonalny, nie przerywa głównego przepływu. */
+      var sp = root.querySelector('[data-save-pattern]');
+      var spNote = root.querySelector('[data-pattern-note]');
+      if (sp) sp.addEventListener('click', function () {
+        var txt = (rec.close.pattern || '').trim();
+        if (!txt) { if (spNote) spNote.textContent = T.pat_needText; return; }
+        var p = blankPattern(txt, rec.date);
+        pstore.put(p).then(function () {
+          ev('pattern_saved');
+          if (spNote) spNote.innerHTML = T.pat_saved + ' <a class="pr__link" href="' +
+            (PL ? '/pl' : '') + '/practice/archive/#patterns">' + T.pat_h + ' &rarr;</a>';
+        });
+      });
+
       var fin = root.querySelector('[data-finish]');
       if (fin) fin.addEventListener('click', function () {
         rec.status = 'completed'; save(true); ev('evening_review_completed');
@@ -425,19 +612,177 @@
       if (del && confirm(T.confirmOne.replace('%s', del))) store.del(del).then(render);
     });
     root.querySelector('[data-export-all]').addEventListener('click', function () {
-      store.all().then(function (days) {
+      Promise.all([store.all(), pstore.all()]).then(function (r) {
+        var days = r[0], ps = r[1];
         days.sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+        ps.sort(function (a, b) { return (a.created < b.created) ? 1 : -1; });
         var text = days.map(function (d) { return md(d); }).join('\n\n---\n\n');
+        if (ps.length) {
+          text += '\n\n---\n\n# ' + T.pat_h + '\n\n' + ps.map(function (p) { return patternMd(p); }).join('\n---\n\n');
+        }
         download('the-practice-all-' + today() + '.md', text || '');
         ev('markdown_downloaded');
       });
     });
     root.querySelector('[data-delete-all]').addEventListener('click', function () {
-      if (confirm(T.confirmAll)) store.clear().then(render);
+      if (!confirm(T.confirmAll)) return;
+      store.clear()
+        .then(function () { return pstore.clear(); })
+        .then(function () { render(); if (patternsRender) patternsRender(); });
     });
     render();
   }
 
-  function boot() { initLanding(); initToday(); initArchive(); }
+  /* ── wzory: widok w archiwum ──
+     Trzy grupy, licznik wykonanej pracy. Bez punktów, ocen i porównań. */
+  function plural(n) {
+    if (!PL) return n === 1 ? T.pat_count_1 : T.pat_count_2;
+    if (n === 1) return T.pat_count_1;
+    var d = n % 10, h = n % 100;
+    return (d >= 2 && d <= 4 && !(h >= 12 && h <= 14)) ? T.pat_count_2 : T.pat_count_5;
+  }
+  var patternsRender = null;
+  function initPatterns() {
+    var root = document.querySelector('[data-patterns]');
+    if (!root) return;
+    var list = root.querySelector('[data-pattern-list]');
+    var openIds = {};
+    var timers = {};
+
+    function save(p, immediate) {
+      clearTimeout(timers[p.id]);
+      var run = function () { p.updated = new Date().toISOString(); pstore.put(p); };
+      if (immediate) run(); else timers[p.id] = setTimeout(run, 700);
+    }
+    function fieldEl(label, val, onInput, rows) {
+      var f = document.createElement('div'); f.className = 'pr__f';
+      var l = document.createElement('label'); l.textContent = label;
+      var ta = document.createElement('textarea'); ta.rows = rows || 2; ta.value = val || '';
+      l.setAttribute('for', 'f' + Math.random().toString(36).slice(2, 8));
+      ta.id = l.getAttribute('for');
+      ta.addEventListener('input', function () { onInput(ta.value); });
+      f.appendChild(l); f.appendChild(ta);
+      return f;
+    }
+    function btn(cls, label, fn) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = cls;
+      b.textContent = label; b.addEventListener('click', fn); return b;
+    }
+    function detail(p, render) {
+      var box = document.createElement('div'); box.className = 'pr__patBody';
+      var planOpen = p.status !== 'observed' || openIds[p.id] === 'plan' ||
+        !!(p.practice || p.trigger || p.planned_move || p.deliberate_non_action || p.review_on);
+
+      var full = document.createElement('p');
+      full.className = 'pr__patFull'; full.textContent = p.pattern;
+      box.appendChild(full);
+
+      if (!planOpen) {
+        box.appendChild(btn('pr__add', T.pat_test, function () { openIds[p.id] = 'plan'; render(); }));
+        return box;
+      }
+
+      var h1 = document.createElement('p'); h1.className = 'pr__protoH'; h1.textContent = T.pat_testH;
+      box.appendChild(h1);
+      box.appendChild(fieldEl(T.pat_practice, p.practice, function (v) { p.practice = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_trigger, p.trigger, function (v) { p.trigger = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_marker, p.planned_move, function (v) { p.planned_move = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_when, p.review_on, function (v) { p.review_on = v; save(p); }, 1));
+      box.appendChild(fieldEl(T.pat_nonaction, p.deliberate_non_action, function (v) { p.deliberate_non_action = v; save(p); }));
+
+      var h2 = document.createElement('p'); h2.className = 'pr__protoH'; h2.textContent = T.pat_returnH;
+      box.appendChild(h2);
+      box.appendChild(fieldEl(T.pat_result, p.result, function (v) { p.result = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_observation, p.observation, function (v) { p.observation = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_learning, p.learning, function (v) { p.learning = v; save(p); }));
+      box.appendChild(fieldEl(T.pat_continue, p.continue_decision, function (v) { p.continue_decision = v; save(p); }, 1));
+
+      var note = document.createElement('p'); note.className = 'pr__hint';
+      if (p.status === 'observed') {
+        box.appendChild(btn('pr__add', T.pat_markTested, function () {
+          if (!(p.practice || '').trim() && !(p.result || '').trim()) { note.textContent = T.pat_needPractice; return; }
+          setStatus(p, 'tested'); save(p, true); ev('pattern_tested'); openIds[p.id] = 'open'; render();
+        }));
+        box.appendChild(note);
+      }
+
+      if (p.status === 'tested' || p.status === 'integrated') {
+        var h3 = document.createElement('p'); h3.className = 'pr__protoH'; h3.textContent = T.pat_intH;
+        box.appendChild(h3);
+        var q = document.createElement('p'); q.className = 'pr__patQ'; q.textContent = T.pat_intQ;
+        box.appendChild(q);
+        box.appendChild(fieldEl(T.pat_principle, p.principle, function (v) { p.principle = v; save(p); }));
+        if (p.status === 'tested') {
+          var note2 = document.createElement('p'); note2.className = 'pr__hint';
+          box.appendChild(btn('pr__add', T.pat_integrate, function () {
+            if (!(p.principle || '').trim()) { note2.textContent = T.pat_needPrinciple; return; }
+            setStatus(p, 'integrated'); save(p, true); ev('principle_integrated'); render();
+          }));
+          box.appendChild(note2);
+        }
+      }
+      return box;
+    }
+    function card(p, render) {
+      var el = document.createElement('div'); el.className = 'pr__pat';
+      var head = document.createElement('div'); head.className = 'pr__patHead';
+      var t = document.createElement('b'); t.className = 'pr__patText';
+      t.textContent = (p.pattern || '').split('\n')[0].slice(0, 90) || '—';
+      var meta = document.createElement('span'); meta.className = 'pr__patMeta';
+      meta.textContent = T['pat_st_' + p.status] + (p.source_entry ? ' · ' + T.pat_from + ' ' + p.source_entry : '');
+      head.appendChild(t); head.appendChild(meta);
+      head.appendChild(btn('pr__mini', openIds[p.id] ? T.pat_close : T.pat_edit, function () {
+        openIds[p.id] = openIds[p.id] ? null : 'open'; render();
+      }));
+      head.appendChild(btn('pr__mini', T.pat_exportOne, function () {
+        download(patternFile(p), patternMd(p)); ev('pattern_exported');
+      }));
+      head.appendChild(btn('pr__mini pr__mini--warn', T.del, function () {
+        if (confirm(T.pat_confirmDel)) pstore.del(p.id).then(render);
+      }));
+      el.appendChild(head);
+      if (openIds[p.id]) el.appendChild(detail(p, render));
+      return el;
+    }
+    function render() {
+      pstore.all().then(function (ps) {
+        ps.sort(function (a, b) { return (a.created < b.created) ? 1 : -1; });
+        list.innerHTML = '';
+        if (!ps.length) {
+          var e = document.createElement('p'); e.className = 'pr__empty'; e.textContent = T.pat_empty;
+          list.appendChild(e); return;
+        }
+        [['observed', T.pat_g_observed], ['tested', T.pat_g_tested], ['integrated', T.pat_g_integrated]]
+          .forEach(function (g) {
+            var items = ps.filter(function (p) { return p.status === g[0]; });
+            var sec = document.createElement('section'); sec.className = 'pr__patGroup';
+            var h = document.createElement('h3'); h.textContent = g[1];
+            var c = document.createElement('span'); c.className = 'pr__patCount';
+            c.textContent = items.length + ' ' + plural(items.length);
+            h.appendChild(c);
+            sec.appendChild(h);
+            items.forEach(function (p) { sec.appendChild(card(p, render)); });
+            list.appendChild(sec);
+          });
+      });
+    }
+    var exp = root.querySelector('[data-export-principles]');
+    if (exp) exp.addEventListener('click', function () {
+      pstore.all().then(function (ps) {
+        var done = ps.filter(function (p) { return p.status === 'integrated'; })
+          .sort(function (a, b) { return (a.created < b.created) ? 1 : -1; });
+        var head = '# ' + PLAB.principlesTitle + '\n\n';
+        var text = done.length
+          ? head + done.map(function (p) { return patternMd(p); }).join('\n---\n\n')
+          : head + T.pat_noPrinciples + '\n';
+        download('integrated-principles-' + today() + '.md', text);
+        ev('pattern_exported');
+      });
+    });
+    patternsRender = render;
+    render();
+  }
+
+  function boot() { initLanding(); initToday(); initArchive(); initPatterns(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

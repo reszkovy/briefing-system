@@ -8,9 +8,9 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=41">
-<script src="/assets/site.js?v=41" defer></script>
-<script src="/assets/practice.js?v=41" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=43">
+<script src="/assets/site.js?v=43" defer></script>
+<script src="/assets/practice.js?v=43" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -96,6 +96,15 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{anonymize_ip:true});
     <h1 class="pr__h1">Archiwum</h1>
     <p class="pr__sub">Wszystkie zapisane dni, od najnowszego. Zapisy żyją tylko w tej przeglądarce — eksportuj to, co chcesz zachować.</p>
     <div class="pr__list" data-list></div>
+
+    <section class="pr__sec pr__patSec" id="patterns" data-patterns>
+      <h2>Wzory</h2><p class="pr__secS">Trzy grupy: co zauważyłeś, co sprawdziłeś, co zintegrowałeś. Sam przenosisz wzór między nimi.</p>
+      <div data-pattern-list></div>
+      <div class="pr__adds">
+        <button class="pr__add" type="button" data-export-principles>Eksportuj zintegrowane zasady</button>
+      </div>
+    </section>
+
     <div class="pr__adds pr__adds--arch">
       <button class="pr__add" type="button" data-export-all>Eksportuj wszystko</button>
       <button class="pr__add pr__mini--warn" type="button" data-delete-all>Usuń wszystkie dane</button>

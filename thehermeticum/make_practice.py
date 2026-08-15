@@ -4,7 +4,7 @@ import os, html as H
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = "https://thehermeticum.com"
-V = "41"
+V = "43"
 
 def _slice(s, a, b):
     i = s.index(a); j = s.index(b, i) + len(b); return s[i:j]
@@ -36,6 +36,10 @@ L = {
    arch_h='Archive', arch_s='Every day you have recorded, newest first. Records live only in this browser — export what you want to keep.',
    exportAll='Export everything', deleteAll='Delete all data',
    warn='Clearing your browser data will remove these records. Export from time to time.',
+   pat_save='Save as observed pattern',
+   pat_saveS='Optional. A pattern only becomes a record when you decide it is one.',
+   pat_h='Patterns', pat_s='Three groups: what you have observed, what you have tested, what you have integrated. You move a pattern between them yourself.',
+   pat_exportPrinciples='Export integrated principles',
    backTitle='The Practice'),
  'pl': dict(
    name='The Practice', pre='/pl',
@@ -58,6 +62,10 @@ L = {
    arch_h='Archiwum', arch_s='Wszystkie zapisane dni, od najnowszego. Zapisy żyją tylko w tej przeglądarce — eksportuj to, co chcesz zachować.',
    exportAll='Eksportuj wszystko', deleteAll='Usuń wszystkie dane',
    warn='Wyczyszczenie danych przeglądarki usunie te zapisy. Eksportuj je od czasu do czasu.',
+   pat_save='Zapisz jako zauważony wzór',
+   pat_saveS='Opcjonalne. Wzór staje się zapisem dopiero wtedy, kiedy sam tak zdecydujesz.',
+   pat_h='Wzory', pat_s='Trzy grupy: co zauważyłeś, co sprawdziłeś, co zintegrowałeś. Sam przenosisz wzór między nimi.',
+   pat_exportPrinciples='Eksportuj zintegrowane zasady',
    backTitle='The Practice'),
 }
 
@@ -146,6 +154,10 @@ def build(lang):
       {field('c-happened', t['c_happened'])}
       {field('c-energy', t['c_energy'])}
       {field('c-pattern', t['c_pattern'])}
+      <div class="pr__patSave">
+        <button class="pr__add" type="button" data-save-pattern>{t['pat_save']}</button>
+        <p class="pr__hint" data-pattern-note>{t['pat_saveS']}</p>
+      </div>
       {field('c-change', t['c_change'])}
       {field('c-unsolved', t['c_unsolved'], 2)}
       {field('c-next', t['c_next'], 2)}
@@ -174,6 +186,15 @@ def build(lang):
     <h1 class="pr__h1">{t['arch_h']}</h1>
     <p class="pr__sub">{t['arch_s']}</p>
     <div class="pr__list" data-list></div>
+
+    <section class="pr__sec pr__patSec" id="patterns" data-patterns>
+      <h2>{t['pat_h']}</h2><p class="pr__secS">{t['pat_s']}</p>
+      <div data-pattern-list></div>
+      <div class="pr__adds">
+        <button class="pr__add" type="button" data-export-principles>{t['pat_exportPrinciples']}</button>
+      </div>
+    </section>
+
     <div class="pr__adds pr__adds--arch">
       <button class="pr__add" type="button" data-export-all>{t['exportAll']}</button>
       <button class="pr__add pr__mini--warn" type="button" data-delete-all>{t['deleteAll']}</button>
