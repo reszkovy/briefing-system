@@ -1,0 +1,149 @@
+{
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "dec:2026-08-10-hipotezy-z-backtestow",
+   "type": "decision",
+   "title": "Rozstrzygniecie czterech hipotez zaproponowanych przez backtesty 08-09.08",
+   "status": "decided",
+   "created": "2026-08-10",
+   "owner": "przemek",
+   "question": "Ktore z czterech hipotez mechanizmow zaproponowanych przez backtesty wchodza do Genome, a ktore nie?",
+   "options": [
+    "accept — karta powstaje teraz",
+    "reject — hipoteza wchlonieta przez istniejaca karte albo odrzucona",
+    "defer — decyzja odlozona z jawnym warunkiem powrotu"
+   ],
+   "choice": "prototype-mode-guard: ACCEPT · event-gate: REJECT (wchloniete przez dated-commitment-gates) · wire-or-delete: DEFER · case-as-record: DEFER",
+   "decided": "2026-08-10",
+   "relations": {},
+   "tags": [
+    "governance",
+    "learning-loop"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Cztery hipotezy z backtestow lezaly nierozstrzygniete od 09.08. Zasada: propozycja nie moze po prostu zniknac — kazda konczy jako ACCEPT, REJECT albo DEFER z powodem.",
+   "body": "\n## Dlaczego ta decyzja w ogole powstaje\n\nBacktesty z 08–09.08 zaproponowały cztery nowe karty mechanizmów. Żadna nie powstała i żadna nie\nzostała odrzucona — po prostu wypadły. To jest ta sama awaria, którą wykryliśmy przy\n`proof-first-demo-pitch`: Genome rejestruje własne wnioski i ich nie wchłania.\n\nZasada obowiązująca od dziś: **każda propozycja korekty lub nowej karty kończy jako\n`ACCEPT`, `REJECT` albo `DEFER` z powodem i datą.** Metryką jest odsetek rozstrzygnięć,\nnie odsetek przyjęć — inaczej system optymalizowałby pod łykanie własnych hipotez.\n\n## 1. `mech:prototype-mode-guard` — ACCEPT\n\nKlasa guardów „jawny tryb niekompletny\": pusty `ENDPOINT` krzyczy w konsoli, globalny\n`noindex` do premiery, dane oznaczone `TBC`. Trzy niezależne wystąpienia w jednym projekcie,\nwszystkie prewencyjne — kod deklaruje własną niekompletność, zamiast ją maskować.\n\nOdrębne od `incident-to-guard`, które działa po incydencie. Ten wzorzec działa przed.\n\nKarta powstaje jako `hypothesis` z jednym projektem. **Bez predykcji przy wejściu** — brak\nzaplanowanego prototypu w oknie pomiarowym. Predykcja zostaje zarejestrowana przy pierwszym\nuruchomieniu nowego prototypu; kryterium: czy deklaruje własną niekompletność bez przypominania.\n\n## 2. `mech:event-gate` — REJECT\n\nBramka zdarzeniowa na decyzję zewnętrzną jako alternatywa dla datowanej. Sam backtest dopuszczał\ndwie drogi: osobna karta albo rozszerzenie `dated-commitment-gates`. Wybieramy rozszerzenie.\n\nPowód: to jest wariant tego samego mechanizmu, nie inny mechanizm. Osobna karta rozmnożyłaby\nontologię o rozróżnienie, które należy do warunków stosowalności jednej karty. Genome ma już\nprecedens tej pomyłki — `split-url-architecture` był stosowany za szeroko dokładnie dlatego,\nże warunek brzegowy nie mieszkał w karcie.\n\n## 3. `mech:wire-or-delete` — DEFER\n\n„Żaden moduł nie wchodzi na main bez co najmniej jednego produkcyjnego wywołania w ścieżce\nużytkownika\". Jedno wystąpienie (narzedzie-do-briefowania: warstwa LLM scommitowana bez wywołania).\n\nDwa powody odroczenia. To jest kandydat na **Guard**, nie na Mechanism — dotyczy higieny kodu\nwewnętrznego, nie generatora rezultatu u klienta. I ma jedno wystąpienie, więc nie odróżnimy\nwzorca od incydentu.\n\n**Warunek powrotu:** drugie niezależne wystąpienie „zbudowane, niewpięte\" w dowolnym projekcie.\n\n## 4. `mech:case-as-record` — DEFER\n\nWariant shadow-proof wyrósł na samodzielną strukturę; backtest oznaczył to jako\n`candidate-merge` z `proof-first-demo-pitch`.\n\nPowód odroczenia jest metodologiczny: `proof-first-demo-pitch` dostaje dziś korektę\nanti-contextu wraz z predykcją `pred:price-anchor-artoffnia-01`. Druga zmiana tej samej karty\nw tym samym dniu uniemożliwiłaby przypisanie skutku którejkolwiek z nich.\n\n**Warunek powrotu:** po rozstrzygnięciu `pred:price-anchor-artoffnia-01` (termin 22.08).\n\n## Bilans\n\nJedna karta powstaje, jedna propozycja odrzucona, dwie odroczone z jawnym warunkiem powrotu.\nZero propozycji, które po prostu znikają.\n"
+  },
+  {
+   "op": "object.create",
+   "id": "mech:prototype-mode-guard",
+   "type": "mechanism",
+   "title": "Prototype Mode Guard",
+   "status": "hypothesis",
+   "created": "2026-08-10",
+   "owner": "przemek",
+   "confidence": {
+    "value": "hypothesis",
+    "evidence_strength": {
+     "n": 0,
+     "projects": 0,
+     "independent_sources": 0,
+     "types": {},
+     "last_confirmed": null
+    },
+    "recommendation": "test-first"
+   },
+   "category": "Delivery Guards",
+   "relations": {
+    "implements": [
+     "prin:proof-before-promise"
+    ],
+    "related": [
+     "mech:incident-to-guard",
+     "mech:sandbox-promotion"
+    ]
+   },
+   "trigger": "Budujesz artefakt, ktory wyglada na gotowy, a nie jest: prototyp bez backendu, serwis przed premiera, dane z placeholderami. Sygnal ostrzegawczy: \"to jest tylko demo, pamietajmy, zeby tego nie wypuscic\".",
+   "context": "Prototypy i wersje roboczne pokazywane klientom albo zdeployowane pod publicznym adresem, gdzie pomylka miedzy trybem roboczym a produkcja kosztuje zaufanie.",
+   "anti_context": "Nie stosowac w artefaktach jednorazowych, ktore nigdy nie zobacza swiatla dziennego. Nie mylic z incident-to-guard: tamten powstaje PO incydencie, ten dziala prewencyjnie. Guard ma krzyczec do wykonawcy, nie do uzytkownika koncowego.",
+   "inputs": [
+    "Miejsca, w ktorych artefakt jest niekompletny (pusty endpoint, brak danych, placeholdery)",
+    "Definicja stanu \"gotowy do produkcji\" dla tego artefaktu"
+   ],
+   "ai_tasks": [
+    "Wstawienie ostrzezen w miejscach niekompletnych",
+    "Globalny noindex w trybie roboczym",
+    "Oznaczenie danych placeholderowych jako TBC w zrodle, nie w widoku"
+   ],
+   "human_tasks": [
+    "Przemek: decyzja o zdjeciu guardow, czyli o przejsciu w tryb produkcyjny"
+   ],
+   "expected_outcome": "Zaden prototypowy brak nie moze udawac produkcji. Artefakt niekompletny deklaruje to sam, bez polegania na pamieci wykonawcy.",
+   "tags": [
+    "guard",
+    "delivery",
+    "hipoteza"
+   ],
+   "actor": "przemek",
+   "ingest_note": "ACCEPT wg dec:2026-08-10-hipotezy-z-backtestow. Hipoteza z jednego projektu (fitstyle-platform, 3 wystapienia). Bez predykcji przy wejsciu — brak prototypu w oknie pomiarowym; predykcja przy pierwszym nowym prototypie.",
+   "body": "\n## Problem\n\nPrototyp wygląda jak produkcja. Pusty endpoint formularza nie różni się z zewnątrz od\ndziałającego, dane testowe od prawdziwych, wersja robocza od premiery. Kosztem pomyłki jest\nzaufanie klienta, a mechanizmem obronnym zwykle bywa pamięć wykonawcy — czyli nic.\n\n## Mechanizm\n\nKod deklaruje własną niekompletność w miejscu, w którym jest niekompletny. Pusty endpoint\nwypisuje ostrzeżenie w konsoli. Serwis w trybie roboczym ma globalny `noindex`. Dane\nplaceholderowe są oznaczone `TBC` w źródle, nie w widoku.\n\nGuard krzyczy do wykonawcy, nie do użytkownika. Zdjęcie guardów jest jawną decyzją człowieka\ni to ono, a nie deploy, oznacza wejście w tryb produkcyjny.\n\n## Skad to wiemy\n\nJeden projekt: fitstyle-platform, sierpień 2026. Trzy niezależne wystąpienia tego wzorca,\nżadne nierekomendowane przez Router — organizacja zrobiła to sama. Backtest 09.08 nazwał to\nklasą „użyte, a nierekomendowane\" i wskazał brak karty.\n\n**Jedna obserwacja z jednego projektu.** Confidence `hypothesis`. Awans wymaga drugiego,\nniezależnego projektu.\n\n## Predykcja — swiadomie brak przy wejsciu\n\nW oknie pomiarowym nie ma zaplanowanego nowego prototypu, więc rejestrowanie predykcji teraz\nbyłoby pozorem testu. Zostanie zarejestrowana przy pierwszym uruchomieniu nowego prototypu.\nKryterium: czy artefakt deklaruje własną niekompletność bez przypominania przez człowieka.\n"
+  }
+ ],
+ "events": [
+  {
+   "kind": "decision.decided",
+   "on": "dec:2026-08-10-hipotezy-z-backtestow",
+   "actor": "przemek",
+   "provenance": "record",
+   "cause": "rec:backtests/fitstyle-platform",
+   "note": "Cztery hipotezy z backtestow 08-09.08 rozstrzygniete: prototype-mode-guard ACCEPT, event-gate REJECT (wchloniete przez dated-commitment-gates), wire-or-delete DEFER (kandydat na Guard, jedno wystapienie), case-as-record DEFER (do czasu rozstrzygniecia pred:price-anchor-artoffnia-01). Zero propozycji, ktore znikaja bez sladu."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "hipotezy-rozstrzygniecie-2026-08-10",
+  "signature": null,
+  "proposal_hash": "51c5d9ff80ce9f0474c01928cb0543b65bcb8cd752dd133ab3f585d48e09e3e4",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "hipotezy-rozstrzygniecie-2026-08-10",
+   "expires_at": "2026-08-14",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "cztery hipotezy zaproponowane przez backtesty 08-09.08 nie powstaly jako karty i nie zostaly odrzucone — wypadly bez sladu"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "Backtesty zaproponowaly cztery nowe karty mechanizmow. Zadna nie powstala i zadna nie zostala odrzucona. Propozycje wypadly bez decyzji, wiec Genome nie potrafi powiedziec, czy je rozwazyl.",
+    "project_start": "2026-08-10",
+    "scope": "obiekt decyzyjny rozstrzygajacy cztery hipotezy; karta mech:prototype-mode-guard jako jedyny ACCEPT, hypothesis, bez dorobku dowodowego; jedno zdarzenie decision.decided",
+    "non_scope": "tworzenie kart dla event-gate, wire-or-delete i case-as-record; zmiana confidence istniejacych mechanizmow; zmiana dated-commitment-gates w tym pakiecie; rejestracja predykcji bez kandydata na test",
+    "baseline": "cztery hipotezy bez rozstrzygniecia od 09.08; mechanisms/ nie zawiera zadnej z nich",
+    "mechanisms": [
+     "mech:prototype-mode-guard"
+    ],
+    "frameworks": [],
+    "validation_plan": "Predykcja dla prototype-mode-guard przy pierwszym nowym prototypie. Warunki powrotu dla dwoch DEFER zapisane w tresci decyzji.",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-09-30",
+    "go_decision": "GO",
+    "go_rationale": "Rozstrzygniecie jest tansze niz utrzymywanie czterech otwartych propozycji. Jedna karta powstaje, jedna odrzucona, dwie odroczone z warunkiem powrotu — Genome po raz pierwszy mowi swojej propozycji nie.",
+    "prepared_by": "session:domykanie-petli-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1"
+   },
+   "payload_hash": "51c5d9ff80ce9f0474c01928cb0543b65bcb8cd752dd133ab3f585d48e09e3e4",
+   "artifact_hashes": {
+    "ingest.js": "2f588f6412bc84b4d111bed8bcf40429d9aca7ad0e2038004ac1aa9b4496e448",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

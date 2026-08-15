@@ -1,0 +1,33 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "proj:thehermeticum",
+   "actor": "przemek",
+   "cause": "proj:thehermeticum",
+   "ingest_note": "Warstwa jezykowa: pelne lustro PL (45 EN + 45 PL, hreflang, per-jezyk canonical, sitemap, llms.txt) — zweryfikowane w plikach wyjsciowych. Poprawiona tez zastana liczba adresow: karta mowila o dziewietnastu, jest 45. Otwarte pytanie zapisane jawnie: SALT wskazywal rynek EN, wersja PL nie ma jeszcze nazwanego odbiorcy.",
+   "body": "## Problem\n\nZamówienie brzmi „zbudujmy serwis\", ale realny problem jest inny: **czy istnieje możliwa do zdobycia\npozycja w niszy ezoterycznej dla nowego, anonimowego na starcie głosu — i która to pozycja.**\nTeza „wiedza hermetyczna to przyszłość\" jest przeczuciem założyciela, sklasyfikowanym w raporcie\nroutera jako opinia, nie fakt. Projekt ma ją sfalsyfikować tanio, zanim powstanie produkt.\n\nWtórny problem, nazwany wprost w raporcie: side-project konkuruje o czas z celem kwartału\n(Benefit 2x). Koszt alternatywny jest realnym ryzykiem, nie formalnością.\n\n## Stan na 14.08.2026, wieczór\n\nPrzebieg Routera wykonany rano. Werdykt `routeFrameworks`: **BOTH, w kolejności SALT → PLATE**.\nDoublecheck PASS na pięciu rekordach researchu (dwa `supports`, dwa `contradicts`, jeden `neutral`).\nSALT wykonany, status **PROPOSED**. PLATE draft v1, Project Contract przeszedł walidację bez błędów.\n\n**Serwis jest publiczny od 14.08.** `thehermeticum.com` wdrożony na Vercel, przekierowanie z www\nskonfigurowane, ostatni build tego samego dnia wieczorem. Własny generator\nstatyczny (`build.py`), warstwa AEO (`llms.txt`, sitemap, RSS, robots), trzy skrzydła treści\n(Texts, Figures, Ideas), ścieżka dwunastu kroków z trzema otwartymi i dziewięcioma zamkniętymi\nza zapisem na newsletter.\n\n## Warstwa językowa, 14.08.2026\n\nSerwis dostał pełne lustro polskie. **45 adresów EN i 45 adresów PL** pod prefiksem `/pl/`,\n44 pliki treści w `content-pl/`, hreflang `en`/`pl`/`x-default` na każdej parze,\nper-język canonical i `<html lang>`, obie wersje w sitemap, nota o lustrze w `llms.txt`.\nZweryfikowane w plikach wyjściowych, nie na deklaracji.\n\nTo jest pierwsze pełne wdrożenie mechanizmu `mech:static-i18n-mirror`, założonego tego samego\ndnia. Projekt jest jego nośnikiem dowodowym: karta stoi na `hypothesis` z zerowym Evidence,\nbo nie wiadomo jeszcze, czy lustro przetrwa pierwszą rundę zmian treści. Koszt publikacji jest\nteraz podwójny i płaci się przy każdym wpisie, nie raz przy wdrożeniu.\n\n**Otwarte pytanie do rozstrzygnięcia, nie do zapomnienia:** rynek docelowy z SALT to EN.\nPolska wersja albo obsługuje inny, nienazwany jeszcze segment, albo jest kosztem bez odbiorcy.\nSALT tego nie przewidywał, więc karta tego nie zamyka.\n\n## Rozbieżność, którą ta karta zapisuje świadomie\n\nRaport routera kończył się zdaniem: realizacja wstrzymana do podpisanego SALT i decyzji GO.\n**Produkcja wyprzedziła bramkę.** W dniu, w którym powstał raport, serwis został zbudowany\ni opublikowany, a fundament nadal nie jest podpisany.\n\nTo nie jest zarzut ani powód do cofania czegokolwiek — projekt jest prywatny i decyzja należy\ndo właściciela. To jest fakt, który Genome ma prawo znać, bo od niego zależy odpowiedź na\npytanie, czy predykcje z kontraktu mierzą jeszcze cokolwiek. Predykcje zapisane po starcie\nnie testują decyzji, tylko opisują przebieg.\n\nKonsekwencja praktyczna: karta zostaje w statusie `routed`, mimo że serwis żyje. Invariant 11\nnie pozwala na `active` bez podpisanego kontraktu, `outcome_owner`, `measurement_date`\ni decyzji GO. Żeby to uporządkować, trzeba albo podpisać fundament i kontrakt, albo jawnie\nzapisać decyzję, że ten projekt prowadzimy poza kontraktem.\n\n## Rozstrzygnięcia z SALT\n\nProblem dominujący: **dystrybucyjny** — kanał przed brandingiem.\nOdbiorca: ciekawy początkujący, rynek EN.\nSygnatura: postać redakcyjna, bez twarzy. Oznaczone jako hipoteza do rewizji 31.10.\nZdolność wykonawcza: 5–8 godzin tygodniowo, więc PLATE wyłącznie w trybie quick-win.\n\nSekwencja: newsletter „As Above\" → baza wiedzy przyrostowo → społeczność po masie krytycznej.\n\n## Czego research wykluczył\n\n**Nie archiwum tekstów** — arena zajęta przez sacred-texts i hermetic.com.\n**Nie klasyczny portal SEO** — zero-click i AI Overviews zjadają ten model.\n\nSilnik: newsletter plus AEO. Luka rynkowa: nikt nie łączy darmowej ścieżki wejścia, rygoru,\nnowoczesnego UX i czytelności maszynowej.\n\n## Dlaczego ta karta powstaje ze statusem `routed`\n\nBo kontrakt nie jest podpisany. Invariant 11 nie pozwala na `active` bez decyzji GO, i słusznie:\nprojekt bez zamrożonych predykcji nie ma czego mierzyć, a bez pomiaru nie odróżni się od hobby.\n\nPrzejście na `active` wymaga: podpisu fundamentu SALT, decyzji GO na kontrakcie i rejestracji\ntrzech do pięciu predykcji.\n"
+  }
+ ],
+ "events": [],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "thehermeticum-i18n-2026-08-14",
+  "signature": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "thehermeticum-i18n-2026-08-14",
+   "expires_at": "2026-09-14",
+   "claims": [
+    {
+     "kind": "scope",
+     "text": "Aktualizacja tresci karty projektu o warstwe jezykowa. Bez zmian statusu i confidence."
+    }
+   ]
+  }
+ }
+}

@@ -158,6 +158,57 @@ PORTRAITS = {
     "figures/frances-yates": "portrait-yates.jpg",
 }
 
+
+# ── STEPPER Ścieżki: górny pasek kroków, przesuwa się wraz z postępem ──
+STEPPER = {
+ 'en': [("01","What is Hermeticism?","01-what-is-hermeticism",True),
+        ("02","Who was Hermes Trismegistus?","02-who-was-hermes-trismegistus",True),
+        ("03","Alexandria","03-alexandria",True),
+        ("04","Reading Poimandres","04-reading-poimandres",True),
+        ("05","The key ideas in one map","05-the-key-ideas-in-one-map",False),
+        ("06","As above, so below","06-as-above-so-below",False),
+        ("07","The Emerald Tablet","07-the-emerald-tablet",False),
+        ("08","The Renaissance revival","08-the-renaissance-revival",False),
+        ("09","Alchemy and the Great Work","09-alchemy-and-the-great-work",False),
+        ("10","The Kybalion problem","10-the-kybalion-problem",False),
+        ("11","Hermeticism today","11-hermeticism-today",False),
+        ("12","The reading map","12-the-reading-map",False)],
+ 'pl': [("01","Czym jest hermetyzm?","01-what-is-hermeticism",True),
+        ("02","Kim był Hermes Trismegistos?","02-who-was-hermes-trismegistus",True),
+        ("03","Aleksandria","03-alexandria",True),
+        ("04","Czytamy Poimandresa","04-reading-poimandres",True),
+        ("05","Kluczowe idee na jednej mapie","05-the-key-ideas-in-one-map",False),
+        ("06","Jak w górze, tak i na dole","06-as-above-so-below",False),
+        ("07","Tablica Szmaragdowa","07-the-emerald-tablet",False),
+        ("08","Renesansowe odrodzenie","08-the-renaissance-revival",False),
+        ("09","Alchemia i Wielkie Dzieło","09-alchemy-and-the-great-work",False),
+        ("10","Problem z Kybalionem","10-the-kybalion-problem",False),
+        ("11","Hermetyzm dzisiaj","11-hermeticism-today",False),
+        ("12","Mapa lektur","12-the-reading-map",False)],
+}
+STEP_LBL = {'en': ('The Path', 'step', 'of'), 'pl': ('Ścieżka', 'krok', 'z')}
+
+def stepper_html(path, lang):
+    import re as _rs
+    m = _rs.match(r'^path/(\d{2})-', path or '')
+    if not m: return ""
+    cur = m.group(1)
+    pre = '/pl' if lang == 'pl' else ''
+    name, word, of = STEP_LBL[lang]
+    items = ""
+    for num, title, slug, live in STEPPER[lang]:
+        cls = 'stp__i'
+        if num == cur: cls += ' is-current'
+        elif not live: cls += ' is-soon'
+        aria = ' aria-current="step"' if num == cur else ''
+        ttl = H.escape(title)
+        items += f'<a class="{cls}" href="{pre}/path/{slug}/"{aria}><i>{num}</i><b>{ttl}</b></a>'
+    return (f'<nav class="stp" aria-label="{name}" data-stepper>'
+            f'<div class="container stp__in">'
+            f'<span class="stp__lbl"><a href="{pre}/path/">{name}</a> &middot; {word} {cur} {of} 12</span>'
+            f'<div class="stp__track" data-stepper-track>{items}</div>'
+            f'</div></nav>')
+
 def render(p, lang='en'):
     ui = UI[lang]
     trail = [((ui["home"]), ("/" if lang == 'en' else "/pl/"))] + p.get("trail", []) + [(p["crumb"], p["url"])]
@@ -275,8 +326,8 @@ def render(p, lang='en'):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=30">
-<script src="/assets/site.js?v=30" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=32">
+<script src="/assets/site.js?v=32" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>
@@ -288,6 +339,7 @@ gtag('js',new Date());gtag('config','G-P0HHD2HX20',{{anonymize_ip:true}});
 </head>
 <body>
 {hdr}
+{stepper_html(p.get("path"), lang)}
 <main>
   <article class="art">
     <div class="container art__in">
@@ -1150,11 +1202,12 @@ def _soon(slug, date_en, date_pl, t_en, t_pl, d_en, d_pl, lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=30">
-<script src="/assets/site.js?v=30" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=32">
+<script src="/assets/site.js?v=32" defer></script>
 </head>
 <body>
 {hdr_x}
+{stepper_html("path/" + slug, lang)}
 <main>
   <article class="art">
     <div class="container art__in">
@@ -1215,13 +1268,13 @@ open(os.path.join(ROOT, "404.html"), "w").write(f"""<!doctype html>
 <title>Not found — The Hermeticum</title><meta name="robots" content="noindex">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=30"></head><body>
+<link rel="stylesheet" href="/assets/site.css?v=32"></head><body>
 {HEADER}
 <main><article class="art"><div class="container art__in">
 <p class="kicker">404</p><h1 class="art__h1">This page is hermetically sealed.</h1>
 <p>Or, more honestly: it doesn&rsquo;t exist. The knowledge you seek may be elsewhere —
 try the <a href="/">home page</a>, <a href="/path/">the Path</a>, or press <b>&#8984;K</b> and search the Index.</p>
-</div></article></main>{FOOTER}<script src="/assets/site.js?v=30" defer></script>
+</div></article></main>{FOOTER}<script src="/assets/site.js?v=32" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0HHD2HX20"></script>
 <script>

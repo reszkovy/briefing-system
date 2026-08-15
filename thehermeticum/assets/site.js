@@ -91,3 +91,6 @@
     if(!sel)return; var a=document.querySelector(sel); if(a)location.href=a.href;
   });
 })();
+
+(function(){var t=document.querySelector('[data-stepper-track]');if(!t)return;var c=t.querySelector('.is-current');if(!c)return;
+ t.scrollLeft=Math.max(0,c.offsetLeft-t.clientWidth/2+c.clientWidth/2);})();

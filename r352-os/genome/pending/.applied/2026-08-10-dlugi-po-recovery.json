@@ -1,0 +1,101 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "rec:F0-SEED-FREEZE",
+   "last_seed_event_id": "evt:2026-08-08-0126",
+   "actor": "przemek",
+   "cause": "rec:governance/2026-08-10-dlugi-po-recovery",
+   "ingest_note": "Karta opisywala granice 205/3eafbaef, a frontmatter mowil 179/4f960340 — sprzecznosc powstala przy recovery 09.08, ktore cofnelo granice seeda. Tresc i last_seed_event_id doprowadzone do stanu faktycznego.",
+   "body": "\n## Po co ta granica\n\nPierwsze **179** zdarzeń Ledgera (ostatnie: `evt:2026-08-08-0126`) powstało przed zaostrzeniem\nkontraktu payloadu i przed wprowadzeniem walidacji chronologii. Historia Ledgera jest niezmienna,\nwięc braki NIE są uzupełniane wstecz — są raportowane jako ostrzeżenia. Kontrakt obowiązuje\nbezwzględnie od pierwszego zdarzenia PO tej granicy.\n\n## Dlaczego granica wróciła z 205 na 179\n\n09.08 warstwa testowa wywołała migrację na kanonicznym korzeniu i przesunęła granicę na 205.\nRecovery tego samego dnia przywróciło 179 / `4f96034058f4c5fa` ze zamrożonego fixture'u.\nSzczegóły: `rec:incydenty/2026-08-09-test-zapisal-do-kanonu`. Do 10.08 treść tej karty nadal\nmówiła o 205 zdarzeniach i haszu `3eafbaef9cb6e223`, czyli o stanie, który już nie istniał.\n\n## Znane defekty seeda\n\nLiczby defektów raportuje `build.js` przy każdym przebiegu (ostrzeżenia: braki wymaganych pól\npayloadu, naruszenia chronologii). Karta ich **nie duplikuje** — duplikat rozjeżdża się przy\npierwszej zmianie granicy i to jest dokładnie to, co się tu wydarzyło. Jedno źródło prawdy:\nraport buildu.\n\n## Czego ta karta NIE robi\n\nNie zwalnia z kontraktu zdarzeń nowych: zdarzenie nr **180** i każde kolejne podlega pełnemu\nkontraktowi niezależnie od daty w ID. Granica jest POZYCYJNA (liczba zdarzeń + hash linii\n`4f96034058f4c5fa`), nie leksykograficzna — dopisanie lub podmiana czegokolwiek w oknie seeda\nunieważnia ulgę i cały Ledger wraca pod pełny kontrakt. Nie legalizuje duplikatów Event ID —\nte są korygowane jawnie (`corrected_from_id`).\n"
+  },
+  {
+   "op": "object.create",
+   "id": "rec:governance/2026-08-10-dlugi-po-recovery",
+   "type": "record",
+   "title": "Trzy długi domknięte po recovery i wdrożeniu SALT/PLATE",
+   "status": "created",
+   "created": "2026-08-10",
+   "owner": "przemek",
+   "relations": {},
+   "tags": [
+    "governance",
+    "postmortem",
+    "recovery"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Zamkniecie trzech dlugow po wdrozeniu: sprzeczna karta freeze, testy zalezne od zywego kanonu, historycznie nieweryfikowalna autoryzacja recovery (klucz K1 nie zachowany).",
+   "body": "\n## Kontekst\n\n09.08.2026 wykonano dwie operacje na kanonie: recovery incydentu (16:09) i wdrożenie warstwy\nSALT/PLATE (16:15). Oba przeszły z podpisem Ed25519 właściciela. Po nich zostały trzy długi —\nżaden nie zagrażał integralności, każdy fałszował obraz stanu. Ten Record je zamyka.\n\n## 1. Karta freeze mówiła co innego niż jej własny frontmatter\n\n`rec:F0-SEED-FREEZE` miała we frontmatterze `seed_event_count: 179` i `seed_tail_hash:\n4f96034058f4c5fa`, a w treści „pierwsze **205** zdarzeń\" i hash `3eafbaef9cb6e223`. Do tego\n`last_seed_event_id` wskazywał `evt:2026-08-09-0226`, czyli zdarzenie nr 205, a nie nr 179.\nRecovery poprawiło pola maszynowe i nie tknęło prozy.\n\n**Naprawione:** treść doprowadzona do 179 / `evt:2026-08-08-0126` / `4f96034058f4c5fa`,\n`last_seed_event_id` poprawiony. Liczby defektów seeda usunięte z karty — raportuje je `build.js`\nprzy każdym przebiegu. Duplikat rozjechał się przy pierwszej zmianie granicy; jedno źródło prawdy\njest tańsze niż dwa zgodne.\n\n## 2. Testy pytały żywy kanon o stan, który minął\n\nZestawy budowały cel przez `cp -R <kanon>`. Działało, dopóki kanon czekał na naprawę. W chwili\nwykonania recovery preconditions przestały pasować: zestaw recovery spadł z **68 PASS** na\n**56 PASS / 12 FAIL**, zestaw deploy przestał się uruchamiać, e2e dał 5 FAIL, final crashował.\nKod był w porządku; zmienił się świat, o który testy pytały.\n\n**Naprawione — trzy rzeczy, nie jedna.**\n\n1. **Syntetyczny fixture stanu wejściowego recovery**\n   (`proposals/fixtures/recovery-input-synthetic`). Nazwa jest dosłowna i celowa: to NIE jest\n   historyczny snapshot Genome. Dane są odtworzone do stanu sprzed naprawy (trzy uszkodzone\n   artefakty z `records/incydenty/2026-08-09-artefakty/`, Ledger obcięty do\n   `evt:2026-08-09-0227`), ale kod i karty są w wersji dzisiejszej. Do testowania recovery to\n   wystarcza; do odtwarzania historii nie służy.\n   Generator domyślnie robi WYŁĄCZNIE `--check`: nie tworzy, nie nadpisuje fixture'u ani\n   zapisanego hasha. Regeneracja to osobna, jawna operacja `--regenerate` i nie zachodzi podczas\n   testów. Pierwsza wersja generatora wciągnęła do fixture'u pakiet leżący w `pending/` i hash\n   zmienił się bez żadnej zmiany w danych Genome — dokładnie ten scenariusz jest powodem, dla\n   którego domyślnym trybem jest kontrola, nie budowanie.\n\n2. **Zestawy działają z lokalizacji produkcyjnej.** Ścieżki liczone jako stała liczba `..`\n   działały tylko z `proposals/`; po wdrożeniu szukały `<genome>/genome/...` i wywalały się na\n   ENOENT. Korzeń Genome i katalog modułów są teraz rozpoznawane po cechach katalogu.\n\n3. **Zestaw produkcyjny `run-canon-tests.js`** — fixture historyczny nie zastępuje sprawdzenia\n   dzisiejszej instalacji. Na kopii aktualnego kanonu potwierdza: `build --check` bez błędów,\n   writer poprawnie planuje pakiety z `pending/`, wszystkie moduły i katalogi są tam, gdzie\n   zestawy ich szukają, fixture zgadza się z zapisanym hashem, a kanon zostaje bajtowo nietknięty.\n\n\n## 3. Historyczna autoryzacja recovery nie jest już weryfikowalna kryptograficznie\n\nStan faktyczny, rozdzielony na trzy osobne rzeczy, bo mieszanie ich było zarzutem audytu.\n\n**Co zostało przyjęte w chwili wykonania.** Wykonawca zweryfikował podpis Ed25519 pakietu\nrecovery przed pierwszym zapisem i wypisał `ZGODA: verified` (09.08, 16:09). Ta weryfikacja\nprzebiegła wtedy i została przyjęta jako poprawna. Nie mamy dziś sposobu, by ją niezależnie\npowtórzyć.\n\n**Co dowodzi Ledger i rejestr nonce.** Że operacja się WYDARZYŁA i w jakiej KOLEJNOŚCI:\n`evt:2026-08-09-0228` i `-0229`, spójny łańcuch hash na całej długości, nonce\n`recovery-2026-08-09-001` odnotowany jako zużyty wraz z odciskiem pakietu. Ledger nie dowodzi\ni nie może dowodzić, że autoryzował ją właściciel — jest zapisem faktu, nie dowodem zgody.\n\n**Czego nie da się dziś zrobić.** Zweryfikować kryptograficznie, że pakiet recovery był podpisany\nkluczem właściciela. Klucz prywatny K1 skasowano zaraz po podpisie zgodnie z przyjętym modelem\noperacyjnym, a przy wdrożeniu SALT/PLATE para K2 nadpisała kotwicę\n`~/.genome/approval-pubkey.pem`. **Publiczny klucz K1 nie został nigdzie zachowany**, więc\nweryfikacja historyczna jest niemożliwa trwale, nie chwilowo.\n\n**Mylący komunikat.** `verifyApproval` na pakiecie recovery zwraca dziś `invalid` z tekstem\n„treść zmieniona po akceptacji albo podpis fałszywy\". Treść nie została zmieniona; zmieniła się\nkotwica. Kod nie odróżnia rotacji klucza od manipulacji pakietem. Nie naprawiamy tego teraz:\nzmiana dotknęłaby pliku z manifestu wdrożenia i otwierała kolejną rundę na warstwie podpisów,\nco jest wprost poza zakresem. Zapisane jako znane ograniczenie.\n\n**Konsekwencja na przyszłość.** Każdy pakiet podpisany kluczem, który potem zniknął, jest\nhistorycznie nieweryfikowalny. To cena modelu „klucz jednorazowy, kasowany po użyciu\", przyjęta\nświadomie. Weryfikowalność wstecz wymagałaby zachowywania publicznych kluczy poprzednich kotwic;\nsystem tego nie robi i na razie nie będzie robił.\n\n\n## Stan po zamknięciu\n\nInfrastruktura zamrożona. Następny ruch to realne projekty i pionowy przepływ Konsoli, nie\nkolejna warstwa bezpieczeństwa.\n"
+  }
+ ],
+ "events": [
+  {
+   "kind": "knowledge.corrected",
+   "on": "rec:F0-SEED-FREEZE",
+   "actor": "przemek",
+   "provenance": "record",
+   "from": "tresc karty: 205 zdarzen, hash 3eafbaef9cb6e223, zdarzenie nr 206; last_seed_event_id evt:2026-08-09-0226",
+   "to": "tresc karty: 179 zdarzen, hash 4f96034058f4c5fa, zdarzenie nr 180; last_seed_event_id evt:2026-08-08-0126",
+   "cause": "rec:governance/2026-08-10-dlugi-po-recovery",
+   "note": "Recovery 09.08 cofnelo granice seeda z 205 na 179 i poprawilo pola maszynowe, ale nie tknelo prozy karty. Karta przez dobe twierdzila dwie sprzeczne rzeczy naraz. Liczby defektow seeda usuniete z karty — raportuje je build.js, jedno zrodlo prawdy."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "approved",
+  "approved_by": "przemek",
+  "approved_at": "2026-08-10T07:10:42.472Z",
+  "nonce": "dlugi-2026-08-10-001",
+  "signature": "adf9a6a367c2888c04d1c7f9da737bb0ade16a6230e67c67d784fc1dcc6a9de0bca5a229b82a7853266e8f9e40f95060ba6b09e1c2e6ea56d71d5fd326778d0d",
+  "proposal_hash": "53c1df038fc670da38070f50885eece1965769d37f1fa2648eead3b3b9e7c818",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "dlugi-2026-08-10-001",
+   "expires_at": "2026-08-12",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "karta rec:F0-SEED-FREEZE opisywala granice 205/3eafbaef, a jej wlasny frontmatter 179/4f960340"
+    },
+    {
+     "kind": "fact",
+     "text": "publiczny klucz K1 nie zostal zachowany, wiec historyczna autoryzacja recovery nie jest weryfikowalna kryptograficznie"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "Po recovery i wdrozeniu SALT/PLATE zostaly trzy dlugi, ktore nie zagrazaly integralnosci, ale falszowaly obraz stanu: karta freeze sprzeczna z wlasnym frontmatterem, testy zalezne od zywego kanonu (realnie zepsute po --apply), oraz brak zapisu o tym, ze historycznej autoryzacji recovery nie da sie juz zweryfikowac.",
+    "project_start": "2026-08-10",
+    "scope": "korekta tresci i last_seed_event_id w rec:F0-SEED-FREEZE; Record rec:governance/2026-08-10-dlugi-po-recovery domykajacy trzy dlugi; jedno zdarzenie knowledge.corrected. Poza danymi, w ramach tej samej pracy: wlaczenie kontroli artifact_hashes w ingest.js (wywolanie istniejacego verifyArtifacts pod blokada) i doprecyzowanie komunikatu dry-run.",
+    "non_scope": "zmiana modelu kryptograficznego i lib/approval.js; zmiana kart SALT/PLATE, mechanizmow i ontologii; usuwanie lub edycja zdarzen historycznych; ponowna weryfikacja pakietu recovery; wdrozenie czegokolwiek nowego",
+    "baseline": "kanon 205 obiektow i 218 zdarzen, 0 bledow buildu; zestawy z lokalizacji kanonicznej 5 z 6 nie startowaly (ENOENT); podpis recovery zwraca invalid z mylacym komunikatem; artifact_hashes byly podpisywane, ale writer ich nie sprawdzal",
+    "mechanisms": [],
+    "frameworks": [],
+    "validation_plan": "ingest --dry-run przed podpisem; po zapisie build --check bez bledow, karta freeze spojna z frontmatterem, zestawy zielone z obu lokalizacji, run-canon-tests potwierdza nietkniety kanon",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-08-11",
+    "go_decision": "GO",
+    "go_rationale": "Trzy dlugi sa opisowe, nie strukturalne. Zamkniecie ich zdejmuje falszywy obraz stanu przed zamrozeniem infrastruktury; zadna zmiana nie dotyka warstwy bezpieczenstwa.",
+    "prepared_by": "session:dlugi-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1"
+   },
+   "payload_hash": "53c1df038fc670da38070f50885eece1965769d37f1fa2648eead3b3b9e7c818",
+   "artifact_hashes": {
+    "ingest.js": "ab55bdbbfa19f039be097eebbd089d01d741dc9ec94d77e7d0eab55b522f7cbb",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

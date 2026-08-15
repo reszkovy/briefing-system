@@ -76,12 +76,29 @@ pergaminowego cosplayu · glassmorphizmu · wypolerowanej estetyki ikon aplikacj
 > Nazwa „The Path" NIE przechodzi na książkę. W tabeli wyżej: The Path = onboarding historyczny,
 > The Book = główne narzędzie metody.
 
-## Monetyzacja
-**Free knowledge, paid transformation.**
-Otwarte: manifest · pierwsze rozdziały · glossary · cotygodniowy list · wybrane praktyki · eseje.
-Płatne: pełna książka · workbook · biblioteka praktyk · szablony operacyjne · członkostwo ·
-cohort · doradztwo/warsztaty dla budujących i founderów.
-Bez agresywnego języka lejka — oferta ma być dostępem do głębszej praktyki, nie presją.
+## Monetyzacja (Reszek, 15.08.2026)
+
+**Zasada:** *Wiedza może być otwarta. Przemiana wymaga struktury, obecności i zapłaty.*
+Monetyzacja nie jako wyciskanie, tylko jako warstwa pogłębienia.
+
+**Zdanie na stronę:** *The Hermeticum keeps knowledge open and charges for structure, tools,
+and guided practice.* / *The Hermeticum zostawia wiedzę otwartą, a pobiera opłatę za strukturę,
+narzędzia i prowadzoną praktykę.*
+
+1. **Publiczna biblioteka (0 zł)** — manifest · część rozdziałów · glossary · reading paths ·
+   eseje · wybrane praktyki. Buduje zaufanie i pokazuje standard.
+2. **Płatna pełna ścieżka** — pełna książka · workbook · praktyki · systemy tygodniowe · audio ·
+   template'y. Naturalny próg, nie agresywny paywall. *The public work is free. The structured path is paid.*
+3. **Membership jako patronat + praktyka** — nie „subskrypcja contentu": wsparcie niezależności szkoły,
+   miesięczne praktyki, dostęp do archiwum, live notes / reading circle, nowe narzędzia.
+   *Membership keeps the school independent.*
+4. **Cohorty i warsztaty** — małe grupy, konkretna transformacja, systemy działania, ścieżka
+   founder/operator, reset energii i sprawczości. Tu są większe pieniądze, bez masowego ciśnienia.
+5. **Pay what you can / patron tier** — część rzeczy po stałej cenie, opcja wsparcia wyższą kwotą,
+   stypendia i darmowy dostęp dla wybranych; transparentnie: płatne warstwy utrzymują darmowe archiwum.
+
+**Nie sprzedajemy** magii, oświecenia ani presji. Sprzedajemy strukturę, czas, prowadzenie,
+narzędzia i ciągłość.
 
 ## Pozycjonowanie
 1. The Hermeticum is an anonymous school of operational hermeticism for the Modern Hermet.

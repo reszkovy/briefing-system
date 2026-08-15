@@ -1,0 +1,18 @@
+{
+  "events": [
+    {
+      "kind": "signal.observed",
+      "on": "proj:artoffnia-oferta",
+      "actor": "session:cko-daily",
+      "provenance": "gmail",
+      "summary": "Trial #001 STOI NA WYSYLCE: draft 'ARToffNIA - kierunek + wycena materialow kampanijnych' (do: monika.sobota@artoffnia.pl + sobota.monika@gmail.com, cc: katarzyna.grabinska@artoffnia.pl) lezy w Gmailu od 2026-08-08 08:30 i na 2026-08-11 10:43 pozostaje NIEWYSLANY. Zero ruchu w watku. Konsekwencja: trzy predykcje v2 nie ruszyly biegu — pred:artoffnia-v2-reply (deadline 12.08) ma w kryterium warunek wstepny 'mail wysłany 11.08', wiec deadline przesuwa sie o opoznienie wysylki, a nie rozlicza jako MISS. Wzorzec zgodny z azymutem 07.08: system produkuje szybciej, niz Przemek wysyla."
+    },
+    {
+      "kind": "signal.observed",
+      "on": "proj:briefsync",
+      "actor": "session:cko-daily",
+      "provenance": "trello",
+      "summary": "ZYWA BRAMKA WEJSCIA POZA GENOME: 2026-08-11 05:22 Przemek przeniosl 5 kart wrzesniowych na tablicy 'betterworkplace' (Kampanie wrzesien BW / DF / TB / inne + Betterworkplace motion do kampanii) na liste o nazwie 'NIEPELNY BRIEF'. To pierwsza zaobserwowana ZYWA instancja klasy intake-gate-before-router (n=10 z retro-backtestow, rec:backtests/ANALIZA-KONCOWA) — bramka kompletnosci briefu odpalona recznie, przed jakimkolwiek projektowaniem, na realnym wolumenie Benefitu. Kandydat na Trial #003 z pomiarem baseline->delta bez proszenia klienta o cokolwiek: lista Trello dostarcza licznik brief-niepelny/brief-pelny sama z siebie."
+    }
+  ]
+}

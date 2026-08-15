@@ -1,0 +1,73 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "mech:location-as-data",
+   "anti_context": "Nie stosować przy 1-2 lokalizacjach bez planu skali — silnik się nie zwróci. Nie obiecywać skali przed walidacją na ≥2 lokalizacjach (pierwsza replikacja ujawnia, co było przybite). Czerwona flaga: 'dorobię ręcznie po generacji' — niekompletny config łamie mechanizm; podobnie współdzielony stan między tenantami (znany bug). ROZROZNIENIE, KTOREGO KARTA NIE MIALA (backtest fitstyle-platform 09.08): replikacja TECHNICZNA przy danych-first jest darmowa i nie jest zadnym dowodem — FitStyle zbudowal 6 miast z 13 rekordow bez wysilku. Waskim gardlem jest walidacja RYNKOWA i to ona, nie liczba zbudowanych lokalizacji, jest warunkiem uznania mechanizmu za dzialajacy. Warunek \">=2 lokalizacje\" mierzyl niewlasciwa rzecz.",
+   "actor": "przemek",
+   "cause": "rec:backtests/fitstyle-platform",
+   "ingest_note": "Korekta warunku walidacji. Backtest wykazal, ze predykcja bt-05 byla MISS, bo mieszala replikacje techniczna z rynkowa. Confidence bez zmian."
+  }
+ ],
+ "events": [
+  {
+   "kind": "knowledge.corrected",
+   "on": "mech:location-as-data",
+   "actor": "przemek",
+   "provenance": "record",
+   "from": "warunek walidacji oparty na liczbie zbudowanych lokalizacji (>=2)",
+   "to": "warunek walidacji oparty na potwierdzeniu RYNKOWYM; replikacja techniczna jawnie oznaczona jako darmowa i niedowodowa",
+   "cause": "rec:backtests/fitstyle-platform",
+   "note": "Bez predykcji — swiadomie. Test wymaga projektu lokalizacyjnego, ktory dojdzie do walidacji rynkowej; FitStyle jest zamrozony jako przypadek testowy frameworku, wiec nie moze pelnic tej roli. Predykcja przy pierwszym nowym projekcie sieciowym."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "korekta-location-as-data-2026-08-10",
+  "signature": null,
+  "proposal_hash": "1d6018d8f4ee6af2c40b626ff5239b4b26f8f4c12cbf429c88187305904526b8",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "korekta-location-as-data-2026-08-10",
+   "expires_at": "2026-08-14",
+   "claims": [],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "project_start": "2026-08-10",
+    "mechanisms": [],
+    "frameworks": [],
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-09-15",
+    "go_decision": "GO",
+    "prepared_by": "session:domykanie-petli-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1",
+    "business_problem": "Karta location-as-data uznawala mechanizm za potwierdzony po zbudowaniu >=2 lokalizacji. Backtest fitstyle-platform wykazal, ze to mierzy niewlasciwa rzecz: 6 miast powstalo trywialnie, a zadne nie ma walidacji rynkowej. Genome moglo uznac mechanizm za dzialajacy na podstawie braku wysilku.",
+    "scope": "uzupelnienie anti_context mech:location-as-data o rozroznienie replikacji technicznej i walidacji rynkowej; jedno zdarzenie knowledge.corrected",
+    "non_scope": "zmiana confidence i statusu; zmiana warunku w innych kartach klasy location; rejestracja predykcji bez kandydata",
+    "baseline": "mech:location-as-data v4, emerging, anti_context bez rozroznienia typow walidacji",
+    "validation_plan": "Predykcja przy pierwszym nowym projekcie sieciowym: czy Router zada dowodu rynkowego, czy zadowoli sie liczba zbudowanych lokalizacji.",
+    "go_rationale": "Korekta usuwa warunek, ktory pozwalal uznac mechanizm za potwierdzony bez zadnego dowodu rynkowego."
+   },
+   "payload_hash": "1d6018d8f4ee6af2c40b626ff5239b4b26f8f4c12cbf429c88187305904526b8",
+   "artifact_hashes": {
+    "ingest.js": "2f588f6412bc84b4d111bed8bcf40429d9aca7ad0e2038004ac1aa9b4496e448",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

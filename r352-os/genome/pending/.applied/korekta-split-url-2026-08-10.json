@@ -1,0 +1,73 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "mech:split-url-architecture",
+   "anti_context": "Nie stosować w małych serwisach bez kampanii segmentowych (jeden system adresów wystarcza), ani tam, gdzie nikt nie będzie egzekwował spisanej granicy między systemami — niedokumentowany rozdział prowadzi wprost do failure mode 'skasowano właściwe strony kategorii'. Ostrożnie, gdy brak dostępu do konfiguracji redirectów platformy. WARUNEK STOSOWALNOSCI (backtest fitstyle-platform 09.08): rozdzial ma sens WYLACZNIE wtedy, gdy dla tej samej encji wspolistnieja dwa typy URL — strona kanoniczna ORAZ link kampanijny. Gdy encja ma tylko JEDNA strone (np. LP przedsprzedazy klubu w miescie, gdzie klubu jeszcze nie ma), ta strona JEST powierzchnia SEO i rozdzial jest bledem: build FitStyle slusznie zrobil odwrotnie niz zalecil Router.",
+   "actor": "przemek",
+   "cause": "rec:backtests/fitstyle-platform",
+   "ingest_note": "Zawezenie warunku stosowalnosci. Backtest 09.08 wykazal, ze rekomendacja byla ODWROTNA do rzeczywistosci i to build mial racje. Confidence bez zmian — bledna rekomendacja nie obniza pewnosci mechanizmu, tylko zaweza jego zakres."
+  }
+ ],
+ "events": [
+  {
+   "kind": "knowledge.corrected",
+   "on": "mech:split-url-architecture",
+   "actor": "przemek",
+   "provenance": "record",
+   "from": "trigger i anti_context bez warunku wspolistnienia dwoch typow URL — karta zalecala rozdzial od pierwszego dnia",
+   "to": "anti_context z jawnym warunkiem: rozdzial wymaga wspolistnienia strony kanonicznej i linku kampanijnego dla TEJ SAMEJ encji",
+   "cause": "rec:backtests/fitstyle-platform",
+   "note": "Bez predykcji — swiadomie. Korekta dotyczy warunku stosowalnosci, wiec da sie ja przetestowac dopiero na projekcie, w ktorym encja ma tylko jedna strone. Predykcja zostanie zarejestrowana przy pierwszym takim projekcie; rejestrowanie jej teraz, bez kandydata, byloby pozorem testu."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "korekta-split-url-2026-08-10",
+  "signature": null,
+  "proposal_hash": "a64469d853da3f05433405ff7f67a136317b5401cadbe33e6d30bd6085b204ce",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "korekta-split-url-2026-08-10",
+   "expires_at": "2026-08-14",
+   "claims": [],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "project_start": "2026-08-10",
+    "mechanisms": [],
+    "frameworks": [],
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-09-15",
+    "go_decision": "GO",
+    "prepared_by": "session:domykanie-petli-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1",
+    "business_problem": "Backtest fitstyle-platform (09.08) wykazal, ze Router zalecil rozdzial URL tam, gdzie encja ma tylko jedna strone — i to build mial racje, robiac odwrotnie. Trigger karty jest za szeroki. Bez korekty Router powtorzy te rekomendacje przy nastepnej sieci lokalizacji.",
+    "scope": "zawezenie anti_context mech:split-url-architecture o warunek wspolistnienia dwoch typow URL; jedno zdarzenie knowledge.corrected",
+    "non_scope": "zmiana confidence i statusu; usuwanie mechanizmu; zmiana Evidence; rejestracja predykcji bez kandydata na projekt testowy",
+    "baseline": "mech:split-url-architecture v4, emerging, anti_context bez warunku wspolistnienia",
+    "validation_plan": "Predykcja przy pierwszym projekcie, w ktorym encja ma jedna strone. Kryterium: czy Router zaleci rozdzial mimo braku wspolistnienia.",
+    "go_rationale": "Korekta tresci karty, zero zmian w pewnosci. Koszt zaniechania: Router powtarza rekomendacje udowodnioną jako bledna."
+   },
+   "payload_hash": "a64469d853da3f05433405ff7f67a136317b5401cadbe33e6d30bd6085b204ce",
+   "artifact_hashes": {
+    "ingest.js": "2f588f6412bc84b4d111bed8bcf40429d9aca7ad0e2038004ac1aa9b4496e448",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

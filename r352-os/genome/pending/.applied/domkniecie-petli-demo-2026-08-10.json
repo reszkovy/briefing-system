@@ -1,0 +1,177 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "mech:proof-first-demo-pitch",
+   "anti_context": "Nie stosować, gdy koszt demo wymyka się proporcji (lekcja: nie odpalać wielkich workflowów do drobiazgów), gdy nie ma realnych danych klienta do postawienia demo (generyczne demo nie dowodzi niczego), ani gdy demo prowadziłoby do one-offa zamiast systemu — demo ma sprzedawać mechanizm. Ryzyko: klient traktuje pokaz jako darmową przysługę, jeśli nie towarzyszy mu wycena. NIE UJAWNIAĆ kompletnego artefaktu, dopóki nie ustalono kotwicy cenowej i podziału na etapy — kompletny dowód przed wyceną działa PRZECIW wycenie, bo klient wycenia domknięcie, nie wartość (backtest artoffnia-demo 08.08: demo wycofane z publikacji i zastąpione teaserem kierunkowym). Kolejność zabezpiecza mech:price-anchor-before-proof.",
+   "relations": {
+    "implements": [
+     "prin:proof-before-promise"
+    ],
+    "related": [
+     "mech:dated-commitment-gates",
+     "mech:location-as-data-funnels",
+     "mech:working-artifact-extraction",
+     "mech:sandbox-promotion",
+     "mech:price-anchor-before-proof"
+    ]
+   },
+   "actor": "przemek",
+   "cause": "rec:backtests/artoffnia-demo",
+   "ingest_note": "Anti-context uzupelniony o warunek kolejnosci (kotwica cenowa przed ujawnieniem kompletnego artefaktu). Lekcja byla zapisana w Evidence backtestu od 08.08, ale nie wrocila do karty — Router czyta karte, nie Evidence, wiec przy nastepnym projekcie nadal zalecalby pelne demo. Confidence i status BEZ ZMIAN."
+  },
+  {
+   "op": "object.create",
+   "id": "mech:price-anchor-before-proof",
+   "type": "mechanism",
+   "title": "Price Anchor Before Proof",
+   "status": "hypothesis",
+   "created": "2026-08-10",
+   "owner": "przemek",
+   "confidence": {
+    "value": "hypothesis",
+    "evidence_strength": {
+     "n": 0,
+     "projects": 0,
+     "independent_sources": 0,
+     "types": {},
+     "last_confirmed": null
+    },
+    "recommendation": "test-first"
+   },
+   "category": "Funnel Mechanics",
+   "relations": {
+    "implements": [
+     "prin:proof-before-promise"
+    ],
+    "related": [
+     "mech:proof-first-demo-pitch",
+     "mech:dated-commitment-gates"
+    ]
+   },
+   "trigger": "Masz gotowy albo prawie gotowy artefakt dowodowy (demo, prototyp, makieta) i zbliża się moment pokazania go klientowi, a kotwica cenowa NIE jest jeszcze ustalona. Sygnał ostrzegawczy: „pokażę im to, a wycenę zrobimy po rozmowie\".",
+   "context": "Sprzedaż systemów i mechanizmów organizacjom, które nie mają własnej kotwicy dla tej klasy pracy (fundacje, sieci lokalne, firmy kupujące dotąd pojedyncze materiały u freelancera). Im tańsza ich dotychczasowa kotwica, tym mocniej działa ten mechanizm.",
+   "anti_context": "Nie stosować, gdy kotwica cenowa już istnieje i jest zaakceptowana — wtedy zwłoka w pokazaniu dowodu tylko wydłuża cykl. Nie stosować jako pretekstu do niepokazywania niczego: mechanizm reguluje KOLEJNOŚĆ, nie istnienie dowodu. Nie mylić z ukrywaniem pracy — praca ujawniona etapami nadal w całości wchodzi do wyceny.",
+   "inputs": [
+    "Gotowy lub prawie gotowy artefakt dowodowy",
+    "Rozpoznana kotwica cenowa klienta (choćby zasłyszana: „lokalny grafik 50-250 zl/material\")",
+    "Podział pracy na etapy, z których każdy da się wycenić osobno",
+    "Wersja kierunkowa artefaktu: pokazuje KIERUNEK, nie gotowość"
+   ],
+   "ai_tasks": [
+    "Złożenie wersji kierunkowej z istniejącego artefaktu (co pokazać, co wyciąć)",
+    "Rozpisanie etapów tak, żeby każdy dał się wycenić niezależnie",
+    "Wyłapanie w materiałach klienta sygnałów o jego kotwicy cenowej"
+   ],
+   "human_tasks": [
+    "Przemek: ustalenie kwot — modelu cenowego nie deleguje się",
+    "Przemek: decyzja, który etap i kiedy zostaje ujawniony",
+    "Klient: reakcja na kierunek przed zobaczeniem kompletu"
+   ],
+   "expected_outcome": "Rozmowa zaczyna się od wartości i etapów, a nie od domykania czegoś, co klient uznał za skończone. Mierzalne: czy pierwsza kwota pada z naszej strony czy z ich, oraz czy finalna wycena jest wyższa od ich pierwotnej kotwicy.",
+   "tags": [
+    "strategia",
+    "sprzedaz",
+    "hipoteza"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Hipoteza wydzielona z backtestu artoffnia-demo (08.08). Jedno zrodlo, jeden projekt — confidence hypothesis, rekomendacja test-first. NIE promowac do emerging bez drugiego, niezaleznego projektu.",
+   "body": "\n## Problem\n\nKompletny artefakt dowodowy pokazany przed ustaleniem kotwicy cenowej **obniża wycenę**. Klient,\nktóry widzi rzecz gotową, wycenia jej domknięcie, a nie wartość, którą dostaje. Im lepszy dowód,\ntym silniejszy efekt — mechanizm `mech:proof-first-demo-pitch` obraca się wtedy przeciwko sobie.\n\n## Kiedy to widać\n\nSprzedający ma przewagę szybkości i chce ją pokazać. Pokazuje wszystko naraz. Rozmowa o cenie\nzaczyna się od pytania „ile jeszcze zostało do zrobienia\", zamiast od „ile to jest warte\".\n\n## Mechanizm\n\nKolejność, nie treść. Najpierw kotwica cenowa i podział na etapy, potem ujawnianie dowodu —\netapami, w tempie, które kontroluje sprzedający. Wersja kierunkowa artefaktu (kierunek, nie\ngotowość) pełni rolę dowodu kompetencji, nie dowodu ukończenia.\n\nPraca wykonana przed umową nie znika z wyceny. Ujawnianie etapami służy kolejności rozmowy,\nnigdy obniżeniu wartości pracy.\n\n## Skąd to wiemy\n\nJeden przebieg: ARToffNIA, sierpień 2026. Kompletny 19-stronowy serwis demo powstał przed\nustaleniem kotwicy. Właściciel wycofał demo z publikacji (commit `cbc4535`) i zastąpił je\nteaserem kierunkowym, żeby odzyskać kontrolę nad kolejnością rozmowy. Szczegóły:\n`rec:backtests/artoffnia-demo`.\n\n**To jest jedna obserwacja z jednego projektu.** Confidence `hypothesis`, rekomendacja\n`test-first`. Awans do `emerging` wymaga drugiego, niezależnego projektu — nie drugiego\nspojrzenia na ten sam.\n\n## Test do wykonania\n\nNajbliższa okazja: rozmowa z ARToffNIĄ po powrocie Moniki. Mierzalne: czy pierwsza kwota pada\nz naszej strony, i czy finalna wycena przekracza ich pierwotną kotwicę (lokalny grafik\n50-250 zł za materiał).\n"
+  }
+ ],
+ "events": [
+  {
+   "kind": "prediction.registered",
+   "on": "mech:price-anchor-before-proof",
+   "actor": "przemek",
+   "provenance": "record",
+   "prediction_id": "pred:price-anchor-artoffnia-01",
+   "p": 0.6,
+   "claim": "W rozmowie z ARToffNIA pierwsza konkretna kwota padnie z naszej strony, a nie z ich, i finalna wycena pakietu przekroczy ich kotwice (lokalny grafik 50-250 zl za material) co najmniej trzykrotnie w przeliczeniu na material.",
+   "deadline": "2026-08-22T23:59+02:00",
+   "criterion": "HIT: pierwsza kwota pochodzi od nas ORAZ zaproponowany lub zaakceptowany pakiet daje >750 zl za material. MISS: kwote otwiera klient albo koncowa stawka miesci sie w ich kotwicy. VOID: rozmowa nie odbywa sie do 22.08.",
+   "measurement_source": "watek mailowy z Monika Sobota + notatka Reszka po rozmowie",
+   "resolution_owner": "przemek",
+   "cause": "rec:backtests/artoffnia-demo",
+   "note": "Predykcja testuje KOREKTE, nie projekt. Korekta bez predykcji nigdy sie nie udowodni: przeczytanie poprawionej karty przez Router dowodzi tylko, ze plik zostal wczytany. MISS oznacza, ze hipoteza jest slaba mimo trafnej diagnozy z backtestu."
+  },
+  {
+   "kind": "knowledge.corrected",
+   "on": "mech:proof-first-demo-pitch",
+   "actor": "przemek",
+   "provenance": "record",
+   "from": "anti_context bez warunku kolejnosci: karta ostrzegala tylko, ze klient moze uznac pokaz za darmowa przysluge",
+   "to": "anti_context z warunkiem kolejnosci: nie ujawniac kompletnego artefaktu przed ustaleniem kotwicy cenowej i podzialu na etapy",
+   "cause": "rec:backtests/artoffnia-demo",
+   "note": "Domkniecie petli uczenia wykryte przez triage sygnalu sig-in:2026-08-10-02. Lekcja byla zapisana jako Evidence backtestu 08.08 (ev:proof-first-demo-pitch-artoffnia-demo) wraz z jawna propozycja zmiany karty, ale zmiana nigdy nie zostala wykonana. Router czyta karty, nie Evidence — wiec przez dwa dni zalecalby pelne demo mimo posiadanego dowodu, ze to szkodzi wycenie."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "domkniecie-petli-demo-2026-08-10",
+  "signature": null,
+  "proposal_hash": "cc7f0575bb8d868e07fe6522eb3a080a8849786c1ab344fab92e2af1afa847f9",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "domkniecie-petli-demo-2026-08-10",
+   "expires_at": "2026-08-21",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "lekcja o kotwicy cenowej byla w Evidence backtestu artoffnia-demo od 08.08, ale nie zostala przeniesiona do karty mech:proof-first-demo-pitch (v5)"
+    },
+    {
+     "kind": "recommendation",
+     "text": "wydzielic mech:price-anchor-before-proof jako hipoteze z jednym zrodlem, bez promocji do emerging"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [
+    {
+     "id": "pred:price-anchor-artoffnia-01",
+     "p": 0.6,
+     "deadline": "2026-08-22",
+     "on": "mech:price-anchor-before-proof"
+    }
+   ],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "Backtest artoffnia-demo zapisal lekcje (kompletny dowod przed wycena dziala przeciw wycenie) jako Evidence wraz z jawna propozycja zmiany karty. Propozycja nie zostala wykonana. Router czyta karty mechanizmow, nie Evidence, wiec przy nastepnym projekcie zalecalby pelne demo mimo posiadanego dowodu, ze to szkodzi. Genome mial wiedze, ktorej nie umial uzyc.",
+    "project_start": "2026-08-10",
+    "scope": "anti_context karty mech:proof-first-demo-pitch uzupelniony o warunek kolejnosci; relacja do nowej karty; nowa karta mech:price-anchor-before-proof jako hipoteza BEZ dorobku dowodowego (n=0); jedno zdarzenie knowledge.corrected. Evidence z backtestu wchodzi OSOBNYM pakietem, bo writer stosuje Evidence przed tworzeniem obiektow.",
+    "non_scope": "podnoszenie confidence mech:proof-first-demo-pitch (bez nowych Evidence); promocja nowej karty do emerging; zmiana statusu ktoregokolwiek mechanizmu na validated; zmiana Evidence juz zapisanych; jakakolwiek zmiana Ledgera, writera, podpisow i ontologii",
+    "baseline": "mech:proof-first-demo-pitch v5, status emerging, confidence emerging (n=10, projects=6, independent_sources=7); anti_context bez warunku kolejnosci; mech:price-anchor-before-proof nie istnieje",
+    "mechanisms": [
+     "mech:proof-first-demo-pitch",
+     "mech:price-anchor-before-proof"
+    ],
+    "frameworks": [],
+    "validation_plan": "Rozmowa z ARToffNIA po powrocie Moniki: czy pierwsza kwota pada z naszej strony i czy finalna wycena przekracza ich kotwice (lokalny grafik 50-250 zl/material). Drugi, niezalezny projekt jest warunkiem awansu hipotezy do emerging.",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-09-15",
+    "go_decision": "GO",
+    "go_rationale": "Zmiana dotyka wylacznie tresci karty i tworzy jedna hipoteze z jawnie oznaczonym pojedynczym zrodlem. Zero podbicia confidence, zero nowych Evidence spoza istniejacego backtestu. Koszt bledu niski, koszt zaniechania wysoki: Router bez tej poprawki rekomenduje mechanizm, o ktorym wiemy, ze w tej kolejnosci szkodzi.",
+    "prepared_by": "session:triage-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1"
+   },
+   "payload_hash": "cc7f0575bb8d868e07fe6522eb3a080a8849786c1ab344fab92e2af1afa847f9",
+   "artifact_hashes": {
+    "ingest.js": "2f588f6412bc84b4d111bed8bcf40429d9aca7ad0e2038004ac1aa9b4496e448",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

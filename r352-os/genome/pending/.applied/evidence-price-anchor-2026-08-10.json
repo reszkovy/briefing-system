@@ -1,0 +1,71 @@
+{
+ "objects": [],
+ "events": [],
+ "evidence": [
+  {
+   "mechanism": "mech:price-anchor-before-proof",
+   "project": "proj:artoffnia-demo",
+   "type": "backtest",
+   "direction": "supports",
+   "source": "rec:backtests/artoffnia-demo",
+   "date": "2026-08-08",
+   "observation": "Kompletny dowod gotowy przed ustaleniem kotwicy cenowej dzialal przeciw wycenie — wlasciciel wycofal demo z publikacji (commit cbc4535) i zastapil je teaserem kierunkowym, zeby odzyskac kontrole nad kolejnoscia rozmowy."
+  }
+ ],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "evidence-price-anchor-2026-08-10",
+  "signature": null,
+  "proposal_hash": "3d2f8d527ed88e50685cb5c4b35ea98cd08597533c0d74553c2c5466bb3d6fbd",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "evidence-price-anchor-2026-08-10",
+   "expires_at": "2026-08-21",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "mech:price-anchor-before-proof ma jedno zrodlo dowodowe: backtest artoffnia-demo z 08.08"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 (wewnetrzne)",
+    "business_problem": "Karta hipotezy powstala bez dorobku dowodowego, bo writer stosuje Evidence PRZED tworzeniem obiektow i nie widzi karty tworzonej w tym samym pakiecie. Ten pakiet dokłada brakujacy dowod.",
+    "project_start": "2026-08-10",
+    "scope": "jeden wpis Evidence typu backtest dla mech:price-anchor-before-proof, zrodlo rec:backtests/artoffnia-demo, kierunek supports",
+    "non_scope": "tworzenie lub zmiana jakiejkolwiek karty; promocja hipotezy do emerging; Evidence dla mech:proof-first-demo-pitch; jakakolwiek zmiana Ledgera, writera, podpisow i ontologii",
+    "baseline": "mech:price-anchor-before-proof istnieje po pakiecie 1, hypothesis, n=0",
+    "mechanisms": [
+     "mech:proof-first-demo-pitch",
+     "mech:price-anchor-before-proof"
+    ],
+    "frameworks": [],
+    "validation_plan": "Rozmowa z ARToffNIA po powrocie Moniki: czy pierwsza kwota pada z naszej strony i czy finalna wycena przekracza ich kotwice (lokalny grafik 50-250 zl/material). Drugi, niezalezny projekt jest warunkiem awansu hipotezy do emerging.",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-09-15",
+    "go_decision": "GO",
+    "go_rationale": "Jeden wpis z istniejacego Recordu backtestu. Zrodlo juz w kanonie, nowej wiedzy nie powstaje — zmienia sie wylacznie dorobek dowodowy hipotezy z 0 na 1.",
+    "prepared_by": "session:triage-2026-08-10",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1"
+   },
+   "payload_hash": "3d2f8d527ed88e50685cb5c4b35ea98cd08597533c0d74553c2c5466bb3d6fbd",
+   "artifact_hashes": {
+    "ingest.js": "2f588f6412bc84b4d111bed8bcf40429d9aca7ad0e2038004ac1aa9b4496e448",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

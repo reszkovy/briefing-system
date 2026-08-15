@@ -60,10 +60,133 @@ L10N = {
    note='Ta książka jest kompilacją własnych sformułowań serwisu, składaną z pomocą narzędzi AI na podstawie opublikowanych badań. Nic nie jest tu podawane jako objawienie; źródła stoją przy stronach, do których należą.'),
 }
 
+
+def build_from_chapters(chs, lang, t, pre):
+    """Czytnik z prawdziwych rozdziałów książki (book-pl/*.json)."""
+    L = lang == 'pl'
+    chs = sorted(chs, key=lambda c: c['n'])
+    body_ch = [c for c in chs if c['n'] > 0]
+    opening = next((c for c in chs if c['n'] == 0), None)
+    seq = ([opening] if opening else []) + body_ch
+    for i, c in enumerate(seq):
+        c['pos'] = i + 1
+    total = len(seq)
+    PARTNAMES = t['parts']
+
+    def toc(active=None):
+        out = ''
+        cur_part = None
+        for c in seq:
+            pk = c.get('part', 'read')
+            if pk != cur_part:
+                cur_part = pk
+                lbl = t['book'] if pk == 'opening' else PARTNAMES.get(pk, pk)
+                out += f'<p class="btoc__part">{lbl}</p><ol class="btoc__list">'
+            cls = ' class="is-active"' if active == c['pos'] else ''
+            num = '—' if c['n'] == 0 else f"{c['n']:02d}"
+            out += f'<li><a href="{pre}/book/{c["slug"]}/"{cls}><i>{num}</i>{H.escape(c["title"])}</a></li>'
+        return out + '</ol>'
+
+    def index_html():
+        out, cur_part, rows = '', None, ''
+        order = []
+        for c in seq:
+            pk = c.get('part', 'read')
+            if pk != cur_part:
+                if cur_part is not None: order.append((cur_part, rows)); rows = ''
+                cur_part = pk
+            num = '—' if c['n'] == 0 else f"{c['n']:02d}"
+            sub = H.escape(c.get('subtitle', '') or '')
+            rows += (f'<li><a href="{pre}/book/{c["slug"]}/"><i>{num}</i><b>{H.escape(c["title"])}</b>'
+                     f'<span class="bx__dots" aria-hidden="true"></span><em>{sub[:58]}</em></a></li>')
+        order.append((cur_part, rows))
+        rom = ['I','II','III','IV','V']
+        for i, (pk, rws) in enumerate(order):
+            lbl = t['book'] if pk == 'opening' else PARTNAMES.get(pk, pk)
+            desc = '' if pk == 'opening' else t['partdesc'].get(pk, '')
+            out += (f'<section class="bx__part"><header class="bx__head">'
+                    f'<span class="bx__roman">{rom[i] if i < len(rom) else ""}</span>'
+                    f'<h2>{lbl}</h2><p>{desc}</p></header><ol class="bx__list">{rws}</ol></section>')
+        return out
+
+    head = lambda title, desc, url: f'''<!doctype html>
+<html lang="{lang}"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{H.escape(title)} — {t["book"]}</title>
+<meta name="description" content="{H.escape(desc)[:180]}">
+<link rel="canonical" href="{SITE}{url}"><meta name="robots" content="index, follow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css?v=32"><script src="/assets/site.js?v=32" defer></script>
+<script defer src="/_vercel/insights/script.js"></script></head><body class="is-book">'''
+
+    outdir = os.path.join(ROOT, 'pl' if L else '', 'book')
+    os.makedirs(outdir, exist_ok=True)
+    cover = head(t['book'], t['sub'], f'{pre}/book/') + HDR[lang] + f'''
+<main class="bookcover"><div class="container bookcover__in">
+  <p class="kicker">{t['home']}</p>
+  <h1 class="bookcover__h1">{t['book']}</h1>
+  <p class="bookcover__sub">{t['sub']}</p>
+  <p class="bookcover__intro">{t['intro']}</p>
+  <div class="hero__cta">
+    <a class="btn" href="{pre}/book/{seq[0]['slug']}/">{t['start']}</a>
+    <a class="hero__alt" href="#contents" data-book-resume hidden>{t['resume']}</a>
+  </div>
+  <div class="bx" id="contents">{index_html()}</div>
+  <p class="bookcover__note">{t['note']}</p>
+</div></main>''' + FTR[lang] + '</body></html>'
+    open(os.path.join(outdir, 'index.html'), 'w').write(cover)
+
+    for i, c in enumerate(seq):
+        prev_c, next_c = (seq[i-1] if i else None), (seq[i+1] if i < total-1 else None)
+        secs = ''
+        for s in c['sections']:
+            lab = s.get('label', '')
+            secs += (f'<section class="bsec"><p class="bsec__lbl">{H.escape(lab)}</p>{s["html"]}</section>'
+                     if lab and s.get('key') != 'essay' else s['html'])
+        closing = f'<p class="bclose">{H.escape(c["closing_line"])}</p>' if c.get('closing_line') else ''
+        nav = ''
+        nav += (f'<a class="bnav__prev" href="{pre}/book/{prev_c["slug"]}/"><span>{t["prev"]}</span><b>{H.escape(prev_c["title"])}</b></a>'
+                if prev_c else '<span></span>')
+        if next_c:
+            nav += f'<a class="bnav__next" href="{pre}/book/{next_c["slug"]}/"><span>{t["nxt"]}</span><b>{H.escape(next_c["title"])}</b></a>'
+        pct = round(c['pos']/total*100)
+        num_lbl = t['book'] if c['n'] == 0 else f"{t['chapter']} {c['n']:02d} {t['of']} {len(body_ch)}"
+        d = os.path.join(outdir, c['slug']); os.makedirs(d, exist_ok=True)
+        page = head(c['title'], c.get('subtitle',''), f'{pre}/book/{c["slug"]}/') + HDR[lang] + f'''
+<div class="bprogress" aria-hidden="true"><span style="width:{pct}%"></span></div>
+<main class="book" data-book-chapter="{c['pos']}" data-book-url="{pre}/book/{c['slug']}/">
+  <div class="container book__grid">
+    <aside class="book__side"><p class="btoc__head">{t['contents']}</p>
+      <nav class="btoc">{toc(c['pos'])}</nav></aside>
+    <article class="book__body">
+      <p class="book__meta"><a href="{pre}/book/">{t['book']}</a> &middot; {num_lbl}</p>
+      <h1 class="book__h1">{H.escape(c['title'])}</h1>
+      {f'<p class="book__sub">{H.escape(c["subtitle"])}</p>' if c.get('subtitle') else ''}
+      {secs}
+      {closing}
+      <nav class="bnav">{nav}</nav>
+    </article>
+  </div>
+</main>''' + FTR[lang] + '</body></html>'
+        open(os.path.join(d, 'index.html'), 'w').write(page)
+    print(f'książka {lang}: {total} pozycji (rozdziałów: {len(body_ch)}) → {pre}/book/')
+    return [f"{pre}/book/"] + [f"{pre}/book/{c['slug']}/" for c in seq]
+
 def build_lang(lang):
     L = lang == 'pl'
     t = L10N[lang]
     pre = '/pl' if L else ''
+    import glob
+    book_dir = os.path.join(ROOT, 'book-pl')
+    real = []
+    if L and os.path.isdir(book_dir):
+        for f in sorted(glob.glob(os.path.join(book_dir, '*.json'))):
+            try: real.append(json.load(open(f)))
+            except Exception as e: print('POMINIĘTE (JSON):', f, e)
+    if real:
+        return build_from_chapters(real, lang, t, pre)
     ins = {s['n']: s for s in split_sections('content-pl/guide__instruction.json' if L else 'content/guide-instruction.json')}
     alc = {s['n']: s for s in split_sections('content-pl/guide__operational-alchemy.json' if L else 'content/guide-operational-alchemy.json')}
 
@@ -118,8 +241,8 @@ def build_lang(lang):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=30">
-<script src="/assets/site.js?v=30" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=32">
+<script src="/assets/site.js?v=32" defer></script>
 <script defer src="/_vercel/insights/script.js"></script>
 {extra}
 </head>

@@ -1,0 +1,143 @@
+{
+ "objects": [
+  {
+   "op": "object.patch",
+   "id": "proj:thehermeticum",
+   "relations": {
+    "uses": [
+     "mech:working-artifact-extraction",
+     "mech:single-source-compiler",
+     "mech:seo-aeo-foundation",
+     "comp:site-header-megamenu",
+     "comp:svg-atlas-map"
+    ]
+   },
+   "actor": "przemek",
+   "cause": "proj:thehermeticum",
+   "ingest_note": "Uzupelnienie relacji. Projekt korzysta z trzech mechanizmow i dwoch komponentow przeniesionych z wczesniejszych projektow (FitStyle, Caterelo). Bez tego wezel byl izolowany w grafie mimo realnego reuse."
+  },
+  {
+   "op": "object.create",
+   "id": "comp:site-header-megamenu",
+   "type": "component",
+   "title": "Nagłówek z mega menu i ATF (sticky, wyśrodkowane, akordeon mobile)",
+   "status": "extracted",
+   "created": "2026-08-14",
+   "owner": "przemek",
+   "relations": {
+    "born_from": [
+     "proj:fitstyle-platform"
+    ],
+    "used_by": [
+     "proj:fitstyle-platform",
+     "proj:thehermeticum"
+    ]
+   },
+   "tags": [
+    "ui",
+    "reuse"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Pierwszy komponent w Genome z realnym uzyciem w DWOCH projektach. Zrodlo: FitStyle SiteHeader/HeroPresale; cel: The Hermeticum.",
+   "body": "\n## Co to jest\n\nNagłówek serwisu z mega menu i sekcją ATF: przyklejony pasek, wyśrodkowany panel z kolumnami\ni aside, otwieranie hoverem i klikiem, zasłona pod panelem, akordeon na mobile, hero z drugą\nlinią wyróżnioną.\n\n## Skąd pochodzi\n\nPowstał w `proj:fitstyle-platform` jako `SiteHeader` i `HeroPresale`. Rozwiązywał problem\nsieci z wieloma lokalizacjami: jedna nawigacja, wiele wejść, dwie warstwy hierarchii.\n\n## Gdzie został użyty ponownie\n\n`proj:thehermeticum`, 14.08.2026 — mechanika przeniesiona, estetyka wymieniona w całości\n(pergamin, atrament, cynober, Cinzel plus EB Garamond zamiast czerni i złota FitStyle).\n\n**To jest przypadek, dla którego w ontologii istnieje typ Component**: artefakt, który urodził\nsię w jednym projekcie i pracuje w drugim. Do dziś żaden komponent w Genome nie miał dwóch\nróżnych projektów w `used_by`.\n\n## Czego to NIE dowodzi\n\nŻe mechanizm zadziałał u odbiorcy. Przeniesienie kodu jest faktem technicznym; dowód wartości\nwymaga pomiaru na żywym ruchu i pojawi się dopiero w postmortemie.\n"
+  },
+  {
+   "op": "object.create",
+   "id": "comp:svg-atlas-map",
+   "type": "component",
+   "title": "Mapa SVG sterowana danymi (punkty, warstwy, opisy)",
+   "status": "extracted",
+   "created": "2026-08-14",
+   "owner": "przemek",
+   "relations": {
+    "born_from": [
+     "proj:caterelo"
+    ],
+    "used_by": [
+     "proj:caterelo",
+     "proj:thehermeticum"
+    ]
+   },
+   "tags": [
+    "ui",
+    "dane",
+    "reuse"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Podejscie do map przeniesione z Caterelo. UWAGA: lineage zadeklarowany przez wlasciciela; nie weryfikowalem wspoldzielonego kodu — w Hermeticum mapa jest inline SVG 1000x560, w Caterelo warstwa map jest czescia silnika relokacyjnego.",
+   "body": "\n## Co to jest\n\nMapa jako grafika wektorowa sterowana danymi, nie osadzony kafelkowy widget: punkty i warstwy\ngenerowane ze źródła, opisy przy punktach, brak zależności od zewnętrznego dostawcy map.\n\n## Skąd pochodzi\n\n`proj:caterelo` — silnik relokacyjny z Deal Radarem, gdzie mapa jest sposobem czytania danych,\na nie ozdobą.\n\n## Gdzie został użyty ponownie\n\n`proj:thehermeticum` — Atlas tradycji, od Hermopolis po Amsterdam. Inline SVG 1000×560\nz etykietami miejsc.\n\n## Zastrzeżenie do prowieniencji\n\nPowiązanie zadeklarował właściciel. **Nie zweryfikowałem współdzielonego kodu** — sprawdziłem\nwyłącznie, że w Hermeticum mapa jest inline SVG, a nie biblioteką kafelkową. Jeśli reuse dotyczy\npodejścia, a nie plików, to jest reuse wzorca, nie komponentu, i tę kartę należy przerobić na\nadnotację w `mech:working-artifact-extraction`.\n"
+  }
+ ],
+ "events": [
+  {
+   "kind": "object.updated",
+   "on": "proj:thehermeticum",
+   "actor": "przemek",
+   "provenance": "record",
+   "cause": "proj:thehermeticum",
+   "note": "Dopisane relacje: 3 mechanizmy w uses oraz 2 komponenty przeniesione z FitStyle i Caterelo. Przed ta zmiana wezel projektu byl izolowany w grafie mimo realnego reuse — graf pokazywal stan uboższy niz rzeczywistosc."
+  }
+ ],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "thehermeticum-reuse-2026-08-14",
+  "signature": null,
+  "proposal_hash": "34bfc46e9c7ac52bde2028f61db9578326c32430868d48313d85b1fb82b59537",
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "thehermeticum-reuse-2026-08-14",
+   "expires_at": "2026-09-14",
+   "claims": [
+    {
+     "kind": "fact",
+     "text": "nagłowek z mega menu przeniesiono z proj:fitstyle-platform do proj:thehermeticum 14.08"
+    },
+    {
+     "kind": "opinion",
+     "text": "podejscie do map przeniesiono z proj:caterelo — zadeklarowane przez wlasciciela, kod niezweryfikowany"
+    }
+   ],
+   "research": [],
+   "routing": null,
+   "recommended_mechanisms": [],
+   "recommended_frameworks": [],
+   "metrics": [],
+   "predictions": [],
+   "project_contract": {
+    "client": "r352 / projekt wlasny",
+    "business_problem": "Karta proj:thehermeticum miala puste relations.uses, wiec w grafie byla izolowanym wezlem — mimo ze projekt realnie korzysta z artefaktow przeniesionych z dwoch wczesniejszych projektow. Graf pokazywal stan ubozszy niz rzeczywistosc, a to jest dokladnie ten typ bledu, przez ktory reuse jest niewidoczny i niepoliczalny.",
+    "project_start": "2026-08-14",
+    "scope": "relations.uses w karcie projektu (3 mechanizmy + 2 komponenty); dwa komponenty (comp:site-header-megamenu, comp:svg-atlas-map) z relacjami born_from i used_by; jedno zdarzenie object.updated",
+    "non_scope": "Evidence dla mechanizmow (wymaga postmortemu, nie deklaracji); zmiana confidence; zmiana statusu projektu; twierdzenie, ze przeniesienie przynioslo wynik",
+    "baseline": "proj:thehermeticum ma relations.uses puste; zaden komponent w Genome nie ma dwoch roznych projektow w used_by",
+    "mechanisms": [
+     "mech:working-artifact-extraction",
+     "mech:single-source-compiler",
+     "mech:seo-aeo-foundation"
+    ],
+    "frameworks": [],
+    "validation_plan": "Postmortem The Hermeticum: czy przeniesione artefakty skrocily czas do publikacji i czy wymagaly przerobek. Dopiero to daje Evidence.",
+    "outcome_owner": "przemek",
+    "measurement_date": "2026-12-15",
+    "go_decision": "GO",
+    "go_rationale": "Zapis faktu technicznego, ktory juz zaszedl. Pierwszy w Genome komponent uzyty w dwoch projektach — czyli pierwszy policzalny slad tego, ze jeden projekt zasila nastepny.",
+    "prepared_by": "session:reuse-2026-08-14",
+    "decided_by": "przemek",
+    "report_version": "v1",
+    "contract_version": "v1"
+   },
+   "payload_hash": "34bfc46e9c7ac52bde2028f61db9578326c32430868d48313d85b1fb82b59537",
+   "artifact_hashes": {
+    "ingest.js": "a7f088bbf486ddadbb12806c578cfe6adca8a6e410db0d2eab7a432b165c20ed",
+    "lib/approval.js": "d1ca1c3b315bc1e31079cfe3a9c7d8454427ce78b81886363704ca66639a4db7",
+    "lib/genome-common.js": "d2639d60fb9326b055f5bfdf39c6612b1c78da8bd9378254537c748842230c05",
+    "lib/research-contract.js": "ceb5127ec6774c5317f7d39a54e8d5905fa4c7b31374a6a12eb535c5eb541975",
+    "lib/evidence-writer.js": "db3811792c02f87b50367b1589a92d459247da1f4760e7805cf2e2d6137c036b"
+   }
+  }
+ }
+}

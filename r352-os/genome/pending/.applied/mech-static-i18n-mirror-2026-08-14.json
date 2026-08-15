@@ -1,0 +1,118 @@
+{
+ "objects": [
+  {
+   "op": "object.create",
+   "id": "mech:static-i18n-mirror",
+   "type": "mechanism",
+   "title": "Lustro językowe na statycznym generatorze",
+   "status": "hypothesis",
+   "created": "2026-08-14",
+   "owner": "session",
+   "confidence": {
+    "value": "hypothesis",
+    "evidence_strength": {
+     "n": 0,
+     "projects": 0,
+     "independent_sources": 0,
+     "types": {},
+     "last_confirmed": null
+    },
+    "recommendation": "test-first"
+   },
+   "category": "Production Scaling",
+   "relations": {
+    "implements": [
+     "prin:single-source-of-truth"
+    ],
+    "related": [
+     "mech:single-source-compiler",
+     "mech:seo-aeo-foundation",
+     "mech:split-url-architecture",
+     "mech:working-artifact-extraction"
+    ]
+   },
+   "trigger": "Serwis statyczny na własnym generatorze (build.py / SSG) ma dostać drugą wersję językową bez przepisywania architektury i bez wprowadzania CMS-a. Sygnał w briefie: \"potrzebujemy tego po angielsku\", \"wchodzimy na rynek X\", przy stronie, której treść siedzi już w plikach danych.",
+   "context": "Projekty ze statycznym buildem i treścią trzymaną w plikach (JSON/MD), gdzie publikacja przechodzi przez repo. Im więcej stron, tym większa dźwignia — koszt infrastruktury jest stały, koszt tłumaczenia liniowy i zrównoleglalny.",
+   "anti_context": "Nie stosować przy treści szybkozmiennej bez pipeline'u publikacji per język — lustro rozjedzie się natychmiast, a koszt ×2 wraca przy każdej publikacji. Nie stosować, gdy klient oczekuje lokalizacji kulturowej (inne przykłady, inne case studies) zamiast tłumaczenia — to inny zakres. Nie stosować, gdy treść jest wklejona w HTML zamiast w plikach danych: nakładka nie ma na czym usiąść i robota zamienia się w ręczne tłumaczenie szablonów.",
+   "inputs": [
+    "Działający generator statyczny z treścią w plikach danych",
+    "Decyzja o strategii adresacji: prefiks języka vs tłumaczone slugi",
+    "Glosariusz terminów kanonicznych z rozstrzygniętą odmianą nazw własnych",
+    "Decyzja, co NIE podlega tłumaczeniu (treści okresowe, cytaty źródłowe, nazwy własne)",
+    "Lista stron poza główną pętlą render(): 404, wstęgi, strony indeksowe"
+   ],
+   "ai_tasks": [
+    "Rozszerzenie generatora o parametr lang: rama per język, słownik UI[lang], prefiksowanie linków wewnętrznych",
+    "Warstwa SEO w jednym miejscu: hreflang, per-język canonical, og:locale, JSON-LD inLanguage, sitemap, llms.txt",
+    "Napisanie SPEC tłumaczeniowej (głos, glosariusz, zasady HTML) i fan-out agentów partiami po 4-8 stron",
+    "Walidacja json.load po każdym pliku i normalizacja terminologii zgłoszonej przez agentów",
+    "Przegląd stron spoza pętli render() pod kątem literałów zamiast parametru lang"
+   ],
+   "human_tasks": [
+    "Przemek-decyzja: prefiks vs tłumaczone slugi (utrzymanie kontra long-tail SEO)",
+    "Przemek-decyzja: rozstrzygnięcie spornych terminów w glosariuszu przed pierwszą partią",
+    "Klient: akceptacja, że publikacja nowej strony obejmuje oba języki w jednym commicie"
+   ],
+   "expected_outcome": "Druga wersja językowa całego serwisu powstaje w jednej sesji zamiast w projekcie, bez zmiany architektury i bez CMS-a, z kompletną warstwą hreflang/canonical od pierwszego builda. Koszt utrzymania rośnie o stałą (publikacja ×2), nie o drugi serwis.",
+   "evidence": [],
+   "tags": [
+    "frontend",
+    "copy",
+    "seo"
+   ],
+   "actor": "przemek",
+   "ingest_note": "Karta zalozona z propozycji lezacej w pending/ od 14.08 (commit 85e383b) jako proza — konwersja na obiekt maszynowy. Status hypothesis, evidence puste i to jest stan faktyczny: dwa wdrozenia istnieja (thehermeticum EN→PL 45 stron pod /pl/, DiMedical PL→EN w wariancie z tlumaczonymi slugami), ale zadne nie przeszlo postmortemu. Nie wiadomo, czy lustro przetrwalo pierwsza runde zmian tresci — a to jest pytanie rozstrzygajace o tym mechanizmie. Podbicie confidence dopiero z postmortemu.",
+   "body": "## Problem\n\nSerwis statyczny ma dostać drugą wersję językową. Domyślne wyjścia są dwa i oba są złe:\nskopiować cały katalog i tłumaczyć w miejscu (lustro rozjeżdża się przy pierwszej zmianie),\nalbo wstawić CMS z wtyczką wielojęzyczną (przebudowa architektury dla jednej funkcji).\nOsobno dochodzi warstwa, o której łatwo zapomnieć aż do audytu SEO: bez hreflang i per-język\ncanonical wyszukiwarka traktuje obie wersje jak duplikat i sama wybiera, którą pokazać.\n\n## Mechanizm działania\n\nDrugi język jest NAKŁADKĄ na istniejący generator, nie drugim serwisem.\n\n1. Rama per język, treść per plik. Rama (header/footer/nav) ma jedno źródło prawdy na język.\n   Treść: katalog `content-<lang>/` z JSON-ami o tych samych kluczach co strony bazowe.\n   Tłumaczenie nadpisuje pola, nie kopiuje systemu.\n2. Słownik UI w generatorze. Etykiety renderera (Key facts, FAQ, Sources, TL;DR, podpisy,\n   wstęgi CTA) w jednym dict UI[lang]. Bez tego rozjazd wchodzi bokiem, przez f-stringi.\n3. Adresacja prefiksem (`/pl/...`), slugi nietłumaczone. Linki wewnętrzne dostają prefiks\n   mechanicznie, co eliminuje mapę slugów i martwe linki. Wariant z tłumaczonymi slugami\n   (DiMedical) daje lepszy long-tail, ale kosztuje utrzymanie mapy — wybór zależy od tego,\n   czy klient będzie sam dodawał strony.\n4. SEO od pierwszego builda, nie po fakcie: hreflang en/pl/x-default na KAŻDEJ parze,\n   per-język canonical, og:locale, JSON-LD inLanguage, obie wersje w sitemap, nota w llms.txt.\n5. Tłumaczenie jako fan-out agentów ze SPEC: jeden dokument (głos, glosariusz terminów\n   kanonicznych, zasady HTML — nie ruszać tagów, encji i URL-i zewnętrznych, prefiksować\n   wewnętrzne), partie po 4-8 stron, `json.load` po każdym pliku, wątpliwości terminologiczne\n   raportowane jednolinijkowo do integratora.\n\n## Warunki sukcesu\n\n- Generator już istnieje i jest utrzymywany — mechanizm dokłada warstwę, nie zakłada projektu\n- Treść jest w plikach danych, nie wklejona w HTML (inaczej nakładka nie ma na czym usiąść)\n- Glosariusz przesądza odmianę nazw własnych PRZED pierwszą partią tłumaczeń\n- Publikacja nowej strony obejmuje oba języki w tym samym commicie\n\n## Warunki porażki\n\n- Treść szybkozmienna bez pipeline'u publikacji per język — lustro rozjeżdża się natychmiast,\n  a koszt stały ×2 płaci się przy każdej publikacji\n- Klient oczekuje lokalizacji kulturowej (inne case studies, inne przykłady), nie tłumaczenia\n  — to jest inna robota i inny mechanizm, nie ten\n- Sekcje generowane f-stringiem z literałami zamiast parametru `lang` — cicha dziura,\n  widoczna dopiero na wyrywkowym przeglądzie stron\n\n## Znane pułapki\n\n(a) Strony poza główną pętlą `render()` — 404, wstęgi CTA, strony indeksowe — najłatwiej\nprzeoczyć, bo nie ma ich w listingu.\n(b) Treści okresowe (newsletter, aktualności): uczciwiej dopisać notę o języku oryginału\nniż udawać pełną lokalizację.\n(c) Glosariusz bez rozstrzygniętej odmiany nazw własnych rozjeżdża partie tłumaczone równolegle.\n\n## Status dowodowy\n\nKarta powstaje jako HYPOTHESIS z zerowym Evidence i to jest stan faktyczny, nie formalność.\nDwa wdrożenia istnieją (thehermeticum EN→PL, 45 stron pod `/pl/`; DiMedical PL→EN w wariancie\nz tłumaczonymi slugami), ale żadne nie zostało rozliczone postmortemem ani pomiarem. Nie wiadomo,\nczy lustro utrzymało się po pierwszej rundzie zmian treści — a to jest jedyne pytanie, które\nw tym mechanizmie naprawdę rozstrzyga. Pierwsze Evidence ma wejść z postmortemu thehermeticum\npo pierwszej publikacji treści następującej po uruchomieniu lustra."
+  },
+  {
+   "op": "object.patch",
+   "id": "proj:thehermeticum",
+   "relations": {
+    "uses": [
+     "mech:working-artifact-extraction",
+     "mech:single-source-compiler",
+     "mech:seo-aeo-foundation",
+     "mech:static-i18n-mirror",
+     "comp:site-header-megamenu",
+     "comp:svg-atlas-map"
+    ]
+   },
+   "actor": "przemek",
+   "cause": "proj:thehermeticum",
+   "ingest_note": "Dopisany mech:static-i18n-mirror — projekt jest pelnym wdrozeniem lustra (45 stron pod /pl/)."
+  },
+  {
+   "op": "object.patch",
+   "id": "proj:dimedical-redesign",
+   "relations": {
+    "uses": [
+     "mech:static-i18n-mirror"
+    ]
+   },
+   "actor": "przemek",
+   "cause": "proj:dimedical-redesign",
+   "ingest_note": "Wczesniejsze wdrozenie wariantowe: i18n.py z tlumaczonymi slugami (SLUGI/KANON/UI), 19 stron PL + 19 EN."
+  }
+ ],
+ "events": [],
+ "evidence": [],
+ "approval": {
+  "status": "PENDING_OWNER_SIGNATURE",
+  "approved_by": null,
+  "approved_at": null,
+  "nonce": "mech-static-i18n-mirror-2026-08-14",
+  "signature": null,
+  "package": {
+   "schema_version": "genome-approval/2-ed25519",
+   "phase": "contract",
+   "nonce": "mech-static-i18n-mirror-2026-08-14",
+   "expires_at": "2026-09-14",
+   "claims": [
+    {
+     "kind": "scope",
+     "text": "Nowa karta mechanizmu + wpiecie dwoch projektow-nosnikow. Zero zmian confidence w istniejacych kartach."
+    }
+   ]
+  }
+ }
+}
